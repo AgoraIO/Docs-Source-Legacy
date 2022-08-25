@@ -1,0 +1,1000 @@
+<PlatformWrapper platform="flutter">
+
+This page provides the release notes for the Agora Flutter SDK.
+
+## Known issues and limitations
+
+#### Compatibility with iOS 15
+
+As of v4.0.6 (Native v3.4.6), the SDK supports iOS 15. For the SDK versions between v3.2.1 and v4.0.5 (Native v3.4.5) inclusive, crashes occur on iOS 15. To fix this issue, upgrade the SDK to v4.0.6 or later.
+
+## v5.3.0 (Native v3.7.0.2)
+v5.3.0 was released on July 20, 2022.
+
+#### New features and improvements
+v5.3.0 adapts to the Agora RTC Native SDK v3.7.0.2. For new features and improvements, see the release notes for each platform from v3.6.2 to v3.7.0.2:
+
+- [Android Release Notes](./release_android_video?platform=Android)
+- [iOS Release Notes](./release_ios_video?platform=iOS)
+- [macOS Release Notes](./release_mac_video?platform=macOS)
+- [Windows Release Notes](./release_windows_video?platform=Windows)
+
+To support screen sharing on mobile platforms, v5.3.0 provides the `startScreenCaptureMobile` and `updateScreenCaptureParametersMobile` methods, which function the same way as the `startScreenCapture` and `updateScreenCaptureParameters` methods on Android and iOS.
+
+#### Fixed issues
+This release fixed the following issues:
+
+- Occasional crashes occurred. (Android, iOS)
+- The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+. (Android)
+- Occasionally, the app got stuck after a user joined a channel. (Windows)
+- The video received by the user appeared to change from dark to bright. (iOS)
+- Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing. (Windows)
+- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
+- When a user started screen sharing on devices with integrated graphics, the shared screen appeared red and flickered. (macOS)
+- Occasionally, remote users saw the shared video stutter after the local user started screen sharing. (macOS)
+- Occasionally, screen sharing ended unexpectedly. (iOS)
+- The local audio error reason reported by the `localAudioStateChange` callback after a user denied microphone permission was inaccurate. (iOS)
+- When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant. (Android)
+- Occasional crashes occurred when you called `playEffect` or `startAudioMixing` to play 8-bit PCM-encoded audio in the WAV format. (iOS)
+- When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green. (Windows)
+- `gatewayRtt` reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
+- Occasionally, `deviceName` returned by the `enumerateDevices` method was empty when calling `enumerateDevices` to enumerate video capture devices in the system. (macOS)
+- Occasionally, it took users longer than normal to join a channel for the first time.
+- The `NSInternalInconsistencyException` error occasionally occurred in event handling. (iOS)
+
+## v5.2.0 (Native 3.6.2)
+
+v5.2.0 was released on May 24, 2022.
+
+#### New features
+
+This version adds support for Flutter 3.
+
+#### Fixed issues
+
+This version fixed the `null` return value issue when you call the following methods:
+
+- `isCameraAutoFocusFaceModeSupported`
+- `isCameraExposurePositionSupported`
+- `isCameraFocusSupported`
+- `isCameraTorchSupported`
+
+
+## v5.1.1 (Native 3.6.2)
+
+v5.1.1 was released on May 10, 2022.
+
+This version fixed the following issues:
+
+- The SDK crashes on certain Android mobile platforms.
+- The SDK fails to initialize in macOS versions lower than 11.3.
+
+## v5.1.0 (Native 3.6.2)
+
+v5.1.0 was released on April 15, 2022.
+
+#### Compatibility changes
+
+v5.1.0 has the following compatibility changes:
+
+- `RtcEngine.setDefaultAudioRoutetoSpeakerphone` is renamed as `RtcEngine.setDefaultAudioRouteToSpeakerphone`.
+- The type of the `LiveTranscoding.watermark` member variable changes from `AgoraImage?` to `List<AgoraImage>?`.
+- The type of the `LiveTranscoding.backgroundImage` member variable changes from `AgoraImage?` to `List<AgoraImage>?`.
+- The type of the `LiveTranscoding.backgroundColor` member variable changes from `Color` to `int`.
+- The `VideoEncoderConfiguration.degradationPrefer` member variable is renamed as `degradationPreference`.
+- The type of the `VirtualBackgroundSource.color` member variable changes from `Color` to `int`.
+
+#### New features and improvements
+
+v5.1.0 adapts to the Agora RTC Native SDK v3.6.2. For new features and improvements, see the release notes for each platform from 3.5.2 to 3.6.2:
+
+- [Android Release Notes](./release_android_video?platform=Android)
+- [iOS Release Notes](./release_ios_video?platform=iOS)
+- [macOS Release Notes](./release_mac_video?platform=macOS)
+- [Windows Release Notes](./release_windows_video?platform=Windows)
+
+#### Known issues
+
+`startAudioMixing` does not support playing audio files in the `assets` folder of a Flutter project.
+
+## v5.0.0 (Native 3.5.2)
+
+v5.0.0 was released on February 22, 2022.
+
+As of v5.0.0, the Agora RTC Flutter SDK supports Flutter 2.x and can run on Android, iOS, macOS, and Windows platforms.
+
+#### Compatibility changes
+
+v5.0.0 optimizes the underlying architecture and makes the code neater, you can modify your business logic code by referring to the following compatibility changes:
+
+- Compatibility changes in the `RtcEngine` class:
+
+  - `getErrorDescription` is no longer a `static` method.
+  - `getSdkVersion` is no longer a `static` method.
+  - The data type of `metadata` in the `sendMetadata` method is changed from `String` to `Uint8List`.
+  - The data type of `metadata` in the `sendStreamMessage` method is changed from `String` to `Uint8List`.
+  - The data type of `volume` in the `setEffectsVolume` method is changed from `double` to `int`.
+  - `preset` in the `setLocalVoiceReverbPreset` method is renamed to `reverbPreset`.
+  - The data type of `volume` in the `setVolumeOfEffect` method is changed from `double` to `int`.
+  - `enabled` in the `enableFaceDetection` method is renamed to `enable`.
+  - `enabled` in the `enableDeepLearningDenoise` method is renamed to `enable`.
+  - In the `enableRemoteSuperResolution` method, `uid` is renamed to `userId` and `enabled` is renamed to `enable`.
+  - The return value of the `getAudioFileInfo` method is changed from `void` to `int`.
+  - The data type of `gain` in the `playEffect` method is changed from `double` to `int`.
+  - `enabled` in the `setEnableSpeakerphone` method is renamed to `defaultToSpeaker`.
+  - `uid` in the `setRemoteVideoStreamType` method is renamed to `userId`.
+
+- Compatibility changes in the `RtcChannel` class:
+
+  - The data type of `metadata` in the `sendMetadata` method is changed from `String` to `Uint8List`.
+  - The data type of `metadata` in the `sendStreamMessage` method is changed from `String` to `Uint8List`.
+  - `uid` in the `muteRemoteAudioStream` method is renamed to `userId`.
+  - `uid` in the `muteRemoteVideoStream` method is renamed to `userId`.
+  - `uid` in the `setRemoteVideoStreamType` method is renamed to `userId`.
+  - In the `enableRemoteSuperResolution` method, `uid` is renamed to `userId` and `enabled` is renamed to `enable`.
+  - `muted` in the `muteLocalAudioStream` method is renamed to `mute`.
+  - `muted` in the`muteLocalVideoStream` method is renamed to `mute`.
+  - `context` in the `createWithContext` method is renamed to `config`.
+
+- Compatibility changes related to `View`:
+
+  - `channelId` in the `RtcSurfaceView` class is changed from optional to required.
+  - `channelId` in the `RtcTextureView` class is changed from optional to required.
+
+- Changes in error codes returned when the request to join a channel is rejected: To more accurately report the reason for the failure to join a channel, as of this release, the SDK returns the error code `-17` instead of `-5` in the following situations:
+
+  - When a user who has already joined an `RtcEngine` channel calls the joining channel method of the `RtcEngine` class with a valid channel name.
+  - When a user who has already joined an `RtcChannel` channel calls the joining channel method of this `RtcChannel` object.
+
+#### New features and improvements
+
+v5.0.0 adapts to the Agora RTC Native SDK v3.5.2. For new features and improvements, see the release notes for each platform from 3.5.0.4 to 3.5.2:
+
+- [Android Release Notes](./release_android_video?platform=Android)
+- [iOS Release Notes](./release_ios_video?platform=iOS)
+- [macOS Release Notes](./release_mac_video?platform=macOS)
+- [Windows Release Notes](./release_windows_video?platform=Windows)
+
+
+## v4.0.7 (Native 3.5.0.3)
+
+v3.5.0.3 was released on September 15, 2021.
+
+#### Compatibility changes
+
+**Changes to audio route behavior** (Android only)
+
+To improve user experience, this release improves the following SDK behavior:
+
+- When the SDK uses the media volume, the audio route is affected as follows:
+
+  - With versions earlier than v4.0.7, the SDK cannot set the audio route as the earpiece.
+  - With v4.0.7 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
+
+  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="./faq/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
+
+- If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
+
+  - With versions earlier than v4.0.7, the SDK does not play audio through any audio route, which causes a no-audio issue.
+  - With v4.0.7 and later versions, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route of the SDK.
+
+See [Set the Audio Route](./set_audio_route_android?platform=Android) for Android platform.
+
+#### New features
+
+**Virtual background (beta)**
+
+This release adds the `enableVirtualBackground` method, with which you can enable and set a virtual background for users as either a solid color or an image in PNG or JPG format. You can use the `VirtualBackgroundSourceEnabled` callback to learn whether the virtual background is successfully enabled or the reason for an error.
+
+<div class="alert note">Before you use virtual backgrounds, ensure that the device performance and user scenarios meet the requirements. See <a href="./API%20Reference/flutter/agora_rtc_engine/RtcEngine/enableVirtualBackground.html">enableVirtualBackground</a > documentation.</div>
+
+#### Improvements
+
+**1. Video quality**
+
+The following improvements have been made to the quality of captured and received video in this release:
+
+- Enhance the video contrast of captured and received video by adapting the [color range](https://en.wikipedia.org/wiki/YCbCr) to moderate the video whiteness.
+- Enhance the color richness of captured and received video by adapting the [color space](https://en.wikipedia.org/wiki/Color_space) to further restore video colors.
+- Automatically enable the best video-capture strategy to optimize the quality of captured video (including resolution, frame rate, and color range). This improvement only applies to certain video with a capture resolution no higher than 1080P. (iOS only)
+- Enable camera autofocus by default, and dynamically adjust the capture behavior to moderate overexposure. If you want to disable autofocus, call `setCameraAutoFocusFaceModeEnabled(false)`. (iOS only)
+
+
+**2. Additional improvements**
+
+This release also improves the following:
+
+- The CPU usage and end-to-end video delay in high-resolution (720P and higher) scenarios are reduced. (Android only)
+- In scenarios where the AGC is enabled, the convergence time for noise reduction is shortened, which reduces noise fluctuations.
+- The smoothness of output frames in the custom video rendering scenario is improved.
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+**Android and iOS**
+
+- After a remote user called `enableLoopbackRecording`, occasionally the local user heard an echo of their own audio. 
+- After calling `muteLocalAudioStream(true)` to stop publishing a local audio stream, the local user could hear remote users when the local user joined a channel for the first time. After leaving the channel and joining another channel, occasionally the local user could not hear remote users.
+- When the local network quality was poor, the downlink network quality rating (`rxQuality`) of remote users reported by the SDK was not accurate.
+
+**Android only**
+
+- Occasional failure to update the transcoding layout in Media Push under certain circumstances. 
+
+**iOS only**
+
+- In the meeting scenario, after a remote user enabled local audio capturing in the channel, occasionally the local user heard an echo of the remote user’s audio.
+- The value of `memoryTotalUsageRatio` reported by the `RtcStats` callback was not accurate.
+- Occasional crashes.
+- When `orientationMode` was set as `FixedPortrait`, the width and height of the video resolution was reversed, which caused the human face in video to be scaled up.
+
+
+#### API changes
+
+**Added**
+
+- [`enableVirtualBackground`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/enableVirtualBackground.html)
+- [`VirtualBackgroundSourceEnabled`](./API%20Reference/flutter/agora_rtc_engine/RtcEngineEventHandler/virtualBackgroundSourceEnabled.html)
+
+**Modified**
+
+- [`setEnableSpeakerphone`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/setEnableSpeakerphone.html)
+- [`setDefaultAudioRouteToSpeakerphone`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/setDefaultAudioRoutetoSpeakerphone.html)
+
+
+## v4.0.6 (Native 3.4.6)
+
+v4.0.6 was released on July 23, 2021.
+
+#### Improvements
+
+To improve the accuracy of face detection results, as of this release, the SDK triggers the `facePositionChanged` callback immediately after detecting the disappearance of the human face.
+
+#### Fixed issues
+
+This release fixed the following issues:
+- Failed to enable the camera on certain Android 4.4 TV models.
+- Low-volume issues occurred when the user used Type-C headphones.
+- The interface xxx is not visible from class loader error when running a project on some Android devices.
+- Occasional crash during SDK initialization under certain circumstances.
+- When startAudioMixing was called and a percent-encoding URL was passed in this method, the SDK failed to play the corresponding online audio file.
+
+## v4.0.5 (Native 3.4.5)
+
+v4.0.5 was released on July 15, 2021.
+
+#### Compatibility changes
+
+**1. Compatibility with iOS 15 (iOS only)**
+
+As of v4.0.5, the SDK supports iOS 15. For the SDK versions between v3.2.1 and v4.0.1 inclusive, crashes occur on iOS 15. To fix this issue, upgrade the SDK to v4.0.5 or later.
+
+**2. API incompatibility changes**
+
+This release makes the following incompatibility changes to APIs:
+- Deprecates the `RtcEngineConfig` class and the `createWithConfig` method, and replace them with the `RtcEngineContext` class and the `createWithContext` method. Compared with `RtcEngineConfig`, the data type of the `areaCode` property in `RtcEngineContext`changes from `AreaCode` to `List<AreaCode>`, which supports setting multiple regions for connection.
+- Renames the the following properties in the `RtcStats` interface:
+  - `totalDuration` to `duration`
+  - `users` to `userCount`
+
+ The data type and definition of the properties remain unchanged.
+- Strictly distinguishes the mandatory and non-mandatory parameters in the constructors of all classes. For details, see <a href="#classchanges">Incompatible changes of class constructors</a>.
+
+If you upgrade the SDK to v4.0.5 or later, to avoid affecting your service, ensure that you modify the implementation of these APIs.
+
+**3. Support for GCM2 encryption**
+
+To further improve the security during real-time audio and video transmission process, this release adds the following:
+
+- `AES128GCM2` and `AES256GCM2` encryption modes in `EncryptionMode`. The new GCM encryption modes use a more secure KDF (Key Derivation Function) and support setting the key and salt.
+- The `encryptionKdfSalt` member in `EncryptionConfig` to add the salt for the `AES128GCM2` and `AES256GCM2` encryption modes.
+
+This release also changes the default encryption mode from `AES128XTS` to `AES128GCM2`. If you use the default encryption mode in earlier versions, after upgrading the SDK to v4.0.5, ensure that you call `enableEncryption` and set `EncryptionMode` to `AES128XTS`.
+
+**4. Media stream publishing behavior changes**
+
+To flexibly control the publishing state in multiple channels, this release optimizes the `RtcChannel` class as follows:
+
+- Deprecates the `publish` and `unpublish` methods, and adds `muteLocalAudioStream` and `muteLocalVideoStream` instead. You can set the publishing state of the audio stream and video stream separately.
+- Adds the `publishLocalAudio` and `publishLocalVideo` members in `ChannelMediaOptions`. You can set the publishing state when joining a channel.
+- After calling `setClientRole(Broadcaster)`, the local user publishes audio and video streams by default.
+
+<div class="alert note">The following APIs have the same function. If you call them together, the one called later takes effect.
+<ul><li><code>publishLocalAudio = false</code> serves the same function as <code>muteLocalAudioStream(true)</code>.</li>
+<li><code>publishLocalVideo = false</code> serves the same function as <code>muteLocalVideoStream(true)</code>.</li></ul></div>
+
+The above improvements bring the following changes in the `RtcEngine` class:
+
+- `muteLocalAudioStream` and `muteLocalVideoStream` of `RtcEngine` do not take effect for channels created by the `RtcChannel` class, so you need to use the `muteLocalAudioStream` and `muteLocalVideoStream` of the `RtcChannel` class instead.
+- When a user joins a channel by using `joinChannel` with the `options` parameter, you can set the publishing state.
+- If a user joins a channel by calling `joinChannel` with the `options` parameter, `muteLocalAudioStream` or `muteLocalVideoStream` only takes effect when it is called after `joinChannel`.
+
+If you upgrade the SDK to v4.0.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `muteLocalVideoStream`, `publish`, and `unpublish`.
+
+
+#### Improvements
+
+**1. Media Push**
+
+To be more transparent to users about errors and events in Media Push, this release adds the following codes:
+
+- To `RtmpStreamingStateChanged`: Error code `UnPublishOK (100)`, which reports that the streaming has been stopped normally. After you call `removePublishStreamUrl` to stop streaming, the SDK returns this error code and state code `Idle (0)`.
+- To `RtmpStreamingEvent`: Event code `UrlAlreadyInUse (2)`, which reports that the streaming URL is already being used for Media Push. If you want to start new streaming, use a new streaming URL.
+
+**2. Music file state**
+
+When you call `startAudioMixing` after `pauseAudioMixing`, this release adds the `AudioMixingStateChanged(Playing,StartedByUser)`state, which indicates the music file is stopped, before reporting `AudioMixingStateChanged(Stopped,StoppedByUser)`.
+
+**3. Audio device errors**
+
+To convey the impact of a system call on the audio sampling, this release adds `Interrupted (8)` in `AudioLocalError`, which reports that the audio sampling is interrupted by a system call.
+
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- Under poor network conditions, when you called `startAudioMixing` to play an online music file, occasionally the SDK response time was too long and caused a freeze.
+- Under poor network conditions, when you frequently called `startAudioMixing` to play an online music file, an ANR pop-up window occasionally appeared.
+- On some Android devices, after connecting a Bluetooth headset, the speaker still played audio.
+- After switching the audio route to Bluetooth, the Bluetooth device occasionally failed to sample audio.
+- Under poor network conditions, users were occasionally unable to switch roles.
+- Under certain network conditions, when the host used a Xiaomi phone to custom capture video in texture format, other users in the channel saw the host’s video as a black screen.
+- Occasionally, the user's view was upside down when the application was running on an M1 chip device. (iOS only)
+
+#### API changes
+
+**Added**
+
+- [`RtcEngineContext`](./API%20Reference/flutter/agora_rtc_engine/RtcEngineContext/RtcEngineContext.html) class
+- [`createWithContext`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/createWithContext.html)
+- [`UnPublishOK (100)`](./API%20Reference/flutter/agora_rtc_engine/RtmpStreamingErrorCode-class.html) in `RtmpStreamingErrorCode`
+- [`UrlAlreadyInUse (2)`](./API%20Reference/flutter/rtc_channel/RtcChannelEventHandler/rtmpStreamingEvent.html) in `RtmpStreamingEvent`
+- `AES128GCM2 (7)` and `AES256GCM2 (8)`in [`EncryptionMode`](./API%20Reference/flutter/agora_rtc_engine/EncryptionMode-class.html)
+- `encryptionKdfSalt` in [`EncryptionConfig`](./API%20Reference/flutter/agora_rtc_engine/EncryptionConfig-class.html)
+- [`muteLocalAudioStream`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/muteLocalAudioStream.html) and [`muteLocalVideoStream`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/muteLocalAudioStream.html) in `RtcChannel`
+- `publishLocalAudio` and `publishLocalVideo` in [`ChannelMediaOptions`](./API%20Reference/flutter/agora_rtc_engine/ChannelMediaOptions-class.html)
+- `Interrupted (8)` in [`AudioLocalError`](./API%20Reference/flutter/agora_rtc_engine/AudioLocalError-class.html)
+
+**Modified**
+This release renames the following properties in `RtcStats`:
+
+- `totalDuration` to `duration`
+- `users` to `userCount`
+
+**Deprecated**
+
+- `createWithConfig`
+- `RtcEngineConfig` class
+- `publish` and `unpublish` in `RtcChannel`
+
+<a name="classchanges"></a>
+**Changes of class constructors**
+
+To make the code more standardized and robust, as of v4.0.5, the Agora SDK strictly distinguishes mandatory and non-mandatory member properties of all classes and modifies the class constructors.
+
+This section lists all the classes that have constructor changes in v4.0.5. If you upgrade the SDK to v4.0.5 or later, to avoid affecting your service, ensure that you modify the implementation of these classes.
+
+- <a href="#videodimension">VideoDimensions</a>
+- <a href="#agoraimage">AgoraImage</a>
+- <a href="#transcodinguser">TranscodingUser</a>
+- <a href="#channelmediainfo">ChannelMediaInfo</a>
+- <a href="#rectangle">Rectangle</a>
+- <a href="#watermarkoptions">WatermarkOptions</a>
+- <a href="#cameracapturerconfiguration">CameraCapturerConfiguration</a>
+- <a href="#channelmediaoptions">ChannelMediaOptions</a>
+- <a href="#encryptionconfig">EncryptionConfig</a>
+- <a href="#rtcstats">RtcStats</a>
+- <a href="#clientroleoptions">ClientRoleOptions</a>
+- <a href="#datastreamconfig">DataStreamConfig</a>
+
+
+<a name="videodimension"></a>
+#### VideoDimensions
+
+The following properties in the `VideoDimensions` class change from required to optional:
+
+- `width`
+- `height`
+
+The constructor of the `VideoDimensions` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new VideoDimensions(640, 360);
+```
+
+**As of v4.0.5**
+
+```dart
+new VideoDimensions(width: 640, height: 360);
+```
+
+<a name="agoraimage"></a>
+#### AgoraImage
+
+The following properties in the `AgoraImage` class change from required to optional:
+ - `x`
+ - `y`
+ - `width`
+ - `height`
+
+The constructor of the `AgoraImage` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new AgoraImage('url', 0, 0, 640, 360);
+```
+
+**As of v4.0.5**
+
+```dart
+new AgoraImage('url', x: 0, y: 0, width: 640, height: 360);
+```
+
+<a name="transcodinguser"></a>
+#### TranscodingUser
+
+The properties in the `TranscodingUser` class change from required to optional:
+ - `x`
+ - `y`
+
+The constructor of the `TranscodingUser` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new TranscodingUser(0, 0, 0, width: 640, height: 360, ...);
+```
+**As of v4.0.5**
+
+```dart
+new TranscodingUser(0, x: 0, y: 0, width: 640, height: 360, ...);
+```
+
+<a name="channelmediaInfo"></a>
+#### ChannelMediaInfo
+
+The `channelName` property in the `ChannelMediaInfo`  class changes from optional to required.
+
+The constructor of the `ChannelMediaInfo` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new ChannelMediaInfo(0, channelName: 'channelName', token: 'token');
+```
+**As of v4.0.5**
+
+```dart
+new ChannelMediaInfo('channelName', 0, token: 'token');
+```
+
+<a name="rectangle"></a>
+#### Rectangle
+
+The following properties in the `Rectangle` class change form required to optional:
+ - `x`
+ - `y`
+ - `width`
+ - `height`
+
+The constructor of the `Rectangle` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new Rectangle(0, 0, 640, 360);
+```
+
+**As of v4.0.5**
+
+```dart
+new Rectangle(x: 0, y: 0, width: 640, height: 360);
+```
+
+<a name="watermarkoptions"></a>
+#### WatermarkOptions
+
+The following properties in the `WatermarkOptions` class change from required to optional:
+ - `positionInLandscapeMode`
+ -  `positionInPortraitMode`
+
+The constructor of the `WatermarkOptions` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new WatermarkOptions(Rectangle, Rectangle, visibleInPreview: true);
+```
+
+**As of v4.0.5**
+
+```dart
+new WatermarkOptions(visibleInPreview: true, positionInLandscapeMode: Rectangle, positionInPortraitMode: Rectangle);
+```
+
+<a name="cameracapturerconfiguration"></a>
+#### CameraCapturerConfiguration
+
+The following properties in the `CameraCapturerConfiguration` class change from required to optional:
+ - `preference`
+ - `cameraDirection`
+
+The constructor of the `CameraCapturerConfiguration` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new CameraCapturerConfiguration(CameraCaptureOutputPreference, CameraDirection, captureWidth: 640, captureHeight: 360);
+```
+
+**As of v4.0.5**
+
+```dart
+new CameraCapturerConfiguration(preference: CameraCaptureOutputPreference, captureWidth: 640, captureHeight: 360, cameraDirection: CameraDirection);
+```
+
+<a name="channelmediaoptions"></a>
+#### ChannelMediaOptions
+
+The following properties in the `ChannelMediaOptions` class change from required to optional:
+ - `autoSubscribeAudio`
+ - `autoSubscribeVideo`
+
+The constructor of the `ChannelMediaOptions` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new ChannelMediaOptions(true, true);
+```
+**As of v4.0.5**
+
+```dart
+new ChannelMediaOptions(autoSubscribeAudio: true, autoSubscribeVideo: true);
+```
+
+<a name="encryptionconfig"></a>
+#### EncryptionConfig
+
+The following properties in the `EncryptionConfig` class change from required to optional:
+ - `encryptionMode`
+ -  `encryptionKey`
+
+The constructor of the `EncryptionConfig` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new EncryptionConfig(EncryptionMode, 'encryptionKey');
+```
+**As of v4.0.5**
+
+```dart
+new EncryptionConfig(encryptionMode: EncryptionMode, encryptionKey: 'encryptionKey');
+```
+
+<a name="rtcstats"></a>
+#### RtcStats
+
+All properties in `RtcStats` cannot be null, thus saving you from extra code logic to determine whether the properties are null.
+
+<a name="clientroleoptions"></a>
+#### ClientRoleOptions
+
+The `audienceLatencyLevel` property in the  `ClientRoleOptions` class changes from required to optional.
+
+The constructor of the  `ClientRoleOptions` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new ClientRoleOptions(AudienceLatencyLevelType);
+```
+
+**As of v4.0.5**
+
+```dart
+new ClientRoleOptions(audienceLatencyLevel: AudienceLatencyLevelType);
+```
+
+<a name="datastreamconfig"></a>
+#### DataStreamConfig
+
+The following properties in the `DataStreamConfig` class change from optional to required:
+- `syncWithAudio`
+- `ordered`
+
+The constructor of the `DataStreamConfig` class changes as follows:
+
+**Earlier than v4.0.5**
+
+```dart
+new DataStreamConfig(syncWithAudio: true, ordered: true);
+```
+
+**As of v4.0.5**
+
+```dart
+new DataStreamConfig(true, true);
+```
+
+## v4.0.1 (Native 3.4.2)
+
+v4.0.1 was released on May 25, 2021.
+
+#### Compatibility changes
+
+**Integration changes**
+
+1. Null safety support
+
+Since this version, Agora RTC Flutter SDK supports null safety. Because null safety is not backward compatible, **you must ensure that the dart version is 2.12 or higher**. See [Flutter documentation](https://dart.dev/null-safety) for more information.
+
+2. Flutter 2.x support (Android and iOS only)
+
+Since this version, Agora RTC Flutter SDK supports Flutter 2.x (Android and iOS only.)
+
+3. SDK package publishing platform (on Android only)
+
+Because JCenter is about to retire, Agora publishes the RTC Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
+
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://www.jitpack.io' }
+    }
+}
+```
+
+<div class="alert info">If the build fails, try replacing <code>'https://www.jitpack.io'</code> with <code>'https://jitpack.io'</code>.</div>
+
+
+4. Extension libraries
+
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](./faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+
+
+
+**Behavior changes**
+
+To monitor the reason why the playback state of a music file changes, this release modifies the `AudioMixingStateChanged` callback as follows:
+
+- Replaces the `errorCode` parameter with the `reason` parameter.
+- Deprecates `AudioMixingErrorCode` and replace it with `AudioMixingReason`. Using `AudioMixingReason`, you can get the reason for the change of the playback state, such as start, pause, stop or fail.
+- Modifies some logic of reporting `AudioMixingStateCode`. For example, as of this release, when looping music, the SDK triggers the `Playing` state when each loop is completed or starts.
+
+If you upgrade the SDK to v4.0.1 or later, to avoid affecting your service, Agora recommends that you modify the implementation of `AudioMixingStateChanged`.
+
+#### New features
+
+**1. Virtual metronome**
+
+To meet the needs of online teaching scenarios that would benefit from a metronome, this release adds the following methods:
+
+- `startRhythmPlayer`: Enables the virtual metronome.
+- `stopRhythmPlayer`: Disables the virtual metronome.
+- `configRhythmPlayer`: Reconfigures the virtual metronome after it is enabled.
+
+**2. Playback progress of audio effect files**
+
+To control the playback progress of audio effect files, this release adds the following methods or parameters:
+
+- `setEffectPosition`: Sets the playback position after starting playback of an audio effect file.
+- `getEffectDuration`: Gets the duration of a local audio effect file.
+- `getEffectCurrentPosition`: Gets current playback progress of an audio effect file.
+- `startPos` in `playEffect`: Sets the playback position when starting playback of an audio effect file.
+
+#### Improvements
+
+**1. Local file path (on Android only)**
+
+To meet the requirements of Google Play Store, this release supports accessing a local file through URIs. When you call `startAudioMixing`, `startAudioRecordingWithConfig`, `getAudioMixingDuration`, `preloadEffect`, `playEffect`, `getEffectDuration`, or `addVideoWatermark` and need to access a local file, Agora recommends the following steps:
+
+1. Use [Storage Access Framework](https://developer.android.com/guide/topics/providers/document-provider) to get the URI of the local file.
+2. Call [`Uri.toString`](https://developer.android.com/reference/android/net/Uri#toString()) to convert the URI to a string.
+3. Pass the string in the `filePath` or `watermarkUrl` parameter.
+
+**2. Video encoding**
+
+The Agora SDK allows you to use `DegradationPreference` to set the degradation preference of local video encoding under limited bandwidth, for example, reducing the video frame rate while maintaining video quality, or reducing the video quality while maintaining the video frame rate. As of this release, `DegradationPreference` can be set as `Balanced`, which reduces the video frame rate and video quality simultaneously to strike a balance between smoothness and video quality. `Balanced` is suitable for scenarios where both smoothness and video quality are a priority, such as one-to-one calls, one-to-one online teaching, and multi-user online meetings.
+
+**3. Playback progress of music files**
+
+To control the playback progress of music files, this release is optimized as follows:
+
+- Adds the `startPos` parameter in `startAudioMixing`, which allows you to set the playback position when starting playback of a music file.
+- Adds the `filePath` parameter in `getAudioMixingDuration`, which allows you to get the duration of a local music file before playing it.
+
+**4. Audio recording**
+
+To set the recording configuration during audio recording, this release adds the `startAudioRecordingWithConfig` method and deprecates the `startAudioRecording` method. The `config` parameter of `startAudioRecordingWithConfig` allows you to set the audio recording quality, content, sample rate, and storage path of the recording file.
+
+This release also adds a new error code: `AlreadyInRecording(160)`. If you call `startAudioRecordingWithConfig` again before the current recording ends, the SDK reports this error code.
+
+**5. Media device errors**
+
+To help users better understand the cause of local video errors, this release adds a new error code to `LocalVideoStreamError`: `DeviceNotFound(8)`, which indicates that the SDK cannot find the local video-capture device.
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- Crashes occurred when the audio sample rate exceeded 4.8 kHz.
+- The `AudioVolumeIndication` callback returned incorrect volume information after you called `enableSoundPositionIndication(true)`.
+- The local user would see the remote video upside down for an instant when the remote user switched between the front and rear cameras.
+- Crashes occurred in a certain voice conversion scenario.
+- Under extremely poor network conditions, the host's video sent from the Web clients was corrupted on the Native clients.
+- Remote users saw a distorted image when the local user minimized the shared screen with the genie effect on Mac devices.
+- Joining the channel occasionally failed when a user switched back to the app after keeping it in the background for a long time. (On iOS only)
+- The user interface of the application got stuck when you called `destroy` or the `get` method such as `getCallId` or `getSdkVersion` after calling `setupLocalVideo` or `setupRemoteVideo`. (On iOS only)
+- Occasional crashes. (On iOS only)
+- The received custom video frame was rotated under certain circumstances. (On Android only)
+
+#### API changes
+
+**Added**
+
+- [`startRhythmPlayer`](./API%20Reference/flutter/rtc_engine/RtcEngine/startRhythmPlayer.html)
+- [`stopRhythmPlayer`](./API%20Reference/flutter/rtc_engine/RtcEngine/stopRhythmPlayer.html)
+- [`configRhythmPlayer`](./API%20Reference/flutter/rtc_engine/RtcEngine/configRhythmPlayer.html)
+- [`startAudioRecordingWithConfig`](./API%20Reference/flutter/rtc_engine/RtcEngine/startAudioRecordingWithConfig.html)
+- [`getEffectDuration`](./API%20Reference/flutter/rtc_engine/RtcEngine/getEffectDuration.html)
+- [`setEffectPosition`](./API%20Reference/flutter/rtc_engine/RtcEngine/setEffectPosition.html)
+- [`getEffectCurrentPosition`](./API%20Reference/flutter/rtc_engine/RtcEngine/getEffectCurrentPosition.html)
+- `filePath` in [`getAudioMixingDuration`](./API%20Reference/flutter/rtc_engine/RtcEngine/getAudioMixingDuration.html)
+- `startPos` in [`playEffect`](./API%20Reference/flutter/rtc_engine/RtcEngine/playEffect.html)
+- `startPos` in [`startAudioMixing`](./API%20Reference/flutter/rtc_engine/RtcEngine/startAudioMixing.html)
+- `DeviceNotFound(8)` in [`LocalVideoStreamError`](./API%20Reference/flutter/rtc_engine/LocalVideoStreamError-class.html)
+- [`Error code`](./API%20Reference/flutter/rtc_engine/ErrorCode-class.html): `AlreadyInRecording(160)`
+
+**Modified**
+
+- [`AudioMixingStateChanged`](./API%20Reference/flutter/rtc_engine/RtcEngineEventHandler/audioMixingStateChanged.html)
+
+**Deprecated**
+
+- `startAudioRecording`
+- `AudioMixingErrorCode`
+
+## v3.3.1
+
+v3.3.1 was released on March 12, 2021.
+
+#### Compatibility changes
+
+This release deprecates `setDefaultMuteAllRemoteAudioStreams` and `setDefaultMuteAllRemoteVideoStreams `and changes the behavior of `mute`-related methods as follows:
+
+- `mute`-related methods must be called after joining or switching to a channel; otherwise, the method call does not take effect.
+- Methods with the prefix `muteAll` are no longer the master switch, and each `mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `muteAll` and `muteRemote` together, the method that is called later takes effect.
+- Methods with the prefix `muteAll` set whether to subscribe to the audio or video streams of all remote users, including all subsequent users, which means methods with the prefix `muteAll` contain the function of methods with the prefix `setDefaultMute`. Agora recommends not calling methods with the prefixes `muteAll` and `setDefaultMute` together; otherwise, the setting may not take effect.
+
+#### New features
+
+**1. Channel media options**
+
+To help developers control media subscription more flexibly, this release adds the `options` parameter to `joinChannel` and `switchChannel` methods to set whether users subscribe to all remote audio or video streams in a channel when joining and switching channels.
+
+**2. Cloud proxy**
+
+To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](./cloudproxy_native?platform=Flutter).
+
+**3. Deep-learning noise reduction**
+
+To eliminate non-stationary noise based on traditional noise reduction, this release adds `enableDeepLearningDenoise` to enable deep-learning noise reduction.
+
+**4. Singing beautifier**
+
+To beautify the voice and add reverberation effects in a singing scenario, this release adds the `setVoiceBeautifierParameters` method and adds the `SingingBeautifier` constant to `VoiceBeautifierPreset`.
+
+You can call `setVoiceBeautifierPreset(SingingBeautifier)` to beautify the male voice and add the reverberation effect for a voice in a small room. For more settings, you can call `setVoiceBeautifierParameters(SingingBeautifier, param1, param2)` to beautify male or female voices and add reverberation effects for a voice in a small room, large room, or hall.
+
+**5. Log files**
+
+To ensure the integrity of log content, this release adds the `createWithConfig` method and adds the `logConfig` property to the `log` parameter. You can use `logConfig` to set the log files output by the Agora SDK when you initialize `RtcEngine`. See [How can I set the log file?](https://docs.agora.io/en/Interactive%20Broadcast/faq/logfile) for details.
+
+As of v3.3.1, Agora does not recommend using the `setLogFile`, `setLogFileSize`, or `setLogFilter` methods to set the log files.
+
+**6. Quality of captured video**
+
+To control the quality of video captured by the local camera, this release adds support for customizing the capture resolution and listening for abnormalities.
+
+- Customize the capture resolution: Call the `setCameraCapturerConfiguration` method to set the capture preference to `Manual(3)` and set the width and height of the captured video image.
+- Listen for abnormalities:
+  - The abnormal brightness level of captured video images: Use `captureBrightnessLevel` in the `localVideoStats` callback.
+  - The camera fails to output the captured video: Use the `localVideoStateChanged(Failed, CaptureFailure)` callback.
+  - The camera repeatedly outputs the captured video: Use the `localVideoStateChanged(Capturing, CaptureFailure)` callback.
+
+(iOS only) To improve the user experience, this release adds the following reasons for local video capture errors in the `localVideoStateChanged` callback:
+
+- `CaptureInBackGround(6)`: The application is running in the background.
+- `CaptureMultipleForegroundApps(7)`: The application is running in Slide Over, Split View, or Picture in Picture mode.
+
+**7. Data streams**
+
+To support scenarios such as lyrics synchronization and courseware synchronization, this release deprecates the previous `createDataStream` method and replaces it with `createDataStreamWithConfig`. You can use this new method to create a data stream and set whether to synchronize the data stream with the audio stream sent to the Agora channel and whether the received data is ordered.
+
+**8. Voice Conversion**
+
+This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet.
+
+
+
+#### Improvements
+
+**1. AES-GCM encryption mode**
+
+For scenarios requiring high security, to guarantee the confidentiality, integrity, and authenticity of data, and to improve the computational efficiency of data encryption, this release adds the following enumerators in `EncryptionMode`:
+
+- `AES128GCM`: 128-bit AES encryption, GCM mode.
+- `AES256GCM`: 256-bit AES encryption, GCM mode.
+
+<div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
+
+**2. Remote audio statistics**
+
+To monitor quality of experience (QoE) of the local user when receiving a remote audio stream, this release adds:
+- `mosValue` to `remoteAudioStats`, which reports the quality of the remote audio stream as determined by the Agora real-time audio MOS (Mean Opinion Score) measurement system.
+- `qoeQuality` and `qualityChangedReason` to `remoteAudioStats`, which report QoE of the local user and the reason for poor QoE, respectively.
+
+#### Issues fixed
+
+**Android**
+
+- The audio sampling failed on some Android devices after a headset was plugged in.
+- Local audio sampling occasionally failed on Android 10.
+- After enabling the sound position indication, you could not get the remote user's volume by the `audioVolumeIndication` callback.
+- Occasional abnormality with the hardware encoders on certain devices after continuously encoding key frames for a short period of time.
+
+**iOS**
+
+- After enabling the sound position indication, you could not get the remote user's volume by the `audioVolumeIndication` callback.
+- Occasional crashes when you called `enableLocalVideo(false)` while the application window was switching to Slide Over, Split View, or Picture in Picture mode.
+
+#### API changes
+
+This release adds the following APIs:
+
+
+**Added**
+
+- [`createWithConfig`](./API%20Reference/flutter/rtc_engine/RtcEngine/createWithConfig.html)
+- [`setVoiceConversionPreset`](./API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceConversionPreset.html)
+- `AES128GCM` and `AES256GCM` in [`EncryptionMode`](./API%20Reference/flutter/rtc_engine/EncryptionConfig-class.html)
+- `mosValue` in [`RemoteAudioStats`](./API%20Reference/flutter/rtc_engine/RemoteAudioStats-class.html)
+- [`setVoiceBeautifierParameters`](./API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceBeautifierParameters.html)
+- `SingingBeautifier` in the [`VoiceBeautifierPreset`](./API%20Reference/flutter/rtc_engine/VoiceBeautifierPreset-class.html) constant
+- [`enableDeepLearningDenoise`](./API%20Reference/flutter/rtc_engine/RtcEngine/enableDeepLearningDenoise.html)
+- `options` in [`joinChannel`](./API%20Reference/flutter/rtc_channel/RtcChannel/joinChannel.html)
+- `options` in [`switchChannel`](./API%20Reference/flutter/rtc_engine/RtcEngine/switchChannel.html)
+- [`createDataStreamWithConfig`](./API%20Reference/flutter/rtc_channel/RtcChannel/createDataStreamWithConfig.html)
+- `qoeQuality` and `qualityChangedReason` in [`RemoteAudioStats`](./API%20Reference/flutter/rtc_engine/RemoteAudioStats-class.html)
+- [`setCloudProxy`](./API%20Reference/flutter/rtc_engine/RtcEngine/setCloudProxy.html)
+- The `captureBrightnessLevel` property in the [`LocalVideoStats`](./API%20Reference/flutter/rtc_engine/LocalVideoStats-class.html)
+- The `captureWidth` and `captureHeight` properties in the [`CameraCapturerConfiguration`](./API%20Reference/flutter/rtc_engine/CameraCapturerConfiguration-class.html) class
+- `Manual(3)` in the [`CameraCaptureOutputPreference`](./API%20Reference/flutter/rtc_engine/CameraCaptureOutputPreference-class.html) constant
+- `CaptureInBackGround(6)` and `CaptureMultipleForegroundApps(7)` in the [`LocalVideoStreamError`](./API%20Reference/flutter/rtc_engine/LocalVideoStreamError-class.html) constant
+- Error code: [`ModuleNotFound(157)`](./API%20Reference/flutter/rtc_engine/ErrorCode-class.html)
+
+**Deprecated**
+
+- `createWithAreaCode`
+- `setDefaultMuteAllRemoteVideoStreams`
+- `setDefaultMuteAllRemoteAudioStreams`
+- `setLogFile`
+- `setLogFileSize`
+- `setLogFilter`
+- `createDataStream`
+
+## v3.2.1
+
+v3.2.1 was released on December 23, 2020.
+
+#### Compatibility changes
+
+**1. Cloud proxy**
+
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact [support@agora.io](mailto:support@agora.io) before upgrading the SDK. See [Cloud Proxy](./cloudproxy_native?platform=Flutter).
+
+**2. Security and compliance**
+
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](https://docs.agora.io/en/Agora%20Platform/iso_cert?platform=Flutter).
+
+This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
+
+####  New features
+
+**Interactive live streaming standard**
+
+This release adds `options` in `setClientRole` for setting the latency level of an audience member. You can use this method to switch between Interactive Live Streaming Premium and Interactive Live Streaming Standard as follows:
+
+- Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
+- Set the latency level as low latency to use Interactive Live Streaming Standard.
+
+For details, see the [product overview](https://docs.agora.io/en/live-streaming/product_live_standard?platform=Flutter) of Interactive Live Streaming Standard.
+
+#### Improvements
+
+**1. Meeting scenario**
+
+To improve the audio experience for multi-person meetings, this release adds `MEETING(8)` in `setAudioProfile`.
+
+**2. Voice beautifier and audio effects**
+
+To improve the usability of the APIs related to voice beautifier and audio effects, this release deprecates `setLocalVoiceChanger` and `setLocalVoiceReverbPreset`, and adds the following methods instead:
+
+- `setVoiceBeautifierPreset`: Compared with `setLocalVoiceChanger`, this method deletes audio effects such as a little boy’s voice and a more spatially resonant voice.
+- `setAudioEffectPreset`: Compared with `setLocalVoiceReverbPreset`, this method adds audio effects such as the 3D voice, the pitch correction, a little boy’s voice and a more spatially resonant voice.
+- `setAudioEffectParameters`: This method sets detailed parameters for a specified audio effect. In this release, the supported audio effects are the 3D voice and pitch correction.
+
+**3. Interactive streaming delay**
+
+This release reduces the latency on the audience's client during an interactive live streaming by about 500 ms.
+
+#### Issues fixed
+
+**Android**
+
+- Occasional audio sampling issues with Xiaomi speakers.
+- When a remote user called with vivo X30, the local user saw a black screen.
+- When a remote user frequently joined and left a channel on an Android TV, the local user occasionally saw a black screen.
+- Crashes occurred when using IPv6.
+- After you called `enableEncryption`, the SDK did not trigger the `firstLocalVideoFramePublished` callback.
+- When Native clients integrated with the Agora Voice SDK interoperated with Web clients, the Web clients continuously reported the `Client.on(disable-local-video)` or `Client.on(mute-video)` callback.
+
+**iOS**
+
+- On iPhone 5s and iPhone 6, after the user enabled the basic image enhancement function, the screen flickered when users switched between apps.
+- The `stopChannelMediaRelay` method did not take effect.
+- The SDK mistakenly returned the `AdmStartRecording(1012)` error.
+- Crashes occurred when using IPv6.
+- After you called `enableEncryption`, the SDK did not trigger the `firstLocalVideoFramePublished` callback.
+- When Native clients integrated with the Agora Voice SDK interoperated with Web clients, the Web clients continuously reported the `Client.on(disable-local-video)` or `Client.on(mute-video)` callback.
+
+#### API changes
+
+**Added**
+
+- `options`in [`setClientRole`](./API%20Reference/flutter/rtc_channel/RtcChannel/setClientRole.html)
+- [`setAudioEffectPreset`](./API%20Reference/flutter/rtc_engine/RtcEngine/setAudioEffectPreset.html)
+- [`setVoiceBeautifierPreset`](./API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceBeautifierPreset.html)
+- [`setAudioEffectParameters`](./API%20Reference/flutter/rtc_engine/RtcEngine/setAudioEffectParameters.html)
+- `MEETING(8)` in [`AudioScenario`](./API%20Reference/flutter/rtc_engine/AudioScenario-class.html)
+
+**Deprecated**
+
+- `setLocalVoiceChanger`
+- `setLocalVoiceReverbPreset`
+
+## v3.1.2
+
+v3.1.2 was released on September 30th, 2020.
+
+**Functions and features**
+
+- Adapts to Agora RTC SDK v3.1.2.
+- Supports asynchronous programming with `async/await`.
+- Supports multiple channels.
+- Supports TextureView on Android platform.
+- Supports callbacks to report the current publishing and subscribing states, and whether the first audio or video frame is published.
+
+**Related documentation**
+
+See the following documentation to quickly integrate the SDK and implement real-time voice and video communication in your project.
+- [Start a Voice Call](/en/Video/start_call_audio_flutter?platform=Flutter)
+- [Start a Video Call](/en/Video/start_call_flutter?platform=Flutter)
+- [Start Live Interactive Video Streaming](/en/Video/start_live_flutter?platform=Flutter)
+- [Start Live Interactive Audio Streaming](/en/Video/start_live_audio_flutter?platform=Flutter)
+- [API Reference](/en/Video/API%20Reference/flutter/v3.1.2/index.html)
+
+Agora also provides an open-source [Agora Flutter Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) on GitHub.
+
+<div class="alert note">To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The <code>gatewayRtt</code> parameter in the <code>RtcStats</code> callback is disabled by default. Do not use <code>gatewayRtt</code> to obtain the round-trip delay between the client and the local router. See the <a href="https://docs.agora.io/en/faq/local_network_privacy">FAQ</a> for details.</div>
+
+</PlatformWrapper>

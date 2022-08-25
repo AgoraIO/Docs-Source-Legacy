@@ -1,0 +1,231 @@
+This page provides download links and release notes for more versions of the Agora Voice SDK. To ensure a trouble-free development experience, Agora strongly recommends that you use [official mainline versions](./release_android_audio).
+
+
+## SDK downloads
+
+This section provides links to download more versions of the SDK and describes which official mainline version it is based on.
+
+|Platform | SDK download link | Version baseline  |
+|------- |-------|--------|
+|Android | [v3.7.0.2](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_7_0_2_VOICE.zip)      | [v3.7.0.1](./release_android_audio?platform=Android)      |
+|iOS | [v3.7.0.2](https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_7_0_2_VOICE.zip)      | [v3.7.0](./release_ios_audio?platform=iOS)      |
+|macOS| [v3.7.0.2](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Mac_v3_7_0_2_VOICE.zip)      | [v3.7.0](./release_mac_audio?platform=macOS)      |
+|Windows | [v3.7.0.2](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3_7_0_2_VOICE.zip)      | [v3.7.0](./release_windows_audio?platform=Windows)      |
+
+
+## Release notes
+
+This section provides release notes for more versions of the SDK.
+
+### v3.7.0.2
+
+v3.7.0.2 was developed from v3.7.0 and released on June 6, 2022, for Android, iOS, macOS, and Windows.
+
+- [Android Release Notes](./release_android_audio?platform=Android)
+- [iOS Release Notes](./release_ios_audio?platform=iOS)
+- [macOS Release Notes](./release_mac_audio?platform=macOS)
+- [Windows Release Notes](./release_windows_audio?platform=Windows)
+
+### v3.6.3
+
+v3.6.3 was developed from v3.5.2 and released on May 13, 2022, for Android, iOS, macOS, and Windows.
+
+
+#### Improvements
+
+**Audio recording**
+
+As of this release, after successfully calling `startRecording` to start the local audio recording, the SDK continues the recording and generates a single MP4 recording file when the audio profile changes during the recording, whereas with earlier versions, the SDK would stop the recording and report `onRecorderStateChanged(RECORDER_STATE_ERROR, RECORDER_ERROR_CONFIG_CHANGED)`.
+
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- The app occasionally failed to rejoin a channel after a user left a channel and put the app in the background for a while. (iOS)
+- After a host successfully started cohosting across channels, changes in their network connection, for example, switching between a 4G or 5G mobile network and Wi-Fi, caused the media relay to destination channels to interrupt. (Android, iOS)
+- Remote users heard a delay in the music played when the local user called `enableLocalAudio(false)` and `enableLocalAudio(true)` to disable and enable local audio capture after successfully calling `startAudioMixing` to play a music file.
+- When calling `startAudioMixing` to play a music file with the sample rate of 22,050 Hz, the local and remote users heard distorted audio with buzzing noises.
+- When the local user joined the channel after a remote user in the channel called `muteLocalAudioStream(true)` or `enableLocalAudio(false)` to stop sending the audio stream, the local user did not receive the `onRemoteAudioStateChanged(0,5)` callback.
+- After the local user called `enableLoopbackRecording(true)` on some Dell devices to play a multimedia file and connected a headset without a microphone to the device, the remote user could not hear the multimedia file.
+- Occasional crashes occurred. (iOS)
+- Occasionally, the app got stuck after a user joined a channel. (Windows)
+- The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+. (Android)
+- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
+
+
+
+### v3.6.2.1
+
+v3.6.2.1 was developed from v3.6.2 and released on March 4, 2022 for macOS.
+
+This release fixed a crash of the SDK on systems earlier than macOS 10.11. This crash was due to strong references by some dynamic libraries to the Metal library.
+
+### v3.6.2
+
+v3.6.2 was developed from v3.6.1.1 and released on February 22, 2022 for Android, iOS, macOS, and Windows.
+
+- [Android Release Notes](./release_android_audio?platform=Android)
+- [iOS Release Notes](./release_ios_audio?platform=iOS)
+- [macOS Release Notes](./release_mac_audio?platform=macOS)
+- [Windows Release Notes](./release_windows_audio?platform=Windows)
+
+
+### v3.5.3
+
+v3.5.3 was developed from v3.5.2 and released on February 22, 2022 for Android, iOS, macOS, and Windows.
+
+#### New features
+
+**In-ear monitoring (Windows)**
+
+This release extends the applicable platforms of in-ear monitoring from Android and iOS to Android, iOS, and Windows. On Windows, you can call the following APIs to control in-ear monitoring:
+
+- `enableInEarMonitoring`: Enables or disables in-ear monitoring. This function is disabled by default. To enable the function, call `enableInEarMonitoring(true)`.
+- `setInEarMonitoringVolume`: Sets the volume of the in-ear monitor, in the range of [0,100]. The default value is 100.
+
+<div class="alert note">Users must use 3.5 mm wired earphones or Bluetooth earphones to hear their own voices.</div>
+
+
+#### Improvements
+
+**1. Audio recording**
+
+This release extends `startAudioRecording` with support for setting recording with dual channels and higher audio quality.
+
+- By adding `recordingChannel` to `AudioRecordingConfiguration`, it enables you to set the recorded audio channel to be mono or dual. Because the actual recorded audio channel is related to the captured audio channel and the integration scheme affects the final recorded audio channel, contact technical support for assistance with stereo recording using `startAudioRecording`.
+- By adding `AUDIO_RECORDING_QUALITY_ULTRA_HIGH(3)` to `AudioRecordingConfiguration.recordingQuality`, it enables you to set the recorded audio quality to ultra-high. Ultra-high quality is the highest quality available in `recordingQuality`. When you record a 10-minute AAC audio file at a sample rate of 32,000 Hz and ultra-high quality, the file size is approximately 7.5 MB.
+
+**2. Other improvements**
+
+This release provides the following improvements:
+
+- Reduces the impact of high-frequency network jitters on the acceleration or deceleration of the music playback, which optimizes the user's music playback experience. (Android, iOS)
+- Optimizes key indicators of the AEC (Acoustic Echo Canceller).
+- Optimizes the user's audio experience during a burst network jitter.
+- Optimizes the user's subjective experience when network conditions recover.
+
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- When joining a channel under a 4G network, the `onNetworkQuality` callback reported the network state as disconnected. (Android)
+- Occasional crashes occurred. (Android, iOS, Windows)
+- Remote users could not be seen under certain circumstances. (iOS)
+- Apps could not be uploaded to the Apple App Store due to the `Non-public API usage` error. (iOS)
+- The SDK did not work properly on an iOS device with a system version lower than 10. (iOS)
+- The SDK could not properly detect that the audio device was disconnected. (Windows)
+- The `startAudioMixing` method call failed to play local iTunes music files starting with `ipod-library://`. (iOS)
+- When a remote user was under poor network conditions, `QUALITY_TYPE` received by the local user did not match the actual network condition.
+- After a user played music with a third-party music player and set the audio scenario to `AgoraAudioScenarioChatRoomGaming`, joining a channel could interrupt the music played by the third-party music player. (iOS)
+- When you called `setAudioMixingPosition` multiple times to set the playback position of the music file after you called `startAudioMixing` to successfully play music, the music file would most likely be played from the beginning. (iOS)
+- Getting `DhcpInfo` occurred too frequently. (Android)
+
+
+### v3.5.2
+
+v3.5.2 was developed from v3.5.1 and released on November 25, 2021 for Android, iOS, macOS, and Windows.
+
+- [Android Release Notes](./release_android_audio?platform=Android)
+- [iOS Release Notes](./release_ios_audio?platform=iOS)
+- [macOS Release Notes](./release_mac_audio?platform=macOS)
+- [Windows Release Notes](./release_windows_audio?platform=Windows)
+
+
+### v3.4.11
+
+v3.4.11 was developed from v3.4.5 and released on November 22, 2021 for Android, iOS, macOS, and Windows. v3.4.11 for Electron was released on January 10, 2022.
+
+#### New features
+
+**1. Pausing and resuming the media stream relay across channels**
+
+In order to enable the host to quickly pause or resume a cross-channel media stream relay, this release adds the following methods and event code:
+
+- `pauseAllChannelMediaRelay`: Pauses the media stream relay to all destination channels.
+- `resumeAllChannelMediaRelay`: Resumes the media stream relay to all destination channels.
+- `RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS(12)`: The SDK successfully pauses relaying the media stream to destination channels.
+- `RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED(13)`: The SDK fails to pause relaying the media stream to destination channels.
+- `RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS(14)`: The SDK successfully resumes relaying the media stream to destination channels.
+- `RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED(15)`: The SDK fails to resume relaying the media stream to destination channels.
+
+After a successful method call of `pauseAllChannelMediaRelay` or `resumeAllChannelMediaRelay`, the SDK triggers the `onChannelMediaRelayEvent` callback to report whether the media stream relay is successfully paused or resumed.
+
+**2. Getting audio file information**
+
+To get the information of any audio file, this release deprecates `getAudioMixingDuration` and adds `getAudioFileInfo` instead. After joining a channel, you can call `getAudioFileInfo` and get information such as duration for the specified audio file in `onRequestAudioFileInfo`.
+
+#### Improvements
+
+**Bluetooth profiles and volume types (Android/iOS)**
+
+To improve audio quality when a user uses a Bluetooth headset, this release optimizes the logic for selecting Bluetooth profiles and volume types.
+
+- Bluetooth profile: As of this release, the Bluetooth profile used by the SDK is only affected by the user role.
+  - If a user in the communication profile or a host in the interactive live streaming profile uses a Bluetooth headset, the Bluetooth headset captures and plays audio through the Hands-Free Profile (HFP).
+  - If an audience member in the interactive live streaming profile uses a Bluetooth headset, the Bluetooth headset plays audio through the Advanced Audio Distribution Profile (A2DP).
+- Volume type: This release regulates the volume type. When a user uses a Bluetooth headset, the SDK uses the following volume type:
+  | Audio scenario           | User in the communication profile/Host in the interactive live streaming profile | Audience in the interactive live streaming profile |
+  | :----------------------- | :----------------------------------------------------------- | :------------------------------------------------- |
+  | `DEFAULT`                | In-call volume                                               | Media volume                                       |
+  | `CHATROOM_GAMING`        | In-call volume                                               | In-call volume                                     |
+  | `GAME_STREAMING`         | In-call volume (Android)<br/>Media volume (iOS)                   | Media volume                                       |
+  | `CHATROOM_ENTERTAINMENT` | In-call volume                                               | In-call volume                                     |
+  | `EDUCATION`              | In-call volume                                               | Media volume                                       |
+  | `SHOWROOM`               | In-call volume                                               | Media volume                                       |
+  | `MEETING`                | In-call volume (Android)<br/>Media volume (iOS)                  | Media volume                                       |
+
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- Occasionally, the SDK incorrectly triggered the error code `-1017` when a user plugged and unplugged the headset. (Android)
+- After a user played music with a third-party music player and set the audio scenario to `AgoraAudioScenarioChatRoomGaming`, joining a channel could interrupt the music played by the third-party music player. (iOS)
+- Crashes occurred occasionally. (iOS)
+- In a CDN streaming scenario, when the host enabled dual-channel audio capture, remote users heard a zipping noise or no sound in one of the audio channels.
+- `excludeWindowList` did not work. (macOS)
+- Occasionally, memory leaked because of unreasonable object reference managements. (Android)
+- Running iOS apps on a Mac device with an M1 chip crashed under certain circumstances. (iOS, macOS)
+- When the local user called `adjustRecordingSignalVolume(0)` after calling `setAudioProfile(5,3)`, remotes users could still hear the local user's audio. (Android)
+- On some devices, the main thread got stuck for 1 or 2 seconds after the `setEnableSpeakerphone` method call.
+- When a Bluetooth headset and a wired headset were connected to the audio playback device at the same time, the SDK did not trigger onAudioRouteChanged after plugging and unplugging the wired headset multiple times. (Android)
+- On some Xiaomi devices, the user could not use the device's volume button to adjust the volume after calling `setEnableSpeakerphone`. (Android)
+- When you called `startAudioDeviceLoopbackTest` to start the audio device loopback test after joining and then immediately leaving a channel, the content of the `AudioVolumeInfo` array reported by the `onAudioVolumeIndication` callback was incorrect. (Windows)
+- The local user could not be heard by remote users when the local user used custom audio capture by the Push method. (Android, Windows)
+- When a third-party in-ear monitoring library and custom audio source were used and in-ear monitoring was enabled before joining a channel, in-ear monitoring did not take effect. (Android)
+- On some Samsung devices, the `adjustRecordingSignalVolume(0)` method call occasionally failed. (Android)
+- When a user with the audio profile `MUSIC_HIGH_QUALITY_STEREO(5)` talked to a user with another audio profile, the latter was likely to hear a zipping noise. (Android)
+- The local user occasionally could not hear remote users after calling `setAudioSessionOperationRestriction`. (iOS)
+- In the `AgoraAudioScenarioChatRoomGaming` audio scenario, the moment a user in the channel switched the role from `AgoraClientRoleAudience` to `AgoraClientRoleBroadcaster`, that user heard a zipping noise. (iOS)
+
+### v3.4.8
+
+v3.4.8 was developed from v3.4.7 and was released on September 16, 2021 for Android, iOS, macOS, and Windows.
+
+This release fixed the following issues:
+
+- On some Samsung devices, the `adjustRecordingSignalVolume(0)` method call failed occasionally. (Android)
+- On some devices, the main thread got stuck for 1 to 2 seconds after the `setEnableSpeakerphone` method call. (Android)
+
+
+### v3.4.7
+
+v3.4.7 was developed from v3.4.6 and was released on August 2, 2021 for Android, iOS, macOS, and Windows.
+
+<div class="alert note">In the v3.4.5 and v3.4.6 SDKs, a memory leak occurs when <code>AgoraRtcEngineKit</code> strongly references <code>AgoraRtcEngineDelegate</code>. If you set the strong reference to <code>AgoraRtcEngineDelegate</code> by <code>AgoraRtcEngineKit</code>, Agora recommends that you upgrade the SDK to v3.4.7. (iOS, macOS) </div>
+
+#### Improvements
+
+This release improves the user experience under network conditions with high packet loss and high jitter.
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- Due to the strong reference to `AgoraRtcEngineDelegate` by `AgoraRtcEngineKit`, the `AgoraRtcEngineDelegate` object was released only when `AgoraRtcEngineKit` was destroyed, which caused a memory leak. (iOS, macOS)
+- Occasional crashes occurred in audio scenarios. (Android, iOS)
+- When `pauseAudioMixing` was called before playing an audio file, and then `startAudioMixing` was called to play the audio file, playback failed. (iOS)
+- Remote users heard slightly unsynchronized voice and music when a user called `startAudioMixing` on some Android devices.
+- A naming conflict existed in the `AgoraReachability` class between the Agora RTC SDK and Agora RTM SDK. (iOS, macOS)
