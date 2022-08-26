@@ -1,0 +1,269 @@
+<PlatformWrapper platform="unity">
+
+Use this guide to quickly start the interactive live audio streaming with the Agora Voice SDK for Unity.
+
+## Understand the tech
+
+The following figure shows the workflow to integrate into your app in order to add Interactive Live Streaming Premium functionality.
+
+![1625465916613](https://web-cdn.agora.io/docs-files/1625465916613)
+
+As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
+
+1. Set the client role
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+
+2. Retrieve a token
+A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
+
+3. Join a channel
+Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+4. Publish and subscribe to audio and video in the channel
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+
+For an app client to join a channel, you need the following information:
+- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
+- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
+- A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+- The channel name: A string that identifies the channel for the live stream. 
+
+## Prerequisites
+
+- Unity 2017 or later
+
+- Operating system and IDE requirements:
+
+  | Target Platform | Operating system version | IDE version                 |
+  | :-------------- | :----------------------- | :-------------------------- |
+  | Android         | Android 4.1 or later     | Android Studio 3.0 or later |
+  | iOS             | iOS 9.0 or later         | Xcode 9.0 or later          |
+  | macOS           | macOS 10.10 or later      | Xcode 9.0 or later          |
+  | Windows         | Windows 7 or later  | Microsoft Visual Studio 2017 or later |
+
+- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account) and an [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id)
+
+<div class="alert note">Open the specified ports in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms#agora-rtc-sdk">Firewall Requirements</a > if your network has a firewall.</div>
+
+## Set up the development environment
+
+In this section, we create a Unity project and integrate the SDK into the project.
+
+### Create a Unity project
+
+Use the following steps or follow the[ Unity official manual](https://docs.unity3d.com/Manual/GettingStarted.html) to build a project from scratch. Skip to [Integrate the SDK](#Integrate) if you have already created a Unity project.
+
+<details>
+	<summary><font color="#3ab7f8">Create a Unity Project</font></summary>
+	
+1. Ensure that you have downloaded and installed **Unity** before the following steps. If not, click <a href="https://store.unity.com/?_ga=2.210473373.969150697.1571977051-1808388573.1570601452#plans-individual">here</a > to download.
+	
+2. Open **Unity** and click **New**.
+	
+3. Fill in and select the options in the following fields, and click **Create project**.
+	 - Project name
+	 - Location
+	 - Organization
+	 - Template: Choose **3D**
+</details>
+
+<a name="Integrate"></a>
+### Integrate the SDK
+
+Choose either of the following approaches to integrate the Agora Unity SDK into your project.
+
+**Approach 1: Automatically integrate the SDK with Unity Asset Store**
+
+1. Open **Asset Store** in **Unity**, search for **Agora Voice SDK for Unity** and click it.
+   ![](https://web-cdn.agora.io/docs-files/1576206914656)
+2. Click **Download** to download the SDK.
+   ![](https://web-cdn.agora.io/docs-files/1576223710590)
+3. When the download completes, the button becomes **Import**. Click **Import** to show the packages of the downloaded SDK.
+   ![](https://web-cdn.agora.io/docs-files/1576223720730)
+4. All packages of the SDK are chosen by default. Uncheck the packages you do not need and click **Import**.
+   ![](https://web-cdn.agora.io/docs-files/1576223735922)
+
+**Approach 2: Manually add the SDK files**
+
+1. Go to [SDK Downloads](https://docs.agora.io/en/Agora%20Platform/downloads), download the Agora SDK for Unity under **Voice SDK**, and extract the files from the downloaded SDK package.
+2. Copy the `Plugins` subfolder from the `samples/Hello-Unity3D-Agora/Assets/AgoraEngine` directory of the downloaded SDK to the `Assets` subfolder of your project.
+
+   <div class="alert note"><ul><li>Android or iOS developers using Unity Editor for macOS or Windows must also copy the macOS or the x86/X86_64 subfolder to the specified directory.</li><li>iOS developers also need to copy the <code>BL_BuildPostProcess.cs</code> file from the <code>samples/Hello-Unity3D-Agora/Assets/AgoraEngine/Editor</code> directory.</li></ul></div>
+
+## Implement a basic interactive live streaming
+
+This section provides instructions on using the Agora Voice SDK for Unity to implement the interactive live streaming, as well as an API call sequence diagram.
+
+![1576224606319](https://web-cdn.agora.io/docs-files/1576224606319)
+
+### 1. Create the UI
+
+Create the user interface (UI) for the interactive live audio streaming in your project. If you already have one UI in your project, skip to [Get the device permission (Android only)](#permission) or [Initialize IRtcEngine](#initialize).
+
+We recommend adding the following elements to the UI:
+
+- A switch role button
+- An exit button
+
+<a name="permission"></a>
+### 2. Get the device permission (Android only)
+
+If you build for Android, you should add in APIs to check and request the device permission. For all other platforms, this is handled by the engine, and you can skip to [Initialize IRtcEngine](#initialize).
+
+Unity versions later than **UNITY_2018_3_OR_NEWER** do not automatically request microphone permissions from your Android device. If you are using one of these versions, call the `CheckPermission` method to request access to the microphone of your Android device.
+
+```C#
+#if(UNITY_2018_3_OR_NEWER) 
+using UnityEngine.Android; 
+#endif 
+void Start () 
+{  
+#if(UNITY_2018_3_OR_NEWER) 
+permissionList.Add(Permission.Microphone);  
+#endif  
+} 
+private void CheckPermission()
+{ 
+#if(UNITY_2018_3_OR_NEWER) 
+foreach(string permission in permissionList) 
+{ 
+if (Permission.HasUserAuthorizedPermission(permission)) 
+{ 
+} 
+else 
+{  
+Permission.RequestUserPermission(permission); 
+} 
+} 
+#endif 
+} 
+void Update () 
+{  
+#if(UNITY_2018_3_OR_NEWER) 
+// Ask for your Android device's permissions.
+CheckPermission(); 
+#endif  
+}
+```
+
+<a name="initialize"></a>
+### 3. Initialize IRtcEngine
+
+Initialize the `IRtcEngine` object before calling any other Agora APIs.
+
+Call the `GetEngine` method and pass in the App ID to initialize the IRtcEngine object.
+
+<div class="alert note">If you want to exit the app or release the memory of <tt>IRtcEngine</tt>, call <tt>Destroy</tt> to destroy the <tt>IRtcEngine</tt> object. See details in <a href="#destroy">Destroy the IRtcEngine object</a >.</div>
+
+Listen for callback events, such as when the local user joins the channel, and when the first audio frame of a remote user is decoded.
+
+```C#
+// Pass an App ID to create and initialize an IRtcEngine object.
+mRtcEngine = IRtcEngine.GetEngine (appId); 
+// Listen for the OnJoinChannelSuccessHandler callback.
+// This callback occurs when the local user successfully joins the channel.
+mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler; 
+// Listen for the OnUserJoinedHandler callback.
+// This callback occurs when the first audio frame of a remote user is received and decoded after the remote user successfully joins the channel.
+mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler; 
+// Listen for the OnUserOfflineHandler callback.
+// This callback occurs when the remote user leaves the channel or drops offline.
+mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
+```
+
+
+### 4. Set the channnel profile
+
+After initializing the `IRtcEngine` object, call the `SetChannelProfile` method to set the channel profile as `LIVE_BROADCASTING`.
+
+One `IRtcEngine` object uses one profile only. If you want to switch to another profile, destroy the current `IRtcEngine` object with the `Destroy` method and create a new one before calling the `SetChannelProfile` method.
+
+```C#
+// Set the channel profile as LIVE_BROADCASTING.
+mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
+```
+
+### 5. Set the client role
+
+An interactive streaming channel has two client roles: `BROADCASTER` and `AUDIENCE`, and the default role is `AUDIENCE`. After setting the channel profile to `LIVE_BROADCASTING`, your app may use the following steps to set the client role:
+
+1. Allow the user to set the role as BROADCASTER or AUDIENCE.
+2. Call the `SetClientRole` method and pass in the client role set by the user.
+
+Note that in the interactive live streaming, only the host can be heard. If you want to switch the client role after joining the channel, call the `SetClientRole` method.
+
+```C#
+// Set the client role as the host.
+mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
+```
+
+### 6. Join a channel
+
+After setting the client role, you can call `JoinChannelByKey` to join a channel. Set the following parameters when calling this method:
+
+- `channelKey`: The token for identifying the role and privileges of a user. Set it as one of the following values:
+
+  - A temporary token generated in Agora Console. A temporary token is valid for 24 hours. For details, see [Get a temporary token](https://docs.agora.io/en/Agora%20Platform/token#get-a-temporary-token).
+  - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](https://docs.agora.io/en/Video/token_server).
+
+  <div class="alert note"><ul><li>If your project has enabled the app certificate, ensure that you provide a token.</li><li>Ensure that you do not set <code>channelKey</code> as "".</li></ul></div>
+
+- ·`channelName`: The unique name of the channel to join. Users that input the same channel name join the same channel.
+
+- `uid`: Integer. The unique ID of the local user. If you set `uid` as `0`, the SDK automatically assigns one user ID and returns it in the `OnJoinChannelSuccessHandler` callback.
+ 
+ <div class="alert note">Once the user joins the channel, the user subscribes to the audio streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <tt>Mute</tt> methods accordingly.</div>
+ 
+If an interactive streaming channel uses both the RTC Native SDK and the RTC Web SDK, ensure that you call the `EnableWebSdkInteroperability` method before joining the channel.
+
+```C#
+// Call this method to enable interoperability between the RTC Native SDK and the RTC Web SDK if the RTC Web SDK is in the channel.
+mRtcEngine.EnableWebSdkInteroperability(true);
+// Join a channel. 
+mRtcEngine.JoinChannelByKey(null, channel, null, 0);
+```
+
+### 7. Leave the channel
+
+According to your scenario, such as when the interactive live streaming ends and when you need to close the app, call `LeaveChannel` to leave the current channel.
+
+```C#
+public void leave()
+	{
+		Debug.Log ("calling leave");
+		if (mRtcEngine == null)
+			return;
+		// Leave the channel.
+		mRtcEngine.LeaveChannel();
+	}
+```
+
+<a name="destroy"></a>
+### 8. Destroy the IRtcEngine object
+
+After leaving the channel, if you want to exit the app or release the memory of `IRtcEngine`, call `Destroy` to destroy the `IRtcEngine` object.
+
+```C#
+void OnApplicationQuit()
+{
+	if (mRtcEngine != null)
+	{
+	// Destroy the IRtcEngine object.
+	IRtcEngine.Destroy();
+    mRtcEngine = null;
+	}
+}
+```
+
+## Run the project
+
+Run the project in Unity. When you set the role as the host and successfully start the interactive live audio streaming, you can hear the voice of yourself in the app. When you set the role as the audience and successfully join the interactive live audio streaming, you can hear the voice of the host in the app.
+
+## Reference
+	
+When using the Agora Unity SDK, you can also use the dollowing documents as a reference:
+
+- FAQ: [How can I listen for an audience joining or leaving the interactive live streaming channel?](https://docs.agora.io/en/faq/audience_event)
+- FAQ: [Why do crashes occur on Unity SDK v3.0.1 or earlier?](https://docs.agora.io/en/faq/unity_crash)
+
+</PlatformWrapper>
