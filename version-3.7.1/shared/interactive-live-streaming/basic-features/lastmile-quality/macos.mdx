@@ -1,0 +1,258 @@
+<PlatformWrapper platform="macos">
+
+## Description
+
+In real-time scenarios requiring high quality, conducting tests before joining a channel helps troubleshoot in advance and improve the overall user experience. You can perform the following pre-call tests:
+
+- Network test: Detects the network quality by probing the uplink and downlink last-mile network quality.
+- Device test: Checks if the audio and video devices work properly.
+
+This article describes how to implement these tests.
+
+## Sample project
+
+Agora provides an open-source macOS sample project on GitHub that implements pre-call detection in the [PrecallTest.swift](https://github.com/AgoraIO/API-Examples/tree/master/macOS/APIExample/Examples/Advanced/PrecallTest) file. You can download the sample project to try it out or refer to the source code.
+
+## Network probe test
+
+As of v2.4.0, the Agora RTC Native SDK provides the `startLastmileProbeTest` method that probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
+
+### Implementation
+
+Before proceeding, ensure that you have implemented basic real-time functions in your project.
+
+1. Call `startLastmileProbeTest` to start the network probe test before joining a channel or switching the user role. You need to specify the expected upstream and downstream bitrate in this method.
+2. After the method call, the SDK returns the following two callbacks
+	- `lastmileQuality`: Triggered two seconds after `startLastmileProbeTest` is called. This callback provides ratings of the uplink and downlink network quality and reflects the user experience.
+	- `lastmileProbeResult`: Triggered 30 seconds after `startLastmileProbeTest` is called. This callback provides real-time statistics of the network quality and is more objective.
+3. After getting the network quality statistics, call `stopLastmileProbeTest` to stop the network probe test.
+
+The API call sequence is as follows:
+
+![1569465569670](https://web-cdn.agora.io/docs-files/1569465569670)
+
+### Sample code
+
+Refer to the following sample code to implement this function in your project.
+
+```swift
+// Swift
+let config = AgoraLastmileProbeConfig()
+// Probes the uplink network.
+config.probeUplink = true;
+// Probes the downlink network.
+config.probeDownlink = true;
+// The expected uplink bitrate(bps). The value range is [100000,5000000].
+config.expectedUplinkBitrate = 100000;
+// The expected downlink bitrate(bps). The value range is [100000,5000000]
+config.expectedDownlinkBitrate = 100000;
+// Call startLastmileProbeTest to start the network probe test.
+agoraKit.startLastmileProbeTest(config)
+```
+
+```swift
+// Swift
+// Receives the lastmileQuality callback two seconds after calling startLastmileProbeTest. This callback is triggered once every 2 seconds.
+func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileQuality quality: AgoraNetworkQuality) {
+    lastmileResultLabel.stringValue = "Quality: \(quality.description())"
+}
+
+// Receives the lastmileProbeResult callback 30 seconds after calling startLastmileProbeTest. This callback provides more detailed network quality statistics.
+func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileProbeTest result: AgoraLastmileProbeResult) {
+    // The round trip time delay.
+    let rtt = "Rtt: \(result.rtt)ms"
+    // The downlink network bandwidth.
+    let downlinkBandWidth = "DownlinkAvailableBandwidth: \(result.  downlinkReport.availableBandwidth)Kbps"
+    // The downlink jitter buffer.
+    let downlinkJitter = "DownlinkJitter: \(result.downlinkReport.  jitter)ms"
+    // The downlink packet loss rate.
+    let downlinkLoss = "DownlinkLoss: \(result.downlinkReport.  packetLossRate)%"
+
+    // The uplink network bandwidth.
+    let uplinkBandwidth = "UplinkAvailableBandwidth: \(result.  uplinkReport.availableBandwidth)Kbps"
+    // The uplink jitter buffer.
+    let uplinkJitter = "UplinkJitter: \(result.uplinkReport.jitter)  ms"
+    // The uplink packet loss rate.
+    let uplinkLoss = "UplinkLoss: \(result.uplinkReport.  packetLossRate)%"
+
+    lastmileProbResultLabel.stringValue = [rtt, downlinkBandwidth, downlinkJitter, downlinkLoss, uplinkBandwidth, uplinkJitter, uplinkLoss].joined(separator: "\n")
+}
+```
+
+```swift
+// Swift
+// Stops the last-mile network probe test.
+// You can call stopLastmileProbeTest either within the lastmileProbeResult callback, or at other time before joining a channel.
+agoraKit.stopLastmileProbeTest()
+```
+
+### API reference
+
+- [`startLastmileProbeTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startLastmileProbeTest:)
+- [`stopLastmileProbeTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopLastmileProbeTest)
+- [`lastmileQuality`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileQuality:)
+- [`lastmileProbeResult`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileProbeTestResult:)
+
+## Device test
+
+To ensure smooth communications, Agora recommends conducting a media device test before joining a channel to check whether the microphone or camera works properly. This function applies to scenarios that have high-quality requirements, such as online education.
+
+Before proceeding, ensure that you have implemented basic real-time functions in your project.
+
+Refer to the following steps to test audio and video devices.
+
+- Choose either of the following ways to test the audio devices:
+    - Call `startEchoTestWithInterval` to test if audio devices and network connections are working properly.
+    - Call `startRecordingDeviceTest` to test audio recording devices, and call `startPlaybackDeviceTest` to test audio playback devices.
+    - Call `startAudioDeviceLoopbackTest` to test the audio device loopback (including audio recording and playback devices).
+- Call `startCaptureDeviceTest` to test video capture devices.
+- Call `startEchoTestWithConfig` to test the system's audio devices, video devices, and network connections.
+
+<div class="alert note">Before v3.6.2, you can only test devices before joining a channel; as of v3.6.2, you can test audio devices either before or after joining a channel by calling <code>startRecordingDeviceTest</code>, <code>startPlaybackDeviceTest</code>, or <code>startAudioDeviceLoopbackTest</code>.</div>
+
+### Audio call loop test
+
+Call the `startEchoTestWithInterval` method to test if audio devices, such as the microphone and speaker, are working properly.
+
+To conduct the test, call `startEchoTestWithInterval`, and set the `interval` parameter in this method to notify the SDK when to report the result of this test. The user speaks, and if the recording plays back within the set time interval, audio devices and network connections are working properly.
+
+```swift
+// Swift
+@IBAction func doEchoTest(sender: NSButton) {
+    agoraKit.startEchoTest(withInterval: 10)
+    showPopover(isValidate: false, seconds: 10) {[unowned self] in
+        self.showPopover(isValidate: true, seconds: 10) {[unowned self] in
+            self.agoraKit.stopEchoTest()
+        }
+    }
+}
+```
+
+### Audio and video call loop test
+
+Call `startEchoTestWithConfig` to test whether the system's audio devices, video devices, and network connections are working properly.
+
+To conduct the test, call `startEchoTestWithConfig`, and set the `config` parameter in this method. The user needs to make a sound or face the camera. The audio or video is output after about two seconds. If the audio playback is normal, the audio device and the user's upstream and downstream network are working properly; if the video playback is normal, the video device and the user's upstream and downstream network are working properly.
+
+```swift
+// Swift
+@IBAction func doEchoVideoTest(sender: NSButton) {
+    if(echoTesting){
+        agoraKit.stopEchoTest()
+        echoTestBtn.title = "Start Video/Audio Test".localized
+        echoTesting = false
+    }
+    else{
+        let config = AgoraEchoTestConfiguration()
+        echoTestBtn.title = "Stop Video/Audio Test".localized
+        config.channelId = "randomChannel"
+        config.view = videos[0]
+        config.enableAudio = true
+        config.enableVideo = true
+        agoraKit.startEchoTest(withConfig: config)
+        echoTesting = true
+    }
+}
+```
+
+### Audio capturing device test
+
+Call the `startRecordingDeviceTest` method to test whether the local audio capturing device, such as a microphone, is working properly.
+
+Follow these steps to conduct the test:
+1. Listen for the `reportAudioDeviceTestVolume` callback.
+2. Call `startRecordingDeviceTest`, and use the `indicationInterval` parameter in this method to set the time interval (ms) at which the SDK returns the `reportAudioDeviceTestVolume` callback. 
+3. When the user speaks, the SDK captures the local audio using an audio capturing device and reports the volume of the audio capturing device in the `reportAudioDeviceTestVolume` callback. 
+4. When the test finishes, call the `stopRecordingDeviceTest` method to stop the current test.
+
+<div class="alert note"><li>The value of <code>indicationInterval</code> must be 10 ms or greater; otherwise, you cannot receive the <code>reportAudioDeviceTestVolume</code> callback. Agora recommends a setting greater than 200 ms.</li><li>When conducting the test before joining a channel, you can specify an audio device to be tested; after joining a channel, you can only test the audio device that the SDK is using.</li><li>When conducting the test before joining a channel, you can also use the <code>reportAudioVolumeIndicationOfSpeakers</code> callback to get the volume of the audio device.</li></div>
+
+```swift
+// Swift
+agoraKit.startRecordingDeviceTest(1000)
+
+agoraKit.stopRecordingDeviceTest()
+```
+
+### Audio playback device test
+
+Call the `startPlaybackDeviceTest` method to test whether the local audio playback device, such as a speaker, is working properly.
+
+Follow these steps to conduct the test:
+
+1. Listen for the `reportAudioDeviceTestVolume` callback.
+2. Specify an audio file for playback, and call `startPlaybackDeviceTest`. 
+3. The SDK plays the audio file using a local audio playback device and triggers the `reportAudioDeviceTestVolume` callback to report the volume of the audio playback device.
+4. When the test finishes, call the `stopPlaybackDeviceTest` method to stop the current test.
+
+<div class="alert note"><li>When conducting the test before joining a channel, you can specify an audio device to be tested; after joining a channel, you can only test the audio device that the SDK is using.</li><li>When conducting the test before joining a channel, you can also use the <code>reportAudioVolumeIndicationOfSpeakers</code> callback to get the volume of the audio device.</li></div>
+
+
+```swift
+// Swift
+agoraKit.startPlaybackDeviceTest("audio file path")
+
+agoraKit.stopPlaybackDeviceTest()
+```
+
+### Audio device loopback test
+
+Call the `startAudioDeviceLoopbackTest` method to test whether the local audio devices, including the microphones and speakers, are working properly.
+
+Follow these steps to conduct the test:
+
+1. Listen for the `reportAudioDeviceTestVolume` callback.
+2. Call `startAudioDeviceLoopbackTest`, and use the `indicationInterval` parameter in this method to set the time interval (ms) at which the SDK returns the `reportAudioDeviceTestVolume` callback. 
+3. When the user speaks, the SDK captures the local audio using an audio capturing device and plays it through an audio playback device. The SDK triggers two `reportAudioDeviceTestVolume` callbacks to report the volume of the audio capturing and playback devices.
+4. When the test finishes, call the `stopAudioDeviceLoopbackTest` method to stop the current test.
+
+<div class="alert note"><li>The value of <code>indicationInterval</code> must be 10 ms or greater; otherwise, you cannot receive the <code>reportAudioDeviceTestVolume</code> callback. Agora recommends a setting greater than 200 ms.</li><li>When conducting the test before joining a channel, you can specify an audio device to be tested; after joining a channel, you can only test the audio device that the SDK is using.</li><li>When conducting the test before joining a channel, you can also use the <code>reportAudioVolumeIndicationOfSpeakers</code> callback to get the volume of the audio device.</li></div>
+
+```swift
+// Swift
+agoraKit.startAudioDeviceLoopbackTest(50)
+
+agoraKit.stopAudioDeviceLoopbackTest()
+```
+
+### Video capture device test
+
+After calling the `enableVideo` method, call the `startCaptureDeviceTest` method to test whether the local video devices, such as the camera, are working properly.
+
+To conduct the test, specify a window view that displays the image. If you can see the local video view, the video devices work properly.
+
+When the test finishes, call the `stopCaptureDeviceTest` method to stop the current test.
+
+```swift
+// Swift
+agoraKit.startCaptureDeviceTest(videos[0])
+
+agoraKit.stopCaptureDeviceTest()
+```
+
+### API reference
+
+* [`startEchoTestWithInterval`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithInterval:successBlock:)
+* [`startEchoTestWithConfig`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithConfig:)
+* [`stopEchoTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopEchoTest)
+* [`startRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRecordingDeviceTest:)
+* [`stopRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRecordingDeviceTest.)
+* [`startPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startPlaybackDeviceTest:)
+* [`stopPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopPlaybackDeviceTest)
+* [`startCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startCaptureDeviceTest:)
+* [`stopCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopCaptureDeviceTest)
+* [`startAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioDeviceLoopbackTest:)
+* [`stopAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopAudioDeviceLoopbackTest)
+* [`reportAudioVolumeIndicationOfSpeakers`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportAudioVolumeIndicationOfSpeakers:)
+* [`reportAudioDeviceTestVolume`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportAudioDeviceTestVolume:)
+
+## Considerations
+
+- Calling `startLastmileProbeTest` for pre-call network quality detection consumes network traffic. Therefore, after calling this method, Agora recommends not calling any other method until you receive the `lastmileProbeTest` callback.
+- The `lastmileQuality` callback may return `Unknown` the first time it is triggered. Subsequent callbacks will return the test results.
+- When conducting the last-mile probe test, the voice SDK uses a fixed bitrate of 48 Kbps. The video SDK adjusts the actual bitrate according to the video profile.
+- In an interactive live streaming channel, only a host can call `startEchoTestWithInterval`.
+- Once the echo test ends, you must call `stopEchoTest` to stop it. Otherwise, you cannot conduct another echo test or join a call using `joinChannelByToken`.
+
+
+</PlatformWrapper>

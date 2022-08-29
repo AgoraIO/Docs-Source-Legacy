@@ -1,0 +1,146 @@
+<PlatformWrapper platform="macos">
+
+## Introduction
+
+During a video call or interactive streaming, **sharing the screen** enhances communication by displaying the speaker's screen on the display of other speakers or audience members in the channel.
+
+Screen sharing is applied in the following scenarios:
+
+- In a video conference, the speaker can share an image of a local file, web page, or presentation with other users in the channel.
+- In an online class, the teacher can share the slides or notes with students.
+
+## Sample project
+
+Agora provides an open-source macOS sample project on GitHub that implements screen sharing and window sharing in the [ScreenShare.swift](https://github.com/AgoraIO/API-Examples/tree/master/macOS/APIExample/Examples/Advanced/ScreenShare) file. You can download the sample project to try it out or refer to the source code.
+
+## Implementation
+
+<div class="alert note">Before proceeding, ensure that you have implemented basic real-time functions in your project.</div>
+
+From v2.4.0, Agora supports the following screen sharing functions on macOS:
+
+- Shares the whole or part of a screen by specifying display ID.
+- Shares the whole or part of a window by specifying window ID.
+
+### Share the whole or part of a screen by specifying display ID
+
+The macOS system assigns a unique display ID to each screen under the name [`CGDirectDisplayID`](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid). With this display ID, we can implement screen sharing on macOS with the following steps:
+
+1. Get the display ID for screen sharing.
+
+    - If you are using versions of the SDK earlier than v3.5.2, use the system method to get the display ID:
+
+	    ```swift
+	    let screenId = screen.deviceDescription[NSDeviceDescriptionKey  (rawValue: "NSScreenNumber")]
+	    ```
+
+        For more information on display ID, see [Apple deviceDescription](https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription).
+
+    - If you are using the SDK v3.5.2 or later, in addition to getting the display ID with the system method, you can also get the display ID directly from `sourceId` returned by the `getScreenCaptureSourcesWithThumbSize` method provided by the SDK.
+
+        ```swift
+        func initSelectScreenPicker() {
+            let size = NSSize(width: 100, height: 100)
+            let screens = agoraKit.getScreenCaptureSources(withThumbSize: size, iconSize: size, includeScreen: true)
+            screens.map { sources in
+                selectScreenPicker.picker.addItems(withTitles: sources.filter{ $0.type == .screen }.map {"\($0.sourceName)(\($0.sourceId))"})
+            }
+            selectScreenPicker.label.stringValue = "Screen Share".localized
+        }
+        ```
+
+2. Share the screen by specifying the display ID.
+
+   ```swift
+    // Starts screen sharing.
+    // If your Mac device does not have an external display, display = 0 means the current Mac device screen is shared.
+	// If your Mac device has an external display, display = 0 means the main display is shared. The default main display is the screen of your Mac device, but you can also set the external screen as the main display.
+    let displayId = 0
+    let rectangle = CGRect.zero
+    let parameters = AgoraScreenCaptureParameters()
+    parameters.dimensions = CGSize.zero
+    parameters.frameRate = 15
+    parameters.bitrate = 1000
+    agoraKit.startScreenCapture(bydisplayId: displayId, rectangle: rectangle, parameters: parameters)
+
+    // Updates the screen sharing parameters.
+    let parameters = AgoraScreenCaptureParameters()
+    parameters.dimensions = CGSize.zero
+    parameters.frameRate = 15
+    parameters.bitrate = 1000
+    agoraKit.update(parameters)
+
+    // Updates the screen sharing region.
+    let region = CGRect.zero
+    agoraKit.updateScreenCaptureRegion(region)
+
+    // Sets the screen sharing content hint.
+    agoraKit.setScreenCapture(.none)
+
+    // Stops screen sharing.
+    agoraKit.stopScreenCapture()
+
+   ```
+
+
+### Share the whole or part of a window by specifying window ID
+
+The macOS system assigns a unique window ID to each screen under the name [`CGWindowID`](https://developer.apple.com/documentation/coregraphics/cgwindowid). With this window ID, we can implement window sharing on macOS with the following steps:
+
+1. Get the window ID for window sharing.
+
+    ```swift
+    // Swift
+    let windowDicCFArray = CGWindowListCopyWindowInfo([.optionAll, .excludeDesktopElements], 0)
+    ```
+
+   For more information on Window ID, see [Apple CGWindowListCopyWindowInfo](https://developer.apple.com/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo).
+
+2. Share the window by specifying the window ID.
+
+   ```swift
+    // Starts sharing the window.
+    let windowId = <#Your Window ID#>
+    let rectangle = CGRect.zero
+    let parameters = AgoraScreenCaptureParameters()
+    parameters.dimensions = CGSize.zero
+    parameters.frameRate = 15
+    parameters.bitrate = 1000
+    agoraKit.startScreenCapture(byWindowId: windowId, rectangle: rectangle, parameters: parameters)
+
+    // Updates the screen sharing parameters.
+    let parameters = AgoraScreenCaptureParameters()
+    parameters.dimensions = CGSize.zero
+    parameters.frameRate = 15
+    parameters.bitrate = 1000
+    agoraKit.update(parameters)
+
+    // Updates the screen sharing region.
+    let region = CGRect.zero
+    agoraKit.updateScreenCaptureRegion(region)
+
+    // Sets the screen capture content hint.
+    agoraKit.setScreenCapture(.none)
+
+    // Stops sceen sharing.
+    agoraKit.stopScreenCapture()
+   ```
+
+
+### API reference
+
+* [`getScreenCaptureSourcesWithThumbSize`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getScreenCaptureSourcesWithThumbSize:iconSize:includeScreen:)
+* [`startScreenCaptureByDisplayId`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startScreenCaptureByDisplayId:rectangle:parameters:)
+* [`startScreenCaptureByWindowId`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startScreenCaptureByWindowId:rectangle:parameters:)
+* [`updateScreenCaptureParameters`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateScreenCaptureParameters:)
+* [`setScreenCaptureContentHint`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setScreenCaptureContentHint:)
+* [`updateScreenCaptureRegion:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateScreenCaptureRegion:)
+* [`stopScreenCapture`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopScreenCapture)
+
+## Considerations
+
+- v2.4.0 deprecates the `startScreenCapture` method. It is still functional, but Agora no longer recommends it.
+- Changing `AgoraScreenCaptureParameters` may affect your communication usage charges. As of v2.4.1, if you set the `dimensions` parameter as default, Agora uses 1920 × 1080 to calculate your usage charges.
+- If you are using the SDK v3.1.0 or later and have a separate process for screen sharing, ensure that this process supports [event loops](https://developer.apple.com/documentation/appkit/nsapplication?language=objc); otherwise, some usability issues can occur with screen sharing.
+
+</PlatformWrapper>

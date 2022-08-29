@@ -1,0 +1,167 @@
+<PlatformWrapper platform="unity">
+
+## Introduction 
+
+High-fidelity audio is essential for professional audio scenarios, such as for podcasts and singing competitions. For example, podcasts require stereo and high-fidelity audio. High-fidelity audio refers to an audio profile with a sample rate of 48 kHz and a bitrate of 128 Kbps.
+
+To obtain high-fidelity audio during real-time communications, you can choose the appropriate audio profile based on the audio quality, channel, and scenario.
+
+## Implementation
+
+Before setting the audio profile, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](start_call_audio_unity) or [Start Live Interactive Streaming](start_live_audio_unity).
+
+The Agora SDK provides the `SetAudioProfile` method to set the appropriate audio profile according to the scenario.
+
+### API call sequence
+
+The following diagram shows how to set the audio profile:
+![1585557119461](https://web-cdn.agora.io/docs-files/1585557119461)
+
+### Parameters and applications
+
+You can set the profile and scenario parameters based on the requirements of different applications, such as the audio quality and the audio player.
+
+<table>
+<tr>
+<th>Parameters</th>
+<th>Applications</th>
+<th>Options</th>
+</tr>
+<tr>
+<td rowspan="3">audioProfile</td>
+<td>High-fidelity audio</td>
+<td><li>MUSIC_HIGH_QUALITY</li>
+	<li>MUSIC_HIGH_QUALITY_STEREO</li></td>
+</tr>
+	<tr>
+<td>Standard audio</td>
+<td><li>MUSIC_STANDARD</li>
+	<li>MUSIC_STANDARD_STEREO</li></td>
+</tr>
+		<tr>
+<td>No requirement for audio quality</td>
+<td><li>DEFAULT</li>
+	<li>SPEECH_STANDARD</li></td>
+</tr>
+<tr>
+<td rowspan="8">scenario</td>
+	<td>Prioritize the audio quality and effects</td>
+<td>GAME_STREAMING</td>
+	</tr>
+		<tr>
+	<td>Frequently mute/unmute the microphone</td>
+<td>CHATROOM_ENTERTAINMENT</td>
+</tr>
+	<tr>
+	<td>External audio player</td>
+<td>SHOWROOM</td>
+</tr>
+		<tr>
+	<td>Gaming noise reduction</td>
+<td>CHATROOM_GAMING</td>
+</tr>
+	<tr>
+	<td>Smoothness and stability</td>
+<td>EDUCATION</td>
+</tr>
+			<tr>
+	<td>Use IoT devices with low power consumption</td>
+<td>IOT</td>
+</tr>
+			<tr>
+	<td>Meeting scenario that mainly contains the human voice</td>
+<td>MEETING</td>
+</tr>
+		<tr>
+	<td>Stable transmission quality</td>
+<td>DEFAULT</td>
+</tr>
+</table>
+
+You can also set the profile and scenario parameters based on different applications.
+
+| Applications | profile | scenario | Features |
+| ---------------- | ---------------- | ---------------- | ---------------- |
+| One-to-one classroom | DEFAULT | DEFAULT | Prioritizes the call quality with smooth transmission and high-fidelity audio. |
+| Battle royale game | SPEECH_STANDARD | CHATROOM_GAMING | Noise reduction and transmits the voice only. Reduces the transmission rate and suitable for multiplayer games. |
+| Murder mystery game | MUSIC_STANDARD | CHATROOM_<br/>ENTERTAINMENT | High-fidelity audio encoding and decoding. No volume or audio quality change when you mute/unmute the microphone. |
+| KTV | MUSIC_HIGH_<br/>QUALITY | GAME_STREAMING | High-fidelity audio and effects. Adapts to the high-fidelity audio application. |
+| Podcast | MUSIC_HIGH_<br/>QUALITY_STEREO | SHOWROOM | High-fidelity audio and stereo panning. Support for professional audio hardware. |
+| Music education | MUSIC_STANDARD_<br/>STEREO | GAME_STREAMING | Prioritizes audio quality. Suitable for transmitting live external audio effects. |
+| Collaborative teaching | MUSIC_STANDARD_<br/>STEREO | CHATROOM_<br/>ENTERTAINMENT | High-fidelity audio and effects. No volume or audio quality change when you mute/unmute the microphone. |
+
+### Sample code
+
+```C#
+// FM high-fidelity
+mRtcEngine.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_SHOWROOM);
+
+// Gaming
+mRtcEngine.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_SPEECH_STANDARD, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_GAMING);
+
+// Entertainment
+mRtcEngine.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_STANDARD, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
+
+// KTV
+mRtcEngine.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
+```
+
+### API reference
+
+- [`SetAudioProfile`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#adc5817c5d668f631123a643817cf3059)
+
+## Considerations
+
+Call this method before calling the [`JoinChannelByKey`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a5997a90398afe355d4d509a2a83a9999) method.
+
+When you set the volume of a device, you can set either the in-call volume or the media volume.
+- You can set the in-call volume during an audio or video call.
+- You can set the media volume when you play video, games, or background music.
+
+The differences between the two types of volumes are as follows:
+- The in-call volume cannot be set as 0.
+- The media volume can be set as 0.
+
+The audio scenarios in the `SetAudioProfile` method use different volume settings.
+
+<table>
+<tr>
+<th> Audio scenario</th>
+<th>Volume setting</th>
+</tr>
+<tr>
+<td>GAME_STREAMING</td>
+<td>All users use the media volume.</td>
+</tr>
+	<tr>
+<td>DEFAULT</td>
+<td  rowspan="3">	<li>In the Communication profile, all users use the in-call volume.</li>
+	<li>In the Live-broadcast profile, the hosts use the in-call volume, while the audience use the media volume.</li></td>
+</tr>
+		<tr>
+<td>EDUCATION</td>
+</tr>
+<tr>
+<td>SHOWROOM</td>
+	</tr>
+		<tr>
+<td>CHATROOM_ENTERTAINMENT</td>
+	<td>All users use the in-call volume.</td>
+</tr>
+	<tr>
+<td>CHATROOM_GAMING</td>
+	<td>All users use the in-call volume.</td>
+</tr>
+	<tr>
+<td>IOT</td>
+	<td>All users use the in-call volume.</td>
+</tr>
+	<tr>
+<td>MEETING</td>
+	<td>All users use the media volume.</td>
+</tr>
+</table>
+
+Given the system restrictions, the media volume can be set as 0, but not the in-call volume. Therefore, if you want to adjust the volume to 0, ensure that you set an audio scenario that uses the media volume.
+
+</PlatformWrapper>

@@ -1,0 +1,268 @@
+<PlatformWrapper platform="windows">
+
+## Introduction
+
+In real-time scenarios requiring high quality, conducting tests before joining a channel helps troubleshoot in advance and improve the overall user experience. You can perform the following pre-call tests:
+
+- Network test: Detects the network quality by probing the uplink and downlink last-mile network quality.
+- Device test: Checks if the local audio recording and playback devices work properly.
+
+This article describes how to implement these tests.
+
+## Sample project
+
+Agora provides an open-source sample project that implements [pre-call tests](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/PreCallTest) on GitHub. You can download the sample project to try it out or refer to the source code.
+
+## Network probe test
+
+As of v2.4.0, the Agora RTC Native SDK provides the `startLastmileProbeTest` method that probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
+
+### Implementation 
+
+Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_windows) or [Start Live Interactive Streaming](start_live_windows).
+
+Refer to the following steps to implement the network probe test:
+
+1. Call the `startLastmileProbeTest` to start the network probe test before joining a channel or switching the user role. You need to specify the expected upstream and downstream bitrate in this method.
+2. Once this method is enabled, the SDK triggers the following callbacks:
+- `onLastmileQuality`: Triggered two seconds after the `startLastmileProbeTest` method is called. This callback rates the network conditions with a score and is more closely linked to the user experience.
+- `onLastmileProbeResult`: Triggered 30 seconds after the `startLastmileProbeTest` method is called. This callback returns the real-time statistics of the network conditions and is more objective.
+3. Call the `stopLastmileProbeTest` method to stop the last-mile network probe test.
+
+The API call sequence is as follows:
+
+![1569466455559](https://web-cdn.agora.io/docs-files/1569466455559)
+
+### Sample code
+
+Refer to the following code to implement the last-mile test in your project.
+
+```cpp
+// Register the callback events.
+// Triggered 2 seconds after starting the last-mile test.
+void onLastmileQuality(int quality) {
+}
+
+// Triggered 30 seconds after starting the last-mile test.
+void onLastmileProbeResult(LastmileProbeResult) {
+  // (1) Stop the test. Agora recommends not calling any other API method before the test ends.
+  lpAgoraEngine->stopLastmileProbeTest();
+}
+
+// Configure a LastmileProbeConfig instance.
+LastmileProbeConfig config;
+// Probe the uplink network quality.
+config.probeUplink = true;
+// Probe the downlink network quality.
+config.probeDownlink = true;
+// The expected uplink bitrate (bps). The value range is [100000, 5000000].
+config.expectedUplinkBitrate = 100000;
+// The expected downlink bitrate (bps). The value range is [100000, 5000000].
+config.expectedDownlinkBitrate = 100000;
+// Start the last-mile network test before joining the channel.
+lpAgoraEngine->startLastmileProbeTest(config);
+
+// (2) Stop the test in an alternate place. Agora recommends not calling any other API method before the test ends.
+lpAgoraEngine->stopLastmileProbeTest();
+```
+
+
+### API reference
+
+* [`startLastmileProbeTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#adb3ab7a20afca02f5a5ab6fafe026f2b)
+* [`stopLastmileProbeTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a94f3494035429684a750e1dee7ef1593)
+* [`onLastmileQuality`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ac7e14d1a26eb35ef236a0662d28d2b33)
+* [`onLastmileProbeResult`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a44134dfda5d412831fa8e44fa533fca5)
+
+## Device test
+
+To ensure smooth communications, Agora recommends conducting a media device test before joining a channel to check whether the microphone or camera works properly. This function applies to scenarios that have high-quality requirements, such as online education.
+
+Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a  Call](start_call_windows) or [Start Live Interactive Streaming](start_live_windows) for details.
+
+- Choose either of the following ways to test the audio devices:
+	- Call `startEchoTest` [2/3] to test if audio devices and network connections are working properly.
+	- Call `startRecordingDeviceTest` to test audio recording devices, and call `startPlaybackDeviceTest` to test audio playback devices.
+	- Call `startAudioDeviceLoopbackTest` to test the audio device loopback (including audio recording and playback devices).
+- Call `startDeviceTest` to test the video capture devices.
+- Call `startEchoTest` [3/3] to test the system's audio devices, video devices, and network connections.
+
+<div class="alert note">Before v3.6.2, you can only test devices before joining a channel; as of v3.6.2, you can test audio devices either before or after joining a channel by calling <code>startRecordingDeviceTest</code>, <code>startPlaybackDeviceTest</code>, or <code>startAudioDeviceLoopbackTest</code>.</div>
+
+### Audio call loop test
+
+Call the `startEchoTest` [2/3] method to test if audio devices, such as the microphone and speaker, are working properly.
+
+To conduct the test, call `startEchoTest` and set the `interval` parameter in this method to notify the SDK when to report the result of this test. The user speaks, and if the recording plays back within the set time interval, audio devices and network connections are working properly.
+
+```C++
+void CAgoraPreCallTestDlg::OnEchoTest1()
+{
+	m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("Start Audio Call Loop Test."));
+	m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("You will hear your voice after 10 secs"));
+	m_rtcEngine->startEchoTest(10);
+}
+```
+
+### Audio and video call loop test
+
+Call `startEchoTest` [3/3] to test whether the system's audio devices, video devices, and network connections are working properly.
+
+To conduct the test, call `startEchoTest` [3/3], and set the `config` parameter in this method. The user needs to make a sound or face the camera. The audio or video is output after about two seconds. If the audio playback is normal, the audio device and the user's upstream and downstream network are working properly; if the video playback is normal, the video device and the user's upstream and downstream network are working properly.
+
+```C++
+void CAgoraPreCallTestDlg::OnEchoTest2()
+{
+	if (!m_echoTest)
+	{
+		m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("Start Audio and Video Call Loop Test."));
+		EchoTestConfiguration config;
+		config.channelId = "randomChannel";
+		config.enableAudio = true;
+		config.enableVideo = true;
+		config.view = m_VideoTest.GetVideoSafeHwnd();
+		m_rtcEngine->startEchoTest(config);
+		m_echoTest = true;
+		m_btnEchoTest2.SetWindowText(PerCallTestCtrlStopEchoTest);
+	}
+	else
+	{
+		m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("Stop Audio and Video Call Loop Test."));
+		m_rtcEngine->stopEchoTest();
+		m_echoTest = false;
+		m_btnEchoTest2.SetWindowText(PerCallTestCtrlStartEchoTest);
+	}
+}
+```
+
+### Audio capturing device test
+
+Call the `startRecordingDeviceTest` method to test whether the local audio capturing device, such as a microphone, is working properly.
+
+Follow these steps to conduct the test:
+
+1. Listen for the `onAudioDeviceTestVolumeIndication` callback.
+2. Call `startRecordingDeviceTest`, and use the `indicationInterval` parameter in this method to set the time interval (ms) at which the SDK returns the `onAudioDeviceTestVolumeIndication` callback. 
+3. When the user speaks, the SDK captures the local audio using an audio capturing device and reports the volume of the audio capturing device in the `onAudioDeviceTestVolumeIndication` callback. 
+4. When the test finishes, call the `stopRecordingDeviceTest` method to stop the current test.
+
+<div class="alert note"><li>The value of <code>indicationInterval</code> must be 10 ms or greater; otherwise, you cannot receive the <code>onAudioDeviceTestVolumeIndication</code> callback. Agora recommends a setting greater than 200 ms.</li><li>When conducting the test before joining a channel, you can specify an audio device to be tested; after joining a channel, you can only test the audio device that the SDK is using.</li><li>When conducting the test before joining a channel, you can also use the <code>onAudioVolumeIndication</code> callback to get the volume of the audio device.</li></div>
+
+The following sample code demonstrates how to conduct a test before joining channel using the `onAudioDeviceTestVolumeIndication` callback:
+
+```c++
+// Select an audio capture device.
+lpDeviceManager->setRecordingDevice(strDeviceID); // device ID chosen
+ 
+// Implement the audio volume callback.
+virtual void onAudioDeviceTestVolumeIndication(AudioDeviceTestVolumeType volumeType, int volume) {
+ (void)volumeType;
+ (void)volume;
+ }
+ 
+// Start the audio capture device test.
+(*lpDeviceManager)->startRecordingDeviceTest(1000);
+ 
+// Stop the audio capture device test.
+(*lpDeviceManager)->stopRecordingDeviceTest();
+```
+
+### Audio playback device test
+
+Call the `startPlaybackDeviceTest` method to test whether the local audio playback device, such as a speaker, is working properly.
+
+Follow these steps to conduct the test:
+
+1. Listen for the `onAudioDeviceTestVolumeIndication` callback.
+2. Specify an audio file for playback, and call `startPlaybackDeviceTest`. 
+3. The SDK plays the audio file using a local audio playback device and triggers the `onAudioDeviceTestVolumeIndication` callback to report the volume of the audio playback device.
+4. When the test finishes, call the `stopPlaybackDeviceTest` method to stop the current test.
+
+<div class="alert note"><li>When conducting the test before joining a channel, you can specify an audio device to be tested; after joining a channel, you can only test the audio device that the SDK is using.</li><li>When conducting the test before joining a channel, you can also use the <code>onAudioVolumeIndication</code> callback to get the volume of the audio device.</li></div>
+
+The following sample code demonstrates how to conduct a test before joining channel using the `onAudioDeviceTestVolumeIndication` callback:
+
+```c++
+// Select an audio playback device.
+lpDeviceManager->setPlaybackDevice(strDeviceID); // device ID chosen
+ 
+// Implement the audio volume callback.
+virtual void onAudioDeviceTestVolumeIndication(AudioDeviceTestVolumeType volumeType, int volume) {
+ (void)volumeType;
+ (void)volume;
+ }
+ 
+// Specify the absolute path of an audio file and start the audio playback device test.
+(*lpDeviceManager)->startPlaybackDeviceTest(filePath);
+ 
+// Stop the audio capture device test.
+(*lpDeviceManager)->stopPlaybackDeviceTest();
+```
+
+### Audio device loopback test
+
+Call the `startAudioDeviceLoopbackTest` method to test whether the local audio devices, including the microphones and speakers, are working properly.
+
+Follow these steps to conduct the test:
+
+1. Listen for the `onAudioDeviceTestVolumeIndication` callback.
+2. Call `startAudioDeviceLoopbackTest`, and use the `indicationInterval` parameter in this method to set the time interval (ms) at which the SDK returns the `onAudioDeviceTestVolumeIndication` callback. 
+3. When the user speaks, the SDK captures the local audio using an audio capturing device and plays it through an audio playback device. The SDK triggers two `onAudioDeviceTestVolumeIndication` callbacks to report the volume of the audio capturing and playback devices.
+4. When the test finishes, call the `stopAudioDeviceLoopbackTest` method to stop the current test.
+
+<div class="alert note"><li>The value of <code>indicationInterval</code> must be 10 ms or greater; otherwise, you cannot receive the <code>onAudioDeviceTestVolumeIndication</code> callback. Agora recommends a setting greater than 200 ms.</li><li>When conducting the test before joining a channel, you can specify an audio device to be tested; after joining a channel, you can only test the audio device that the SDK is using.</li><li>When conducting the test before joining a channel, you can also use the <code>onAudioVolumeIndication</code> callback to get the volume of the audio device.</li></div>
+
+
+### Video device test
+
+The video device tests check the video capture device and the video rendering device.
+
+After calling the `enableVideo` method, call the `startDeviceTest` method to test whether the local video devices, such as the camera and renderer, are working properly.
+
+To conduct the test, specify a window handle that displays the image. If you can see the local video view, the video devices work properly.
+
+When the test finishes, call the `stopDeviceTest` method to stop the current test.
+
+```C++
+// Select a video capture device.
+lpDeviceManager->setDevice(strDeviceID); // device ID chosen
+
+// Start the video capture device test. If it succeeds, you will see a preview of the screen.
+(*lpDeviceManager)->startDeviceTest(view); // Pass a window handler to it.
+
+// Stop the video capture device test.
+(*lpDeviceManager)->stopDeviceTest();
+```
+
+
+### API reference
+
+* [`startEchoTest` [2/3]](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a842ed126b6e21a39059adaa4caa6d021)
+* [`startEchoTest` [3/3]](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a394c60056c0cd31af48e8015b0c553f4)
+* [`stopEchoTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ae779da1c3fe153d73e8dfb2eb59ba9e4)
+* [`enableAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4b30a8ff1ae50c4c114ae4f909c4ebcb)
+* [`enumerateRecordingDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ea4f53d60dc91ea83960885f9ab77ee)
+* [`setRecordingDevice`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a723941355030636cd7d183d53cc7ace7)
+* [`enumeratePlaybackDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aa13c99d575d89e7ceeeb139be723b18a)
+* [`setPlaybackDevice`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ee23eae83165a27bcbd88d80158b4f1)
+* [`startRecordingDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a9e732d31f179a90d388998f5b86ebf06)
+* [`stopRecordingDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a796e7b8a58eb303f18f04e1e9d12a94b)
+* [`startAudioDeviceLoopbackTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac78c08f3212dc3efa000e197207dec53)
+* [`stopAudioDeviceLoopbackTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aad01da1e0bacd3f2fd355483f9e3befb)
+* [`enumerateVideoDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#aef51744162ec544abf2aaf0488ca062d)
+* [`startDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#ac148cafcb191841fd4aa7f5b6166b16d)
+* [`stopDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#ae3fe9f7ad1ddf4d5cda5e30d14b9d321)
+* [`onAudioDeviceTestVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a57355f91bf3fbf0faf1e0f1d8d4aed6b)
+* [`onAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4)
+
+## Considerations
+
+- Calling `startLastmileProbeTest` for pre-call network quality detection consumes network traffic. Therefore, after calling this method, Agora recommends not calling any other method until you receive the `lastmileProbeTest` callback.
+- The `lastmileQuality` callback may return `UNKNOWN` the first time it is triggered. Subsequent callbacks will return the test results.
+- When conducting the last-mile probe test, the voice SDK uses a fixed bitrate of 48 Kbps. The video SDK adjusts the actual bitrate according to the video profile.
+- Ensure that your audio or video device is not being used by any third-party app when you conduct the test.
+- In an interactive live streaming channel, only a host can call `startEchoTest`.
+- Whether it is a last-mile probe test or device test, once the test ends, you must call the corresponding stop method to stop it. Otherwise, you cannot conduct another test or join a call using `joinChannel`.
+
+
+</PlatformWrapper>
