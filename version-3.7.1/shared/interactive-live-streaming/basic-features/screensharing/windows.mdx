@@ -28,7 +28,7 @@ From v2.4.0, Agora supports the following screen sharing functions on Windows:
 
 1. Call `getScreenCaptureSources` and get the display ID of the screen to be shared from the returned `sourceId`, which identifies each screen.
 
-    ```C++
+    ```cpp
     SIZE size;
     size.cx = 100;
     size.cy = 100;
@@ -45,7 +45,7 @@ From v2.4.0, Agora supports the following screen sharing functions on Windows:
 
 2. Call `startScreenCaptureByDisplayId`, pass in the display ID, and set the screen-sharing configuration to enable screen sharing.
 
-    ```C++
+    ```cpp
     IScreenCaptureSourceList* infos = m_rtcEngine->getScreenCaptureSources(size, size, true);
     ScreenCaptureSourceInfo info = infos->getSourceInfo(sel);
     ScreenCaptureParameters capParam;

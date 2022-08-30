@@ -1,0 +1,244 @@
+## Introduction
+
+The Agora SDK provides the functionality to convert the audio and video streams of hosts from Agora private protocols to standard protocols (RTMP and RTMPS) and then push those streams to CDN. The CDN audience can watch live streams by clicking the corresponding URLs. This function can enrich the distribution channels of live media streams and facilitate the promotion of live streaming.
+
+<div class="alert note">The Media Push service is not free. Agora charges for the use of this service based on the transcoding configuration and streaming duration. See <a href="./billing_streaming?platform=RESTful">Pricing for Media Push</a>. If you additionally enable the LBHQ feature, discuss the charges with sales-us@agora.io.</div>
+
+![1646028684726](https://web-cdn.agora.io/docs-files/1646028684726)
+
+## Prerequisites
+
+Ensure that you enable the Media Push service before using this function:
+
+1. Log in to [Agora Console](https://console.agora.io/), and click the **Project Management** icon on the left navigation panel.
+
+2. On the **Project Management** page, find the project for which you want to enable the Media Push service, and click the edit icon.
+3. 
+
+    <img src="https://web-cdn.agora.io/docs-files/1637660034129"/>
+
+3. Under **Real-time engagement extensions**, find **Media Push**, and click **Enable**.
+
+    <img src="https://web-cdn.agora.io/docs-files/1661509060968" />
+
+4. Click the **Status** button to enable the Media Push **Client-side SDK API** service. Read the pop-up prompt carefully, and then click **Save**. <div class="alert note">The service cannot be disabled after enabling. </div>
+ <img src="https://web-cdn.agora.io/docs-files/1661509241680" />
+
+
+5. The **Enable** button of **Media Push** changes to the **Config** button, which allows you to configure the Media Push service.
+    <img src="https://web-cdn.agora.io/docs-files/1661509305442" />
+
+## Implementation
+
+To reduce the difficulty of integrating Media Push, as of v3.6.0, Agora optimizes the API design of Media Push and improves the handling of network issues within Media Push clients and servers, as detailed in the release notes. This section describes how to use the SDK v3.6.0 or later to implement Media Push. If you need to implement Media Push using versions of the SDK earlier than v3.6.0, see [how to implement an earlier version](#older-v).
+
+You can implement different types of Media Push depending on the live streaming scenario requires transcoded or non-transcoded streaming. Transcoding is essentially an encoding and decoding function used to mix multiple audio and video streams into one audio and video stream, which can guarantee the synchronization of multiple hosts' live streams seen by the audience. Therefore, generally speaking, in the case of multiple-hosts live streaming, you need to enable transcoding when pushing streams to CDN; in the case of single-host live streaming, only one media stream is pushed to the CDN, so you do not need to enable transcoding.
+
+### Streaming with transcoding
+
+You can refer to the following API call sequence diagram and steps to implement streaming with transcoding:
+
+
+![1638787350788](https://web-cdn.agora.io/docs-files/1638787350788)
+
+
+1. Refer to [Start Interactive Live Video Streaming](start_live_ios) or [Start Interactive Live Audio Streaming](start_live_audio_ios) to implement the basic audio and video interaction.
+
+2. Call `startRtmpStreamWithTranscoding` and pass in the address of the Media Push and the transcoding configuration to start pushing transcoded streams to a CDN address.
+
+
+   <div class="alert note"><ul>
+   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="./API%20Reference/oc/Classes/AgoraLiveTranscoding.html">AgoraLiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>transcodingUsers</code> field in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
+   <li>For live audio scenarios, leave the video-related fields in the transcoding configuration empty.</li>
+   <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
+   <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
+   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   </ul></div>
+
+
+
+3. You can call `updateRtmpTranscoding` to dynamically update the transcoding configuration according to a scenario change, such as adjusting the number of hosts or the video layout of the hosts. After the transcoding configuration is updated successfully, the SDK triggers the `rtcEngineTranscodingUpdated` callback.
+
+
+4. Call `stopRtmpStream` and pass in the CDN address to stop the current live streaming.
+
+
+   <div class="alert note"><ul>
+   <li>If you need to stop the live streaming at multiple addresses, call <code>stop</code> multiple times and pass in the corresponding CDN addresses.</li>
+   <li>After stopping the streaming, you can receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   </ul></div>
+
+
+### Streaming without transcoding
+
+You can refer to the following API call sequence diagram and steps to implement streaming without transcoding:
+
+![1638787343486](https://web-cdn.agora.io/docs-files/1638787343486)
+
+
+1. Refer to [Start Interactive Live Video Streaming](start_live_ios) or [Start Interactive Live Audio Streaming](start_live_audio_ios) to implement the basic audio and video interaction. The `uid` parameter in the `joinChannelByToken` method cannot be empty or 0; otherwise, the hosts in the channel cannot push any media streams to CDN.
+
+2. Call `startRtmpStreamWithoutTranscoding` and pass in the address of the Media Push to start pushing non-transcoded streams to a CDN address.
+
+
+   <div class="alert note"><ul>
+   <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
+   <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
+   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   </ul></div>
+
+
+3. Call `stopRtmpStream` and pass in the CDN address to stop the current live streaming.
+
+
+   <div class="alert note"><ul>
+   <li>If you need to stop the live streaming at multiple addresses, call <code>stop</code> multiple times and pass in the corresponding CDN addresses.</li>
+   <li>After stopping the streaming, you can receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   </ul></div>
+
+
+### Sample code
+
+To show the code logic for starting the streaming, dynamically updating the transcoding configuration, and retrying the stream push in case of an exception, Agora provides an open-source sample project on GitHub, see [RTMPStreaming (iOS)](https://github.com/AgoraIO/API-Examples/tree/master/iOS/APIExample/Examples/Advanced/RTMPStreaming) or [RTMPStreaming (macOS)](https://github.com/AgoraIO/API-Examples/tree/master/macOS/APIExample/Examples/Advanced/RTMPStreaming).
+
+
+
+
+### Considerations
+
+- This service is not free. Agora charges for the use of this service based on the duration of the audio and video transcoding.
+- Agora recommends that you control the number of hosts involved in transcoding according to the actual output video. In any event, the number of the hosts in the same channel cannot exceed 17.
+- Agora supports pushing streams in the RTMP and RTMPS protocols to CDN.
+- To avoid errors in the code logic, ensure that the CDN addresses used in the transcoded and non-transcoded streaming are different.
+
+## Reference
+
+This section provides references commonly used when using Media Push function.
+
+
+### Commonly used video profile
+
+
+Agora recommends that you use the default values when setting the video resolution, frame rate, and bitrate of the output transcoded stream. You can also refer to the following table to set the values. If you set a bitrate beyond a reasonable range, the Agora server automatically adjusts the bitrate to stay within a reasonable range.
+
+| Resolution       |Frame rate (fps) | Bitrate (Kbps) |
+|------------|----------|-----------|
+| 160 × 120  | 15       | 130       |
+| 120 × 120  | 15       | 100       |
+| 320 × 180  | 15       | 280       |
+| 180 × 180  | 15       | 200       |
+| 240 × 180  | 15       | 240       |
+| 320 × 240  | 15       | 400       |
+| 240 × 240  | 15       | 280       |
+| 424 × 240  | 15       | 440       |
+| 640 × 360  | 15       | 800       |
+| 360 × 360  | 15       | 520       |
+| 640 × 360  | 30       | 1200      |
+| 360 × 360  | 30       | 800       |
+| 480 × 360  | 15       | 640       |
+| 480 × 360  | 30       | 980       |
+| 640 × 480  | 15       | 1000      |
+| 480 × 480  | 15       | 800       |
+| 640 × 480  | 30       | 1500      |
+| 480 × 480  | 30       | 1200      |
+| 848 × 480  | 15       | 1220      |
+| 848 × 480  | 30       | 1860      |
+| 640 × 480  | 10       | 800       |
+| 1280 × 720 | 15       | 2260      |
+| 1280 × 720 | 30       | 3420      |
+| 960 × 720  | 15       | 1820      |
+| 960 × 720  | 30       | 2760      |
+
+
+
+<a name="older-v"></a>
+### Implementation of earlier versions
+
+This section describes how to implement Media Push using versions of the SDK earlier than v3.6.0.
+
+1. Refer to [Start Interactive Live Video Streaming](start_live_android) or [Start Interactive Live Audio Streaming](start_live_audio_android) to implement the basic audio and video interaction.
+
+2. The host in a channel calls the `setLiveTranscoding` method to set the transcoding configuration of media streams (`AgoraLiveTranscoding`), such as the resolution, bitrate, frame rate, and position of any watermark/background. If you need a transcoded picture, set the picture-in-picture layout for each user in the `transcodingUser` class.
+
+   <div class="alert note">To push streams without transcoding for single-host live streaming, skip steps 2 and 3, directly call <code>addPublishStreamUrl</code>, and set <code>transcodingEnabled (NO)</code>.</div>
+
+3. The host in a channel calls the `addPublishStreamUrl` method to add a media stream to the CDN. The address can be dynamically added or deleted after the stream is pushed.
+
+   <div class="alert note">Use <code>transcodingEnabled</code> to set whether transcoding is enabled or not.</div>
+
+4. (Optional) The host in a channel calls the `setLiveTranscoding` method again to update the transcoding configuration of media streams.
+
+   <div class="alert note">When the transcoding configuration is updated, the SDK triggers the <code>rtcEngineTranscodingUpdated</code> callback and reports the update information to the host.</div>
+
+5. The host in a channel calls the `removePublishStreamUrl` method to remove a media stream from the Media Push.
+
+
+When the streaming state changes, the SDK triggers the `rtmpStreamingChangedtoState` callback to report the current streaming state to the host. Make sure to wait until you receive the `rtmpStreamingChangedtoState` callback before performing any other actions. If adding or removing a CDN address fails, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.
+
+
+
+```objective-c
+// Objective-C
+// Sets the output layout for each user.
+AgoraLiveTranscodingUser *user = [[AgoraLiveTranscodingUser alloc] init];
+user.uid = 12345;
+user.rect = CGRectMake(0, 0, 640, 720);
+user.audioChannel = 0;
+
+AgoraRtcEngineKit *rtcEngine = [AgoraRtcEngineKit sharedEngineWithAppId:@"" delegate:nil];
+// CDN transcoding settings.
+AgoraLiveTranscoding *transcoding = [[AgoraLiveTranscoding alloc] init];
+transcoding.audioSampleRate = AgoraAudioSampleRateType44100;
+transcoding.audioChannels = 2;
+transcoding.audioBitrate = 48;
+// Size of the video. The default value is 360 x 640 (px).
+transcoding.size = CGSizeMake(360, 640);
+// Bitrate of the video (Kbps). The default value is 400.
+transcoding.videoBitrate = 400;
+// Frame rate of the video (fps). The default value is 15. Agora adjusts all values over 30 to 30.
+transcoding.videoFramerate = 30;
+// Video codec profile. Choose to set as Baseline (66), Main (77), or High (100). If you set this parameter to other values, Agora adjusts it to the default value of 100.
+transcoding.videoCodecProfile = AgoraVideoCodecProfileTypeHigh;
+transcoding.transcodingUsers = @[user];
+
+// CDN transcoding settings when using transcoding.
+[rtcEngine setLiveTranscoding:transcoding];
+
+// Adds a URL to which the host pushes a stream. Set the transcodingEnabled parameter as true to enable the transcoding service. Once transcoding is enabled, you need to set the live transcoding configurations by calling the setLiveTranscoding method. Agora does not recommend transcoding in the case of a single host.
+[rtcEngine addPublishStreamUrl:streamUrl transcodingEnabled:YES];
+
+// Removes a URL to which the host pushes a stream.
+[rtcEngine removePublishStreamUrl:streamUrl];
+```
+
+
+
+### API reference
+
+The following APIs are recommended by Agora when implementing Media Push:
+
+- [`startRtmpStreamWithoutTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithoutTranscoding:)
+- [`startRtmpStreamWithTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithTranscoding:transcoding:)
+- [`updateRtmpTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateRtmpTranscoding:)
+- [`stopRtmpStream`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRtmpStream:)
+- [`rtcEngineTranscodingUpdated`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngineTranscodingUpdated:)
+- [`rtmpStreamingChangedtoState`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:)
+- [`rtmpStreamingEventWithUrl`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingEventWithUrl:eventCode:)
+
+The following APIs are still functional but not recommended by Agora when implementing Media Push:
+
+- [`setLiveTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLiveTranscoding:)
+- [`addPublishStreamUrl`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:)
+- [`removePublishStreamUrl`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)
+- [`streamPublishedWithUrl`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:streamPublishedWithUrl:errorCode:)
+- [`streamUnpublishedWithUrl`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:streamUnpublishedWithUrl:)
+
+### Related docs
+
+When using the Media Push function, you may also need to refer to the following docs:
+
+- [Pricing for Media Push](./billing_streaming?platform=RESTful)
+- [Exception Handling for Media Push](./cdn_streaming_error)
+- [How to solve SEI-related issues?](./faq/sei)
+- [What is the relationship between the old and new callbacks of Media Push?](./faq/cdnStreaming_callback_relationship)
+- [Overview of the Media Push using RESTful API](./streaming_product?platform=RESTful)

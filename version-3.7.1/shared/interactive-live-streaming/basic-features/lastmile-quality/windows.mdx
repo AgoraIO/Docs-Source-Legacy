@@ -95,7 +95,7 @@ Call the `startEchoTest` [2/3] method to test if audio devices, such as the micr
 
 To conduct the test, call `startEchoTest` and set the `interval` parameter in this method to notify the SDK when to report the result of this test. The user speaks, and if the recording plays back within the set time interval, audio devices and network connections are working properly.
 
-```C++
+```cpp
 void CAgoraPreCallTestDlg::OnEchoTest1()
 {
 	m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("Start Audio Call Loop Test."));
@@ -110,7 +110,7 @@ Call `startEchoTest` [3/3] to test whether the system's audio devices, video dev
 
 To conduct the test, call `startEchoTest` [3/3], and set the `config` parameter in this method. The user needs to make a sound or face the camera. The audio or video is output after about two seconds. If the audio playback is normal, the audio device and the user's upstream and downstream network are working properly; if the video playback is normal, the video device and the user's upstream and downstream network are working properly.
 
-```C++
+```cpp
 void CAgoraPreCallTestDlg::OnEchoTest2()
 {
 	if (!m_echoTest)
@@ -150,7 +150,7 @@ Follow these steps to conduct the test:
 
 The following sample code demonstrates how to conduct a test before joining channel using the `onAudioDeviceTestVolumeIndication` callback:
 
-```c++
+```cpp
 // Select an audio capture device.
 lpDeviceManager->setRecordingDevice(strDeviceID); // device ID chosen
  
@@ -182,7 +182,7 @@ Follow these steps to conduct the test:
 
 The following sample code demonstrates how to conduct a test before joining channel using the `onAudioDeviceTestVolumeIndication` callback:
 
-```c++
+```cpp
 // Select an audio playback device.
 lpDeviceManager->setPlaybackDevice(strDeviceID); // device ID chosen
  
@@ -223,7 +223,7 @@ To conduct the test, specify a window handle that displays the image. If you can
 
 When the test finishes, call the `stopDeviceTest` method to stop the current test.
 
-```C++
+```cpp
 // Select a video capture device.
 lpDeviceManager->setDevice(strDeviceID); // device ID chosen
 

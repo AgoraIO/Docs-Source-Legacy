@@ -1,0 +1,105 @@
+<PlatformWrapper platform="windows">
+
+## Introduction
+
+To meet the laws and regulations of different countries or regions, the Agora RTC SDK supports geofencing. After enabling geofencing, the SDK only connects to Agora servers within the specified region, regardless of where your app users are located.
+
+For example, if you specify North America as the region for connection, when two users attempt to connect to Agora servers from different locations, the result is as follows:
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-ln2d">Specified region for connection</th>
+    <th class="tg-ln2d">App user location</th>
+    <th class="tg-ln2d">Actual region for connection </th>
+		<th class="tg-ln2d">User experience after connection <sup>1</sup></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-6yr1" rowspan="2">North America</td>
+    <td class="tg-6yr1">North America</td>
+    <td class="tg-6yr1" rowspan="2">North America</td>
+    <td class="tg-6yr1">Normal</td>
+  </tr>
+  <tr>
+    <td class="tg-6yr1">China</td>
+    <td class="tg-6yr1">Can be less than optimal <sup>2</sup></td>
+  </tr>
+</tbody>
+</table>
+
+<div class="alert info"> <sup>1</sup> If there is no available server in the specified region, the SDK throws an error.<br/><sup>2</sup> When the user's location is different from the specified region, the public network spanning between the user's location and the specified region might have a poor quality, which can make the audio and video experience less than optimal.</div>
+
+<div class="alert note">Do not enable geofencing if your scenarios do not have regional restrictions.</div>
+
+## Implementation
+
+As of v3.0.0.2, the Agora RTC Native SDK supports network geofencing. 
+
+When initializing the SDK by calling [`initialize`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac71db65e66942e4e0a0550e95c16890f), set the `areaCode` parameter in `RtcEngineContext` to specify the region for connection.
+
+- `AREA_CODE_GLOB`: (Default) Global
+- `AREA_CODE_CN`: Mainland China
+- `AREA_CODE_NA`: North America
+- `AREA_CODE_EU`: Europe
+- `AREA_CODE_AS`: Asia, excluding Mainland China
+- `AREA_CODE_JP`: Japan
+- `AREA_CODE_IN`: India
+
+<div class="alert note"><ul><li>The area codes listed above apply to the RTC Native SDK v3.1.1 and later. For area codes earlier than v3.1.1, you can refer to the API reference of a specified version.</li><li>The area codes support bitwise operation.</li></ul></div>
+
+## Sample code
+- Specify the region for connection as North America:
+
+  ```cpp
+  IRtcEngine  *m_lpAgoraEngine = NULL;
+  RtcEngineContext ctx;
+  
+  if(m_lpAgoraEngine == NULL)
+      m_lpAgoraEngine = createAgoraRtcEngine();
+  ctx.eventHandler = &m_EngineEventHandler;
+  ctx.appId = appId;
+  if (hWnd != NULL)
+      ctx.context = hWnd;
+  ctx.areaCode = rtc::AREA_CODE::AREA_CODE_NA;
+  m_lpAgoraEngine->initialize(ctx);
+  ```
+
+- Exclude Mainland China from the regions for connection:
+
+  ```cpp
+  IRtcEngine  *m_lpAgoraEngine = NULL;
+  RtcEngineContext ctx;
+  
+  if(m_lpAgoraEngine == NULL)
+      m_lpAgoraEngine = createAgoraRtcEngine();
+  ctx.eventHandler = &m_EngineEventHandler;
+  ctx.appId = appId;
+  if (hWnd != NULL)
+      ctx.context = hWnd;
+  ctx.areaCode = rtc::AREA_CODE::AREA_CODE_GLOB ^ rtc::AREA_CODE::AREA_CODE_CN;
+  m_lpAgoraEngine->initialize(ctx);
+  ```
+
+- Specify the regions for connection as North America, Europe, Asia, and India:
+
+  ```cpp
+  IRtcEngine  *m_lpAgoraEngine = NULL;
+  RtcEngineContext ctx;
+  
+  if(m_lpAgoraEngine == NULL)
+      m_lpAgoraEngine = createAgoraRtcEngine();
+  ctx.eventHandler = &m_EngineEventHandler;
+  ctx.appId = appId;
+  if (hWnd != NULL)
+      ctx.context = hWnd;
+  ctx.areaCode = rtc::AREA_CODE_NA | rtc::AREA_CODE_EU | rtc::AREA_CODE_AS | rtc::AREA_CODE_IN;
+  m_lpAgoraEngine->initialize(ctx);
+  ```
+
+## Considerations
+
+If a firewall is deployed in your network environment, ensure that you whitelist all domains and ports listed in [Use Cloud Proxy](cloudproxy_native).
+
+</PlatformWrapper>

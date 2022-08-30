@@ -41,24 +41,24 @@ Refer to the following steps to share the screen via **external video source** i
 
 1. Specify the external video source by calling `SetExternalVideoSource` before `JoinChannelByKey`.
 
-   ```C#
-mRtcEngine.SetExternalVideoSource(true, false);
-	 ```
+    ```c#
+    mRtcEngine.SetExternalVideoSource(true, false);
+    ```
 
 2. Define the Texture2D, and use Texture2D to read screen pixels as an external video source.
 
-   ```C#
-mRect = new Rect(0, 0, Screen.width, Screen.height);
-mTexture = new Texture2D((int)mRect.width, (int)mRect.height, TextureFormat.RGBA32, false);
-mTexture.ReadPixels(mRect, 0, 0);
-mTexture.Apply();
-	 ```
+    ```c#
+    mRect = new Rect(0, 0, Screen.width, Screen.height);
+    mTexture = new Texture2D((int)mRect.width, (int)mRect.height, TextureFormat.RGBA32, false);
+    mTexture.ReadPixels(mRect, 0, 0);
+    mTexture.Apply();
+    ```
    
 3. Call `PushVideoFrame` to send the video source to the SDK and to implement screen sharing.
 
-   ```C#
-int a = rtc.PushVideoFrame(externalVideoFrame);
-	 ```
+    ```c#
+    int a = rtc.PushVideoFrame(externalVideoFrame);
+    ```
 
 #### API call sequence
 
@@ -70,7 +70,7 @@ The following diagram shows the API call sequence for sharing the screen via ext
 
 Refer to the following code to share the screen in your project.
 
-```C#
+```c#
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

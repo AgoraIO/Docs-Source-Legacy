@@ -114,7 +114,7 @@ If you build for Android, you should add in APIs to check and request the device
 
 Unity versions later than **UNITY_2018_3_OR_NEWER** do not automatically request camera and microphone permissions from your Android device. If you are using one of these versions, call the `CheckPermission` method to request access to the camera and microphone of your Android device.
 
-```C#
+```c#
 #if(UNITY_2018_3_OR_NEWER) 
 using UnityEngine.Android; 
 #endif 
@@ -160,7 +160,7 @@ Call the `GetEngine` method and pass in the App ID to initialize the IRtcEngine 
 
 Listen for callback events, such as when the local user joins the channel, and when the first video frame of a remote user is decoded.
 
-```C#
+```c#
 // Pass an App ID to create and initialize an IRtcEngine object.
 mRtcEngine = IRtcEngine.GetEngine (appId); 
 // Listen for the OnJoinChannelSuccessHandler callback.
@@ -182,7 +182,7 @@ After initializing the `IRtcEngine` object, call the `SetChannelProfile` method 
 
 One `IRtcEngine` object uses one profile only. If you want to switch to another profile, destroy the current `IRtcEngine` object with the `Destroy` method and create a new one before calling the `SetChannelProfile` method.
 
-```C#
+```c#
 // Set the channel profile as LIVE_BROADCASTING.
 mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
 ```
@@ -196,7 +196,7 @@ An interactive streaming channel has two client roles: `BROADCASTER` and `AUDIEN
 
 Note that in an interactive live streaming, only the host can be heard and seen. If you want to switch the client role after joining the channel, call the `SetClientRole` method.
 
-```C#
+```c#
 // Set the client role as the host.
 mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
 ```
@@ -209,7 +209,7 @@ After setting the channel profile and client role, set the local video view befo
 
 - Call `EnableVideoObserver` to get the local video.
 
-  ```C#
+  ```c#
 	// Enable the video module.
 	mRtcEngine.EnableVideo();
 	// Get the local video and pass it on to Unity.
@@ -219,7 +219,7 @@ After setting the channel profile and client role, set the local video view befo
 - Choose an object to display the local video, and drag the **VideoSurface.cs** file to **Script**, so that you can bind the **VideoSurface.cs** file to the object and see the local video. Unity renders 3D objects by default, such as Cube, Cylinder and Plane. To render the object in other types, modify the renderer in the **VideoSurface.cs** file.
   ![1576208681884](https://web-cdn.agora.io/docs-files/1576208681884)
 
-  ```C#
+  ```c#
     // The default renderer is Renderer.
 	Renderer rend = GetComponent(); 
 	rend.material.mainTexture = nativeTexture; 
@@ -248,7 +248,7 @@ After setting the client role and the local video view (for the interactive vide
  
 If an interactive streaming channel uses both the RTC Native SDK and the RTC Web SDK, ensure that you call the `EnableWebSdkInteroperability` method before joining the channel.
 
-```C#
+```c#
 // Call this method to enable interoperability between the RTC Native SDK and the RTC Web SDK if the RTC Web SDK is in the channel.
 mRtcEngine.EnableWebSdkInteroperability(true);
 // Join a channel. 
@@ -269,7 +269,7 @@ Shortly after a remote host joins the channel, the SDK gets the host's user ID i
 
   <div class="alert note">The default value of <tt>uid</tt> in the <tt>SetForUser</tt> method is <tt>0</tt>. To see the remote host, ensure that you input the <tt>uid</tt> of the remote host in <tt>SetForUser</tt>. Otherwise, the SDK uses the default value and you can only see the local video.</div>
 
-```C#
+```c#
 // This callback occurs when the first video frame of a remote host is received and decoded after the remote host successfully joins the channel.
 // You can call the SetForUser method in this callback to set up the remote video view.
 private void OnUserJoinedHandler(uint uid, int elapsed)
@@ -296,7 +296,7 @@ private void OnUserJoinedHandler(uint uid, int elapsed)
   
   To remove the **VideoSurface.cs** script from the object, see the following sample codes.
 
-```C#
+```c#
 private void OnUserOfflineHandler(uint uid, USER_OFFLINE_REASON reason)
     {
         // Remove video stream.
@@ -313,7 +313,7 @@ private void OnUserOfflineHandler(uint uid, USER_OFFLINE_REASON reason)
 
 According to your scenario, such as when the interactive live streaming ends and when you need to close the app, call `LeaveChannel` to leave the current channel, and call `DisableVideoObserver` to disable the video.
 
-```C#
+```c#
 public void leave()
 	{
 		Debug.Log ("calling leave");
@@ -331,7 +331,7 @@ public void leave()
 
 After leaving the channel, if you want to exit the app or release the memory of `IRtcEngine`, call `Destroy` to destroy the `IRtcEngine` object.
 
-```C#
+```c#
 void OnApplicationQuit()
 {
 	if (mRtcEngine != null)
