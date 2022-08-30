@@ -1,0 +1,32 @@
+During the audio and video interaction, you might encounter various audio and video issues, such as a black screen, pixelated video, echo, or low volume. This page provides common methods used to troubleshoot these types of audio and video issues.
+
+## Ensure audio and video permissions are granted
+
+When you implement the audio and video interaction, remind your user to grant the necessary device permissions to the application, such as permission to use the microphone and camera. See *Start Interactive Live Audio Streaming*, *Start Interactive Live Video Streaming*, *Start a Voice Call*, or *Start a Video Call* in the **Quickstart Guide** menu.
+
+## Use error codes and warning codes to troubleshoot
+
+When something goes wrong with audio or video, the SDK reports error codes or warning codes to you. You can use these codes to troubleshoot. For more information about the meaning of the codes, refer to the following:
+- [Error Codes and Warning Codes](../reference/error-codes)
+- [Error codes reported by the `onLocalAudioStateChanged` callback](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a)
+- [Error codes reported by the `onLocalVideoStateChanged` callback](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c376b287e245fd034e0fad8a9804ed1)
+- [Reason codes reported by the `onRemoteAudioStateChanged` callback](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612)
+- [Reason codes reported by the `onRemoteVideoStateChanged` callback](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae69799238c6a6cd9f017274dd630b74e)
+
+
+## Troubleshoot methods for typical audio and video issues
+
+This section summarizes the specific troubleshooting methods for typical audio and video issues:
+
+- [How can I solve echo problems?](https://docs.agora.io/en/Interactive%20Broadcast/faq/echo)
+- [How can I solve the problem of low volume?](https://docs.agora.io/en/Interactive%20Broadcast/faq/audio_low)
+- [Why can I hear the noise in a call?](https://docs.agora.io/en/Interactive%20Broadcast/faq/audio_noise)
+- [Why does audio freezing occur in a call?](https://docs.agora.io/en/Interactive%20Broadcast/faq/audio_freeze)
+- [How can I fix black screen issues?](https://docs.agora.io/en/Interactive%20Broadcast/faq/video_blank)
+- [Why is my video pixelated or jagged and green?](https://docs.agora.io/en/Interactive%20Broadcast/faq/pixelated_green_video)
+- [Why does the SDK stop sending audio or video after the user uses a third-party app?](https://docs.agora.io/en/Interactive%20Broadcast/faq/device_occupied)
+- [Why is my video choppy?](https://docs.agora.io/en/Interactive%20Broadcast/faq/video_freeze)
+- [How can I fix unsynchronized audio and video?](https://docs.agora.io/en/Interactive%20Broadcast/faq/unsynchronized_video)
+- [Why is my video blurry?](https://docs.agora.io/en/Interactive%20Broadcast/faq/video_blur)
+- [Why do I see a big headshot or letterboxing?](https://docs.agora.io/en/Interactive%20Broadcast/faq/video_bighead)
+- [Why can't I turn on the camera?](https://docs.agora.io/en/Interactive%20Broadcast/faq/video_camera)

@@ -1,0 +1,77 @@
+## Overview
+
+In real-time engagements, the audio signal often produces echoes due to the following circumstances:
+
+1. A local user sends an audio signal to a remote user, which the remote user plays through a speakerphone or similar external device.
+2. The audio signal played by the speakerphone is reflected in the room and captured by the remote user’s microphone.
+3. The remote user sends the audio captured by the microphone to the local user, so the local user hears their own echoes and the audio of the remote user.
+
+![](https://web-cdn.agora.io/docs-files/1626951614156)
+
+The Agora RTC SDK enables its own echo cancellation algorithm by default. In indoor scenarios such as conferences or hybrid-learning classrooms, however, factors such as unfavorable environmental factors and the use of multiple external audio devices can reduce the effectiveness of the echo cancellation. This page describes how to avoid echoes in indoor scenarios.
+
+## Choose an environment without reflective materials
+
+Any reflective materials in the indoor environment can easily produce echoes. Agora recommends choosing an environment for real-time engagements according to the following guidelines:
+
+- Choose an environment that contains sound-absorbing materials for the best results.
+- If that is not available, an environment without glass windows, glass whiteboards, or other reflective materials is the next best choice.
+- If reflective objects or surfaces are in the environment, Agora recommends covering them with non-reflective materials such as curtains.
+
+## Choose external audio devices thoughtfully
+
+In scenarios such as conferences or hybrid-learning classrooms, users often need to connect external audio devices such as projectors and microphones, which can be divided into the following general categories:
+
+- External capture devices, such as external microphones.
+- External playback devices, such as projectors with speakerphones.
+- External processors, such as sound cards, or external capture or playback devices with processors.
+
+### Avoid delay jitter
+
+If a user captures and plays audio through different devices, this causes delay jitter between the playback and captured signals, which affects the SDK echo cancellation. To avoid delay jitter, Agora recommends using the same device to capture and play audio. For example, if a projector with speakerphone is connected to the user's computer, Agora recommends setting both the audio capture and playback device to either the computer or the projector.
+
+### Avoid over-processing audio
+
+If the user uses an external audio processor, the app uses the echo cancellation algorithms of both the SDK and the external audio processor. The superposition of the algorithms might over-process the audio and increase the CPU usage.
+
+Agora recommends the following steps to test and select an external audio processor:
+
+1. Connect an external audio processor, and start real-time audio engagement through the app that is integrated with the SDK.
+2. Disconnect that external audio processor, and start real-time audio engagement through the app that is integrated with the SDK.
+3. Compare the audio experiences of step 1 and step 2.
+   - If the audio experience in step 1 is better, Agora recommends using an external audio device. If you experience excessive audio processing or high CPU usage, contact Agora customer support and [submit a ticket](https://agora-ticket.agora.io/) to disable the echo cancellation of the SDK.
+   - If the audio experience in step 2 is better, Agora recommends not using an external audio device.
+
+## Cancel echoes produced by playing media resources
+
+If a user plays media resources such as the background music, audio effects, and animations, the sounds of these media resources might be captured by the microphone, which produces echoes. Agora recommends calling the following APIs to play media resources on the local client or publish media resources to all remote clients, so that you can cancel the echoes through the Agora SDK.
+
+<table>
+    <thead>
+        <th width="24%">SDK</th>
+        <th width="18%">Platform</th>
+        <th width="23%">API (take Java as an example)</th>
+        <th width="35%">Usage</th>
+    </thead>
+    <tr>
+        <td rowspan="3">Agora RTC SDK</td>
+        <td rowspan="2"><li>Android</li><li>iOS</li><li>macOS</li><li>Windows</li><li>Electron</li><li>Unity</li><li>Flutter</li><li>React Native</li></td>
+        <td><code>startAudioMixing</code></td>
+        <td><li>Needs the path of an audio resource.</li><li>Supports playing only one audio resource.</li><li>Supports playing an audio resource on the local client and publishing the audio resource to all remote clients.</li></td>
+    </tr>
+    <tr>
+        <td><code>playEffect</code></td>
+        <td><li>Needs the path of an audio resource.</li><li>Supports calling this method multiple times to play multiple audio resources.</li><li>Supports playing an audio resource on the local client and publishing the audio resource to all remote clients.</li></td>
+    </tr>
+    <tr>
+        <td><li>Windows</li><li>macOS</li><li>Electron</li><li>Unity</li></td>
+        <td><code>enableLoopbackRecording</code></td>
+        <td><li>Does not need the path of a media resource.</li><li>Supports publishing the sounds of media resources to all remote clients.</li></td>
+    </tr>
+    <tr>
+        <td>Agora MediaPlayer Kit</td>
+        <td><li>Android</li><li>iOS</li><li>macOS</li><li>Windows</li></td>
+        <td><code>AgoraMediaPlayerKit</code></td>
+        <td><li>Needs the path of an audio resource.</li><li>Supports creating multiple <code>AgoraMediaPlayerKit</code> instances to play multiple media resources.</li><li>Supports playing a media resource on the local client and publishing the media resource to all remote clients.</li></td>
+    </tr>
+</table>
