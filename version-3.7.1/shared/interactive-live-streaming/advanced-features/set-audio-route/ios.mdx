@@ -1,0 +1,51 @@
+<PlatformWrapper platform="ios">
+
+The audio route is the pathway audio data takes through hardware components during playback. On mobile devices, the audio route mainly includes speakerphones, earphones, or wired or Bluetooth playback devices.
+
+This page describes how to set the audio route to the earpiece or speakerphone on a mobile device.
+
+## The default audio route
+
+The SDK type and channel profile determine the default audio route, as shown in the following table:
+
+| SDK type\Channel profile | Communication profile | Live streaming profile |
+| :----------------------- | :-------------------- | :--------------------- |
+| Audio SDK                | Earpiece              | Speakerphone           |
+| Video SDK                | Speakerphone          | Speakerphone           |
+
+<div class="alert note">When you use the Video SDK, if you call methods such as <code>disableVideo</code>, <code>enableLocalVideo</code>, <code>muteLocalVideoStream</code>, or <code>muteAllRemoteVideoStreams</code> to disable the video, the default audio route automatically switches to the one that the Audio SDK uses.</div>
+
+## Set the audio route
+
+If the default audio route does not meet your needs, you can call the following methods to switch the audio route:
+
+- `setDefaultAudioRouteToSpeakerphone`: Call this method before joining a channel to switch the default audio route. After successfully switching the audio route, the SDK starts to use the new audio route by default.
+- `setEnableSpeakerphone`: Call this method after joining a channel to switch the current audio route. This method only switches the audio route used in the current channel. It does not affect the default audio route. If the user leaves the current channel and joins a new channel, the SDK uses the default audio route.
+
+After you switch the audio route successfully, the SDK triggers the `didAudioRouteChanged` callback to indicate that the audio route has been changed.
+
+To query whether the current audio route is the speakerphone, call `isSpeakerphoneEnabled`.
+
+## Considerations
+
+#### External audio playback devices
+
+If the user uses an external audio playback device such as a wired or Bluetooth headset, the audio can only be played through the external device; the SDK cannot switch the audio route to the earpiece or speakerphone. When the user uses multiple external devices, the audio is played through the external device that is connected last.
+
+## FAQ
+
+#### If the current external playback device is removed, how does the SDK set the audio route?
+
+- If a user uses one external audio device, when the user removes the external audio device, the SDK sets the audio route as follows (in order of priority): `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route.
+
+- If multiple external audio devices are connected, when the user removes the current playback device, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route.
+
+
+#### Why can't I switch the audio route successfully?
+
+The audio route setting is affected by the volume type and the presence of external audio devices. Consider the following when troubleshooting the issue:
+
+- Is the user using an external device, such as a wired or Bluetooth headset? If so, the user must remove the external device before they set the audio route to the earpiece or speakerphone.
+
+
+</PlatformWrapper>

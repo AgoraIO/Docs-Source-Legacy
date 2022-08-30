@@ -1,0 +1,282 @@
+<PlatformWrapper platform="windows">
+
+## Introduction
+
+To improve data security, Agora supports encrypting users' media streams during real-time engagement. You can choose from the following encryption options according to your needs:
+
+- Built-in encryption: Use the preset encryption mode in the SDK to encrypt the media streams.
+- Customized encryption: Use the packet observer provided by the SDK to customize the encryption mode of media streams.
+
+The following diagram describes the encrypted data transmission process:
+
+![1624372878076](https://web-cdn.agora.io/docs-files/1624372878076)
+
+## Sample project
+
+Agora provides an open-source sample project that implements [built-in encryption](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/MediaEncrypt) and [customized encryption](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/CustomEncrypt) on GitHub. You can try the demo and view the source code.
+
+## Implementation
+
+Before enabling media-stream encryption, ensure that you refer to the appropriate Quickstart Guide to implement the basic real-time communication functions in your project.
+
+### Use the built-in encryption
+
+Before joining a channel, call `enableEncryption` to enable the built-in encryption.
+
+As of v3.4.5, Agora recommends using the `AES_128_GCM2` or `AES_256_GCM2` encryption mode and setting the key and salt.
+
+To generate and set the `key` and `salt` parameters, refer to the following steps.
+
+<div class="alert note"><li>All users in a channel must use the same encryption mode, key, and salt.</li>
+<li>Compared to other encryption modes, the <code>GCM2</code> encryption modes use a more secure KDF (Key Derivation Function) and support setting the salt. If you choose other encryption modes, you only need to set the encryption mode and key.</li></div>
+
+#### Generate and set the key
+
+1. Refer to the following command to randomly generate a 32-byte key in the string format through OpenSSL on your server.
+
+ ``` shell
+ // Randomly generate a 32-byte key in the string format, and pass the string key in the encryptionKey parameter of enableEncryption.
+ openssl rand -hex 32
+ dba643c8ba6b6dc738df43d9fd624293b4b12d87a60f518253bd10ba98c48453
+ ```
+
+2. The client gets the `key` in the string format from the server and passes it to the SDK in the `enableEncryption` method.
+
+#### Generate and set the salt
+
+1. Refer to the following command to randomly generate a Base64-encoded, 32-byte salt through OpenSSL on the server. You can also refer to the [C++ sample code](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtcChannelEncryptionSaltSample.cpp) provided by Agora on GitHub to randomly generate a salt in the byte array format and convert it to Base64 on the server.
+
+ ``` shell
+ // Randomly generate a 32-byte salt in the Base64 format. Convert the salt from Base64 to uint8_t, and pass the uint8_t salt in the encryptionKdfSalt parameter of enableEncryption.
+ openssl rand -base64 32
+ X5w9T+50kzxVOnkJKiY/lUk82/bES2kATOt3vBuGEDw=
+ ```
+
+2. The client gets the Base64 salt from the server.
+
+3. The client decodes the salt value from Base64 encoding to a uint8_t array of length 32, and then passes it to the SDK in the `enableEncryption` method.
+
+#### Sample code
+
+``` c++
+#include <boost/archive/iterators/binary_from_base64.hpp>
+#include <boost/archive/iterators/transform_width.hpp>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <stdint.h>
+#include "IAgoraRtcEngine.h"
+
+agora::rtc::IRtcEngine* rtcEngine;
+
+// Get the key and salt generated from your server.
+bool getSecretAndSaltFromSever(std::string& secret, std::string& kdfSaltBase64);
+
+// Declare a function to convert Base64 to uint8_t.
+bool decodeBase64(const std::string& input, std::vector<uint8_t>& output)
+{
+    output.resize(32);
+    typedef boost::archive::iterators::transform_width<boost::archive::iterators::binary_from_base64<std::string::const_iterator>, 8, 6> Base64DecodeIterator;
+    try {
+        std::copy(Base64DecodeIterator(input.begin()), Base64DecodeIterator(input.end()), output.begin());
+    } catch (...) {
+        return false;
+    }
+    return true;
+}
+
+int enableEncryption() {
+    std::string secret;
+    std::string kdfSaltBase64;
+    std::vector<uint8_t> kdfSalt;
+    if(!getSecretAndSaltFromSever(secret, kdfSaltBase64))
+        return -1;
+    if(rtcEngine && decodeBase64(kdfSaltBase64, kdfSalt)) {
+        agora::rtc::EncryptionConfig config;
+        // Set the encryption mode as AES_128_GCM2.
+        config.encryptionMode = AES_128_GCM2;
+        // Set the key.
+        config.encryptionKey = secret.c_str();
+        // Set the salt.
+        memcpy(config.encryptionKdfSalt, kdfSalt.data(), sizeof(config.encryptionKdfSalt));
+        // Enable the built-in encryption.
+        return rtcEngine->enableEncryption(true, config);
+    }
+    return -1;
+}
+```
+
+#### API Reference
+
+[`enableEncryption`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad5ea5f0dfd8117f38d9c4b12fe01fece)
+
+### Use the customized encryption
+
+To implement the customized encryption, use `IPacketObserver` class and `registerPacketObserver` in C++ as follows:
+
+1. Before joining a channel, call `registerPacketObserver` to register the packet observer, so that you can receive events during audio or video packet transmission.
+
+    ```cpp
+    virtual int registerPacketObserver(IPacketObserver* observer);
+    ```
+
+2. Implement an `IPacketObserver` class.
+
+   ```cpp
+    class IPacketObserver
+    {
+    public:
+
+    struct Packet
+    {
+    // Buffer address of the sent or received data.
+    const unsigned char* buffer;
+    // Buffer size of the sent or received data.
+    unsigned int size;
+    };
+
+    // Occurs when the local user sends an audio packet.
+    // The SDK triggers this callback before the audio packet is sent to the remote user.
+    // @param packet See Packet.
+    // @return
+    // - true: The audio packet is sent successfully.
+    // - false: The audio packet is discarded.
+    virtual bool onSendAudioPacket(Packet& packet) = 0;
+
+    // Occurs when the local user sends a video packet.
+    // The SDK triggers this callback before the video packet is sent to the remote user.
+    // @param packet See Packet.
+    // @return
+    // - true: The video packet is sent successfully.
+    // - false: The video packet is discarded.
+    virtual bool onSendVideoPacket(Packet& packet) = 0;
+
+    // Occurs when the local user receives an audio packet.
+    // The SDK triggers this callback before the audio packet of the remote user is received.
+    // @param packet See Packet.
+    // @return
+    // - true: The audio packet is sent successfully.
+    // - false: The audio packet is discarded.
+    virtual bool onReceiveAudioPacket(Packet& packet) = 0;
+
+    // Occurs when the local user receives a video packet.
+    // The SDK triggers this callback before the video packet of the remote user is received.
+    // @param packet See Packet.
+    // @return
+    // - true: The video packet is sent successfully.
+    // - false: The video packet is discarded.
+    virtual bool onReceiveVideoPacket(Packet& packet) = 0;
+    };
+   ```
+
+3. Inherit the `IPacketObserver` class and use your customized encryption algorithm on your app.
+
+    ```cpp
+    class AgoraRTCPacketObserver : public agora::rtc::IPacketObserver
+    {
+    public:
+        EVP_CIPHER_CTX *ctx_audio_send;
+        EVP_CIPHER_CTX *ctx_audio_receive;
+        EVP_CIPHER_CTX *ctx_video_send;
+        EVP_CIPHER_CTX *ctx_video_receive;
+        AgoraRTCPacketObserver()
+        {
+            __android_log_print(ANDROID_LOG_INFO, "agoraencryption", "AgoraRTCPacketObserver0");
+            m_txAudioBuffer.resize(1024);
+            m_rxAudioBuffer.resize(1024);
+            m_txVideoBuffer.resize(1024);
+            m_rxVideoBuffer.resize(1024);
+            __android_log_print(ANDROID_LOG_INFO, "agoraencryption", "AgoraRTCPacketObserver1");
+        }
+
+        virtual bool onSendAudioPacket(Packet& packet)
+        {
+
+            int outlen;
+            // Encrypts the packet.
+            unsigned char outbuf[1024];
+            EVP_EncryptInit_ex(ctx_audio_send, EVP_aes_256_gcm(), NULL, NULL, NULL);
+            EVP_CIPHER_CTX_ctrl(ctx_audio_send, EVP_CTRL_GCM_SET_IVLEN, sizeof(gcm_iv), NULL);
+            EVP_EncryptInit_ex(ctx_audio_send, NULL, NULL, gcm_key, gcm_iv);
+            EVP_EncryptUpdate(ctx_audio_send, outbuf, &outlen, packet.buffer, packet.size);
+            // Sends the buffer and size of the encrypted data to the SDK.
+            packet.buffer = outbuf;
+            packet.size = outlen;
+            return true;
+        }
+
+        virtual bool onSendVideoPacket(Packet& packet)
+        {
+
+            int outlen;
+            // Encrypts the packet.
+            unsigned char outbuf[1024];
+            EVP_EncryptInit_ex(ctx_video_send, EVP_aes_256_gcm(), NULL, NULL, NULL);
+            EVP_CIPHER_CTX_ctrl(ctx_video_send, EVP_CTRL_GCM_SET_IVLEN, sizeof(gcm_iv), NULL);
+            EVP_EncryptInit_ex(ctx_video_send, NULL, NULL, gcm_key, gcm_iv);
+            EVP_EncryptUpdate(ctx_video_send, outbuf, &outlen, packet.buffer, packet.size);
+            // Sends the buffer and size of the encrypted data to the SDK.
+            packet.buffer = outbuf;
+            packet.size = outlen;
+            return true;
+        }
+
+        virtual bool onReceiveAudioPacket(Packet& packet)
+        {
+            int outlen;
+            // Decrypts the packet.
+            unsigned char outbuf[1024];
+            EVP_DecryptInit_ex(ctx_audio_receive, EVP_aes_256_gcm(), NULL, NULL, NULL);
+            EVP_CIPHER_CTX_ctrl(ctx_audio_receive, EVP_CTRL_GCM_SET_IVLEN, sizeof(gcm_iv), NULL);
+            EVP_DecryptInit_ex(ctx_audio_receive, NULL, NULL, gcm_key, gcm_iv);
+            EVP_DecryptUpdate(ctx_audio_receive, outbuf, &outlen, packet.buffer, packet.size);
+            // Sends the buffer and size of the decrypted data to the SDK.
+            packet.buffer = outbuf;
+            packet.size = outlen;
+            return true;
+        }
+
+        virtual bool onReceiveVideoPacket(Packet& packet)
+        {
+            int outlen;
+            // Decrypts the packet.
+            unsigned char outbuf[1024];
+            EVP_DecryptInit_ex(ctx_video_receive, EVP_aes_256_gcm(), NULL, NULL, NULL);
+            EVP_CIPHER_CTX_ctrl(ctx_video_receive, EVP_CTRL_GCM_SET_IVLEN, sizeof(gcm_iv), NULL);
+            EVP_DecryptInit_ex(ctx_video_receive, NULL, NULL, gcm_key, gcm_iv);
+            EVP_DecryptUpdate(ctx_video_receive, outbuf, &outlen, packet.buffer, packet.size);
+            // Sends the buffer and size of the decrypted data to the SDK.
+            packet.buffer = outbuf;
+            packet.size = outlen;
+            return true;
+        }
+
+    private:
+        // Sends the audio buffer.
+        std::vector<unsigned char> m_txAudioBuffer;
+        // Sends the video buffer.
+        std::vector<unsigned char> m_txVideoBuffer;
+
+        // Receives the audio buffer.
+        std::vector<unsigned char> m_rxAudioBuffer;
+        // Receives the video buffer.
+        std::vector<unsigned char> m_rxVideoBuffer;
+    };
+    ```
+
+4. Call `registerPacketObserver` to register the `IPacketObserver` instance.
+
+<div class="alert note">To unregister the packet observer, call the <code>registerPacketObserver(nullptr)</code> method after leaving the channel.</div>
+
+#### API reference
+
+[`registerPacketObserver`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a95b53a32d598c3d98a51c24f7f9af4b4)
+
+
+## Considerations
+
+- Both the communication and interactive live streaming scenarios support encryption, but Agora does not support pushing encrypted streams to the CDN during live streaming.
+- To use media-stream encryption, you need to enable encryption before joining a channel. Ensure that both the receivers and senders use the same encryption mode; otherwise, undefined behaviors such as a black screen or audio loss occur.
+- To enhance security, Agora recommends using a new key and salt every time you enable media-stream encryption.
+
+</PlatformWrapper>

@@ -414,7 +414,7 @@ This section introduces the core method for generating AccessToken2: `BuildToken
 This method uses a `token_expire` parameter to set the expiration for AccessToken2 and a `privilege_expire` parameter to set the expiration for all privileges. 
 	
 	
-```C++
+```cpp
 // Take C++ as an example
 static std::string BuildTokenWithUid(const std::string& app_id,
                                        const std::string& app_certificate,
@@ -444,7 +444,7 @@ To facilitate privilege-level configuration in a channel, Agora provides an over
 - Publish video streams in a channel
 - Publish data streams in a channel
 	
-```C++
+```cpp
 // Take C++ as an example
 static std::string BuildTokenWithUid(
        const std::string& app_id,

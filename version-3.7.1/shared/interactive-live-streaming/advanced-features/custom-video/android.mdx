@@ -1,0 +1,583 @@
+<PlatformWrapper platform="android">
+
+## Introduction
+
+Generally, Agora SDKs use default video modules for capturing and rendering in real-time communications.
+
+However, these default modules might not meet your development requirements, such as in the following scenarios:
+
+- Your app has its own video module.
+- You want to use a non-camera source, such as recorded screen data.
+- You need to process the captured video with a pre-processing library for functions such as image enhancement.
+- You need flexible device resource allocation to avoid conflicts with other services.
+
+Agora provides a solution to enable a custom video source and/or renderer in the above scenarios. This article describes how to do so using the Agora Native SDK.
+
+Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](https://docs.agora.io/en/Interactive%20Broadcast/start_call_android) or [Start Live Interactive Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android).
+
+## Sample project
+
+Agora provides the following open-source sample projects on GitHub:
+- [Custom video capture (Push)](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PushExternalVideo.java)
+- [Custom video capture (mediaIO)](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SwitchExternalVideo.java)
+
+You can view the source code on Github or download the project to try it out.
+
+## Custom video source
+
+The Agora Native SDK provides the following two modes for customizing the video source:
+
+- Push mode: In this mode, call the `setExternalVideoSource` method to specify the custom video source. After implementing video capture using the custom video source, call the `pushVideoFrame` method to send the captured video frames to the SDK.
+
+<div class = "alert note"><ul><li>Video frames captured in Push mode cannot be rendered by the SDK. If you capture video frames in Push mode and need to enable local preview, you must use a custom video renderer.</li><li> Switching in the channel from custom video capture by Push to SDK capture is not supported. To switch the video source directly, you must use the custom video capture by MediaIO. See <a href="./faq/custom_switch_default">How can I switch from custom video capture to SDK capture</a>.</li></ul></div>
+
+- MediaIO mode: In this mode, call the `setVideoSource` method to specify the custom video source. Then call the `consumeByteBufferFrame`, `consumeByteArrayFrame`, or `consumeTextureFrame` method to retrieve the captured video frames and send them to the SDK.
+
+### Push mode
+
+Refer to the following steps to customize the video source in your project:
+
+1. Before calling `joinChannel`, call `setExternalVideoSource` to specify the custom video source.
+2. Implement video capture and processing yourself using methods from outside the SDK. According to your app scenario, you can call `AgoraVideoFrame` before sending the captured video frames to the SDK. For example, you can set `rotation` as `180` to rotate the video frames by 180 degrees clockwise.
+3. Call `pushExternalVideoFrame` to send the video frames to the SDK for later use.
+
+#### API call sequence
+
+Refer to the following diagram to implement the custom video source.
+
+<div class="alert note">If you are not sure whether your custom video source supports Texture encoding, call <code>isTextureEncodeSupported</code> to find out. Then use the returned result to set the <code>useTexture</code> parameter in the <code>setExternalVideoSource</code> method.</div>
+
+![img](https://web-cdn.agora.io/docs-files/1569392881143)
+
+#### Video data transfer
+
+The following diagram shows how the video data is transferred when you customize the video source in Push mode:
+
+![1607670382235](https://web-cdn.agora.io/docs-files/1607670382235)
+
+- You need to implement the capture module yourself using methods from outside the SDK.
+- Captured video frames are sent to the SDK via the `pushExternalVideoFrame` method.
+
+#### Code samples
+
+The following code samples use the camera as the custom video source.
+
+1. Before joining a channel, call `setExternalVideoSource` to specify the custom video source.
+
+```java
+// Creates TextureView
+TextureView textureView = new TextureView(getContext());
+// Adds SurfaceTextureListener, which triggers the onSurfaceTextureAvailable callback if SurfaceTexture in TextureView is available
+textureView.setSurfaceTextureListener(this);
+// Adds TextureView to local video layout
+fl_local.addView(textureView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+ViewGroup.LayoutParams.MATCH_PARENT));
+ 
+ 
+// Specifies the custom video source
+engine.setExternalVideoSource(true, true, true);
+// Joins the channel
+int res = engine.joinChannel(accessToken, channelId, "Extra Optional Data", 0);
+```
+
+2. Configure the video capture module, and implement your custom video source. The code sample uses the camera as the custom video source.
+
+```java
+// Triggers this callback if SurfaceTexture in TextureView is available
+public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+        Log.i(TAG, "onSurfaceTextureAvailable");
+        mTextureDestroyed = false;
+        mSurfaceWidth = width;
+        mSurfaceHeight = height;
+        mEglCore = new EglCore();
+        mDummySurface = mEglCore.createOffscreenSurface(1, 1);
+        mEglCore.makeCurrent(mDummySurface);
+        mPreviewTexture = GlUtil.createTextureObject(GLES11Ext.GL_TEXTURE_EXTERNAL_OES);
+        // Creates a SurfaceTexture object for camera preview
+        mPreviewSurfaceTexture = new SurfaceTexture(mPreviewTexture);
+        // Creates OnFrameAvailableListener using the Android API setOnFrameAvailableListener, which triggers the onFrameAvailable callback if there are new video frames for SurfaceTexture
+        mPreviewSurfaceTexture.setOnFrameAvailableListener(this);
+        mDrawSurface = mEglCore.createWindowSurface(surface);
+        mProgram = new ProgramTextureOES();
+        if (mCamera != null || mPreviewing) {
+            Log.e(TAG, "Camera preview has been started");
+            return;
+        }
+        try {
+            // Enables the camera (the code sample uses Android's Camera class)
+            mCamera = Camera.open(mFacing);
+            // Sets the most suitable resolution for your app scenario
+            Camera.Parameters parameters = mCamera.getParameters();
+            parameters.setPreviewSize(DEFAULT_CAPTURE_WIDTH, DEFAULT_CAPTURE_HEIGHT);
+            mCamera.setParameters(parameters);
+            // Sets mPreviewSurfaceTexture as the SurfaceTexture object for camera preview
+            mCamera.setPreviewTexture(mPreviewSurfaceTexture);
+            // Enables the portrait mode for camera preview. To ensure that camera preview stays in the portrait mode, rotate the preview image by 90 degrees clockwise
+            mCamera.setDisplayOrientation(90);
+            // The camera starts capturing video frames and rendering them to the specified SurfaceView
+            mCamera.startPreview();
+            mPreviewing = true;
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+```
+
+3. The `onFrameAvailable` callback (Android's method, see [Android's help document](https://developer.android.com/reference/android/graphics/SurfaceTexture.OnFrameAvailableListener#onFrameAvailable(android.graphics.SurfaceTexture))) is triggered when new video frames appear in `TextureView`. The callback implements the following operations:
+
+  - Renders the captured video frames using the custom renderer for later use in local view.
+  - Calls `pushExternalVideoFrame` to send the captured video frames to the SDK.
+
+```java
+// The onFrameAvailable callback gets new video frames captured by SurfaceTexture
+// Renders the video frames using EGL for later use in local view
+// Calls pushExternalVideoFrame to send the video frames to the SDK
+public void onFrameAvailable(SurfaceTexture surfaceTexture) {
+        if (mTextureDestroyed) {
+            return;
+        }
+ 
+        if (!mEglCore.isCurrent(mDrawSurface)) {
+            mEglCore.makeCurrent(mDrawSurface);
+        }
+        // Calls updateTexImage() to update data to the OpenGL ES texture object
+        // Calls getTransformMatrix() to transform the texture's matrix
+        try {
+            mPreviewSurfaceTexture.updateTexImage();
+            mPreviewSurfaceTexture.getTransformMatrix(mTransform);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Configures MVP matrix
+        if (!mMVPMatrixInit) {
+            // This code sample defines activity as the portrait mode. Since the captured video frames are rotated by 90 degrees, you need to switch the width and height data when calculating the frame ratio.
+            float frameRatio = DEFAULT_CAPTURE_HEIGHT / (float) DEFAULT_CAPTURE_WIDTH;
+            float surfaceRatio = mSurfaceWidth / (float) mSurfaceHeight;
+            Matrix.setIdentityM(mMVPMatrix, 0);
+ 
+            if (frameRatio >= surfaceRatio) {
+                float w = DEFAULT_CAPTURE_WIDTH * surfaceRatio;
+                float scaleW = DEFAULT_CAPTURE_HEIGHT / w;
+                Matrix.scaleM(mMVPMatrix, 0, scaleW, 1, 1);
+            } else {
+                float h = DEFAULT_CAPTURE_HEIGHT / surfaceRatio;
+                float scaleH = DEFAULT_CAPTURE_WIDTH / h;
+                Matrix.scaleM(mMVPMatrix, 0, 1, scaleH, 1);
+            }
+            mMVPMatrixInit = true;
+        }
+        // Sets the size of the video view
+        GLES20.glViewport(0, 0, mSurfaceWidth, mSurfaceHeight);
+        // Draws video frames
+        mProgram.drawFrame(mPreviewTexture, mTransform, mMVPMatrix);
+        // Sends the buffer of EGL image to EGL Surface for local playback and preview. mDrawSurface is an object of the EGLSurface class.
+        mEglCore.swapBuffers(mDrawSurface);
+ 
+        // If the user has joined the channel, configures the external video frames and sends them to the SDK.
+        if (joined) {
+            // Configures external video frames
+            AgoraVideoFrame frame = new AgoraVideoFrame();
+            frame.textureID = mPreviewTexture;
+            frame.format = AgoraVideoFrame.FORMAT_TEXTURE_OES;
+            frame.transform = mTransform;
+            frame.stride = DEFAULT_CAPTURE_HEIGHT;
+            frame.height = DEFAULT_CAPTURE_WIDTH;
+            frame.eglContext14 = mEglCore.getEGLContext();
+            frame.timeStamp = System.currentTimeMillis();
+            // Sends external video frames to the SDK
+            boolean a = engine.pushExternalVideoFrame(frame);
+            Log.e(TAG, "pushExternalVideoFrame:" + a);
+        }
+    }
+```
+
+#### API reference
+
+- [`isTextureEncodeSupported`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a60c16364ab588a38f5155d9c94eaf800)
+- [`setExternalVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a2d9966c52798ab62ed941fa865e926cd)
+- [`pushExternalVideoFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6e7327f4449800a2c2ddc200eb2c0386)
+
+### MediaIO mode
+
+In MediaIO mode, the Agora SDK provides the `IVideoSource` interface and the `IVideoFrameConsumer` class to configure the format of captured video frames and control the process of video capturing.
+
+Refer to the following steps to customize the video source in your project:
+
+1. Implement the `IVideoSource` interface, which configures the format of captured video frames and controls the process of video capturing through a set of callbacks:
+
+   - After receiving the `getBufferType` callback, specify the format of the captured video frames in the return value.
+   - After receiving the `onInitialize` callback, save the `IVideoFrameConsumer` object, which sends and receives video frames captured by a custom source.
+   - After receiving the `onStart` callback, start sending the captured video frames to the SDK by calling the `consumeByteBufferFrame`, `consumeByteArrayFrame`, or `consumeTextureFrame` method in the `IVideoFrameConsumer` object. Before sending the video frames, you can modify the video frame parameters in `IVideoFrameConsumer`, such as `rotation`, according to your app scenario.
+   - After receiving the `onStop` callback, stop the `IVideoFrameConsumer` object from sending video frames to the SDK.
+   - After receiving the `onDispose` callback, release the `IVideoFrameConsumer` object.
+
+2. Inherit the `IVideoSource` class implemented in step 1, and construct an object for the custom video source.
+3. Call the `setVideoSource` method to assign the custom video source object to `RtcEngine`.
+4. According to your app scenario, call the `startPreview` or `joinChannel` method to preview or publish the captured video frames.
+
+#### API call sequence
+
+Refer to the following diagram to implement the custom video source:
+
+![1607670515750](https://web-cdn.agora.io/docs-files/1607670515750)
+
+#### Video data transfer
+
+The following diagram shows how the video data is transferred when you customize the video source in MediaIO mode:
+
+![1607670413195](https://web-cdn.agora.io/docs-files/1607670413195)
+
+- You need to implement the capture module yourself using methods from outside the SDK.
+- Captured video frames are sent to the SDK via the `consumeByteBufferFrame`, `consumeByteArrayFrame`, or `consumeTextureFrame` method.
+
+#### Code samples
+
+The following code samples use a local video file as the custom video source.
+
+1. Implement the `IVideoSource` interface and the `IVideoFrameConsumer` class, and rewrite the callbacks in the `IVideoSource` interface.
+
+```java
+// Implements the IVideoSource interface
+public class ExternalVideoInputManager implements IVideoSource {
+     
+...
+ 
+    // Gets the IVideoFrameConsumer object from this callback when initializing the video source
+    @Override
+    public boolean onInitialize(IVideoFrameConsumer consumer) {
+        mConsumer = consumer;
+        return true;
+    }
+    
+    @Override
+    public boolean onStart() {
+        return true;
+    }
+     
+    @Override
+    public void onStop() {
+ 
+    }
+ 
+    // Sets the IVideoFrameConsumer object as null when media engine releases IVideoFrameConsumer
+    @Override
+    public void onDispose() {
+        Log.e(TAG, "SwitchExternalVideo-onDispose");
+        mConsumer = null;
+    }
+ 
+    @Override
+    public int getBufferType() {
+        return TEXTURE.intValue();
+    }
+ 
+    @Override
+    public int getCaptureType() {
+        return CAMERA;
+    }
+ 
+    @Override
+    public int getContentHint() {
+        return MediaIO.ContentHint.NONE.intValue();
+    }
+ 
+ ...
+  
+}
+```
+
+```java
+// Implements the IVideoFrameConsumer class
+private volatile IVideoFrameConsumer mConsumer;
+```
+
+2. Specify the custom video source before joining a channel.
+
+```java
+// Specifies the custom video source
+ENGINE.setVideoSource(ExternalVideoInputManager.this);
+```
+
+3. Configure external video input.
+
+```java
+// Creates an intent for local video input, sets video frame parameters, and sets external video input
+// Calls setExternalVideoInput to create a new LocalVideoInput object which retrieves the location of the local video file
+// The setExternalVideoInput method also sets a Surface Texture monitor for  TextureView
+// Adds TextureView to subviews in relative layout for local preview
+Intent intent = new Intent();
+setVideoConfig(ExternalVideoInputManager.TYPE_LOCAL_VIDEO, LOCAL_VIDEO_WIDTH, LOCAL_VIDEO_HEIGHT);
+intent.putExtra(ExternalVideoInputManager.FLAG_VIDEO_PATH, mLocalVideoPath);
+if (mService.setExternalVideoInput(ExternalVideoInputManager.TYPE_LOCAL_VIDEO, intent)) {
+       // Deletes all subviews in relative layout
+       fl_local.removeAllViews();
+       // Adds TextureView as a subview
+       fl_local.addView(TEXTUREVIEW,
+              RelativeLayout.LayoutParams.MATCH_PARENT,
+              RelativeLayout.LayoutParams.MATCH_PARENT);
+      }
+```
+
+   Refer to the following code sample to implement the `setExternalVideoInput` method:
+
+```java
+// Implements the setExternalVideoInput method
+boolean setExternalVideoInput(int type, Intent intent) {
+       
+        if (mCurInputType == type && mCurVideoInput != null
+                && mCurVideoInput.isRunning()) {
+            return false;
+        }
+        // Creates a new LocalVideoInput object which retrieves the location of the local video file
+        IExternalVideoInput input;
+        switch (type) {
+            case TYPE_LOCAL_VIDEO:
+                input = new LocalVideoInput(intent.getStringExtra(FLAG_VIDEO_PATH));
+                // If TextureView is not null, sets a Surface Texture monitor for this TextureView
+                if (TEXTUREVIEW != null) {
+                    TEXTUREVIEW.setSurfaceTextureListener((LocalVideoInput) input);
+                }
+                break;
+            
+           ...
+        }
+        // Sets the created LocalVideoInput object as the video source
+        setExternalVideoInput(input);
+        mCurInputType = type;
+        return true;
+    }
+```
+
+4. Implement the local video thread, and decode the local video file. The decoded video frames are rendered to `Surface`.
+
+```java
+// Decodes the local video file and renders it to Surface
+LocalVideoThread(String filePath, Surface surface) {
+    initMedia(filePath);
+    mSurface = surface;
+}
+```
+
+5. After the local user joins the channel, the capture module consumes the video frames through the `consumeTextureFrame` method in `ExternalVideoInputThread` and sends the frames to the SDK.
+
+```java
+public void run() {
+             
+                ...
+                // Calls updateTexImage() to update data to the OpenGL ES texture object
+                // Calls getTransformMatrix() to transform the texture's matrix
+                 try {
+                 mSurfaceTexture.updateTexImage();
+                 mSurfaceTexture.getTransformMatrix(mTransform);
+                      }
+                 catch (Exception e) {
+                 e.printStackTrace();
+                 }   
+                // Gets the captured video frames through the onFrameAvailable callback. This callback is rewritten in the LocalVideoInput class based on Android's corresponding API.
+                // The onFrameAvailable callback creates EGL Surface through the SurfaceTexture for local preview and uses its context as the current context. You can use this callback to render video frames locally, get Texture ID and transform information, and send the video frames to the SDK.
+                if (mCurVideoInput != null) {
+                    mCurVideoInput.onFrameAvailable(mThreadContext, mTextureId, mTransform);
+                }
+                // Links EGLSurface
+                mEglCore.makeCurrent(mEglSurface);
+                // Sets the EGL video view
+                GLES20.glViewport(0, 0, mVideoWidth, mVideoHeight);
+ 
+                if (mConsumer != null) {
+                    Log.e(TAG, "Width and Height ->width:" + mVideoWidth + ",height:" + mVideoHeight);
+                    // Calls consumeTextureFrame to consume the video frames and send them to the SDK
+                    mConsumer.consumeTextureFrame(mTextureId,
+                            TEXTURE_OES.intValue(),
+                            mVideoWidth, mVideoHeight, 0,
+                            System.currentTimeMillis(), mTransform);
+                }
+                 
+                // Waiting for the next frame
+                waitForNextFrame();
+                ...
+      
+        }
+```
+
+#### API reference
+
+- [`setVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa240e991d12b5240fc5fd362cbc0d521)
+- [`IVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_source.html)
+- [`IVideoFrameConsumer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_frame_consumer.html)
+
+#### See also
+
+If your app has its own video capture module and needs to integrate the Agora SDK for real-time communication purposes, you can use the Agora Component to enable and disable video frame input through the callbacks in Media Engine. For details, see [Customize the Video Source with the Agora Component](https://docs.agora.io/en/Interactive%20Broadcast/custom_advanced_android?platform=Android#customize-the-video-source-with-the-agora-component).
+
+## Custom video renderer
+
+The Agora SDK provides the `IVideoSink` interface to customize the video renderer in your project.
+
+Refer to the following steps to implement the video renderer:
+
+1. Implement the `IVideoSink` interface, which configures the format of captured video frames and controls the process of video rendering through a set of callbacks:
+
+   - After receiving the `getBufferType` and `getPixelFormat` callbacks, specify the format of the rendered video frames in the return value.
+   - After receiving the `onInitialize`, `onStart`, `onStop`, `onDispose`, and `getEglContextHandle` callbacks, perform the corresponding operations.
+   - Implement the `IVideoFrameConsumer` class for the rendered video frames' format to retrieve the video frames.
+
+2. Inherit the `IVideoSource` class implemented in step 1, and create a video capture module for the custom renderer.
+
+3. Call the `setLocalVideoRenderer` or `setRemoteVideoRenderer` method to render the video of the local user or remote user.
+
+4. According to your app scenario, call the `startPreview` or `joinChannel` method to preview or publish the rendered video frames.
+
+### API call sequence
+
+Refer to the following diagram to implement the custom video renderer in MediaIO mode:
+
+![img](https://web-cdn.agora.io/docs-files/1585285152292)
+
+### Video data transfer
+
+The following diagram shows how the video data is transferred when you customize the video renderer in MediaIO mode:
+
+![1607670404631](https://web-cdn.agora.io/docs-files/1607670404631)
+
+- You need to implement the rendering module yourself using methods from outside the SDK.
+- Captured video frames are sent to the capture module via the `consumeByteBufferFrame`, `consumeByteArrayFrame`, or `consumeTextureFrame` method.
+
+### Code samples
+
+The code samples provide two options for implementing the custom video renderer in your project.
+
+#### Option 1: Use components provided by Agora
+
+The Agora SDK provides classes and code samples that are designed to help you easily integrate and create a custom video renderer. You can use these components directly, or you can create a custom renderer based on these components. See [Customize the Video Sink with the Agora Component](https://docs.agora.io/en/Interactive%20Broadcast/custom_advanced_android#customize-the-video-sink-with-the-agora-component).
+
+After the local user joins the channel, import and implement the `AgoraSurfaceView `class, then set the remote video renderer. The `AgoraSurfaceView `class inherits the `SurfaceView` class and implements the `IVideoSink` class. `AgoraSurfaceView` also embeds a `BaseVideoRenderer` object that serves as the rendering module, which means you do not need to implement the `IVideoSink` class and customize the rendering module yourself. The `BaseVideoRenderer` object uses OpenGL as the renderer and creates EGLContext, and it shares the Handle of EGLContext with Media Engine. For more information about how to implement the `AgoraSurfaceView` class, see the [demo project](https://github.com/AgoraIO/API-Examples/tree/master/Android/APIExample).
+
+```java
+@Override
+       public void onUserJoined(int uid, int elapsed) {
+           super.onUserJoined(uid, elapsed);
+           Log.i(TAG, "onUserJoined->" + uid);
+           showLongToast(String.format("user %d joined!", uid));
+           Context context = getContext();
+           if (context == null) {
+               return;
+           }
+           handler.post(() ->
+           {
+               // Implements the AgoraSurfaceView class
+               AgoraSurfaceView surfaceView = new AgoraSurfaceView(getContext());
+               surfaceView.init(null);
+               surfaceView.setZOrderMediaOverlay(true);
+               // Calls the setBufferType and setPixelFormat methods in the embedded BaseVideoRenderer object to set the type and format of the video frames
+             surfaceView.setBufferType(MediaIO.BufferType.BYTE_BUFFER);
+               surfaceView.setPixelFormat(MediaIO.PixelFormat.I420);
+               if (fl_remote.getChildCount() > 0) {
+                   fl_remote.removeAllViews();
+               }
+               fl_remote.addView(surfaceView);
+               // Sets the remote video renderer
+               engine.setRemoteVideoRenderer(uid, surfaceView);
+           });
+       }
+```
+
+#### Option 2: Use the `IVideoSink` interface
+
+You can implement the `IVideoSink` class and inherit it to construct a rendering module for the custom renderer.
+
+```java
+// Creates an instance to implement the IVideoSink interface
+IVideoSink sink = new IVideoSink() {
+    @Override
+    // Initializes the renderer either in this method or beforehand. Sets the return value as true to indicate that the renderer has initialized
+    public boolean onInitialize () {
+        return true;
+    }
+ 
+    @Override
+    // Starts the renderer
+    public boolean onStart() {
+        return true;
+    }
+ 
+    @Override
+    // Stops the renderer
+    public void onStop() {
+ 
+    }
+ 
+    @Override
+    // Releases the renderer
+    public void onDispose() {
+ 
+    }
+ 
+    @Override
+    public long getEGLContextHandle() {
+        // Constructs your Egl context
+        // If the return value is 0, no Egl context has been created in the renderer
+        return 0;
+    }
+ 
+    // Returns the Buffer type the renderer requires
+    // If you want to switch to a different VideoSink type, you must create another instance
+    // There are three Buffer types: BYTE_BUFFER(1), BYTE_ARRAY(2), and TEXTURE(3)
+    @Override
+    public int getBufferType() {
+        return BufferType.BYTE_ARRAY;
+    }
+ 
+    // Returns the Pixel format the renderer requires
+    @Override
+    public int getPixelFormat() {
+        return PixelFormat.NV21;
+    }
+ 
+   // SDK calls this method to send the captured video frames to the renderer
+   // Use the corresponding callback for the format of the captured video frames
+   @Override
+   public void consumeByteArrayFrame(byte[] data, int format, int width, int height, int rotation, long timestamp) {
+ 
+   // The renderer is working
+   }
+   public void consumeByteBufferFrame(ByteBuffer buffer, int format, int width, int height, int rotation, long timestamp) {
+ 
+ 
+   // The renderer is working
+   }
+   public void consumeTextureFrame(int textureId, int format, int width, int height, int rotation, long timestamp, float[] matrix) {
+ 
+   // The renderer is working
+   }
+ 
+}
+ 
+rtcEngine.setLocalVideoRenderer(sink);
+```
+
+
+
+#### API reference
+
+- [`setLocalVideoRenderer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab10fd6d8dd89a5bca09b115ecd9e3416)
+- [`setRemoteVideoRenderer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0da32c040cb9d987df2950b83459ba56)
+- [`IVideoSink`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_sink.html)
+- [`IVideoFrameConsumer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_frame_consumer.html)
+
+## Considerations
+
+- Performing the following operations requires you to use methods from outside the Agora SDK:
+  - Manage the capture and processing of video frames when using a custom video source.
+  - Manage the processing and display of video frames when using a custom video renderer.
+
+- When using a custom video renderer, if the `consumeByteArrayFrame`, `consumeByteBufferFrame`, or `consumeTextureFrame` callback reports that `rotation` is not `0`, the rendered video frames are rotated by a certain degree. This may be caused by the capture settings of the SDK or your custom video source. You need to modify `rotation` according to your application scenario.
+
+- If the format of the custom captured video is Texture and the remote user sees anomalies (such as flickering and distortion) in the local custom captured video, Agora recommends that you make a copy of the video data before sending the custom video data back to the SDK, and then send both the original video data and the copied video data back to the SDK. This eliminates the anomalies during the internal data encoding.
+
+## See also
+
+If you want to customize the audio source or renderer in your project, see [Custom Audio Source and Renderer](https://docs.agora.io/en/Interactive%20Broadcast/custom_audio_android#implementation).
+
+</PlatformWrapper>

@@ -1,0 +1,234 @@
+<PlatformWrapper platform="android">
+
+## Introduction
+
+As of v3.0.0, the Agora RTC Native SDK enables users to join an unlimited number of channels at a time and to receive the audio and video streams of all the channels.
+
+<div class="alert note">
+<li>This feature applies to the live streaming channel profile. Do not use it for the communication profile.</li>
+<li>As of v3.4.5, Agora optimizes the publishing logic in the multichannel scenario. If you have upgraded the SDK from an earlier version to v3.4.5 or later, Agora recommends that you adjust your publishing settings by referring to <a href="#api_changes">API changes</a > to avoid any impact on your business functions.</li>
+</div>
+
+## Sample project
+
+Agora provides the following open-source sample projects on GitHub. You can download them and refer to the source code.
+- [MultRtcChannel](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/JoinMultipleChannel.java)
+- [Breakout Class](https://github.com/AgoraIO-Usecase/Breakout-Class/tree/master/breakout-android)
+
+## Implementation
+
+The SDK uses the `RtcChannel` and `IRtcChannelEventHandler` classes to support the multi-channel function.
+
+You can call `createRtcChannel` multiple times to create multiple `RtcChannel` objects with different `channelId`, and then call `joinChannel` in `RtcChannel` to join the channel.
+
+The following are the major steps of implementing the multi-channel function:
+
+1. Call `create` to create and initialize `RtcEngine`.
+2. Call `setChannelProfile` to set the channel profile as live streaming.
+3. Call `createRtcChannel` to create an `RtcChannel` object with a `channelId`.
+4. Call `setRtcChannelEventHandler` of the `RtcChannel` class to receive callbacks in this channel.
+5. Call `setClientRole` of the `RtcChannel` class to set the user role.
+6. Call `joinChannel` of the `RtcChannel` class to join the channel. After joining a channel, the user publishes the local streams and automatically subscribes to the streams of all the other users in the channel by default. You can set the publishing and subscribing states in `ChannelMediaOptions` when joining a channel, and you can change the publishing and subscribing states in the methods with prefixes `muteLocal`and `muteRemote` of the `RtcChannel` class after joining a channel.
+7. Repeat steps 3, 4, 5, and 6 to join more channels.
+
+
+<div class="alert note">
+<li>Ensure that each channel you join has a unique channel name.</li>
+<li>A user can publish local streams in only one channel at a time. Agora recommends joining a channel as a host when the user needs to publish local streams or as an audience member when the user does not need to publish local streams.</li>
+</div>
+
+
+
+### API call sequence
+
+Refer to the following API sequence to join multiple channels:
+
+![1624445617154](https://web-cdn.agora.io/docs-files/1624445617154)
+
+### Sample code
+
+The following code demonstrates how to join an `RtcChannel` channel, and then publish the local streams in the first channel.
+
+1. Create and initialize `RtcEngine`.
+
+ ```java
+ engine = RtcEngine.create(context.getApplicationContext(), getString(R.string.agora_app_id), iRtcEngineEventHandler);
+ ```
+
+2. Enable the video module.
+
+ ```java
+ engine.enableVideo();
+ ```
+
+3. Set the channel profile as interactive live streaming.
+
+ ```java
+ engine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+ ```
+
+4. Create an `RtcChannel1` object, and listen for events in this channel.
+
+ ```java
+ rtcChannel1 = engine.createRtcChannel(channel1);
+ rtcChannel1.setRtcChannelEventHandler(new IRtcChannelEventHandler() {
+      @Override
+      // Listen for the onJoinChannelSuccess callback.
+      // This callback occurs when the local user successfully joins the channel.
+      public void onJoinChannelSuccess(RtcChannel rtcChannel1, int uid, int elapsed) {
+          super.onJoinChannelSuccess(rtcChannel1, uid, elapsed);
+          Log.i(TAG, String.format("onJoinChannelSuccess channel %s uid %d", channel1, uid));
+      }
+  });
+ ```
+
+5. Set the user role as a host.
+
+ ```java
+ rtcChannel1.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
+ ```
+
+6. Pass in `token` and `channelId` to join the `RtcChannel1` channel. The SDK publishes the local streams and automatically subscribes to the streams of all the other users in the channel by default.
+
+ ```java
+ ChannelMediaOptions mediaOptions = new ChannelMediaOptions();
+ mediaOptions.autoSubscribeAudio = true;
+ mediaOptions.autoSubscribeVideo = true;
+ mediaOptions.publishLocalAudio = true;
+ mediaOptions.publishLocalVideo = true;
+ int ret = rtcChannel1.joinChannel("Your token", "", 0, mediaOptions);
+ ```
+
+7. Create an `RtcChannel2` object, and listen for events in this channel.
+
+ ```java
+ rtcChannel2 = engine.createRtcChannel(channel2);
+ rtcChannel2.setRtcChannelEventHandler(new IRtcChannelEventHandler() {
+      @Override
+      // Listen for the onJoinChannelSuccess callback.
+      // This callback occurs when the local user successfully joins the channel.
+      public void onJoinChannelSuccess(RtcChannel rtcChannel2, int uid, int elapsed) {
+          super.onJoinChannelSuccess(rtcChannel2, uid, elapsed);
+          Log.i(TAG, String.format("onJoinChannelSuccess channel %s uid %d", channel2, uid));
+      }
+  });
+ ```
+
+8. Set the user role as an audience member. Note that audience members cannot publish local streams.
+
+ ```java
+ rtcChannel2.setClientRole(Constants.CLIENT_ROLE_AUDIENCE);
+ ```
+
+9. Pass in `token` and `channelId` to join the `RtcChannel2` channel. You need to set `publishLocalAudio` and `publishLocalVideo` to `false`; otherwise, the user fails to join the channel.
+
+ ```java
+ ChannelMediaOptions mediaOptions = new ChannelMediaOptions();
+ mediaOptions.autoSubscribeAudio = true;
+ mediaOptions.autoSubscribeVideo = true;
+ mediaOptions.publishLocalAudio = false;
+ mediaOptions.publishLocalVideo = false;
+ int ret = rtcChannel2.joinChannel("Your token", "", 0, mediaOptions);
+ ```
+
+10. Leave and destroy the `RtcChannel2` channel.
+
+ ```java
+ rtcChannel2.leaveChannel();
+ rtcChannel2.destroy();
+ ```
+
+11. Leave and destroy the `RtcChannel1` channel.
+
+ ```java
+ rtcChannel1.leaveChannel();
+ rtcChannel1.destroy();
+ ```
+
+12. Destroy the `RtcEngine` object.
+
+ ```java
+engine.destroy();
+ ```
+
+
+### API reference
+- [createRtcChannel](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9eb0770851a8ba489564f72f9b280bca)
+- [RtcChannel](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html#a9eb0770851a8ba489564f72f9b280bca)
+- [IRtcChannelEventHandler](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html)
+
+
+## Considerations
+
+### Subscribing limits
+
+`joinChannel` in the `RtcChannel` class provides the media-subscription options (`autoSubscribeAudio` and `autoSubscribeVideo`) that determine whether to automatically subscribe to the remote streams after joining the channel. The default setting is to subscribe to all the streams automatically. After a user joins a channel, you can change the subscribing state by calling `muteRemoteAudioStream` or `muteRemoteVideoStream`.
+
+If you need to subscribe to the streams of specified users after joining an `RtcChannel` channel, refer to the following steps:
+
+1. Call `joinChannel` and set `autoSubscribeAudio = false` or `autoSubscribeVideo = false` of `ChannelMediaOptions` to unsubscribe from all remote users.
+2. In the channel, call `muteRemoteAudioStream (uid,false)` or `muteRemoteVideoStream(uid,false)` to subscribe to specified remote users.
+
+### Set the remote video view
+
+In video scenarios, if the remote user joins the channel using `RtcChannel`, ensure that you specify the channel name of the remote user in [`VideoCanvas`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_canvas.html) when setting the remote video view. 
+
+```java			
+// Set the remote user's view in the onUserJoined callback.
+public void onUserJoined(RtcChannel rtcChannel, int uid, int elapsed) {
+    super.onUserJoined(rtcChannel, uid, elapsed);
+    Log.i(TAG, "onUserJoined->" + uid);
+    showLongToast(String.format("user %d joined!", uid));
+    Context context = getContext();
+    if (context == null) {
+        return;
+    }
+    handler.post(() ->
+    {
+        SurfaceView surfaceView = null;
+        if (fl_remote2.getChildCount() > 0) {
+            fl_remote2.removeAllViews();
+        }
+        // Create a SurfaceView object.
+        surfaceView = RtcEngine.CreateRendererView(context);
+        surfaceView.setZOrderMediaOverlay(true);
+        // Add the SurfaceView object to the layout of remote users.
+        fl_remote2.addView(surfaceView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        // Set the remote video view.
+        engine.setupRemoteVideo(new VideoCanvas(surfaceView, RENDER_MODE_FIT, channel2, uid));
+    });
+}
+```
+
+### Publishing limits
+
+The SDK supports publishing local streams to only one channel at a time. Agora recommends setting the user role as an audience when joining a channel where the user do not need to publish streams, and setting `publishLocalAudio` and `publishLocalVideo` in `ChannelMediaOptions` to `false` when joining the channel.
+
+In the interactive live streaming profile, if a user joins the first channel as a host, the SDK publishes local streams in the first channel by default. If the user needs to join a second channel, you need to change the publishing state according to your actual scenario:
+
+- If the user does not need to publish local streams in the second channel, Agora recommends joining the second channel as an audience member (`setClientRole(AUDIENCE)`).
+- If the user needs to publish local streams in the second channel, the user needs to stop publishing in the current channel before joining the second channel. Agora recommends setting the user role as an audience member (`setClientRole(AUDIENCE)`) in the first channel and joining the second channel as a host (`setClientRole(BROADCASTER)`).
+
+If a user publishes local streams in a channel and you call the following methods in a second channel, the method call fails, and the SDK returns `-5(ERR_REFUSED)`:
+
+- Set `publishLocalAudio = true` or `publishLocalVideo = true` when joining the second channel.
+- Call `muteLocalAudioStream(false)` or `muteLocalVideoStream(false)` after joining the second channel.
+- Call `setClientRole(BROADCASTER)`.
+
+<a name="api_changes"></a>
+
+#### API changes
+
+As of v3.4.5, the `RtcChannel` class changes as follows:
+
+- Deprecates `publish` and `unpublish`, and adds `muteLocalAudioStream` and `muteLocalVideoStream` instead. After joining a channel, you can set the publishing state of the audio stream and video stream separately. `muteLocalAudioStream` and `muteLocalVideoStream` in the `RtcEngine` and `RtcChannel` classes control the publishing state of each channel in their respective classes only.
+- Adds the `publishLocalAudio` and `publishLocalVideo` members in `ChannelMediaOptions`. The default value is `true`. You can call `joinChannel` to join a channel and set the publishing state. If a user publishes streams in a channel, regardless of whether the user is a host or an audience member, they need to set `publishLocalAudio` and `publishLocalVideo` to `false` when joining other channels; otherwise, they fail to join the channel.
+- After calling `setClientRole(BROADCASTER)` of the `RtcChannel` class, the local user publishes audio and video streams by default. You no longer need to call `publish`.
+
+Earlier than v3.4.5:
+
+- Calling `muteLocalAudioStream(true)` or `muteLocalVideoStream(true)` in `RtcEngine` takes effect in channels created by both the `RtcEngine` and `RtcChannel` classes. `muteLocalAudioStream` and `muteLocalVideoStream` take effect when they are called before or after a user joins a channel.
+- `joinChannel` cannot set the publishing state of local streams.
+- Calling `setClientRole(BROADCASTER)` of the `RtcChannel` class does not publish local streams. You also need to call `publish`.
+
+</PlatformWrapper>

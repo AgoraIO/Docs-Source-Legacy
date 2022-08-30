@@ -1,4 +1,4 @@
-<PlatformWrapper platform="csharp">
+<PlatformWrapper platform="windows">
 
 People engage longer when they see, hear, and interact with each other. The Agora SDK enables you to embed real-time voice and video interaction in any app, on any device, anywhere.
 
@@ -91,7 +91,7 @@ If you are implementing an interactive video streaming, we recommend adding the 
 
 Add the following line to import the Agora SDK:
 
-```C#
+```c#
 using agora.rtc;
 ```
 
@@ -99,7 +99,7 @@ using agora.rtc;
 
 The C# SDK is developed upon C++. In this step, we create an `AgoraRtcEventHandler` class from `IAgoraRtcEngineEventHandler` for managing callback events:
 
-```C#
+```c#
 class AgoraRtcEventHandler : IAgoraRtcEngineEventHandler
 {
       public AgoraRtcEventHandler()
@@ -117,7 +117,7 @@ Call the `CreateAgoraRtcEngine` and `Initialize` methods, and pass in the App ID
 
 You can also listen for callback events, such as when the local user joins or leaves the channel.
 
-```C#
+```c#
 // Declare variables
 IAgoraRtcEngine rtc_engine_ = null;
 IAgoraRtcEngineEventHandler event_handler_ = null;
@@ -146,7 +146,7 @@ After initializing the `IAgoraRtcEngine` object, call the `SetChannelProfile` me
 
 One `IAgoraRtcEngine` object uses one profile only. If you want to switch to another profile, release the current `IAgoraRtcEngine` object with the release method and create a new one before calling the `SetChannelProfile` method.
 
-```C#
+```c#
 rtc_engine_.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
 ```
 
@@ -159,7 +159,7 @@ A `LIVE_BROADCASTING` channel has two client roles: `BROADCASTER` and `AUDIENCE`
 
 Note that in the interactive live streaming, only the host can be heard and seen. If you want to switch the client role after joining the channel, call the `SetClientRole` method.
 
-```C#
+```c#
 rtc_engine_.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
 ```
 
@@ -168,7 +168,7 @@ rtc_engine_.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
 
 After initializing the `IAgoraRtcEngine` object, set the local video view before joining the channel so that hosts can see themselves. 
 
-```C#
+```c#
 VideoCanvas vs = new VideoCanvas((ulong)localWindowId.Handle, RENDER_MODE_TYPE.RENDER_MODE_FIT);
 rtc_engine_.SetupLocalVideo(vs);
 ```
@@ -190,7 +190,7 @@ After initializing the `IAgoraRtcEngine` object and setting the local video view
   <div class="alert note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <code>mute</code> methods accordingly.</div>
 
 
-```C#
+```c#
 rtc_engine_.JoinChannel("", "testChannelId","", 0, new ChannelMediaOptions(true, true, true, true));
 ```
 
@@ -200,7 +200,7 @@ In a video streaming, you should be able to see all the hosts, regardless of you
 
 Shortly after a remote host joins the channel, the SDK gets the host's ID in the `OnUserJoined` callback. Call the `SetupRemoteVideo` method in the callback, and pass in the `uid` to set the video view of the remote host.
 
-```C#
+```c#
 // Call SetupRemoteVideo to set the remote video view
 VideoCanvas  vc = new VideoCanvas((ulong)remoteWindowId, 
 RENDER_MODE_TYPE.RENDER_MODE_FIT, "testChannelId", remoteUid);
@@ -211,7 +211,7 @@ rtc_engine_.SetupRemoteVideo(vc);
 
 Call the `LeaveChannel` method to leave the current channel according to your scenario, for example, when the interactive streaming ends, when you need to close the app, or when your app runs in the background.
 
-```C#
+```c#
 rtc_engine_.LeaveChannel();
 ```
  

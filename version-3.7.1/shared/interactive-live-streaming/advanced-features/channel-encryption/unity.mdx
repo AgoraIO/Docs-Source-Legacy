@@ -1,0 +1,99 @@
+<PlatformWrapper platform="unity">
+
+## Introduction
+
+To improve data security, Agora supports encrypting users' media streams during real-time engagement. You can enable the built-in encryption provided by Agora, which uses the preset encryption mode in the SDK to encrypt the media streams.
+
+The following diagram describes the encrypted data transmission process:
+![1626342923834](https://web-cdn.agora.io/docs-files/1626342923834)
+
+## Sample project
+
+Agora provides an open-source sample project that implements [built-in encryption](https://github.com/AgoraIO/Agora-Unity-Quickstart/tree/dev/encryption/API-Example-Unity/Assets/API-Example/encryption-sample) on GitHub. You can try the demo and view the source code.
+
+## Implementation
+
+Before enabling media-stream encryption, ensure that you refer to the appropriate Quickstart Guide to implement the basic real-time communication functions in your project.
+
+Before joining a channel, call `EnableEncryption` to enable the built-in encryption.
+
+As of v3.4.5, Agora recommends using the `AES_128_GCM2` or `AES_256_GCM2` encryption mode and setting the key and salt.
+
+To generate and set the `key` and `salt` parameters, refer to the following steps.
+
+<div class="alert note"><li>All users in a channel must use the same encryption mode, key, and salt.</li>
+<li>Compared to other encryption modes, the <code>GCM2</code> encryption modes use a more secure KDF (Key Derivation Function) and support setting the salt. If you choose other encryption modes, you only need to set the encryption mode and key.</li></div>
+
+
+### Generate and set the key
+
+1. Refer to the following command to randomly generate a 32-byte key in the string format through OpenSSL on your server.
+
+ ``` shell
+ // Randomly generate a 32-byte key in the string format, and pass the string key in the encryptionKey parameter of EnableEncryption.
+openssl rand -hex 32
+dba643c8ba6b6dc738df43d9fd624293b4b12d87a60f518253bd10ba98c48453
+ ```
+
+2. The client gets the key in the string format from the server and passes it to the SDK in the `EnableEncryption` method.
+
+### Generate and set the salt
+
+1. Refer to the following command to randomly generate a Base64-encoded, 32-byte salt through OpenSSL on the server. You can also refer to the [C++ sample code](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtcChannelEncryptionSaltSample.cpp) provided by Agora on GitHub to randomly generate a salt in the byte array format and convert it to Base64 on the server.
+
+ ``` shell
+ // Randomly generate a 32-byte salt in the Base64 format. Convert the salt from Base64 to UTF8, and pass the UTF8 salt in the encryptionKdfSalt parameter of EnableEncryption.
+X5w9T+50kzxVOnkJKiY/lUk82/bES2kATOt3vBuGEDw=
+ ```
+
+2. The client gets the Base64 salt from the server.
+3. The client converts the salt from Base64 to UTF8, and then passes it to the SDK in the `EnableEncryption` method.
+
+#### Sample code
+
+```c#
+using System.Text;
+using UnityEngine;
+using UnityEngine.UI;
+using agora_gaming_rtc;
+
+// Get the key and salt generated from your server.
+bool GetSecretAndSaltFromSever(out string secret, out string kdfSaltBase64)
+
+int EnableEncryption()
+    {
+        var secret = "";
+        var kdfSaltBase64 = "";
+        if (!GetSecretAndSaltFromSever(out secret, out kdfSaltBase64))
+            return -1;
+
+        if (mRtcEngine != null)
+        {
+            var config = new EncryptionConfig
+            {
+                // Set the encryption mode as AES_128_GCM2.
+                encryptionMode = ENCRYPTION_MODE.AES_128_GCM2,
+                // Set the key.
+                encryptionKey = secret,
+                /// Set the salt. You need to convert the salt from Base64 to UTF8.
+                encryptionKdfSalt = Convert.FromBase64String(kdfSaltBase64)
+            };
+            // Enable the built-in encryption.
+            return mRtcEngine.EnableEncryption(true, config);
+        }
+
+        return -1;
+    }
+```
+
+#### API Reference
+
+[EnableEncryption](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a54214baf0b421161990eded9c7401976)
+
+## Considerations
+
+- Both the communication and interactive live streaming scenarios support encryption, but Agora does not support pushing encrypted streams to the CDN during live streaming.
+- To use media-stream encryption, you need to enable encryption before joining a channel. Ensure that both the receivers and senders use the same encryption mode; otherwise, undefined behaviors such as a black screen or audio loss occur.
+- To enhance security, Agora recommends using a new key and salt every time you enable media-stream encryption.
+
+</PlatformWrapper>
