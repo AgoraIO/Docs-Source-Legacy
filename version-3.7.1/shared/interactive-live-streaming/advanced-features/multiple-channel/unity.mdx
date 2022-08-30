@@ -1,0 +1,222 @@
+<PlatformWrapper platform="unity">
+
+## Introduction
+
+As of v3.0.1, the Agora Unity SDK enables users to join an unlimited number of channels at a time and to receive the audio and video streams of all the channels.
+
+<div class="alert note">
+<li>This feature applies to the live streaming channel profile. Do not use it for the communication profile.</li>
+<li>As of v3.4.5, Agora optimizes the publishing logic in the multichannel scenario. If you have upgraded the SDK from an earlier version to v3.4.5 or later, Agora recommends that you adjust your publishing settings by referring to <a href="#api_changes">API changes</a > to avoid any impact on your business functions.</li>
+</div>
+
+## Sample project
+
+Agora provides an open-source sample project [AgoraMultiChannel](https://github.com/AgoraIO/Agora-Unity-Quickstart/tree/master/API-Example-Unity/Assets/API-Example/examples/advanced/JoinMultipleChannel) on GitHub. You can download them and refer to the source code.
+
+## Implementation
+
+The Agora Unity SDK uses the `AgoraChannel` class to support the multi-channel function. 
+
+You can call `CreateChannel` multiple times to create multiple `AgoraChannel` objects with different `channelId`, and then call `JoinChannel` in `AgoraChannel` to join the channel.
+
+Follow these steps to implement the multi-channel function in your project:
+
+1. Call `GetEngine` to initialize `IRtcEngine`.
+2. Call `SetChannelProfile` to set the channel profile as live streaming.
+3. Call `CreateChannel` of the `IRtcEngine` class to create an `AgoraChannel` object with `channelId`.
+4. Call `SetClientRole` of the `AgoraChannel` class to set the user role.
+5. Call `JoinChannel` of the `AgoraChannel` class to join the channel. After joining a channel, the user publishes the local streams and automatically subscribes to the streams of all the other users in the channel by default. You can set the publishing and subscribing states in `ChannelMediaOptions` when joining a channel, and you can change the publishing and subscribing states in the methods with prefixes `MuteLocal`and `MuteRemote` of the `AgoraChannel` class after joining a channel.
+6. If you need to join more channels, repeat steps 3, 4, and 5.
+
+<div class="alert note"><li>To receive and render multi-channel videos, call <tt>SetMultiChannelWant</tt> before joining a channel, and call <tt>SetForMultiChannelUser</tt> before binding <tt>VideoSurface.cs</tt> to set up the local or remote video view.</li><li>Ensure that each channel you join has a unique channel name.</li><li>A user can publish local streams in only one channel at a time. Agora recommends joining a channel as a host when the user needs to publish local streams or as an audience member when the user does not need to publish local streams.</li></div>
+
+### API call sequence
+
+Refer to the following API sequence to join multiple channels:
+![1626686523068](https://web-cdn.agora.io/docs-files/1626686523068)
+
+### Sample code
+
+The following code demonstrates how to join an `AgoraChannel` channel, and then publish the local streams in the first channel.
+
+```c#
+void InitEngine()
+{
+    // 1. Initialize IRtcEngine.
+    mRtcEngine = IRtcEngine.GetEngine(APP_ID);
+    // 2.Enable the video module.
+    mRtcEngine.EnableVideo();
+    // To receive and render multi-channel videos, calls SetMultiChannelWant before joining a channel.
+    mRtcEngine.SetMultiChannelWant(true);
+    // 3. Set the channel profile as interactive live streaming.
+    mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
+    // 4.Create an AgoraChannel1 object.
+    channel1 = mRtcEngine.CreateChannel(CHANNEL_NAME_1);
+    // 5. Listens for callbacks which report a user joins or leaves the AgoraChannel1 channel successfully.
+    channel1.ChannelOnJoinChannelSuccess = Channel1OnJoinChannelSuccessHandler;
+    channel1.ChannelOnLeaveChannel = Channel1OnLeaveChannelHandler;
+    // 6. Set the user role as a host.
+    channel1.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
+    // 7. Join the AgoraChannel1 channel. The SDK publishes the local streams and automatically subscribes to the streams of all the other users in the channel by default.
+    channel1.JoinChannel(TOKEN_1, "", 0, new ChannelMediaOptions(true, true));
+    // 8. Create an AgoraChannel2 object.
+    channel2 = mRtcEngine.CreateChannel(CHANNEL_NAME_2);
+    // 9. Listens for callbacks which report a user joins or leaves the AgoraChannel2 channel successfully.
+    channel2.ChannelOnJoinChannelSuccess = Channel2OnJoinChannelSuccessHandler;
+    channel2.ChannelOnLeaveChannel = Channel2OnLeaveChannelHandler;
+    // 10. Set the user role as an audience member. Note that audience members cannot publish local streams.
+    channel2.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE);
+    // 11. Join the AgoraChannel2 channel. You need to set publishLocalAudio and publishLocalVideo to false; otherwise, the user fails to join the channel.
+    channel2.JoinChannel(TOKEN_2, "", 0, new ChannelMediaOptions(true, true, false, false));
+}
+
+void OnApplicationQuit()
+    {
+        Debug.Log("OnApplicationQuit");
+        if (mRtcEngine != null)
+        {
+            // 12. Leave and destroy the AgoraChannel2 channel.
+            channel2.LeaveChannel()
+            channel2.ReleaseChannel();
+            // 13. Leave and destroy the AgoraChannel1 channel.
+            channel1.LeaveChannel();
+            channel1.ReleaseChannel();
+
+			mRtcEngine.DisableVideoObserver();
+            // 14. Destroy the IRtcEngine object.
+            IRtcEngine.Destroy();
+        }
+    }
+
+// Occurs when a user joins the AgoraChannel1 channel.
+void Channel1OnJoinChannelSuccessHandler(string channelId, uint uid, int elapsed)
+	{
+    	logger.UpdateLog(string.Format("sdk version: ${0}", IRtcEngine.GetSdkVersion()));
+    	logger.UpdateLog(string.Format("onJoinChannelSuccess channelId: {0}, uid: {1}, elapsed: {2}", channelId, uid, elapsed));
+		makeVideoView(channelId ,0);
+	}
+
+// Occurs when a user joins the AgoraChannel2 channel.
+void Channel2OnJoinChannelSuccessHandler(string channelId, uint uid, int elapsed)
+	{
+    	logger.UpdateLog(string.Format("sdk version: ${0}", IRtcEngine.GetSdkVersion()));
+    	logger.UpdateLog(string.Format("onJoinChannelSuccess channelId: {0}, uid: {1}, elapsed: {2}", channelId, uid, elapsed));
+		makeVideoView(channelId, 0);
+	}
+
+// Occurs when a user leaves the AgoraChannel1 channel.
+void Channel1OnLeaveChannelHandler(string channelId, RtcStats rtcStats)
+    {
+        logger.UpdateLog(string.Format("Channel1OnLeaveChannelHandler channelId: {0}", channelId));
+    }
+
+// Occurs when a user leaves the AgoraChannel2 channel.
+void Channel2OnLeaveChannelHandler(string channelId, RtcStats rtcStats)
+    {
+        logger.UpdateLog(string.Format("Channel1OnLeaveChannelHandler channelId: {0}", channelId));
+    }
+
+// Creates a GameObject and binds the object to the VideoSurface.
+VideoSurface videoSurface = makeImageSurface(objName);
+        if (!ReferenceEquals(videoSurface, null))
+        {
+            // Sets up the local or remote video view.
+            videoSurface.SetForMultiChannelUser(channelId, uid);
+            videoSurface.SetEnable(true);
+            videoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.RawImage);
+            videoSurface.SetGameFps(30);
+        }
+
+public VideoSurface makeImageSurface(string goName)
+    {
+        GameObject go = new GameObject();
+
+        if (go == null)
+        {
+            return null;
+        }
+
+        go.name = goName;
+        go.AddComponent<UIElementDrag>();
+        go.AddComponent<RawImage>();
+
+        GameObject canvas = GameObject.Find("VideoCanvas");
+        if (canvas != null)
+        {
+            go.transform.parent = canvas.transform;
+            Debug.Log("add video view");
+        }
+        else
+        {
+            Debug.Log("Canvas is null video view");
+        }
+
+        go.transform.Rotate(0f, 0.0f, 180.0f);
+        float xPos = Random.Range(Offset - Screen.width / 2f, Screen.width / 2f - Offset);
+        float yPos = Random.Range(Offset, Screen.height / 2f - Offset);
+        Debug.Log("position x " + xPos + " y: " + yPos);
+        go.transform.localPosition = new Vector3(xPos, yPos, 0f);
+        go.transform.localScale = new Vector3(3f, 4f, 1f);
+
+        VideoSurface videoSurface = go.AddComponent<VideoSurface>();
+        return videoSurface;
+    }
+```
+
+### 
+
+
+
+### API reference
+
+- [`CreateChannel`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac14119e2505e2f44931bed0181c5624f)
+
+- [`AgoraChannel`](./API%20Reference/unity/classagora__gaming__rtc_1_1_agora_channel.html) 
+
+## Considerations
+
+### Subscription limits
+
+`JoinChannel` in the `AgoraChannel` class provides the media-subscription options (`autoSubscribeAudio` and `autoSubscribeVideo`) that determine whether to automatically subscribe to the remote streams after joining the channel. The default setting is to subscribe to all the streams automatically. After a user joins a channel, you can change the subscribing state by calling `MuteRemoteAudioStream` or `MuteRemoteVideoStream`.
+
+If you need to subscribe to the streams of specified users after joining an `AgoraChannel` channel, refer to the following steps:
+
+1. Call `JoinChannel` and set `autoSubscribeAudio = false` or `autoSubscribeVideo = false` of `ChannelMediaOptions` to unsubscribe from all remote users.
+2. In the channel, call `MuteRemoteAudioStream (uid,false)` or `MuteRemoteVideoStream(uid,false)` to subscribe to specified remote users.
+
+### Setting the remote video
+
+In video scenarios, to receive multi-channel video streams, you need to call `SetMultiChannelWant` before joining the channel. To render the remote video view, you need to call `SetForMultiChannelUser` before binding `VideoSurface.cs`, and specify the remote user’s `uid` and the `channelId` of their channel.
+
+### Publishing limits
+
+The SDK supports publishing local streams to only one channel at a time. Agora recommends setting the user role as an audience when joining a channel where the user do not need to publish streams, and setting `publishLocalAudio` and `publishLocalVideo` in `ChannelMediaOptions` to `false` when joining the channel.
+
+In the interactive live streaming profile, if a user joins the first channel as a host, the SDK publishes local streams in the first channel by default. If the user needs to join a second channel, you need to change the publishing state according to your actual scenario:
+
+- If the user does not need to publish local streams in the second channel, Agora recommends joining the second channel as an audience member (`SetClientRole(AUDIENCE)`).
+- If the user needs to publish local streams in the second channel, the user needs to stop publishing in the current channel before joining the second channel. Agora recommends setting the user role as an audience member (`SetClientRole(AUDIENCE)`) in the first channel and joining the second channel as a host (`SetClientRole(BROADCASTER)`).
+
+If a user publishes local streams in a channel and you call the following methods in a second channel, the method call fails, and the SDK returns `-5(ERR_REFUSED)`:
+
+- Set `publishLocalAudio = true` or `publishLocalVideo = true` when joining the second channel.
+- Call `MuteLocalAudioStream(false)` or `MuteLocalVideoStream(false)` after joining the second channel.
+- Call `SetClientRole(BROADCASTER)`.
+
+<a name="api_changes"></a>
+
+#### API changes
+
+As of v3.4.5, the `AgoraChannel` class changes as follows:
+
+- Deprecates `Publish` and `Unpublish`, and adds `MuteLocalAudioStream` and `MuteLocalVideoStream` instead. After joining a channel, you can set the publishing state of the audio stream and video stream separately. `muteLocalAudioStream` and `MuteLocalVideoStream` in the `IRtcEngine` and `AgoraChannel` classes control the publishing state of each channel in their respective classes only.
+- Adds the `publishLocalAudio` and `publishLocalVideo` members in `ChannelMediaOptions`. The default value is `true`. You can call `JoinChannel` to join a channel and set the publishing state. If a user publishes streams in a channel, regardless of whether the user is a host or an audience member, they need to set `publishLocalAudio` and `publishLocalVideo` to `false` when joining other channels; otherwise, they fail to join the channel.
+- After calling `SetClientRole(BROADCASTER)`, the local user publishes audio and video streams by default. You no longer need to call `Publish`.
+
+Earlier than v3.4.5:
+
+- Calling `MuteLocalAudioStream(true)` or `MuteLocalVideoStream(true)` in `IRtcEngine` takes effect in channels created by both the `IRtcEngine` and `AgoraChannel` classes. `MuteLocalAudioStream` and `MuteLocalVideoStream` take effect when they are called before or after a user joins a channel.
+- `JoinChannel` cannot set the publishing state of local streams.
+- Calling `SetClientRole(BROADCASTER)` of the `AgoraChannel` class does not publish local streams. You also need to call `Publish`.
+
+</PlatformWrapper>

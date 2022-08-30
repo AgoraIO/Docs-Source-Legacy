@@ -1,0 +1,64 @@
+This page provides sunset plans for some Agora services. You should prepare to replace or upgrade affected solutions in a timely fashion to avoid service disruptions.
+
+## SDKs earlier than v3.0.0
+
+### Retirement plans
+
+Agora begins implementing the retirement process for the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0. The specific plan is as follows:
+
+- From now to May 31, 2022, Agora no longer accepts requests for new features to the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0, but continues to provide bug fixes and security patches.
+- From June 1, 2022 to November 30, 2022, Agora no longer accepts requests for new features and bug fixes to the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0, but continues to provide security patches.
+- As of December 1, 2022, Agora no longer accepts requests for new features, bug fixes, or security patches to the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0.
+
+If you are using the Voice SDK or Video SDK for native platforms or third-party frameworks earlier than v3.0.0, upgrade as soon as possible.
+
+### Upgrade solutions
+
+The latest versions of the Voice SDK and Video SDK have made significant improvements to user experience, service reliability, and security. To avoid service disruptions, upgrade the Voice and Video SDKs you used as soon as possible by referring to the following information:
+
+- [SDK download links](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=All%20Platforms)
+- [Release notes](https://docs.agora.io/en/Interactive%20Broadcast/release_android_video?platform=Android)
+
+<div class="alert info">Click the <img src="https://web-cdn.agora.io/docs-files/1636965819958" width="150"/> button in the upper left corner of the website to switch to release notes for another platform.</div>
+
+If you encounter any problems, contact support@agora.io.
+
+
+## Media Push
+
+### Retirement plans
+
+#### Media Push (1.0)
+
+<div class="alert info">The service for Media Push (1.0) refers to the streaming service enabled by the following method: When a host joins an Agora channel, you use the <code>optionalInfo</code>/<code>info</code> parameter to send the transcoding information, enabling the Agora streaming server to transcode the hosts' streams in the channel into a stream in the RTMP protocol and push the stream to the CDN. The Media Push (1.0) is independent of the SDK version used.</div>
+
+As of January 15, 2021, Agora begins implementing the retirement process for the service for Media Push (1.0). As of April 15, 2021, Agora officially discontinues the service for Media Push (1.0).
+
+Please [upgrade your service](#upgrade) before April 15, 2021.
+
+#### Media Push (2.0)
+
+<div class="alert info">The service for Media Push (2.0) refers to the streaming service enabled by any of the following methods:<li>Using the Agora RTC SDK (Native, third-party framework) v2.4.0 or earlier and calling the <code>addPublishStreamUrl</code> or other related methods.</li><li>Using the Agora RTC SDK (Web) v2.8.0 or earlier and calling the <code>startLiveStreaming</code> or other related methods.</li></div>
+
+As of January 15, 2021, Agora begins implementing the retirement process for the service for Media Push (2.0). The specific plan is as follows:
+
+- As of January 15, 2021, Agora no longer accepts requests for new features to the service for Media Push (2.0).
+- As of July 15, 2021, Agora no longer accepts requests for bug fixes to the service for Media Push (2.0).
+- As of January 15, 2022, Agora officially discontinues the service for Media Push (2.0).
+
+Please [upgrade your service](#upgrade) before January 15, 2022.
+
+### <a name="upgrade"></a>Upgrade solutions
+
+<div class="alert info">The service for Media Push (3.0) refers to the streaming service enabled by any of the following methods:
+    <li>Using the Agora RTC SDK (Native, third-party framework) v2.4.1 or later and calling the <code>addPublishStreamUrl</code> or other related methods.</li>
+<li>Using server-side service.</li></div>
+
+Please upgrade Media Push (1.0) to Media Push (3.0) before April 15, 2021; please upgrade Media Push (2.0) to Media Push (3.0) before January 15, 2022. The upgrade methods for either Media Push (1.0) or Media Push (2.0) are as follows:
+
+- If you use the Agora RTC SDK (Native, third-party framework), upgrade the SDK to v2.4.1 or later.
+- If you use server-side service, contact support@agora.io to enable the **Media Push** service.
+
+If you use Agora RTC SDK for Media Push, read [Media Push](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android) before upgrading; if you use the server-side service for Media Push, read [Push Stream RESTful API](https://docs-preprod.agora.io/en/Interactive%20Broadcast/streaming_restful?platform=All%20Platforms) before upgrading. Perform relevant tests to verify after upgrading.
+
+If you encounter any problems, contact support@agora.io.

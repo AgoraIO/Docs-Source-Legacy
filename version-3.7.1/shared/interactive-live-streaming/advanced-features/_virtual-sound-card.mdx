@@ -1,0 +1,40 @@
+<PlatformWrapper platform="macos">
+
+## Introduction
+
+A virtual sound card is a software solution for processing acoustic signals through the system interface. A virtual sound card is not a physical acoustic hardware device.
+
+To enable the loopback audio capture on macOS systems, you need to install a virtual sound card, call `enableLoopbackRecording`, and fill in the `deviceName` parameter as a string with the name of the virtual sound card. The SDK mixes the audio captured by the sound card into the local audio, which can be heard by both local and remote users.
+
+AgoraALD (Agora Audio Loopback Device) is the virtual sound card developed by Agora. It is based on the AudioServerPlugin implementation and supports a sample rate of 44100 Hz and a float32 dual-channel input/output format. AgoraALD is designed to be compatible with all versions of the official macOS SDK maintained by Agora.
+
+## How to install
+
+### 1. Request entitlements
+
+Because AgoraALD is a DriverKit service, you need to request entitlements from Apple before installing AgoraALD to ensure system security. To learn why you need to request entitlements to use DriverKit services, See [Requesting Entitlements for DriverKit Development](https://developer.apple.com/documentation/driverkit/requesting_entitlements_for_driverkit_development).
+
+To gain application access, click [Contact us](https://developer.apple.com/contact/apple-id/) on the [System Extensions](https://developer.apple.com/system-extensions/) webpage.
+
+
+<div class="alert note"><li>After you submit your application to Apple, it will take some time to receive a response, so schedule your application's availability at your discretion.</li>
+<li>While your application is being reviewed by Apple, Apple prompts you to test DriverKit services on your Mac device by temporarily disabling SIP (System Integrity Protection).</li>
+<li>You cannot apply for entitlements if you do not intend to upload your app to the Apple App Store.</li></div>
+
+
+### 2. Install AgoraALD
+
+1. Download the SDK, and get the `AgoraALD.driver` file.
+
+2. In the installer, add the following command:
+
+    ```
+    sudo cp -R <the diver path in project>/AgoraALD.driver /Library/Audio/Plug-Ins/HAL
+    sudo launchctl kickstart -kp system/com.apple.audio.coreaudiod
+    ```
+
+You know the installation is successful when AgoraALD appears in the list of sound output devices on your system.
+
+<div class="alert note">If you need to add some business logic to the virtual sound card, you can contact <a href="mailto:support@agora.io">technical support</a> to obtain the source code of AgoraALD. You can then modify the code and install it into your application.</div>
+
+</PlatformWrapper>

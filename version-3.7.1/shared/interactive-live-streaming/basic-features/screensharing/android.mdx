@@ -1,0 +1,524 @@
+<PlatformWrapper platform="android">
+
+## Introduction
+
+Screen sharing enables the host of an interactive live streaming broadcast or video call to display what is on their screen to other users in the channel. This technology has many obvious advantages for communicating information, particularly in the following scenarios:
+
+- During video conferencing, the speaker can share a local image, web page, or full presentation with other participants.
+- For online instruction, the teacher can share slides or notes with students.
+
+## Share a screen
+
+### Implementations for v3.7.0 and later
+
+This section describes how to implement screen sharing using the Android SDK v3.7.0 and later.
+
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](https://docs.agora.io/cn/Interactive%20Broadcast/start_call_android) or [Start Interactive Video Streaming](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_android).
+
+
+#### 1. Integrate the AgoraScreenShareExtension
+
+1. Copy the `AgoraScreenShareExtension.aar` file of the SDK to the `/app/libs/` directory.
+2. Add the following line in the `dependencies` node in the `/app/build.gradle` file to support importing files in the AAR format.
+
+    ```java
+    implementation fileTree(dir: "libs", include: ["*.jar","*.aar"])
+    ```
+
+#### 2. Call the API
+
+Call `startScreenCapture` to start screen sharing.
+
+#### Sample project
+
+Agora provides an open-source [sample project](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ScreenShare.java) on GitHub for your reference.
+
+
+#### API reference
+
+Some restrictions and cautions exist for using the screen sharing feature, and charges can apply. Agora recommends that you read the following API references before calling the API:
+
+- [`startScreenCapture`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac018ce7c8b9a3a6065604bfa4244d0d6)
+- [`updateScreenCaptureParameters`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4e50eea3611c15dec7fa851c1b433ecd)
+- [`stopScreenCapture`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab29c12ef630acdb25a4997af5c258f10)
+
+
+### Implementations earlier than v3.7.0
+
+This section describes how to implement screen sharing using the Android SDK earlier than v3.7.0.
+
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](https://docs.agora.io/cn/Interactive%20Broadcast/start_call_android) or [Start Interactive Video Streaming](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_android).
+
+The Agora SDK does not provide any method for screen share on Android. Therefore, You need to implement this function using the native screen-capture APIs provided by Android, and the custom video-source APIs provided by Agora.
+
+1. Use `android.media.projection` and `android.hardware.display.VirtualDisplay` to get and pass the screen-capture data.
+2. Create an OpenGL ES environment. Create a `SurfaceView` object and pass the object to `VirtualDisplay`, which works as the recipient of the screen-capture data.
+3. You can get the screen-capture data from the callbacks of `SurfaceView`. Use either the `Push` mode or `mediaIO` mode to push the screen-capture data to the SDK. For details, see [Custom Video Source and Renderer](custom_video_android).
+
+#### Data transfer
+
+The following diagram shows how data is transferred during screen sharing on Android:
+
+![1607071986468](https://web-cdn.agora.io/docs-files/1607071986468)
+
+#### Sample code
+
+<div class="alert note">The code samples provided in this section use <code>MediaProjection</code> and <code>VirtualDisplay</code> APIs provided by Android and have the following Android/API version requirements:<ul>
+	<li>The Android version must be Lollipop or higher.</li>
+		<li>To use <code>MediaProjection</code> APIs, the Android API level must be 21 or higher.</li>
+		<li>To use <code>VirtualDisplay</code> APIs, the Android API level must be 19 or higher.</li></ul>
+	For detailed usage and considerations, see the Android documentation <a href="https://developer.android.com/reference/android/media/projection/MediaProjection">MediaProjection</a> and <a href="https://developer.android.com/reference/android/hardware/display/VirtualDisplay">VirtualDisplay</a>.</div>
+
+1. Implement `IVideoSource` and `IVideoFrameConsumer`, and rewrite the callbacks in `IVideoSource`.
+
+    ```java
+    // Implements the IVideoSource interface
+    public class ExternalVideoInputManager implements IVideoSource {
+    ...
+        // Gets the IVideoFrameConsumer object when initializing the video source
+        @Override
+        public boolean onInitialize(IVideoFrameConsumer consumer) {
+            mConsumer = consumer;
+            return true;
+        }
+
+        @Override
+        public boolean onStart() {
+            return true;
+        }
+
+        @Override
+        public void onStop() {
+
+        }
+        // Sets IVideoFrameConsumer as null when IVideoFrameConsumer is released by the media engine
+        @Override
+        public void onDispose() {
+            Log.e(TAG, "SwitchExternalVideo-onDispose");
+            mConsumer = null;
+        }
+
+        @Override
+        public int getBufferType() {
+            return TEXTURE.intValue();
+        }
+
+        @Override
+        public int getCaptureType() {
+            return CAMERA;
+        }
+
+        @Override
+        public int getContentHint() {
+            return MediaIO.ContentHint.NONE.intValue();
+        }
+     ...
+    }
+    ```
+
+    ```java
+    // Implements IVideoFrameConsumer
+    private volatile IVideoFrameConsumer mConsumer;
+    ```
+
+2. Set the custom video source before joining a channel.
+
+    ```java
+    // Sets the input thread of the custom video source
+    // In the sample project, we use the class in the open-source grafika project, which encapsulates the graphics architecture of Android. For details, see https://source.android.com/devices/graphics/architecture
+    // For detailed implementation of EglCore, GlUtil, EGLContext, and ProgramTextureOES, see https://github.com/google/grafika
+    // The GLThreadContext class contains EglCore, EGLContext, and ProgramTextureOES
+    private void prepare() {
+                // Creates an OpenEL ES environment based on EglCore
+                mEglCore = new EglCore();
+                mEglSurface = mEglCore.createOffscreenSurface(1, 1);
+                mEglCore.makeCurrent(mEglSurface);
+                // Creates an EGL texture object based on GlUtil
+                mTextureId = GlUtil.createTextureObject(GLES11Ext.GL_TEXTURE_EXTERNAL_OES);
+                // Creates a SurfaceTexture object based on EGL texture
+                mSurfaceTexture = new SurfaceTexture(mTextureId);
+                // Surface a Surface object based on SurfaceTexture
+                mSurface = new Surface(mSurfaceTexture);
+                // Pass EGLCore, EGL context, and ProgramTextureOES to GLThreadContext as its members
+                mThreadContext = new GLThreadContext();
+                mThreadContext.eglCore = mEglCore;
+                mThreadContext.context = mEglCore.getEGLContext();
+                mThreadContext.program = new ProgramTextureOES();
+
+                // Sets the custom video source
+                ENGINE.setVideoSource(ExternalVideoInputManager.this);
+            }
+    ```
+
+3. Create an `intent` based on `MediaProjection`, and pass the `intent` to the `startActivityForResult()` method to start capturing screen data.
+
+    ```java
+    private class VideoInputServiceConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            mService = (IExternalVideoInputService) iBinder;
+    // Starts capturing screen data. Ensure that your Android version must be Lollipop or higher.
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    // Instantiates a MediaProjectionManager object
+                    MediaProjectionManager mpm = (MediaProjectionManager)
+                            getContext().getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+                    // Creates an intent
+                    Intent intent = mpm.createScreenCaptureIntent();
+                    // Starts screen capturing
+                    startActivityForResult(intent, PROJECTION_REQ_CODE);
+                }
+    ```
+
+4. Get the screen-capture data information from the activity result.
+
+    ```java
+    // Gets the intent of the data information from activity result
+     @Override
+        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == PROJECTION_REQ_CODE && resultCode == RESULT_OK) {
+                ...
+                    // Sets the custom video source as the screen-capture data
+                    mService.setExternalVideoInput(ExternalVideoInputManager.TYPE_SCREEN_SHARE, data);
+                }
+                catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    ```
+
+    The implementation of `setExternalVideoInput(int type, Intent intent)` is as follows:
+
+    ```java
+    // Gets the parameters of the screen-capture data from intent
+    boolean setExternalVideoInput(int type, Intent intent) {
+
+            if (mCurInputType == type && mCurVideoInput != null
+                    && mCurVideoInput.isRunning()) {
+                return false;
+            }
+
+            IExternalVideoInput input;
+            switch (type) {
+                ...
+                case TYPE_SCREEN_SHARE:
+                    // Gets the screen-capture data from the intent of MediaProjection
+                    int width = intent.getIntExtra(FLAG_SCREEN_WIDTH, DEFAULT_SCREEN_WIDTH);
+                    int height = intent.getIntExtra(FLAG_SCREEN_HEIGHT, DEFAULT_SCREEN_HEIGHT);
+                    int dpi = intent.getIntExtra(FLAG_SCREEN_DPI, DEFAULT_SCREEN_DPI);
+                    int fps = intent.getIntExtra(FLAG_FRAME_RATE, DEFAULT_FRAME_RATE);
+                    Log.i(TAG, "ScreenShare:" + width + "|" + height + "|" + dpi + "|" + fps);
+                    // Instantiates a ScreenShareInput class using the screen-capture data
+                    input = new ScreenShareInput(context, width, height, dpi, fps, intent);
+                    break;
+                default:
+                    input = null;
+            }
+            // Sets the captured video data as the ScreenShareInput object, and creates an input thread for external video data
+            setExternalVideoInput(input);
+            mCurInputType = type;
+            return true;
+        }
+    ```
+
+5. During the initialization of the input thread of the external video data, create a `VirtualDisplay` object with `MediaProjection`, and render `VirtualDisplay` on `SurfaceView`.
+
+    ```java
+    public void onVideoInitialized(Surface target) {
+            MediaProjectionManager pm = (MediaProjectionManager)
+                    mContext.getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+            mMediaProjection = pm.getMediaProjection(Activity.RESULT_OK, mIntent);
+
+            if (mMediaProjection == null) {
+                Log.e(TAG, "media projection start failed");
+                return;
+            }
+            // Creates VirtualDisplay with MediaProjection, and render VirtualDisplay on SurfaceView
+            mVirtualDisplay = mMediaProjection.createVirtualDisplay(
+                    VIRTUAL_DISPLAY_NAME, mSurfaceWidth, mSurfaceHeight, mScreenDpi,
+                    DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC, target,
+                    null, null);
+        }
+    ```
+
+6. Use `SurfaceView` as the custom video source. After the user joins the channel, the custom video module gets the screen-capture data using `consumeTextureFrame` in `ExternalVideoInputThread` and passes the data to the SDK.
+
+    ```java
+    public void run() {
+                    ...
+                    // Calls updateTexImage() to update the data to the texture object of OpenGL ES
+                    // Calls getTransformMatrix() to transform the texture matrix
+                     try {
+                     mSurfaceTexture.updateTexImage();
+                     mSurfaceTexture.getTransformMatrix(mTransform);
+                          }
+                     catch (Exception e) {
+                     e.printStackTrace();
+                     }
+
+                    // Gets the screen-capture data from onFrameAvailable. onFrameAvailable is a rewrite of ScreenShareInput, which gets information such as the texture ID and transform information
+                    // No need to render the screen-capture data on the local view
+                    if (mCurVideoInput != null) {
+                        mCurVideoInput.onFrameAvailable(mThreadContext, mTextureId, mTransform);
+                    }
+
+                    mEglCore.makeCurrent(mEglSurface);
+                    GLES20.glViewport(0, 0, mVideoWidth, mVideoHeight);
+
+                    if (mConsumer != null) {
+                        Log.e(TAG, "SDK encoding->width:" + mVideoWidth + ",height:" + mVideoHeight);
+                        // Calls consumeTextureFrame to pass the video data to the SDK
+                        mConsumer.consumeTextureFrame(mTextureId,
+                                TEXTURE_OES.intValue(),
+                                mVideoWidth, mVideoHeight, 0,
+                                System.currentTimeMillis(), mTransform);
+                    }
+
+                    // Waits for the next frame
+                    waitForNextFrame();
+                    ...
+            }
+    ```
+
+
+#### Sample project
+
+Agora provides an open-source [sample project](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SwitchExternalVideo.java) on GitHub to show how to switch the video between screen sharing and the camera.
+
+
+## Send video streams from screen sharing and local camera
+
+Currently, the Agora RTC Native SDK supports creating only one `RtcEngine` instance per app. You need multi-processing to send video from screen sharing and the local camera at the same time.
+
+### Implementation
+
+![1609729759595](https://web-cdn.agora.io/docs-files/1609729759595)
+
+You need to create separate processes for screen sharing and video captured by the local camera. Both processes use the following methods to send video data to the SDK:
+
+- Local-camera process: Implemented with `joinChannel`. This process is often the main process and communicates with the screen sharing process via AIDL (Android Interface Definition Language). See [Android documentation](https://developer.android.com/guide/components/aidl) to learn more about AIDL.
+- Screen sharing process: Implemented with `MediaProjection`, `VirtualDisplay`, and custom video capture. The screen sharing process creates an `RtcEngine` object and uses the object to create and join a channel for screen sharing.
+
+<div class="alert note">The users of both processes must join the same channel. After joining a channel, a user subscribes to the audio and video streams of all other users in the channel by default, thus incurring all associated usage costs. Because the screen sharing process is only used to publish the screen sharing stream, you can call <code>muteAllRemoteAudioStreams(true)</code> and <code>muteAllRemoteVideoStreams(true)</code> to mute remote audio and video streams. </div>
+
+### Sample code
+
+The following sample code uses multi-processing to send the video from the screen sharing video and locally captured video. AIDL is used to communicate between the processes.
+
+1. Configure `android:process` in `AndroidManifest.xml` for the components.
+
+    ```xml
+    <application>
+        <activity
+            android:name=".impl.ScreenCapture$ScreenCaptureAssistantActivity"
+            android:process=":screensharingsvc"
+            android:screenOrientation="fullUser"
+            android:theme="@android:style/Theme.Translucent" />
+        <service
+            android:name=".impl.ScreenSharingService"
+            android:process=":screensharingsvc">
+            <intent-filter>
+                <action android:name="android.intent.action.screenshare" />
+            </intent-filter>
+        </service>
+     </application>
+    ```
+
+2. Create an AIDL interface, which includes methods to communicate between processes.
+
+    ```java
+    // Includes methods to manage the screen sharing process
+    // IScreenSharing.aidl
+    package io.agora.rtc.ss.aidl;
+
+    import io.agora.rtc.ss.aidl.INotification;
+
+    interface IScreenSharing {
+        void registerCallback(INotification callback);
+        void unregisterCallback(INotification callback);
+        void startShare();
+        void stopShare();
+        void renewToken(String token);
+    }
+    ```
+
+    ```java
+    // Includes callbacks to receive notifications from the screen sharing process
+    // INotification.aidl
+    package io.agora.rtc.ss.aidl;
+
+    interface INotification {
+        void onError(int error);
+        void onTokenWillExpire();
+    }
+    ```
+
+3. Implement the screen sharing process. Screen sharing is implemented with `MediaProjection`, `VirtualDisplay`, and custom video source. The screen sharing process creates an `RtcEngine` object and uses the object to create and join a channel for screen sharing.
+
+    ```java
+    // Define the ScreenSharingClient object
+    public class ScreenSharingClient {
+        private static final String TAG = ScreenSharingClient.class.getSimpleName();
+        private static IScreenSharing mScreenShareSvc;
+        private IStateListener mStateListener;
+        private static volatile ScreenSharingClient mInstance;
+
+        public static ScreenSharingClient getInstance() {
+            if (mInstance == null) {
+                synchronized (ScreenSharingClient.class) {
+                    if (mInstance == null) {
+                        mInstance = new ScreenSharingClient();
+                    }
+                }
+            }
+
+            return mInstance;
+        }
+
+    // Start screen sharing
+    public void start(Context context, String appId, String token, String channelName, int uid, VideoEncoderConfiguration vec) {
+            if (mScreenShareSvc == null) {
+                Intent intent = new Intent(context, ScreenSharingService.class);
+                intent.putExtra(Constant.APP_ID, appId);
+                intent.putExtra(Constant.ACCESS_TOKEN, token);
+                intent.putExtra(Constant.CHANNEL_NAME, channelName);
+                intent.putExtra(Constant.UID, uid);
+                intent.putExtra(Constant.WIDTH, vec.dimensions.width);
+                intent.putExtra(Constant.HEIGHT, vec.dimensions.height);
+                intent.putExtra(Constant.FRAME_RATE, vec.frameRate);
+                intent.putExtra(Constant.BITRATE, vec.bitrate);
+                intent.putExtra(Constant.ORIENTATION_MODE, vec.orientationMode.getValue());
+                context.bindService(intent, mScreenShareConn, Context.BIND_AUTO_CREATE);
+            } else {
+                try {
+                    mScreenShareSvc.startShare();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, Log.getStackTraceString(e));
+                }
+            }
+
+        }
+
+    // Stop screen sharing
+    public void stop(Context context) {
+            if (mScreenShareSvc != null) {
+                try {
+                    mScreenShareSvc.stopShare();
+                    mScreenShareSvc.unregisterCallback(mNotification);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, Log.getStackTraceString(e));
+                } finally {
+                    mScreenShareSvc = null;
+                }
+            }
+            context.unbindService(mScreenShareConn);
+        }
+    ...
+    }
+    ```
+
+    After binding the screen sharing service, the screen sharing process creates an `RtcEngine` object and joins the channel for screen sharing.
+
+    ```java
+        @Override
+        public IBinder onBind(Intent intent) {
+            // Creates a RtcEngine object
+            setUpEngine(intent);
+            // Set video encoding configurations
+            setUpVideoConfig(intent);
+            // Join the channel
+            joinChannel(intent);
+            return mBinder;
+        }
+    ```
+
+    When creating the `RtcEngine` object in the screen sharing process, perform the following configurations:
+
+    ```java
+    // Mute all audio streams
+    mRtcEngine.muteAllRemoteAudioStreams(true);
+    // Mute all video streams
+    mRtcEngine.muteAllRemoteVideoStreams(true);
+    // Disable the audio module
+    mRtcEngine.disableAudio();
+    ```
+
+4. Implement the local-camera process and the code logic to start the screen sharing process.
+
+    ```java
+    public class MultiProcess extends BaseFragment implements View.OnClickListener
+    {
+        private static final String TAG = MultiProcess.class.getSimpleName();
+        // Define the uid for the screen sharing process
+        private static final Integer SCREEN_SHARE_UID = 10000;
+        ...
+        @Override
+        public void onActivityCreated(@Nullable Bundle savedInstanceState)
+        {
+            super.onActivityCreated(savedInstanceState);
+            Context context = getContext();
+            if (context == null)
+            {
+                return;
+            }
+            try
+            {
+                // Create an RtcEngine instance
+                engine = RtcEngine.create(context.getApplicationContext(), getString(R.string.agora_app_id), iRtcEngineEventHandler);
+                // Initialize the screen sharing process
+                mSSClient = ScreenSharingClient.getInstance();
+                mSSClient.setListener(mListener);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                getActivity().onBackPressed();
+            }
+        }
+        ...
+                // Run the screen sharing process and send information such as App ID and channel ID to the screen sharing process
+                else if (v.getId() == R.id.screenShare){
+                String channelId = et_channel.getText().toString();
+                if (!isSharing) {
+                    mSSClient.start(getContext(), getResources().getString(R.string.agora_app_id), null,
+                            channelId, SCREEN_SHARE_UID, new VideoEncoderConfiguration(
+                                    VD_640x360,
+                                    FRAME_RATE_FPS_15,
+                                    STANDARD_BITRATE,
+                                    ORIENTATION_MODE_ADAPTIVE
+                            ));
+                    screenShare.setText(getResources().getString(R.string.stop));
+                    isSharing = true;
+                } else {
+                    mSSClient.stop(getContext());
+                    screenShare.setText(getResources().getString(R.string.screenshare));
+                    isSharing = false;
+                }
+            }
+          ...
+            // Create a view for local preview
+            SurfaceView surfaceView = RtcEngine.CreateRendererView(context);
+            if(fl_local.getChildCount() > 0)
+            {
+                fl_local.removeAllViews();
+            }
+          ...
+            // Join channel
+            int res = engine.joinChannel(accessToken, channelId, "Extra Optional Data", 0);
+            if (res != 0)
+            {
+                showAlert(RtcEngine.getErrorDescription(Math.abs(res)));
+                return;
+            }
+            join.setEnabled(false);
+        }
+    ```
+
+### Sample project
+
+Agora provides an open-source [sample project](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/MultiProcess.java) on GitHub to show how to send video from both screen sharing and the camera by using dual processes.
+
+</PlatformWrapper>

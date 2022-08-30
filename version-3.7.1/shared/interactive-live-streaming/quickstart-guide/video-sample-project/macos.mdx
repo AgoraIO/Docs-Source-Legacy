@@ -1,0 +1,82 @@
+<PlatformWrapper platform="macos">
+
+Agora provides an open-source [API-Examples](https://github.com/AgoraIO/API-Examples) sample project on GitHub. This page introduces how to run this project and experience a live video streaming implemented by the Agora SDK.
+
+
+## Prerequisites
+
+
+$$ dcdaa580-e53b-11eb-b768-51ffcd29c763
+
+## Procedures
+
+### 1. Create an Agora project
+
+To create an Agora project, do the following:
+
+1. Enter the [Project Management](https://console.agora.io/projects) page.
+2. Click **Create**.
+3. Follow the on-screen instructions to enter a project name and use case, and check **Secured mode: APP ID + Token (Recommended)** as the authentication mechanism.
+4. Click **Submit**. You can now see the project on the **Project Management** page.
+
+### <a name="appid"></a>2. Get an App ID
+
+To copy this App ID, find your project on the [Project Management](https://console.agora.io/projects) page in Agora Console, and click the <img src="https://web-cdn.agora.io/docs-files/1637824227532" />  icon in the App ID column.
+
+
+<div class="alert info">The App ID is needed when you run the sample project.</div>
+
+### <a name="temptoken"></a>3. Generate a temporary token
+
+To ensure communication security, Agora recommends using [tokens](https://docs.agora.io/en/AgoraPlatform/term_token) to authenticate users joining a channel.
+
+For testing purposes, Agora Console supports generating RTC temporary tokens. To generate an RTC temporary token:
+1. On the [Project Management](https://console.agora.io/projects) page, find your project and click **Config**.
+  ![1641971834422](https://web-cdn.agora.io/docs-files/1641971834422) 
+2. Click **Generate temp RTC token** under **Primary Certificate**.
+  ![1641971893263](https://web-cdn.agora.io/docs-files/1641971893263)
+3. Enter the name of the channel that you want to join, and click **Generate**. When joining the channel later, ensure that the channel name is the same with the one you enter here.
+ <img src="https://web-cdn.agora.io/docs-files/1649997524064" />
+4. Click the copy icon to copy the temporary token. 
+ <img src="https://web-cdn.agora.io/docs-files/1649997750496" />
+
+<div class="alert note">Temporary tokens are for demonstration and testing purposes only, and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. For details, see <a href="https://docs.agora.io/en/Video/token_server?platform=Android">Authenticate Your Users with Tokens</a>.</div>
+
+
+
+### 4. Configure the sample project
+
+Download the latest [Video SDK](./downloads?platform=iOS), and fill in the `samples/APIExample/APIExample/Common/KeyCenter.swift` file with the App ID and temporary token generated in Agora Console.
+
+  ```swift
+  struct KeyCenter {
+      // Replace #Your App Id# with your App ID, and add quotation marks around it, such as "xxxxxx"
+      static let AppId: String = <#Your App Id#>
+      // Replace #Temp Access Token# with your temporary Token, and add quotation marks around it, such as "xxxxxx"
+      static var Token: String? = <#Temp Access Token#>
+  }
+  ```
+
+### 5. Integrate the Agora SDK
+
+Run `pod install` in the `samples/API-Example` directory, and wait for the installation to complete.
+
+### 6. Compile and run the sample project
+
+1. Click on the `APIExample.xcworkspace` file to open the `API-Example` project with Xcode, and check your Mac device in the **Mac Device** option.
+
+    <img src="https://web-cdn.agora.io/docs-files/1639721666438" width="200"/>
+
+
+2. In **Signing & Capabilities** under the project **TARGETS**, check **Automatically manage signing**, and configure your Apple developer account and **Bundle Identifier**.
+
+3. Click <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25"/> to start compiling.
+
+4. After a successful compilation, the Agora API Example app automatically runs. Click **Join a channel (Video)**, enter the channel name that you used to generate the temporary token, such as `test`, and click **Join**.
+
+    <img src="https://web-cdn.agora.io/docs-files/1645784912934" width="400"/>
+
+
+You can now start interactive live video streaming as `local host`. You can invite your friend to join your live channel as `remote host` through the [Agora Web sample app](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/) using the same App ID, channel name, and temporary token.
+
+</PlatformWrapper>

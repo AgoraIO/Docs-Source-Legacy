@@ -1,0 +1,237 @@
+<PlatformWrapper platform="windows">
+
+## Introduction
+
+The Agora SDK uses default audio modules for capturing and rendering in real-time communications.
+
+However, these default modules might not meet your development requirements, such as in the following scenarios:
+
+- Your app has its own audio module.
+- You need to process the captured audio with a pre-processing library for functions such as voice enhancement.
+- You need flexible device resource allocation to avoid conflicts with other services.
+
+This article describes how to use the Agora Native SDK to customize the audio source and renderer.
+
+## Sample project
+
+Agora provides an [open-source project](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/CustomAudioCapture) on GitHub. You can download it for source code reference.
+
+## Implementation
+
+Before customizing the audio source or sink, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](./start_call_android) or [Start Live Interactive Streaming](./start_live_android).
+
+### Custom Audio Source
+
+Refer to the following steps to customize the audio source in your project:
+
+1. Call `setExternalAudioSource` to set the audio source outside the SDK. You need to manage your own audio capture module.
+2. Call `joinChannel`.
+3. Call `pushAudioFrame` to send audio frames to the SDK.
+
+#### API call sequence
+
+Refer to the following diagram to customize the audio source in your project.
+
+![img](https://web-cdn.agora.io/docs-files/1569383958150)
+
+
+#### Data Transfer
+
+The following diagram shows the audio data transfer for using a custom audio source:
+
+![1606284421235](https://web-cdn.agora.io/docs-files/1606284421235)
+
+- Develop the capture module using the platform's native libraries, such as DirectShow, to get audio frames from the capturing device.
+- Develop the rendering module using the platform's native libraries, such as DirectSound, to render audio frames.
+- Call `pushAudioFrame` to send the captured audio frames to the SDK.
+
+#### Sample code
+
+Refer to the following steps to customize the audio source and renderer in your project.
+
+1. Call `setExternalAudioSource` to set the audio source.
+
+```cpp
+// Set or cancel the custom audio source
+BOOL CAgoraCaptureAduioDlg::EnableExtendAudioCapture(BOOL bEnable)
+{
+    int nRet = 0;
+    if ( bEnable )
+        // Set the custom audio source
+        nRet = m_rtcEngine->setExternalAudioSource(true, m_capAudioInfo.sampleRate, m_capAudioInfo.channels);
+    else
+        // Cancel the custom audio source
+        nRet = m_rtcEngine->setExternalAudioSource(false, m_capAudioInfo.sampleRate, m_capAudioInfo.channels);
+    return nRet == 0 ? TRUE : FALSE;
+}
+```
+
+2. Set the parameters of `AudioFrame` in `IAudioFrameObserver` and the recorded data format in `onRecordAudioFrame`. Start the capture module to capture audio data.
+
+```cpp
+// Start the capture module to capture audio data
+void CAgoraCaptureAduioDlg::EnableCaputre(BOOL bEnable) {
+    WAVEFORMATEX    waveFormat;
+    SIZE_T            nBufferSize = 0;
+    if (bEnable == (BOOL)m_extenalCaptureAudio)
+        return;
+    if (bEnable)
+    {
+        // Select capture device
+        m_agAudioCaptureDevice.SelectMediaCap(m_cmbAudioType.GetCurSel());
+        // Get audio capqture device
+        m_agAudioCaptureDevice.GetCurrentAudioCap(&waveFormat);
+        nBufferSize = waveFormat.nAvgBytesPerSec / AUDIO_CALLBACK_TIMES;
+        // Set capture buffer
+        m_agAudioCaptureDevice.SetCaptureBuffer(nBufferSize, 16, waveFormat.nBlockAlign);
+        // Set the parameters for AudioFrame in IAudioFrameObserver per the captured audio
+        m_audioFrame.avsync_type = 0;
+        m_audioFrame.bytesPerSample = 2;
+        m_audioFrame.type = IAudioFrameObserver::FRAME_TYPE_PCM16;
+        m_audioFrame.channels = waveFormat.nChannels;
+        m_audioFrame.samplesPerSec = waveFormat.nSamplesPerSec;
+        m_audioFrame.samples = m_audioFrame.samplesPerSec / 100;
+  
+        // Set the recorded audio format in onRecordAudioFrame. 
+        // You must set mode as RAW_AUDIO_FRAME_OP_MODE_READ_WRITE to read and write data.
+        m_rtcEngine->setRecordingAudioFrameParameters(waveFormat.nSamplesPerSec, waveFormat.nChannels, RAW_AUDIO_FRAME_OP_MODE_READ_WRITE, waveFormat.nSamplesPerSec * waveFormat.nChannels / 100);
+        // Create audio capture filter
+        if (!m_agAudioCaptureDevice.CreateCaptureFilter())
+            return;
+        // Start audio capture
+        m_agAudioCaptureDevice.Start();
+    }
+    else {
+        // Stop audio capture
+        m_agAudioCaptureDevice.Stop();
+    }
+    m_extenalCaptureAudio = !m_extenalCaptureAudio;
+}
+```
+
+3. Call `pushAudioFrame` to send the captured audio data to the SDK.
+
+```cpp
+// Send the captured audio frames to the SDK
+void CAgoraCaptureAduioDlg::PushAudioFrameThread(CAgoraCaptureAduioDlg * self)
+{ 
+    // Create an AutoPtr instance using the IMediaEngine as template
+    agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
+    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID. 
+    // The AutoPtr instance accesses the pointer to the IMediaEngine instance and calls pushAudioFrame via IMediaEngine.
+    mediaEngine.queryInterface(self->m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
+    int fps = self->m_audioFrame.samplesPerSec / self->m_audioFrame.samples;
+    while (self->m_extenalCaptureAudio)
+    {
+        // Get the size of each audio frame sample
+        SIZE_T nSize = self->m_audioFrame.samples * self->m_audioFrame.channels * self->m_audioFrame.bytesPerSample;
+        unsigned int readByte = 0;
+        int timestamp = 0;
+        // If no audio buffer is available, sleep for 1 millisecond, skip the following code, and continue with the loop
+       if (!CircleBuffer::GetInstance()->readBuffer(self->m_audioFrame.buffer, nSize, &readByte, timestamp))
+        {
+            Sleep(1);
+            continue;
+        }
+        CString strInfo;
+        strInfo.Format(_T("audio Frame buffer size:%d, readByte:%d, timestamp:%d \n"), nSize, readByte, timestamp);
+        OutputDebugString(strInfo);
+        // Set the render time of the captured audio frame as the number of milliseconds each audio frame appears
+       self->m_audioFrame.renderTimeMs = 1000 / fps;
+        // Send the captured audio frames to the SDK
+       mediaEngine->pushAudioFrame(&self->m_audioFrame);
+        // Sleep for the number of milliseconds each audio frame appears
+       Sleep(1000 / fps);
+    }
+}
+```
+
+#### API Reference
+
+- [`setExternalAudioSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a1dfb925d8ba1a60ca1d9ca04a4d7d65f)
+- [`pushAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#a2d3bb76cbc7008960166bb292a193616)
+
+### Custom Audio Renderer
+
+1. Call `setExternalAudioSink` to set the audio renderer.
+2. Call `pullAudioFrame` to pull remote audio data.
+3. Call the rendering module to render the pulled remote audio data, which can be acquired from the `buffer` parameter in `AudioFrame` of `IAudioFrameObserver`.
+
+#### API call sequence
+
+Refer to the following diagram to customize the audio source in your project.
+
+![img](https://web-cdn.agora.io/docs-files/1569384254887)
+
+#### Data Transfer
+
+The following diagram shows the audio data transfer for using a custom audio renderer:
+
+![1606284463201](https://web-cdn.agora.io/docs-files/1606284463201)
+
+- Call `pullAudioFrame` to pull remote audio frames from the SDK.
+- Call the rendering module to render the pulled remote audio frames, which are stored in the `buffer` parameter of `AudioFrame`.
+
+#### Sample code
+
+1. Call `setExternalAudioSink` to set the audio rendering module outside the SDK.
+
+```cpp
+// Set the custom audio renderer 
+int nRet = 0;
+nRet = m_rtcEngine->setExternalAudioSink(true, m_renderAudioInfo.sampleRate, m_renderAudioInfo.channels);
+```
+
+2. Call `pullAudioFrame` to pull remote audio data, which is acquired from the buffer parameter in `AudioFrame`. Start the rendering module to render the pulled remote audio frames.
+
+```cpp
+// Pull remote audio frames from the SDK
+void CAgoraCaptureAduioDlg::PullAudioFrameThread(CAgoraCaptureAduioDlg * self)
+{
+    int nRet = 0;
+    // Create an AutoPtr instance using the IMediaEngine as template
+    agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
+    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID. 
+    // The AutoPtr instance accesses the pointer to the IMediaEngine instance and calls pullAudioFrame via IMediaEngine.
+    mediaEngine.queryInterface(self->m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
+    // Set the parameters for AudioFrame in IAudioFrameObserver
+    IAudioFrameObserver::AudioFrame audioFrame;
+    audioFrame.avsync_type = 0;
+    audioFrame.bytesPerSample = 2;
+    audioFrame.type = agora::media::IAudioFrameObserver::FRAME_TYPE_PCM16;
+    audioFrame.channels = self->m_renderAudioInfo.channels;
+    audioFrame.samples = self->m_renderAudioInfo.sampleRate / 100 * self->m_renderAudioInfo.channels;
+    audioFrame.samplesPerSec = self->m_renderAudioInfo.sampleRate;
+    // BYTE is a custom data type in the sample project. See the sample project for details.
+    audioFrame.buffer = new BYTE[audioFrame.samples * audioFrame.bytesPerSample];
+    while (self->m_extenalRenderAudio )
+    {
+        // Pull remote audio frames
+        nRet = mediaEngine->pullAudioFrame(&audioFrame);
+        if (nRet != 0)
+        {
+            Sleep(10);
+            continue;
+        }
+        SIZE_T nSize = audioFrame.samples * audioFrame.bytesPerSample;
+        // Call the render module to render the pulled remote audio data
+       self->m_audioRender.Render((BYTE*)audioFrame.buffer, nSize);
+    }
+    delete audioFrame.buffer;
+}
+```
+
+#### API Reference
+
+- [`setExternalAudioSink`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a790b4896f2769c1edebbb49d8912e38b)
+- [`pullAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#aaf43fc265eb4707bb59f1bf0cbe01940)
+
+
+## Considerations
+
+Customizing the audio source and sink requires you to manage audio data recording and playback on your own.
+
+- When customizing the audio source, you need to record and process the audio data on your own.
+- When customizing the audio renderer, you need to process and play back the audio data on your own.
+
+</PlatformWrapper>

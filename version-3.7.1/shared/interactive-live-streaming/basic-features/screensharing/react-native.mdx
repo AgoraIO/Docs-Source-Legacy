@@ -1,0 +1,179 @@
+<PlatformWrapper platform="react-native">
+
+Screen sharing enables the host of an interactive live streaming broadcast or video call to display what is on their screen to other users in the channel. This technology has many obvious advantages for communicating information, particularly in the following scenarios:
+
+- During video conferencing, the speaker can share a local image, web page, or full presentation with other participants.
+- For online instruction, the teacher can share slides or notes with students.
+
+As of v3.7.0, Agora provides the React Native API for screen sharing. This page describes how to implement screen sharing on Android and iOS platforms using the React Native SDK v3.7.0 and later.
+
+## Prerequisites
+
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](./Video/start_call_react_native?platform=React%20Native) or [Start Interactive Video Streaming](./Interactive%20Broadcast/start_live_react_native?platform=React%20Native).
+
+## Implement screen sharing on Android
+
+To implement screen sharing on the Android platform, you only need to call `startScreenCapture` to enable screen sharing. You can refer to `example/src/examples/advanced/ScreenSharing/ScreenSharing.tsx` in [react-native-agora](https://github.com/AgoraIO-Community/react-native-agora) to implement screen sharing.
+
+## Implement screen sharing on iOS
+
+<div class="alert note">
+<li>Due to system limitations, screen sharing is only available for iOS 12.0 or later.</li>
+<li>This feature requires a high-performance device. Agora recommends that you use this feature on iPhone X or later models.</li>
+</div>
+
+	
+### Understand the tech
+
+Screen sharing on iOS is implemented by using the native iOS ReplayKit framework in an Extension to record the screen and by treating the screen sharing stream as a user joining the channel. As Apple does not support screen capture in the main app process, you need to create a separate Extension for the screen sharing stream.
+
+![1649660342845](https://web-cdn.agora.io/docs-files/1649660342845)
+
+### Implementations
+
+1. Go to your project directory, and open `ios/.xcodeproj` with Xcode.
+
+2. Ensure that `AgoraReplayKitExtension.framework` is integrated into the project. This dynamic library wraps the following functionality:
+
+   - Record the screen with Apple ReplayKit.
+   - Use the custom video source feature of the SDK to capture the screen recording data and send it to other users in the channel.
+
+3. Create a Broadcast Upload Extension to enable the screen sharing process:
+
+   a. In Xcode, click **File > New > Target...**, select **Broadcast Upload Extension** in the pop-up window, and click **Next**.
+
+      ![img](https://web-cdn.agora.io/docs-files/1606368184836)
+
+   b. In the pop-up window, fill in **Product Name** and other fields, uncheck **Include UI Extension**, and click **Finish**. Xcode automatically creates the Extension folder, which contains the `SampleHandler.h` file.
+
+   c. Under **Target**, select the Extension you have created, click **General**, and set the iOS version to 12.0 or later under **Deployment Info**.
+   
+      ![img](https://web-cdn.agora.io/docs-files/1652254668249)
+
+   d. Modify the `SampleHandler.h` file to modify the code logic that implements screen sharing:
+
+      - If you only need to use the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by checking `Target` for the Extension you created, and setting the **Value** of the **NSExtension > NSExtensionPrincipalClass** key in the **Info** settings from **SampleHandler** to **AgoraReplayKitHandler**.
+
+        ![img](https://web-cdn.agora.io/docs-files/1648112619203)
+
+      - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
+
+        ```objectivec
+          // Objective-C
+          #import "SampleHandler.h"
+          #import "AgoraReplayKitExt.h"
+          #import <sys/time.h>
+        
+          @interface SampleHandler ()<AgoraReplayKitExtDelegate>
+        
+          @end
+        
+          @implementation SampleHandler
+        
+          - (void)broadcastStartedWithSetupInfo:(NSDictionary<NSString *,NSObject *> *)setupInfo {
+              // User has requested to start the broadcast. Setup info from the UI extension can be supplied but optional.
+              [[AgoraReplayKitExt shareInstance] start:self];
+        
+          }
+        
+          - (void)broadcastPaused {
+              // User has requested to pause the broadcast. Samples will stop being delivered.
+              NSLog(@"broadcastPaused");
+              [[AgoraReplayKitExt shareInstance] pause];
+          }
+        
+          - (void)broadcastResumed {
+              // User has requested to resume the broadcast. Samples delivery will resume.
+              NSLog(@"broadcastResumed");
+              [[AgoraReplayKitExt shareInstance] resume];
+        
+          }
+        
+          - (void)broadcastFinished {
+              // User has requested to finish the broadcast.
+              NSLog(@"broadcastFinished");
+              [[AgoraReplayKitExt shareInstance] stop];
+        
+          }
+        
+          - (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer withType:(RPSampleBufferType)sampleBufferType {
+              [[AgoraReplayKitExt shareInstance] pushSampleBuffer:sampleBuffer withType:sampleBufferType];
+          }
+        
+          #pragma mark - AgoraReplayKitExtDelegate
+        
+          - (void)broadcastFinished:(AgoraReplayKitExt *_Nonnull)broadcast reason:(AgoraReplayKitExtReason)reason {
+              switch (reason) {
+                  case AgoraReplayKitExtReasonInitiativeStop:
+                      {
+          //                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Host app stop srceen capture"};
+          //                 NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+          //                 [self finishBroadcastWithError:error];
+                          NSLog(@"AgoraReplayKitExtReasonInitiativeStop");
+                      }
+                      break;
+                  case AgoraReplayKitExtReasonConnectFail:
+                      {
+          //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Connect host app fail need startScreenCapture in host app"};
+          //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+          //                [self finishBroadcastWithError:error];
+                          NSLog(@"AgoraReplayKitExReasonConnectFail");
+                      }
+                      break;
+        
+                  case AgoraReplayKitExtReasonDisconnect:
+                      {
+          //                  NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"disconnect with host app"};
+          //                  NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+          //                  [self finishBroadcastWithError:error];
+                          NSLog(@"AgoraReplayKitExReasonDisconnect");
+                      }
+                      break;
+                  default:
+                      break;
+              }
+          }
+        
+          @end
+        ```
+
+4. Call `startScreenCapture`, and prompt the user's manual action to make the app start screen sharing. You can choose either of the following two methods:
+
+   - Method 1: Use [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview), which is added by Apple in iOS 12.0, to pop up the "Start screen sharing" button in the app interface. It prompts the user to start screen sharing by tapping this button.
+   - Method 2: Prompt the user to tap and hold the **Screen Sharing** button in the control center of the iOS system, and select the Extension you created to start screen sharing.
+
+   <div class="alert note">Method 1 is the default method in the React Native SDK, but <code>RPSystemBroadcastPickerView</code> is limited in use and might fail in later versions of iOS systems. Therefore, if Method 1 fails, use Method 2 instead.</div>
+
+### Sample project
+
+Agora provides an example of screen sharing in [react-native-agora](https://github.com/AgoraIO-Community/react-native-agora), where you can refer to the following files to implement screen sharing:
+
+- `example/ios/ScreenSharing/SampleHandler.m`
+- `example/src/examples/advanced/ScreenSharing/ScreenSharing.tsx`
+
+### Considerations
+
+- If you use Cocoapods, add the following lines to the `Podfile` file to add dependencies for your screen sharing Extension. Remember to replace `ScreenSharing` with the target name of your screen sharing Extension.
+
+  ```
+  target 'ScreenSharing' do
+       pod 'AgoraRtcEngine_iOS', '3.7.0.3'
+  end
+  ```
+
+  <div class="alert note">Ensure that the pod dependencies version is consistent with the SDK dependencies version in the  <code>node_modules/react-native-agora/react-native-agora.podspec</code> file.</div>
+
+- The memory limit of a Broadcast Upload Extension is 50 MB. Ensure that your memory usage does not exceed this limit.
+
+- In the screen sharing process, you need to call `muteAllRemoteVideoStreams` and `muteAllRemoteAudioStreams` to cancel receiving streams from remote users and avoid double subscriptions.
+
+
+## API reference
+
+Some restrictions and cautions exist for using the screen sharing feature, and charges can apply. Agora recommends that you read the following API references before calling the API:
+
+- [`startScreenCapture` ](./API%20Reference/react_native/v3.7.0/classes/rtcengine.html#startscreencapture)
+- [`stopScreenCapture`](./API%20Reference/react_native/v3.7.0/classes/rtcengine.html#stopscreencapture)
+- [`updateScreenCaptureParameters`](./API%20Reference/react_native/v3.7.0/classes/rtcengine.html#updatescreencaptureparameters)
+
+</PlatformWrapper>

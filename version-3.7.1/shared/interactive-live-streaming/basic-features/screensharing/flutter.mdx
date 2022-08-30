@@ -1,0 +1,249 @@
+<PlatformWrapper platform="flutter">
+
+Screen sharing enables the host of an interactive live streaming broadcast or video call to display what is on their screen to other users in the channel. This technology has many obvious advantages for communicating information, particularly in the following scenarios:
+
+- During video conferencing, the speaker can share a local image, web page, or full presentation with other participants.
+- For online instruction, the teacher can share slides or notes with students.
+
+As of v5.3.0, Agora provides the Flutter APIs for screen sharing. This page describes how to implement screen sharing on Android and iOS platforms using the Flutter SDK v5.3.0 and later.
+
+## Prerequisites
+
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](./start_call_flutter?platform=Flutter) or [Get Started with Interactive Live Streaming Premium](./start_live_flutter?platform=Flutter).
+
+## Implement screen sharing on Android
+
+To implement screen sharing on the Android platform, you only need to call  [`startScreenCaptureMobile` ](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturemobile) to enable screen sharing. You can refer to the [screen_sharing.dart](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing/screen_sharing.dart) file in the [Agora-Flutter-SDK](https://github.com/AgoraIO/Agora-Flutter-SDK) repository to implement screen sharing.
+
+## Implement screen sharing on iOS
+
+<div class="alert note">
+<li>Due to system limitations, screen sharing is only available for iOS 12.0 or later.</li>
+<li>This feature requires a high-performance device. Agora recommends that you use this feature on iPhone X or later models.</li>
+</div>
+
+	
+### Understand the tech
+
+Screen sharing on iOS is implemented by using the native iOS ReplayKit framework in an Extension to record the screen and by treating the screen sharing stream as a user joining the channel. As Apple does not support screen capture in the main app process, you need to create a separate Extension for the screen sharing stream.
+
+![1649660342845](https://web-cdn.agora.io/docs-files/1649660342845)
+
+### Implementations
+
+1. Navigate to your project directory, and open `ios/.xcodeproj` with Xcode.
+
+2. Ensure that `AgoraReplayKitExtension.framework` is integrated into the project. This dynamic library wraps the following functionality:
+
+   - Record the screen with Apple ReplayKit.
+   - Use the custom video source feature of the SDK to capture the screen recording data and send it to other users in the channel.
+
+3. Create a Broadcast Upload Extension to enable the screen sharing process:
+
+   a. In Xcode, click **File > New > Target...**, select **Broadcast Upload Extension** in the pop-up window, and click **Next**.
+
+      ![img](https://web-cdn.agora.io/docs-files/1606368184836)
+
+   b. In the pop-up window, fill in **Product Name** and other fields, uncheck **Include UI Extension**, and click **Finish**. Xcode automatically creates the Extension folder, which contains the `SampleHandler.h` file.
+
+   c. Under **Target**, select the Extension you have created, click **General**, and set the iOS version to 12.0 or later under **Deployment Info**.
+   
+      ![img](https://web-cdn.agora.io/docs-files/1652254668249)
+
+   d. Modify the `SampleHandler.h` file to modify the code logic that implements screen sharing:
+
+      - If you only need to use the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by checking `Target` for the Extension you created, and setting the **Value** of the **NSExtension > NSExtensionPrincipalClass** key in the **Info** settings from **SampleHandler** to **AgoraReplayKitHandler**.
+
+        ![1660719819928](https://web-cdn.agora.io/docs-files/1660719819928)
+
+      - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
+
+        ```objectivec
+          // Objective-C
+          #import "SampleHandler.h"
+          #import "AgoraReplayKitExt.h"
+          #import <sys/time.h>
+        
+          @interface SampleHandler ()<AgoraReplayKitExtDelegate>
+        
+          @end
+        
+          @implementation SampleHandler
+        
+          - (void)broadcastStartedWithSetupInfo:(NSDictionary<NSString *,NSObject *> *)setupInfo {
+              // User has requested to start the broadcast. Setup info from the UI extension can be supplied but optional.
+              [[AgoraReplayKitExt shareInstance] start:self];
+        
+          }
+        
+          - (void)broadcastPaused {
+              // User has requested to pause the broadcast. Samples will stop being delivered.
+              NSLog(@"broadcastPaused");
+              [[AgoraReplayKitExt shareInstance] pause];
+          }
+        
+          - (void)broadcastResumed {
+              // User has requested to resume the broadcast. Samples delivery will resume.
+              NSLog(@"broadcastResumed");
+              [[AgoraReplayKitExt shareInstance] resume];
+        
+          }
+        
+          - (void)broadcastFinished {
+              // User has requested to finish the broadcast.
+              NSLog(@"broadcastFinished");
+              [[AgoraReplayKitExt shareInstance] stop];
+        
+          }
+        
+          - (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer withType:(RPSampleBufferType)sampleBufferType {
+              [[AgoraReplayKitExt shareInstance] pushSampleBuffer:sampleBuffer withType:sampleBufferType];
+          }
+        
+          #pragma mark - AgoraReplayKitExtDelegate
+        
+          - (void)broadcastFinished:(AgoraReplayKitExt *_Nonnull)broadcast reason:(AgoraReplayKitExtReason)reason {
+              switch (reason) {
+                  case AgoraReplayKitExtReasonInitiativeStop:
+                      {
+          //                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Host app stop srceen capture"};
+          //                 NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+          //                 [self finishBroadcastWithError:error];
+                          NSLog(@"AgoraReplayKitExtReasonInitiativeStop");
+                      }
+                      break;
+                  case AgoraReplayKitExtReasonConnectFail:
+                      {
+          //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Connect host app fail need startScreenCapture in host app"};
+          //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+          //                [self finishBroadcastWithError:error];
+                          NSLog(@"AgoraReplayKitExReasonConnectFail");
+                      }
+                      break;
+        
+                  case AgoraReplayKitExtReasonDisconnect:
+                      {
+          //                  NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"disconnect with host app"};
+          //                  NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+          //                  [self finishBroadcastWithError:error];
+                          NSLog(@"AgoraReplayKitExReasonDisconnect");
+                      }
+                      break;
+                  default:
+                      break;
+              }
+          }
+        
+          @end
+        ```
+
+4. Call [`startScreenCaptureMobile` ](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturemobile), and prompt the user's manual action to make the app start screen sharing. You can choose either of the following two methods:
+
+   - Method 1: Prompt the user to tap and hold the **Screen Sharing** button in the control center of the iOS system, and select the Extension you created to start screen sharing.
+   - Method 2: Use [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview), which is added by Apple in iOS 12.0, to pop up the "Start screen sharing" button in the app interface. It prompts the user to start screen sharing by tapping this button.
+
+   <div class="alert note">You need to implement the logic of interaction with <code>RPSystemBroadcastPickerView</code> in Flutter on your own. <code>RPSystemBroadcastPickerView</code> is limited in use and might fail in later versions of iOS systems. Therefore, use method 2 at your discretion.</div>
+
+### Sample project
+
+Agora provides an example of screen sharing in  [Agora-Flutter-SDK](https://github.com/AgoraIO/Agora-Flutter-SDK), where you can refer to the following files to implement screen sharing:
+
+- `example/ios/ScreenSharing/SampleHandler.h`
+- `example/ios/ScreenSharing/SampleHandler.m`
+- `example/lib/src/examples/advanced/screen_sharing/screen_sharing.dart`
+
+### Considerations
+
+- If you use Cocoapods, add the following lines to the `Podfile` file to add dependencies for your screen sharing Extension. Remember to replace `ScreenSharing` with the target name of your screen sharing Extension.
+
+    ```
+    target 'ScreenSharing' do
+         pod 'AgoraRtcEngine_iOS', '3.7.0.3'
+    end
+    ```
+		
+    <div class="alert note">Ensure that the pod dependencies version is consistent with the SDK dependencies version in the  <code>agora_rtc_engine/ios/agora_rtc_engine.podspec</code> file.</div>
+
+- The memory limit of a Broadcast Upload Extension is 50 MB. Ensure that your memory usage does not exceed this limit.
+
+- In the screen sharing process, you need to call `muteAllRemoteVideoStreams` and `muteAllRemoteAudioStreams` to cancel receiving streams from remote users and avoid double subscriptions.
+
+
+### API reference
+
+Some restrictions and cautions exist for using the screen sharing feature, and charges can apply. Agora recommends that you read the following API references before calling the API:
+
+- [`startScreenCaptureMobile` ](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturemobile)
+- [`stopScreenCapture`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_stopscreencapture)
+- [`updateScreenCaptureParametersMobile`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_updatescreencaptureparametersmobile)
+
+##  Implement screen sharing on macOS/Windows
+
+### Implementation
+
+Agora supports the following screen sharing options on macOS/Windows:
+- Shares all or or part of a screen by specifying a display ID.
+- Shares all or part of a window by specifying a window ID.
+
+#### Share all or a part of a screen by specifying a display ID
+
+You can get the display ID by using  [`enumerateDisplays`](./API%20Reference/flutter/v5.3.0/API/api_enumeratedisplays.html)  in  agora_rtc_engine.
+
+<div class="alert info"><ul>
+	<li>In macOS, <code>enumerateDisplays</code> gets the display ID with  <code>NSScreen</code>. For details, see <a href="https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription">Apple deviceDescription</a>.</li>
+<li>In Windows, <code>enumerateDisplays</code> gets the display ID with <code>EnumDisplayDevices</code>. For details, see <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesa">EnumDisplayDevicesA function (winuser.h)</a>.</li>
+	</ul></div>
+
+The following sample code shows how to share the screen on macOS/Windows by specifying a display ID:
+
+```dart
+  Future<void> startScreenCaptureByDisplayId() async {
+    final List<Display> displays = _engine.enumerateDisplays();
+    final displayId = displays[0].id;
+    await _engine.startScreenCaptureByDisplayId(
+      displayId,
+    );
+  }
+```
+
+
+#### Share all or a part of a screen by specifying a window ID
+
+You can get the window ID by using  [`enumerateWindows`](./API%20Reference/flutter/v5.3.0/API/api_enumeratewindows.html)  in  agora_rtc_engine.
+
+<div class="alert info"><ul>
+	<li>In macOS, <code>enumerateWindows</code> gets the window ID with  <code>CGWindowListCopyWindowInfo</code>. For details, see <a href="https://developer.apple.com/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo">Apple CGWindowListCopyWindowInfo</a>.</li>
+<li>In Windows, <code>enumerateWindows</code> gets the window ID with <code>EnumWindows</code>. For details, see <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows">EnumWindows function (winuser.h)</a>.</li>
+	</ul></div>
+
+The following sample code shows how to share the screen on macOS/Windows by specifying a window ID:
+
+```dart
+  Future<void> startScreenCaptureByWindowId() async {
+    final List<Window> windows = _engine.enumerateWindows();
+    final windowId = windows[0].id;
+    await _engine.startScreenCaptureByWindowId(windowId);
+  }
+```
+
+### Sample project
+
+Agora provides an example of screen sharing in  [Agora-Flutter-SDK](https://github.com/AgoraIO/Agora-Flutter-SDK), where you can refer to the [`example/lib/examples/advanced/screen_sharing/screen_sharing.dart`](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing/screen_sharing.dart) file to implement screen sharing.
+
+### API reference
+
+- [`enumerateDisplays`](./API%20Reference/flutter/v5.3.0/API/api_enumeratedisplays.html)
+- [`enumerateWindows`](./API%20Reference/flutter/v5.3.0/API/api_enumeratewindows.html)
+- [`startScreenCaptureByDisplayId`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturebydisplayid)
+- [`startScreenCaptureByWindowId`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturebywindowid) 
+- [`updateScreenCaptureParameters`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_updatescreencaptureparameters)
+- [`setScreenCaptureContentHint`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_setscreencapturecontenthint)
+- [`updateScreenCaptureRegion`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_updatescreencaptureregion)
+- [`stopScreenCapture`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_stopscreencapture)
+
+### Screen sharing during a video call
+
+If you want to allow screen sharing as a sub-process in a video call session, refer to the sample file [screen_sharing_with_subprocess](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing_with_subprocess/screen_sharing_with_subprocess.dart).
+<div class="alert note">For macOS, you need to set <code>AppGroup</code> and use the same value in the <code>appGroup</code> parameter of <a href="./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_getscreensharehelper"><code>getScreenShareHelper</code></a> before calling it. For more information about <code>AppGroup</code>, see the <a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW21">relevant Apple documentation</a>.</div>
+
+</PlatformWrapper>

@@ -1,0 +1,164 @@
+## Introduction
+
+In a video call or interactive video streaming scenario, if multiple users publish video streams at the same time, user experience can be affected by limited device performance and excessive bandwidth consumption.
+
+Use this page as a as a guide to best practices when implementing a video scenario that enables multiple users to publish video streams simultaneously.
+
+To minimize bandwidth consumption and ensure smooth communication in a video scenario with multiple users, Agora recommends the following:
+
+- All publishers enable [dual-stream mode](../reference/glossary#dual-stream-mode).
+- Every subscriber receives the high-quality video stream of only one publisher; they should receive low-quality streams from all other publishers.
+
+<div class="alert note">
+<li>Agora recommends using a layout with one big window and multiple small windows. Use the big window to display the high-quality stream and the small windows for the low-quality streams.</li>
+<li>Unless otherwise specified, the video profile uses the following units: px for resolution, fps for frame rate, and Kbps for bitrate.</li>
+</div>
+
+
+## Implementation
+
+Before proceeding, ensure that you have already implemented basic real-time audio and video functions in your project.
+
+
+### 1. Enable dual-stream mode
+
+Before or after joining a channel, call `enableDualStreamMode` to enable dual-stream mode on the publishers' clients. In dual-stream mode, the SDK transmits a high-quality video stream and a low-quality video stream from the publisher. The high-quality video stream has a higher resolution and bitrate than the low-quality video stream.
+
+
+### 2. Set the remote video stream type
+
+Call `setRemoteVideoStreamType` on each subscriber's client to subscribe to the high-quality stream from only one publisher and the low-quality stream of all other publishers.
+
+<div class="alert note">Video dual-stream does not apply to the screen sharing scenario. Therefore, make sure that the <code>uid</code> of the screen sharing stream is not used as the subscriber's client to subscribe to the low-quality stream.</div>
+
+### 3. Set the video profile for the low-quality stream
+
+To reduce bandwidth consumption, Agora recommends contacting technical support to customize the video profile of the low-quality stream.
+
+<div class="alert note">The low-quality video stream supports a maximum profile of 640 × 480 px, 30 fps, and 1,000 Kbps. To ensure smooth communication, Agora recommends that the resolution of the low-quality video stream not exceed 480 × 360 px and the bitrate not exceed 200 Kbps. Ensure that the bitrate of the low-quality stream is lower than that of the high-quality stream.</div>
+
+## Considerations
+
+- To ensure smooth communication, Agora recommends that the resolution of the high-quality video stream not exceed 640 × 480 px and the frame rate not exceed 15 fps.
+- During a call or live broadcast, when a publisher leaves the channel, call `setupRemoteVideo`, and set the view as null to release all memory resources of the view used by the publisher.
+
+## Reference
+
+### Default relationship between high-quality and low-quality streams
+
+If you do not customize the video profile of the low-quality stream, the SDK automatically sets the video profile of the low-quality video stream based on that of the high-quality video stream. You can refer to this section for the default relationship between the video profiles of the high-quality and low-quality video streams.
+
+#### Relationship between high-quality and low-quality streams in the Communication profile
+
+The default video profile of the low-quality video stream in the Communication profile conforms to the following rules:
+
+- Width and height:
+    - If either the width or height of the high-quality stream is 640 or greater, the larger value of the width and height of the low-quality stream is 288. The aspect ratio of the low-quality stream is identical to that of the high-quality stream.
+    - If both the width and height of the high-quality stream are less than 640, the width of the low-quality stream = the width of the high-quality stream × 0.45. The minimum value for the width and height of the low-quality stream is 64. The aspect ratio of the low-quality stream is identical to that of the high-quality stream.
+- Frame rate: The frame rate of the low-quality stream stays at 5 fps.
+- Bitrate: The bitrate of the low-quality stream = the bitrate of the high-quality stream × 0.1.
+- The width of the low-quality stream should be a multiple of 4, and the height should be an even number.
+
+#### Relationship between high-quality and low-quality streams in the Live-broadcast profile
+
+The following table shows the default resolution, frame rate, and bitrate of low-quality streams for different aspect ratios of high-quality streams in the Live-broadcast profile:
+
+| Aspect ratio of the high-quality stream | Resolution (width × height)                                  | Frame rate | Bitrate |
+| --------------------------------------- | ------------------------------------------------------------ | ------- | ---------- |
+| 1:1                                     | 160 × 160                                                    | 5      | 68          |
+| 3:4                                     | 120 × 160                                                    | 5      | 45          |
+| 4:3                                     | 160 × 120                                                    | 5      | 45          |
+| 9:16                                    | 108 × 192                                                    | 5     | 50          |
+| 16:9                                    | 192 × 108                                                    | 5     | 50          |
+| Others                                  | The larger of either width or height takes 160 as the value. Calculate the lower value according to the aspect ratio. | 5      | 68       |
+
+
+### Mainstream video profiles
+
+You can also refer to the following tables to learn the default resolution, frame rate, and bitrate of the low-quality video stream for different mainstream video profiles of the high-quality video stream.
+
+
+| High-quality stream video profile: Communication      | Default low-quality stream video profile: Communication |
+| :------------------- | :---------------- |
+| 320 × 240, 15, 200   | 144 × 108, 5, 20  |
+| 640 × 360, 15, 400   | 288 × 162, 5, 40  |
+| 640 × 480, 15, 500   | 288 × 216, 5, 50  |
+| 1280 × 720, 15, 1130 | 288 × 162, 5, 113 |
+| 240 × 320, 15, 200   | 108 × 144, 5, 20  |
+| 240 × 320, 15, 200   | 108 × 144, 5, 20  |
+| 360 × 640, 15, 400   | 164 × 288, 5, 40  |
+| 480 × 640, 15, 500   | 216 × 288, 5, 50  |
+| 720 × 1280, 15, 1130  | 164 × 288, 5, 113 |
+
+
+| High-quality stream video profile: Live-broadcast  | Default low-quality stream video profile: Live-broadcast|
+| :------------------- | :----------------------- |
+| 320 × 240, 15, 350   | 160 × 120, 5, 45         |
+| 640 × 360, 15, 650   | 192 × 108, 5, 50         |
+| 640 × 480, 15, 800   | 160 × 120, 5, 45         |
+| 1280 × 720, 15, 1600 | 192 × 108, 5, 50         |
+| 240 × 320, 15, 350   | 120 × 160, 5, 45         |
+| 360 × 640, 15, 650   | 108 × 192, 5, 50         |
+| 480 × 640, 15, 800   | 120 × 160, 5, 45         |
+| 720 × 1280, 15, 1600 | 108 × 192, 5, 50         |
+
+
+### Recommended video profiles
+
+This section provides the recommended video resolution, frame rate, and bitrate for high-quality and low-quality streams.
+
+<table>
+<thead>
+  <tr>
+    <th>Channel profile</th>
+    <th>Video stream type</th>
+    <th>Device system</th>
+    <th>Recommended video profile</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="4">Communication</td>
+    <td rowspan="2">high-quality stream</td>
+    <td>macOS, Windows</td>
+    <td>640 × 480, 15, 500</td>
+  </tr>
+  <tr>
+    <td>Android, iOS</td>
+    <td>640 × 360, 15, 400</td>
+  </tr>
+  <tr>
+    <td rowspan="2">low-quality stream</td>
+    <td>macOS, Windows</td>
+    <td>320 × 180, 7, 75</td>
+  </tr>
+  <tr>
+    <td>Android, iOS</td>
+    <td>160 × 90, 7, 45</td>
+  </tr>
+  <tr>
+    <td rowspan="4">Live-broadcast</td>
+    <td rowspan="2">high-quality stream</td>
+    <td>macOS, Windows</td>
+    <td>640 × 480, 15, 800</td>
+  </tr>
+  <tr>
+    <td>Android, iOS</td>
+    <td>640 × 360, 15, 650</td>
+  </tr>
+  <tr>
+    <td rowspan="2">low-quality stream</td>
+    <td>macOS, Windows</td>
+    <td>320 × 180, 7, 126</td>
+  </tr>
+  <tr>
+    <td>Android, iOS</td>
+    <td>160 × 90, 7, 64</td>
+  </tr>
+</tbody>
+</table>
+
+
+In practice, different user devices, user network conditions, application service locations, and user requirements affect which kinds of video profiles you use. Therefore, if the recommended video profiles are not suitable for you, contact technical support for assistance.
+
+

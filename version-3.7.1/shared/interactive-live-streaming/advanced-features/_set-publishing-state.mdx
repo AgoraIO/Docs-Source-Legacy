@@ -1,0 +1,73 @@
+## Overview
+
+Your business scenarios might require you to set the [publishing](https://docs.agora.io/en/Agora%20Platform/publish) state of audio and video streams during real-time engagement.
+
+This article describes how to the set the publishing state of local streams using C++. To use Java or Objective-C, see [Corresponding methods in different programming languages](#different_languages).
+
+<div class="alert note"><li>This page applies to the SDK v3.4.5 and later.</li>
+<li>If you have upgraded the SDK from an earlier version to v3.4.5 or later, Agora recommends that you adjust your publishing settings by referring to <a href="#api_changes">API changes</a > to avoid any impact on your business functions.</li>
+<li>This page is applicable to single-channel scenarios. If you need to know how to set the publishing state in multichannel scenarios, see <i>Join Multiple Channels</i>.</li></div>
+
+## API introduction
+
+Agora provides the following methods to set the publishing state of local streams:
+
+| Method                                           | Description                                                  |
+| :----------------------------------------------- | :----------------------------------------------------------- |
+| `enableLocalAudio` or `enableLocalVideo`         | Sets whether to enable the local audio or video capture module:<li>`true`: (Default) Enable the local audio or video capture module. After enabling a module, the SDK captures the local audio or video, and then users can choose whether to publish a local stream.</li><li>`false`: Disable the local audio or video capture module. After disabling a module, the SDK does not capture the local audio or video, so no local stream can be published.If you only need to stop or resume publishing a local stream, Agora recommends calling `muteLocalAudioStream` or `muteLocalVideoStream`.</li> |
+| `muteLocalAudioStream` or `muteLocalVideoStream` | Sets whether to stop publishing a local stream:<li>`true`: Stop publishing a local stream.</li><li>`false`: Resume publishing a local stream.</li> |
+| `joinChannel` with the `options` parameter       | When joining a channel, you can use the `publishLocalAudio` or `publishLocalVideo` member in `ChannelMediaOptions` to set the publishing state of local streams:<li>`true`: (Default) Publish.</li><li>`false`: Do not publish.</li> |
+| `setClientRole` | Sets the user role in an interactive live streaming channel:<li>`CLIENT_ROLE_AUDIENCE`: (Default) Audience.</li><li>`CLIENT_ROLE_BROADCASTER`: Host, who publishes local streams by default.</li> |
+
+
+<div class="alert note"><li>If a user joins a channel by calling <code>joinChannel</code> with the <code>options</code> parameter, <code>muteLocalAudioStream</code> or <code>muteLocalVideoStream</code> only takes effect when it is called after <code>joinChannel</code>.</li><li>In the interactive live streaming profile:</li>
+<ul><li>If the user role is <code>setClientRole(AUDIENCE)</code>, the user cannot publish local streams. No matter how you set the <code>joinChannel</code> with the <code>options</code> parameter, <code>muteLocalAudioStream</code>, or <code>muteLocalVideoStream</code>, the publishing state cannot be changed.</li>
+<li>If you call <code>setClientRole(BROADCASTER)</code>, <code>joinChannel</code> with the <code>options</code> parameter, <code>muteLocalAudioStream</code>, or <code>muteLocalVideoStream</code> together, the method called later determines the publishing state.</li></ul></div>
+
+<a name="api_changes"></a>
+
+## API changes
+
+As of v3.4.5, Agora adds the `publishLocalAudio` and `publishLocalVideo` members in `ChannelMediaOptions`. The default value is `true`. You can call `joinChannel` with the `options` parameter to join a channel and set the publishing state.
+
+If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, take note of the following differences between versions and adjust your publishing settings accordingly.
+
+Earlier than v3.4.5:
+
+- None of the `joinChannel` methods can set the publishing state of local streams.
+- `muteLocalAudioStream` and `muteLocalVideoStream` take effect when they are called before or after a user joins a channel.
+- Calling `muteLocalAudioStream(true)` or `muteLocalVideoStream(true)` in `IRtcEngine` takes effect in channels created by both the `IRtcEngine` and `IChannel` classes.
+
+As of v3.4.5:
+
+- The `joinChannel` method with the `options` parameter can set the publishing state of local streams.
+- If a user joins a channel by calling `joinChannel` with the `options` parameter, `muteLocalAudioStream` or `muteLocalVideoStream` only takes effect when it is called after `joinChannel`.
+- `muteLocalAudioStream` and `muteLocalVideoStream` in the `IRtcEngine` and `IChannel` classes control the publishing state of each channel in their respective classes only.
+
+<a name="different_languages"></a>
+
+## Corresponding methods in different platforms
+
+| Windows                    | Android/React Native/Flutter                   | iOS/macOS            |
+| :--------------------- | :--------------------- | :--------------------- |
+| `enableLocalAudio`     | `enableLocalAudio`     | `enableLocalAudio`     |
+| `enableLocalVideo`     | `enableLocalVideo`     | `enableLocalVideo`     |
+| `muteLocalAudioStream` | `muteLocalAudioStream` | `muteLocalAudioStream` |
+| `muteLocalVideoStream` | `muteLocalVideoStream` | `muteLocalVideoStream` |
+| `joinChannel`          | `joinChannel`          | `joinChannelByToken`   |
+| `setClientRole`        | `setClientRole`        | `setClientRole`        |
+| `setChannelProfile`    | `setChannelProfile`    | `setChannelProfile`    |
+| `IRtcEngine`           | `RtcEngine`            | `AgoraRtcEngineKit`    |
+| `IChannel`             | `RtcChannel`           | `AgoraRtcChannel`      |
+
+| Unity                  | Electron                   |
+| :--------------------- | :--------------------- |
+| `EnableLocalAudio`     | `enableLocalAudio`     |
+| `EnableLocalVideo`     | `enableLocalVideo`     |
+| `MuteLocalAudioStream` | `muteLocalAudioStream` |
+| `MuteLocalVideoStream` | `muteLocalVideoStream` |
+| `JoinChannel`          | `joinChannel`          |
+| `SetClientRole`        | `setClientRole`        |
+| `SetChannelProfile`    | `setChannelProfile`    |
+| `IRtcEngine`           | `AgoraRtcEngine`            |
+| `AgoraChannel`             | `AgoraRtcChannel`           |

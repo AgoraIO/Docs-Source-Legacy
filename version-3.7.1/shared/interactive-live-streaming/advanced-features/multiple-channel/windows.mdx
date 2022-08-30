@@ -1,0 +1,200 @@
+<PlatformWrapper platform="windows">
+
+## Introduction
+
+As of v3.0.0, the Agora Native RTC SDK enables users to join an unlimited number of channels at a time and to receive the audio and video streams of all the channels.
+
+<div class="alert note">
+<li>This feature applies to the live streaming channel profile. Do not use it for the communication profile.</li>
+<li>As of v3.4.5, Agora optimizes the publishing logic in the multichannel scenario. If you have upgraded the SDK from an earlier version to v3.4.5 or later, Agora recommends that you adjust your publishing settings by referring to <a href="#api_changes">API changes</a > to avoid any impact on your business functions.</li>
+</div>
+
+## Sample project
+
+Agora provides the following open-source sample projects on GitHub. You can download them and refer to the source code.
+- [MultiChannel](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/MultiChannel)
+- [Breakout Class](https://github.com/AgoraIO-Usecase/Breakout-Class/tree/master/breakout-windows)
+
+## Implementation
+
+The SDK uses the `IChannel` and `IChannelEventHandler` classes to support the multi-channel function.
+
+You can call `createChannel` multiple times to create multiple `IChannel` objects with different `channelId`, and then call `joinChannel` in `IChannel` to join the channel.
+
+The following are the major steps of implementing the multi-channel function:
+
+1. Call `createAgoraRtcEngine` and `initialize` to create and initialize `IRtcEngine`.
+2. Call `setChannelProfile` to set the channel profile as live streaming.
+3. Call `createChannel` to create an `IChannel` object with a `channelId`.
+4. Call `setChannelEventHandler` of the `IChannel` class to receive callbacks in this channel.
+5. Call `setClientRole` of the `IChannel` class to set the user role.
+6. Call `joinChannel` of the `IChannel` class to join the channel. After joining a channel, the user publishes the local streams and automatically subscribes to the streams of all the other users in the channel by default. You can set the publishing and subscribing states in `ChannelMediaOptions` when joining a channel, and you can change the publishing and subscribing states in the methods with prefixes `muteLocal`and `muteRemote` of the `IChannel` class after joining a channel.
+7. Repeat steps 3, 4, 5, and 6 to join more channels.
+
+
+<div class="alert note">
+<li>Ensure that each channel you join has a unique channel name.</li>
+<li>A user can publish local streams in only one channel at a time. Agora recommends joining a channel as a host when the user needs to publish local streams or as an audience member when the user does not need to publish local streams.</li>
+</div>
+
+### API call sequence
+
+Refer to the following API sequence to join multiple channels:
+
+![1624445171771](https://web-cdn.agora.io/docs-files/1624445171771)
+
+### Sample code
+
+The following code demonstrates how to join an `IChannel` channel, and then publish the local streams in the first channel.
+
+1. Create and initialize `IRtcEngine`.
+
+ ```c++
+ m_rtcEngine = createAgoraRtcEngine();
+ RtcEngineContext context;
+ std::string strAppID = GET_APP_ID;
+ context.appId = strAppID.c_str();
+ m_eventHandler.SetMsgReceiver(m_hWnd);
+ context.eventHandler = &m_eventHandler;
+ int ret = m_rtcEngine->initialize(context);
+ ```
+
+2. Enable the video module.
+
+ ```c++
+ m_rtcEngine->enableVideo();
+ ```
+
+3. Set the channel profile as interactive live streaming.
+
+ ```c++
+ m_rtcEngine->setChannelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING);
+ ```
+
+4. Create an `IChannel1` object, and listen for events in this channel.
+
+ ```c++
+ IChannel * pChannel1 = static_cast<IRtcEngine2 *>(m_rtcEngine)->createChannel(szChannelId.c_str());
+ ChannelEventHandler* pEvt = new ChannelEventHandler;
+ pEvt->setMsgHandler(GetSafeHwnd());
+ m_channels.emplace_back(szChannelId, pChannel1, pEvt);
+ pChannel1->setChannelEventHandler(pEvt);
+ ```
+
+5. Set the user role as a host.
+
+ ```c++
+ pChannel1->setClientRole(CLIENT_ROLE_BROADCASTER);
+ ```
+
+6. Pass in `token` and `channelId` to join the `IChannel1` channel. The SDK publishes the local streams and automatically subscribes to the streams of all the other users in the channel by default.
+
+ ```c++
+ ChannelMediaOptions options1;
+ options1.autoSubscribeAudio = true;
+ options1.autoSubscribeVideo = true;
+ options1.publishLocalAudio = true;
+ options1.publishLocalVideo = true;
+ pChannel1->joinChannel(APP_TOKEN, "", 0, options1);
+ ```
+
+7. Create an `IChannel2` object, and listen for events in this channel.
+
+ ```c++
+ IChannel * pChannel2 = static_cast<IRtcEngine2 *>(m_rtcEngine)->createChannel(szChannelId.c_str());
+ ChannelEventHandler* pEvt = new ChannelEventHandler;
+ pEvt->setMsgHandler(GetSafeHwnd());
+ m_channels.emplace_back(szChannelId, pChannel2, pEvt);
+ pChannel2->setChannelEventHandler(pEvt);
+ ```
+
+8. Set the user role as an audience member. Note that audience members cannot publish local streams.
+
+ ```c++
+ pChannel2->setClientRole(CLIENT_ROLE_AUDIENCE);
+ ```
+
+9. Pass in `token` and `channelId` to join the `IChannel2` channel. You need to set `publishLocalAudio` and `publishLocalVideo` to `false`; otherwise, the user fails to join the channel.
+
+ ```c++
+ ChannelMediaOptions options2;
+ options2.autoSubscribeAudio = true;
+ options2.autoSubscribeVideo = true;
+ options2.publishLocalAudio = false;
+ options2.publishLocalVideo = false;
+ pChannel2->joinChannel(APP_TOKEN, "", 0, options2)
+ ```
+
+10. Leave and destroy the `IChannel2` channel.
+
+ ```c++
+ info.channel2->leaveChannel();
+ info.channel2->release();
+ ```
+
+11. Leave and destroy the `IChannel1` channel.
+
+ ```c++
+ info.channel1->leaveChannel();
+ info.channel1->release();
+ ```
+
+12. Destroy the `IRtcEngine` object.
+
+ ```c++
+ m_rtcEngine->release(true);
+ ```
+
+### API reference
+- [createChannel](./API%20Reference/cpp/v3.0.0/classagora_1_1rtc_1_1_i_rtc_engine2.html#a9cabefe84d3a52400f941f1bd8c0f486)
+- [IChannel](./API%20Reference/cpp/v3.0.0/classagora_1_1rtc_1_1_i_channel.html)
+- [IChannelEventHandler](./API%20Reference/cpp/v3.0.0/classagora_1_1rtc_1_1_i_channel_event_handler.html)
+
+
+## Considerations
+
+### Subscription limits
+
+`joinChannel` in the `IChannel` class provides the media-subscription options (`autoSubscribeAudio` and `autoSubscribeVideo`) that determine whether to automatically subscribe to the remote streams after joining the channel. The default setting is to subscribe to all the streams automatically. After a user joins a channel, you can change the subscribing state by calling `muteRemoteAudioStream` or `muteRemoteVideoStream`.
+
+If you need to subscribe to the streams of specified users after joining an `IChannel` channel, refer to the following steps:
+
+1. Call `joinChannel` and set `autoSubscribeAudio = false` or `autoSubscribeVideo = false` of `ChannelMediaOptions` to unsubscribe from all remote users.
+2. In the channel, call `muteRemoteAudioStream (uid,false)` or `muteRemoteVideoStream(uid,false)` to subscribe to specified remote users.
+
+### Set the remote video view
+
+In video scenarios, if the remote user joins the channel using `IChannel`, ensure that you specify the `channelId` of the remote user in  [`VideoCanvas`](./API%20Reference/cpp/v3.0.0/structagora_1_1rtc_1_1_video_canvas.html) when setting the remote video view. 
+
+### Publishing limits
+
+The SDK supports publishing local streams to only one channel at a time. Agora recommends setting the user role as an audience when joining a channel where the user do not need to publish streams, and setting `publishLocalAudio` and `publishLocalVideo` in `ChannelMediaOptions` to `false` when joining the channel.
+
+In the interactive live streaming profile, if a user joins the first channel as a host, the SDK publishes local streams in the first channel by default. If the user needs to join a second channel, you need to change the publishing state according to your actual scenario:
+
+- If the user does not need to publish local streams in the second channel, Agora recommends joining the second channel as an audience member (`setClientRole(AUDIENCE)`).
+- If the user needs to publish local streams in the second channel, the user needs to stop publishing in the current channel before joining the second channel. Agora recommends setting the user role as an audience member (`setClientRole(AUDIENCE)`) in the first channel and joining the second channel as a host (`setClientRole(BROADCASTER)`).
+
+If a user publishes local streams in a channel and you call the following methods in a second channel, the method call fails, and the SDK returns `-5(ERR_REFUSED)`:
+
+- Set `publishLocalAudio = true` or `publishLocalVideo = true` when joining the second channel.
+- Call `muteLocalAudioStream(false)` or `muteLocalVideoStream(false)` after joining the second channel.
+- Call `setClientRole(BROADCASTER)`.
+
+<a name="api_changes"></a>
+
+#### API changes
+
+As of v3.4.5, the `IChannel` class changes as follows:
+
+- Deprecates `publish` and `unpublish`, and adds `muteLocalAudioStream` and `muteLocalVideoStream` instead. After joining a channel, you can set the publishing state of the audio stream and video stream separately. `muteLocalAudioStream` and `muteLocalVideoStream` in the `IRtcEngine` and `IChannel` classes control the publishing state of each channel in their respective classes only.
+- Adds the `publishLocalAudio` and `publishLocalVideo` members in `ChannelMediaOptions`. The default value is `true`. You can call `joinChannel` to join a channel and set the publishing state. If a user publishes streams in a channel, regardless of whether the user is a host or an audience member, they need to set `publishLocalAudio` and `publishLocalVideo` to `false` when joining other channels; otherwise, they fail to join the channel.
+- After calling `setClientRole(BROADCASTER)`, the local user publishes audio and video streams by default. You no longer need to call `publish`.
+
+Earlier than v3.4.5:
+
+- Calling `muteLocalAudioStream(true)` or `muteLocalVideoStream(true)` in `IRtcEngine` takes effect in channels created by both the `IRtcEngine` and `IChannel` classes. `muteLocalAudioStream` and `muteLocalVideoStream` take effect when they are called before or after a user joins a channel.
+- `joinChannel` cannot set the publishing state of local streams.
+- Calling `setClientRole(BROADCASTER)` of the `IChannel` class does not publish local streams. You also need to call `publish`.
+
+</PlatformWrapper>

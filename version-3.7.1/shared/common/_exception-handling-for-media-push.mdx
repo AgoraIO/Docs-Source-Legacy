@@ -1,0 +1,243 @@
+To optimize the user experience in [Media Push](../advanced-features/media-push) scenarios and avoid frequent streaming exceptions, you can refer to this page to optimize your code logic.
+
+<div class="alert note">This page shows the best practice for handling error codes reported by the <code>onRtmpStreamingStateChanged</code> callback. If you are still using the <code>onStreamPublished</code> callback, you need to refer to this page and <a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/cdnStreaming_callback_relationship">What is the relationship between the old and new callbacks of Media Push?</a> as well.</div>
+
+
+<a name="error"></a>
+## Troubleshooting by error code
+
+After you call `startRtmpStreamWithTranscoding` or `startRtmpStreamWithoutTranscoding`, you can troubleshoot using the error codes reported by the `onRtmpStreamingStateChanged` callback.
+
+<div class="alert note">The <b>events</b> reported by the <code>onRtmpStreamingEvent</code> callback do not affect the streaming process, but are only used as event alerts. The <b>errors</b> reported by the <code>onRtmpStreamingStateChanged</code> callback can cause the streaming to be interrupted, so refer to this page to troubleshoot accordingly when an error code is received.</div>
+
+
+### No troubleshooting required
+
+- `RTMP_STREAM_PUBLISH_ERROR_OK (0)`: Streaming to CDN is successful.
+- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)`: The streaming is stopped normally.
+
+
+### Retry pushing the stream to the CDN
+
+- `RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT (3)`: The request to the Agora streaming server timed out. Common reason: Network exception. Solution: Call `stopRtmpStream` and `start` in turn to retry pushing the stream.
+- `RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR (4)`: An error occurred in the Agora streaming server. Solution: Call `stopRtmpStream` and `start` in turn to retry pushing the stream.
+- `RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR (5)`: An error occurred in the CDN network or between the Agora streaming server and CDN network. Solution: Call `stopRtmpStream` and `start` in turn to retry pushing the stream. If the streaming still fails after three to five attempts, contact the CDN vendor and Agora technical support in turn for troubleshooting.
+- `RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND (9)`: The streaming URL cannot be found. Solution: After checking and replacing the streaming URL you are passing, call `start` to retry pushing the stream.
+- `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN (14)`: An error occurred in the host's network. Solution: Call `stopRtmpStream` and `start` in turn to retry pushing the stream.
+
+<div class="alert note">
+<li>When calling the <code>stop</code> and <code>start</code> methods to retry pushing a stream, ensure that you call <code>start</code> only after you receive the <code>onRtmpStreamingStateChanged</code> callback reporting that the <code>stop</code> call is successful.</li>
+<li>Agora recommends that you retry pushing a stream three to five times. If the streaming still fails, contact Agora technical support.</li>
+<li>Do not confuse the URLs used when the streaming ends normally and when a stream is pushed again.</li>
+</div>
+
+### Miscellaneous troubleshooting
+
+- `RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT (1)`: Invalid parameter. Solution: Check API call sequences and passed parameters.
+- `RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED (2)`: The pushed media stream is encrypted and cannot be pushed. See [Media Stream Encryption](../advanced-features/channel-encryption).
+- `RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT (7)`: The streaming URL limit has been reached. The maximum number of streaming URLs per `uid` is 10 for each channel under each project. Solution: Delete unused streaming URLs to make room before retrying.
+- `RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED (8)`: Operation without permission. Common reason: Pushing media streams to a streaming URL that is being used by another host. Solution: Check the code logic.
+- `RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED (10)`: The format of the streaming URL is not supported. Solution: Check and replace the streaming URL.
+- `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER (11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
+- `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM (13)`: The `updateRtmpTranscoding` or `setLiveTranscoding` (deprecated) method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
+- `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID (15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the Media Push permission.
+
+
+## Repeatedly pushing the stream to the CDN on a timer
+
+Under extremely poor network conditions, you might not receive callbacks when the client is disconnected from the Agora streaming server. Therefore, Agora recommends that, in addition to listening for callbacks, you set a one-minute timer in your application layer to call `start` once every minute after the streaming starts. Using this strategy produces this result: If the current streaming is abnormal, you might receive the `onRtmpStreamingStateChanged` callback reporting other error codes, or you might not receive the callback. You can troubleshoot according to the [error code](#troubleshooting-by-error-code) you receive or retry pushing the stream.
+
+<div class="alert note">Agora recommends that you maintain an interval of at least 30 seconds between attempts to push a stream when retrying.</div>
+
+## Sample code to retry pushing streams
+
+The following sample code takes the C++ language as an example to show the code logic of calling `stopRtmpStream` and `start` in turn to retry pushing streams.
+
+```cpp
+LRESULT CAgoraRtmpStreamingDlg::OnEIDRtmpStateChanged(WPARAM wParam, LPARAM lParam)
+{
+	PRtmpStreamStreamStateChanged rtmpState = (PRtmpStreamStreamStateChanged)wParam;
+	CString strInfo;
+	m_btnRemoveStream.EnableWindow(TRUE);
+	switch (rtmpState->state)
+	{
+	case RTMP_STREAM_PUBLISH_STATE_IDLE:
+	{
+		strInfo.Format(_T("%s:%Sï¿½ï¿½"), agoraRtmpStateIdle, rtmpState->url);
+		CString strUrl;
+		strUrl.Format(_T("%S"), rtmpState->url);
+		int sel = m_cmbRtmpUrl.GetCurSel();
+		m_cmbRtmpUrl.DeleteString(sel);
+		m_cmbRtmpUrl.ResetContent();
+		if (m_cmbRtmpUrl.GetCount() > 0) {
+			m_cmbRtmpUrl.SetCurSel(0);
+		}
+		for (auto iter = m_urlSet.begin(); iter != m_urlSet.end(); ++iter)
+			if (strUrl.Compare(*iter) == 0) {
+				m_urlSet.erase(iter);
+				break;
+			}
+		if (m_bRemoveAll) {
+			m_removeUrlCount++;
+			if (m_removeUrlCount == m_urlSet.size()) {//remove all url when leave channel
+				m_urlSet.clear();
+				m_bRemoveAll = false;
+				m_rtcEngine->leaveChannel();
+				m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("leaveChannel"));
+			}
+		}
+
+	}
+	break;
+	case RTMP_STREAM_PUBLISH_STATE_CONNECTING:
+	{
+		strInfo = agoraRtmpStateConnecting;
+	}
+	break;
+	case RTMP_STREAM_PUBLISH_STATE_RUNNING:
+		strInfo = agoraRtmpStateRunning;
+		if (rtmpState->error == RTMP_STREAM_PUBLISH_ERROR_OK) {
+			strInfo = agoraRtmpStateRunningSuccess;
+			CString  strUrl;
+			strUrl.Format(_T("%S"), rtmpState->url);
+			if (m_urlSet.find(strUrl) == m_urlSet.end()) {
+				m_cmbRtmpUrl.AddString(strUrl);
+				m_urlSet.insert(strUrl);
+				if (m_cmbRtmpUrl.GetCurSel() < 0)
+					m_cmbRtmpUrl.SetCurSel(0);
+			}
+
+		}
+		break;
+	case RTMP_STREAM_PUBLISH_STATE_RECOVERING:
+		strInfo.Format(agoraRtmpStateRecovering);
+		break;
+	case RTMP_STREAM_PUBLISH_STATE_FAILURE:
+	{
+		strInfo = agoraRtmpStateRunningSuccess;
+		CString  strUrl;
+		strUrl.Format(_T("%S"), rtmpState->url);
+		std::string szUrl = cs2utf8(strUrl);
+		m_rtcEngine->stopRtmpStream(szUrl.c_str());
+
+		int error = lParam;
+		if (error == RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT
+			|| error == RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR
+			|| error == RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND
+			|| error == RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR
+			|| error == RTMP_STREAM_PUBLISH_ERROR_NET_DOWN) {
+			if (m_mapRepublishFlag.find(szUrl.c_str()) != m_mapRepublishFlag.end()
+				&& m_mapRemoveFlag.find(szUrl.c_str()) != m_mapRemoveFlag.end()) {
+				if (m_mapRepublishFlag[szUrl.c_str()]
+					&& !m_mapRemoveFlag[szUrl.c_str()]) {
+					//republish, removePublish when error
+					m_rtcEngine->startRtmpStreamWithoutTranscoding(szUrl.c_str());
+				}
+			}
+		}
+		else {
+		    // stop retrying
+			m_mapRemoveFlag[szUrl.c_str()] = false;
+			m_mapRepublishFlag[szUrl.c_str()] = true;
+			CString  strUrl;
+			strUrl.Format(_T("%S"), szUrl.c_str());
+			for (int i = 0; i < m_cmbRtmpUrl.GetCount(); ++i) {
+				CString strText;
+				m_cmbRtmpUrl.GetLBText(i, strText);
+				if (strText.Compare(strUrl) == 0) {
+					m_cmbRtmpUrl.DeleteString(i);
+					break;
+				}
+			}
+
+			if (m_urlSet.find(strUrl) != m_urlSet.end()) {
+				m_urlSet.erase(strUrl);
+			}
+
+			if (m_cmbRtmpUrl.GetCurSel() < 0 && m_cmbRtmpUrl.GetCount() > 0)
+				m_cmbRtmpUrl.SetCurSel(0);
+		}
+
+
+		switch (rtmpState->state)
+		{
+		case RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT:
+		{
+			strInfo = agoraRtmpStateInvalidArg;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED:
+		{
+			strInfo = agoraRtmpStateEncrypted;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT:
+		{
+			strInfo = agoraRtmpStateConnTimeout;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR:
+		{
+			strInfo = agoraRtmpStateInrealErr;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR:
+		{
+			strInfo = agoraRtmpStateServerErr;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN:
+		{
+			strInfo = agoraRtmpStateTooOften;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT:
+		{
+			strInfo = agoraRtmpStateReachLimit;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED:
+		{
+			strInfo = agoraRtmpStateNotAuth;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND:
+		{
+			strInfo = agoraRtmpStateNotFound;
+		}
+		break;
+		case RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED:
+		{
+			strInfo = agoraRtmpStateNotSupported;
+		}
+		break;
+		default:
+			break;
+		}
+	}
+	break;
+	default:
+		break;
+	}
+	m_lstInfo.InsertString(m_lstInfo.GetCount(), strInfo);
+	delete[] rtmpState->url;
+	rtmpState->url = NULL;
+	delete[] rtmpState;
+	rtmpState = NULL;
+	return 0;
+}
+```
+
+## References
+
+The page takes the C++ language as an example. If you are using APIs in another language, refer to the following API comparison:
+
+
+|  C++       |   Objective-C       |   Java         |
+|-------------|----------------------|----------------|
+| `startRtmpStreamWithoutTranscoding`        | `startRtmpStreamWithoutTranscoding`      | `startRtmpStreamWithoutTranscoding`           |
+| `startRtmpStreamWithTranscoding`           | `startRtmpStreamWithTranscoding`         | `startRtmpStreamWithTranscoding`          |
+| `updateRtmpTranscoding`  | `updateRtmpTranscoding`     | `updateRtmpTranscoding`      |
+| `stopRtmpStream`                           | `stopRtmpStream`                         | `stopRtmpStream`           |
+| `onRtmpStreamingStateChanged`              | `rtmpStreamingChangedtoState`            | `onRtmpStreamingStateChanged`           |
+| `onRtmpStreamingEvent`                     | `rtmpStreamingEventWithUrl`              | `onRtmpStreamingEvent`           |

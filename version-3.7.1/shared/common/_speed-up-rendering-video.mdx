@@ -1,0 +1,19 @@
+This page describes how to speed up the first video frame rendering time by modifying the integration method. For more assistance, contact technical support.
+
+## Initialize the remote view
+
+The process of local users seeing remote users is essentially the reception, decoding, and rendering of each remote video frame by local users. To speed up the local user's ability to see the remote user's video, you need to shorten the time it takes for the first remote video frame to start rendering in the view window of the local user's application user interface. Therefore, Agora recommends that you create a view for the remote video before the local user renders the remote video in order to avoid delaying the video rendering. Do this as follows:
+
+- Before the remote user joins a channel: Get the user ID of the remote user in advance and then immediately call [`setupRemoteVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac166814787b0a1d8da5f5c632dd7cdcf) to initialize the remote view. If you cannot get the user ID in advance, you can get it from the [`onUserJoined`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a985a675469baf9d54feb8781732e0ca8) callback and immediately call `setupRemoteVideo` to initialize the remote view. This can delay the video rendering, however.
+- After the remote user joins the channel: The SDK triggers the `onUserJoined` and [`onFirstRemoteVideoDecoded`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae7220caf214e219b8311b27a2a4f9ebc) callbacks in sequence. Until the local user receives the `onFirstRemoteVideoDecoded` callback, the decoding of the first remote video frame has not started. Therefore, during this time, no image appears on the remote view you have initialized, and the local user could grow impatient. To reduce the user's perceived waiting time, add an image to the remote view to indicate that the video is loading.
+
+
+## Switch channels using switchChannel
+
+When switching channels, if the user calls [`leaveChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a51c12d209373650638bfd82e28777081) and [`joinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a31ae82fd9862ba8e6912655e4c1a4290) in sequence, internally the SDK destroys and creates the media engine, which takes some time. Agora recommends switching channels by [`switchChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3eb5ee494ce124b34609c593719c89ab) to shorten the time it takes for the user to switch channels so that other users can see the user's video faster.
+
+
+## Avoid time-consuming operations
+
+If you add a time-consuming operation to the callback thread of the SDK, the latency of SDK event notifications increases. For example, the `onUserJoined` callback could be delayed, making it take longer for you to get the user ID of the remote user by the callback, which results in a slower time for creating the remote view. For this reason, Agora strongly recommends that you do not add any time-consuming operations to the callback thread of the SDK.
+
