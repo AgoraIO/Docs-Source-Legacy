@@ -1,6 +1,6 @@
-<PlatformWrapper platform="cocos2d-x">
+<PlatformWrapper platform="cocos-2d-x">
 
-This article describes how to create a simple Cocos2d-x project and integrate the Agora Video SDK to build an Android app with the basic live video streaming function.
+This article describes how to create a simple Cocos2d-x project and integrate the Agora Video SDK to build an Android or iOS app with the basic live video streaming function.
 
 ## Understand the tech
 
@@ -11,7 +11,7 @@ The following figure shows the workflow to integrate into your app in order to a
 As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
 
 1. Set the client role
-Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.
 
 2. Retrieve a token
 A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
@@ -20,27 +20,38 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the live stream. 
+- The channel name: A string that identifies the channel for the live stream.
 
 ## Prerequisites
 
 ### Development environment
-- Cocos2d-x 3.0 or later. 
+- Cocos2d-x 3.0 or later.
 - Python 2.7.5 or later. (Cocos2d-x does not support Python 3 or later.)
-- Android Studio 3.0 or later.
-- NDK r18b or later.
-- cmake.
+- For Android:
+  - Android Studio 3.0 or later.
+  - NDK r18b or later.
+  - cmake.
+- For iOS:
+  - Xcode 9.0 or later.
 
 ### Deployment environment
-A mobile device running Android 4.1 or later. Agora recommends you run this sample project on a physical mobile device, as some simulators may not support the full features of this project.
+- For Android:A  mobile device running Android 4.1 or later.
+- For iOS: A mobile device running iOS 9.0 or later.
+Agora recommends you run this sample project on a physical mobile device, as some simulators may not support the full features of this project.
 
 <div class="alert info">This article uses Cocos2d-x 3.17.2 as an example. For more information about the environment requirements, see <a href="https://docs.cocos.com/cocos2d-x/v4/manual/en/installation/prerequisites.html">Cococ2d-x installation prerequisites</a >. If you use Cocos2d-x 4.0 or later, please refer to the <a href="https://docs.cocos.com/cocos2d-x/v4/manual/en/upgradeGuide/migration.html">Cocos documentation to upgrade from v3 to v4</a >.</div>
+
+### Other Prerequisites
+
+A valid Agora [account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=All%20Platforms).
+
+<div class="alert note">If your network has a firewall, follow the instructions in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a > to access Agora services.</div>
 
 ## Create a Cocos2d-x project
 
@@ -48,12 +59,12 @@ This section describes how to use the Cocos2d-x command line tool to create a ne
 
  <div class="alert info">This article uses Cocos2d-x 3.17.2 as an example.</div>
 
-1. Go to the [Cocos2d-x download](https://www.cocos.com/en/cocos2dx/download) page, select a version of Cocos2d-x, and then download it. 
+1. Go to the [Cocos2d-x download](https://www.cocos.com/en/cocos2dx/download) page, select a version of Cocos2d-x, and then download it.
 
 2. Extract the files from the downloaded package, and run the `setup.py` script in the root directory to set the environmental variables.
 
    You can run `cocos -v` in the terminal to check whether the Cocos2d-x command line tool is set up correctly. You should see the following output if the setup is correct:
-   
+
    ```
    cocos2d-x-3.17.2
    Cocos Console 2.3
@@ -70,162 +81,182 @@ This section describes how to use the Cocos2d-x command line tool to create a ne
 
    - `-p <package identifier>`: Sets the package name of the project. The package name should be in the format of `com.MyCompany.MyGame`, for example, `io.agora.gaming.cocos2d`.
 
-   - `-l <language>`: Sets the programming language used by the project. Optional values include `cpp`, `lua`, and `js`. 
+   - `-l <language>`: Sets the programming language used by the project. Optional values include `cpp`, `lua`, and `js`.
 
      To integrate the Agora SDK, the `<language>` parameter must be set as `cpp`.
 
-   - `-d <location>`: Sets the directory of the project. 
-   
+   - `-d <location>`: Sets the directory of the project.
+
 <div class="alert note">On Windows, Agora recommends that you set the directory as the root directory of your working disk to shorten the project path; otherwise, the build of Android project may fail because the project path is too long.</div>
 
- <div class="alert info">For more information about creating a new project using the <code>cocos new</code> command, see <a href="https://docs.cocos.com/cocos2d-x/v4/manual/en/editors_and_tools/cocosCLTool.html">the documentation for the Cocos command line tool</a >.</div>
- 
+<div class="alert info">For more information about creating a new project using the <code>cocos new</code> command, see <a href="https://docs.cocos.com/cocos2d-x/v4/manual/en/editors_and_tools/cocosCLTool.html">the documentation for the Cocos command line tool</a >.</div>
 
 ## Integrate the Agora Video SDK
 
 Follow these steps to integrate the Agora Video SDK into your project:
 
-1. Go to [SDK Downloads](./downloads?platform=Cocos2d-x), download the latest version of the Agora Video SDK for Android, and extract the files from the downloaded SDK package.
+1. Go to [SDK Downloads](./downloads?platform=Cocos2d-x), download the latest version of the Agora Video SDK, and extract the files from the downloaded SDK package.
 
 2. Create an `sdk` folder in your project root directory for the Agora Video SDK. You can create the folder and add subfolders in the following structure:
- ```
- └─sdk
-    ├─android
-    │  ├─agora
-    │  └─lib
-    └─ios
-        └─agora
- ```
- <div class="alert info"> You can also place the Agora Video SDK in other paths of your project, but then you need to replace the <code>./sdk/android/agora</code> path in all configuration files with your path for the Agora Video SDK.</div>
-4. Copy the following files or subfolders from the `video/libs/android` folder of the downloaded SDK package to the path of your project:
-
-   | File or subfolder        | Path of your project  |
-   | :----------------------- | :-------------------- |
-   | `agora-rtc-sdk.jar` file | `./sdk/android/lib`   |
-   | `arm64-v8a` folder         | `./sdk/android/agora` |
-   | `armeabi-v7a` folder     | `./sdk/android/agora` |
-   | `include` folder         | `./sdk/android/agora` |
-   | `x86_64` folder          | `./sdk/android/agora` |
-   | `x86` folder             | `./sdk/android/agora` |
-
-3. Add the configuration of the `.so` libraries to the build files. You can choose any of the following methods:
-
- - **Method one**: If you use cmake as the build tool, that is, you set `PROP_BUILD_TYPE=cmake` in the `./proj.android/gradle.properties` file, do the following:
-    
-    a. Add the following code to the `CMakeLists.txt` file in the project root directory:
-    
-  ```
-    # add cross-platforms source files and header files
-  list(APPEND GAME_SOURCE
-            Classes/AppDelegate.cpp
-            Classes/HelloWorldScene.cpp
-            // Add the source file VideoFrameObserver.cpp.
-            Classes/VideoFrameObserver.cpp
-            )
-  list(APPEND GAME_HEADER
-            Classes/AppDelegate.h
-            Classes/HelloWorldScene.h
-            )
-  ...
-  else()
-          add_library(${APP_NAME} SHARED ${all_code_files})
-          add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/platform/android ${ENGINE_BINARY_PATH}/cocos/platform)
-          target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
-          // Add the following four lines:
-          add_library(agora-rtc-sdk SHARED IMPORTED)
-          set_target_properties(agora-rtc-sdk PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/${ANDROID_ABI}/libagora-rtc-sdk.so)
-          include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/include/)
-          target_link_libraries(${APP_NAME} agora-rtc-sdk)
-  endif()
-  ```
-    
-    b. Add the following code after `assets.srcDir "../../Resources"` in the `proj.android/app/build.gradle` file to include the `.so` libraries:
-    
-    ```groovy
-    sourceSets.main {
-        java.srcDir "src"
-        res.srcDir "res"
-        manifest.srcFile "AndroidManifest.xml"
-        assets.srcDir "../../Resources"
-        // Add the following two lines to include the .so libraries:
-        if (PROP_BUILD_TYPE == 'cmake') {
-            jniLibs.srcDirs "../../sdk/android/agora"
-        }
-    }
-...
-dependencies {
-    // Add the following dependencies:
-    implementation fileTree(dir: '../../sdk/android/lib', include: ['*.jar'])
-    implementation project(':libcocos2dx')
-    implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-}
     ```
-    
-   - **Method two**: If you use ndk-build as the build tool, that is, you set `PROP_BUILD_TYPE=ndk-build` in the `./proj.android/gradle.properties` file, and then add the following code to the `./proj.android/app/jni/Android.mk` file:
+    └─sdk
+        ├─android
+        │  ├─agora
+        │  └─lib
+        └─ios
+            └─agora
+    ```
+ <div class="alert info"> You can also place the Agora Voice SDK in other paths of your project, but then you need to replace the <code>./sdk/android/agora</code> or <code>./sdk/ios/agora</code> path in all configuration files with your path for the Agora Voice SDK.</div>
+
+3.
+  - For Android: Copy the following files or subfolders from the `audio/libs/android` folder of the downloaded SDK package to the path of your project:
+
+    | File or subfolder        | Path of your project  |
+    | :----------------------- | :-------------------- |
+    | `agora-rtc-sdk.jar` file | `./sdk/android/lib`   |
+    | `arm64-v8a` folder         | `./sdk/android/agora` |
+    | `armeabi-v7a` folder     | `./sdk/android/agora` |
+    | `include` folder         | `./sdk/android/agora` |
+    | `x86_64` folder          | `./sdk/android/agora` |
+    | `x86` folder             | `./sdk/android/agora` |
+
+  - For iOS: Copy the following dynamic libraries from the `audio/libs/ios` folder of the downloaded SDK package to `./sdk/ios/agora` of your project:
+    - `AgoraRtcKit.framework`
+    - `Agorafdkaac.framework`
+    - `Agoraffmpeg.framework`
+    - `AgoraSoundTouch.framework`
+
+    <div class="alert note">If you need to support a simulator, then copy the above dynamic libraries from the <code>video/libs/ios/ALL_ARCHITECTURE</code> folder to <code>./sdk/ios/agora</code> of your project instead. <br/>The dynamic libraries under this path contains the x86-64 architecture, which affects the distribution of your app in the App Store. Therefore, you need to remove the x86-64 architecture in the libraries before uploading the app to the App Store.</div>
+
+4. (For Android only) Add the configuration of the `.so` libraries to the build files. You can choose any of the following methods:
+
+  - **Method one**: If you use cmake as the build tool, that is, you set `PROP_BUILD_TYPE=cmake` in the `./proj.android/gradle.properties` file, do the following:
+
+      a. Add the following code to the `CMakeLists.txt` file in the project root directory:
+
+    ```
+    # add cross-platforms source files and header files
+    list(APPEND GAME_SOURCE
+              Classes/AppDelegate.cpp
+              Classes/HelloWorldScene.cpp
+              // Add the source file VideoFrameObserver.cpp.
+              Classes/VideoFrameObserver.cpp
+              )
+    list(APPEND GAME_HEADER
+              Classes/AppDelegate.h
+              Classes/HelloWorldScene.h
+              )
+    ...
+    else()
+            add_library(${APP_NAME} SHARED ${all_code_files})
+            add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/platform/android ${ENGINE_BINARY_PATH}/cocos/platform)
+            target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
+            // Add the following four lines:
+            add_library(agora-rtc-sdk SHARED IMPORTED)
+            set_target_properties(agora-rtc-sdk PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/${ANDROID_ABI}/libagora-rtc-sdk.so)
+            include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/include/)
+            target_link_libraries(${APP_NAME} agora-rtc-sdk)
+    endif()
+    ```
+
+      b. Add the following code after `assets.srcDir "../../Resources"` in the `proj.android/app/build.gradle` file to include the `.so` libraries:
+
+      ```groovy
+      sourceSets.main {
+          java.srcDir "src"
+          res.srcDir "res"
+          manifest.srcFile "AndroidManifest.xml"
+          assets.srcDir "../../Resources"
+          // Add the following two lines to include the .so libraries:
+          if (PROP_BUILD_TYPE == 'cmake') {
+              jniLibs.srcDirs "../../sdk/android/agora"
+          }
+      }
+      ...
+      dependencies {
+          // Add the following dependencies:
+          implementation fileTree(dir: '../../sdk/android/lib', include: ['*.jar'])
+          implementation project(':libcocos2dx')
+          implementation 'androidx.annotation:annotation:1.1.0'
+          implementation 'androidx.appcompat:appcompat:1.2.0'
+      }
+      ```
+
+  - **Method two**: If you use ndk-build as the build tool, that is, you set `PROP_BUILD_TYPE=ndk-build` in the `./proj.android/gradle.properties` file, and then add the following code to the `./proj.android/app/jni/Android.mk` file:
 
     ```makefile
-LOCAL_PATH := $(call my-dir)		 
- // Add the following four lines to specify the source files for the shared libraries.
-include $(CLEAR_VARS) 
-LOCAL_MODULE := agora-rtc-sdk
-LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../sdk/android/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk.so
-include $(PREBUILT_SHARED_LIBRARY)
-include $(CLEAR_VARS)
-LOCAL_MODULE := MyGame_shared
-LOCAL_MODULE_FILENAME := libMyGame
-LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
-                      $(LOCAL_PATH)/../../../Classes/AppDelegate.cpp \
-                      $(LOCAL_PATH)/../../../Classes/HelloWorldScene.cpp \
-					  // Add the source file VideoFrameObserver.cpp.
-                      $(LOCAL_PATH)/../../../Classes/VideoFrameObserver.cpp \
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
-                       // Add the following line to add ./sdk/android/agora/include to the include search path.
-                       $(LOCAL_PATH)/../../../sdk/android/agora/include
-	# _COCOS_HEADER_ANDROID_BEGIN
-	# _COCOS_HEADER_ANDROID_END
-LOCAL_STATIC_LIBRARIES := cc_static
-// Add the following line to link agora-rtc-sdk.
-LOCAL_SHARED_LIBRARIES := agora-rtc-sdk
-    # _COCOS_LIB_ANDROID_BEGIN	
-	# _COCOS_LIB_ANDROID_END  
-include $(BUILD_SHARED_LIBRARY)
-$(call import-module, cocos)
-    # _COCOS_LIB_IMPORT_ANDROID_BEGIN
-    # _COCOS_LIB_IMPORT_ANDROID_END
-   ```
+      LOCAL_PATH := $(call my-dir)
+      // Add the following four lines to specify the source files for the shared libraries.
+      include $(CLEAR_VARS)
+      LOCAL_MODULE := agora-rtc-sdk
+      LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../sdk/android/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk.so
+      include $(PREBUILT_SHARED_LIBRARY)
+      include $(CLEAR_VARS)
+      LOCAL_MODULE := MyGame_shared
+      LOCAL_MODULE_FILENAME := libMyGame
+      LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
+                            $(LOCAL_PATH)/../../../Classes/AppDelegate.cpp \
+                            $(LOCAL_PATH)/../../../Classes/HelloWorldScene.cpp \
+                  // Add the source file VideoFrameObserver.cpp.
+                            $(LOCAL_PATH)/../../../Classes/VideoFrameObserver.cpp \
+      LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
+                            // Add the following line to add ./sdk/android/agora/include to the include search path.
+                            $(LOCAL_PATH)/../../../sdk/android/agora/include
+        # _COCOS_HEADER_ANDROID_BEGIN
+        # _COCOS_HEADER_ANDROID_END
+      LOCAL_STATIC_LIBRARIES := cc_static
+      // Add the following line to link agora-rtc-sdk.
+      LOCAL_SHARED_LIBRARIES := agora-rtc-sdk
+          # _COCOS_LIB_ANDROID_BEGIN
+        # _COCOS_LIB_ANDROID_END
+      include $(BUILD_SHARED_LIBRARY)
+      $(call import-module, cocos)
+          # _COCOS_LIB_IMPORT_ANDROID_BEGIN
+          # _COCOS_LIB_IMPORT_ANDROID_END
+    ```
 
-      <div class="alert note">If you choose ndk-build, you do not need to set <code>jniLibs.srcDirs</code>, as ndk-build will automatically include the <code>.so</code> libraries.</div>
+  <div class="alert note">If you choose ndk-build, you do not need to set <code>jniLibs.srcDirs</code>, as ndk-build will automatically include the <code>.so</code> libraries.</div>
 
 ## Add project permissions
 
+- For Android:
 Add the following permissions in the `./proj.android/app/AndroidManifest.xml` file for device access according to your needs:
 
-```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.agora.gaming.cocos2d"
-    android:installLocation="auto">
-  
-  
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    // Add the following permission if your scenario involves reading the external storage:
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    // For devices running Android 10.0 or later, you also need to add the following permission:
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
-  
-...
-</manifest>
-```
+  ```xml
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="io.agora.gaming.cocos2d"
+      android:installLocation="auto">
 
-## Get the device permission
+
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.RECORD_AUDIO" />
+      <uses-permission android:name="android.permission.CAMERA" />
+      <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.BLUETOOTH" />
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+      // Add the following permission if your scenario involves reading the external storage:
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+      // For devices running Android 10.0 or later, you also need to add the following permission:
+      <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+
+  ...
+  </manifest>
+  ```
+
+- For iOS:
+Add the following permissions in the `./proj.ios_mac/ios/info.plist` file for device access according to your needs:
+
+  ```
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Microphone</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Camera</string>
+  ```
+
+## Get the device permission (Android only)
 
 Add the following code in `./proj.android/app/src/org/cocos2dx/cpp/AppActivity.java` to access the microphone and camera of the Android device when launching the activity:
 
@@ -239,25 +270,25 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
-  
+
 public class AppActivity extends Cocos2dxActivity {
     // Load the agora-rtc-sdk .so library.
     static {
         System.loadLibrary("agora-rtc-sdk");
     }
-   
+
     private final static int REQUEST_CODE = 200;
-  
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.setEnableVirtualButton(false);
         super.onCreate(savedInstanceState);
-          
+
         // Ask for Android device permissions at runtime.
         String[] needPermissions = {Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA};
         checkAndRequestAppPermission(this, needPermissions);
     }
-  
+
     private void checkAndRequestAppPermission(@NonNull Activity activity, String[] permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return;
         List<String> permissionList = new ArrayList<>();
@@ -269,7 +300,7 @@ public class AppActivity extends Cocos2dxActivity {
         String[] requestPermissions = permissionList.toArray(new String[0]);
         activity.requestPermissions(requestPermissions, AppActivity.REQUEST_CODE);
     }
-  
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
@@ -329,7 +360,7 @@ Add the following code in `HelloWorldScene.h` to import classes and add declarat
 
 2. Define App ID and token.
    To create and initialize an `IRtcEngine` object, you need to pass in the App ID of your Agora project. See [Get an App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id) for details.
-	 To ensure communication security, you need to use tokens (dynamic keys) to authenticate users joining a channel.	 
+	 To ensure communication security, you need to use tokens (dynamic keys) to authenticate users joining a channel.
    - For testing, you can [generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#generate-an-rtc-temporary-token) in Agora Console.
    - For production, Agora recommends using a token generated at your server. See [Generate a Token](./token_server).
 
@@ -378,15 +409,15 @@ Add the following code in `HelloWorldScene.h` to import classes and add declarat
 	};
 	```
 
-### 2. Create the UI 
+### 2. Create the UI
 
 Create the user interface (UI) for live video streaming.
 
 We recommend adding the following elements into the UI:
 
-- A channel name edit box 
-- A join-channel button 
-- A leave-channel button 
+- A channel name edit box
+- A join-channel button
+- A leave-channel button
 
 In the Agora sample project [Cocos2d-x](https://github.com/AgoraIO-Community/Agora-Cocos-Quickstart/tree/master/Cocos2d-x), the code for creating the UI elements and handling the button click events is as follows:
 
@@ -398,10 +429,10 @@ In the Agora sample project [Cocos2d-x](https://github.com/AgoraIO-Community/Ago
   auto editBox = cocos2d::ui::EditBox::create(Size(120, 30), "TextBox.png");
   if (editBox==nullptr) {
       problemLoading("'TextBox.png'");
-  } else {  
-    editBox->setPlaceHolder("Channel ID");  
-    editBox->setPosition(Vec2(origin.x + leftPadding + editBox->getContentSize().width/2,                         
-                              origin.y + visibleSize.height                               
+  } else {
+    editBox->setPlaceHolder("Channel ID");
+    editBox->setPosition(Vec2(origin.x + leftPadding + editBox->getContentSize().width/2,
+                              origin.y + visibleSize.height
                                   - editBox->getContentSize().height*1.5f));
       this->addChild(editBox, 0);
   }
@@ -418,12 +449,12 @@ In the Agora sample project [Cocos2d-x](https://github.com/AgoraIO-Community/Ago
       problemLoading("'Button.png' and 'ButtonPressed.png'");
     } else {
       joinButton->setTitleText("Join Channel");
-    
+
       joinButton->setPosition(Vec2(origin.x + leftPadding + joinButton->getContentSize().width/2,
                                    origin.y + visibleSize.height
                                        - 1*joinButton->getContentSize().height
                                        - 2*editBox->getContentSize().height));
-    
+
       joinButton->addTouchEventListener([&](cocos2d::Ref *sender, ui::Widget::TouchEventType type) {
         switch (type) {
         case ui::Widget::TouchEventType::BEGAN:break;
@@ -432,7 +463,7 @@ In the Agora sample project [Cocos2d-x](https://github.com/AgoraIO-Community/Ago
         default:break;
         }
       });
-    
+
       this->addChild(joinButton, 0);
     }
   ```
@@ -446,12 +477,12 @@ In the Agora sample project [Cocos2d-x](https://github.com/AgoraIO-Community/Ago
       problemLoading("'Button.png' and 'ButtonPressed.png'");
     } else {
       leaveButton->setTitleText("Leave Channel");
-    
+
       leaveButton->setPosition(Vec2(origin.x + leftPadding + leaveButton->getContentSize().width/2,
                                     origin.y + visibleSize.height
                                         - 2*leaveButton->getContentSize().height
                                         - 2*editBox->getContentSize().height));
-    
+
       leaveButton->addTouchEventListener([&](cocos2d::Ref *sender, ui::Widget::TouchEventType type) {
         switch (type) {
         case ui::Widget::TouchEventType::BEGAN:break;
@@ -460,11 +491,11 @@ In the Agora sample project [Cocos2d-x](https://github.com/AgoraIO-Community/Ago
         default:break;
         }
       });
-    
+
       this->addChild(leaveButton, 0);
     }
   ```
-  
+
 ### 3. Initialize IRtcEngine
 
 Create and initialize the `IRtcEngine` object before calling any other Agora APIs. Call the `createAgoraRtcEngine` and `initialize` methods, and pass in your App ID to initialize the `IRtcEngine` object.
@@ -473,36 +504,36 @@ Create and initialize the `IRtcEngine` object before calling any other Agora API
 class MyIGamingRtcEngineEventHandler : public agora::rtc::IRtcEngineEventHandler {
 private:
   HelloWorld *mUi;
- 
+
 public:
   explicit MyIGamingRtcEngineEventHandler(HelloWorld *ui) : mUi(ui) {}
- 
+
   // Listen for the onJoinChannelSuccess callback.
   // This callback occurs when the local user successfully joins the channel.
   void onJoinChannelSuccess(const char *channel, uid_t uid,
                             int elapsed) override {
   }
-  
+
   // Listen for the onLeaveChannel callback.
   // This callback occurs when the local user leaves the channel.
   void onLeaveChannel(const agora::rtc::RtcStats &stats) override {
   }
- 
+
   // Listen for the onFirstRemoteVideoDecoded callback.
   // This callback occurs when the first remote video frame is received and decoded.
   void onFirstRemoteVideoDecoded(uid_t uid, int width, int height,
                                  int elapsed) override {
   }
-   
+
   // Listen for the onUserOffline callback.
   // This callback occurs when a remote user leaves the channel.
   void onUserOffline(uid_t uid,
                      agora::rtc::USER_OFFLINE_REASON_TYPE reason) override {
   }
 };
- 
+
 ...
- 
+
 void HelloWorld::onEnter() {
   cocos2d::Scene::onEnter();
   eventHandler = new MyIGamingRtcEngineEventHandler(this);
@@ -566,7 +597,7 @@ void HelloWorld::onJoinChannelClicked() {
     return;
   }
   ...
-  // Pass in your token and channel name to join the channel. 
+  // Pass in your token and channel name to join the channel.
   // Set uid as 0, and the SDK assigns a user ID for the local user.
   engine->joinChannel(AGORA_TOKEN, editBox->getText(), "Cocos2d", 0);
 }
@@ -587,11 +618,11 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
 
    ```cpp
    #pragma once
-    
+
    #include <map>
    #include <mutex>
    #include <vector>
-    
+
    #ifdef __APPLE__
    #include <AgoraRtcKit/IAgoraMediaEngine.h>
    #include <AgoraRtcKit/IAgoraRtcEngine.h>
@@ -599,20 +630,20 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
    #include "IAgoraMediaEngine.h"
    #include "IAgoraRtcEngine.h"
    #endif
-    
+
    namespace agora {
    namespace cocos {
    // Define a CacheVideoFrame class, which caches the raw video data.
    class CacheVideoFrame {
    public:
      void resetVideoFrame(media::IVideoFrameObserver::VideoFrame &videoFrame);
-    
+
    public:
      int width;
      int height;
      uint8_t *data;
    };
-    
+
    // Define an IVideoFrameObserver class and register the callbacks of this class.
    class VideoFrameObserver : public media::IVideoFrameObserver {
    public:
@@ -624,18 +655,18 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
      bool onCaptureVideoFrame(VideoFrame &videoFrame) override;
      // Get the video data sent by the remote user in the onRenderVideoFrame callback.
      bool onRenderVideoFrame(unsigned int uid, VideoFrame &videoFrame) override;
-    
+
    public:
      // Associate the uid with the textureId.
      void bindTextureId(unsigned int textureId, unsigned int uid);
-    
+
    private:
      // Cache the video frame.
      void cacheVideoFrame(unsigned int uid,
                           media::IVideoFrameObserver::VideoFrame &videoFrame);
-     // Render the cached video frame into a 2D texture image.                
+     // Render the cached video frame into a 2D texture image.
      void renderTexture(unsigned int textureId, const CacheVideoFrame &frame);
-    
+
    private:
      std::map<unsigned int, CacheVideoFrame> _map;
      std::mutex mtx;
@@ -648,7 +679,7 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
 
    ```cpp
    #include "VideoFrameObserver.h"
-    
+
    #if defined(__ANDROID__)
    #include <GLES/gl.h>
    #include <GLES2/gl2.h>
@@ -656,7 +687,7 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
    #elif defined(__APPLE__)
    #include <OpenGLES/ES2/gl.h>
    #endif
-    
+
    namespace agora {
    namespace cocos {
    void CacheVideoFrame::resetVideoFrame(
@@ -674,30 +705,30 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
      width = videoFrame.width;
      height = videoFrame.height;
    }
-    
+
    // Set the video frame type as RGBA.
    media::IVideoFrameObserver::VIDEO_FRAME_TYPE
    VideoFrameObserver::getVideoFormatPreference() {
      return FRAME_TYPE_RGBA;
    }
-    
+
    // Set the SDK to rotate the captured video frame.
    bool VideoFrameObserver::getRotationApplied() { return true; }
-    
+
    // Get and cache the video data captured by the local camera.
    bool VideoFrameObserver::onCaptureVideoFrame(
        media::IVideoFrameObserver::VideoFrame &videoFrame) {
      cacheVideoFrame(0, videoFrame);
      return true;
    }
-    
+
    // Get and cache the video data sent by the remote user.
    bool VideoFrameObserver::onRenderVideoFrame(
        unsigned int uid, media::IVideoFrameObserver::VideoFrame &videoFrame) {
      cacheVideoFrame(uid, videoFrame);
      return true;
    }
-    
+
    // Bind the user ID with the texture ID.
    // If the specified uid is in the map, then the renderTexture() method will be called
    // to render the video frame of the user to a 2D texture image with the specified textureId.
@@ -707,7 +738,7 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
        renderTexture(textureId, _map[uid]);
      }
    }
-    
+
    // Cache the video frame output by the Agora SDK, and record the mapping relationship
    // between the video frame and user ID.
    void VideoFrameObserver::cacheVideoFrame(
@@ -719,8 +750,8 @@ In the Cocos2d-x project, to display the local and remote video views, you need 
      _map[uid].resetVideoFrame(videoFrame);
      mtx.unlock();
    }
-    
-   // Render the cached video frame into a 2D texture image. 
+
+   // Render the cached video frame into a 2D texture image.
    void VideoFrameObserver::renderTexture(unsigned int textureId,
                                           const CacheVideoFrame &frame) {
      mtx.lock();
@@ -745,7 +776,7 @@ Add the following code to the `HelloWorldScene.cpp` file:
    ```cpp
    void HelloWorld::onEnter() {
      ...
-    
+
      // Register a video frame observer object.
      agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
      mediaEngine.queryInterface(engine, agora::AGORA_IID_MEDIA_ENGINE);
@@ -776,13 +807,13 @@ Add the following code to the `HelloWorldScene.cpp` file:
        if (sprite != nullptr) {
          auto visibleSize = Director::getInstance()->getVisibleSize();
          Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    
+
          // Set the position of the sprite object in the scene.
          sprite->setPosition(Vec2(
              origin.x + visibleSize.width - sprite->getContentSize().width / 2,
              origin.y + visibleSize.height + sprite->getContentSize().height / 2 -
                  sprite->getContentSize().height * users.size()));
-    
+
          // Add the sprite object as a child node to the scene.
          this->addChild(sprite, 0, "uid:" + std::to_string(uid));
        }
@@ -804,11 +835,11 @@ Add the following code to the `HelloWorldScene.cpp` file:
      engine->enableVideo();
      ...
    }
-    
+
    // In the onJoinChannelSuccess callback, call the addTextureRender() method to set the local video view.
    void onJoinChannelSuccess(const char *channel, uid_t uid,
                                int elapsed) override {
-        
+
        mUi->addTextureRender(0, 640, 480);
      }
    ```
@@ -834,7 +865,7 @@ Add the following code to the `HelloWorldScene.cpp` file:
            this->getChildByName<Sprite *>("uid:" + std::to_string(user.first));
        if (sprite) {
          auto texture = sprite->getSpriteFrame()->getTexture();
-    
+
          int textureId = texture->getName();
          videoFrameObserver->bindTextureId(textureId, user.first);
        }
@@ -877,11 +908,17 @@ void HelloWorld::onExit() {
 
 ## Run the project
 
-1. Enable **Developer options** and **USB Debugging** on your Android device, and then connect it to your computer using a USB cable.
-2. Open the `Cocos2d-x/proj.android` folder with Android Studio.
-3. Select **File > Project Structure > SDK Location**, fill in the local path of your NDK under **Android NDK Location**, and then click **Apply > OK**. 
-4. Click **Sync Project with Gradle Files**.
-5. After the Gradle synchronization finishes, click **Build and run**.
+For Android:
+  1. Enable **Developer options** and **USB Debugging** on your Android device, and then connect it to your computer using a USB cable.
+  2. Open the `Cocos2d-x/proj.android` folder with Android Studio.
+  3. Select **File > Project Structure > SDK Location**, fill in the local path of your NDK under **Android NDK Location**, and then click **Apply > OK**.
+  4. Click **Sync Project with Gradle Files**.
+  5. After the Gradle synchronization finishes, click **Build and run**.
+
+For iOS:
+  1. Open `Cocos2d-x/proj.ios_mac/Hello-Cocos2d-Agora.xcodeproj` with Xcode.
+  2. Connect your iOS device to your computer using a USB cable.
+  3. Click the **Build and run** button in Xcode.
 
 When the interactive live video streaming starts successfully, hosts can see their own videos, and audience members can see the video of hosts in the app.
 
