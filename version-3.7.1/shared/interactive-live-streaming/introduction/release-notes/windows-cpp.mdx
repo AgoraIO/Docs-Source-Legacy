@@ -683,7 +683,7 @@ This release adds the following APIs:
 
 - [`setLocalVideoRenderer`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a24b96988aaf89c36f57aa4b694bdaad0)
 - [`setRemoteVideoRenderer`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad75d0cbbab37e0fa8324b219b49bd3a7)
-- [Error code](./error_rtc?platform=Windows): `ERR_ADM_WIN_CORE_SERVRE_SHUT_DOWN (1735)`
+- [Error code](../reference/error-codes): `ERR_ADM_WIN_CORE_SERVRE_SHUT_DOWN (1735)`
 
 ## v3.4.6
 
@@ -951,7 +951,7 @@ This release fixed the following issues:
 - [`startAudioMixing`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21063bfb71a8a5cbc0d391f9d7ac75be)[2/2]
 - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND(8)` in [`LOCAL_VIDEO_STREAM_ERROR`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#aca8292c30c50a78f6fbd1ef1b264d842)
 - `LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE(6)` and `LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE(7)` in [`LOCAL_AUDIO_STREAM_ERROR`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a3929991eea3a522dcbf6ac078810045e)
-- [Error code](./error_rtc?platform=Windows): `ERR_ALREADY_IN_RECORDING(160)`
+- [Error code](../reference/error-codes): `ERR_ALREADY_IN_RECORDING(160)`
 
 **Modified**
 
@@ -977,7 +977,7 @@ v3.3.1 was released on March 4, 2021.
 
 **Voice Conversion**
 
-This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See [Set the Voice Effect](./voice_changer_windows?platform=Windows).
+This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See [Set the Voice Effect](../advanced-features/voice-changer).
 
 #### Improvements
 
@@ -1024,7 +1024,7 @@ This release deprecates `setDefaultMuteAllRemoteAudioStreams` and `setDefaultMut
 - Methods with the prefix `muteAll` are no longer the master switch, and each `mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `muteAll` and `muteRemote` together, the method that is called later takes effect.
 - Methods with the prefix `muteAll` set whether to subscribe to the audio or video streams of all remote users, including all subsequent users, which means methods with the prefix `muteAll` contain the function of methods with the prefix `setDefaultMute`. Agora recommends not calling methods with the prefixes `muteAll` and `setDefaultMute` together; otherwise, the setting may not take effect.
 
-See details in [Set the Subscribing State](./set_subscribing_state?platform=Windows).
+See details in [Set the Subscribing State](../best-practices/set-subscribing-state).
 
 **3. Changes to voice activity behavior**
 
@@ -1038,7 +1038,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **2. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](./cloudproxy_native?platform=Windows).
+To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **3. Deep-learning noise reduction**
 
@@ -1146,11 +1146,11 @@ If you upgrade the SDK to v3.2.0 or later, ensure that you have copied the above
 
 **2. Cloud proxy**
 
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See [Cloud Proxy](./cloudproxy_native?platform=Windows).
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **3. Security and compliance**
 
-Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](https://docs.agora.io/en/Agora%20Platform/iso_cert?platform=Windows).
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](../reference/security#iso-certificates).
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
@@ -1165,7 +1165,7 @@ This release adds `setClientRole` for setting the latency level of an audience m
 - Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
 - Set the latency level as low latency to use Interactive Live Streaming Standard.
 
-For details, see the [product overview](https://docs.agora.io/en/live-streaming/product_live_standard?platform=Windows) of Interactive Live Streaming Standard. 
+For details, see the [product overview](../introduction/product-overview) of Interactive Live Streaming Standard. 
 
 #### Improvements
 
@@ -2041,7 +2041,7 @@ v2.4.0 adds the [`backgroundImage`](./API%20Reference/cpp/structagora_1_1rtc_1_1
 
 ##### 10. Cloud proxy
 
-Adds the cloud proxy service. See [Use Cloud Proxy](./cloudproxy_native?platform=Windows) for details.
+Adds the cloud proxy service. See [Use Cloud Proxy](../basic-features/use-cloud-proxy) for details.
 
 #### Improvements
 

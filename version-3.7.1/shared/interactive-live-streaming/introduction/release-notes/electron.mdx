@@ -749,7 +749,7 @@ This release deprecates `setDefaultMuteAllRemoteAudioStreams` and `setDefaultMut
 - Methods with the prefix `muteAll` are no longer the master switch, and each `mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `muteAll` and `muteRemote` together, the method that is called later takes effect.
 - Methods with the prefix `muteAll` set whether to subscribe to the audio or video streams of all remote users, including all subsequent users, which means methods with the prefix `muteAll` contain the function of methods with the prefix `setDefaultMute`. Agora recommends not calling methods with the prefixes `muteAll` and `setDefaultMute` together; otherwise, the setting may not take effect.
 
-See details in [Set the Subscribing State](./set_subscribing_state?platform=Electron).
+See details in [Set the Subscribing State](../best-practices/set-subscribing-state).
 
 #### New features
 
@@ -763,7 +763,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **3. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](./cloudproxy_native?platform=Electron).
+To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **4. Deep-learning noise reduction**
 
@@ -871,13 +871,13 @@ v3.2.0 was released on December 30, 2020.
 
 **1. Cloud proxy**
 
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See [Cloud Proxy](./cloudproxy_native?platform=Windows).
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 <div class="alert note">The cloud proxy is used exactly the same in Electron and Windows.</div>
 
 **2. Security and compliance**
 
-Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](https://docs.agora.io/en/Agora%20Platform/iso_cert?platform=Electron).
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](../reference/security#iso-certificates).
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
@@ -895,7 +895,7 @@ This release adds `setClientRoleWithOptions` for setting the latency level of an
 - Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
 - Set the latency level as low latency to use Interactive Live Streaming Standard.
 
-For details, see the [product overview](https://docs.agora.io/en/live-streaming/product_live_standard?platform=Electron) of Interactive Live Streaming Standard.
+For details, see the [product overview](../introduction/product-overview) of Interactive Live Streaming Standard.
 
 **3. Specify the region of connection**
 
