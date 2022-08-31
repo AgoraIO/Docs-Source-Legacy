@@ -19,7 +19,7 @@ Compared to the deprecated method, the new `enableRemoteSuperResolution` method 
 
 - `SR_MODE_MANUAL(0)`: Enables super resolution for the remote user you specify.
 - `SR_MODE_AUTO(1)`:  Enables super resolution for the remote user corresponding to the largest rendering window in the channel.
-  <div class="alert note">Before using super resolution, ensure that you have integrated the <code>libagora_super_resolution_extension.so</code> dynamical library. For other requirements, see the <a href="./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a69275723501075062c6215a1d58f0e94">enableRemoteSuperResolution documentation</a>.</div>
+  <div class="alert note">Before using super resolution, ensure that you have integrated the <code>libagora_super_resolution_extension.so</code> dynamical library. For other requirements, see the <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a69275723501075062c6215a1d58f0e94">enableRemoteSuperResolution documentation</a>.</div>
 
 
 **2. Co-hosting across channels**
@@ -74,7 +74,7 @@ v3.7.0 was released on April 11, 2022.
 
 **Changes to the implementation fields of dynamic libraries**
 
-When you integrate the Android SDK with Maven Central, you can reduce the size of your app after integrating the SDK by modifying the `implementation` field in `dependencies` in the `/Gradle Scripts/build.gradle(Module: .app)` file to specify the desired dynamic libraries. See [Reduce App Size](https://docs.agora.io/en/Interactive%20Broadcast/reduce_rtc_app_size?platform=Android#remove-extension-libraries-when-using-maven-central) for details.
+When you integrate the Android SDK with Maven Central, you can reduce the size of your app after integrating the SDK by modifying the `implementation` field in `dependencies` in the `/Gradle Scripts/build.gradle(Module: .app)` file to specify the desired dynamic libraries. See [Reduce App Size](../best-practices/reduce-app-size#remove-extension-libraries-when-using-maven-central) for details.
 
 To align the `implementation` fields of the same dynamic library in the Video and Audio SDKs, this release changes the `implementation` fields of the following dynamic libraries:
 
@@ -93,7 +93,7 @@ To use this feature, contact [support@agora.io](mailto:support@agora.io).
 
 **2. Screen sharing**
 
-This release supports screen sharing on this platform and provides the `startScreenCapture`, `stopScreenCapture`, and `updateScreenCaptureParameters` methods for this purpose. For the implementation method, see [Share the Screen](./screensharing_android?platform=Android).
+This release supports screen sharing on this platform and provides the `startScreenCapture`, `stopScreenCapture`, and `updateScreenCaptureParameters` methods for this purpose. For the implementation method, see [Share the Screen](../basic-features/screensharing).
 
 **3. Local voice pitch**
 
@@ -167,7 +167,7 @@ v3.6.2 was released on February 22, 2022.
 
 **1. Removing extension libraries when using Maven Central**
 
-Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the Android SDK with Maven Central, Agora supports reducing the size of your app after integrating the SDK by modifying `dependencies` in the `/Gradle Scripts/build.gradle(Module: .app)` file to specify the desired dynamic libraries and exclude unnecessary extension libraries. For details about the sample code and the `implementation` field in `dependencies`, see [Reduce App Size](./reduce_rtc_app_size#remove-extension-libraries-when-using-maven-central).
+Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the Android SDK with Maven Central, Agora supports reducing the size of your app after integrating the SDK by modifying `dependencies` in the `/Gradle Scripts/build.gradle(Module: .app)` file to specify the desired dynamic libraries and exclude unnecessary extension libraries. For details about the sample code and the `implementation` field in `dependencies`, see [Reduce App Size](../best-practices/reduce-app-size#remove-extension-libraries-when-using-maven-central).
 
 **2. Video enhancement**
 
@@ -182,7 +182,7 @@ In addition to the image enhancement feature, Agora adds support for more video 
 
 **3. Loading .so files dynamically**
 
-This release adds the `setAgoraLibPath` method for setting the directory of `.so` files. After a successful method call, the SDK dynamically loads `.so` files based on your specified directory when the app is running. This feature can help reduce the size of your app package. For detailed instructions, see [Reduce App Size](./reduce_rtc_app_size#load-so-files-dynamically).
+This release adds the `setAgoraLibPath` method for setting the directory of `.so` files. After a successful method call, the SDK dynamically loads `.so` files based on your specified directory when the app is running. This feature can help reduce the size of your app package. For detailed instructions, see [Reduce App Size](../best-practices/reduce-app-size#load-so-files-dynamically).
 
 **4. Passing in native TextureView**
 
@@ -214,7 +214,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
 - Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](./faq/audio_format).
 
-If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.so` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](./reduce_rtc_app_size#extension-libraries).
+If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.so` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size#extension-libraries).
 
 #### Fixed issues
 
@@ -289,7 +289,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android).
+This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](../advanced-features/media-push).
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -300,7 +300,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
         - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android#prerequisites) to enable the Media Push permission.
+        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the Media Push permission.
     - Adding the following to the `RTMP_STREAMING_EVENT` event code:
         - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`: The feature is not supported.
         - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`: Reserved.
@@ -338,48 +338,48 @@ This release fixed the following issues:
 
 **Added**
 
-- [`startRtmpStreamWithoutTranscoding`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5fec43179baa58dca1952a5f9b4f237a)
+- [`startRtmpStreamWithoutTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5fec43179baa58dca1952a5f9b4f237a)
 
-- [`startRtmpStreamWithTranscoding`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9391d6e809be8e54f01e73527fb88160)
+- [`startRtmpStreamWithTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9391d6e809be8e54f01e73527fb88160)
 
-- [`updateRtmpTranscoding`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a917ae58f6c4aaddb45370b6e1dbfa951)
+- [`updateRtmpTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a917ae58f6c4aaddb45370b6e1dbfa951)
 
-- [`stopRtmpStream`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab2afb755c25d279a8a6980f4676e59d3)
+- [`stopRtmpStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab2afb755c25d279a8a6980f4676e59d3)
 
-- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in the `state` parameter of [`onRtmpStreamingStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) 
+- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in the `state` parameter of [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) 
 
-- The followin code  in the `errCode` parameter of  [`onRtmpStreamingStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94):
+- The followin code  in the `errCode` parameter of  [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94):
 
   - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`
   - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`
   - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`
   - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`
 
-- The following code in the `error`parameter of [`onRtmpStreamingEvent`](./API%20Reference/java/v3.6.0/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
+- The following code in the `error`parameter of [`onRtmpStreamingEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/v3.6.0/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
 
   - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`
   - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`
 
 - The following methods in the `LiveTranscoding` class:
 
-  - [`addWatermark`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#acfb48803a25e2874662a6062e42eb23a)
-  - [`removeWatermark`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac9f7a22a7f81ed3f1e76aabd85de24a1)
-  - [`getWatermarkList`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a2eb18535e9325de3c2f13ab198632086)
-  - [`addBackgroundImage`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a545520b022875f0defa88ca1e60644eb)
-  - [`removeBackgroundImage`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#abb5e69ef80b366ada2194b8fea7ad2a5)
-  - [`getBackgroundImageList`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a6b8407b0266bb7bdd5f54a5b95109ef3)
+  - [`addWatermark`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#acfb48803a25e2874662a6062e42eb23a)
+  - [`removeWatermark`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac9f7a22a7f81ed3f1e76aabd85de24a1)
+  - [`getWatermarkList`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a2eb18535e9325de3c2f13ab198632086)
+  - [`addBackgroundImage`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a545520b022875f0defa88ca1e60644eb)
+  - [`removeBackgroundImage`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#abb5e69ef80b366ada2194b8fea7ad2a5)
+  - [`getBackgroundImageList`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a6b8407b0266bb7bdd5f54a5b95109ef3)
 
-- `zOrder` and `alpha` in the [`AgoraImage`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html) class
+- `zOrder` and `alpha` in the [`AgoraImage`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html) class
 
 - `HE_AAC_V2` in `AudioCodecProfileType`
 
-- [`setAVSyncSource`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a2a1680d169ee47b60a1612efbdb0a0de)
+- [`setAVSyncSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a2a1680d169ee47b60a1612efbdb0a0de)
 
-- `sharpnessLevel` in the [`BeautyOptions`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_beauty_options.html#abe098987049261ed3fafa5c9eb566f3e) class
+- `sharpnessLevel` in the [`BeautyOptions`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_beauty_options.html#abe098987049261ed3fafa5c9eb566f3e) class
 
 **Modified**
 
-- Changed the default value of  [`lighteningLevel`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_beauty_options.html#a8f95db150c53642322d1724260c6412c) from 0.7 to 0.6
+- Changed the default value of  [`lighteningLevel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_beauty_options.html#a8f95db150c53642322d1724260c6412c) from 0.7 to 0.6
 
 ## v3.5.2
 
@@ -453,23 +453,23 @@ This release fixed the following issues:
 
 This release adds the following APIs:
 
-- [`startEchoTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae4b2638c90a721749abdd9513260e51c) [3/3]
+- [`startEchoTest`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae4b2638c90a721749abdd9513260e51c) [3/3]
 
-- [`getMediaRecorder`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a664d014b211e9bdb02a2ab6e6bed602f)
+- [`getMediaRecorder`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a664d014b211e9bdb02a2ab6e6bed602f)
 
-- [`onRecorderStateChanged`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_agora_media_recorder_1_1_i_media_recorder_callback.html#a3355c1e8de0c5da28a741c2b1b537395)
+- [`onRecorderStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_agora_media_recorder_1_1_i_media_recorder_callback.html#a3355c1e8de0c5da28a741c2b1b537395)
 
-- [`onRecorderInfoUpdated`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_agora_media_recorder_1_1_i_media_recorder_callback.html#a212e958cb29dc6760fbe4e4c3068b6d7)
+- [`onRecorderInfoUpdated`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_agora_media_recorder_1_1_i_media_recorder_callback.html#a212e958cb29dc6760fbe4e4c3068b6d7)
 
-- [`startRecording`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a587a2d8e4e86157d59ec058ef1e22463)
+- [`startRecording`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a587a2d8e4e86157d59ec058ef1e22463)
 
-- [`stopRecording`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a210c51a4f89b88d9d04f37a87ec1d478)
+- [`stopRecording`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a210c51a4f89b88d9d04f37a87ec1d478)
 
-- [`release`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a4f2bef81683e17b663255ace71207ec9)
+- [`release`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_agora_media_recorder.html#a4f2bef81683e17b663255ace71207ec9)
 
-- [`takeSnapshot`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab5331537300d488d6095c01337bda202)
+- [`takeSnapshot`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab5331537300d488d6095c01337bda202)
 
-- [`onSnapshotTaken`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a611602228a711d8ca9a125fbc22f2d85)
+- [`onSnapshotTaken`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a611602228a711d8ca9a125fbc22f2d85)
 
 ## v3.5.1
 
@@ -481,7 +481,7 @@ v3.5.1 was released on October 14, 2021.
 
 To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. You can call `enableRemoteSuperResolution` to enable super resolution. The SDK triggers the `onUserSuperResolutionEnabled` callback to report whether this feature has been successfully enabled. If it is not enabled successfully, use the `reason` code to troubleshoot issues.
 
-<div class="alert note">Before using super resolution, ensure that you have integrated the relevant dynamical library and that the device performance, number of remote users, and original resolution of remote user's video meet the requirements. For details, see the <a href="./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab4901dc483497a5721b3059751e1117c">enableRemoteSuperResolution</a > documentation.</div>
+<div class="alert note">Before using super resolution, ensure that you have integrated the relevant dynamical library and that the device performance, number of remote users, and original resolution of remote user's video meet the requirements. For details, see the <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab4901dc483497a5721b3059751e1117c">enableRemoteSuperResolution</a > documentation.</div>
 
 
 **2. Background blurring**
@@ -570,28 +570,28 @@ This release has fixed the following issues:
 
 **Added**
 
-- [`enableRemoteSuperResolution`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab4901dc483497a5721b3059751e1117c)
-- [`onUserSuperResolutionEnabled`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a4437c6d4d04135837ddf79ce050132a0)
-- [`isCameraTorchSupported`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4125f12424c84b0a5e36f08a3665cc9e) (C++)
-- [`setCameraTorchOn`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a1411918f978f4aea0562d1274432a943) (C++)
-- `blur_degree` and `BLUR_DEGREE` in [`VirtualBackgroundSource`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_virtual_background_source.html)
-- `BACKGROUND_BLUR` in [`backgroundSourceType`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_virtual_background_source.html#aef6a35a8b004af0cd60d0504c946755e) 
-- [`pushExternalAudioFrame`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acc77cfbe4ddfcf36d722a89af6729ce5) [2/2]
-- [`setExternalAudioSourceVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a237825abbde72f6818d8450cfe4be06b)
-- [`setAudioMixingPlaybackSpeed`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa89c09746ed13adb978e7ed552319c51)
-- [`getAudioTrackCount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac45aa45b0965639df502c462b54cf1b7)
-- [`selectAudioTrack`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a011d98dd3828690165f4f5915f494ddd)
-- [`setAudioMixingDualMonoMode`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81b6a0f46612a6c4337d078b3af1681a)
-- [`pauseAllChannelMediaRelay`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acbf0c434b6867c6b3010aee1f2375269)
-- [`resumeAllChannelMediaRelay`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab33a8fc2a42d95916e483705c9b43293)
+- [`enableRemoteSuperResolution`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab4901dc483497a5721b3059751e1117c)
+- [`onUserSuperResolutionEnabled`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a4437c6d4d04135837ddf79ce050132a0)
+- [`isCameraTorchSupported`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4125f12424c84b0a5e36f08a3665cc9e) (C++)
+- [`setCameraTorchOn`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a1411918f978f4aea0562d1274432a943) (C++)
+- `blur_degree` and `BLUR_DEGREE` in [`VirtualBackgroundSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_virtual_background_source.html)
+- `BACKGROUND_BLUR` in [`backgroundSourceType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_virtual_background_source.html#aef6a35a8b004af0cd60d0504c946755e) 
+- [`pushExternalAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acc77cfbe4ddfcf36d722a89af6729ce5) [2/2]
+- [`setExternalAudioSourceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a237825abbde72f6818d8450cfe4be06b)
+- [`setAudioMixingPlaybackSpeed`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa89c09746ed13adb978e7ed552319c51)
+- [`getAudioTrackCount`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac45aa45b0965639df502c462b54cf1b7)
+- [`selectAudioTrack`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a011d98dd3828690165f4f5915f494ddd)
+- [`setAudioMixingDualMonoMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81b6a0f46612a6c4337d078b3af1681a)
+- [`pauseAllChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acbf0c434b6867c6b3010aee1f2375269)
+- [`resumeAllChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab33a8fc2a42d95916e483705c9b43293)
 - The following `RELAY_EVENT` enumerators:
-  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a7bdf2c335ecb4699ade19ffd9f128389)
-  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a5a1d733bf274f138b511e76081526b65)
-  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a45b2a457a6dd33a5b3be3cb17dda2ec1)
-  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a4125ae6a9bd19116f6239ef0766cb852)
-- [`getAudioFileInfo`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab280ab29440d333c8c00be9c45a3dd48)
-- [`onRequestAudioFileInfo`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3e1191735cd197815f4001b89825220a)
-- [`NETWORK_TYPE_MOBILE_5G(6)`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a2e380ca154d7bcb587f30e87a77b3cb4)
+  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a7bdf2c335ecb4699ade19ffd9f128389)
+  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a5a1d733bf274f138b511e76081526b65)
+  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a45b2a457a6dd33a5b3be3cb17dda2ec1)
+  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a4125ae6a9bd19116f6239ef0766cb852)
+- [`getAudioFileInfo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab280ab29440d333c8c00be9c45a3dd48)
+- [`onRequestAudioFileInfo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3e1191735cd197815f4001b89825220a)
+- [`NETWORK_TYPE_MOBILE_5G(6)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a2e380ca154d7bcb587f30e87a77b3cb4)
 
 **Deprecated**
 
@@ -665,7 +665,7 @@ v3.5.0 was released on July 20, 2021.
 
 **1. Support for SDK Integration with mavenCentral**
 
-As of this release, Agora publishes the SDK package to mavenCentral. To integrate the SDK with mavenCentral, see [Other approches to integrating the SDK](./start_call_android?platform=Android#other-approches-to-integrating-the-sdk).
+As of this release, Agora publishes the SDK package to mavenCentral. To integrate the SDK with mavenCentral, see [Other approaches to integrating the SDK](/3.7.1/video-calling/quickstart-guide/get-started-sdk#other-approches-to-integrating-the-sdk).
 
 **2. Changes to audio route behavior**
 
@@ -683,7 +683,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK does not play audio through any audio route, which causes a no-audio issue.
   - With v3.5.0 and later versions, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route of the SDK.
 
-See [Set the Audio Route](./set_audio_route_android?platform=Android).
+See [Set the Audio Route](../advanced-features/set-audio-route).
 
 #### New features
 
@@ -691,7 +691,7 @@ See [Set the Audio Route](./set_audio_route_android?platform=Android).
 
 This release adds the `enableVirtualBackground` method, with which you can enable and set a virtual background for users as either a solid color or an image in PNG or JPG format. You can use the `onVirtualBackgroundSourceEnabled` callback to learn whether the virtual background is successfully enabled or the reason for an error.
 
-<div class="alert note">Before you use virtual backgrounds, ensure that the relevant dynamic library is integrated and that the device performance and user scenarios meet the requirements. See <a href="./API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2">enableVirtualBackground documentation</a >.</div>
+<div class="alert note">Before you use virtual backgrounds, ensure that the relevant dynamic library is integrated and that the device performance and user scenarios meet the requirements. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2">enableVirtualBackground documentation</a >.</div>
 
 #### Improvements
 
@@ -724,13 +724,13 @@ This release fixed the following issues:
 
 **Added**
 
-- [`enableVirtualBackground`](./API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2)
-- [`onVirtualBackgroundSourceEnabled`](./API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a075c08f221367598a22389b5bf357cb4)
+- [`enableVirtualBackground`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2)
+- [`onVirtualBackgroundSourceEnabled`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a075c08f221367598a22389b5bf357cb4)
 
 **Modified**
 
-- [`setEnableSpeakerphone`](./API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a67cf60c4a3f4dade3f49205cd2f044f3)
-- [`setDefaultAudioRouteToSpeakerphone`](./API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8f89328fab2054d74f9dfa7819458866)
+- [`setEnableSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a67cf60c4a3f4dade3f49205cd2f044f3)
+- [`setDefaultAudioRouteToSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8f89328fab2054d74f9dfa7819458866)
 
 ## v3.4.6
 
@@ -763,7 +763,7 @@ To further improve the security during real-time audio and video transmission pr
 
 This release also changes the default encryption mode from `AES_128_XTS` to `AES_128_GCM2`. If you use the default encryption mode in earlier versions, after upgrading the SDK to v3.4.5, ensure that you call `enableEncryption` and set `EncryptionMode` to `AES_128_XTS`.
 
-See [Media Stream Encryption](./channel_encryption_android?platform=Android).
+See [Media Stream Encryption](../advanced-features/channel-encryption).
 
 <div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
 
@@ -788,7 +788,7 @@ The above improvements bring the following changes in the `RtcEngine` class:
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `muteLocalVideoStream`, `publish`, and `unpublish`.
 
-See [Set the Publishing State](./set_publishing_state?platform=Android) and [Join Multiple Channels](./multiple_channel_android?platform=Android).
+See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../advanced-features/multiple-channel).
 
 **3. Raw audio data**
 
@@ -874,13 +874,13 @@ This release fixed the following issues:
 
 **Added**
 
-- [`RTMP_STREAM_UNPUBLISH_ERROR_OK (100)`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#acaddf5d8d65ca6f6ee7f4fd77dec2947) in `RTMP_STREAM_PUBLISH_ERROR`
-- [`RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a25b71972dca11ac4b5cd9055590bcc47) in `RTMP_STREAMING_EVENT`
-- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
-- [`encryptionKdfSalt`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html#afc9c110a821b8fe078aa187a894d7e39) in [`EncryptionConfig`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html)
-- [`muteLocalAudioStream`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html#ae756f3e94c56acc0873799c63a97a22d) and [`muteLocalVideoStream`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html#a9ab5e48b13317d7e2017c4093a665031) in `RtcChannel`
-- [`publishLocalAudio`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1models_1_1_channel_media_options.html#a647b5b6056e0b364c4df6a72ec1f9420) and [`publishLocalVideo`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1models_1_1_channel_media_options.html#a68ff1bd1dc3f99d202d6c141dabcdccc) in `ChannelMediaOptions`
-- [`LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED (8)`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a26b3c01733c2f7ffced2540c3f52b6ef) in `LOCAL_AUDIO_STREAM_ERROR`
+- [`RTMP_STREAM_UNPUBLISH_ERROR_OK (100)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#acaddf5d8d65ca6f6ee7f4fd77dec2947) in `RTMP_STREAM_PUBLISH_ERROR`
+- [`RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a25b71972dca11ac4b5cd9055590bcc47) in `RTMP_STREAMING_EVENT`
+- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
+- [`encryptionKdfSalt`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html#afc9c110a821b8fe078aa187a894d7e39) in [`EncryptionConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html)
+- [`muteLocalAudioStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html#ae756f3e94c56acc0873799c63a97a22d) and [`muteLocalVideoStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html#a9ab5e48b13317d7e2017c4093a665031) in `RtcChannel`
+- [`publishLocalAudio`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1models_1_1_channel_media_options.html#a647b5b6056e0b364c4df6a72ec1f9420) and [`publishLocalVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1models_1_1_channel_media_options.html#a68ff1bd1dc3f99d202d6c141dabcdccc) in `ChannelMediaOptions`
+- [`LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED (8)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a26b3c01733c2f7ffced2540c3f52b6ef) in `LOCAL_AUDIO_STREAM_ERROR`
 - [`registerVideoFrameObserver`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aea50aaa1203bc891b472252dbc0b3119)
 - [`onCaptureVideoFrame`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_video_frame_observer.html#a366686d63afb5e2cf5df3dbf04025b92)
 - [`onPreEncodeVideoFrame`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_video_frame_observer.html#a414dfb0368779b1fcf51c82b378e0df7)
@@ -1121,7 +1121,7 @@ This release fixed the following issues:
 
 This release adds the following APIs:
 - [`setVoiceConversionPreset`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a25d0380b779ab7f869244f0d667328d6)
-- `AES_128_GCM` and `AES_256_GCM` in [`encryptionMode`](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
+- `AES_128_GCM` and `AES_256_GCM` in [`encryptionMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
 - `mosValue` in [`onRemoteAudioStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)
 
 ## v3.3.0
@@ -1743,7 +1743,7 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 - `setLocalRenderMode¹`, replaced by [`setLocalRenderMode`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8978be2e06307e632abee88c4824b8f6).
 - `setRemoteRenderMode¹`, replaced by [`setRemoteRenderMode`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5a8498025206a5680ef391c4e812f45f).
 - `setLocalVideoMirrorMode`, replaced by `mirrorMode` in [`setupLocalVideo`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1fa43a5ce24196e840bcb1062cadbf23) and [`setupRemoteVideo`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0e9f693c9bc2ccb91554c2c7dc6b7140).
-- `onStreamPublished` and `onStreamUnpublished`, replaced by [`onRtmpStreamingStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94).
+- `onStreamPublished` and `onStreamUnpublished`, replaced by [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94).
 
 ## v2.9.4
 
@@ -1875,7 +1875,7 @@ If your app implements Media Push with the methods above, ensure that you upgrad
 - [`setLiveTranscoding`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a3cb9804ae71819038022d7575834b88c)
 - [`addPublishStreamUrl`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)
 - [`removePublishStreamUrl`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a87b3f2f17bce8f4cc42b3ee6312d30d4)
-- [`onRtmpStreamingStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
+- [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
 
 For how to implement the new methods, see [Media Push](cdn_streaming_android).
 
@@ -2107,13 +2107,13 @@ To improve the usability of the CDN streaming service, v2.4.1 defines the follow
 | Class **/** Interface  | Parameter Limit                                              |
 | ---------------------- | ------------------------------------------------------------ |
 | [LiveTranscoding](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html)        | <li>[videoFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6): Frame rate (fps) of the CDN live output video stream. The value range is [0, 30], and the default value is 15. Agora adjusts all values over 30 to 30.</li><li>[videoBitrate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6): Bitrate (Kbps) of the CDN live output video stream. The default value is 400. Set this parameter according to the [Video Bitrate Table](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a4b090cd0e9f6d98bcf89cb1c4c2066e8). If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</li><li>[videoCodecProfile](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding_1_1_video_codec_profile_type.html): The video codec profile. Set it as **BASELINE**, **MAIN**, or **HIGH** (default). If you set this parameter to other values, Agora adjusts it to the default value of **HIGH**.</li><li>[width](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6) and [height](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a80960c1a972e9b3851fd16d921f8a75c): Pixel of the video. The minimum value of width x height is 16 x 16.</li> |
-| [AgoraImage](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html)             | `url`: The maximum length of this parameter is **1024** bytes. |
+| [AgoraImage](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html)             | `url`: The maximum length of this parameter is **1024** bytes. |
 | [addPublishStreamUrl](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)    | `url`: The maximum length of this parameter is **1024** bytes. |
 | [removePublishStreamUrl](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f) | `url`: The maximum length of this parameter is **1024** bytes. |
 
 This release also adds the [audioCodecProfile](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9) parameter in the `LiveTranscoding` class to set the audio codec profile type. The default type is LC-AAC, which means the low-complexity audio codec profile.
 
-v2.4.1 also adds five error codes to the `error` parameter in the [onStreamPublished](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) method for quick troubleshooting.
+v2.4.1 also adds five error codes to the `error` parameter in the [onStreamPublished](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) method for quick troubleshooting.
 
 **2. Renaming the receivedFrameRate parameter in the RemoteVideoStats class**
 
@@ -2131,7 +2131,7 @@ v2.4.1 adds the [onLocalVideoStateChanged](./API%20Reference/java/classio_1_1ago
 
 **3. State of the Media Push**
 
-v2.4.1 adds the [onRtmpStreamingStateChanged](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) callback to indicate the state of the Media Push and help you troubleshoot issues when exceptions occur. In this callback, the SDK returns the IDLE, `CONNECTING`, `RUNNING`, `RECOVERING`, or `FAILURE` state. When the state is `FAILURE`, you can use the error code for troubleshooting. You can still use the `onStreamPublished` and `onStreamUnpublished` callbacks, but we do not recommend using them.
+v2.4.1 adds the [onRtmpStreamingStateChanged](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) callback to indicate the state of the Media Push and help you troubleshoot issues when exceptions occur. In this callback, the SDK returns the IDLE, `CONNECTING`, `RUNNING`, `RECOVERING`, or `FAILURE` state. When the state is `FAILURE`, you can use the error code for troubleshooting. You can still use the `onStreamPublished` and `onStreamUnpublished` callbacks, but we do not recommend using them.
 
 **4. More reasons for a network connection state change**
 
@@ -2215,7 +2215,7 @@ v2.4.1 unifies the behavior of the C++ interfaces across different platforms so 
 -  [onFirstRemoteAudioDecoded](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0fcac6cafae63e4ef453ddd041e80f8a)
 - [onLocalVideoStateChanged](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aface271c0606ab99bb08a0d00267306c)
 - [onNetworkTypeChanged](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a75b014a87d0ead6cd4fa519a630f6f90)
-- [onRtmpStreamingStateChanged](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
+- [onRtmpStreamingStateChanged](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
 - [registerMediaMetadataObserver](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aeb1a5691094a10cb047d106d6c6c32b7)
 - The [IMetadataObserver](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_metadata_observer.html) class
 - The  [audioCodecProfile](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9) parameter in the `LiveTranscoding` class

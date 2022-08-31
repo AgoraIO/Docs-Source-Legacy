@@ -16,7 +16,7 @@ v3.7.0 was released on May 14, 2022.
 
 **Changes to the implementation fields of dynamic libraries (Android)**
 
-When you integrate the SDK, you can reduce the size of your app after integrating the SDK by modifying the `implementation` field in `dependencies` in the `/android/app/build.gradle` file to specify the desired dynamic libraries. See [Reduce App Size](https://docs.agora.io/en/Interactive%20Broadcast/reduce_rtc_app_size?platform=Android#remove-extension-libraries-when-using-maven-central) for details.
+When you integrate the SDK, you can reduce the size of your app after integrating the SDK by modifying the `implementation` field in `dependencies` in the `/android/app/build.gradle` file to specify the desired dynamic libraries. See [Reduce App Size](../best-practices/reduce-app-size#remove-extension-libraries-when-using-maven-central) for details.
 
 To simplify the `implementation` fields, this release changes the `implementation` fields of the following dynamic libraries:
 
@@ -35,7 +35,7 @@ To use this feature, contact [support@agora.io](mailto:support@agora.io).
 
 **Screen sharing**
 
-This release supports screen sharing on the Android and iOS platforms and provides the `startScreenCapture`, `stopScreenCapture`, and `updateScreenCaptureParameters` methods for this purpose. For the implementation guide, see [Share the Screen](./screensharing_react_native?platform=React%20Native).
+This release supports screen sharing on the Android and iOS platforms and provides the `startScreenCapture`, `stopScreenCapture`, and `updateScreenCaptureParameters` methods for this purpose. For the implementation guide, see [Share the Screen](/basic-features/screensharing).
 
 **Local voice pitch**
 
@@ -70,7 +70,7 @@ Test results and user feedback show that the effect of the virtual background fe
 
 **A new version of deep-learning noise reduction**
 
-Agora has added the option of using a new version of deep-learning noise reduction to further improve audio quality. To experience this feature, contact [support@agora.io](mailto:support@agora.io)
+Agora has added the option of using a new version of deep-learning noise reduction to further improve audio quality. To experience this feature, contact [support@agora.io](mailto:support@agora.io).
 
 **playEffect improvements**
 
@@ -82,7 +82,7 @@ This release reduces audio stuttering under network conditions with burst jitter
 
 **Transmission upgrade**
 
-This release upgrades transmission protocols and algorithms to enhance the SDK‘s ability to counter poor network conditions. At the same time, this release optimizes the scalable video coding capability for multi-user video scenarios to improve user video experience.
+This release upgrades transmission protocols and algorithms to enhance the SDK's ability to counter poor network conditions. At the same time, this release optimizes the scalable video coding capability for multi-user video scenarios to improve user video experience.
 
 #### Issues fixed
 
@@ -126,7 +126,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android).
+This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](../advanced-features/media-push).
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -139,7 +139,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
     - `NotBroadcaster(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
     - `TranscodingNoMixStream(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
     - `NetDown(14)`: Errors occurred in the host's network.
-    - `InvalidAppid(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android#prerequisites) to enable the Media Push permission.
+    - `InvalidAppid(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the Media Push permission.
 
   - Adding the following to the `RtmpStreamingEvent` event code:
 
@@ -512,7 +512,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK does not play audio through any audio route, which causes a no-audio issue.
   - With v3.5.0 and later versions, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route of the SDK.
 
-See [Set the Audio Route](./set_audio_route_android?platform=Android) for Android platform.
+See [Set the Audio Route](../advanced-features/set-audio-route) for Android platform.
 
 #### New features
 

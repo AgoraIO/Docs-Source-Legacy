@@ -49,7 +49,7 @@ The following code demonstrates how to join an `IChannel` channel, and then publ
 
 1. Create and initialize `IRtcEngine`.
 
- ```c++
+ ```cpp
  m_rtcEngine = createAgoraRtcEngine();
  RtcEngineContext context;
  std::string strAppID = GET_APP_ID;
@@ -61,19 +61,19 @@ The following code demonstrates how to join an `IChannel` channel, and then publ
 
 2. Enable the video module.
 
- ```c++
+ ```cpp
  m_rtcEngine->enableVideo();
  ```
 
 3. Set the channel profile as interactive live streaming.
 
- ```c++
+ ```cpp
  m_rtcEngine->setChannelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING);
  ```
 
 4. Create an `IChannel1` object, and listen for events in this channel.
 
- ```c++
+ ```cpp
  IChannel * pChannel1 = static_cast<IRtcEngine2 *>(m_rtcEngine)->createChannel(szChannelId.c_str());
  ChannelEventHandler* pEvt = new ChannelEventHandler;
  pEvt->setMsgHandler(GetSafeHwnd());
@@ -83,13 +83,13 @@ The following code demonstrates how to join an `IChannel` channel, and then publ
 
 5. Set the user role as a host.
 
- ```c++
+ ```cpp
  pChannel1->setClientRole(CLIENT_ROLE_BROADCASTER);
  ```
 
 6. Pass in `token` and `channelId` to join the `IChannel1` channel. The SDK publishes the local streams and automatically subscribes to the streams of all the other users in the channel by default.
 
- ```c++
+ ```cpp
  ChannelMediaOptions options1;
  options1.autoSubscribeAudio = true;
  options1.autoSubscribeVideo = true;
@@ -100,7 +100,7 @@ The following code demonstrates how to join an `IChannel` channel, and then publ
 
 7. Create an `IChannel2` object, and listen for events in this channel.
 
- ```c++
+ ```cpp
  IChannel * pChannel2 = static_cast<IRtcEngine2 *>(m_rtcEngine)->createChannel(szChannelId.c_str());
  ChannelEventHandler* pEvt = new ChannelEventHandler;
  pEvt->setMsgHandler(GetSafeHwnd());
@@ -110,13 +110,13 @@ The following code demonstrates how to join an `IChannel` channel, and then publ
 
 8. Set the user role as an audience member. Note that audience members cannot publish local streams.
 
- ```c++
+ ```cpp
  pChannel2->setClientRole(CLIENT_ROLE_AUDIENCE);
  ```
 
 9. Pass in `token` and `channelId` to join the `IChannel2` channel. You need to set `publishLocalAudio` and `publishLocalVideo` to `false`; otherwise, the user fails to join the channel.
 
- ```c++
+ ```cpp
  ChannelMediaOptions options2;
  options2.autoSubscribeAudio = true;
  options2.autoSubscribeVideo = true;
@@ -127,21 +127,21 @@ The following code demonstrates how to join an `IChannel` channel, and then publ
 
 10. Leave and destroy the `IChannel2` channel.
 
- ```c++
+ ```cpp
  info.channel2->leaveChannel();
  info.channel2->release();
  ```
 
 11. Leave and destroy the `IChannel1` channel.
 
- ```c++
+ ```cpp
  info.channel1->leaveChannel();
  info.channel1->release();
  ```
 
 12. Destroy the `IRtcEngine` object.
 
- ```c++
+ ```cpp
  m_rtcEngine->release(true);
  ```
 

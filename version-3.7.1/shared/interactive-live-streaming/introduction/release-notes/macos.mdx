@@ -165,7 +165,7 @@ For integration details, see the [Quickstart Guide](https://docs.agora.io/en/Int
 
 **Removing extension libraries when using CocoaPods**
 
-Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the macOS SDK with CocoaPods, Agora supports reducing the size of your app after integrating the SDK by using the `subspecs` field in the Podfile to specify the desired dynamic libraries and exclude unnecessary extension libraries. For details about the sample code and the `subspecs` fields, see [Reduce App Size](./reduce_rtc_app_size).
+Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the macOS SDK with CocoaPods, Agora supports reducing the size of your app after integrating the SDK by using the `subspecs` field in the Podfile to specify the desired dynamic libraries and exclude unnecessary extension libraries. For details about the sample code and the `subspecs` fields, see [Reduce App Size](../best-practices/reduce-app-size).
 
 
 #### Improvements
@@ -210,7 +210,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 - Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](./faq/audio_format).
 
 
-If you want to experience these improvements, ensure that you have integrated the `AgoraFullAudioFormatExtension.xcframework` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](./reduce_rtc_app_size).
+If you want to experience these improvements, ensure that you have integrated the `AgoraFullAudioFormatExtension.xcframework` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
 
 **5. Audio file formats**
@@ -552,7 +552,7 @@ To further improve the security during real-time audio and video transmission pr
 
 This release also changes the default encryption mode from `AgoraEncryptionModeAES128XTS (1)` to `AgoraEncryptionModeAES128GCM2 (7)`. If you use the default encryption mode in earlier versions, after upgrading the SDK to v3.4.5, ensure that you call `enableEncryption` and set `AgoraEncryptionMode` to `AgoraEncryptionModeAES128XTS (1)`.
 
-See [Media Stream Encryption](./channel_encryption_apple?platform=macOS).
+See [Media Stream Encryption](../advanced-features/channel-encryption).
 
 <div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
 
@@ -575,7 +575,7 @@ The above improvements bring the following changes in the `AgoraRtcEngineKit` cl
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream` `publish`, and `unpublish`.
 
-See [Set the Publishing State](./set_publishing_state?platform=macOS) and [Join Multiple Channels](./multiple_channel_apple?platform=macOS).
+See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../advanced-features/multiple-channel).
 
 **3. Raw audio data**
 
@@ -1248,7 +1248,7 @@ The dynamic library is located in the framework folder as an independent library
 
 To enable a user to join an unlimited number of channels at a time, this release adds the [`AgoraRtcChannel`](./API%20Reference/oc/Classes/AgoraRtcChannel.html) and [`AgoraRtcChannelDelegate`](./API%20Reference/oc/Protocols/AgoraRtcChannelDelegate.html) classes. By creating multiple `AgoraRtcChannel` objects, a user can join the corresponding channels at the same time.
 
-After joining multiple channels, users can receive the audio streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](./multiple_channel_apple) for details.
+After joining multiple channels, users can receive the audio streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](../advanced-features/multiple-channel) for details.
 
 **2. Adjusting the playback volume of the specified remote user**
 

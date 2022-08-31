@@ -172,7 +172,7 @@ This section describes how to implement Media Push using versions of the SDK ear
 When the streaming state changes, the SDK triggers the `onRtmpStreamingStateChanged` callback to report the current streaming state to the host. Make sure to wait until you receive the `onRtmpStreamingStateChanged` callback before performing any other actions. If adding or removing a CDN address fails, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.
 
 
-```c++
+```cpp
 // C++
 // CDN transcoding settings.
 LiveTranscoding config;

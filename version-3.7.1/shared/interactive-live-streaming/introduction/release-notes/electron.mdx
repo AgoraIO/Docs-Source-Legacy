@@ -137,7 +137,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
 - Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](./faq/audio_format).
 
-If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](./reduce_rtc_app_size).
+If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
 #### Fixed issues
 
@@ -531,7 +531,7 @@ The above improvements bring the following changes in the `AgoraRtcEngine` class
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `muteLocalVideoStream`, `publish`, and `unpublish`.
 
-See [Set the Publishing State](./set_publishing_state?platform=Windows).
+See [Set the Publishing State](../advanced-features/set-publishing-state).
 
 #### New features
 

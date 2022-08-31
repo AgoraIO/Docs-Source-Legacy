@@ -1,7 +1,5 @@
 <PlatformWrapper platform="web">
 
-<div class="alert info">This article only applies to the Agora Web SDK 3.x and earlier versions. If you use the Web SDK 4.x, see <a href="./in-call_quality_web_ng?platform=Web">Report Call Statistics</a>.</div>
-
 ## Introduction
 
 The Agora Web SDK provides API methods for you to get the audio and video statistics reflecting the overall quality of a call.
@@ -64,7 +62,7 @@ setInterval(() => {
 
 ### Get the statistics of the session
 
-Call the [`Client.getSessionStats`](./API%20Reference/web/interfaces/agorartc.client.html#getsessionstats) method to get the statistics of the session, including: 
+Call the [`Client.getSessionStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getsessionstats) method to get the statistics of the session, including: 
 
 - `Duration`: Call duration in seconds, represented by an aggregate value.
 - `RecvBitrate`: Total received bitrate of the stream, in Kbps, represented by an instantaneous value.
@@ -247,7 +245,7 @@ setInterval(() => {
 
 ### Reports on the uplink and downlink network conditions of the local user
 
-The [`network-quality`](./API%20Reference/web/interfaces/agorartc.client.html#on) callback in  `Client.on` reports on the uplink and downlink network conditions of the local user once every two seconds.
+The [`network-quality`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#on) callback in  `Client.on` reports on the uplink and downlink network conditions of the local user once every two seconds.
 
 - `downlinkNetworkQuality`: The downlink network quality.
 - `uplinkNetworkQuality`: The uplink network quality.
@@ -277,7 +275,7 @@ client.on("network-quality", function(stats) {
 
 ### Reports exception events in the channel
 
-The [`exception`](./API%20Reference/web/interfaces/agorartc.client.html#on)  callback in  `Client.on` reports on exception events in the channel. Exceptions are not errors, but usually mean quality issues. This callback also reports recovery from an exception.
+The [`exception`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#on)  callback in  `Client.on` reports on exception events in the channel. Exceptions are not errors, but usually mean quality issues. This callback also reports recovery from an exception.
 
 - `code`: Event code.
 - `msg`: Event message.
