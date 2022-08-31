@@ -1,0 +1,93 @@
+<PlatformWrapper platform="windows-cpp">
+
+Apps need to provide different audio experiences according to different business needs. In order to provide these different audio experiences, you can use the Agora RTC SDK to set the appropriate audio profile ([`profile`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a75448342947f6e98becc2b27d2edca55)) and audio scenario ([`scenario`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a2c5708461a9e1568bbda636d95055533)).
+
+This article describes how to use the Agora RTC SDK to set the audio profile and scenario in your app.
+
+## Understand the tech
+
+Audio profiles refer to the combined settings of the audio sample rate, bitrate, encoding mode, and number of channels; audio scenarios refer to the audio processing algorithms recommended by Agora for common business scenarios. For example, for apps in the education scenario, Agora recommends using `AUDIO_SCENARIO_EDUCATION` to obtain a highly smooth and stable audio experience.
+
+The SDK uses the `AUDIO_PROFILE_DEFAULT` profile and the `AUDIO_SCENARIO_DEFAULT` scenario by default. If the default settings cannot meet your requirements, you can call `setAudioProfile` to set the audio profile and scenario before joining a channel.
+
+## Prerequisites
+
+Before setting the audio profile and scenario, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_windows?platform=Windows) or [Start Live Interactive Streaming](start_live_windows?platform=Windows).
+
+## Implementation
+
+This section describes how to set the audio profile and scenario for common business scenarios. You can add the following sample code to your project.
+
+### One-to-one online classroom
+
+This scenario mainly requires good call quality with smooth transmission. Agora recommends using the SDK default settings.
+
+```cpp
+rtcEngine.setAudioProfile(AUDIO_PROFILE_DEFAULT, AUDIO_SCENARIO_DEFAULT);
+```
+
+### Battle royale game
+
+This scenario mainly requires voice clarity, no noise, and a lower bitrate. Agora recommends the following settings:
+
+```cpp
+rtcEngine.setAudioProfile(AUDIO_PROFILE_SPEECH_STANDARD, AUDIO_SCENARIO_CHATROOM_GAMING);
+```
+
+### Murder mystery game
+
+This scenario mainly requires high audio performance, with no volume or audio quality change when users mute or unmute the microphone. Agora recommends the following settings:
+
+```cpp
+rtcEngine.setAudioProfile(AUDIO_PROFILE_MUSIC_STANDARD, AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
+```
+
+### KTV
+
+This scenario mainly requires high-fidelity audio, a high performance to music or singing voice, and support for rich audio effects. Agora recommends the following settings:
+
+```cpp
+rtcEngine.setAudioProfile(AUDIO_PROFILE_MUSIC_HIGH_QUALITY, AUDIO_SCENARIO_GAME_STREAMING);
+```
+
+### Podcast
+
+This scenario usually uses professional audio hardware devices and requires high-fidelity audio and stereo audio channels. Agora recommends the following settings:
+
+```cpp
+rtcEngine.setAudioProfile(AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO, AUDIO_SCENARIO_SHOWROOM);
+```
+
+### Music education
+
+This scenario mainly requires high-fidelity audio and support for transmitting the audio effects from the local playback to remote users. Agora recommends the following settings:
+
+```cpp
+rtcEngine.setAudioProfile(AUDIO_PROFILE_MUSIC_STANDARD_STEREO, AUDIO_SCENARIO_GAME_STREAMING);
+```
+
+### Collaborative teaching
+
+This scenario mainly requires high-fidelity audio, support for rich audio effects, and no volume or audio quality change when users mute or unmute the microphone. Agora recommends the following settings:
+
+```cpp
+rtcEngine.setAudioProfile(AUDIO_PROFILE_MUSIC_STANDARD_STEREO, AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
+```
+
+## Reference
+
+This section provides useful references for setting the audio profile and scenario.
+
+#### Sample project
+
+Agora provides an open-source demo project [AudioProfile](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioProfile) that implements setting the audio profile and scenario on GitHub. You can download the sample project and view the source code.
+
+#### API reference
+
+- [`setAudioProfile`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab0cb52e238b729a15525a5cc12543d9e)
+
+#### Volume type
+
+The audio scenario affects the volume type. See [What is the difference between the in-call volume and the media volume](https://docs.agora.io/en/faq/system_volume).
+
+</PlatformWrapper>

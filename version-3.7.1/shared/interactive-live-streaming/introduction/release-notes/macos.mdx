@@ -165,7 +165,7 @@ For integration details, see the [Quickstart Guide](https://docs.agora.io/en/Int
 
 **Removing extension libraries when using CocoaPods**
 
-Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the macOS SDK with CocoaPods, Agora supports reducing the size of your app after integrating the SDK by using the `subspecs` field in the Podfile to specify the desired dynamic libraries and exclude unnecessary extension libraries. For details about the sample code and the `subspecs` fields, see [Reduce App Size](./reduce_rtc_app_size).
+Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the macOS SDK with CocoaPods, Agora supports reducing the size of your app after integrating the SDK by using the `subspecs` field in the Podfile to specify the desired dynamic libraries and exclude unnecessary extension libraries. For details about the sample code and the `subspecs` fields, see [Reduce App Size](../best-practices/reduce-app-size).
 
 
 #### Improvements
@@ -210,7 +210,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 - Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](./faq/audio_format).
 
 
-If you want to experience these improvements, ensure that you have integrated the `AgoraFullAudioFormatExtension.xcframework` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](./reduce_rtc_app_size).
+If you want to experience these improvements, ensure that you have integrated the `AgoraFullAudioFormatExtension.xcframework` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
 
 **5. Audio file formats**
@@ -552,7 +552,7 @@ To further improve the security during real-time audio and video transmission pr
 
 This release also changes the default encryption mode from `AgoraEncryptionModeAES128XTS (1)` to `AgoraEncryptionModeAES128GCM2 (7)`. If you use the default encryption mode in earlier versions, after upgrading the SDK to v3.4.5, ensure that you call `enableEncryption` and set `AgoraEncryptionMode` to `AgoraEncryptionModeAES128XTS (1)`.
 
-See [Media Stream Encryption](./channel_encryption_apple?platform=macOS).
+See [Media Stream Encryption](../advanced-features/channel-encryption).
 
 <div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
 
@@ -575,7 +575,7 @@ The above improvements bring the following changes in the `AgoraRtcEngineKit` cl
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream` `publish`, and `unpublish`.
 
-See [Set the Publishing State](./set_publishing_state?platform=macOS) and [Join Multiple Channels](./multiple_channel_apple?platform=macOS).
+See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../advanced-features/multiple-channel).
 
 **3. Raw audio data**
 
@@ -745,7 +745,7 @@ This release fixed that the `reportAudioVolumeIndicationOfSpeakers` callback ret
 - [`getEffectCurrentPosition`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getEffectCurrentPosition:)
 - [`startAudioMixing`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioMixing:loopback:replace:cycle:startPos:)2
 - [`startAudioRecordingWithConfig`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioRecordingWithConfig:)3
-- [Error Code](./error_rtc?platform=macOS): `AgoraErrorCodeAlreadyInRecording(160)`
+- [Error Code](../reference/error-codes): `AgoraErrorCodeAlreadyInRecording(160)`
 
 **Modified**
 
@@ -770,7 +770,7 @@ v3.3.1 was released on March 4, 2021.
 
 **Voice Conversion**
 
-This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See [Set the Voice Effect](./voice_changer_apple?platform=macOS).
+This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See [Set the Voice Effect](../advanced-features/voice-changer).
 
 #### Improvements
 
@@ -814,7 +814,7 @@ This release deprecates `setDefaultMuteAllRemoteAudioStreams` and changes the be
 - Methods with the prefix `muteAll` are no longer the master switch, and each `mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `muteAll` and `muteRemote` together, the method that is called later takes effect.
 - Methods with the prefix `muteAll` set whether to subscribe to the audio streams of all remote users, including all subsequent users, which means methods with the prefix `muteAll` contain the function of methods with the prefix `setDefaultMute`. Agora recommends not calling methods with the prefixes `muteAll` and `setDefaultMute` together; otherwise, the setting may not take effect.
 
-See details in [Set the Subscribing State](./set_subscribing_state?platform=macOS).
+See details in [Set the Subscribing State](../best-practices/set-subscribing-state).
 
 **3. Changes to voice activity behavior**
 
@@ -832,7 +832,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **3. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](./cloudproxy_native?platform=macOS).
+To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **4. Deep-learning noise reduction**
 
@@ -925,11 +925,11 @@ If you upgrade the SDK to v3.2.0 or later, refer to the following steps to add t
 2. Open **Xcode**, go to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** menu, click **+**, then click **Add Other…** to add `Agorafdkaac.framework` and `AgoraSoundTouch.framework`. Ensure the status of these dynamic libraries is **Embed & Sign**.
 
 **2. Cloud proxy**
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See [Cloud Proxy](./cloudproxy_native?platform=macOS).
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **3. Security and compliance**
 
-Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](https://docs.agora.io/en/Agora%20Platform/iso_cert?platform=All%20Platforms).
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](../reference/security#iso-certificates).
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
@@ -946,7 +946,7 @@ This release adds `setClientRole` for setting the latency level of an audience m
 - Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
 - Set the latency level as low latency to use Interactive Live Streaming Standard.
 
-For details, see the [product overview](https://docs.agora.io/en/live-streaming/product_live_standard?platform=macOS) of Interactive Live Streaming Standard. 
+For details, see the [product overview](../introduction/product-overview) of Interactive Live Streaming Standard. 
 
 #### Improvements
 
@@ -1248,7 +1248,7 @@ The dynamic library is located in the framework folder as an independent library
 
 To enable a user to join an unlimited number of channels at a time, this release adds the [`AgoraRtcChannel`](./API%20Reference/oc/Classes/AgoraRtcChannel.html) and [`AgoraRtcChannelDelegate`](./API%20Reference/oc/Protocols/AgoraRtcChannelDelegate.html) classes. By creating multiple `AgoraRtcChannel` objects, a user can join the corresponding channels at the same time.
 
-After joining multiple channels, users can receive the audio streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](./multiple_channel_apple) for details.
+After joining multiple channels, users can receive the audio streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](../advanced-features/multiple-channel) for details.
 
 **2. Adjusting the playback volume of the specified remote user**
 
@@ -1530,7 +1530,7 @@ This is the first release of the Agora Voice SDK for macOS. Refer to the followi
 - Set the voice changer and reverberation effects
 - Media Push
 - Test or select a media device
--  [Use Cloud Proxy](./cloudproxy_native)
+-  [Use Cloud Proxy](../basic-features/use-cloud-proxy)
 
 If you migrate to this SDK from the macOS Video SDK, refer to the [Release notes for the macOS video SDK](./release_mac_video) for audio improvements.
 

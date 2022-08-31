@@ -1,3 +1,14 @@
+<PlatformWrapper notAllowed="android">
+<PlatformWrapper notAllowed="web">
+<PlatformWrapper notAllowed="windows-csharp">
+<PlatformWrapper notAllowed="windows-cpp">
+<PlatformWrapper notAllowed="unity">
+<PlatformWrapper notAllowed="unity">
+<PlatformWrapper notAllowed="electron">
+<PlatformWrapper notAllowed="cocos-creator">
+<PlatformWrapper notAllowed="cocos-2d-x">
+<PlatformWrapper notAllowed="react-native">
+
 ## Introduction
 
 During real-time communications, you can pre- and post-process the audio and video data and modify them for desired playback effects.
@@ -154,7 +165,7 @@ The Agora SDK provides only C++ methods and callbacks for implementing the raw a
 
 <div class="alert note">The following code should be implemented in the <code>.mm</code> file.</div>
 
-```C++
+```cpp
 // Import the C++ header file
 #import <AgoraRtcKit/IAgoraMediaEngine.h>
 #import <AgoraRtcKit/IAgoraRtcEngine.h>
@@ -335,7 +346,7 @@ Call `registerAudioFrameObserver(NULL)` to stop registering the audio frame obse
 
 <div class="alert note">The following code should be implemented in the <code>.mm</code> file.</div>
 
-```C++
+```cpp
 - (void)deregisterAudioRawDataObserver:(ObserverAudioType)observerType {
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
@@ -369,3 +380,13 @@ Call `registerAudioFrameObserver(NULL)` to stop registering the audio frame obse
 - Ensure that you call `getNativeHandler` to get the C++ handle before calling the C++ method.
 - The raw audio data function is resource intensive and may affect performance.
 
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>

@@ -768,7 +768,7 @@ To further improve the security during real-time audio transmission process, thi
 
 This release also changes the default encryption mode from `AES_128_XTS` to `AES_128_GCM2`. If you use the default encryption mode in earlier versions, after upgrading the SDK to v3.4.5, ensure that you call `EnableEncryption` and set `EncryptionMode` to `AES_128_XTS`.
 
-See [Media Stream Encryption](./channel_encryption_unity?platform=Unity).
+See [Media Stream Encryption](../advanced-features/channel-encryption).
 
 <div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
 
@@ -1042,7 +1042,7 @@ This release deprecates `SetDefaultMuteAllRemoteAudioStreams` and `SetDefaultMut
 - Methods with the prefix `MuteAll` are no longer the master switch, and each `Mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `MuteAll` and `MuteRemote` together, the method that is called later takes effect.
 - Methods with the prefix `MuteAll` set whether to subscribe to the audio or video streams of all remote users, including all subsequent users, which means methods with the prefix `MuteAll` contain the function of methods with the prefix `SetDefaultMute`. Agora recommends not calling methods with the prefixes `MuteAll` and `SetDefaultMute` together; otherwise, the setting may not take effect.
 
-See details in [Set the Subscribing State](./set_subscribing_state?platform=Unity).
+See details in [Set the Subscribing State](../best-practices/set-subscribing-state).
 
 #### New features
 
@@ -1056,7 +1056,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **3. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `SetCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](./cloudproxy_unity?platform=Unity).
+To improve the usability of the Agora Cloud Proxy, this release adds the `SetCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **4. Deep-learning noise reduction**
 
@@ -1072,7 +1072,7 @@ You can call `SetVoiceBeautifierPreset(SINGING_BEAUTIFIER)` to beautify the male
 
 **6. Voice Conversion**
 
-This release adds the `SetVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See [Set the Voice Effect](./voice_changer_unity?platform=Unity).
+This release adds the `SetVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See [Set the Voice Effect](../advanced-features/voice-changer).
 
 **7. Log files**
 
@@ -1181,7 +1181,7 @@ If you upgrade the SDK to v3.2.1, ensure that you have added the above files in 
 
 **2. Cloud proxy**
 
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact [support@agora.io](mailto:support@agora.io) before upgrading the SDK. See [Cloud Proxy](./cloudproxy_unity?platform=Unity).
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact [support@agora.io](mailto:support@agora.io) before upgrading the SDK. See [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **3. Security and compliance**
 
@@ -1200,7 +1200,7 @@ This release adds `SetClientRole` for setting the latency level of an audience m
 - Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
 - Set the latency level as low latency to use Interactive Live Streaming Standard.
 
-For details, see the [product overview](https://docs.agora.io/en/live-streaming/product_live_standard?platform=Unity) of Interactive Live Streaming Standard.
+For details, see the [product overview](../introduction/product-overview) of Interactive Live Streaming Standard.
 
 **2. Publishing and subscription states**
 
@@ -1411,7 +1411,7 @@ This release adds `GetEngine2` for specifying the area of connection when creati
 
 To enable a user to join an unlimited number of channels at a time, this release adds the `AgoraChannel` class. By creating multiple `AgoraChannel` objects, a user can join the corresponding channels at the same time. Besides, this release adds `SetMultiChannelWant` for enabling the multi-channel mode, and `SetForMultiChannelUser` for setting the local or remote video of users in multiple channels.
 
-After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](./multiple_channel_unity) for details.
+After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](../advanced-features/multiple-channel) for details.
 
 **3. Audio mixing pitch**
 

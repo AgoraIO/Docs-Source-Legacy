@@ -16,7 +16,7 @@ v3.7.0 was released on May 14, 2022.
 
 **Changes to the implementation fields of dynamic libraries (Android)**
 
-When you integrate the SDK, you can reduce the size of your app after integrating the SDK by modifying the `implementation` field in `dependencies` in the `/android/app/build.gradle` file to specify the desired dynamic libraries. See [Reduce App Size](https://docs.agora.io/en/Interactive%20Broadcast/reduce_rtc_app_size?platform=Android#remove-extension-libraries-when-using-maven-central) for details.
+When you integrate the SDK, you can reduce the size of your app after integrating the SDK by modifying the `implementation` field in `dependencies` in the `/android/app/build.gradle` file to specify the desired dynamic libraries. See [Reduce App Size](../best-practices/reduce-app-size#remove-extension-libraries-when-using-maven-central) for details.
 
 To simplify the `implementation` fields, this release changes the `implementation` fields of the following dynamic libraries:
 
@@ -35,7 +35,7 @@ To use this feature, contact [support@agora.io](mailto:support@agora.io).
 
 **Screen sharing**
 
-This release supports screen sharing on the Android and iOS platforms and provides the `startScreenCapture`, `stopScreenCapture`, and `updateScreenCaptureParameters` methods for this purpose. For the implementation guide, see [Share the Screen](./screensharing_react_native?platform=React%20Native).
+This release supports screen sharing on the Android and iOS platforms and provides the `startScreenCapture`, `stopScreenCapture`, and `updateScreenCaptureParameters` methods for this purpose. For the implementation guide, see [Share the Screen](/basic-features/screensharing).
 
 **Local voice pitch**
 
@@ -70,7 +70,7 @@ Test results and user feedback show that the effect of the virtual background fe
 
 **A new version of deep-learning noise reduction**
 
-Agora has added the option of using a new version of deep-learning noise reduction to further improve audio quality. To experience this feature, contact [support@agora.io](mailto:support@agora.io)
+Agora has added the option of using a new version of deep-learning noise reduction to further improve audio quality. To experience this feature, contact [support@agora.io](mailto:support@agora.io).
 
 **playEffect improvements**
 
@@ -82,7 +82,7 @@ This release reduces audio stuttering under network conditions with burst jitter
 
 **Transmission upgrade**
 
-This release upgrades transmission protocols and algorithms to enhance the SDK‘s ability to counter poor network conditions. At the same time, this release optimizes the scalable video coding capability for multi-user video scenarios to improve user video experience.
+This release upgrades transmission protocols and algorithms to enhance the SDK's ability to counter poor network conditions. At the same time, this release optimizes the scalable video coding capability for multi-user video scenarios to improve user video experience.
 
 #### Issues fixed
 
@@ -126,7 +126,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android).
+This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](../advanced-features/media-push).
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -139,7 +139,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
     - `NotBroadcaster(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
     - `TranscodingNoMixStream(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
     - `NetDown(14)`: Errors occurred in the host's network.
-    - `InvalidAppid(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android#prerequisites) to enable the Media Push permission.
+    - `InvalidAppid(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the Media Push permission.
 
   - Adding the following to the `RtmpStreamingEvent` event code:
 
@@ -512,7 +512,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK does not play audio through any audio route, which causes a no-audio issue.
   - With v3.5.0 and later versions, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route of the SDK.
 
-See [Set the Audio Route](./set_audio_route_android?platform=Android) for Android platform.
+See [Set the Audio Route](../advanced-features/set-audio-route) for Android platform.
 
 #### New features
 
@@ -1063,7 +1063,7 @@ This release fixed the following issues:
 - `startPos` in [`playEffect`](./API%20Reference/react_native/classes/rtcengine.html#playeffect)
 - `startPos` in [`startAudioMixing`](./API%20Reference/react_native/classes/rtcengine.html#startaudiomixing)
 - `DeviceNotFound(8)` in [`LocalVideoStreamError`](./API%20Reference/react_native/enums/localvideostreamerror.html)
-- [`Error code`](./error_rtc?platform=React%20Native): `AlreadyInRecording(160)`
+- [`Error code`](../reference/error-codes): `AlreadyInRecording(160)`
 
 **Modified**
 
@@ -1094,7 +1094,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **2. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](./cloudproxy_native?platform=React Native).
+To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **3. Deep-learning noise reduction**
 
@@ -1209,11 +1209,11 @@ v3.2.1 was released on December 23, 2020.
 
 **1. Cloud proxy**
 
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact [support@agora.io](mailto:support@agora.io) before upgrading the SDK. See [Cloud Proxy](./cloudproxy_native?platform=React%20Native).
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact [support@agora.io](mailto:support@agora.io) before upgrading the SDK. See [Cloud Proxy](../basic-features/use-cloud-proxy).
 
 **2. Security and compliance**
 
-Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](https://docs.agora.io/en/Agora%20Platform/iso_cert?platform=React%20Native).
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](../reference/security#iso-certificates).
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
@@ -1226,7 +1226,7 @@ This release adds `options` in `setClientRole` for setting the latency level of 
 - Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
 - Set the latency level as low latency to use Interactive Live Streaming Standard.
 
-For details, see the [product overview](https://docs-preprod.agora.io/en/live-streaming/product_live_standard?platform=React%20Native) of Interactive Live Streaming Standard.
+For details, see the [product overview](../introduction/product-overview) of Interactive Live Streaming Standard.
 
 #### Improvements
 
@@ -1440,7 +1440,7 @@ v3.0.1 was released on September 4th, 2020.
 See the following documentation to quickly integrate the SDK and implement real-time voice and video communication in your project.
 
 - [Start a Voice Call](./start_call_audio_react_native)
-- [Start a Video Call](./start_call_react_native)
+- [Start a Video Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk)
 - [Start Live Interactive Video Streaming](./start_live_react_native)
 - [Start Live Interactive Audio Streaming](./start_live_audio_react_native)
 - [API Reference](./API%20Reference/react_native/index.html)
