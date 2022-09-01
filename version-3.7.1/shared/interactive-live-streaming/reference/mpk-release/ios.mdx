@@ -1,0 +1,262 @@
+<PlatformWrapper platform="ios">
+
+This page provides release notes for the Agora MediaPlayer Kit plugin.
+
+## Overview
+The Agora MediaPlayer Kit is a media player plug-in developed for interactive live streaming scenes, and is compatible with the Agora Native SDK (v2.4.0 or later).
+
+This plug-in helps developers enable the function of playing media resources in real-time interactive live streaming through the use of streamlined and flexible APIs, and synchronously sharing local or online media resources played by the host to all users in the channel. See [function description](https://docs.agora.io/en/Interactive%20Broadcast/mediaplayer_ios?platform=iOS#function-description) for details.
+
+To enrich the interactive live streaming playability and improve the real-time interactive experience, we recommend using the mediaplayer kit in the following scenarios:
+- Local playback: Play local or online media resources.
+- Online education: The teacher shares a currently playing video with the students during an online class.
+- Live sports: The host shares the live sports with the audience during his/her interactive live streaming.
+- Pseudo interactive live streaming: Share or publish the video recorded by the host in advance to the audience.
+
+## v1.3.0
+
+v1.3.0 was released on July 20, 2021.
+
+### New features
+
+**Multiple bitrate switching**
+
+In order to ensure the playback quality of media resources when network conditions can change, this release adds the [`switchSrc`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/mediaplayer_oc/Classes/AgoraMediaPlayer.html#//api/name/switchSrc:syncPts:) method, allowing you to switch the bitrate at any time according to the current network status. This method supports the synchronization of the current playback position of an on-demand stream through the `syncPts` parameter to achieve smooth switching between multiple bitrates.
+
+After calling `switchSrc`, if you receive the [`didOccurEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/mediaplayer_oc/Protocols/AgoraMediaPlayerDelegate.html#//api/name/AgoraMediaPlayer:didOccurEvent:) callback event `AgoraMediaPlayerEventSwitchComplete`, the bitrate switch is successful; if you receive the `didOccurEvent` callback event `AgoraMediaPlayerEventSwitchError`, the bitrate switch fails.
+
+**Preload**
+
+In order to improve the continuity of multiple file playback, this release supports the preloading function. You can call the [`addPreloadSrc`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/mediaplayer_oc/Classes/AgoraMediaPlayer.html#//api/name/addPreloadSrc:startPos:)  method to load a media resource into the playlist in advance, and then call [`playPreload`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/mediaplayer_oc/Classes/AgoraMediaPlayer.html#//api/name/playPreload:) to play the file. To preload multiple media resources, you need to call `addPreloadSrc` multiple times.
+
+After calling `addPreloadSrc`, if you receive the [`didPreloadEvent`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/mediaplayer_oc/Protocols/AgoraMediaPlayerDelegate.html#//api/name/AgoraMediaPlayer:didPreloadEvent:) callback event `AgoraMediaPlayerPreloadEventComplete`, the preload is successful; if you receive the `didPreloadEvent` callback event `AgoraMediaPlayerPreloadEventError`, the preload fails.
+
+#### Improvements
+
+To improve the user experience, this release makes the following improvements to the playback behavior of MediaPlayer Kit:
+
+- After playing a video in the background, the MediaPlayer Kit displays the last frame of the video when switching back to the foreground.
+- When `seekToPosition` is called and the value of the `position` parameter is greater than the total duration of the media file, the MediaPlayer Kit positions to the last frame.
+
+In order to reduce CPU consumption and improve performance, this release changes the default decoding mode from software decoding to hardware decoding.
+
+### Fixed issues
+
+This release fixed the following issues:
+
+- Occasional crash occurred when killing the app process.
+- The delay for the first frame was too long when calling `open`.
+
+## v1.2.8
+
+v1.2.8 was released on Apr 22, 2021.
+
+Fixed issues are as follows:
+
+- When MediaPlayer Kit finished playing (AgoraMediaPlayerStatePlayBackCompleted(5)), calling the `seekToPosition` method did not take effect occasionally.
+- The first frame occurred with a black screen when played on low-end models.
+
+## v1.2.6
+
+v1.2.6 was released on Apr 2, 2021.
+
+This release fixed the issue that there was no callback data from third-party custom source when using MediaPlayer Kit on certain devices.
+
+## v1.2.5
+
+v1.2.5 was released on Mar 30, 2021.
+
+This release fixed the following issues:
+
+- It took too long to destroy the AgoraMediaPlayer instance.
+- MediaPlayer Kit occasionally crashed  when the `destroy` method was called.
+- MediaPlayer Kit occasionally crashed when the app process was killed.
+
+## v1.2.4
+
+v1.2.4 was released on Mar 5, 2021.
+
+#### Compatibility changes
+
+Since this release, the `Agoraffmpeg.framework` file in the MediaPlayer Kit package has been renamed to `AgoraPlayerFFmpeg.framework`. To upgrade to v1.2.4 or later, please refer to the following steps to add `AgoraPlayerFFmpeg.framework` when integrating:
+
+1. Copy the above file to the folder where `AgoraMediaPlayer.framework` is located.
+2. Go to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** menu in Xcode, click **+**, then click **Add Other…** to add `AgoraPlayerFFmpeg.framework`. Ensure that the **Embed** property of the dynamic library is **Embed & Sign**.
+
+#### Improvements
+
+- The unit of the `position` parameter in the `didChangedToPosition` event changes from second to millisecond.
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- The media file played automatically after seeking to the specified playback position by calling `seekToPosition`.
+- The screen got stuck when calling `seekToPosition` and playing a media file on a low-end model.
+- Calling `play` to replay a video after the playback finished got a black screen.
+
+## v1.2.3
+
+v1.2.3 was released on Feb 24, 2021.
+
+#### Improvements
+
+- The unit of the playback position parameter in the `open` and `seekToPosition` methods changes from second to millisecond.
+- The unit of the `duration` returned by `getDuration` method changes from second to millisecond.
+- Supports playing media audio and video in WebM format.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Apparent loading time with a black screen when the media resources start playing.
+
+- A memory leak occurred when destroying an AgoraMediaPlayer instance.
+
+
+
+## v1.2.2
+
+v1.2.2 was released on January 13, 2021.
+
+Fixed issues are as follows:
+- Audio and video playback were not synchronized when a headset was plugged in or pulled out.
+- The MediaPlayer Kit was incompatible with Agora Native SDK v3.2.0 and later.
+- A crash occurred when the MediaPlayer Kit was used together with a third-party SDK based on WebRTC.
+
+## v1.2.1
+
+v1.2.1 was released on December 31, 2020.
+
+#### Compatibility changes
+
+Since this release, the `AgoraFFmpeg.framework` file in the MediaPlayer Kit package has been renamed to `Agoraffmpeg.framework`. To upgrade to v1.2.1 or later, please refer to the following steps to add `Agoraffmpeg.framework` when integrating:
+
+1. Copy the above file to the folder where `AgoraMediaPlayer.framework` is located.
+2. Go to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** menu in Xcode, click **+**, then click **Add Other…** to add `Agoraffmpeg.framework`. Ensure that the **Embed** property of the dynamic library is **Embed & Sign**.
+
+#### New features
+
+**1. More playback features**
+
+To meet varied playback needs, this release adds the following APIs:
+
+- `changePlaybackSpeed`: Change the playback speed, for example to double-speed playback.
+- `selectAudioTrack`: Select the audio track used during the playback.
+
+**2. Reporting online buffering**
+
+This release adds the online buffering report. When playing online media resources, the MediaPlayer Kit triggers the `didPlayBufferUpdate` callback every second to report how long the currently buffered data can support playback.
+
+**3. Getting the version number**
+
+Since this release, you can call `getPlayerSdkVersion` to get the version number of the MediaPlayer Kit currently in use.
+
+**4. Setting log files**
+
+To support customizing log files, this release adds the following APIs:
+
+- `setLogFile`: Specify the path of the log file.
+- `setLogFilter`: Set the filtering level of the output log file.
+
+#### Improvements
+
+**1. Media metadata**
+
+To parse more types of the SEI (Supplemental Enhancement Information) data, such as the SEI data sent in the Agora Media Push service, the trigger timing of the `didReceiveData` callback has been changed since this release:
+
+| Earlier than v1.2.1 | v1.2.1 or later |
+|-----------|-----------|
+| The type of SEI received by the MediaPlayer Kit is 5.|The type of SEI received by the MediaPlayer Kit is 5 or 100.|
+
+**2. Default volume type**
+
+To tailor to user habits, from this release, the MediaPlayer Kit uses the media volume by default. Compared with call volume, media volume has better sound performance and can be adjusted to 0, which is more suitable for playing audio and video. See [enableVoiceChatMode](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/mediaplayer_oc/Classes/AgoraMediaPlayer.html#//api/name/initWithDelegate:voiceChatMode:) for details.
+
+**3. Getting playback progress**
+
+To allow developers to get more accurate playback progress, since this release, the unit of the value returned by the `getPlayPosition` method has been changed from seconds to milliseconds.
+
+**4. Playback formats**
+
+Since this release, the MediaPlayer Kit supports playing media resources in two more codec formats:
+
+- Vobis (decoding codec)
+- HEVC/H.265 (encoding codec)
+
+#### Issues fixed
+
+This release fixed the issue that the memory or audio device was not released after you destroyed the MediaPlayer Kit.
+
+## v1.1.4.0
+
+v1.1.4.0 was released on August 19, 2020.
+
+#### Compatibility changes
+
+For v1.1.4.0, the `AgoraFFmpeg.framework` file has been added to the SDK package. If you upgrade the MediaPlayer Kit to v1.1.4.0, refer to the following steps to add `AgoraFFmpeg.framework` when integrating the SDK:
+
+1. Copy the `AgoraFFmpeg.framework` file to the folder where the `AgoraMediaPlayer.framework` file is located.
+2. Open **Xcode**, go to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** menu, click **+**, then click **Add Other…** to add `AgoraFFmpeg.framework`. Ensure the status of this dynamic librariy is **Embed & Sign**.
+
+#### Improvements and fixed issues
+
+- Reduced the performance loss of the device during playback.
+- Reduced the size of the MediaPlayer Kit package.
+- Fixed occasional crashes and application unresponsiveness issues.
+
+## v1.1.3.2
+
+v1.1.3.2 was released on Jul 13, 2020.
+
+This release further fixed issues of bundle identifier collision and occasional crashes.
+
+## v1.1.3.1
+
+v1.1.3.1 was released on Jun 28, 2020.
+
+This release fixed issues of bundle identifier collision and occasional blurs during video playback.
+
+## v1.1.2
+
+v1.1.2 was released on Jun 15, 2020.
+
+New features, improvements, and fixed issues are as follows:
+- Added support for using MediaPlayer Kit C++ APIs.
+- Added support for debugging on the iOS simulator.
+- Improved the video playback quality on low-end models.
+- Fixed a black screen issue caused by the change of view size when the playback is paused.
+
+## v1.1.1
+
+v1.1.1 was released on May 11, 2020.
+
+This release fixed errors that occur when you play MP3 files.
+
+## v1.1.0
+
+v1.1.0 was released on Feb 28, 2020.
+
+This is the first release of the mediaplayer kit. You can use it in your project to enable the following functions:
+
+**1. Sharing media resources**
+To enrich the live playability, the host can synchronously share the playback of the local and online media resource with all users in the channel.
+
+**2. Playing multiple media resources simultaneously**
+To meet various demands for a varied audience, the host can play multiple media resources simultaneously by creating multiple instances of `AgoraMediaPlayer`.
+
+**3. Playback controls**
+The host has access to real-time playback controls for opening the media resource, playing the media resource, pausing the playback, resuming the playback, and seeking to the new playback position of the media resource.
+
+**4. Precise volume controls**
+To precisely control the playback volume at different stages, the hosts can adjust the local and remote playback volume separately, which improves the user experience on both the playback and subscription ends.
+
+**5. Getting playback information**
+The host can actively obtain various playback information, such as current playback progress, playback state, and detailed media stream information.
+
+**6. Overriding the delegate method and monitoring events**
+The `AgoraMediaPlayerDelegate` delegate method contains a series of events, such as playback progress, playback state, and the result of a seek operation to a new playback position. By listening for these events, you can have more control over the playback process. When an exception occurs, you can use these event callbacks for troubleshooting.
+
+Besides, you can listen for events that report receiving the media metadata, each audio frame and each video frame. These events help you include more complex functions in multiple scenarios, such as using custom format data, recording audio, recording video, and screenshots.
+
+</PlatformWrapper>
