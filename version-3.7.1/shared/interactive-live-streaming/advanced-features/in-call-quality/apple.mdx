@@ -131,7 +131,7 @@ When the state of **remote** audio stream changes, the SDK triggers the `remoteA
 
 The `localVideoStats` callback reports the statistics of the video streams sent. You can see the dimensions of the encoding frame and the following parameters.
 
-> If you have called the `enableDualStreamMode` method to enable [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode), this callback reports the statistics of the high-video streams sent.
+> If you have called the `enableDualStreamMode` method to enable [dual-stream mode](../reference/glossary#dual-stream-mode), this callback reports the statistics of the high-video streams sent.
 
 | Parameter                 | Description                                                  | Comment                                                      |
 | :------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -167,7 +167,7 @@ The `remoteVideoStats` callback reports the video statistics of each remote user
 
 | Parameter                 | Description                                                  | Comment                                                      |
 | :------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `rxStreamType`            | The type of video streams.                                   | High-video streams or low-video streams, see [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode). |
+| `rxStreamType`            | The type of video streams.                                   | High-video streams or low-video streams, see [dual-stream mode](../reference/glossary#dual-stream-mode). |
 | `receivedBitrate`         | The bitrate of the video received in the reported interval.  |                                                              |
 | `packetLossRate`          | The packet loss rate of the video received in the reported interval. | <li>Stages 2 + 3 + 4 in the figure above</li><li>The packet loss rate after using the **anti-packet-loss** method, which is lower than before.</li> |
 | `decoderOutputFrameRate`  | The output frame rate of the remote video decoder.           |                                                              |

@@ -63,7 +63,7 @@ You can refer to the following API call sequence diagram and steps to implement 
    <li>For live audio scenarios, leave the video-related fields in the transcoding configuration empty.</li>
    <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
    <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
-   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 
@@ -76,7 +76,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 
    <div class="alert note"><ul>
    <li>If you need to stop the live streaming at multiple addresses, call <code>stop</code> multiple times and pass in the corresponding CDN addresses.</li>
-   <li>After stopping the streaming, you can receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After stopping the streaming, you can receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 
@@ -95,7 +95,7 @@ You can refer to the following API call sequence diagram and steps to implement 
    <div class="alert note"><ul>
    <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
    <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
-   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 
@@ -104,7 +104,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 
    <div class="alert note"><ul>
    <li>If you need to stop the live streaming at multiple addresses, call <code>stop</code> multiple times and pass in the corresponding CDN addresses.</li>
-   <li>After stopping the streaming, you can receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After stopping the streaming, you can receive the <code>rtmpStreamingChangedToState</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 
@@ -184,7 +184,7 @@ This section describes how to implement Media Push using versions of the SDK ear
 5. The host in a channel calls the `removePublishStreamUrl` method to remove a media stream from the Media Push.
 
 
-When the streaming state changes, the SDK triggers the `rtmpStreamingChangedtoState` callback to report the current streaming state to the host. Make sure to wait until you receive the `rtmpStreamingChangedtoState` callback before performing any other actions. If adding or removing a CDN address fails, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.
+When the streaming state changes, the SDK triggers the `rtmpStreamingChangedtoState` callback to report the current streaming state to the host. Make sure to wait until you receive the `rtmpStreamingChangedtoState` callback before performing any other actions. If adding or removing a CDN address fails, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.
 
 
 
@@ -249,7 +249,7 @@ The following APIs are still functional but not recommended by Agora when implem
 When using the Media Push function, you may also need to refer to the following docs:
 
 - [Pricing for Media Push](./billing_streaming?platform=RESTful)
-- [Exception Handling for Media Push](./cdn_streaming_error)
+- [Exception Handling for Media Push](../best-practices/exception-handling-for-media-push)
 - [How to solve SEI-related issues?](./faq/sei)
 - [What is the relationship between the old and new callbacks of Media Push?](./faq/cdnStreaming_callback_relationship)
 - [Overview of the Media Push using RESTful API](./streaming_product?platform=RESTful)

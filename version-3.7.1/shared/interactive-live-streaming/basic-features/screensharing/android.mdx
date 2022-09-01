@@ -13,7 +13,7 @@ Screen sharing enables the host of an interactive live streaming broadcast or vi
 
 This section describes how to implement screen sharing using the Android SDK v3.7.0 and later.
 
-Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](https://docs.agora.io/cn/Interactive%20Broadcast/start_call_android) or [Start Interactive Video Streaming](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_android).
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_android).
 
 
 #### 1. Integrate the AgoraScreenShareExtension
@@ -47,13 +47,13 @@ Some restrictions and cautions exist for using the screen sharing feature, and c
 
 This section describes how to implement screen sharing using the Android SDK earlier than v3.7.0.
 
-Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](https://docs.agora.io/cn/Interactive%20Broadcast/start_call_android) or [Start Interactive Video Streaming](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_android).
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_android).
 
 The Agora SDK does not provide any method for screen share on Android. Therefore, You need to implement this function using the native screen-capture APIs provided by Android, and the custom video-source APIs provided by Agora.
 
 1. Use `android.media.projection` and `android.hardware.display.VirtualDisplay` to get and pass the screen-capture data.
 2. Create an OpenGL ES environment. Create a `SurfaceView` object and pass the object to `VirtualDisplay`, which works as the recipient of the screen-capture data.
-3. You can get the screen-capture data from the callbacks of `SurfaceView`. Use either the `Push` mode or `mediaIO` mode to push the screen-capture data to the SDK. For details, see [Custom Video Source and Renderer](custom_video_android).
+3. You can get the screen-capture data from the callbacks of `SurfaceView`. Use either the `Push` mode or `mediaIO` mode to push the screen-capture data to the SDK. For details, see [Custom Video Source and Renderer](../advanced-features/custom-video).
 
 #### Data transfer
 
