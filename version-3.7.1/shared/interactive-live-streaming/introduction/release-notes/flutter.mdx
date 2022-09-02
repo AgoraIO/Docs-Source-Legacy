@@ -14,10 +14,10 @@ v5.3.0 was released on July 20, 2022.
 #### New features and improvements
 v5.3.0 adapts to the Agora RTC Native SDK v3.7.0.2. For new features and improvements, see the release notes for each platform from v3.6.2 to v3.7.0.2:
 
-- [Android Release Notes](./release_android_video?platform=Android)
-- [iOS Release Notes](./release_ios_video?platform=iOS)
-- [macOS Release Notes](./release_mac_video?platform=macOS)
-- [Windows Release Notes](./release_windows_video?platform=Windows)
+- <Link target="_blank" to="../introduction/release-notes?platform=android">Android Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes?platform=ios">iOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes?platform=macos">macOS Release Notes</Link>
+- <Link to="../introduction/release-notes?platform=windows-cpp">Windows Release Notes</Link>
 
 To support screen sharing on mobile platforms, v5.3.0 provides the `startScreenCaptureMobile` and `updateScreenCaptureParametersMobile` methods, which function the same way as the `startScreenCapture` and `updateScreenCaptureParameters` methods on Android and iOS.
 
@@ -89,10 +89,10 @@ v5.1.0 has the following compatibility changes:
 
 v5.1.0 adapts to the Agora RTC Native SDK v3.6.2. For new features and improvements, see the release notes for each platform from 3.5.2 to 3.6.2:
 
-- [Android Release Notes](./release_android_video?platform=Android)
-- [iOS Release Notes](./release_ios_video?platform=iOS)
-- [macOS Release Notes](./release_mac_video?platform=macOS)
-- [Windows Release Notes](./release_windows_video?platform=Windows)
+- <Link target="_blank" to="../introduction/release-notes?platform=android">Android Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes?platform=ios">iOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes?platform=macos">macOS Release Notes</Link>
+- <Link to="../introduction/release-notes?platform=windows-cpp">Windows Release Notes</Link>
 
 #### Known issues
 
@@ -151,10 +151,10 @@ v5.0.0 optimizes the underlying architecture and makes the code neater, you can 
 
 v5.0.0 adapts to the Agora RTC Native SDK v3.5.2. For new features and improvements, see the release notes for each platform from 3.5.0.4 to 3.5.2:
 
-- [Android Release Notes](./release_android_video?platform=Android)
-- [iOS Release Notes](./release_ios_video?platform=iOS)
-- [macOS Release Notes](./release_mac_video?platform=macOS)
-- [Windows Release Notes](./release_windows_video?platform=Windows)
+- <Link target="_blank" to="../introduction/release-notes?platform=android">Android Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes?platform=ios">iOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes?platform=macos">macOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes?platform=windows-cpp">Windows Release Notes</Link>
 
 
 ## v4.0.7 (Native 3.5.0.3)
@@ -179,7 +179,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v4.0.7, the SDK does not play audio through any audio route, which causes a no-audio issue.
   - With v4.0.7 and later versions, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route of the SDK.
 
-See [Set the Audio Route](../advanced-features/set-audio-route) for Android platform.
+See <Link to="../advanced-features/set-audio-route?platform=android">Set the Audio Route</Link> for Android platform.
 
 #### New features
 
@@ -187,7 +187,7 @@ See [Set the Audio Route](../advanced-features/set-audio-route) for Android plat
 
 This release adds the `enableVirtualBackground` method, with which you can enable and set a virtual background for users as either a solid color or an image in PNG or JPG format. You can use the `VirtualBackgroundSourceEnabled` callback to learn whether the virtual background is successfully enabled or the reason for an error.
 
-<div class="alert note">Before you use virtual backgrounds, ensure that the device performance and user scenarios meet the requirements. See <a href="./API%20Reference/flutter/agora_rtc_engine/RtcEngine/enableVirtualBackground.html">enableVirtualBackground</a > documentation.</div>
+<div class="alert note">Before you use virtual backgrounds, ensure that the device performance and user scenarios meet the requirements. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngine/enableVirtualBackground.html">enableVirtualBackground</a > documentation.</div>
 
 #### Improvements
 
@@ -235,13 +235,13 @@ This release fixed the following issues:
 
 **Added**
 
-- [`enableVirtualBackground`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/enableVirtualBackground.html)
-- [`VirtualBackgroundSourceEnabled`](./API%20Reference/flutter/agora_rtc_engine/RtcEngineEventHandler/virtualBackgroundSourceEnabled.html)
+- [`enableVirtualBackground`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngine/enableVirtualBackground.html)
+- [`VirtualBackgroundSourceEnabled`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngineEventHandler/virtualBackgroundSourceEnabled.html)
 
 **Modified**
 
-- [`setEnableSpeakerphone`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/setEnableSpeakerphone.html)
-- [`setDefaultAudioRouteToSpeakerphone`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/setDefaultAudioRoutetoSpeakerphone.html)
+- [`setEnableSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngine/setEnableSpeakerphone.html)
+- [`setDefaultAudioRouteToSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngine/setDefaultAudioRoutetoSpeakerphone.html)
 
 
 ## v4.0.6 (Native 3.4.6)
@@ -348,15 +348,15 @@ This release fixed the following issues:
 
 **Added**
 
-- [`RtcEngineContext`](./API%20Reference/flutter/agora_rtc_engine/RtcEngineContext/RtcEngineContext.html) class
-- [`createWithContext`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/createWithContext.html)
-- [`UnPublishOK (100)`](./API%20Reference/flutter/agora_rtc_engine/RtmpStreamingErrorCode-class.html) in `RtmpStreamingErrorCode`
-- [`UrlAlreadyInUse (2)`](./API%20Reference/flutter/rtc_channel/RtcChannelEventHandler/rtmpStreamingEvent.html) in `RtmpStreamingEvent`
-- `AES128GCM2 (7)` and `AES256GCM2 (8)`in [`EncryptionMode`](./API%20Reference/flutter/agora_rtc_engine/EncryptionMode-class.html)
-- `encryptionKdfSalt` in [`EncryptionConfig`](./API%20Reference/flutter/agora_rtc_engine/EncryptionConfig-class.html)
-- [`muteLocalAudioStream`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/muteLocalAudioStream.html) and [`muteLocalVideoStream`](./API%20Reference/flutter/agora_rtc_engine/RtcEngine/muteLocalAudioStream.html) in `RtcChannel`
-- `publishLocalAudio` and `publishLocalVideo` in [`ChannelMediaOptions`](./API%20Reference/flutter/agora_rtc_engine/ChannelMediaOptions-class.html)
-- `Interrupted (8)` in [`AudioLocalError`](./API%20Reference/flutter/agora_rtc_engine/AudioLocalError-class.html)
+- [`RtcEngineContext`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngineContext/RtcEngineContext.html) class
+- [`createWithContext`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngine/createWithContext.html)
+- [`UnPublishOK (100)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtmpStreamingErrorCode-class.html) in `RtmpStreamingErrorCode`
+- [`UrlAlreadyInUse (2)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_channel/RtcChannelEventHandler/rtmpStreamingEvent.html) in `RtmpStreamingEvent`
+- `AES128GCM2 (7)` and `AES256GCM2 (8)`in [`EncryptionMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/EncryptionMode-class.html)
+- `encryptionKdfSalt` in [`EncryptionConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/EncryptionConfig-class.html)
+- [`muteLocalAudioStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngine/muteLocalAudioStream.html) and [`muteLocalVideoStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/RtcEngine/muteLocalAudioStream.html) in `RtcChannel`
+- `publishLocalAudio` and `publishLocalVideo` in [`ChannelMediaOptions`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/ChannelMediaOptions-class.html)
+- `Interrupted (8)` in [`AudioLocalError`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/agora_rtc_engine/AudioLocalError-class.html)
 
 **Modified**
 This release renames the following properties in `RtcStats`:
@@ -741,22 +741,22 @@ This release fixed the following issues:
 
 **Added**
 
-- [`startRhythmPlayer`](./API%20Reference/flutter/rtc_engine/RtcEngine/startRhythmPlayer.html)
-- [`stopRhythmPlayer`](./API%20Reference/flutter/rtc_engine/RtcEngine/stopRhythmPlayer.html)
-- [`configRhythmPlayer`](./API%20Reference/flutter/rtc_engine/RtcEngine/configRhythmPlayer.html)
-- [`startAudioRecordingWithConfig`](./API%20Reference/flutter/rtc_engine/RtcEngine/startAudioRecordingWithConfig.html)
-- [`getEffectDuration`](./API%20Reference/flutter/rtc_engine/RtcEngine/getEffectDuration.html)
-- [`setEffectPosition`](./API%20Reference/flutter/rtc_engine/RtcEngine/setEffectPosition.html)
-- [`getEffectCurrentPosition`](./API%20Reference/flutter/rtc_engine/RtcEngine/getEffectCurrentPosition.html)
-- `filePath` in [`getAudioMixingDuration`](./API%20Reference/flutter/rtc_engine/RtcEngine/getAudioMixingDuration.html)
-- `startPos` in [`playEffect`](./API%20Reference/flutter/rtc_engine/RtcEngine/playEffect.html)
-- `startPos` in [`startAudioMixing`](./API%20Reference/flutter/rtc_engine/RtcEngine/startAudioMixing.html)
-- `DeviceNotFound(8)` in [`LocalVideoStreamError`](./API%20Reference/flutter/rtc_engine/LocalVideoStreamError-class.html)
-- [`Error code`](./API%20Reference/flutter/rtc_engine/ErrorCode-class.html): `AlreadyInRecording(160)`
+- [`startRhythmPlayer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/startRhythmPlayer.html)
+- [`stopRhythmPlayer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/stopRhythmPlayer.html)
+- [`configRhythmPlayer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/configRhythmPlayer.html)
+- [`startAudioRecordingWithConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/startAudioRecordingWithConfig.html)
+- [`getEffectDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/getEffectDuration.html)
+- [`setEffectPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/setEffectPosition.html)
+- [`getEffectCurrentPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/getEffectCurrentPosition.html)
+- `filePath` in [`getAudioMixingDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/getAudioMixingDuration.html)
+- `startPos` in [`playEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/playEffect.html)
+- `startPos` in [`startAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/startAudioMixing.html)
+- `DeviceNotFound(8)` in [`LocalVideoStreamError`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/LocalVideoStreamError-class.html)
+- [`Error code`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/ErrorCode-class.html): `AlreadyInRecording(160)`
 
 **Modified**
 
-- [`AudioMixingStateChanged`](./API%20Reference/flutter/rtc_engine/RtcEngineEventHandler/audioMixingStateChanged.html)
+- [`AudioMixingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngineEventHandler/audioMixingStateChanged.html)
 
 **Deprecated**
 
@@ -864,23 +864,23 @@ This release adds the following APIs:
 
 **Added**
 
-- [`createWithConfig`](./API%20Reference/flutter/rtc_engine/RtcEngine/createWithConfig.html)
-- [`setVoiceConversionPreset`](./API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceConversionPreset.html)
-- `AES128GCM` and `AES256GCM` in [`EncryptionMode`](./API%20Reference/flutter/rtc_engine/EncryptionConfig-class.html)
-- `mosValue` in [`RemoteAudioStats`](./API%20Reference/flutter/rtc_engine/RemoteAudioStats-class.html)
-- [`setVoiceBeautifierParameters`](./API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceBeautifierParameters.html)
-- `SingingBeautifier` in the [`VoiceBeautifierPreset`](./API%20Reference/flutter/rtc_engine/VoiceBeautifierPreset-class.html) constant
-- [`enableDeepLearningDenoise`](./API%20Reference/flutter/rtc_engine/RtcEngine/enableDeepLearningDenoise.html)
-- `options` in [`joinChannel`](./API%20Reference/flutter/rtc_channel/RtcChannel/joinChannel.html)
-- `options` in [`switchChannel`](./API%20Reference/flutter/rtc_engine/RtcEngine/switchChannel.html)
-- [`createDataStreamWithConfig`](./API%20Reference/flutter/rtc_channel/RtcChannel/createDataStreamWithConfig.html)
-- `qoeQuality` and `qualityChangedReason` in [`RemoteAudioStats`](./API%20Reference/flutter/rtc_engine/RemoteAudioStats-class.html)
-- [`setCloudProxy`](./API%20Reference/flutter/rtc_engine/RtcEngine/setCloudProxy.html)
-- The `captureBrightnessLevel` property in the [`LocalVideoStats`](./API%20Reference/flutter/rtc_engine/LocalVideoStats-class.html)
-- The `captureWidth` and `captureHeight` properties in the [`CameraCapturerConfiguration`](./API%20Reference/flutter/rtc_engine/CameraCapturerConfiguration-class.html) class
-- `Manual(3)` in the [`CameraCaptureOutputPreference`](./API%20Reference/flutter/rtc_engine/CameraCaptureOutputPreference-class.html) constant
-- `CaptureInBackGround(6)` and `CaptureMultipleForegroundApps(7)` in the [`LocalVideoStreamError`](./API%20Reference/flutter/rtc_engine/LocalVideoStreamError-class.html) constant
-- Error code: [`ModuleNotFound(157)`](./API%20Reference/flutter/rtc_engine/ErrorCode-class.html)
+- [`createWithConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/createWithConfig.html)
+- [`setVoiceConversionPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceConversionPreset.html)
+- `AES128GCM` and `AES256GCM` in [`EncryptionMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/EncryptionConfig-class.html)
+- `mosValue` in [`RemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RemoteAudioStats-class.html)
+- [`setVoiceBeautifierParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceBeautifierParameters.html)
+- `SingingBeautifier` in the [`VoiceBeautifierPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/VoiceBeautifierPreset-class.html) constant
+- [`enableDeepLearningDenoise`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/enableDeepLearningDenoise.html)
+- `options` in [`joinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_channel/RtcChannel/joinChannel.html)
+- `options` in [`switchChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/switchChannel.html)
+- [`createDataStreamWithConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_channel/RtcChannel/createDataStreamWithConfig.html)
+- `qoeQuality` and `qualityChangedReason` in [`RemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RemoteAudioStats-class.html)
+- [`setCloudProxy`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/setCloudProxy.html)
+- The `captureBrightnessLevel` property in the [`LocalVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/LocalVideoStats-class.html)
+- The `captureWidth` and `captureHeight` properties in the [`CameraCapturerConfiguration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/CameraCapturerConfiguration-class.html) class
+- `Manual(3)` in the [`CameraCaptureOutputPreference`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/CameraCaptureOutputPreference-class.html) constant
+- `CaptureInBackGround(6)` and `CaptureMultipleForegroundApps(7)` in the [`LocalVideoStreamError`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/LocalVideoStreamError-class.html) constant
+- Error code: [`ModuleNotFound(157)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/ErrorCode-class.html)
 
 **Deprecated**
 
@@ -961,11 +961,11 @@ This release reduces the latency on the audience's client during an interactive 
 
 **Added**
 
-- `options`in [`setClientRole`](./API%20Reference/flutter/rtc_channel/RtcChannel/setClientRole.html)
-- [`setAudioEffectPreset`](./API%20Reference/flutter/rtc_engine/RtcEngine/setAudioEffectPreset.html)
-- [`setVoiceBeautifierPreset`](./API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceBeautifierPreset.html)
-- [`setAudioEffectParameters`](./API%20Reference/flutter/rtc_engine/RtcEngine/setAudioEffectParameters.html)
-- `MEETING(8)` in [`AudioScenario`](./API%20Reference/flutter/rtc_engine/AudioScenario-class.html)
+- `options`in [`setClientRole`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_channel/RtcChannel/setClientRole.html)
+- [`setAudioEffectPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/setAudioEffectPreset.html)
+- [`setVoiceBeautifierPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/setVoiceBeautifierPreset.html)
+- [`setAudioEffectParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/RtcEngine/setAudioEffectParameters.html)
+- `MEETING(8)` in [`AudioScenario`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/flutter/rtc_engine/AudioScenario-class.html)
 
 **Deprecated**
 
@@ -984,16 +984,7 @@ v3.1.2 was released on September 30th, 2020.
 - Supports TextureView on Android platform.
 - Supports callbacks to report the current publishing and subscribing states, and whether the first audio or video frame is published.
 
-**Related documentation**
-
-See the following documentation to quickly integrate the SDK and implement real-time voice and video communication in your project.
-- [Start a Voice Call](/en/Video/start_call_audio_flutter?platform=Flutter)
-- [Start a Video Call](/en/Video/start_call_flutter?platform=Flutter)
-- [Start Live Interactive Video Streaming](/en/Video/start_live_flutter?platform=Flutter)
-- [Start Live Interactive Audio Streaming](/en/Video/start_live_audio_flutter?platform=Flutter)
-- [API Reference](/en/Video/API%20Reference/flutter/v3.1.2/index.html)
-
-Agora also provides an open-source [Agora Flutter Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) on GitHub.
+Agora provides an open-source [Agora Flutter Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) on GitHub.
 
 <div class="alert note">To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The <code>gatewayRtt</code> parameter in the <code>RtcStats</code> callback is disabled by default. Do not use <code>gatewayRtt</code> to obtain the round-trip delay between the client and the local router. See the <a href="https://docs.agora.io/en/faq/local_network_privacy">FAQ</a> for details.</div>
 

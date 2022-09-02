@@ -1650,7 +1650,7 @@ We also upgrade the On-premise Recording SDK to v3.0.0. Ensure that you upgrade 
 
 **1. Dual-stream mode not enabled in the `COMMUNICATION` profile**
 
-As of v3.0.0, the native SDK does not enable the [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode) by default in the `COMMUNICATION` profile. Call the [`enableDualStreamMode (true)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a645cb7d0f3a59dda27b157cf130c8c9a) method after joining the channel to enable it. In video scenarios with multiple users, we recommend enabling the dual-stream mode.
+As of v3.0.0, the native SDK does not enable the [dual-stream mode](../reference/glossary#dual-stream-mode) by default in the `COMMUNICATION` profile. Call the [`enableDualStreamMode (true)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a645cb7d0f3a59dda27b157cf130c8c9a) method after joining the channel to enable it. In video scenarios with multiple users, we recommend enabling the dual-stream mode.
 
 **2. Default log file path change**
 
@@ -1662,7 +1662,7 @@ To avoid privilege issues, this release changes the default log file path from `
 
 To enable a user to join an unlimited number of channels at a time, this release adds the [`RtcChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html) and [`IRtcChannelEventHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html) classes. By creating multiple `RtcChannel` objects, a user can join the corresponding channels at the same time.
 
-After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](multiple_channel_android) for details.
+After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](../advanced-features/multiple-channel) for details.
 
 **2. Raw video data**
 Adds the following C++ callbacks to the [`IVideoFrameObserver`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html) class to provide raw video data at different video transmission stages, and to accommodate more scenarios.
@@ -1676,7 +1676,7 @@ Adds [`adjustUserPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20B
 
 **4. Agora Mediaplayer Kit**
 
-To enrich the playability of the interactive live streaming, Agora releases the Mediaplayer Kit plug-in, which supports the host playing local or online media resources and sharing them with all users in the channel during the interactive live streaming. See [Mediaplayer Kit release notes](https://docs.agora.io/en/Interactive%20Broadcast/mediaplayer_release_android?platform=Android) for details.
+To enrich the playability of the interactive live streaming, Agora releases the Mediaplayer Kit plug-in, which supports the host playing local or online media resources and sharing them with all users in the channel during the interactive live streaming. See [Mediaplayer Kit release notes](../reference/mpk-release) for details.
 
 #### Improvements
 
@@ -1747,7 +1747,7 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 
 ## v2.9.4
 
-<div class="alert note">As of December 8, 2021, Agora begins implementing the retirement process for the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/rtc_sunset">Service Sunset Plans</a>.</div>
+<div class="alert note">As of December 8, 2021, Agora begins implementing the retirement process for the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0. See <a href="../introduction/service-sunset-plans">Service Sunset Plans</a>.</div>
 
 v2.9.4 was released on Feb 17, 2020.
 
@@ -1877,7 +1877,7 @@ If your app implements Media Push with the methods above, ensure that you upgrad
 - [`removePublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a87b3f2f17bce8f4cc42b3ee6312d30d4)
 - [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
 
-For how to implement the new methods, see [Media Push](cdn_streaming_android).
+For how to implement the new methods, see [Media Push](../advanced-features/media-push).
 
 **2. Reporting the state of the remote video**
 
@@ -1905,7 +1905,7 @@ This release adds the following methods to relay the media streams of a host fro
 
 During the media stream relay, the SDK reports the states and events of the relay with the [`onChannelMediaRelayStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89fd95b3536e8e6afd5f001926162f66) and [`onChannelMediaRelayEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6fe2367e9ea61e48a4cc3b373d198b54) callbacks.
 
-For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](media_relay_android).
+For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](../advanced-features/media-relay).
 
 **3. Reporting the local and remote audio state**
 
@@ -2248,7 +2248,7 @@ In scenarios such as the video chat, interactive streaming, and online education
 
 ##### 2. Voice changer and voice reverberation
 
-Adding voice changer and reverberation effects in an audio chat room brings much more fun. v2.4.0 adds the [`setLocalVoiceChanger`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ade6883c7878b7a596d5b2563462597dd) and [`setLocalVoiceReverbPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a10dd25bc8e129512cd6727133b7fc42f) methods, allowing you to change your voice or reverberation by choosing from the preset options. See [Voice changer](voice_changer_android).
+Adding voice changer and reverberation effects in an audio chat room brings much more fun. v2.4.0 adds the [`setLocalVoiceChanger`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ade6883c7878b7a596d5b2563462597dd) and [`setLocalVoiceReverbPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a10dd25bc8e129512cd6727133b7fc42f) methods, allowing you to change your voice or reverberation by choosing from the preset options. See [Voice changer](../advanced-features/voice-changer).
 
 ##### 3. Tracking the sound position of a remote user 
 
@@ -2537,7 +2537,7 @@ v2.3.0 is released on August 31, 2018.
     public static final int SOFTWARE_ENCODER = 1;
     ```
 
--   The security keys are improved and updated in v2.1.0. If you are using an Agora SDK version below v2.1.0 and wish to migrate to the latest version, see [Token Migration Guide](/en/Agora%20Platform/token_migration).
+-   The security keys are improved and updated in v2.1.0.
 
 #### New Features
 
@@ -2659,7 +2659,7 @@ v2.2.3 is released on July 5, 2018.
 
 #### Compatiblity changes
 
-The security keys are improved and updated in v2.1.0. If you are using an Agora SDK version below v2.1.0 and wish to migrate to the latest version, see `Token Migration Guide`.
+The security keys are improved and updated in v2.1.0.
 
 #### Issues Fixed
 
@@ -2798,11 +2798,11 @@ In an interactive streaming scenario, the host can enhance the local audio effec
 
 ##### 3. Online statistics query
 
-Adds RESTful APIs to check the status of the users in the channel, the channel list of a specific company, and whether the user is an audience or a host. For details, see [Online Statistics Query API](./dashboard_restful_communication).
+Adds RESTful APIs to check the status of the users in the channel, the channel list of a specific company, and whether the user is an audience or a host.
 
 ##### 4. 17-way video
 
-Adds the support of 17-way video in the interactive live streaming, see [Video for 7+ Users](./multi_user_video_android).
+Adds the support of 17-way video in the interactive live streaming.
 
 ##### 5. Video source customization
 
@@ -2823,7 +2823,7 @@ Adds an <code>onCameraFocusAreaChanged</code> callback to report to the app when
 #### Improvements
 
 |       Improvement         |           Description                 |
-|---------------------------:---------------------------------------|
+|---------------------------:|---------------------------------------|
 |   Video Freeze Rate       |Reduces the video freeze rate in the audience mode and for specific devices.|
 |   Authentication          |Supports a new authentication mechanism. Each legacy Dynamic Key (Channel Key) corresponds to a single privilege (for example, joining a channel), but each token in the new authentication mechanism includes all privileges (for example, joining a channel, hosting in, and stream-pushing).|
 |   Hardware Encoder        |Enables the H.264 hardware encoder on the Qualcomm, MTK, HiSilicon, and Orion chips.|
@@ -2851,7 +2851,7 @@ v2.0 is released on December 6, 2017.
 -   Adds the camera management function in the `COMMUNICATION` and `LIVE_BROADCASTING` profiles by adding the following API methods:
 
 |       Name        |           Description                     |
-|-------------------:-------------------------------------------|
+|-------------------:|-------------------------------------------|
 |<code>isCameraZoomSupported</code>|    Checks whether the device supports camera zoom.|
 |<code>isCameraTorchSupported</code>|Checks whether the device supports camera flash.|
 |<code>isCameraFocusSupported</code>|Checks whether the device supports camera manual focus.|
@@ -2867,7 +2867,7 @@ v2.0 is released on December 6, 2017.
 -   Supports external audio sources in the `COMMUNICATION` and `LIVE_BROADCASTING` profiles by adding the following API methods:
 
 |       Name        |           Description                     |
-|-------------------:-------------------------------------------|
+|-------------------:|-------------------------------------------|
 |<code>setExternalAudioSource</code>|Enables the external audio source function.|
 |<code>pushExternalAudioFrame</code>|Pushes the external audio frame to the Agora SDK.|
 

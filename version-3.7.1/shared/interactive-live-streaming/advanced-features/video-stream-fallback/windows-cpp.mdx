@@ -11,7 +11,7 @@ Before proceeding, ensure that you implement interactive live video streaming in
 
 Refer to the following steps to set the stream fallback under poor network conditions:
 
-1. After joining the channel, the publisher calls the `enableDualStreamMode` method to enable [dual stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode).
+1. After joining the channel, the publisher calls the `enableDualStreamMode` method to enable [dual stream mode](../reference/glossary#dual-stream-mode).
 2. The publisher calls the `setLocalPublishFallbackOption` method and set `AUDIO_ONLY (2)` to enable the fallback option for the locally published media stream based on the network conditions. The SDK will disable the upstream video but enable audio only when the network conditions deteriorate and cannot support both video and audio streams.
 	> Agora does not recommend using this method for Media Push, because the remote CDN live user will have a noticeable lag when the locally published video stream falls back to `audio only`.
 	

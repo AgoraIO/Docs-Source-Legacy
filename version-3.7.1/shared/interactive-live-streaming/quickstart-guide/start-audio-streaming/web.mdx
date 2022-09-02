@@ -108,7 +108,7 @@ Add the following code to the line after `<head>` in the `index.html` file:
 
 ### Method 3: Through the Agora website
 
-1. Download the latest [Agora Web SDK](./downloads?platform=Web).
+1. Download the latest [Agora Web SDK](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=Web).
 
 2. Copy the `AgoraRTCSDK-3.6.11.js` file to the `scripts` directory.
 
@@ -124,8 +124,8 @@ Once the project is set up, use the core APIs of the Agora Web SDK in `script.js
 
 You need to work with two types of objects when using the Agora Web SDK:
 
-- The client object, which represents the local client. The Client methods provide the major functions for a voice/video call, such as joining a [channel](https://docs.agora.io/en/Agora%20Platform/terms?platform=Web#channel) and [publishing](https://docs.agora.io/en/Agora%20Platform/terms?platform=Web#pub) a stream.
-- Stream objects, which represent the local and remote [streams](https://docs.agora.io/en/Agora%20Platform/terms?platform=Web#media-stream). The Stream methods define the behaviors of a stream object, such as the playback control and audio profiles. When you call a Stream method, you need to distinguish between the local and the remote streams.
+- The client object, which represents the local client. The Client methods provide the major functions for a voice/video call, such as joining a [channel](../reference/glossary#channel) and [publishing](../reference/glossary#publish) a stream.
+- Stream objects, which represent the local and remote [streams](../reference/glossary#media-stream). The Stream methods define the behaviors of a stream object, such as the playback control and audio profiles. When you call a Stream method, you need to distinguish between the local and the remote streams.
 
 The following figure shows the API call sequence of the basic interactive streaming. Note that these methods apply to different objects. 
 
@@ -176,7 +176,7 @@ client.init("yourAppId");
 
 Pay attention to the settings of `mode` and `codec` in the AgoraRTC.createClient method:
 
-- `mode` determines the [channel profile](https://docs.agora.io/en/Agora%20Platform/terms?platform=Web#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
+- `mode` determines the [channel profile](../reference/glossary#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
 - `codec` sets the codec that the web browser uses for encoding and decoding. If your app needs to support Safari 12.1 or earlier, set it as `h264`. Otherwise, set it as `vp8`.
 
 ### 2. Set the client role
