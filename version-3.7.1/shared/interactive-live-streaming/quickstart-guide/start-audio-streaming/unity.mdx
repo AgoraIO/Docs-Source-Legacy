@@ -11,7 +11,7 @@ The following figure shows the workflow to integrate into your app in order to a
 As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
 
 1. Set the client role
-Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.
 
 2. Retrieve a token
 A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
@@ -20,13 +20,13 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the live stream. 
+- The channel name: A string that identifies the channel for the live stream.
 
 ## Prerequisites
 
@@ -55,11 +55,11 @@ Use the following steps or follow the[ Unity official manual](https://docs.unity
 
 <details>
 	<summary><font color="#3ab7f8">Create a Unity Project</font></summary>
-	
+
 1. Ensure that you have downloaded and installed **Unity** before the following steps. If not, click <a href="https://store.unity.com/?_ga=2.210473373.969150697.1571977051-1808388573.1570601452#plans-individual">here</a > to download.
-	
+
 2. Open **Unity** and click **New**.
-	
+
 3. Fill in and select the options in the following fields, and click **Create project**.
 	 - Project name
 	 - Location
@@ -112,37 +112,37 @@ If you build for Android, you should add in APIs to check and request the device
 
 Unity versions later than **UNITY_2018_3_OR_NEWER** do not automatically request microphone permissions from your Android device. If you are using one of these versions, call the `CheckPermission` method to request access to the microphone of your Android device.
 
-```c#
-#if(UNITY_2018_3_OR_NEWER) 
-using UnityEngine.Android; 
-#endif 
-void Start () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
-permissionList.Add(Permission.Microphone);  
-#endif  
-} 
+```csharp
+#if(UNITY_2018_3_OR_NEWER)
+using UnityEngine.Android;
+#endif
+void Start ()
+{
+#if(UNITY_2018_3_OR_NEWER)
+permissionList.Add(Permission.Microphone);
+#endif
+}
 private void CheckPermission()
-{ 
-#if(UNITY_2018_3_OR_NEWER) 
-foreach(string permission in permissionList) 
-{ 
-if (Permission.HasUserAuthorizedPermission(permission)) 
-{ 
-} 
-else 
-{  
-Permission.RequestUserPermission(permission); 
-} 
-} 
-#endif 
-} 
-void Update () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
+{
+#if(UNITY_2018_3_OR_NEWER)
+foreach(string permission in permissionList)
+{
+if (Permission.HasUserAuthorizedPermission(permission))
+{
+}
+else
+{
+Permission.RequestUserPermission(permission);
+}
+}
+#endif
+}
+void Update ()
+{
+#if(UNITY_2018_3_OR_NEWER)
 // Ask for your Android device's permissions.
-CheckPermission(); 
-#endif  
+CheckPermission();
+#endif
 }
 ```
 
@@ -157,15 +157,15 @@ Call the `GetEngine` method and pass in the App ID to initialize the IRtcEngine 
 
 Listen for callback events, such as when the local user joins the channel, and when the first audio frame of a remote user is decoded.
 
-```c#
+```csharp
 // Pass an App ID to create and initialize an IRtcEngine object.
-mRtcEngine = IRtcEngine.GetEngine (appId); 
+mRtcEngine = IRtcEngine.GetEngine (appId);
 // Listen for the OnJoinChannelSuccessHandler callback.
 // This callback occurs when the local user successfully joins the channel.
-mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler; 
+mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler;
 // Listen for the OnUserJoinedHandler callback.
 // This callback occurs when the first audio frame of a remote user is received and decoded after the remote user successfully joins the channel.
-mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler; 
+mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler;
 // Listen for the OnUserOfflineHandler callback.
 // This callback occurs when the remote user leaves the channel or drops offline.
 mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
@@ -178,7 +178,7 @@ After initializing the `IRtcEngine` object, call the `SetChannelProfile` method 
 
 One `IRtcEngine` object uses one profile only. If you want to switch to another profile, destroy the current `IRtcEngine` object with the `Destroy` method and create a new one before calling the `SetChannelProfile` method.
 
-```c#
+```csharp
 // Set the channel profile as LIVE_BROADCASTING.
 mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
 ```
@@ -192,7 +192,7 @@ An interactive streaming channel has two client roles: `BROADCASTER` and `AUDIEN
 
 Note that in the interactive live streaming, only the host can be heard. If you want to switch the client role after joining the channel, call the `SetClientRole` method.
 
-```c#
+```csharp
 // Set the client role as the host.
 mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
 ```
@@ -211,15 +211,15 @@ After setting the client role, you can call `JoinChannelByKey` to join a channel
 - ·`channelName`: The unique name of the channel to join. Users that input the same channel name join the same channel.
 
 - `uid`: Integer. The unique ID of the local user. If you set `uid` as `0`, the SDK automatically assigns one user ID and returns it in the `OnJoinChannelSuccessHandler` callback.
- 
+
  <div class="alert note">Once the user joins the channel, the user subscribes to the audio streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <tt>Mute</tt> methods accordingly.</div>
- 
+
 If an interactive streaming channel uses both the RTC Native SDK and the RTC Web SDK, ensure that you call the `EnableWebSdkInteroperability` method before joining the channel.
 
-```c#
+```csharp
 // Call this method to enable interoperability between the RTC Native SDK and the RTC Web SDK if the RTC Web SDK is in the channel.
 mRtcEngine.EnableWebSdkInteroperability(true);
-// Join a channel. 
+// Join a channel.
 mRtcEngine.JoinChannelByKey(null, channel, null, 0);
 ```
 
@@ -227,7 +227,7 @@ mRtcEngine.JoinChannelByKey(null, channel, null, 0);
 
 According to your scenario, such as when the interactive live streaming ends and when you need to close the app, call `LeaveChannel` to leave the current channel.
 
-```c#
+```csharp
 public void leave()
 	{
 		Debug.Log ("calling leave");
@@ -243,7 +243,7 @@ public void leave()
 
 After leaving the channel, if you want to exit the app or release the memory of `IRtcEngine`, call `Destroy` to destroy the `IRtcEngine` object.
 
-```c#
+```csharp
 void OnApplicationQuit()
 {
 	if (mRtcEngine != null)
@@ -260,7 +260,7 @@ void OnApplicationQuit()
 Run the project in Unity. When you set the role as the host and successfully start the interactive live audio streaming, you can hear the voice of yourself in the app. When you set the role as the audience and successfully join the interactive live audio streaming, you can hear the voice of the host in the app.
 
 ## Reference
-	
+
 When using the Agora Unity SDK, you can also use the dollowing documents as a reference:
 
 - FAQ: [How can I listen for an audience joining or leaving the interactive live streaming channel?](https://docs.agora.io/en/faq/audience_event)

@@ -43,9 +43,9 @@ Follow the API call sequence to implement your code logic:
 
 Starts the channel media relay:
 
-```c#
+```csharp
 // Note that srcToken is different from the token used for joining the source channel. You need to generate srcToken with the source channel name and a uid of 0.
-ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);   
+ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);
 ChannelMediaInfo destChannelInfo = new ChannelMediaInfo(destChannelName, destToken, destUid);
 ChannelMediaRelayConfiguration mediaRelayConfiguration = new ChannelMediaRelayConfiguration();
 // Sets the source channel information.
@@ -57,8 +57,8 @@ mRtcEngine.StartChannelMediaRelay(mediaRelayConfiguration);
 
 Adds or deletes the media relay channels:
 
-```c#
-ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);   
+```csharp
+ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);
 ChannelMediaInfo destChannelInfo = new ChannelMediaInfo(destChannelName, destToken, destUid);
 ChannelMediaRelayConfiguration mediaRelayConfiguration = new ChannelMediaRelayConfiguration();
 // Sets the source channel information.

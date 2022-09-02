@@ -13,7 +13,7 @@ The following figure shows the workflow to integrate into your app in order to a
 As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
 
 1. Set the client role
-Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.
 
 2. Retrieve a token
 A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
@@ -22,13 +22,13 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the live stream. 
+- The channel name: A string that identifies the channel for the live stream.
 
 ## Prerequisites
 
@@ -54,13 +54,13 @@ In Xcode, follow the steps to create the environment necessary to add interactiv
 2. Integrate the Video SDK into your project:
 
    Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following URL:
-	 
-	 ```http
+
+	 ```shellscript
 	 https://github.com/AgoraIO/AgoraRtcEngine_iOS
 	 ```
- 
+
    In **Choose Package Options**, specify the Video SDK version you want to use. You need to fill in x.y.z for version x.y.z and x.y.z-r.a for version x.y.z.a. For example, fill in 3.5.0 for version 3.5.0 and 3.5.0-r.2 for version 3.5.0.2.
-	 
+
 <div class="alert note"><li>For the Video SDK, Agora provides Swift Packages for 3.4.3 or later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a>.</li></div>
 
 3. [Enable automatic signing](https://help.apple.com/xcode/mac/current/#/dev23aab79b4) for your project.
@@ -87,18 +87,18 @@ import UIKit
 class ViewController: UIViewController {
     var localView: UIView!
     var remoteView: UIView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
      }
-  
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         remoteView.frame = self.view.bounds
         localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
     }
-  
+
     func initView() {
         remoteView = UIView()
         self.view.addSubview(remoteView)
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
 
 When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and if the local user is a host, publish the local video to the lower frame layout in the UI. When another host joins the channel, your app catches the join event and adds the remote video to the top frame layout in the UI.
 
-The following figure shows the API call sequence of implementing interactive live video streaming: 
+The following figure shows the API call sequence of implementing interactive live video streaming:
 
 ![1627888336100](https://web-cdn.agora.io/docs-files/1627888336100)
 
@@ -123,7 +123,7 @@ To implement this logic, take the following steps:
 
    ```swift
    import UIKit
-   // Add this line to import the Agora kit 
+   // Add this line to import the Agora kit
    import AgoraRtcKit
    class ViewController: UIViewController {
        var localView: UIView!
@@ -131,7 +131,7 @@ To implement this logic, take the following steps:
        // Add this line to add the agoraKit variable
        var agoraKit: AgoraRtcEngineKit?
    }
-   
+
    override func viewDidLoad() {
               super.viewDidLoad()
               initView()
@@ -160,7 +160,7 @@ To implement this logic, take the following steps:
            videoCanvas.renderMode = .hidden
            videoCanvas.view = localView
            agoraKit?.setupLocalVideo(videoCanvas)
-      
+
       // Join the channel with a token. Pass in your token and channel name here
       agoraKit?.joinChannel(byToken: "Your token", channelId: "Channel name", info: nil, uid: 0, joinSuccess: { (channel, uid, elapsed) in
            })
@@ -202,7 +202,7 @@ To implement the functionality of starting and stopping the app:
            initializeAndJoinChannel()
         }
     ```
-   
+
 2. When the user closes this app, clean up all the resources used by your app.
 
    In `ViewController.swift`, add `viewDidDisappear` after the `initializeAndJoinChannel` function.
@@ -233,7 +233,7 @@ Generating a token by hand is not helpful in a production context. [Authenticate
 
 ## See also
 
-This section provides additional information for your reference: 
+This section provides additional information for your reference:
 
 ### Sample project
 
@@ -256,12 +256,12 @@ To implement interactive live video streaming in your app using Objective-C:
 
    ```objective-c
    #import <UIKit/UIKit.h>
-   
+
    #import <AgoraRtcKit/AgoraRtcEngineKit.h>
-   
+
    @interface ViewController : UIViewController <AgoraRtcEngineDelegate>
    @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
-   
+
    @end
    ```
 
@@ -270,32 +270,32 @@ To implement interactive live video streaming in your app using Objective-C:
    ```objective-c
    #import "ViewController.h"
    #import <UIKit/UIKit.h>
-   
+
    @interface ViewController ()
    @property (nonatomic, strong) UIView *localView;
    @property (nonatomic, strong) UIView *remoteView;
    @end
-   
+
    @implementation ViewController
    - (void)viewDidLoad {
        [super viewDidLoad];
        [self initViews];
        [self initializeAndJoinChannel];
    }
-   
+
    - (void)viewDidLayoutSubviews {
        [super viewDidLayoutSubviews];
        self.remoteView.frame = self.view.bounds;
        self.localView.frame = CGRectMake(self.view.bounds.size.width - 90, 0, 90, 160);
    }
-   
+
    - (void)initViews {
        self.remoteView = [[UIView alloc] init];
        [self.view addSubview:self.remoteView];
        self.localView = [[UIView alloc] init];
        [self.view addSubview:self.localView];
    }
-   
+
    - (void)initializeAndJoinChannel {
        // Pass in your App ID here
        self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:@"Your App ID" delegate:self];
@@ -311,7 +311,7 @@ To implement interactive live video streaming in your app using Objective-C:
        [self.agoraKit joinChannelByToken:@"Your token" channelId:@"Channel name" info:nil uid:0 joinSuccess:^(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed) {
        }];
    }
-   
+
    - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
        AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
        videoCanvas.uid = uid;
@@ -319,7 +319,7 @@ To implement interactive live video streaming in your app using Objective-C:
        videoCanvas.view = self.remoteView;
        [self.agoraKit setupRemoteVideo:videoCanvas];
    }
-   
+
    - (void)viewDidDisappear:(BOOL)animated {
      [super viewDidDisappear:animated];
      [self.agoraKit leaveChannel:nil];

@@ -18,7 +18,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic re
 
 #### Set the volume of the recording device (macOS and Windows only)
 
-Call `SetAudioRecordingDeviceVolume` to set the volume of your recording device. 
+Call `SetAudioRecordingDeviceVolume` to set the volume of your recording device.
 
 <div class="alert note">This method sets the global volume of your recording device.</div>
 
@@ -31,14 +31,14 @@ As the following screenshot shows, the volume value corresponds to the audio lev
 
 Sample code
 
-```c#
+```csharp
 // Retrieves the AudioRecordingDeviceManager object.
 AudioRecordingDeviceManager audioRecordingDeviceManager = (AudioRecordingDeviceManager)mRtcEngine.GetAudioRecordingDeviceManager();
 // Sets the volume of your recording device as 50.
 int ret = audioRecordingDeviceManager.SetAudioRecordingDeviceVolume(50);
 ```
 
-#### Set the volume of the recorded signal 
+#### Set the volume of the recorded signal
 
 If `SetAudioRecordingDeviceVolume` does not suffice, you can call `AdjustRecordingSignalVolume` to set the volume of the recorded signal.
 
@@ -48,7 +48,7 @@ The `volume` parameter represents the audio level of the recorded signal, rangin
 
 Sample code
 
-```c#
+```csharp
 // Sets the volume of the recorded signal to 50.
 int ret = mRtcEngine.AdjustRecordingSignalVolume(50);
 ```
@@ -64,7 +64,7 @@ int ret = mRtcEngine.AdjustRecordingSignalVolume(50);
 
 #### Set the volume of the playback device (macOS and Windows only)
 
-To set the volume on the playback device directly, call `SetAudioPlaybackDeviceVolume`. 
+To set the volume on the playback device directly, call `SetAudioPlaybackDeviceVolume`.
 
 <div class="alert note">This method sets the global volume of your playback device.</div>
 
@@ -77,7 +77,7 @@ As the following screenshot shows, the volume value corresponds to the audio lev
 
 Sample code
 
-```c#
+```csharp
 // Retrieves the AudioPlaybackDeviceManager object.
 AudioPlaybackDeviceManager audioPlaybackDeviceManager = (AudioPlaybackDeviceManager)mRtcEngine.GetAudioPlaybackDeviceManager();
 // Sets the volume of the playback device as 50.
@@ -88,13 +88,13 @@ int ret = audioPlaybackDeviceManager.SetAudioPlaybackDeviceVolume(50);
 
 If `SetAudioPlaybackDeviceVolume` does not suffice, you can use `AdjustPlaybackSignalVolume`  to set the volume of the audio signal.
   - Universally sets the playback audio level of all remote users after audio mixing.
-  - The `volume` parameter represents the playback audio level, ranging between 0 and 400. 
+  - The `volume` parameter represents the playback audio level, ranging between 0 and 400.
 
 <div class="alert note">As of v2.3.2, to mute the local audio playback, you must call both <tt>AdjustPlaybackSignalVolume<tt> and </tt>AdjustAudioMixingVolume</tt>, and set the volume parameter as 0.</div>
 
 Sample code
 
-```c#
+```csharp
 // Sets the volume of the local playback of all remote users as 50.
 int ret = mRtcEngine.AdjustPlaybackSignalVolume(50);
 ```
@@ -118,7 +118,7 @@ The `volume` parameter represents the audio level of the music file, ranging bet
 
 Sample code
 
-```c#
+```csharp
 // Sets the audio mixing volume for the local user and remote users as 50.
 int ret = mRtcEngine.AdjustAudioMixingVolume(50);
 ```
@@ -136,7 +136,7 @@ You can also call `AdjustAudioMixingPlayoutVolume` and `AdjustAudioMixingPublish
 
 Sample code
 
-```c#
+```csharp
 // Sets the audio mixing volume of the music for the remote users as 50.
 int ret = mRtcEngine.AdjustAudioMixingPublishVolume(50);
 // Sets the audio mixing volume of the music for the local user as 50.
@@ -165,7 +165,7 @@ You can call `SetEffectsVolume` or `SetVolumeOfEffect` to set the audio effects 
 
 #### Sample code
 
-```c#
+```csharp
 // Retrieves the AudioEffectManagerImpl object.
 AudioEffectManagerImpl audioEffectManagerImpl = (AudioEffectManagerImpl)mRtcEngine.GetAudioEffectManager();
 // Sets the volume of all audio effects as 50.
@@ -191,7 +191,7 @@ The `volume` parameter represents the volume of the in-ear monitoring, ranging b
 
 #### Sample code
 
-```c#
+```csharp
 // Enables in-ear monitoring.
 int ret = mRtcEngine.EnableInEarMonitoring(true);
 // Sets the in-ear monitoring volume as 50.
@@ -208,12 +208,12 @@ int ret = mRtcEngine.SetInEarMonitoringVolume(50);
 When recording, mixing, or playing audio, you can use the following methods to get the data of the loudest speaker in the channel.
 
 - Reports users with the highest peak volumes. The `OnVolumeIndicationHandler` callback reports the user IDs the corresponding volumes of the currently loudest speakers in the channel.
- 
+
  <div class="alert note">You must call <tt>EnableAudioVolumeIndication</tt> to be able to receive this callback.</div>
- 
+
  Sample code
 
- ```c#
+ ```csharp
 // Gets the user IDs of the users with the highest peak volume, the corresponding volumes, as well as whether the local user is speaking.
 // @param speakers is an array containing the user IDs and volumes of the local and the remote users. The volume parameter ranges between 0 and 255.
 // @param speakerNumber refers to the number of the speakers, ranging between 0 and 3.
@@ -228,7 +228,7 @@ void OnVolumeIndicationHandler(const AudioVolumeInfo* speakers, unsigned int spe
 
  Sample code
 
- ```c#
+ ```csharp
  // Gets the user ID of the user with the highest average volume during a certain period of time.
 void OnActiveSpeakerHandler(uint uid) {
 }

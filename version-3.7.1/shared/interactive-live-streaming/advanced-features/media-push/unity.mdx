@@ -51,7 +51,7 @@ When the state of media streams pushed to the CDN changes, the SDK triggers the 
 <a name="sample"></a>
 ### Sample code
 
-```c#
+```csharp
 // CDN transcoding settings.
 LiveTranscoding transcoding = new LiveTranscoding();
 transcoding.audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_44100;
@@ -80,7 +80,7 @@ user.width = 640;
 user.height = 480;
 user.alpha = 1;
 transcoding.transcodingUsers = new TranscodingUser[] { user };
-transcoding.userCount = (uint)transcoding.transcodingUsers.Length; 
+transcoding.userCount = (uint)transcoding.transcodingUsers.Length;
 transcoding.transcodingUsers = user;
 
 // CDN transcoding settings when using transcoding.

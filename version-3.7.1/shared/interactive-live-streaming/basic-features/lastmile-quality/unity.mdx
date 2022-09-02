@@ -25,7 +25,7 @@ Before conducting the last-mile test, ensure that you have implemented the basic
 
    <div class="alert note">Before the test ends, Agora recommends not calling any other API methods.</div>
 
-   
+
 ### API call sequence
 
 Refer to the following diagram to implement the last-mile test in your project.
@@ -36,21 +36,21 @@ Refer to the following diagram to implement the last-mile test in your project.
 
 Refer to the following code to implement the last-mile test in your project.
 
-```c#
+```csharp
 // Registers the callback events.
 // Triggered 2 seconds after starting the last-mile test.
 void OnLastmileQualityHandler(int quality)
 {
-  
+
 }
-  
+
 // Triggered 30 seconds after starting the last-mile test.
 void OnLastmileProbeResultHandler(LastmileProbeResult result)
-{ 
+{
     // (1) Stops the test. Agora recommends not calling any other API method before the test ends.
     mRtcEngine.StopLastmileProbeTest();
 }
-  
+
 mRtcEngine.OnLastmileQuality = OnLastmileQualityHandler;
 mRtcEngine.OnLastmileProbeResult = OnLastmileProbeResultHandler;
 // Configures a LastmileProbeConfig instance.

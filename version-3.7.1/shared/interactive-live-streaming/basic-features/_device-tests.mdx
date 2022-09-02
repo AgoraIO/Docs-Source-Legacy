@@ -23,13 +23,13 @@ Choose either of the following ways to test the audio or video devices:
 
 Call `StartAudioRecordingDeviceTest` or `StartEchoTest` to test whether the local audio recording device, such as the microphone, is working properly.
 
-To conduct the test, the user speaks. If the SDK reports the audio volume information in the `OnVolumeIndicationHandler` callback, the audio recording device works properly. A UID of 0 indicates the local user. 
+To conduct the test, the user speaks. If the SDK reports the audio volume information in the `OnVolumeIndicationHandler` callback, the audio recording device works properly. A UID of 0 indicates the local user.
 
 When you want to stop the test, call `StopAudioRecordingDeviceTest` or `StopEchoTest`.
 
 #### Sample code
 
-```c#
+```csharp
 // For Windows or macOS devices.
 public void loadEngine(string appId)
 {
@@ -55,20 +55,20 @@ public void loadEngine(string appId)
     // Releases AudioRecordingDeviceManager instance.
     audioRecordingDeviceManager.ReleaseAAudioRecordingDeviceManager();
 }
-     
-// Implements the audio volume callback. 
+
+// Implements the audio volume callback.
 void OnVolumeIndicationHandler(AudioVolumeInfo[] speakers, int speakerNumber, int totalVolume)
 {
- 
+
 }
 ```
 
-```c#
+```csharp
 // For Android or iOS devices.
 public void loadEngine(string appId)
 {
     // Initializes the IRtcEngine.
-    mRtcEngine = IRtcEngine.GetEngine (appId);   
+    mRtcEngine = IRtcEngine.GetEngine (appId);
     // Starts an audio device test.
     mRtcEngine.StartEchoTest(10);
     // Stops the audio device test.
@@ -103,7 +103,7 @@ When you want to stop the test, call `StopAudioPlaybackDeviceTest` or `StopEchoT
 
 #### Sample code
 
-```c#
+```csharp
 // For Windows or macOS devices.
 public void loadEngine(string appId)
 {
@@ -130,20 +130,20 @@ public void loadEngine(string appId)
     // Releases AudioPlaybackDeviceManager instance.
     audioPlaybackDeviceManager.ReleaseAAudioPlaybackDeviceManager();
 }
-     
-// Implements the audio volume callback. 
+
+// Implements the audio volume callback.
 void OnVolumeIndicationHandler(AudioVolumeInfo[] speakers, int speakerNumber, int totalVolume)
 {
- 
+
 }
 ```
 
-```c#
+```csharp
 // For Android or iOS devices.
 public void loadEngine(string appId)
 {
     // Initializes the IRtcEngine.
-    mRtcEngine = IRtcEngine.GetEngine (appId);   
+    mRtcEngine = IRtcEngine.GetEngine (appId);
     // Starts an audio device test.
     mRtcEngine.StartEchoTest(10);
     // Stops the audio device test.
@@ -179,7 +179,7 @@ When you want to stop the test, call `StopPreview`.
 
 #### Sample code
 
-```c#
+```csharp
 // For Windows or macOS devices.
 public void loadEngine(string appId)
 {

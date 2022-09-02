@@ -22,7 +22,7 @@ To implement screen sharing on the Android platform, you only need to call  [`st
 <li>This feature requires a high-performance device. Agora recommends that you use this feature on iPhone X or later models.</li>
 </div>
 
-	
+
 ### Understand the tech
 
 Screen sharing on iOS is implemented by using the native iOS ReplayKit framework in an Extension to record the screen and by treating the screen sharing stream as a user joining the channel. As Apple does not support screen capture in the main app process, you need to create a separate Extension for the screen sharing stream.
@@ -47,7 +47,7 @@ Screen sharing on iOS is implemented by using the native iOS ReplayKit framework
    b. In the pop-up window, fill in **Product Name** and other fields, uncheck **Include UI Extension**, and click **Finish**. Xcode automatically creates the Extension folder, which contains the `SampleHandler.h` file.
 
    c. Under **Target**, select the Extension you have created, click **General**, and set the iOS version to 12.0 or later under **Deployment Info**.
-   
+
       ![img](https://web-cdn.agora.io/docs-files/1652254668249)
 
    d. Modify the `SampleHandler.h` file to modify the code logic that implements screen sharing:
@@ -58,50 +58,50 @@ Screen sharing on iOS is implemented by using the native iOS ReplayKit framework
 
       - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
 
-        ```objectivec
+        ```objective-c
           // Objective-C
           #import "SampleHandler.h"
           #import "AgoraReplayKitExt.h"
           #import <sys/time.h>
-        
+
           @interface SampleHandler ()<AgoraReplayKitExtDelegate>
-        
+
           @end
-        
+
           @implementation SampleHandler
-        
+
           - (void)broadcastStartedWithSetupInfo:(NSDictionary<NSString *,NSObject *> *)setupInfo {
               // User has requested to start the broadcast. Setup info from the UI extension can be supplied but optional.
               [[AgoraReplayKitExt shareInstance] start:self];
-        
+
           }
-        
+
           - (void)broadcastPaused {
               // User has requested to pause the broadcast. Samples will stop being delivered.
               NSLog(@"broadcastPaused");
               [[AgoraReplayKitExt shareInstance] pause];
           }
-        
+
           - (void)broadcastResumed {
               // User has requested to resume the broadcast. Samples delivery will resume.
               NSLog(@"broadcastResumed");
               [[AgoraReplayKitExt shareInstance] resume];
-        
+
           }
-        
+
           - (void)broadcastFinished {
               // User has requested to finish the broadcast.
               NSLog(@"broadcastFinished");
               [[AgoraReplayKitExt shareInstance] stop];
-        
+
           }
-        
+
           - (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer withType:(RPSampleBufferType)sampleBufferType {
               [[AgoraReplayKitExt shareInstance] pushSampleBuffer:sampleBuffer withType:sampleBufferType];
           }
-        
+
           #pragma mark - AgoraReplayKitExtDelegate
-        
+
           - (void)broadcastFinished:(AgoraReplayKitExt *_Nonnull)broadcast reason:(AgoraReplayKitExtReason)reason {
               switch (reason) {
                   case AgoraReplayKitExtReasonInitiativeStop:
@@ -120,7 +120,7 @@ Screen sharing on iOS is implemented by using the native iOS ReplayKit framework
                           NSLog(@"AgoraReplayKitExReasonConnectFail");
                       }
                       break;
-        
+
                   case AgoraReplayKitExtReasonDisconnect:
                       {
           //                  NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"disconnect with host app"};
@@ -133,7 +133,7 @@ Screen sharing on iOS is implemented by using the native iOS ReplayKit framework
                       break;
               }
           }
-        
+
           @end
         ```
 
@@ -161,7 +161,7 @@ Agora provides an example of screen sharing in  [Agora-Flutter-SDK](https://gith
          pod 'AgoraRtcEngine_iOS', '3.7.0.3'
     end
     ```
-		
+
     <div class="alert note">Ensure that the pod dependencies version is consistent with the SDK dependencies version in the  <code>agora_rtc_engine/ios/agora_rtc_engine.podspec</code> file.</div>
 
 - The memory limit of a Broadcast Upload Extension is 50 MB. Ensure that your memory usage does not exceed this limit.
@@ -235,7 +235,7 @@ Agora provides an example of screen sharing in  [Agora-Flutter-SDK](https://gith
 - [`enumerateDisplays`](./API%20Reference/flutter/v5.3.0/API/api_enumeratedisplays.html)
 - [`enumerateWindows`](./API%20Reference/flutter/v5.3.0/API/api_enumeratewindows.html)
 - [`startScreenCaptureByDisplayId`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturebydisplayid)
-- [`startScreenCaptureByWindowId`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturebywindowid) 
+- [`startScreenCaptureByWindowId`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_startscreencapturebywindowid)
 - [`updateScreenCaptureParameters`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_updatescreencaptureparameters)
 - [`setScreenCaptureContentHint`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_setscreencapturecontenthint)
 - [`updateScreenCaptureRegion`](./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_updatescreencaptureregion)

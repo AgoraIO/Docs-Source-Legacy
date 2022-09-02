@@ -28,7 +28,7 @@ The following figure shows the API call sequence. After playing the audio effect
 
 **Sample code**
 
-```c#
+```csharp
 // Initializes the AudioEffectManagerImpl class.
 AudioEffectManagerImpl audioEffectManager = (AudioEffectManagerImpl)mRtcEngine.GetAudioEffectManager();
 // Preloads audio effects, you can call this method multiple times to preload multiple audio effects.
@@ -81,7 +81,7 @@ Agora audio mixing supports the following options:
 
 ### Implementation
 
-```c#
+```csharp
 string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3";
 // Starts playing and mixing the music file.
 int ret = mRtcEngine.StartAudioMixing(filePath, false, true, 1);
