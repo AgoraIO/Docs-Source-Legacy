@@ -54,7 +54,7 @@ Right-click the project name in the **Solution Explorer** window, click **Proper
 
 - **Version requirements**: 2.4.0 or later.
 
-- Integration steps: See [Integrate the Native SDK](https://docs.agora.io/en/Interactive%20Broadcast/start_live_windows?platform=Windows#integrate-the-sdk).
+- Integration steps: See [Integrate the Native SDK](../quickstart-guide/start-video-streaming#integrate-the-sdk).
 
 
 ### Integrate the RtcChannelPublishPlugin
@@ -238,7 +238,7 @@ After integrating the MediaPlayer Kit, the Agora Native SDK, and the RtcChannelP
 
 **Instantiate required objects**
 
-1. [Instantiate an IRtcEngine object](https://docs.agora.io/en/Interactive%20Broadcast/start_live_windows?platform=Windows#2-initialize-irtcengine).
+1. [Instantiate an IRtcEngine object](../quickstart-guide/start-video-streaming#2-initialize-irtcengine).
 2. Instantiate the objects for the mediaplayer kit and the RtcChannelPublishPlugin.
 3. Call the `attachPlayerToRtc` method of the `AgoraRtcChannelPublishHelper` class to bundle the player with the Agora channel.
 
@@ -250,7 +250,7 @@ Register the player, audio, and video observer objects, and complete the **prepa
 
 **Enable the local user to join the channel by using the SDK**
 
-Refer to [the RTC quickstart guide](https://docs.agora.io/en/Interactive%20Broadcast/start_live_windows?platform=Windows#3-set-the-channel-profile) for details about how to enable the local user to join the `LIVE_BROADCASTING` channel in the role of `BROADCASTER`:
+Refer to [the RTC quickstart guide](../quickstart-guide/start-video-streaming#3-set-the-channel-profile) for details about how to enable the local user to join the `LIVE_BROADCASTING` channel in the role of `BROADCASTER`:
 
 1. Call the `setChannelProfile` method to set the channel mode to `LIVE_BROADCASTING`.
 

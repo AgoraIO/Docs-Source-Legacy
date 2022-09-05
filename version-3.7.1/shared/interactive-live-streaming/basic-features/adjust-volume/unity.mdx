@@ -9,7 +9,7 @@ This article provides the APIs and additional information relating to audio reco
 ![1586770252932](https://web-cdn.agora.io/docs-files/1586770252932)
 
 ## Implementation
-Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](start_call_audio_unity) or [Start Live Interactive Streaming](../quickstart-guide/start-audio-streaming).
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](/3.7.1/voice-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-audio-streaming).
 
 ### Adjust the recording volume
 
@@ -107,7 +107,7 @@ int ret = mRtcEngine.AdjustPlaybackSignalVolume(50);
 
 ### Adjust the audio mixing volume
 
-**Audio mixing** is the process of combining local or online music files with the local stream so that all the remote users in the channel can hear the host and the music at the same time. See [Audio Effects/Mixing](audio_effect_mixing_unity) for more information about enabling this function.
+**Audio mixing** is the process of combining local or online music files with the local stream so that all the remote users in the channel can hear the host and the music at the same time. See [Audio Effects/Mixing](../advanced-features/audio-effect-mixing) for more information about enabling this function.
 ![1586770368334](https://web-cdn.agora.io/docs-files/1586770368334)
 
 The `AdjustAudioMixingVolume` method adjusts the volume of the music file for both the local user and the remote users.
@@ -151,7 +151,7 @@ int ret = mRtcEngine.AdjustAudioMixingPlayoutVolume(50);
 
 ### Adjust the audio effects volume
 
- An **audio effects** here refers to a sound clip which plays a brief sound effect such as clapping or gunshots. See [Audio Effects/Mixing](audio_effect_mixing_unity) for more information on how to enable this function.
+ An **audio effects** here refers to a sound clip which plays a brief sound effect such as clapping or gunshots. See [Audio Effects/Mixing](../advanced-features/audio-effect-mixing) for more information on how to enable this function.
 
 ![1586770384829](https://web-cdn.agora.io/docs-files/1586770384829)
 
