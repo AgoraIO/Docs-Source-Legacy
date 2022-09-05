@@ -15,7 +15,7 @@ Ensure that you enable the Media Push service before using this function:
 1. Log in to [Agora Console](https://console.agora.io/), and click the **Project Management** icon on the left navigation panel.
 
 2. On the **Project Management** page, find the project for which you want to enable the Media Push service, and click the edit icon.
-3. 
+3.
 
     <img src="https://web-cdn.agora.io/docs-files/1637660034129"/>
 
@@ -47,7 +47,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 2. Call `startRtmpStreamWithTranscoding` and pass in the address of the Media Push and the transcoding configuration to start pushing transcoded streams to a CDN address.
 
    <div class="alert note"><ul>
-   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html">LiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>userCount</code> and <code>transcodingUsers</code> fields in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
+   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html">LiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>userCount</code> and <code>transcodingUsers</code> fields in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
    <li>For live audio scenarios, leave the video-related fields in the transcoding configuration empty.</li>
    <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
    <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
@@ -218,17 +218,17 @@ The following APIs are recommended by Agora when implementing Media Push:
 - [`startRtmpStreamWithTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9391d6e809be8e54f01e73527fb88160)
 - [`updateRtmpTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a917ae58f6c4aaddb45370b6e1dbfa951)
 - [`stopRtmpStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab2afb755c25d279a8a6980f4676e59d3)
-- [`onTranscodingUpdated`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#afcacc60191697a4105364d1b0c411eb1)
+- [`onTranscodingUpdated`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#afcacc60191697a4105364d1b0c411eb1)
 - [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
-- [`onRtmpStreamingEvent`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c)
+- [`onRtmpStreamingEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c)
 
 The following APIs are still functional but not recommended by Agora when implementing Media Push:
 
-- [`setLiveTranscoding`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a3cb9804ae71819038022d7575834b88c)
-- [`addPublishStreamUrl`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)
-- [`removePublishStreamUrl`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a87b3f2f17bce8f4cc42b3ee6312d30d4)
-- [`onStreamPublished`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af18840d18833b66254c71ccfad019056)
-- [`onStreamUnpublished`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3e6f904f9285e925b32a4588f3e5abbd)
+- [`setLiveTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a3cb9804ae71819038022d7575834b88c)
+- [`addPublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)
+- [`removePublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a87b3f2f17bce8f4cc42b3ee6312d30d4)
+- [`onStreamPublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af18840d18833b66254c71ccfad019056)
+- [`onStreamUnpublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3e6f904f9285e925b32a4588f3e5abbd)
 
 
 ### Related docs

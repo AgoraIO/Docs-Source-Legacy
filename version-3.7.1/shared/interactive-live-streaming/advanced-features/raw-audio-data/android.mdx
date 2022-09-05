@@ -48,7 +48,7 @@ private byte[] readBuffer(){
     }
     return buffer;
 }
-  
+
 // Define the audioAggregate method to mix the audio data from the onRecordFrame callback with the audio buffer of the local audio file.
 private byte[] audioAggregate(byte[] origin, byte[] buffer) {
     byte[] output = new byte[origin.length];
@@ -57,22 +57,22 @@ private byte[] audioAggregate(byte[] origin, byte[] buffer) {
     }
     return output;
 }
-  
+
 // Implement an IAudioFrameObserver class.
 private final IAudioFrameObserver audioFrameObserver = new IAudioFrameObserver() {
-  
+
     // Implement the getObservedAudioFramePosition callback. Set the audio observation position as POSITION_RECORD in the return value of this callback, which enables the SDK to trigger the onRecordFrame callback.
     @Override
     public int getObservedAudioFramePosition() {
         return IAudioFrameObserver.POSITION_RECORD;
     }
-  
+
     // Implement the getRecordAudioParams callback. Set the audio recording format in the return value of this callback for the onRecordFrame callback.
     @Override
     public AudioParams getRecordAudioParams() {
         return new AudioParams(SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, Constants.RAW_AUDIO_FRAME_OP_MODE_READ_WRITE, SAMPLES_PER_CALL);
     }
-  
+
     // Implement the onRecordFrame callback, get audio data from the callback, and send the data to the SDK after mixing it with the local audio file.
     @Override
     public boolean onRecordFrame(AudioFrame audioFrame) {
@@ -88,24 +88,24 @@ private final IAudioFrameObserver audioFrameObserver = new IAudioFrameObserver()
         return true;
     }
 };
-  
+
 // Pass the IAudioFrameObserver and register the audio observer.
 engine.registerAudioFrameObserver(audioFrameObserver);
 ```
 
 #### API reference
 
-- [`registerAudioFrameObserver`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a57eaa3859be21cd327763fc316197fff)
-- [`onRecordFrame`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a100c71aac37a2819d964cb07d8089dc2)
-- [`onPlaybackFrame`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aa81e47cc5d340306b8f71c53344c6b6b)
-- [`onPlaybackFrameBeforeMixing`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aae91797ffd02f654145b5404193b6663)
-- [`onMixedFrame`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#acf464c92fe86b71fa043747acd8fdd3d)
-- [`isMultipleChannelFrameWanted`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a118bceeebe3f1aa0298fdbe44a3ce069)
-- [`onPlaybackFrameBeforeMixingEx`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ac6bc2d111ac1ef0763b554e6c1a3d43d)
-- [`getObservedAudioFramePosition`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ae12af04e2b2fdeecc3f557e80ebd35e6)
-- [`getRecordAudioParams`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a4e35bea92dc551c203a4167e3c02c276)
-- [`getPlaybackAudioParams`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#afadbf2d488d4cf2dee2cec841b28000a)
-- [`getMixedAudioParams`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a21b9096943c5dbbcfae565ad333ddf48)
+- [`registerAudioFrameObserver`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a57eaa3859be21cd327763fc316197fff)
+- [`onRecordFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a100c71aac37a2819d964cb07d8089dc2)
+- [`onPlaybackFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aa81e47cc5d340306b8f71c53344c6b6b)
+- [`onPlaybackFrameBeforeMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aae91797ffd02f654145b5404193b6663)
+- [`onMixedFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#acf464c92fe86b71fa043747acd8fdd3d)
+- [`isMultipleChannelFrameWanted`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a118bceeebe3f1aa0298fdbe44a3ce069)
+- [`onPlaybackFrameBeforeMixingEx`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ac6bc2d111ac1ef0763b554e6c1a3d43d)
+- [`getObservedAudioFramePosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ae12af04e2b2fdeecc3f557e80ebd35e6)
+- [`getRecordAudioParams`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a4e35bea92dc551c203a4167e3c02c276)
+- [`getPlaybackAudioParams`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#afadbf2d488d4cf2dee2cec841b28000a)
+- [`getMixedAudioParams`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a21b9096943c5dbbcfae565ad333ddf48)
 
 ### Process raw audio data using JNI and C++ APIs
 

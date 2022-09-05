@@ -107,11 +107,11 @@ The following figures show the video orientations at the video capturer and play
 The relative position of the status bar remains the same as the screen and not according to the phone tilt (for example, in WeChat). Therefore, the relative positions of the video and the screen remain the same for the video capturer and the player.
 
 - For a landscape capturer:
-	
+
 	<img alt="../_images/rotation_adaptive_uilock_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uilock_landscape.jpg" />
 
 - For a portrait capturer:
-			
+
 	<img alt="../_images/rotation_adaptive_uilock_portrait.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uilock_portrait.jpg" />
 
 **UI unlocked with the app enabling the screen auto-rotation**
@@ -119,30 +119,30 @@ The relative position of the status bar remains the same as the screen and not a
 The status bar of the app remains horizontal, regardless of the orientation of the screen (for example, in Facetime). Therefore, the relative positions of the video and the phone tilt remain the same for the video capturer and the player.
 
 - For a landscape capturer:
-			 
+
 	<img alt="../_images/rotation_adaptive_uiunlock_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uiunlock_landscape.jpg" />
 
 - For a portrait capturer:
-			
+
    <img alt="../_images/rotation_adaptive_uiunlock_portrait.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uiunlock_portrait.jpg" />
 
 **ORIENTATION_MODE_FIXED_LANDSCAPE**
 
-In the `ORIENTATION_MODE_FIXED_LANDSCAPE` mode, the video capturer sends the video in the landscape orientation relative to the status bar. If the captured video is in portrait mode, the video encoder crops it to fit the output. This mode applies to situations where the receiving end cannot process the rotation information. 
+In the `ORIENTATION_MODE_FIXED_LANDSCAPE` mode, the video capturer sends the video in the landscape orientation relative to the status bar. If the captured video is in portrait mode, the video encoder crops it to fit the output. This mode applies to situations where the receiving end cannot process the rotation information.
 
 The following figures show the video orientations at the video capturer and the player when a rear camera is used as the video capturer.
 
 - The captured video in the landscape mode (video cropping is not needed):
-	
+
 	<img alt="../_images/rotation_fixed_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_landscape.jpg" />
-	
+
 - The captured video in the portrait mode (video cropping is needed):
-			
+
 	<img alt="../_images/rotation_fixed_landscape_cut.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_landscape_cut.jpg" />
 
 **ORIENTATION_MODE_FIXED_PORTRAIT**
 
-In the `ORIENTATION_MODE_FIXED_PORTRAIT` mode, the video capturer sends out the video in the portrait orientation relative to the status bar. If the captured video is in landscape mode, the video encoder crops it to fit the output. This mode applies to situations where the receiving end cannot process the rotation information. 
+In the `ORIENTATION_MODE_FIXED_PORTRAIT` mode, the video capturer sends out the video in the portrait orientation relative to the status bar. If the captured video is in landscape mode, the video encoder crops it to fit the output. This mode applies to situations where the receiving end cannot process the rotation information.
 
 The following figures show the video orientations at the video capturer and the player when a rear camera is used as the video capturer.
 
@@ -151,7 +151,7 @@ The following figures show the video orientations at the video capturer and the 
   <img alt="../_images/rotation_fixed_portrait.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_portrait.jpg" />
 
 - The captured video in the landscape mode (video cropping is needed):
-			
+
 	<img alt="../_images/rotation_fixed_portrait_cut.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_portrait_cut.jpg" />
 
 ### Degradation preference
@@ -167,7 +167,7 @@ By default, the SDK does not mirror the video during encoding. You can use the `
 If your scenario has special requirements for video sharpness or smoothness, you can use the following parameters to alter the minimum frame rate or bitrate:
 
 - `minFrameRate`: The minimum video frame rate (fps). You can use `minFrameRate` and `MAINTAIN_QUALITY` to balance the video sharpness and video smoothness under unreliable connections. When `minFrameRate` is relatively low, the frame rate degrades significantly, so the poor network conditions have limited impact on video sharpness. When `minFrameRate` is relatively high, the frame rate degrades within a limited range, so the poor network conditions can have high impact on video sharpness.
-- `minBitrate`: The minimum video bitrate (Kbps). The Agora SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Setting this parameter to a value greater than the default value forces the video encoder to output high-quality video images but may cause more packet loss and sacrifice video smoothness. 
+- `minBitrate`: The minimum video bitrate (Kbps). The Agora SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Setting this parameter to a value greater than the default value forces the video encoder to output high-quality video images but may cause more packet loss and sacrifice video smoothness.
 
 
 <div class="alert note">The default values of <code>minFrameRate</code> and <code>minBitrate</code> can meet the requirements of most real-time scenarios. Unless you have special requirements, Agora recommends not changing these default values.</div>
@@ -187,8 +187,8 @@ try {
     Log.e("Field", "Can not find field " + dimension.getSelectedItem().toString());
 } catch (IllegalAccessException e) {
     Log.e("Field", "Could not access field " + dimension.getSelectedItem().toString());
- 
- 
+
+
 engine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
         value,
         VideoEncoderConfiguration.FRAME_RATE.valueOf(framerate.getSelectedItem().toString()),

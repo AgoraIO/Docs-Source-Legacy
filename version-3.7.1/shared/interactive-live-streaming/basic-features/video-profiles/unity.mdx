@@ -45,10 +45,10 @@ mRtcEngine.SetVideoEncoderConfiguration(config);
 ```
 
 ### API Reference
-- [`SetVideoEncoderConfiguration`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a7dc9aa63ad1ba10f2451efd02e0f1f73)
+- [`SetVideoEncoderConfiguration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a7dc9aa63ad1ba10f2451efd02e0f1f73)
 
 ## Considerations
-- Setting [`DEGRADATION_PREFERENCE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a1bda0e6bd3dcd1b0ca3764394800346c) as `MAINTAIN_QUALITY` means that the SDK degrades the frame rate under limited bandwidth so as to maintain the video quality. Developers can set the [`minFrameRate`](./API%20Reference/unity/structagora__gaming__rtc_1_1_video_encoder_configuration.html#a6de8eab8863e9bdf28ee49a080241c66) parameter to balance the frame rate and video quality under unreliable network connections:
+- Setting [`DEGRADATION_PREFERENCE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a1bda0e6bd3dcd1b0ca3764394800346c) as `MAINTAIN_QUALITY` means that the SDK degrades the frame rate under limited bandwidth so as to maintain the video quality. Developers can set the [`minFrameRate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_video_encoder_configuration.html#a6de8eab8863e9bdf28ee49a080241c66) parameter to balance the frame rate and video quality under unreliable network connections:
 
 	- When  `minFrameRate` is relatively low, the frame rate degrades significantly, so the poor network conditions have little impact on the video quality.
 	- When `minFrameRate` is relatively high, the frame rate degrades within a limited range, so the poor network conditions can have huge impact on the video quality.
@@ -56,7 +56,7 @@ mRtcEngine.SetVideoEncoderConfiguration(config);
  Do not set the `minFrameRate` parameter to a value greater than `frameRate`. The default value of `minFrameRate` is experiment verified and can satisfy most use scenarios. Agora does not recommend changing it.
 - If you do not need to set the video profile after joining the channel, you can call the `SetVideoEncoderConfiguration` method before the `EnableVideo` method to reduce the render time of the first video frame.
 - The Agora Unity SDK may adjust the parameters under poor network conditions.
-- A interactive live streaming channel generally requires a higher bitrate for better video quality. Therefore, Agora recommends setting the bitrate in the `LIVE_BROADCASTING` profile to twice of that in the `COMMUNICATION` profile. See [Set the bitrate](./API%20Reference/unity/structagora__gaming__rtc_1_1_video_encoder_configuration.html#ae2fee92452a1914df68ec9a07a7938a5).
+- A interactive live streaming channel generally requires a higher bitrate for better video quality. Therefore, Agora recommends setting the bitrate in the `LIVE_BROADCASTING` profile to twice of that in the `COMMUNICATION` profile. See [Set the bitrate](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_video_encoder_configuration.html#ae2fee92452a1914df68ec9a07a7938a5).
 - For better video quality during the interactive live streaming, a stable network connection is recommended.
 - Setting parameters in the `SetVideoEncoderConfiguration` method may affect your bill. For more information, see [Billing](../introduction/pricing).
 

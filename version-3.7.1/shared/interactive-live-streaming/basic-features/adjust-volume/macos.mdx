@@ -49,11 +49,11 @@ agoraKit.setDeviceVolume(.audioRecording, volume: 50)
 [agoraKit setDeviceVolume: AgoraMediaDeviceTypeAudioRecording volume: 50];
 ```
 
-#### Set the volume of the captured signal 
+#### Set the volume of the captured signal
 
 If `setDeviceVolume` does not suffice, you can call `adjustRecordingSignalVolume` to set the volume of the signal captured by the microphone or call `adjustLoopbackRecordingSignalVolume` to set the volume of the signal captured by the sound card.
 
-The `volume` parameter represents the audio level of the captured signal, ranging between 0 and 100. The default value is 100, which represents the original volume. 
+The `volume` parameter represents the audio level of the captured signal, ranging between 0 and 100. The default value is 100, which represents the original volume.
 
 Sample code
 
@@ -88,7 +88,7 @@ agoraKit.adjustLoopbackRecordingSignalVolume(50)
 
 #### Set the volume of the playback device
 
-To set the volume on the playback device directly, call `setDeviceVolume`. 
+To set the volume on the playback device directly, call `setDeviceVolume`.
 
 <div class="alert note">This method sets the global volume of your corresponding device.</div>
 
@@ -118,10 +118,10 @@ agoraKit.setDeviceVolume(.audioPlayout, volume: 50)
 If `setDeviceVolume` does not suffice, you can use `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume` to set the volume of the audio signal.
 - `adjustPlaybackSignalVolume`：
   - Universally sets the playback audio level of all remote users after audio mixing.
-  - The `volume` parameter represents the playback audio level, ranging between 0 and 400. 
+  - The `volume` parameter represents the playback audio level, ranging between 0 and 400.
 - `adjustUserPlaybackSignalVolume`：
   - Adjusts the playback audio level of a specified remote user after audio mixing. Call this method as many times as necessary to adjust the playback volume of different remote users, or to repeatedly adjust the playback volume of the same remote user.
-  - The `volume` parameter represents the playback audio level, ranging between 0 and 100. 
+  - The `volume` parameter represents the playback audio level, ranging between 0 and 100.
 
 <div class="alert note"><li>As of v2.3.2, to mute the local audio playback, you must call both adjustPlaybackSignalVolume and adjustAudioMixingPlayoutVolume, and set the volume parameter as 0.</li><li>Call adjustUserPlaybackSignalVolume after joining a channel.</li></div>
 

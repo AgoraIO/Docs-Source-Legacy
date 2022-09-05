@@ -82,11 +82,11 @@ Call `joinChannelByToken` of the SDK to join a channel and use the `startWork` m
 let result = agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelName, info: nil, uid: 0) {[unowned self] (channel, uid, elapsed) -> Void in
         self.isJoined = true
         LogUtils.log(message: "Join \(channel) with uid \(uid) elapsed \(elapsed)ms", level: .info)
-          
+
         // Call startWork to start capturing audio data.
         self.exAudio.startWork()
         try? AVAudioSession.sharedInstance().setPreferredSampleRate(Double(sampleRate))
-              
+
     }
     if result != 0 {
         // A common error is invalid parameter.
@@ -103,7 +103,7 @@ You need a method to receive the captured audio data. In the sample code, we def
 ```swift
 // Occurs when the captured audio data is received. You can get the captured data in this callback.
 - (void)audioController:(AudioController *)controller didCaptureData:(unsigned char *)data bytesLength:(int)bytesLength {
-     
+
     if (self.audioCRMode != AudioCRModeExterCaptureSDKRender) {
         // Call pushExternalAudioFrameRawData to send the captured data to the SDK.
         [self.agoraKit pushExternalAudioFrameRawData:data samples:bytesLength / 2 timestamp:0];
@@ -128,10 +128,10 @@ if isJoined {
 
 ### API reference
 
-- [`enableExternalAudioSourceWithSampleRate`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSourceWithSampleRate:channelsPerFrame:)
-- [`disableExternalAudioSource`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSource)
-- [`pushExternalAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameRawData:samples:timestamp:)
-- [`pushExternalAudioFrameSampleBuffer`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameSampleBuffer:)
+- [`enableExternalAudioSourceWithSampleRate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSourceWithSampleRate:channelsPerFrame:)
+- [`disableExternalAudioSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSource)
+- [`pushExternalAudioFrameRawData`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameRawData:samples:timestamp:)
+- [`pushExternalAudioFrameSampleBuffer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameSampleBuffer:)
 
 
 ## Custom audio renderer
@@ -142,7 +142,7 @@ Choose either of the following methods to implement a custom audio renderer:
 
 **Method one**
 
-1. Before joining a channel, call `registerAudioFrameObserver` to register the audio frame observer, and implement the `IAudioFrameObserver ` class. 
+1. Before joining a channel, call `registerAudioFrameObserver` to register the audio frame observer, and implement the `IAudioFrameObserver ` class.
    After registering the observer, you can get the raw audio data of all remote users through the `onPlaybackAudioFrame` callback.
 2. Call `setParameters("{\"che.audio.external_render\": true}")` to disable the audio rendering of the SDK.
 3. Call `setParameters("{\"che.audio.keep.audiosession\": true}")` to disable the SDK control of the Audio Session.
@@ -176,22 +176,22 @@ Define the `setupExternalAudioWithAgoraKit` method: First set the sample rate, n
 ```objective-c
 // Define setupExternalAudioWithAgoraKit to set the external audio
 - (void)setupExternalAudioWithAgoraKit:(AgoraRtcEngineKit *)agoraKit sampleRate:(uint)sampleRate channels:(uint)channels audioCRMode:(AudioCRMode)audioCRMode IOType:(IOUnitType)ioType {
-   
+
   // Implement AudioController to trigger callbacks
   self.audioController = [AudioController audioController];
   self.audioController.delegate = self;
-   
+
     // Register audio frame observer
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);  
- 
+    mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);
+
     if (mediaEngine) {
         s_audioFrameObserver = new ExternalAudioFrameObserver();
         s_audioFrameObserver -> sampleRate = sampleRate;
         s_audioFrameObserver -> sampleRate_play = channels;
         mediaEngine->registerAudioFrameObserver(s_audioFrameObserver);
-    }    
+    }
 }
 ```
 
@@ -232,10 +232,10 @@ Call `joinChannelByToken` to join a channel, and start rendering after joining t
 let result = agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelName, info: nil, uid: 0) {[unowned self] (channel, uid, elapsed) -> Void in
         self.isJoined = true
         LogUtils.log(message: "Join \(channel) with uid \(uid) elapsed \(elapsed)ms", level: .info)
-         
+
         // Start rendering audio.
         self.exAudio.startWork()
-             
+
     }
     if result != 0 {
         // Report errors if joining failed, usually due to invalid parameters.
@@ -252,8 +252,8 @@ Define `stopWork` and `cancelRegister.`
     [self.audioController stopWork];
     [self cancelRegister];
 }
- 
- 
+
+
 - (void)cancelRegister {
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
@@ -278,13 +278,13 @@ if isJoined {
 
 ### API reference
 
-- [`enableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
-- [`disableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
-- [`pullPlaybackAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
-- [`pullPlaybackAudioFrameSampleBufferByLengthInByte`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameSampleBufferByLengthInByte:)
-- [`getNativeHandle`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getNativeHandle)
-- [`registerAudioFrameObserver`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#ae46ca0d20789787aaab2fb268a524100)
-- [`onPlaybackAudioFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#aefc7f9cb0d1fcbc787775588bc849bac)
+- [`enableExternalAudioSink`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
+- [`disableExternalAudioSink`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
+- [`pullPlaybackAudioFrameRawData`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
+- [`pullPlaybackAudioFrameSampleBufferByLengthInByte`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameSampleBufferByLengthInByte:)
+- [`getNativeHandle`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getNativeHandle)
+- [`registerAudioFrameObserver`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#ae46ca0d20789787aaab2fb268a524100)
+- [`onPlaybackAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#aefc7f9cb0d1fcbc787775588bc849bac)
 
 ## Considerations
 

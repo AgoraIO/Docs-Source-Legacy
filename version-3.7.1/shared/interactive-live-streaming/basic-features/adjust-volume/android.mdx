@@ -48,10 +48,10 @@ rtcEngine.adjustRecordingSignalVolume(volume);
 You can use `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume` to set the volume of the audio signal.
 - `adjustPlaybackSignalVolume`：
   - Universally sets the playback audio level of all remote users after audio mixing.
-  - The `volume` parameter represents the playback audio level, which ranges between 0 and 400. 
+  - The `volume` parameter represents the playback audio level, which ranges between 0 and 400.
 - `adjustUserPlaybackSignalVolume`：
   - Adjusts the playback audio level of a specified remote user after audio mixing. Call this method as many times as necessary to adjust the playback volume of different remote users, or to repeatedly adjust the playback volume of the same remote user.
-  - The `volume` parameter represents the playback audio level, which ranges between 0 and 100. 
+  - The `volume` parameter represents the playback audio level, which ranges between 0 and 100.
 
 <div class="alert note"><li>As of v2.3.2, to mute the local audio playback, you must call both <code>adjustPlaybackSignalVolume</code> and <code>adjustAudioMixingVolume</code>, and set the volume parameter as 0.</li><li>Call <code>adjustUserPlaybackSignalVolume</code> after joining a channel.</li></div>
 
@@ -115,9 +115,9 @@ public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume)
 ```
 
 - Reports the user with the highest average volume. The `onActiveSpeaker` callback reports the user ID with the highest average volume during a certain period of time.
-	
+
 	 <div class="alert note">You must call <code>enableAudioVolumeIndication</code> to be able to receive this callback.</div>
-	 
+
 Sample code
 
 ```java

@@ -65,7 +65,7 @@ int id = 0;
 // Preloads the specified local audio effect file into the memory.
 audioEffectManager.preloadEffect(id++, "your file path");
 
-// Unloads the preloaded audio effect file. 
+// Unloads the preloaded audio effect file.
 audioEffectManager.unloadEffect(id);
 ```
 
@@ -80,15 +80,15 @@ Call `playEffect` to play the audio effect file. You can call `playEffect` multi
 audioEffectManager.playEffect(
   0,  // Sets the audio effect ID.
   "your file path",  // Sets the path of the audio effect file.
-  -1,  // Sets the number of times the audio effect loops. -1 represents an infinite loop.  
-  1,  // Sets the pitch of the audio effect. The value range is 0.5 to 2.0, where 1.0 is the original pitch.  
-  0.0,  // Sets the spatial position of the audio effect. The value range is -1.0 to 1.0.  -1.0 represents the audio effect occurs on the left; 0 represents the audio effect occurs in the front; 1.0 represents the audio effect occurs on the right. 
-  100,  // Sets the volume of the audio effect. The value range is 0 to 100. 100 represents the original volume.  
-  true,  // Sets whether to publish the audio effect to the remote users. true represents that both the local user and remote users can hear the audio effect; false represents that only the local user can hear the audio effect.  
+  -1,  // Sets the number of times the audio effect loops. -1 represents an infinite loop.
+  1,  // Sets the pitch of the audio effect. The value range is 0.5 to 2.0, where 1.0 is the original pitch.
+  0.0,  // Sets the spatial position of the audio effect. The value range is -1.0 to 1.0.  -1.0 represents the audio effect occurs on the left; 0 represents the audio effect occurs in the front; 1.0 represents the audio effect occurs on the right.
+  100,  // Sets the volume of the audio effect. The value range is 0 to 100. 100 represents the original volume.
+  true,  // Sets whether to publish the audio effect to the remote users. true represents that both the local user and remote users can hear the audio effect; false represents that only the local user can hear the audio effect.
   0  // Sets the playback position (ms) of the audio effect file. 0 represents that the playback starts at the 0 ms mark of the audio effect file.
 );
 
-// Occurs when the local audio effect playback finishes.  
+// Occurs when the local audio effect playback finishes.
 @Override
 public void onAudioEffectFinished(int soundId) {
     super.onAudioEffectFinished(soundId);
@@ -98,10 +98,10 @@ public void onAudioEffectFinished(int soundId) {
 After successfully playing audio effect files, you can stop playing either a specified file or all audio effect files.
 
 ```java
-// Stops playing a specified audio effect file. 
+// Stops playing a specified audio effect file.
 audioEffectManager.stopEffect(id);
- 
-// Stops playing all audio effect files. 
+
+// Stops playing all audio effect files.
 audioEffectManager.stopAllEffects();
 ```
 
@@ -112,16 +112,16 @@ When you play audio effect files, you can pause or resume playing either a speci
 <div class="alert note">Call this group of methods after <code>playEffect</code>.</div>
 
 ```java
-// Pauses playing a specified audio effect file.  
+// Pauses playing a specified audio effect file.
 audioEffectManager.pauseEffect(id);
- 
-// Pauses playing all audio effect files. 
+
+// Pauses playing all audio effect files.
 audioEffectManager.pauseAllEffects();
- 
-// Resumes playing a specified audio effect file.  
+
+// Resumes playing a specified audio effect file.
 audioEffectManager.resumeEffect(id);
- 
-// Resumes playing all audio effect files. 
+
+// Resumes playing all audio effect files.
 audioEffectManager.resumeAllEffects();
 ```
 
@@ -133,13 +133,13 @@ If you need to adjust the playback position after playing the audio effect file,
 <li>This group of methods only applies to the local audio effect files.</li></div>
 
 ```java
-// Gets the total duration of a specified local audio effect file.  
+// Gets the total duration of a specified local audio effect file.
 audioEffectManager.getEffectDuration("your file path");
- 
-// Sets the playback position (ms) of a specified local audio effect file. 500 represents that the playback starts at the 500 ms mark of the audio effect file.  
+
+// Sets the playback position (ms) of a specified local audio effect file. 500 represents that the playback starts at the 500 ms mark of the audio effect file.
 audioEffectManager.setEffectPosition(id, 500);
- 
-// Gets the current playback position of a specified local audio effect file.  
+
+// Gets the current playback position of a specified local audio effect file.
 audioEffectManager.getEffectCurrentPosition(id);
 ```
 
@@ -150,34 +150,34 @@ After the audio effect file starts to play, you can call this group of methods t
 <div class="alert note">Call this group of methods after <code>playEffect</code>.</div>
 
 ```java
- // Sets the playback volume of all audio effect files. The value range is 0 to 100. 100 represents the original volume.  
+ // Sets the playback volume of all audio effect files. The value range is 0 to 100. 100 represents the original volume.
 audioEffectManager.setEffectsVolume(50.0);
 
-// Sets the playback volume of a specified audio effect file. The value range is 0 to 100. 100 represents the original volume.  
+// Sets the playback volume of a specified audio effect file. The value range is 0 to 100. 100 represents the original volume.
 audioEffectManager.setVolumeOfEffect(id, 50.0);
- 
-// Gets the playback volume of all audio effect files. The volume range is 0 to 100.  100 represents the original volume.  
+
+// Gets the playback volume of all audio effect files. The volume range is 0 to 100.  100 represents the original volume.
 audioEffectManager.getEffectsVolume();
 ```
 
 ### API reference
 
-- [`preloadEffect`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a0815d837d9a01b5d3a916ab788845b33)
-- [`unloadEffect`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a43003195779749ef949296dcebda7e96)
-- [`playEffect`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#ac5ea756022fbed52f8cd94d6fe34c0bc)
-- [`stopEffect`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a37a08cbd9d0c9045349888a49dc2b217)
-- [`stopAllEffects`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a45afed476a26393eb4e63a68eebdf171)
-- [`pauseEffect`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a88bc8c00a0b597c43a0803fa45a44fe1)
-- [`pauseAllEffects`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#af44410b1c76bf67fc79ae18086b2f540)
-- [`resumeEffect`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aa4d72db4e672ebf5b83cceff96a99dc0)
-- [`resumeAllEffects`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aba4f20b574ffa80e09b30e4c89c5abbb)
-- [`getEffectDuration`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aa2dfe96bb089f8dad15d8787d0b7dae3)
-- [`setEffectPosition`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#acfebd8585cda2017c27904cec7e326ad)
-- [`getEffectCurrentPosition`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a65063b0665992f6cd70cb98c304b431c)
-- [`setEffectsVolume`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#ab758558563b3dd70771e5d44ba1a96f3)
-- [`setVolumeOfEffect`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#afcd8cd6d733703c0ba153b8e1ac81ec0)
-- [`getEffectsVolume`](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a049ea0f2ff5555cabbc06e4caadbeaf7)
-- [`onAudioEffectFinished`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa7a6c771353ad2097e05133622161090)
+- [`preloadEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a0815d837d9a01b5d3a916ab788845b33)
+- [`unloadEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a43003195779749ef949296dcebda7e96)
+- [`playEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#ac5ea756022fbed52f8cd94d6fe34c0bc)
+- [`stopEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a37a08cbd9d0c9045349888a49dc2b217)
+- [`stopAllEffects`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a45afed476a26393eb4e63a68eebdf171)
+- [`pauseEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a88bc8c00a0b597c43a0803fa45a44fe1)
+- [`pauseAllEffects`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#af44410b1c76bf67fc79ae18086b2f540)
+- [`resumeEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aa4d72db4e672ebf5b83cceff96a99dc0)
+- [`resumeAllEffects`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aba4f20b574ffa80e09b30e4c89c5abbb)
+- [`getEffectDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aa2dfe96bb089f8dad15d8787d0b7dae3)
+- [`setEffectPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#acfebd8585cda2017c27904cec7e326ad)
+- [`getEffectCurrentPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a65063b0665992f6cd70cb98c304b431c)
+- [`setEffectsVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#ab758558563b3dd70771e5d44ba1a96f3)
+- [`setVolumeOfEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#afcd8cd6d733703c0ba153b8e1ac81ec0)
+- [`getEffectsVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a049ea0f2ff5555cabbc06e4caadbeaf7)
+- [`onAudioEffectFinished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa7a6c771353ad2097e05133622161090)
 
 ## Audio mixing
 
@@ -205,14 +205,14 @@ Call `startAudioMixing` to play a music file. When playing a music file, you can
 ```java
 // Starts to play the music file.
 engine.startAudioMixing(
-  "your file path",  // Specifies the absolute path of the local or online music file that you want to play.  
+  "your file path",  // Specifies the absolute path of the local or online music file that you want to play.
   false,  // Sets whether to only play a music file on the local client. true represents that only the local user can hear the music; false represents that both the local user and remote users can hear the music.
-  false,  // Sets whether to replace the audio captured by the microphone with a music file. true represents that the user can only hear music; false represents that the user can hear both the music and the audio captured by the microphone. 
+  false,  // Sets whether to replace the audio captured by the microphone with a music file. true represents that the user can only hear music; false represents that the user can hear both the music and the audio captured by the microphone.
   -1,  // Sets the number of times to play the music file. 1 represents play the file once.
   0  // Sets the playback position (ms) of the music file. 0 represents that the playback starts at the 0 ms mark of the music file.
 );
 
-// Occurs when the state of the local user's music file changes.  
+// Occurs when the state of the local user's music file changes.
 @Override
 public void onAudioMixingStateChanged(int state, int reason) {
     super.onAudioMixingStateChanged(state, reason);
@@ -222,7 +222,7 @@ public void onAudioMixingStateChanged(int state, int reason) {
 After successfully playing the music file, you can call `stopAudioMixing` to stop the playback.
 
 ```java
-// Stops playing the music file. 
+// Stops playing the music file.
 engine.stopAudioMixing();
 ```
 
@@ -233,10 +233,10 @@ When you play the music file, you can pause or resume playing the music file.
 <div class="alert note">Call this group of methods after calling <code>startAudioMixing</code>.</div>
 
 ```java
-// Pauses playing the music file.  
+// Pauses playing the music file.
 engine.pauseAudioMixing();
- 
-// Resumes playing the music file.  
+
+// Resumes playing the music file.
 engine.resumeAudioMixing();
 ```
 
@@ -247,13 +247,13 @@ When the music file is playing, you can call this group of methods to adjust the
 <div class="alert note">Call this group of methods after calling <code>startAudioMixing</code> and receiving the <code>onAudioMixingStateChanged(MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY)</code> callback.</div>
 
 ```java
-// Gets the total duration of the current music file.  
+// Gets the total duration of the current music file.
 engine.getAudioMixingDuration();
- 
-// Sets the playback position (ms) of the current music file. 500 represents that the playback starts at the 500 ms mark of the music file.  
+
+// Sets the playback position (ms) of the current music file. 500 represents that the playback starts at the 500 ms mark of the music file.
 engine.setAudioMixingPosition(500);
- 
-// Gets the current playback position of the music file.  
+
+// Gets the current playback position of the music file.
 engine.getAudioMixingCurrentPosition();
 ```
 
@@ -264,22 +264,22 @@ After successfully playing the music file, you can call this group of methods to
 <div class="alert note">Call this group of methods after calling <code>startAudioMixing</code> and receiving the <code>onAudioMixingStateChanged(MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY)</code> callback.</div>
 
 ```java
-// Adjusts the playback volume of the current music file for both local and remote playback. The value range is 0 to 100. 100 represents the original volume.  
-engine.adjustAudioMixingVolume(50); 
- 
-// Adjusts the playback volume of the current music file for the remote playback. The value range is 0 to 100. 100 represents the original volume.  
-engine.adjustAudioMixingPublishVolume(50); 
- 
-// Adjusts the playback volume of the current music file for the local playback. The value range is 0 to 100. 100 represents the original volume.  
-engine.adjustAudioMixingPlayoutVolume(50); 
- 
-// Gets the playback volume of the current music file for the local playback. The volume range is 0 to 100. 100 represents the original volume.  
-engine.getAudioMixingPlayoutVolume(); 
- 
-// Gets the playback volume of the current music file for the remote playback. The volume range is 0 to 100. 100 represents the original volume.  
-engine.getAudioMixingPublishVolume(); 
- 
-// Sets the pitch of the current music file. The value range is -12 to 12. 0 represents the original pitch; 1 represents raising the original pitch by a semitone. 
+// Adjusts the playback volume of the current music file for both local and remote playback. The value range is 0 to 100. 100 represents the original volume.
+engine.adjustAudioMixingVolume(50);
+
+// Adjusts the playback volume of the current music file for the remote playback. The value range is 0 to 100. 100 represents the original volume.
+engine.adjustAudioMixingPublishVolume(50);
+
+// Adjusts the playback volume of the current music file for the local playback. The value range is 0 to 100. 100 represents the original volume.
+engine.adjustAudioMixingPlayoutVolume(50);
+
+// Gets the playback volume of the current music file for the local playback. The volume range is 0 to 100. 100 represents the original volume.
+engine.getAudioMixingPlayoutVolume();
+
+// Gets the playback volume of the current music file for the remote playback. The volume range is 0 to 100. 100 represents the original volume.
+engine.getAudioMixingPublishVolume();
+
+// Sets the pitch of the current music file. The value range is -12 to 12. 0 represents the original pitch; 1 represents raising the original pitch by a semitone.
 engine.setAudioMixingPitch(5);
 ```
 
@@ -326,24 +326,24 @@ engine.setAudioMixingDualMonoMode(AUDIO_MIXING_DUAL_MONO_AUTO);
 
 ### API reference
 
-- [`startAudioMixing`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa3af452a14b9633532098b593b23d142)
-- [`stopAudioMixng`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#addb1cbc23b7f725eea6eedd18412854d)
-- [`pauseAudioMixing`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab2d4fb72ec3031f59da72b55857e0da7)
-- [`resumeAudioMixing`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aedad78215c21f0a6acac7f155199f3ce)
-- [`getAudioMixingDuration`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8bbeb8a8b07e4e7b1a0a493f1c66998d)
-- [`setAudioMixingPosition`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a12c3dc250c86d54552c1589dfda2e002)
-- [`getAudioMixingCurrentPosition`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5119b0e6b356f867f7e13a6e1b2bb3e5)
-- [`adjustAudioMixingVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a13c5737248d5a5abf6e8eb3130aba65a)
-- [`adjustAudioMixingPublishVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00)
-- [`adjustAudioMixingPlayoutVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9)
-- [`getAudioMixingPlayoutVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6eef6e4d3d148c25993376f93ebbb8e9)
-- [`getAudioMixingPublishVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a962819abd0e5458b89cefb756bb9e631)
-- [`setAudioMixingPitch`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1ffa38f7445ff0ba71515c931f2f4f6a)
+- [`startAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa3af452a14b9633532098b593b23d142)
+- [`stopAudioMixng`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#addb1cbc23b7f725eea6eedd18412854d)
+- [`pauseAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab2d4fb72ec3031f59da72b55857e0da7)
+- [`resumeAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aedad78215c21f0a6acac7f155199f3ce)
+- [`getAudioMixingDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8bbeb8a8b07e4e7b1a0a493f1c66998d)
+- [`setAudioMixingPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a12c3dc250c86d54552c1589dfda2e002)
+- [`getAudioMixingCurrentPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5119b0e6b356f867f7e13a6e1b2bb3e5)
+- [`adjustAudioMixingVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a13c5737248d5a5abf6e8eb3130aba65a)
+- [`adjustAudioMixingPublishVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00)
+- [`adjustAudioMixingPlayoutVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9)
+- [`getAudioMixingPlayoutVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6eef6e4d3d148c25993376f93ebbb8e9)
+- [`getAudioMixingPublishVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a962819abd0e5458b89cefb756bb9e631)
+- [`setAudioMixingPitch`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1ffa38f7445ff0ba71515c931f2f4f6a)
 - [`setAudioMixingPlaybackSpeed`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa89c09746ed13adb978e7ed552319c51)
 - [`getAudioTrackCount`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac45aa45b0965639df502c462b54cf1b7)
 - [`selectAudioTrack`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a011d98dd3828690165f4f5915f494ddd)
 - [`setAudioMixingDualMonoMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81b6a0f46612a6c4337d078b3af1681a)
-- [`onAudioMixingStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6e922763d80881959c09aa18df6cab3b)
+- [`onAudioMixingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6e922763d80881959c09aa18df6cab3b)
 
 ## Reference
 
