@@ -127,7 +127,7 @@ You need to work with two types of objects when using the Agora Web SDK:
 - The client object, which represents the local client. The Client methods provide the major functions for a voice/video call, such as joining a [channel](../reference/glossary#channel) and [publishing](../reference/glossary#publish) a stream.
 - Stream objects, which represent the local and remote [streams](../reference/glossary#media-stream). The Stream methods define the behaviors of a stream object, such as the playback control and video encoder configurations. When you call a Stream method, you need to distinguish between the local and the remote streams.
 
-The following figure shows the API call sequence of the basic interactive streaming. Note that these methods apply to different objects. 
+The following figure shows the API call sequence of the basic interactive streaming. Note that these methods apply to different objects.
 
 ![img](https://web-cdn.agora.io/docs-files/1592907224846)
 
@@ -138,10 +138,10 @@ Before you begin, it is helpful to define some functions to handle errors and ad
 let handleError = function(err){
         console.log("Error: ", err);
 };
-  
+
 // Query the container to which the remote stream belong.
 let remoteContainer = document.getElementById("remote-container");
-  
+
 // Add video streams to the container.
 function addVideoStream(elementId){
         // Creates a new div for every stream
@@ -153,7 +153,7 @@ function addVideoStream(elementId){
         // Adds the div to the container.
         remoteContainer.appendChild(streamDiv);
 };
-  
+
 // Remove the video stream from the container.
 function removeVideoStream(elementId) {
         let remoteDiv = document.getElementById(elementId);
@@ -163,14 +163,14 @@ function removeVideoStream(elementId) {
 
 ### 1. Create a client
 
-Create and initialize a client object to control the call. You need to replace `yourAppId` with the App ID of your Agora project. See [Get an App ID](./run_demo_live_web?platform=Web#appid) for details.
+Create and initialize a client object to control the call. You need to replace `yourAppId` with the App ID of your Agora project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id) for details.
 
 ```javascript
 let client = AgoraRTC.createClient({
     mode: "live",
     codec: "vp8",
 });
-   
+
 client.init("yourAppId", function() {
     console.log("client initialized");
 }, function(err) {
@@ -187,7 +187,7 @@ Pay attention to the settings of `mode` and `codec` in the AgoraRTC.createClient
 
 A live streaming channel has two client roles: host and audience, and the default role is audience. After setting the channel profile to `"live"`, your app may use the following steps to set the client role:
 
-1. Ask the user to choose a role. 
+1. Ask the user to choose a role.
 2. Call the `Client.setClientRole` method and pass in the client role set by the user.
 
 ```javascript
@@ -201,7 +201,7 @@ In a live streaming channel, only the host can be heard and seen. You can also c
 
 Call `client.join` to join a channel. You need to generate a token to replace `yourToken` in the code sample below.
 
-- For testing, you can [generate a temporary token](./run_demo_live_web?platform=Web#temptoken) in Agora Console.
+- For testing, you can [generate a temporary token](../reference/manage-agora-account#generate-a-temporary-token) in Agora Console.
 - For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 ```javascript

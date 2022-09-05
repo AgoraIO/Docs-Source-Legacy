@@ -51,7 +51,7 @@ In this section, we create a Unity project and integrate the SDK into the projec
 
 ### Create a Unity project
 
-Use the following steps or follow the[ Unity official manual](https://docs.unity3d.com/Manual/GettingStarted.html) to build a project from scratch. Skip to [Integrate the SDK](#Integrate) if you have already created a Unity project.
+Use the following steps to build a project from scratch. Skip to [Integrate the SDK](#Integrate) if you have already created a Unity project.
 
 <details>
 	<summary><font color="#3ab7f8">Create a Unity Project</font></summary>
@@ -203,7 +203,7 @@ After setting the client role, you can call `JoinChannelByKey` to join a channel
 
 - `channelKey`: The token for identifying the role and privileges of a user. Set it as one of the following values:
 
-  - A temporary token generated in Agora Console. A temporary token is valid for 24 hours. For details, see [Get a temporary token](https://docs.agora.io/en/Agora%20Platform/token#get-a-temporary-token).
+  - A temporary token generated in Agora Console. A temporary token is valid for 24 hours. For details, see [Get a temporary token](../reference/manage-agora-account#generate-a-temporary-token).
   - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server).
 
   <div class="alert note"><ul><li>If your project has enabled the app certificate, ensure that you provide a token.</li><li>Ensure that you do not set <code>channelKey</code> as "".</li></ul></div>

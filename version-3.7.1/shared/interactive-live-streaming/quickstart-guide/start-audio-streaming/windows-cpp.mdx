@@ -11,7 +11,7 @@ The following figure shows the workflow to integrate into your app in order to a
 As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
 
 1. Set the client role
-Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.
 
 2. Retrieve a token
 A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
@@ -20,13 +20,13 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the live stream. 
+- The channel name: A string that identifies the channel for the live stream.
 
 
 ## Sample projects
@@ -188,9 +188,9 @@ After setting the client role, you can call the `joinChannel` method to join a c
 - `channelName`: Specify the channel name that you want to join.
 
 * `token`: Pass a token that identifies the role and privilege of the user.  You can set it as one of the following values:
-  * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](token#get-a-temporary-token). When joining a channel, ensure that the channel name is the same with the one you use to generate the temporary token.
+  * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](../reference/manage-agora-account#generate-a-temporary-token). When joining a channel, ensure that the channel name is the same with the one you use to generate the temporary token.
   * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server). When joining a channel, ensure that the channel name and `uid` is the same with those you use to generate the token.
-  
+
  <div class="alert note"><ul><li>If your project has enabled the app certificate, ensure that you provide a token.</li><li>Ensure that you do not set <code>token</code> as "".</li></ul></div>
 
 

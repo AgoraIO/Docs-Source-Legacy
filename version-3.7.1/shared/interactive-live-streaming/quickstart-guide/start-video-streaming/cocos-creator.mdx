@@ -11,7 +11,7 @@ The following figure shows the workflow to integrate into your app in order to a
 As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
 
 1. Set the client role
-Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.
 
 2. Retrieve a token
 A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
@@ -20,13 +20,13 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the live stream. 
+- The channel name: A string that identifies the channel for the live stream.
 
 
 ## Prerequisites
@@ -42,7 +42,7 @@ For an app client to join a channel, you need the following information:
   | Android         | Android 4.1 or later     | <ul><li>Android Studio 3.0 or later</li><li>Android SDK API 16 or later</li><li>Android NDK 17 or later</li></ul> |
   | iOS             | iOS 9.0 or later         | Xcode 9.0 or later                                           |
 
-- A valid [Cocos account](https://account.cocos.com/) and a [Cocos App ID](https://docs.cocos.com/creator/manual/en/cocos-service/#usage).
+- A valid [Cocos account](https://account.cocos.com/) and a [Cocos App ID](https://docs.cocos.com/creator/2.4/manual/en/sdk/cocos-services.html).
 
   <div class="alert note">If your network has a firewall, follow the instructions in <a href="../reference/firewall">Firewall Requirements</a > to access Agora services.</div>
 
@@ -82,12 +82,12 @@ To ensure communication security, Agora recommends using [tokens](../reference/g
 
 For testing purposes, Agora Console supports generating RTC temporary tokens. To generate an RTC temporary token:
 1. On the [Project Management](https://console.agora.io/projects) page, find your project and click **Config**.
-  ![1641971834422](https://web-cdn.agora.io/docs-files/1641971834422) 
+  ![1641971834422](https://web-cdn.agora.io/docs-files/1641971834422)
 2. Click **Generate temp RTC token** under **Primary Certificate**.
   ![1641971893263](https://web-cdn.agora.io/docs-files/1641971893263)
 3. Enter the name of the channel that you want to join, and click **Generate**. When joining the channel later, ensure that the channel name is the same with the one you enter here.
  <img src="https://web-cdn.agora.io/docs-files/1649997524064" />
-4. Click the copy icon to copy the temporary token. 
+4. Click the copy icon to copy the temporary token.
  <img src="https://web-cdn.agora.io/docs-files/1649997750496" />
 
 <div class="alert note">Temporary tokens are for demonstration and testing purposes only, and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. For details, see <a href="../basic-features/token-server">Authenticate Your Users with Tokens</a>.</div>
@@ -95,7 +95,7 @@ For testing purposes, Agora Console supports generating RTC temporary tokens. To
 
 ## Implementation
 
-Once the project is set up, create a component script and a scene based on your requirements, and add the script into the scene node. See [Creating and using component script](https://docs.cocos.com/creator/manual/en/scripting/use-component.html).
+Once the project is set up, create a component script and a scene based on your requirements, and add the script into the scene node. See [Creating and using component script](https://docs.cocos.com/creator/manual/en/scripting/).
 
 You can use core APIs of the Agora Cocos Creator SDK in the `Script/HelloWorld.js` component script to implement the basic interactive live video streaming function. The following figure shows the API call sequence:
 
@@ -111,9 +111,9 @@ According to your requirements, you can also listen for callback events in this 
 
 ```typescript
 cc.Class({
- 
+
     ...
- 
+
     onLoad: function () {
         // Initialize the Agora engine. Replace YOUR_APPID with the App ID of your Agora project.
         agora.init('YOUR_APPID');
@@ -122,7 +122,7 @@ cc.Class({
         agora.on('userJoined', this.onUserJoined, this);
         agora.on('userOffline', this.onUserOffline, this);
     },
- 
+
     ...
 });
 ```
@@ -135,17 +135,17 @@ If you want to switch to another profile, destroy the current Agora engine with 
 
 ```typescript
 cc.Class({
- 
+
     ...
- 
+
     onLoad: function () {
- 
+
         ...
- 
+
         // Set the channel profile as interactive live streaming.
         agora.setChannelProfile(agora.CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
     },
- 
+
     ...
 });
 ```
@@ -166,9 +166,9 @@ After setting the channel profile to `LIVE_BROADCASTING`, your app may use the f
 
    ```typescript
    cc.Class({
-    
+
        ...
-    
+
        setClientRole: function (toggle, customEventData) {
            // Set the client role. A user chooses a client role and the toggle component passes it through customEventData.
            // If the customEventData value is 1, the client role is set to audience, and the corresponding enumerator is agora
@@ -177,11 +177,11 @@ After setting the channel profile to `LIVE_BROADCASTING`, your app may use the f
            CLIENT_ROLE_BROADCASTER.
            agora.setClientRole(customEventData);
        },
-    
+
        ...
    });
    ```
-   
+
 4. Return to Cocos Creator, and click **toggle1**. In the **Properties** panel, find **Toggle** > **Check Events**, and add a check event.
 
 5. On the **Node Tree** panel, find and add the **Canvas** to the **cc.Node** property box of the check event. In the two drop-down boxes following the **cc.Node** property box, select the scene (**HelloWorld**) and the check event (**setClientRole**) in turn, and enter **1** in **CustomEventData**.
@@ -191,7 +191,7 @@ After setting the channel profile to `LIVE_BROADCASTING`, your app may use the f
 7. Repeat step 3, step 4, and step 5 to configure the **toggle2**. Note that you need to enter **2** in **CustomEventData** and **Host** in **Label** > **String**.
 
    During the interactive live video streaming, only the host can be seen. If you want to switch the client role after joining the channel, call the `setClientRole` method.
-   
+
 ### 4. Set the local video view
 
 To make the host see the local video before starting the interactive live streaming, you need to set the local video view before joining a channel. Use the following steps:
@@ -200,19 +200,19 @@ To make the host see the local video before starting the interactive live stream
 
    ```typescript
    cc.Class({
-    
+
        ...
-    
+
        onLoad: function () {
-    
+
            ...
-    
+
            // Enable the video module.
            agora.enableVideo();
            // Start the local video preview.
            agora.startPreview();
        },
-    
+
        ...
    });
    ```
@@ -232,9 +232,9 @@ After setting a client role and the local video view, do the following to join a
 
    ```typescript
    cc.Class({
-    
+
        ...
-    
+
        // Set the events when clicking the button.
        // If the user joins a channel, the joined variable is true, and the SDK calls leaveChannel when the user clicks the button.
        // If the user leaves a channel, the joined variable is false, and the SDK calls joinChannel when the user clicks the button.
@@ -245,7 +245,7 @@ After setting a client role and the local video view, do the following to join a
                this.joinChannel();
                }
        },
-    
+
        ...
    });
    ```
@@ -254,9 +254,9 @@ After setting a client role and the local video view, do the following to join a
 
    ```typescript
    cc.Class({
-    
+
        ...
-    
+
        joinChannel: function () {
            // Join a channel.
            // Replace YOUR_TOKEN with the token you generated.
@@ -264,7 +264,7 @@ After setting a client role and the local video view, do the following to join a
            // Enter a user ID in uid.
            agora.joinChannel('YOUR_TOKEN', 'CHANNEL_NAME', '', uid);
        },
-    
+
        ...
    });
    ```
@@ -276,16 +276,16 @@ After setting a client role and the local video view, do the following to join a
 
    ```typescript
    cc.Class({
-    
+
        ...
-    
+
        // Occur when a local user joins a channel.
        onJoinChannelSuccess: function (channel, uid, elapsed) {
            // After the user leaves the channel, the label of the button changes to Leave the channel.
            this.joined = true;
            this.label.string = 'Leave the channel';
        },
-    
+
        ...
    });
    ```
@@ -307,24 +307,24 @@ Shortly after a remote host joins the channel, the SDK gets the host's user ID i
    ```typescript
    // Import the AgoraVideoRender cloud component.
    const AgoraVideoRender = require('AgoraVideoRender');
-    
+
    cc.Class({
-        
+
        ...
-    
+
        properties: {
-    
+
            ...
-    
+
            // Add a remote video view.
            target: {
                default: null,
                type: cc.Prefab
            }
        },
-        
+
        ...
-    
+
        // Occur when a remote host joins the channel. This callback gets the user ID of the remote host.
        onUserJoined: function (uid, elapsed) {
            if (this.remoteUid === undefined) {
@@ -341,7 +341,7 @@ Shortly after a remote host joins the channel, the SDK gets the host's user ID i
                render.setPosition(300, 120);
            }
        },
-    
+
        // Occur when a remote host leaves the channel.
        onUserOffline: function (uid, reason) {
            if (this.remoteUid === uid) {
@@ -350,11 +350,11 @@ Shortly after a remote host joins the channel, the SDK gets the host's user ID i
                this.remoteUid = undefined;
            }
        },
-    
+
        ...
    });
    ```
-   
+
 2. In Cocos Creator, click **Canvas** on the **Node Tree** panel. On the **Assets** panel, find **assets** > **cloud-component** > **AgoraVideoRender** > **AgoraVideoRender.prefab**, and add it to **HelloWorld** > **Target** of **Canvas**.
    ![1606314817942](https://web-cdn.agora.io/docs-files/1606314817942)
 
@@ -366,9 +366,9 @@ After leaving the channel, if you want to exit the app or release the memory of 
 
 ```typescript
 cc.Class({
- 
+
     ...
- 
+
     leaveChannel: function () {
         // Leaves the channel.
         agora.leaveChannel();
@@ -383,17 +383,17 @@ cc.Class({
         // Destroy the Agora engine.
         agora.release();
     },
-     
+
     // Occur when the local user leaves the channel.
     onLeaveChannel: function (stats) {}
- 
+
     ...
 });
 ```
 
 ## Run the project
 
-Agora recommends running and debugging your project through a physical Android or iOS device. See [Publish to native](https://docs.cocos.com/creator/manual/en/publish/publish-native.html).
+Agora recommends running and debugging your project through a physical Android or iOS device. See [Publish to native](https://docs.cocos.com/creator/2.2/manual/en/publish/publish-native.html).
 
 For example, to build and run an iOS project, you can do the following:
 
