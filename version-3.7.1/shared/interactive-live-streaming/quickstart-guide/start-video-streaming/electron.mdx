@@ -7,8 +7,8 @@ This page shows you the minimum code you need to add Interactive Live Streaming 
 In order to follow the procedure in this page, you must have:
 
 - [Node.js](https://nodejs.org/en/download/) 6.9.1 or later.
-- A Windows or macOS computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms).
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) and get the following information from Agora Console:
+- A Windows or macOS computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall).
+- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in) and an Agora project, please refer to [Start using the Agora platform](../reference/manage-agora-account) and get the following information from Agora Console:
   - The App ID: A randomly generated string provided by Agora for identifying your app.
   - A temporary token: A token is the credential that authenticates a user when your app client joins a channel. A temporary token is valid for 24 hours.
   - The channel name: A string that identifies the channel.
@@ -86,7 +86,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
       Some tips for modifying the properties in `package.json`:
       - `electron_version`：To prevent compatibility issues, set it as `12.0.0`, `11.0.0`, `10.2.0`, `9.0.0`, `7.1.2`, `6.1.7`, `5.0.8`, `4.2.8`, `3.0.6`, or `1.8.3`. If you use a Mac device with an M1 chip, sei it as `12.0.0` or `11.0.0`.
       - `prebuilt`: To prevent compatibility issues, set it as `true`.
-      - `agora-electron-sdk`: The version number of the Agora SDK for Electron. See [Release notes](https://docs.agora.io/en/Voice/release_electron_video?platform=Electron) for details.
+      - `agora-electron-sdk`: The version number of the Agora SDK for Electron. See [Release notes](../introduction/release-notes) for details.
       - `electron`: Set it as the same as  `electron_version`.
    
    2. Install project dependencies
@@ -198,7 +198,7 @@ To implement the minimum client logic of Interactive Live Streaming Premium, you
 The API call sequence is shown in the following diagram:
 ![1628071244738](https://web-cdn.agora.io/docs-files/1628071244738)
 
-Copy the following code into `renderer.js` and fill in `APPID`, `token`, and `ChannelName` with [values from your Agora project](https://docs.agora.io/en/AgoraPlatform/get_appid_token):
+Copy the following code into `renderer.js` and fill in `APPID`, `token`, and `ChannelName` with [values from your Agora project](../reference/manage-agora-account):
 
 ```javascript
 window.addEventListener("DOMContentLoaded", () => {
@@ -270,7 +270,7 @@ Take the following steps to test your Electron app:
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) shows you how to start live streaming with a token that you retrieve from your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](../basic-features/token-server) shows you how to start live streaming with a token that you retrieve from your server.
 
 ## See also
 

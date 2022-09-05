@@ -32,9 +32,9 @@ For an app client to join a channel, you need the following information:
 
 - Xcode 11.0 or later (the interface description in this article is based on Xcode 11.0).
 - A macOS device running macOS 10.10 or later.
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=macOS).
+- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in?platform=macOS).
 
-<div class="alert note">If your network has a firewall, follow the instructions in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=macOS">Firewall Requirements</a> to access Agora services.</div>
+<div class="alert note">If your network has a firewall, follow the instructions in <a href="../reference/firewall">Firewall Requirements</a> to access Agora services.</div>
 
 ## Create a macOS project
 
@@ -90,7 +90,7 @@ Choose one of the following methods to obtain the Agora macOS SDK:
 1. In Xcode, go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
 
    ```shellscript
-   <%= url %>
+   https://github.com/AgoraIO/AgoraAudio_macOS
    ```
 
 2. In **Choose Package Options**, specify the SDK version that you want to integrate. If the version number is x.y.z, fill in **x.y.z**; if the version number is x.y.z.a, fill in **x.y.z-r.a**.
@@ -145,7 +145,7 @@ class ViewController: NSViewController {
 
 Call the `sharedEngineWithAppId` method to create and initialize the `AgoraRtcEngineKit` object.
 
-When adding the following code in your project, replace `YourAppID` with the App ID of your project. See [Get an App ID](https://docs.agora.io/en/Video/run_demo_video_call_macos?platform=macOS#appid).
+When adding the following code in your project, replace `YourAppID` with the App ID of your project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id).
 
 If you want to monitor a callback for your app scenario, register it when initializing `AgoraRtcEngineKit`.
 
@@ -220,8 +220,8 @@ agoraKit?.setClientRole(.broadcaster)
 
 Call the `joinChannelByToken` method to join a channel. When adding the following code in your project, replace `YourToken` with the token of your project, and replace `YourChannelName` with the channel name used to generate the token of your project.
 
-- For testing, you can [generate a temporary token](https://docs.agora.io/en/Video/run_demo_video_call_macos?platform=macOS#temptoken) in Agora Console.
-- For production, Agora recommends using a token generated at your server. See [Generate a Token](./token_server?platform=macOS).
+- For testing, you can [generate a temporary token](../reference/manage-agora-account#generate-a-temporary-token) in Agora Console.
+- For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 <div class="alert note">By default, a user who has joined a channel subscribes to the audio streams of all the other users in the channel. This will generate usage and affect billing. If you do not want to subscribe to a specific stream or all remote streams, call the <tt>mute</tt> methods accordingly.</div>
 

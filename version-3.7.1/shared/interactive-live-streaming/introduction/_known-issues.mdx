@@ -103,7 +103,8 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-    <summary>iOS 15.0 to 15.3: Low audio volume</summary>
+   <summary>iOS 15.0 to 15.3: Low audio volume</summary>
+   
 **Impact**: All browsers and apps that use WKWebView on iOS 15.0 to 15.3, such as Safari and Chrome.
 
 **Details**: On iOS 15.0 to 15.3, after the local user subscribes to the `RemoteAudioTrack` and plays it, sometimes the audio is routed to the earpiece instead of the speaker, and the volume that the local user hear may be very low.

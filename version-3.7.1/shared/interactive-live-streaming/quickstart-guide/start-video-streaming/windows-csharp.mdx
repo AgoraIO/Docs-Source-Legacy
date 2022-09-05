@@ -35,8 +35,8 @@ For an app client to join a channel, you need the following information:
 - Microsoft Visual Studio 2017 or later
 - A Windows device running Windows 7 or later
 - A valid Agora account. ([Sign up](https://dashboard.agora.io) for free)
-- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms).
-A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](./firewall?platform=Windows).
+- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](../reference/manage-agora-account#get-started-with-agora).
+A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall).
 
 ## Set up the development environment
 In this section, we will create a Windows project and integrate the SDK into the project.
@@ -181,7 +181,7 @@ After initializing the `IAgoraRtcEngine` object and setting the local video view
 
 * `token`: Pass a token that identifies the role and privilege of the user.  You can set it as one of the following values:
   * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](token#get-a-temporary-token). When joining a channel, ensure that the channel name is the same with the one you use to generate the temporary token.
-  * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](./token_server). When joining a channel, ensure that the channel name and `uid` is the same with those you use to generate the token.
+  * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server). When joining a channel, ensure that the channel name and `uid` is the same with those you use to generate the token.
 
  <div class="alert note"><ul><li>If your project has enabled the app certificate, ensure that you provide a token.</li><li>Ensure that you do not set <code>token</code> as "".</li></ul></div>
 

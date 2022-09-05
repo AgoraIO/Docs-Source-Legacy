@@ -49,9 +49,9 @@ Agora recommends you run this sample project on a physical mobile device, as som
 
 ### Other Prerequisites
 
-A valid Agora [account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=All%20Platforms).
+A valid Agora [account](../reference/manage-agora-account#sign-up-and-log-in?platform=All%20Platforms).
 
-<div class="alert note">If your network has a firewall, follow the instructions in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a > to access Agora services.</div>
+<div class="alert note">If your network has a firewall, follow the instructions in <a href="../reference/firewall">Firewall Requirements</a > to access Agora services.</div>
 
 ## Create a Cocos2d-x project
 
@@ -359,10 +359,10 @@ Add the following code in `HelloWorldScene.h` to import classes and add declarat
 	```
 
 2. Define App ID and token.
-   To create and initialize an `IRtcEngine` object, you need to pass in the App ID of your Agora project. See [Get an App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id) for details.
+   To create and initialize an `IRtcEngine` object, you need to pass in the App ID of your Agora project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id) for details.
 	 To ensure communication security, you need to use tokens (dynamic keys) to authenticate users joining a channel.
-   - For testing, you can [generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#generate-an-rtc-temporary-token) in Agora Console.
-   - For production, Agora recommends using a token generated at your server. See [Generate a Token](./token_server).
+   - For testing, you can [generate a temporary token](../reference/manage-agora-account#generate-an-rtc-temporary-token) in Agora Console.
+   - For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 	```cpp
 	// Replace <#YOUR APP ID#> with the App ID of your Agora project and add quotation marks, such as "xxxxxx".

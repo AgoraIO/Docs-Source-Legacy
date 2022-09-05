@@ -41,9 +41,9 @@ For an app client to join a channel, you need the following information:
   | macOS           | macOS 10.10 or later      | Xcode 9.0 or later          |
   | Windows         | Windows 7 or later  | Microsoft Visual Studio 2017 or later |
 
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account) and an [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id)
+- A valid [Agora account](../reference/manage-agora-account#create-an-agora-account) and an [App ID](../reference/manage-agora-account#get-the-app-id)
 
-<div class="alert note">Open the specified ports in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms#agora-rtc-sdk">Firewall Requirements</a > if your network has a firewall.</div>
+<div class="alert note">Open the specified ports in <a href="../reference/firewall#agora-rtc-sdk">Firewall Requirements</a > if your network has a firewall.</div>
 
 ## Set up the development environment
 
@@ -236,7 +236,7 @@ After setting the client role and the local video view (for the interactive vide
 - `channelKey`: The token for identifying the role and privileges of a user. Set it as one of the following values:
 
   - A temporary token generated in Agora Console. A temporary token is valid for 24 hours. For details, see [Get a temporary token](https://docs.agora.io/en/Agora%20Platform/token#get-a-temporary-token).
-  - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](https://docs.agora.io/en/Video/token_server).
+  - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server).
 
   <div class="alert note"><ul><li>If your project has enabled the app certificate, ensure that you provide a token.</li><li>Ensure that you do not set <code>channelKey</code> as "".</li></ul></div>
 

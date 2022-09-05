@@ -37,7 +37,7 @@ We provide open-source [OpenLive-Windows](https://github.com/AgoraIO/Basic-Video
 - A Windows device running Windows 7 or later
 - A valid Agora account. ([Sign up](https://dashboard.agora.io) for free)
 
-<div class="alert note">Open the specified ports in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a> if your network has a firewall.</div>
+<div class="alert note">Open the specified ports in <a href="../reference/firewall">Firewall Requirements</a> if your network has a firewall.</div>
 
 ## Set up the development environment
 In this section, we will create a Windows project and integrate the SDK into the project.
@@ -97,7 +97,7 @@ When you use the UI setting of the demo project, you can see the following inter
 ### 2. Initialize IRtcEngine
 Create and initialize the IRtcEngine object before calling any other Agora APIs.
 
-In this step, you need to use the App ID of your project. Refer to [Get Started With Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) to create an Agora project and get the App ID in Console.
+In this step, you need to use the App ID of your project. Refer to [Get Started With Agora](../reference/manage-agora-account) to create an Agora project and get the App ID in Console.
 Call the `createAgoraRtcEngine` method and the `initialize` method, and pass in the App ID to initialize the `IRtcEngine` object.
 
 You can also listen for callback events, such as when the local user joins the channel, and when the local user leaves the channel.
@@ -189,7 +189,7 @@ After setting the client role, you can call the `joinChannel` method to join a c
 
 * `token`: Pass a token that identifies the role and privilege of the user.  You can set it as one of the following values:
   * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](token#get-a-temporary-token). When joining a channel, ensure that the channel name is the same with the one you use to generate the temporary token.
-  * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](./token_server). When joining a channel, ensure that the channel name and `uid` is the same with those you use to generate the token.
+  * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server). When joining a channel, ensure that the channel name and `uid` is the same with those you use to generate the token.
   
  <div class="alert note"><ul><li>If your project has enabled the app certificate, ensure that you provide a token.</li><li>Ensure that you do not set <code>token</code> as "".</li></ul></div>
 

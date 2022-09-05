@@ -4,10 +4,10 @@ This article describes how to build a Web project that implements the live video
 
 ## Prerequisites
 
-- A valid Agora [account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=Web).
-- An [Agora project](/en/Agora%20Platform/get_appid_token?platform=Web) with an App ID and a temp token
+- A valid Agora [account](../reference/manage-agora-account#sign-up-and-log-in?platform=Web).
+- An [Agora project](../reference/manage-agora-account) with an App ID and a temp token
 - A Windows or macOS computer meets the following requirements:
-  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](/en/Agora%20Platform/firewall?platform=Web) to access Agora services.
+  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall) to access Agora services.
   - A browser that matches the [supported browser list](./faq/browser_support?platform=Web). Agora highly recommends using the [latest version](https://www.google.com/chrome/) of Google Chrome.
   - Physical media input devices, such as a built-in camera and a built-in microphone.
   - An Intel 2.2GHz Core i3/i5/i7 processor (2nd generation) or equivalent
@@ -202,7 +202,7 @@ In a live streaming channel, only the host can be heard and seen. You can also c
 Call `client.join` to join a channel. You need to generate a token to replace `yourToken` in the code sample below.
 
 - For testing, you can [generate a temporary token](./run_demo_live_web?platform=Web#temptoken) in Agora Console.
-- For production, Agora recommends using a token generated at your server. See [Generate a Token](./token_server?platform=Web).
+- For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 ```javascript
 // Join a channel
