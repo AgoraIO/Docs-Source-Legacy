@@ -23,7 +23,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic re
 
 #### Set the volume of the capturing device
 
-Call `setRecordingDeviceVolume` to set the volume of your capturing device. 
+Call `setRecordingDeviceVolume` to set the volume of your capturing device.
 
 <div class="alert note">This method sets the global volume of your capturing device.</div>
 
@@ -41,11 +41,11 @@ Sample code
 int setRecordingDeviceVolume(50);
 ```
 
-#### Set the volume of the captured signal 
+#### Set the volume of the captured signal
 
 If `setRecordingDeviceVolume` does not suffice, you can call `adjustRecordingSignalVolume` to set the volume of the signal captured by the microphone or call `adjustLoopbackRecordingSignalVolume` to set the volume of the signal captured by the sound card.
 
-The `volume` parameter represents the audio level of the captured signal, ranging between 0 and 100. The default value is 100, which represents the original volume. 
+The `volume` parameter represents the audio level of the captured signal, ranging between 0 and 100. The default value is 100, which represents the original volume.
 
 Sample code
 
@@ -58,9 +58,9 @@ int ret = rtcEngine.adjustLoopbackRecordingSignalVolume(50);
 ```
 
 #### API reference
-- [`setRecordingDeviceVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac24424e86ded2727a532df739ebf8086)
-- [`adjustRecordingSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acf94e9e0122f09d0450475d7c5809036)
-- [`adjustLoopbackRecordingSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
+- [`setRecordingDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac24424e86ded2727a532df739ebf8086)
+- [`adjustRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acf94e9e0122f09d0450475d7c5809036)
+- [`adjustLoopbackRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
 
 ### Adjust the playback volume
 
@@ -69,7 +69,7 @@ int ret = rtcEngine.adjustLoopbackRecordingSignalVolume(50);
 
 #### Set the volume of the playback device
 
-To set the volume on the playback device directly, call `setPlaybackDeviceVolume`. 
+To set the volume on the playback device directly, call `setPlaybackDeviceVolume`.
 
 <div class="alert note">This method sets the global volume of your playback device.</div>
 
@@ -92,10 +92,10 @@ int setPlaybackDeviceVolume(50);
 If `setPlaybackDeviceVolume` does not suffice, you can use `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume` to set the volume of the audio signal.
 - `adjustPlaybackSignalVolume`：
   - Universally sets the playback audio level of all remote users after audio mixing.
-  - The `volume` parameter represents the playback audio level, ranging between 0 and 400. 
+  - The `volume` parameter represents the playback audio level, ranging between 0 and 400.
 - `adjustUserPlaybackSignalVolume`：
   - Adjusts the playback audio level of a specified remote user after audio mixing. Call this method as many times as necessary to adjust the playback volume of different remote users, or to repeatedly adjust the playback volume of the same remote user.
-  - The `volume` parameter represents the playback audio level, ranging between 0 and 100. 
+  - The `volume` parameter represents the playback audio level, ranging between 0 and 100.
 
 <div class="alert note"><li>As of v2.3.2, to mute the local audio playback, you must call both adjustPlaybackSignalVolume and adjustAudioMixingPlayoutVolume, and set the volume parameter as 0.</li><li>Call adjustUserPlaybackSignalVolume after joining a channel.</li></div>
 
@@ -110,10 +110,10 @@ int ret = rtcEngine.adjustUserPlaybackSignalVolume(uid, 50);
 
 #### API reference
 
-- [`setPlaybackDeviceVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac14a1238e83303abed2f36e02fcc9366)
-- [`adjustPlaybackSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a98919705c8b2346811f91f9ce5e97a79)
-- [`adjustUserPlaybackSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a609e74c9a6e8df205543326f2ca6a965)
-- [`adjustAudioMixingPlayoutVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8677c3f3160927d25d9814a88ab06da6)
+- [`setPlaybackDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac14a1238e83303abed2f36e02fcc9366)
+- [`adjustPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a98919705c8b2346811f91f9ce5e97a79)
+- [`adjustUserPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a609e74c9a6e8df205543326f2ca6a965)
+- [`adjustAudioMixingPlayoutVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8677c3f3160927d25d9814a88ab06da6)
 
 
 ### Get the data of the loudest speaker (callback)
@@ -123,7 +123,7 @@ When capturing, mixing, or playing audio, you can use the following methods to g
 - Reports users with the highest peak volumes. The `onAudioVolumeIndication` callback reports the user IDs the corresponding volumes of the currently loudest speakers in the channel.
 
  <div class="alert note">You must call enableAudioVolumeIndication to be able to receive this callback.</div>
- 
+
  Sample code
 
  ```cpp
@@ -149,8 +149,8 @@ void onActiveSpeaker(uid_t uid) {
 
 #### API reference
 
-- [`onAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4)
-- [`onActiveSpeaker`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae643c9dbf94360a23a8b3a56c93f90bc)
+- [`onAudioVolumeIndication`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4)
+- [`onActiveSpeaker`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae643c9dbf94360a23a8b3a56c93f90bc)
 
 ## Considerations
 

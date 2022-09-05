@@ -24,7 +24,7 @@ Ensure that you enable the Media Push service before using this function:
 1. Log in to [Agora Console](https://console.agora.io/), and click the **Project Management** icon on the left navigation panel.
 
 2. On the **Project Management** page, find the project for which you want to enable the Media Push service, and click the edit icon.
-3. 
+3.
 
     <img src="https://web-cdn.agora.io/docs-files/1637660034129"/>
 
@@ -59,7 +59,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 
 
    <div class="alert note"><ul>
-   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="./API%20Reference/oc/Classes/AgoraLiveTranscoding.html">AgoraLiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>transcodingUsers</code> field in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
+   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraLiveTranscoding.html">AgoraLiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>transcodingUsers</code> field in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
    <li>For live audio scenarios, leave the video-related fields in the transcoding configuration empty.</li>
    <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
    <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
@@ -228,21 +228,21 @@ transcoding.transcodingUsers = @[user];
 
 The following APIs are recommended by Agora when implementing Media Push:
 
-- [`startRtmpStreamWithoutTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithoutTranscoding:)
-- [`startRtmpStreamWithTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithTranscoding:transcoding:)
-- [`updateRtmpTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateRtmpTranscoding:)
-- [`stopRtmpStream`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRtmpStream:)
-- [`rtcEngineTranscodingUpdated`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngineTranscodingUpdated:)
-- [`rtmpStreamingChangedtoState`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:)
-- [`rtmpStreamingEventWithUrl`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingEventWithUrl:eventCode:)
+- [`startRtmpStreamWithoutTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithoutTranscoding:)
+- [`startRtmpStreamWithTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithTranscoding:transcoding:)
+- [`updateRtmpTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateRtmpTranscoding:)
+- [`stopRtmpStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRtmpStream:)
+- [`rtcEngineTranscodingUpdated`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngineTranscodingUpdated:)
+- [`rtmpStreamingChangedtoState`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:)
+- [`rtmpStreamingEventWithUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingEventWithUrl:eventCode:)
 
 The following APIs are still functional but not recommended by Agora when implementing Media Push:
 
-- [`setLiveTranscoding`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLiveTranscoding:)
-- [`addPublishStreamUrl`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:)
-- [`removePublishStreamUrl`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)
-- [`streamPublishedWithUrl`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:streamPublishedWithUrl:errorCode:)
-- [`streamUnpublishedWithUrl`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:streamUnpublishedWithUrl:)
+- [`setLiveTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLiveTranscoding:)
+- [`addPublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:)
+- [`removePublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)
+- [`streamPublishedWithUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:streamPublishedWithUrl:errorCode:)
+- [`streamUnpublishedWithUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:streamUnpublishedWithUrl:)
 
 ### Related docs
 

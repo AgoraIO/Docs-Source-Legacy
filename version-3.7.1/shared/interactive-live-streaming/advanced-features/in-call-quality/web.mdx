@@ -22,7 +22,7 @@ Ensure that you implement a video call or interactive video streaming in your pr
 
 ### Get the statistics of the system
 
-Call the [`Client.getSystemStats`](./API%20Reference/web/interfaces/agorartc.client.html#getsystemstats) method to get the statistics of the system for optimizing your app. Currently, only the battery level information is provided.
+Call the [`Client.getSystemStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getsystemstats) method to get the statistics of the system for optimizing your app. Currently, only the battery level information is provided.
 
 ``` javascript
 client.getSystemStats((stats) => {
@@ -36,7 +36,7 @@ client.getSystemStats((stats) => {
 
 ### Get the statistics of the network
 
-Call the  [`Client.getTransportStats`](./API%20Reference/web/interfaces/agorartc.client.html#gettransportstats)[<sup>[1]</sup>](#reference) method to get the network type and the statistics of the network connection[<sup>[2]</sup>](#reference), including: 
+Call the  [`Client.getTransportStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#gettransportstats)[<sup>[1]</sup>](#reference) method to get the network type and the statistics of the network connection[<sup>[2]</sup>](#reference), including:
 
   - `NetworkType`: The network type[<sup>[3]</sup>](#reference), such as Wi-Fi, cellular network or bluetooth network.
   - `OutgoingAvailableBandwidth`: The estimated available bandwidth for sending the stream, in Kbps.
@@ -49,7 +49,7 @@ setInterval(() => {
     console.log(`Current Network Type: ${stats.networkType}`);
     console.log(`Current Transport OutgoingAvailableBandwidth: ${stats.OutgoingAvailableBandwidth}`);
   });
-}, 1000)                        
+}, 1000)
 ```
 
 <a name ="reference"></a>
@@ -62,7 +62,7 @@ setInterval(() => {
 
 ### Get the statistics of the session
 
-Call the [`Client.getSessionStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getsessionstats) method to get the statistics of the session, including: 
+Call the [`Client.getSessionStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getsessionstats) method to get the statistics of the session, including:
 
 - `Duration`: Call duration in seconds, represented by an aggregate value.
 - `RecvBitrate`: Total received bitrate of the stream, in Kbps, represented by an instantaneous value.
@@ -71,7 +71,7 @@ Call the [`Client.getSessionStats`](https://docs.agora.io/en/Interactive%20Broad
 - `SendBytes`: Total number of bytes sent, represented by an aggregate value.
 - `UserCount`: Number of users in the channel.
   - In rtc mode, the number of all users in the channel.
-  - In live mode, 
+  - In live mode,
     - If the local user is an audience: The number of hosts in the channel + 1.
     - If the local user is a host: The number of hosts in the channel.
 
@@ -95,7 +95,7 @@ setInterval(() => {
 
 ### Get the statistics of the local stream
 
-- Call the [`Client.getLocalAudioStats`](./API%20Reference/web/interfaces/agorartc.client.html#getlocalaudiostats) method to get the **audio** statistics of the local stream, including:
+- Call the [`Client.getLocalAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getlocalaudiostats) method to get the **audio** statistics of the local stream, including:
   - `CodecType`: Encoding type of the sent audio.
   - `MuteState`: Whether the audio is muted or not.
   - `RecordingLevel`: Energy level of the captured audio.
@@ -118,7 +118,7 @@ setInterval(() => {
 }, 1000)
 ```
 
-- Call the [`Client.getLocalVideoStats`](./API%20Reference/web/interfaces/agorartc.client.html#getlocalvideostats) method to get the **video** statistics of the local stream, including:
+- Call the [`Client.getLocalVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getlocalvideostats) method to get the **video** statistics of the local stream, including:
   - `CaptureFrameRate`: Frame rate of the captured video, in fps.
   - `CaptureResolutionHeight`: Height of the captured video, in pixels.
   - `CaptureResolutionWidth`: Width of the captured video, in pixels.
@@ -164,7 +164,7 @@ setInterval(() => {
 
 ![1565945275984](https://web-cdn.agora.io/docs-files/1565945275984)
 
-- Call the [`Client.getRemoteAudioStats`](./API%20Reference/web/interfaces/agorartc.client.html#getremoteaudiostats) method to get the **audio** statistics of the remote stream.
+- Call the [`Client.getRemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getremoteaudiostats) method to get the **audio** statistics of the remote stream.
 
   | Parameter           | Description                                                  |
   | ------------------- | ------------------------------------------------------------ |
@@ -200,7 +200,7 @@ setInterval(() => {
 
 ![1565945292345](https://web-cdn.agora.io/docs-files/1565945292345)
 
-- Call the [`Client.getRemoteVideoStats`](./API%20Reference/web/interfaces/agorartc.client.html#getremotevideostats) method to get the **video** statistics of the remote stream.
+- Call the [`Client.getRemoteVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#getremotevideostats) method to get the **video** statistics of the remote stream.
 
   | Parameter                | Description                                                  |
   | ------------------------ | ------------------------------------------------------------ |

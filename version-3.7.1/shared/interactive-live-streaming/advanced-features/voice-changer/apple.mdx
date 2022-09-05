@@ -83,7 +83,7 @@ You can implement the chat beautifier by the enumerations in `setVoiceBeautifier
 <div class="alert note">To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</div>
 
 ```swift
-// Swift 
+// Swift
 // Beautifies the local voice by making it sound more magnetic (for male only).
 agoraKit.setVoiceBeautifierPreset(.chatBeautifierMagnetic)
 // Disables voice effects.
@@ -110,22 +110,22 @@ You can implement the singing beautifier by the enumeration `AgoraSingingBeautif
 <div class="alert note">To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</div>
 
 ```swift
-// Swift  
-// Beautifies the singing voice of the local user.   
-agoraKit.setVoiceBeautifierPreset(.singingBeautifier)   
-// Beautifies a female-sounding voice and add a reverberation effect that sounds like singing in a hall.  
-agoraKit.setVoiceBeautifierParameters(.singingBeautifier, 2, 3)   
-// Disables voice effects.  
+// Swift
+// Beautifies the singing voice of the local user.
+agoraKit.setVoiceBeautifierPreset(.singingBeautifier)
+// Beautifies a female-sounding voice and add a reverberation effect that sounds like singing in a hall.
+agoraKit.setVoiceBeautifierParameters(.singingBeautifier, 2, 3)
+// Disables voice effects.
 agoraKit.setVoiceBeautifierPreset(.voiceBeautifierOff)
 ```
 
 ```objective-c
-// Objective-C  
-// Beautifies the singing voice of the local user.  
-[self.agoraKit setVoiceBeautifierPreset: AgoraSingingBeautifier];   
-// Beautifies a female-sounding voice and add a reverberation effect that sounds like singing in a hall.  
-[self.agoraKit setVoiceBeautifierParameters: AgoraSingingBeautifier param1:2 param2:3];   
-// Disables voice effects.  
+// Objective-C
+// Beautifies the singing voice of the local user.
+[self.agoraKit setVoiceBeautifierPreset: AgoraSingingBeautifier];
+// Beautifies a female-sounding voice and add a reverberation effect that sounds like singing in a hall.
+[self.agoraKit setVoiceBeautifierParameters: AgoraSingingBeautifier param1:2 param2:3];
+// Disables voice effects.
 [self.agoraKit setVoiceBeautifierPreset: AgoraVoiceBeautifierOff];
 ```
 
@@ -149,7 +149,7 @@ You can implement the timbre transformation by the enumerations in `setVoiceBeau
 <div class="alert note">To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</div>
 
 ```swift
-// Swift 
+// Swift
 // Beautifies the local voice by making it sound more vigorous.
 agoraKit.setVoiceBeautifierPreset(.timbreTransformationVigorous)
 // Disables voice effects.
@@ -183,7 +183,7 @@ You can implement the voice changer effect by the enumerations in `setAudioEffec
 <div class="alert note">To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</div>
 
 ```swift
-// Swift 
+// Swift
 // Presets the local voice by making it sound like the Hulk.
 agoraKit.setAudioEffectPreset(.voiceChangerEffectHulk)
 // Disables voice effects.
@@ -212,7 +212,7 @@ You can implement the style transformation by the enumerations in `setAudioEffec
 <div class="alert note"><li>Call <tt>setAudioProfile</tt> and set the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt> before setting this enumerator; otherwise, the enumerator setting does not take effect.</li><li>To achieve better audio effect quality, Agora recommends setting the <tt>scenario</tt> parameter of <tt>setAudioProfile</tt> to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</li></div>
 
 ```swift
-// Swift 
+// Swift
 // Presets the local voice to the style of pop music.
 agoraKit.setAudioEffectPreset(.styleTransformationPopular)
 // Disables voice effects.
@@ -247,7 +247,7 @@ You can implement the space construction by the enumerations in `setAudioEffectP
 <div class="alert note">If you use an enumerator excluding <tt>AgoraRoomAcousticsVirtualStereo</tt> or <tt>AgoraRoomAcoustics3DVoice</tt> to implement better voice effects, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</div>
 
 ```swift
-// Swift 
+// Swift
 // Presets the local voice by making it appear to be moving around the user.
 agoraKit.setAudioEffectPreset(.roomAcoustics3DVoice)
 // Changes the cycle period to 30 seconds.
@@ -279,7 +279,7 @@ You can implement the pitch correction by the enumerations in `setAudioEffectPre
 <div class="alert note"><li>To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</li><li>Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li></div>
 
 ```swift
-// Swift 
+// Swift
 // Presets the local voice by making it match the song.
 agoraKit.setAudioEffectPreset(.pitchCorrection)
 // Changes the basic mode to natural minor scale and the tonic pitch to D.
@@ -315,34 +315,34 @@ You can implement the voice changer by the enumerations in `setVoiceConversionPr
 <div class="alert note">To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AgoraAudioProfileMusicHighQuality(4)</tt> or <tt>AgoraAudioProfileMusicHighQualityStereo(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AgoraAudioScenarioGameStreaming(3)</tt> before setting this enumerator.</div>
 
 ```swift
-// Swift  
-// Presets the local voice by making it sound like a gender-neutral voice. 
-preset = VOICE_CHANGER_NEUTRAL; 
-agoraKit.setVoiceConversionPreset(.voiceChangerNeutral)  
-// Disables voice effects. 
+// Swift
+// Presets the local voice by making it sound like a gender-neutral voice.
+preset = VOICE_CHANGER_NEUTRAL;
+agoraKit.setVoiceConversionPreset(.voiceChangerNeutral)
+// Disables voice effects.
 agoraKit.setVoiceConversionPreset(.voiceConversionOff)
 ```
 
 ```objective-c
-// Objective-C  
-// Presets the local voice by making it sound like a gender-neutral voice. 
-preset = VOICE_CHANGER_NEUTRAL; 
-[self.agoraKit setVoiceConversionPreset: AgoraVoiceChangerNeutral];  
-// Disables voice effects. 
+// Objective-C
+// Presets the local voice by making it sound like a gender-neutral voice.
+preset = VOICE_CHANGER_NEUTRAL;
+[self.agoraKit setVoiceConversionPreset: AgoraVoiceChangerNeutral];
+// Disables voice effects.
 [self.agoraKit setVoiceConversionPreset: AgoraVoiceConversionOff];
 ```
 
-## Customize voice effects 
+## Customize voice effects
 
 If the preset effect does not meet your requirement, you can also customize the voice effects by adjusting the voice pitch, equalization, and reverberation settings through `setLocalVoicePitch`, `setLocalVoiceEqualization`, and `setLocalVoiceReverb`.
 
 The following sample code shows how to change the original user's voice to the Hulk's voice.
 
 ```swift
-// Swift 
+// Swift
 // Sets the pitch. The value ranges between 0.5 and 2.0. The lower the value, the lower the pitch. The default value is 1.0, which is the original pitch.
 agoraKit.setLocalVoicePitch(1)
- 
+
 // Sets the local voice equalization.
 // The first parameter sets the band frequency. The value ranges between 0 and 9. Each value represents the center frequency of the band: 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, and 16k Hz.
 // The second parameter sets the gain of each band. The value ranges between -15 and 15 dB. The default value is 0.
@@ -356,19 +356,19 @@ agoraKit.setLocalVoiceEqualizationOf(.band2K, withGain: 0)
 agoraKit.setLocalVoiceEqualizationOf(.band4K, withGain: 0)
 agoraKit.setLocalVoiceEqualizationOf(.band8K, withGain: 0)
 agoraKit.setLocalVoiceEqualizationOf(.band16K, withGain: 0)
- 
+
 // The level of the dry signal in dB. The value ranges between -20 and 10.
 agoraKit.setLocalVoiceReverbOf(.dryLevel, withValue: -1)
- 
+
 // The level of the early reflection signal (wet signal) in dB. The value ranges between -20 and 10.
 agoraKit.setLocalVoiceReverbOf(.wetLevel, withValue: -7)
- 
+
 // The room size of the reverberation. A larger room size means a stronger reverberation. The value ranges between 0 and 100.
 agoraKit.setLocalVoiceReverbOf(.roomSize, withValue: 57)
- 
+
 // The length of the initial delay of the wet signal (ms). The value ranges between 0 and 200.
 agoraKit.setLocalVoiceReverbOf(.wetDelay, withValue: 135)
- 
+
 // The reverberation strength. The value ranges between 0 and 100. The higher the value, the stronger the reverberation.
 agoraKit.setLocalVoiceReverbOf(.strength, withValue: 45)
 ```
@@ -377,7 +377,7 @@ agoraKit.setLocalVoiceReverbOf(.strength, withValue: 45)
 // Objective-C
 // Sets the pitch. The value ranges between 0.5 and 2.0. The lower the value, the lower the pitch. The default value is 1.0, which is the original pitch.
 [agoraKit setLocalVoicePitch: 1];
- 
+
 // Sets the local voice equalization.
 // The first parameter sets the band frequency. The value ranges between 0 and 9. Each value represents the center frequency of the band: 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, and 16k Hz.
 // The second parameter sets the gain of each band. The value ranges between -15 and 15 dB. The default value is 0.
@@ -391,19 +391,19 @@ agoraKit.setLocalVoiceReverbOf(.strength, withValue: 45)
 [agoraKit setLocalVoiceEqualizationOfBandFrequency:AgoraAudioEqualizationBand4K withGain: 0];
 [agoraKit setLocalVoiceEqualizationOfBandFrequency:AgoraAudioEqualizationBand8K withGain: 0];
 [agoraKit setLocalVoiceEqualizationOfBandFrequency:AgoraAudioEqualizationBand16K withGain: 0];
- 
+
 // The level of the dry signal in dB. The value ranges between -20 and 10.
 [agoraKit setLocalVoiceReverbOfType:AgoraAudioReverbDryLevel withValue: -1];
- 
+
 // The level of the early reflection signal (wet signal) in dB. The value ranges between -20 and 10.
 [agoraKit setLocalVoiceReverbOfType:AgoraAudioReverbWetLevel withValue: -7];
- 
+
 // The room size of the reverberation. A larger room size means a stronger reverberation. The value ranges between 0 and 100.
 [agoraKit setLocalVoiceReverbOfType:AgoraAudioReverbRoomSize withValue: 57];
- 
+
 // The length of the initial delay of the wet signal (ms). The value ranges between 0 and 200.
 [agoraKit setLocalVoiceReverbOfType:AgoraAudioReverbWetDelay withValue: 135];
- 
+
 // The reverberation strength. The value ranges between 0 and 100. The higher the value, the stronger the reverberation.
 [agoraKit setLocalVoiceReverbOfType:AgoraAudioReverbStrength withValue: 45];
 ```
@@ -412,17 +412,17 @@ agoraKit.setLocalVoiceReverbOf(.strength, withValue: 45)
 
 **Preset voice effects**
 
-- [`setAudioEffectPreset`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectPreset:)
-- [`setVoiceBeautifierPreset`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierPreset:)
-- [`setAudioEffectParameters`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectParameters:param1:param2:)
-- [`setVoiceBeautifierParameters`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierParameters:param1:param2:)
+- [`setAudioEffectPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectPreset:)
+- [`setVoiceBeautifierPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierPreset:)
+- [`setAudioEffectParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectParameters:param1:param2:)
+- [`setVoiceBeautifierParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierParameters:param1:param2:)
 - [`setVoiceConversionPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html?platform=iOS#//api/name/setVoiceConversionPreset:)
 
 **Customized voice effects**
 
-- [`setLocalVoicePitch`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoicePitch:)
-- [`setLocalVoiceEqualizationOfBandFrequency`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceEqualizationOfBandFrequency:withGain:)
-- [`setLocalVoiceReverbOfType`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceReverbOfType:withValue:)
+- [`setLocalVoicePitch`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoicePitch:)
+- [`setLocalVoiceEqualizationOfBandFrequency`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceEqualizationOfBandFrequency:withGain:)
+- [`setLocalVoiceReverbOfType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceReverbOfType:withValue:)
 
 ## Considerations
 

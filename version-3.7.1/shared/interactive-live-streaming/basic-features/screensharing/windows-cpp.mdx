@@ -62,7 +62,7 @@ Windows lays all its screen displays on a virtual screen. You need the following
 
 Take the following steps to share a screen by specifying screenRect:
 
-1. Get a list of monitor display information. 
+1. Get a list of monitor display information.
 
     ```cpp
     // Get a list of monitor display information
@@ -84,7 +84,7 @@ Take the following steps to share a screen by specifying screenRect:
             str += strInfo;
             m_cmbScreenRegion.InsertString(i, utf82cs(infos[i].monitorName));
         }
-    
+
         m_cmbScreenRegion.InsertString(infos.size(), _T("Select Window Hwnd Rect Area"));
         m_staScreenInfo.SetWindowText(str);
         m_cmbScreenRegion.SetCurSel(0);
@@ -103,11 +103,11 @@ Take the following steps to share a screen by specifying screenRect:
             // Get the selected display screen
             int sel = m_cmbScreenRegion.GetCurSel();
             agora::rtc::Rectangle regionRect = { 0,0,0,0 }, screenRegion = {0,0,0,0};
-    
-            // Get the Rectangle coordinate of the area to share on the display screen. 
+
+            // Get the Rectangle coordinate of the area to share on the display screen.
             // See the sample project for the detailed implementation of GetMonitorRectangle
             regionRect = m_monitors.GetMonitorRectangle(sel);
-            // Get the Rectangle coordinate of the display screen on the virtual screen. 
+            // Get the Rectangle coordinate of the display screen on the virtual screen.
             // See the sample project for the implementation of GetScreenRect
             screenRegion = m_monitors.GetScreenRect();
 
@@ -117,7 +117,7 @@ Take the following steps to share a screen by specifying screenRect:
             // Start screen sharing
             m_rtcEngine->startScreenCaptureByScreenRect(screenRegion, regionRect, capParam);
             m_btnShareScreen.SetWindowText(screenShareCtrlStopShare);
-    
+
             m_btnStartCap.EnableWindow(FALSE);
 
         }
@@ -156,7 +156,7 @@ Windows assigns a unique window identifier (windowId) for each window with a dat
         if (!m_rtcEngine || !m_initialize)
             return;
         HWND hWnd = NULL;
-    
+
         // ID of the window to share
         hWnd = m_listWnd.GetAt(m_listWnd.FindIndex(m_cmbScreenCap.GetCurSel()));
         int ret = 0;
@@ -170,19 +170,19 @@ Windows assigns a unique window identifier (windowId) for each window with a dat
             CRect rcWnd = { 0 };
             ::GetClientRect(hWnd, &rcWnd);
             agora::rtc::Rectangle rcCapWnd = { rcWnd.left, rcWnd.top, rcWnd.right - rcWnd.left, rcWnd.bottom - rcWnd.top };
-    
+
             // Start screen sharing
             ret = m_rtcEngine->startScreenCaptureByWindowId(hWnd, rcCapWnd, capParam);
-    
+
             if (ret == 0)
                 m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("Succees!"));
             else
                 m_lstInfo.InsertString(m_lstInfo.GetCount(), _T("Failed!"));
-    
+
             m_btnStartCap.SetWindowText(screenShareCtrlEndCap);
-    
+
             m_btnShareScreen.EnableWindow(FALSE);
-    
+
         }
         else {
             // Stop screen sharing
@@ -200,14 +200,14 @@ Windows assigns a unique window identifier (windowId) for each window with a dat
 
 ### API reference
 
-* [`getScreenCaptureSources`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4a10df119b0ff199e677f94aef2411a9)
-* [`startScreenCaptureByDisplayId`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4fe820ff5b886636494404fc7ed4ee0d)
-* [`startScreenCaptureByWindowId`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#add5ba807256e8e4469a512be14e10e52)
-* [`startScreenCaptureByScreenRect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a41893fe9a0ca49c054bf6dbd7d9d68f5)
-* [`updateScreenCaptureParameters`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad680e114ba3b8a0012454af6867c7498)
-* [`setScreenCaptureContentHint`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aff9003c492450dbd8c3f3b9835186c95)
-* [`updateScreenCaptureRegion`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ae2ab9c3ff28b64c601f938ab45644586)
-* [`stopScreenCapture`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a77412ab7c8653289a28212e60bd00673)
+* [`getScreenCaptureSources`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4a10df119b0ff199e677f94aef2411a9)
+* [`startScreenCaptureByDisplayId`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4fe820ff5b886636494404fc7ed4ee0d)
+* [`startScreenCaptureByWindowId`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#add5ba807256e8e4469a512be14e10e52)
+* [`startScreenCaptureByScreenRect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a41893fe9a0ca49c054bf6dbd7d9d68f5)
+* [`updateScreenCaptureParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad680e114ba3b8a0012454af6867c7498)
+* [`setScreenCaptureContentHint`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aff9003c492450dbd8c3f3b9835186c95)
+* [`updateScreenCaptureRegion`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ae2ab9c3ff28b64c601f938ab45644586)
+* [`stopScreenCapture`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a77412ab7c8653289a28212e60bd00673)
 
 
 ## Enable both screen sharing and video

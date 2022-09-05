@@ -4,7 +4,7 @@
 
 **After joining the channel**, the SDK triggers the following callbacks related to the call quality **once every two seconds**. You can see the last mile network quality, local statistics, audio quality, and video quality of the current call.
 
-We provide an open-source [OpenLive-Windows](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-Windows) demo project. 
+We provide an open-source [OpenLive-Windows](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-Windows) demo project.
 
 <div class="alert note">Ensure that you implement a video call or interactive video streaming in your project. For details, see <a href="start_call_windows">Start a Call</a> or <a href="start_live_windows">Start Live Interactive Streaming</a>.</div>
 
@@ -14,7 +14,7 @@ Agora provides an open-source sample project on GitHub that implements the [in-c
 
 ## Network quality report
 
-The `onNetworkQuality` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](./API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891) for details. Last mile refers to the network from your device to Agora’s edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter.
+The `onNetworkQuality` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891) for details. Last mile refers to the network from your device to Agora’s edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter.
 
 **Note**:
 
@@ -72,7 +72,7 @@ LRESULT CAgoraReportInCallDlg::OnEIDRtcStats(WPARAM wParam, LPARAM lParam)
     return TRUE;
 }
 ```
-	
+
 ## Audio Quality Report
 
 ### Statistics of local audio streams
@@ -81,8 +81,8 @@ The `onLocalAudioStats` callback reports the statistics of the audio streams sen
 
 **Note**:
 
-The SDK triggers this callback once every two seconds. The sample rate refers to the actual sample rate of the audio streams sent in the reported interval. 
-	
+The SDK triggers this callback once every two seconds. The sample rate refers to the actual sample rate of the audio streams sent in the reported interval.
+
 #### Sample code
 
 ```cpp
@@ -109,7 +109,7 @@ virtual void onLocalAudioStateChanged(LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDI
 
 ![1565945275984](https://web-cdn.agora.io/docs-files/1565945275984)
 
-The `onRemoteAudioStats` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](./API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891)), the number of channels (mono or dual), and the following parameters.
+The `onRemoteAudioStats` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891)), the number of channels (mono or dual), and the following parameters.
 
 | Parameter               | Description                                                  | Comment                                                      |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -133,7 +133,7 @@ The `onRemoteAudioStats` callback reports statistics more closely linked to the 
 - Agora's **audio module** refers to the audio processing process, and not the actual module in the SDK. When sending audio streams, the audio module refers to the processes of audio sampling, pre-processing, and encoding; when receiving audio streams, the audio module refers to the processes of audio decoding, post-processing, and playback.
 - Users can only turn on/off their own audio modules.
 - By default, the audio freezes at most once in each reported interval.
-	
+
 #### Sample code
 
 ```cpp
@@ -152,18 +152,18 @@ LRESULT CAgoraReportInCallDlg::OnEIDRemoteAudioStats(WPARAM wParam, LPARAM lPara
         CString tmp;
         tmp.Format(_T("%dms"), p->networkTransportDelay);
         m_staAudioNetWorkDelayVal.SetWindowText(tmp);
- 
- 
+
+
         tmp.Format(_T("%dKbps"), p->receivedBitrate);
         m_staAudioRecvBitrateVal.SetWindowText(tmp);
- 
+
         delete p;
     }
     return TRUE;
 }
 ```
 
-### <a name="34"></a>State changes of remote audio streams 
+### <a name="34"></a>State changes of remote audio streams
 
 When the state of **remote** audio stream changes, the SDK triggers the `onRemoteAudioStateChanged` callback to report the current state and the reason for the state change.
 
@@ -171,7 +171,7 @@ When the state of **remote** audio stream changes, the SDK triggers the `onRemot
 
 - In the <code>COMMUNICATION</code> profile, this callback reports to you the audio stream state information of all the remote users (excluding yours) in the channel once every two seconds.
 - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, this callback reports to you the audio stream state information of all the remote hosts(excluding yours) in the channel once every two seconds; if you are the audience, this callback reports to you the audio stream state information of all the remote hosts in the channel once every two seconds.
-	
+
 #### Sample code
 
 ```cpp
@@ -189,7 +189,7 @@ virtual void onRemoteAudioStateChanged(uid_t uid, REMOTE_AUDIO_STATE state, REMO
 
 The `onLocalVideoStats` callback reports the statistics of the video streams sent. You can see the dimensions of the encoding frame and the following parameters.
 
-**Note**: 
+**Note**:
 If you have called the `enableDualStreamMode` method to enable [dual-stream mode](../reference/glossary#dual-stream-mode), this callback reports the statistics of the high-video streams sent.
 
 | Parameter                 | Description                                                  | Comment                                                      |
@@ -231,7 +231,7 @@ LRESULT CAgoraReportInCallDlg::OnEIDLocalVideoStats(WPARAM wParam, LPARAM lParam
 }
 ```
 
-<a name="42"></a>	
+<a name="42"></a>
 ### State changes of local video streams
 
 When the state of the local video changes, the SDK triggers the `onLocalVideoStateChanged` callback to report the current state. You can troubleshoot with the error code when exceptions occur.
@@ -267,7 +267,7 @@ The `onRemoteVideoStats` callback reports the video statistics of each remote us
 - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, you receive video stream statistics of all the remote hosts (excluding yours) in the channel once every two seconds; if you are the audience, you receive the statistics for all the hosts in the channel once every two seconds.
 - Agora’s **video module** refers to the video processing process, and not the actual module in the SDK. When sending video streams, the video module refers to the processes of video capturing, pre-processing, and encoding; when receiving video streams, the video module refers to the processes of video decoding, post-processing, and rendering/playing.
 - Users can only turn on/off their own video modules.
-	
+
 #### Sample code
 
 ```cpp
@@ -286,7 +286,7 @@ When the state of remote video streams changes, the SDK triggers the `onRemoteVi
 
 - In the <code>COMMUNICATION</code> profile, this callback reports to you the video stream state information of all the remote users (excluding yours) in the channel once every two seconds.
 - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, this callback reports to you the video stream state information of all the remote hosts (excluding yours) in the channel once every two seconds; if you are the audience, this callback reports to you the video stream state information of all the remote hosts in the channel once every two seconds.
-	
+
 #### Sample code
 
 ```cpp
@@ -304,16 +304,16 @@ virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMO
 
 ## API reference
 
-- [`onNetworkQuality`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a80003ae8cce02039f3aa0e8ffad7deed)
-- [`onRtcStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ada38743982296a75879018c5773f08a1)
-- [`onLocalAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0cb47df6a8ef7acee229eb307d6f32c3)
-- [`onLocalAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a)
-- [`onRemoteAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af8a59626a9265264fb4638e048091d3a)
-- [`onRemoteAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612)
-- [`onLocalVideoStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ab611030063161c594cd7c4cc0dfe0681)
-- [`onLocalVideoStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a5a8bfdc3a7c4ba054f90365ed00781d6)
-- [`onRemoteVideoStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7163ffb650852be270ba0215b596d968)
-- [`onRemoteVideoStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aac7b62b1307be124423008e45eb02f80)
+- [`onNetworkQuality`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a80003ae8cce02039f3aa0e8ffad7deed)
+- [`onRtcStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ada38743982296a75879018c5773f08a1)
+- [`onLocalAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0cb47df6a8ef7acee229eb307d6f32c3)
+- [`onLocalAudioStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a)
+- [`onRemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af8a59626a9265264fb4638e048091d3a)
+- [`onRemoteAudioStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612)
+- [`onLocalVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ab611030063161c594cd7c4cc0dfe0681)
+- [`onLocalVideoStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a5a8bfdc3a7c4ba054f90365ed00781d6)
+- [`onRemoteVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7163ffb650852be270ba0215b596d968)
+- [`onRemoteVideoStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aac7b62b1307be124423008e45eb02f80)
 
 ## Considerations
 

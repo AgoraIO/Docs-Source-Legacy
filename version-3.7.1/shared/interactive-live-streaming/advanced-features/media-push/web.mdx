@@ -17,7 +17,7 @@ Ensure that you enable the Media Push service before using this function:
 1. Log in to [Agora Console](https://console.agora.io/), and click the **Project Management** icon on the left navigation panel.
 
 2. On the **Project Management** page, find the project for which you want to enable the Media Push service, and click the edit icon.
-3. 
+3.
 
     <img src="https://web-cdn.agora.io/docs-files/1637660034129"/>
 
@@ -33,7 +33,7 @@ Ensure that you enable the Media Push service before using this function:
     <img src="https://web-cdn.agora.io/docs-files/1661509305442" />
 
 
-## Implementation 
+## Implementation
 
 Before proceeding, ensure that you implement the basic interactive live streaming in your project. See [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming) for details.
 
@@ -45,7 +45,7 @@ Refer to the following steps to push streams to the CDN:
 
    > The `Client.on("liveTranscodingUpdated")` callback occurs when the `LiveTranscoding` class updates and reports the updated information to the local host.
 
-2. The host in a channel calls the `Client.startLiveStreaming` method to add a media stream to the CDN. 
+2. The host in a channel calls the `Client.startLiveStreaming` method to add a media stream to the CDN.
 
    > Use `enableTranscoding` to set whether or not to enable transcoding.
 
@@ -99,13 +99,13 @@ var LiveTranscoding = {
                     uid: 1232,
                   }],
           };
-  
+
 client.setLiveTranscoding(LiveTranscoding);
-  
+
 // Adds a URL to which the host pushes a stream. Set the transcodingEnabled parameter as true to enable the transcoding service. Once transcoding is enabled, you need to set the live transcoding configurations by calling the setLiveTranscoding method. Agora does not recommend transcoding in the case of a single host.
 client.startLiveStreaming("your RTMP URL", true)
- 
- 
+
+
 // Removes a URL to which the host pushes a stream.
 client.stopLiveStreaming("your RTMP URL")
 ```
@@ -114,12 +114,12 @@ We also provide an open-source [Live-Streaming](https://github.com/AgoraIO/Advan
 
 
 <a name="api"></a>
-### API reference 
+### API reference
 
-- [`init`](./API%20Reference/web/interfaces/agorartc.stream.html#init)
-- [`setLiveTranscoding`](./API%20Reference/web/interfaces/agorartc.client.html#setlivetranscoding)
-- [`startLiveStreaming`](./API%20Reference/web/interfaces/agorartc.client.html#startlivestreaming)
-- [`stopLiveStreaming`](./API%20Reference/web/interfaces/agorartc.client.html#stoplivestreaming)
+- [`init`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#init)
+- [`setLiveTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#setlivetranscoding)
+- [`startLiveStreaming`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#startlivestreaming)
+- [`stopLiveStreaming`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#stoplivestreaming)
 - `liveTranscodingUpdated`
 - `liveStreamingStarted`
 - `liveStreamingFailed`
@@ -135,7 +135,7 @@ We also provide an open-source [Live-Streaming](https://github.com/AgoraIO/Advan
 
   > Please use `AgoraRTC.createClient({mode: "live", codec: "h264"})` in this case.
 
-- Set the value of `videoBitrate` by referring to [Video Bitrate Table](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.videoencoderconfiguration.html#bitrate). If you set a bitrate beyond the proper range, the SDK automatically adjusts it to a value within the range. 
+- Set the value of `videoBitrate` by referring to [Video Bitrate Table](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.videoencoderconfiguration.html#bitrate). If you set a bitrate beyond the proper range, the SDK automatically adjusts it to a value within the range.
 
 - Ensure that the stream URLs used in the transcoding mode and non-transcoding mode are different.
 

@@ -66,10 +66,10 @@ localStream.setVideoProfile("480p_3");
 ###  API Reference
 
 - [`setVideoEncoderConfiguration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#setvideoencoderconfiguration)
-- [`setVideoProfile`](./API%20Reference/web/interfaces/agorartc.stream.html#setvideoprofile)
+- [`setVideoProfile`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#setvideoprofile)
 
 ## Considerations
-- Supported resolutions vary from browser to browser. See [video profile and supported Browsers](./API%20Reference/web/interfaces/agorartc.stream.html#setvideoprofile) for details.
+- Supported resolutions vary from browser to browser. See [video profile and supported Browsers](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#setvideoprofile) for details.
 - Due to the limitations of some devices and browsers, the resolution you set may fail to take effect and be adjusted by the browser. In this case, your charges will be calculated based on the actual resolution.
 - Whether the 1080 resolution or above can be supported depends on the device. If the device cannot support 1080p, the frame rate will be lower than the set value.
 - The Safari browser has a fixed video frame rate of 30 fps and does not support customization.
@@ -82,13 +82,13 @@ Video profiles vary from case to case. For example, in a one-to-one online class
 
 We recommend the following profiles for different scenarios:
 
-- One-to-one video call: 
+- One-to-one video call:
   - Resolution: 320 x 240; frame rate: 15 fps; bitrate: 200 Kbps
   - Resolution: 640 x 360; frame rate: 15 fps; bitrate: 400 Kbps
-- One-to-many video call: 
+- One-to-many video call:
   - Resolution: 160 x 120; frame rate: 15 fps; bitrate: 65 Kbps
   - Resolution: 320 x 180; frame rate: 15 fps; bitrate: 140 Kbps
-  - Resolution: 320 x 240; frame rate: 15 fps; bitrate: 200 Kbps 
+  - Resolution: 320 x 240; frame rate: 15 fps; bitrate: 200 Kbps
 
 If you want to customize the video parameters with the setVideoEncoderConfiguration method, refer to the table below to set the parameters:
 
