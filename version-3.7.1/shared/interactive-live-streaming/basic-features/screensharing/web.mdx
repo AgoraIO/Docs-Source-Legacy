@@ -29,7 +29,7 @@ As of v3.2.0, the Web SDK supports setting the transmission optimization strateg
 
 This section introduces how to share the screen on Chrome, Edge, Firefox, and Electron.
 
-Before you begin, ensure that you understand how to [start a video call](start_call_web) or [start interactive video streaming](../quickstart-guide/start-video-streaming).
+Before you begin, ensure that you understand how to [start a video call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [start interactive video streaming](../quickstart-guide/start-video-streaming).
 
 ### <a name="chrome"></a>Screen sharing on Chrome
 
@@ -59,7 +59,7 @@ if(parseInt(tem[2]) >= 72  && navigator.mediaDevices.getDisplayMedia ) {
 
 Perform the following steps to share the screen on Chrome using the extension:
 
-1. Add the [Google Chrome Extension for Screen Sharing](./chrome_screensharing_plugin) provided by Agora and get an extension ID.
+1. Add the [Google Chrome Extension for Screen Sharing](../basic-features/screensharing#screen-sharing-on-chrome) provided by Agora and get an extension ID.
 
 2. Set `video` as `false`, `screen` as `true`, and `extensionId` as the string you get in the previous step when calling `createStream` to create a screen-sharing stream.
 

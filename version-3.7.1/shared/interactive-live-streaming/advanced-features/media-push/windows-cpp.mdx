@@ -45,7 +45,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 ![1646892692839](https://web-cdn.agora.io/docs-files/1646892692839)
 
 
-1. Refer to [Start Interactive Live Video Streaming](start_live_windows) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction.
+1. Refer to [Start Interactive Live Video Streaming](../quickstart-guide/start-video-streaming) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction.
 
 
 2. Call `startRtmpStreamWithTranscoding` and pass in the address of the Media Push and the transcoding configuration to start pushing transcoded streams to a CDN address.
@@ -75,7 +75,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 
 ![1638787358303](https://web-cdn.agora.io/docs-files/1638787358303)
 
-1. Refer to [Start Interactive Live Video Streaming](start_live_windows) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction. The `uid` parameter in the `joinChannel` method cannot be empty or 0; otherwise, the hosts in the channel cannot push any media streams to CDN.
+1. Refer to [Start Interactive Live Video Streaming](../quickstart-guide/start-video-streaming) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction. The `uid` parameter in the `joinChannel` method cannot be empty or 0; otherwise, the hosts in the channel cannot push any media streams to CDN.
 
 2. Call `startRtmpStreamWithoutTranscoding` and pass in the address of the Media Push to start pushing non-transcoded streams to a CDN address.
 
@@ -153,7 +153,7 @@ Agora recommends that you use the default values when setting the video resoluti
 
 This section describes how to implement Media Push using versions of the SDK earlier than v3.6.0.
 
-1. Refer to [Start Interactive Live Video Streaming](start_live_windows) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction.
+1. Refer to [Start Interactive Live Video Streaming](../quickstart-guide/start-video-streaming) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction.
 
 2. The host in a channel calls the `setLiveTranscoding` method to set the transcoding configuration of the media streams (`LiveTranscoding`), such as the resolution, bitrate, frame rate, and position of the watermark/background image. If you need a transcoded picture, set the picture-in-picture layout for each user in the `TranscodingUser` class.
 

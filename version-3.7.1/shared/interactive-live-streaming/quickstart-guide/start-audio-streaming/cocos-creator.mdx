@@ -161,7 +161,7 @@ agora.setClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
 
 After setting the client role, you can call `joinChannel` to join a channel. You need to generate a token to replace `YOUR_TOKEN` in the code sample below.
 
-- For testing, you can [generate a temporary token](https://docs.agora.io/en/Agora%20Platform/token#get-a-temporary-token) in Agora Console.
+- For testing, you can [generate a temporary token](../reference/manage-agora-account#generate-a-temporary-token) in Agora Console.
 - For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 <div class="alert note">Once the user joins the channel, the user subscribes to the audio streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <tt>mute</tt> methods accordingly.</div>

@@ -9,7 +9,7 @@ This article provides the APIs and additional information relating to audio reco
 ![1586770252932](https://web-cdn.agora.io/docs-files/1586770252932)
 
 ## Implementation
-Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](start_call_audio_unity) or [Start Live Interactive Streaming](../quickstart-guide/start-audio-streaming).
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](/3.7.1/voice-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-audio-streaming).
 
 ### Adjust the recording volume
 
@@ -54,8 +54,8 @@ int ret = mRtcEngine.AdjustRecordingSignalVolume(50);
 ```
 
 #### API reference
-- [`SetAudioRecordingDeviceVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#ac278e396de3080f50ba59dc71e256a78)
-- [`AdjustRecordingSignalVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a367f7bc63304e1b4c215780af1df005b)
+- [`SetAudioRecordingDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#ac278e396de3080f50ba59dc71e256a78)
+- [`AdjustRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a367f7bc63304e1b4c215780af1df005b)
 
 ### Adjust the playback volume
 
@@ -101,13 +101,13 @@ int ret = mRtcEngine.AdjustPlaybackSignalVolume(50);
 
 #### API reference
 
-- [`SetAudioPlaybackDeviceVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#aca6f0daed9ea0fd012b17a213fe83d24)
-- [`AdjustPlaybackSignalVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a25c394db63570a6f45f9b40e8d7eb8e1)
-- [`AdjustAudioMixingVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6a3b1041004fdd5a031975a2f9cdb7e)
+- [`SetAudioPlaybackDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#aca6f0daed9ea0fd012b17a213fe83d24)
+- [`AdjustPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a25c394db63570a6f45f9b40e8d7eb8e1)
+- [`AdjustAudioMixingVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6a3b1041004fdd5a031975a2f9cdb7e)
 
 ### Adjust the audio mixing volume
 
-**Audio mixing** is the process of combining local or online music files with the local stream so that all the remote users in the channel can hear the host and the music at the same time. See [Audio Effects/Mixing](audio_effect_mixing_unity) for more information about enabling this function.
+**Audio mixing** is the process of combining local or online music files with the local stream so that all the remote users in the channel can hear the host and the music at the same time. See [Audio Effects/Mixing](../advanced-features/audio-effect-mixing) for more information about enabling this function.
 ![1586770368334](https://web-cdn.agora.io/docs-files/1586770368334)
 
 The `AdjustAudioMixingVolume` method adjusts the volume of the music file for both the local user and the remote users.
@@ -145,13 +145,13 @@ int ret = mRtcEngine.AdjustAudioMixingPlayoutVolume(50);
 
 #### API reference
 
-- [`AdjustAudioMixingPublishVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a0900c11feef9cbee498f17f95cd0aed2)
-- [`AdjustAudioMixingPlayoutVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac7d6df07616489729d521ce47934bb29)
-- [`AdjustAudioMixingVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6a3b1041004fdd5a031975a2f9cdb7e)
+- [`AdjustAudioMixingPublishVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a0900c11feef9cbee498f17f95cd0aed2)
+- [`AdjustAudioMixingPlayoutVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac7d6df07616489729d521ce47934bb29)
+- [`AdjustAudioMixingVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6a3b1041004fdd5a031975a2f9cdb7e)
 
 ### Adjust the audio effects volume
 
- An **audio effects** here refers to a sound clip which plays a brief sound effect such as clapping or gunshots. See [Audio Effects/Mixing](audio_effect_mixing_unity) for more information on how to enable this function.
+ An **audio effects** here refers to a sound clip which plays a brief sound effect such as clapping or gunshots. See [Audio Effects/Mixing](../advanced-features/audio-effect-mixing) for more information on how to enable this function.
 
 ![1586770384829](https://web-cdn.agora.io/docs-files/1586770384829)
 
@@ -176,8 +176,8 @@ int ret = mRtcEngine.SetVolumeOfEffect(soundId, 50);
 
 #### API reference
 
-- [`SetEffectsVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a94b890267c9ce921fd07153515ce510b)
-- [`SetVolumeOfEffect`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a8238ea891e6c030263179735c647b1f1)
+- [`SetEffectsVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a94b890267c9ce921fd07153515ce510b)
+- [`SetVolumeOfEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a8238ea891e6c030263179735c647b1f1)
 
 ### Adjust the in-ear monitoring volume (Android and iOS only)
 
@@ -200,8 +200,8 @@ int ret = mRtcEngine.SetInEarMonitoringVolume(50);
 
 #### API reference
 
-- [`EnableInEarMonitoring`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab5e3a1ccf03508f96af241cc25aefecd)
-- [`SetInEarMonitoringVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a0236c42fc3b664eb9e66f99e6209afc8)
+- [`EnableInEarMonitoring`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab5e3a1ccf03508f96af241cc25aefecd)
+- [`SetInEarMonitoringVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a0236c42fc3b664eb9e66f99e6209afc8)
 
 ### Get the data of the loudest speaker (callback)
 
@@ -236,8 +236,8 @@ void OnActiveSpeakerHandler(uint uid) {
 
 #### API reference
 
-- [`OnVolumeIndicationHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#ac1916abed6e6e714c05997f415ec8686)
-- [`OnActiveSpeakerHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#ade84b7a1e925d77c049bbf955fb6104c)
+- [`OnVolumeIndicationHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#ac1916abed6e6e714c05997f415ec8686)
+- [`OnActiveSpeakerHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#ade84b7a1e925d77c049bbf955fb6104c)
 
 ## Considerations
 

@@ -13,7 +13,7 @@ This article provides the APIs and additional information relating to audio capt
 We provide an open-source [AudioVolume](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioVolume) sample project that implements adjusting the capturing and playback on GitHub. You can download the sample project and view the source code.
 
 ## Implementation
-Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_windows) or [Start Interactive Live Streaming](start_live_windows).
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Streaming](../quickstart-guide/start-video-streaming).
 
 ### Adjust the capturing volume
 
@@ -58,9 +58,9 @@ int ret = rtcEngine.adjustLoopbackRecordingSignalVolume(50);
 ```
 
 #### API reference
-- [`setRecordingDeviceVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac24424e86ded2727a532df739ebf8086)
-- [`adjustRecordingSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acf94e9e0122f09d0450475d7c5809036)
-- [`adjustLoopbackRecordingSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
+- [`setRecordingDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac24424e86ded2727a532df739ebf8086)
+- [`adjustRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acf94e9e0122f09d0450475d7c5809036)
+- [`adjustLoopbackRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
 
 ### Adjust the playback volume
 
@@ -110,10 +110,10 @@ int ret = rtcEngine.adjustUserPlaybackSignalVolume(uid, 50);
 
 #### API reference
 
-- [`setPlaybackDeviceVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac14a1238e83303abed2f36e02fcc9366)
-- [`adjustPlaybackSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a98919705c8b2346811f91f9ce5e97a79)
-- [`adjustUserPlaybackSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a609e74c9a6e8df205543326f2ca6a965)
-- [`adjustAudioMixingPlayoutVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8677c3f3160927d25d9814a88ab06da6)
+- [`setPlaybackDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac14a1238e83303abed2f36e02fcc9366)
+- [`adjustPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a98919705c8b2346811f91f9ce5e97a79)
+- [`adjustUserPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a609e74c9a6e8df205543326f2ca6a965)
+- [`adjustAudioMixingPlayoutVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8677c3f3160927d25d9814a88ab06da6)
 
 
 ### Get the data of the loudest speaker (callback)
@@ -149,8 +149,8 @@ void onActiveSpeaker(uid_t uid) {
 
 #### API reference
 
-- [`onAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4)
-- [`onActiveSpeaker`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae643c9dbf94360a23a8b3a56c93f90bc)
+- [`onAudioVolumeIndication`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4)
+- [`onActiveSpeaker`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae643c9dbf94360a23a8b3a56c93f90bc)
 
 ## Considerations
 

@@ -8,7 +8,7 @@ To obtain high-fidelity audio during real-time communications, you can choose th
 
 ## Implementation
 
-Before setting the audio profile, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](start_call_audio_unity) or [Start Live Interactive Streaming](../quickstart-guide/start-audio-streaming).
+Before setting the audio profile, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](/3.7.1/voice-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-audio-streaming).
 
 The Agora SDK provides the `SetAudioProfile` method to set the appropriate audio profile according to the scenario.
 
@@ -108,11 +108,11 @@ mRtcEngine.SetAudioProfile(AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, 
 
 ### API reference
 
-- [`SetAudioProfile`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#adc5817c5d668f631123a643817cf3059)
+- [`SetAudioProfile`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#adc5817c5d668f631123a643817cf3059)
 
 ## Considerations
 
-Call this method before calling the [`JoinChannelByKey`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a5997a90398afe355d4d509a2a83a9999) method.
+Call this method before calling the [`JoinChannelByKey`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a5997a90398afe355d4d509a2a83a9999) method.
 
 When you set the volume of a device, you can set either the in-call volume or the media volume.
 - You can set the in-call volume during an audio or video call.
