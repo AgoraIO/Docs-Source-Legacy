@@ -1,7 +1,5 @@
 <PlatformWrapper platform="web">
 
-<div class="alert note">This article only applies to the Agora Web SDK 3.x and earlier versions.</div>
-
 This article describes how to build a Web project that implements a basic video call using the Agora SDK.
 
 The following video demonstrates how to build an app that implements the Agora video call from scratch.
@@ -10,11 +8,11 @@ The following video demonstrates how to build an app that implements the Agora v
 
 ## Prerequisites
 
-- A valid Agora [account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=Web).
-- An [Agora project](/en/Agora%20Platform/get_appid_token?platform=Web) with an App ID and a temp token
+- A valid Agora [account](../reference/manage-agora-account#sign-up-and-log-in?platform=Web).
+- An [Agora project](../reference/manage-agora-account#get-started-with-agora) with an App ID and a temp token
 - A Windows or macOS computer meets the following requirements:
-  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](/en/Agora%20Platform/firewall?platform=Web) to access Agora services.
-  - A browser that matches the [supported browser list](./faq/browser_support?platform=Web). Agora highly recommends using the [latest version](https://www.google.com/chrome/) of Google Chrome.
+  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall) to access Agora services.
+  - A browser that matches the [supported browser list](https://docs.agora.io/en/Interactive%20Broadcast/faq/browser_support?platform=Web). Agora highly recommends using the [latest version](https://www.google.com/chrome/) of Google Chrome.
   - Physical media input devices, such as a built-in camera and a built-in microphone.
   - An Intel 2.2GHz Core i3/i5/i7 processor (2nd generation) or equivalent
 
@@ -114,7 +112,7 @@ Add the following code to the line after `<head>` in the `index.html` file:
 
 ### Method 3: Through the Agora website
 
-1. Download the latest [Agora Web SDK](./downloads?platform=Web).
+1. Download the latest [Agora Web SDK](https://docs.agora.io/en/Video/downloads?platform=Web).
 
 2. Copy the `AgoraRTCSDK-3.6.11.js` file to the `scripts` directory.
 
@@ -130,8 +128,8 @@ Once the project is set up, use the core APIs of the Agora Web SDK in `script.js
 
 You need to work with two types of objects when using the Agora Web SDK:
 
-- The client object, which represents the local client. The Client methods provide the major functions for a voice/video call, such as joining a [channel](https://docs.agora.io/en/Agora%20Platform/terms#channel) and [publishing](https://docs.agora.io/en/Agora%20Platform/terms#pub) a stream.
-- Stream objects, which represent the local and remote [streams](https://docs.agora.io/en/Agora%20Platform/terms#media-stream). The Stream methods define the behaviors of a stream object, such as the playback control and video encoder configurations. When you call a Stream method, you need to distinguish between the local and the remote streams.
+- The client object, which represents the local client. The Client methods provide the major functions for a voice/video call, such as joining a [channel](../reference/glossary#channel) and [publishing](../reference/glossary#publish) a stream.
+- Stream objects, which represent the local and remote [streams](../reference/glossary#media-stream). The Stream methods define the behaviors of a stream object, such as the playback control and video encoder configurations. When you call a Stream method, you need to distinguish between the local and the remote streams.
 
 The major steps for implementing a basic video call are as follows:
 
@@ -176,7 +174,7 @@ function removeVideoStream(elementId) {
 
 ### 1. Create a client
 
-Create and initialize a client object to control the call. You need to replace `yourAppId` with the App ID of your Agora project. See [Get an App ID](./run_demo_video_call_web?platform=Web#appid) for details.
+Create and initialize a client object to control the call. You need to replace `yourAppId` with the App ID of your Agora project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id) for details.
 
 ```javascript
 let client = AgoraRTC.createClient({
@@ -193,15 +191,15 @@ client.init("yourAppId", function() {
 
 Pay attention to the settings of `mode` and `codec` in the `AgoraRTC.createClient` method:
 
-- `mode` determines the [channel profile](https://docs.agora.io/en/Agora%20Platform/terms?platform=Web#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
+- `mode` determines the [channel profile](../reference/glossary?platform=Web#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
 - `codec` sets the codec that the web browser uses for encoding and decoding. If your app needs to support Safari 12.1 or earlier, set it as `h264`. Otherwise, set it as `vp8`.
 
 ### 2. Join a channel
 
 Call `client.join` to join a channel. You need to generate a token to replace `yourToken` in the code sample below.
 
-- For testing, you can [generate a temporary token](./run_demo_video_call_web?platform=Web#temptoken) in Agora Console.
-- For production, Agora recommends using a token generated at your server. See [Generate a Token](./token_server?platform=Web).
+- For testing, you can [generate a temporary token](../reference/manage-agora-account#generate-a-temporary-token) in Agora Console.
+- For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 ```javascript
 // Join a channel
@@ -324,9 +322,9 @@ With the [Agora Video for WordPress](https://wordpress.org/plugins/wp-agora-io/)
 
 ### FAQ
 
-- [How can I set the log file?](/en/faq/logfile)
-- [How can I implement call notification in a call application?](/en/faq/call_invite_notification)
-- [What are the common errors in Web browsers' console log?](/en/faq/console_error_web)
-- [Why do errors occur when calling the Stream.init method?](/en/faq/streaminit_error)
+- [How can I set the log file?](https://docs.agora.io/en/Video/faq/logfile)
+- [How can I implement call notification in a call application?](https://docs.agora.io/en/Video/faq/call_invite_notification)
+- [What are the common errors in Web browsers' console log?](https://docs.agora.io/en/Video/faq/console_error_web)
+- [Why do errors occur when calling the Stream.init method?](https://docs.agora.io/en/Video/faq/streaminit_error)
 
 </PlatformWrapper>
