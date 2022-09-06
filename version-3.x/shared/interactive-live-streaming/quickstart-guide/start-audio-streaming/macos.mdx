@@ -89,7 +89,7 @@ Choose one of the following methods to obtain the Agora macOS SDK:
 
 1. In Xcode, go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
 
-   ```http
+   ```text
    <%= url %>
    ```
 
@@ -115,7 +115,7 @@ Before calling any Agora API, import the `AgoraRtcKit` class, and define `agoraK
 
 #### Objective-C
 
-```objective-c
+```objc
 // ViewController.h
 // Imports the AgoraRtcKit class
 // For SDKs earlier than 3.0.0, AgoraRtcKit is named AgoraRtcEngineKit
@@ -151,7 +151,7 @@ If you want to monitor a callback for your app scenario, register it when initia
 
 #### Objective-C
 
-```objective-c
+```objc
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:@"YourAppID" delegate:self];
@@ -173,7 +173,7 @@ Each `AgoraRtcEngineKit` object supports one profile only. If you want to switch
 
 #### Objective-C
 
-```objective-c
+```objc
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 [self.agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
@@ -198,7 +198,7 @@ Note that in interactive live streaming, only the host can be heard. If you want
 
 #### Objective-C
 
-```objective-c
+```objc
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 // Sets the client role as the host
@@ -227,7 +227,7 @@ Call the `joinChannelByToken` method to join a channel. When adding the followin
 
 #### Objective-C
 
-```objective-c
+```objc
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 // The uid of each user in the channel must be unique.
@@ -251,7 +251,7 @@ Call the `leaveChannel` method when you need to leave the channel, for example, 
 
 #### Objective-C
 
-```objective-c
+```objc
 // ViewController.m
 // Types the followiing code in the function you defines
 [self.agoraKit leaveChannel:nil];
@@ -273,7 +273,7 @@ After leaving the channel, if you want to release all resources used by the Agor
 
 #### Objective-C
 
-```objective-c
+```objc
 // ViewController.m
 // Types the followiing code in the function you defines
 [AgoraRtcEngineKit destroy];

@@ -43,7 +43,7 @@ Sample code
 agoraKit.setDeviceVolume(.audioRecording, volume: 50)
 ```
 
-```objective-c
+```objc
 // objective-c
 //  Sets the volume of your capturing device as 50.
 [agoraKit setDeviceVolume: AgoraMediaDeviceTypeAudioRecording volume: 50];
@@ -66,7 +66,7 @@ agoraKit.adjustRecordingSignalVolume(50)
 agoraKit.adjustLoopbackRecordingSignalVolume(50)
 ```
 
-```objective-c
+```objc
 // Objective-C
 // Sets the volume of the signal captured by the microphone as 50.
 [agoraKit adjustRecordingSignalVolume: 50];
@@ -107,7 +107,7 @@ Sample code
 agoraKit.setDeviceVolume(.audioPlayout, volume: 50)
 ```
 
-```objective-c
+```objc
 // Objective-C
 // Sets the volume of the playback device as 50.
 [agoraKit setDeviceVolume: AgoraMediaDeviceTypeAudioPlayout volume: 50];
@@ -135,7 +135,7 @@ agoraKit.adjustPlaybackSignalVolume(50)
 agoraKit.adjustUserPlaybackSignalVolume(uid, volume: 50)
 ```
 
-```objective-c
+```objc
 // Objective-C
 // Sets the volume of the local playback of all remote users as 50.
 [agoraKit adjustPlaybackSignalVolume: 50];
@@ -170,7 +170,7 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, reportAudioVolumeIndicationOfSpeaker
 }
 ```
 
-```objective-c
+```objc
 // Objective-C
 // Gets the user IDs of the users with the highest peak volume, the corresponding volumes, as well as whether the local user is speaking.
 // @param speakers is an array containing the user IDs and volumes of the local and the remote users. The volume parameter ranges between 0 and 255.
@@ -192,7 +192,7 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, activeSpeaker speakerUid: UInt) {
 }
 ```
 
-```objective-c
+```objc
 // Objective-C
 // Gets the user ID of the user with the highest average volume during a certain period of time.
 - (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine activeSpeaker:(NSUInteger)speakerUid {
