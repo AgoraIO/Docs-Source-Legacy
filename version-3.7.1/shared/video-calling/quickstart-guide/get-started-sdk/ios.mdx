@@ -35,8 +35,8 @@ Before proceeding, ensure that your development environment meets the following 
 - Xcode 9.0 or later.
 - An iOS device running iOS 9.0 or later.
 - A valid [Agora account](https://console.agora.io/).
-- A valid Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
-- A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms).
+- A valid Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](../reference/manage-agora-account#get-started-with-agora).
+- A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall).
 
 ## Project setup
 
@@ -113,7 +113,7 @@ When your app opens, you create an `RtcEngine` instance, enable the video, join 
 
 The following figure shows the API call sequence of implementing Video Call. 
 
-![](https://web-cdn.agora.io/docs-files/1627887317273)
+![1627887317273](https://web-cdn.agora.io/docs-files/1627887317273)
 
 To implement this logic, take the following steps:
 
@@ -228,7 +228,7 @@ To test your app on a physical device, do the following:
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) shows you how to start Video Call with a token that you retrieve from your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](../basic-features/token-server) shows you how to start Video Call with a token that you retrieve from your server.
 
 ## See also
 
@@ -251,12 +251,12 @@ In addition to integrating the Agora Video SDK for iOS through Swift Package, yo
 2. In Terminal, navigate to the root of your project folder, and run the `pod init` command to create a `Podfile` in the project folder.
 3. Open the `Podfile`, and replace all contents with the following code. Remember to replace `Your App` with the target name of your project.
 
-  ```
-  # platform :ios, '9.0'
-  target 'Your App' do
-      pod 'AgoraRtcEngine_iOS'
-  end
-  ```
+    ```
+    # platform :ios, '9.0'
+    target 'Your App' do
+        pod 'AgoraRtcEngine_iOS'
+    end
+    ```
 
 4. In Terminal, run the `pod install` command to install the SDK. When the SDK is installed successfully, you can see  `Pod installation complete!` in Terminal and an `xcworkspace` file in the project folder.
 5. Open the `xcworkspace` file for any further steps.
@@ -286,7 +286,7 @@ Choose one of the following methods to integrate a version of the Agora iOS SDK 
 2. In Terminal, navigate to the project path, and run the `pod init` command to create a `Podfile` in the project folder.
 
 
-3. Open the `Podfile`, delete all contents, and input the following codes. Remember to replace `Your App` with the target name of your project and replace `version` with the version of the SDK that you want to integrate. For information about the SDK version, see [Release Notes](./release_ios_video?platform=iOS).
+3. Open the `Podfile`, delete all contents, and input the following codes. Remember to replace `Your App` with the target name of your project and replace `version` with the version of the SDK that you want to integrate. For information about the SDK version, see [Release Notes](../introduction/release-notes).
 
  ```
 # platform :ios, '9.0'
