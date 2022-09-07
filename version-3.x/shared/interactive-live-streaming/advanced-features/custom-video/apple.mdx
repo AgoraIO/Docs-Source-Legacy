@@ -20,7 +20,7 @@ However, these default modules might not meet your development requirements, suc
 - You need to process the captured video with a pre-processing library for functions such as image enhancement.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
-This article describes how to use the Agora Native SDK to customize the video source and renderer. 
+This article describes how to use the Agora Native SDK to customize the video source and renderer.
 
 ## Sample project
 
@@ -41,7 +41,7 @@ The following diagram shows how the video data is transferred when you customize
 
 ![1606791683644](https://web-cdn.agora.io/docs-files/1606791683644)
 
-Video frames captured by the SDK or a custom video source, or received from a remote user, can be rendered by either the SDK or a custom video renderer. 
+Video frames captured by the SDK or a custom video source, or received from a remote user, can be rendered by either the SDK or a custom video renderer.
 
 - You must implement the custom video source yourself using methods from outside the SDK.
 - The Agora Native SDK provides two methods to send the captured video frames to the SDK:
@@ -49,11 +49,11 @@ Video frames captured by the SDK or a custom video source, or received from a re
   - The `mediaIO` mode: In this mode, the SDK takes control of the capturing process with an `AgoraVideoSourceProtocol` class, and then it stores the captured video frames in an `AgoraVideoFrameConsumer` class. To send the captured frames to the SDK, you can call `consumePixelBuffer` or `consumeRawData` in the `AgoraVideoFrameConsumer` class.
 - You must also implement the custom video renderer yourself using methods from outside the SDK. The SDK provides an `AgoraVideoSinkProtocol` class to control the rendering process, and the `setLocalVideoRenderer` and `setRemoteVideoRenderer` methods to display the video of the local and remote view.
 
-<div class="alert note">The <code>push</code> mode differs from the <code>mediaIO</code> mode in the following aspects:<ul><li>Video frames captured in the push mode cannot be rendered by the SDK, while frames captured in the <code>mediaIO</code> mode can.</li><li>Switching in the channel from custom video capture by <code>push</code> to SDK capture is not supported. To switch the video source directly, you must use the custom video capture by <code>mediaIO</code>. See <a href="./faq/custom_switch_default">How can I switch from custom video capture to SDK capture</a>.</li></ul></div>
+<div class="alert note">The <code>push</code> mode differs from the <code>mediaIO</code> mode in the following aspects:<ul><li>Video frames captured in the push mode cannot be rendered by the SDK, while frames captured in the <code>mediaIO</code> mode can.</li><li>Switching in the channel from custom video capture by <code>push</code> to SDK capture is not supported. To switch the video source directly, you must use the custom video capture by <code>mediaIO</code>. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/custom_switch_default">How can I switch from custom video capture to SDK capture</a>.</li></ul></div>
 
 ### Customize video source (push mode)
 
-The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
+The Agora SDK provides the  [`setExternalVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
 
 ![1569400609106](https://web-cdn.agora.io/docs-files/1569400609106)
 
@@ -74,10 +74,10 @@ Once the custom video source is enabled, you need to implement video capturing u
 ```swift
 // Swift
 class AgoraCameraSourcePush: NSObject {
-     
+
     fileprivate var delegate: AgoraCameraSourcePushDelegate?
     private var videoView: CustomVideoSourcePreview
-     
+
     private var currentCamera = Camera.defaultCamera()
     private let captureSession: AVCaptureSession
     private let captureQueue: DispatchQueue
@@ -88,42 +88,42 @@ class AgoraCameraSourcePush: NSObject {
             return nil
         }
     }
-     
+
     // Initializes the custom video source
     init(delegate: AgoraCameraSourcePushDelegate?, videoView: CustomVideoSourcePreview) {
         self.delegate = delegate
         self.videoView = videoView
-         
+
         captureSession = AVCaptureSession()
         captureSession.usesApplicationAudioSession = false
-         
+
         let captureOutput = AVCaptureVideoDataOutput()
         captureOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange]
         if captureSession.canAddOutput(captureOutput) {
             captureSession.addOutput(captureOutput)
         }
-         
+
         captureQueue = DispatchQueue(label: "MyCaptureQueue")
-         
+
         // Displays the captured video frames on the view
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         videoView.insertCaptureVideoPreviewLayer(previewLayer: previewLayer)
     }
-     
+
     deinit {
         captureSession.stopRunning()
     }
-     
+
     // Starts capturing video frames
     func startCapture(ofCamera camera: Camera) {
         guard let currentOutput = currentOutput else {
             return
         }
-         
+
         // Sets the camera as the capturing device
         currentCamera = camera
         currentOutput.setSampleBufferDelegate(self, queue: captureQueue)
-         
+
         captureQueue.async { [weak self] in
             guard let strongSelf = self else {
                 return
@@ -137,7 +137,7 @@ class AgoraCameraSourcePush: NSObject {
             strongSelf.captureSession.startRunning()
         }
     }
-     
+
     // Stops capturing video frames
     func stopCapture() {
         currentOutput?.setSampleBufferDelegate(nil, queue: nil)
@@ -145,7 +145,7 @@ class AgoraCameraSourcePush: NSObject {
             self?.captureSession.stopRunning()
         }
     }
-     
+
     // Switches the camera
     func switchCamera() {
         stopCapture()
@@ -172,19 +172,19 @@ The Agora SDK does not support rendering video frames captured in the push mode.
 // Swift
 // Initializes localVideo
 var localVideo = CustomVideoSourcePreview(frame: CGRect.zero)
- 
+
 // Defines the CustomVideoSourcePreview class
 class CustomVideoSourcePreview : UIView {
- 
+
     private var previewLayer: AVCaptureVideoPreviewLayer?
     func insertCaptureVideoPreviewLayer(previewLayer: AVCaptureVideoPreviewLayer) {
         self.previewLayer?.removeFromSuperlayer()
- 
+
         previewLayer.frame = bounds
         layer.insertSublayer(previewLayer, below: layer.sublayers?.first)
         self.previewLayer = previewLayer
     }
- 
+
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         previewLayer?.frame = bounds
@@ -200,7 +200,7 @@ In the sample project, we create a `customCamera` instance using the `AgoraCamer
 // Swift
 // Initializes the AgoraCameraSourcePush class and sets the camera as the capturing device
 customCamera = AgoraCameraSourcePush(delegate: self, videoView:localVideo)
- 
+
 // Calls startCapture of the AgoraCameraSourcePush class to start capturing video frames
 customCamera?.startCapture(ofCamera: .defaultCamera())
 ```
@@ -219,11 +219,11 @@ extension CustomVideoSourcePushMain:AgoraCameraSourcePushDelegate
         videoFrame.textureBuf = pixelBuffer
         videoFrame.time = timeStamp
         videoFrame.rotation = Int32(rotation)
-         
+
         // Pushes the captured video frames to the SDK
         agoraKit?.pushExternalVideoFrame(videoFrame)
     }
-      
+
 }
 ```
 
@@ -231,9 +231,9 @@ extension CustomVideoSourcePushMain:AgoraCameraSourcePushDelegate
 
 The Agora SDK provides the following classes in the `mediaIO` interface:
 
-- [`AgoraVideoSourceProtocal`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html): Triggers callbacks that control video capturing.
-- [`AgoraVideoSinkProtocal`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html): Triggers callbacks that control video rendering.
-- [`AgoraVideoFrameConsumer`](./API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html): Stores the captured video frames. In scenarios involving a custom video source, the `AgoraVideoFrameConsumer` class sends the captured video frames to the SDK. In scenarios involving a custom video renderer, the `AgoraVideoFrameConsumer` class sends the captured video frames to the renderer.
+- [`AgoraVideoSourceProtocal`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html): Triggers callbacks that control video capturing.
+- [`AgoraVideoSinkProtocal`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html): Triggers callbacks that control video rendering.
+- [`AgoraVideoFrameConsumer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html): Stores the captured video frames. In scenarios involving a custom video source, the `AgoraVideoFrameConsumer` class sends the captured video frames to the SDK. In scenarios involving a custom video renderer, the `AgoraVideoFrameConsumer` class sends the captured video frames to the renderer.
 
 This section introduces how to implement a custom video source and renderer with the `mediaIO` interface.
 
@@ -247,11 +247,11 @@ The API call sequence for implementing the custom video source is as follows:
 
 Create a customized video source instance with the `AgoraVideoSourceProtocol` class, and set the following callback logics:
 
-- After receiving  [`bufferType`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/bufferType), specify the format of the captured video frames in the return value.
-- After receiving [`shouldInitialize`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldInitialize), initialize the custom video source, for example, by turning on the video capture device. The SDK maintains the AgoraVideoFrameConsumer instance contained in the callback.
-- After receiving [`shouldStart`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStart), send video frames to the SDK using [`consumePixelBuffer`](./API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumePixelBuffer:withTimestamp:rotation:) or [`consumeRawData`](./API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumeRawData:withTimestamp:format:size:rotation:). You can modify the video frame parameters in `AgoraVideoFrameConsumer` according to your app scenario.
-- After receiving [`shouldStop`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStop), stop sending video frames to the SDK.
-- After receiving [`shouldDispose`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldDispose), release the custom video source, for example, by turning off the video capture device.
+- After receiving  [`bufferType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/bufferType), specify the format of the captured video frames in the return value.
+- After receiving [`shouldInitialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldInitialize), initialize the custom video source, for example, by turning on the video capture device. The SDK maintains the AgoraVideoFrameConsumer instance contained in the callback.
+- After receiving [`shouldStart`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStart), send video frames to the SDK using [`consumePixelBuffer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumePixelBuffer:withTimestamp:rotation:) or [`consumeRawData`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumeRawData:withTimestamp:format:size:rotation:). You can modify the video frame parameters in `AgoraVideoFrameConsumer` according to your app scenario.
+- After receiving [`shouldStop`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStop), stop sending video frames to the SDK.
+- After receiving [`shouldDispose`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldDispose), release the custom video source, for example, by turning off the video capture device.
 
 In the sample project, we implement a class called `AgoraCameraSourceMediaIO` based on `AgoraVideoSourceProtocol`, and we manage the video-capturing process with the callbacks contained in `AgoraVideoSourceProtocol`.
 
@@ -259,41 +259,41 @@ In the sample project, we implement a class called `AgoraCameraSourceMediaIO` ba
 // Swift
 // Uses AgoraVideoFrameConsumer to send and store captured video frames
 var consumer: AgoraVideoFrameConsumer?
-  
+
 // Pushes the captured frames to the SDK
 consumer?.consumePixelBuffer(pixelBuffer, withTimestamp: time, rotation: rotation)
-  
+
 extension AgoraCameraSourceMediaIO: AgoraVideoSourceProtocol {
     // Initializes the custom video source after receiving shouldInitialize
     func shouldInitialize() -> Bool {
         return initialize()
     }
-  
+
     // Starts the custom video source after receiving shouldStart
     func shouldStart() {
         startCapture()
     }
-      
+
     // Stops the custom video source after receiving shouldStop
     func shouldStop() {
         stopCapture()
     }
-  
+
     // Releases the AgoraVideoConsumer instance after receiving shouldDispose
     func shouldDispose() {
         dispose()
     }
-  
+
     // Specifies the format of the captured video frames as pixel buffer after receiving bufferType
     func bufferType() -> AgoraVideoBufferType {
         return .pixelBuffer
     }
-  
+
     // Sets the content hint of the captured video frames as default
     func contentHint() -> AgoraVideoContentHint {
         return .none
     }
-  
+
     // Sets the capture type as camera after receiving captureType
     func captureType() -> AgoraVideoCaptureType {
         return .camera
@@ -317,19 +317,19 @@ private extension AgoraCameraSourceMediaIO {
         if captureSession.canAddOutput(captureOutput) {
             captureSession.addOutput(captureOutput)
         }
-          
+
         self.captureSession = captureSession
         captureQueue = DispatchQueue(label: "Agora-Custom-Video-Capture-Queue")
-          
+
         return true
     }
-      
+
     // Starts capturing video frames
     func startCapture() {
         guard let currentOutput = currentOutput, let captureQueue = captureQueue else {
             return
         }
-          
+
         currentOutput.setSampleBufferDelegate(self, queue: captureQueue)
         captureQueue.async { [weak self] in
             guard let strongSelf = self, let captureSession = strongSelf.captureSession else {
@@ -344,7 +344,7 @@ private extension AgoraCameraSourceMediaIO {
             captureSession.startRunning()
         }
     }
-      
+
     // Stops capturing video frames
     func stopCapture() {
         currentOutput?.setSampleBufferDelegate(nil, queue: nil)
@@ -352,7 +352,7 @@ private extension AgoraCameraSourceMediaIO {
             self?.captureSession?.stopRunning()
         }
     }
-      
+
     func dispose() {
         captureQueue = nil
         captureSession = nil
@@ -362,13 +362,13 @@ private extension AgoraCameraSourceMediaIO {
 
 **3. Call setVideoSource to set the custom video source**
 
-Call [`setVideoSource`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoSource:) of the Agora SDK. Once `setVideoSource` is implemented, the `shouldStart` callback triggers the customized video capturing and calls `consumePixelBuffer` to send the captured frames to the SDK. After the SDK receives the captured video frames, you can call `startPreview` or `setupLocalVideo` to render the video frames.
+Call [`setVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoSource:) of the Agora SDK. Once `setVideoSource` is implemented, the `shouldStart` callback triggers the customized video capturing and calls `consumePixelBuffer` to send the captured frames to the SDK. After the SDK receives the captured video frames, you can call `startPreview` or `setupLocalVideo` to render the video frames.
 
 ```swift
 // Swift
 // Assigns AgoraCameraSourceMediaIO to customCamera
 fileprivate let customCamera = AgoraCameraSourceMediaIO()
-  
+
 // Calls setVideoSource and passes customCamera to the SDK
 agoraKit.setVideoSource(customCamera)
 ```
@@ -383,50 +383,50 @@ The API call sequence for implementing the custom video renderer is as follows:
 
 Implement `AgoraVideoSinkProtocol` and `AgoraVideoFrameConsumer`, and set the following callback logics:
 
-- After receiving [`bufferType`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/bufferType) and [`pixelFormat`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/pixelFormat), specify the format of rendered video frames in the return value.
-- Control the video rendering process with the [`shouldInitialize`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldInitialize), [`shouldStart`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStart), [`shouldStop`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStop), and [`shouldDispose`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldDispose) callbacks.
-- The SDK triggers [`renderPixelBuffer`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderPixelBuffer:rotation:) or [`renderRawData`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderRawData:size:rotation:) according to the video-frames format that you set in `bufferType` or `pixelFormat`.
+- After receiving [`bufferType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/bufferType) and [`pixelFormat`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/pixelFormat), specify the format of rendered video frames in the return value.
+- Control the video rendering process with the [`shouldInitialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldInitialize), [`shouldStart`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStart), [`shouldStop`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStop), and [`shouldDispose`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldDispose) callbacks.
+- The SDK triggers [`renderPixelBuffer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderPixelBuffer:rotation:) or [`renderRawData`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderRawData:size:rotation:) according to the video-frames format that you set in `bufferType` or `pixelFormat`.
 
 In the sample project, we implement a class called `AgoraMetalRender` based on `AgoraVideoSinkProtocol`, and we control the video-rendering process with the callbacks in `AgoraVideoSinkProtocol`.
 
 ```swift
 // Swift
 extension AgoraMetalRender: AgoraVideoSinkProtocol {
-  
+
     // Initializes the custom video renderer after receiving shouldInitialize
     func shouldInitialize() -> Bool {
         initializeRenderPipelineState()
         return true
     }
-      
+
     // Starts rendering video frames after receiving shouldStart
     func shouldStart() {
     #if os(iOS) && (!arch(i386) && !arch(x86_64))
         metalView.delegate = self
     #endif
     }
-      
+
     // Stops rendering video frames after receiving shouldStop
     func shouldStop() {
     #if os(iOS) && (!arch(i386) && !arch(x86_64))
         metalView.delegate = nil
     #endif
     }
-      
+
     func shouldDispose() {
         textures = nil
     }
-      
+
     // Specifies the format of video frames to be rendered as pixel buffer
     func bufferType() -> AgoraVideoBufferType {
         return .pixelBuffer
     }
-      
+
     // Sets the pixel format as NV12 after receiving pixelFormat
     func pixelFormat() -> AgoraVideoPixelFormat {
         return .NV12
     }
-      
+
     // Calls renderPixelBuffer to render the video frames
     func renderPixelBuffer(_ pixelBuffer: CVPixelBuffer, rotation: AgoraVideoRotation) {
     #if os(iOS) || (os(macOS)) && (!arch(i386) && !arch(x86_64))
@@ -436,12 +436,12 @@ extension AgoraMetalRender: AgoraVideoSinkProtocol {
         defer {
             CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
         }
-          
+
         let isPlanar = CVPixelBufferIsPlanar(pixelBuffer)
         let width = isPlanar ? CVPixelBufferGetWidthOfPlane(pixelBuffer, 0) : CVPixelBufferGetWidth(pixelBuffer)
         let height = isPlanar ? CVPixelBufferGetHeightOfPlane(pixelBuffer, 0) : CVPixelBufferGetHeight(pixelBuffer)
         let size = CGSize(width: width, height: height)
-          
+
         let mirror = mirrorDataSource?.renderViewShouldMirror(renderView: self) ?? false
         if let renderedCoordinates = rotation.renderedCoordinates(mirror: mirror,
                                                                   videoSize: size,
@@ -449,7 +449,7 @@ extension AgoraMetalRender: AgoraVideoSinkProtocol {
             let byteLength = 4 * MemoryLayout.size(ofValue: renderedCoordinates[0])
             vertexBuffer = device?.makeBuffer(bytes: renderedCoordinates, length: byteLength, options: [])
         }
-          
+
         if let yTexture = texture(pixelBuffer: pixelBuffer, textureCache: textureCache, planeIndex: 0, pixelFormat: .r8Unorm),
             let uvTexture = texture(pixelBuffer: pixelBuffer, textureCache: textureCache, planeIndex: 1, pixelFormat: .rg8Unorm) {
             self.textures = [yTexture, uvTexture]
@@ -461,7 +461,7 @@ extension AgoraMetalRender: AgoraVideoSinkProtocol {
 
 **2. Call setLocalVideoRenderer to set the custom video renderer**
 
-Call [`setLocalVideoRenderer`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVideoRenderer:) of the SDK to display the video in the local view.
+Call [`setLocalVideoRenderer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVideoRenderer:) of the SDK to display the video in the local view.
 
 ```swift
 // Swift
@@ -477,7 +477,7 @@ if let customRender = localVideo.videoView {
 	- When customizing the video source, you need to capture and process the video frames on your own.
 	- When customizing the video sink, you need to process and render the video frames on your own.
 - In scenarios involving the custom video renderer, the rotation parameter of the video frames in `renderPixelBuffer` or `renderRawData` may not be 0. This is probably due to the settings of video capturing, and you need to process the rotation information yourself.
-- When you use MediaIO to capture CVPixelBuffer in the BGRA format on iOS, ensure that your video renderer is adapted to the BGRA format if the video is rendered by your custom video renderer instead of the SDK; otherwise, a black screen or screen flickering can occur. 
+- When you use MediaIO to capture CVPixelBuffer in the BGRA format on iOS, ensure that your video renderer is adapted to the BGRA format if the video is rendered by your custom video renderer instead of the SDK; otherwise, a black screen or screen flickering can occur.
 
 </PlatformWrapper>
 </PlatformWrapper>

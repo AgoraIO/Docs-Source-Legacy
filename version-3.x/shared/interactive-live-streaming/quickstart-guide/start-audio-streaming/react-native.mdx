@@ -61,7 +61,7 @@ If your target platform is Android, your development environment must meet the f
 
 A valid Agora [account](/en/Agora%20Platform/sign_in_and_sign_up?platform=All%20Platforms).
 
-<div class="alert note">If your network has a firewall, follow the instructions in <a href="/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a> to access Agora's services.</div>
+<div class="alert note">If your network has a firewall, follow the instructions in <a href="../reference/firewall">Firewall Requirements</a> to access Agora's services.</div>
 
 
 ## Create a React Native project
@@ -267,15 +267,15 @@ In Xcode, open the `info.plist` file. Add the following contents to add permissi
 
 When creating an App component, you need to define your App ID, token, and channel name, which will be used for initializing the `RtcEngine` object and joining the channel. Ensure the App ID and channel name are the same as the App ID and channel name used for generating the token.
 
-- `appId`：The App ID of your Agora project. See [Get an App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id) for details.
+- `appId`：The App ID of your Agora project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id) for details.
 
 - `channelName`：The unique channel name for the AgoraRTC session. Users with the same App ID and channel name can join the same channel.
 
 - `token`：Pass a token that identifies the role and privilege of the user. The token must be generated using the preceding App ID and channel name.  You can set it to one of the following values:
 
-  - A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#generate-an-rtc-temporary-token).
+  - A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](../reference/manage-agora-account#generate-an-rtc-temporary-token).
 
-  - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](token_server).
+  - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server).
 
  <div class="alert note">If your project has enabled the app certificate, ensure that you provide a token.</div>
 

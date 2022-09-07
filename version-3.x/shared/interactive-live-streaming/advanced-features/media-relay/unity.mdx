@@ -13,7 +13,7 @@ Co-hosting across channels applies to scenarios such as an online singing contes
 
 <div class="alert note">To enable channel media relay, contact <a href="mailto:support@agora.io">support@agora.io</a>.</div>
 
-Before relaying media streams across channels, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start Live Interactive Streaming](start_live_unity).
+Before relaying media streams across channels, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming).
 
 The Agora Unity SDK support co-hosting across channels with the following methods:
 
@@ -43,9 +43,9 @@ Follow the API call sequence to implement your code logic:
 
 Starts the channel media relay:
 
-```c#
+```csharp
 // Note that srcToken is different from the token used for joining the source channel. You need to generate srcToken with the source channel name and a uid of 0.
-ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);   
+ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);
 ChannelMediaInfo destChannelInfo = new ChannelMediaInfo(destChannelName, destToken, destUid);
 ChannelMediaRelayConfiguration mediaRelayConfiguration = new ChannelMediaRelayConfiguration();
 // Sets the source channel information.
@@ -57,8 +57,8 @@ mRtcEngine.StartChannelMediaRelay(mediaRelayConfiguration);
 
 Adds or deletes the media relay channels:
 
-```c#
-ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);   
+```csharp
+ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(srcChannelName, srcToken, workerSrcUid);
 ChannelMediaInfo destChannelInfo = new ChannelMediaInfo(destChannelName, destToken, destUid);
 ChannelMediaRelayConfiguration mediaRelayConfiguration = new ChannelMediaRelayConfiguration();
 // Sets the source channel information.
@@ -72,11 +72,11 @@ mRtcEngine.UpdateChannelMediaRelay(mediaRelayConfiguration);
 
 ### API reference
 
-- [`StartChannelMediaRelay`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a16d12d6d67882c9689220d48116c6327)
-- [`UpdateChannelMediaRelay`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a8dd41b43195f309d9d1d9f20e70f3482)
-- [`StopChannelMediaRelay`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6cdbbb3bfc698f9b85147904209255c)
-- [`OnChannelMediaRelayStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a3ea70770219197c5ba562d5c3333cbbc)
-- [`OnChannelMediaRelayEventHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aff4b411469723353639319e9811edcff)
+- [`StartChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a16d12d6d67882c9689220d48116c6327)
+- [`UpdateChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a8dd41b43195f309d9d1d9f20e70f3482)
+- [`StopChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6cdbbb3bfc698f9b85147904209255c)
+- [`OnChannelMediaRelayStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a3ea70770219197c5ba562d5c3333cbbc)
+- [`OnChannelMediaRelayEventHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#aff4b411469723353639319e9811edcff)
 
 ## Considerations
 

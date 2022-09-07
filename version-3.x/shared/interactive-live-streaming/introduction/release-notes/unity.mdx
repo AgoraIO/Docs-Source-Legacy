@@ -45,7 +45,7 @@ This release fixed the following issues:
 
 v3.7.0.1 was released on May 23, 2022.
 
-This release deletes the `usesClearTextTraffic` parameter for the purpose of security compliance. If you want to play an HTTP online music file, ensure that you set this parameter in the project AndroidManifest.xml file. For details, see [StartAudioMixing](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html?transId=037350e0-d666-11ec-8e95-1b7dfd4b7cb0#a37642f8384220a6494232d90e1fbd8c3).
+This release deletes the `usesClearTextTraffic` parameter for the purpose of security compliance. If you want to play an HTTP online music file, ensure that you set this parameter in the project AndroidManifest.xml file. For details, see [StartAudioMixing](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html?transId=037350e0-d666-11ec-8e95-1b7dfd4b7cb0#a37642f8384220a6494232d90e1fbd8c3).
 
 ## v3.7.0
 
@@ -84,7 +84,7 @@ When calling `EnableLoopbackRecording` for the loopback audio capture, developer
 
 To improve the loopback audio capture experience, Agora has developed its own virtual sound card: AgoraALD (Agora Audio Loopback Device). You can replace your current virtual sound card with AgoraALD using the following steps:
 
-1. Install AgoraALD. See [AgoraALD Virtual Sound Card](https://docs.agora.io/en/Interactive%20Broadcast/agoraald?platform=macOS).
+1. Install AgoraALD. See <Link to="../advanced-features/virtual-sound-card?platform=macos">AgoraALD Virtual Sound Card</Link>.
 2. Change the value of `deviceName` in the `EnableLoopbackRecording` method to `"AgoraALD"`.
 
 **Spatial audio effect**
@@ -184,7 +184,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `GetAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](./faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/Interactive%20Broadcast/faq/audio_format).
 
 **Audio file formats (iOS/macOS)**
 
@@ -284,7 +284,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `UpdateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `SetLiveTranscoding`.
 - `StopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `RemovePublishStreamUrl`.
 
-<div class="alert info"> This release deprecates three old methods for CDN live streaming: <code>AddPublishStreamUrl</code>, <code>SetLiveTranscoding</code>, and <code>RemovePublishStreamUrl</code>. Agora recommends that you use the new methods for CDN live streaming and update your code logic by referring to <a href="https://docs-preprod.agora.io/en/Video/cdn_streaming_windows?platform=Unity">Media Push</a>. </div>
+<div class="alert info"> This release deprecates three old methods for CDN live streaming: <code>AddPublishStreamUrl</code>, <code>SetLiveTranscoding</code>, and <code>RemovePublishStreamUrl</code>. Agora recommends that you use the new methods for CDN live streaming and update your code logic by referring to <a href="../advanced-features/media-push">Media Push</a>. </div>
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -297,7 +297,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
     - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the CDN live streaming function. Check your application code logic.
     - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `UpdateRtmpTranscoding` or `SetLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
     - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-    - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the CDN live streaming function. Refer to [Prerequisites](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_windows?platform=Unity#prerequisites) to enable the CDN live streaming permission.
+    - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the CDN live streaming function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the CDN live streaming permission.
 
   - Adding the following to the `RTMP_STREAMING_EVENT` event code:
 
@@ -595,61 +595,61 @@ This release fixed the following issues:
 
 **Added**
 
-- `blur_degree` and `BACKGROUND_BLUR_DEGREE` in [`VirtualBackgroundSource`](./API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_virtual_background_source.html)
-- `BACKGROUND_BLUR` in [`BACKGROUND_SOURCE_TYPE`](./API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_virtual_background_source.html#acc50460b6a0de5f4d2878440f3d06513)
-- [`PushAudioFrame`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#aa791dd3de749a2a2e144e5e28d0b4170)
-- [`SetExternalAudioSourceVolume`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a07bb1b1736107af4b4cdb2523f093e17)
-- [`SetAudioMixingPlaybackSpeed`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab09032a08860ae8a3fc2cc390c353320)
-- [`GetAudioTrackCount`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a36fd324b786827c3dfcc7dd4c84026ca)
-- [`SelectAudioTrack`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab7394e0ee051280637c89c432dc03679)
-- [`SetAudioMixingDualMonoMode`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a79e893c724bc60d3a01d022a69983704)
-- [`PauseAllChannelMediaRelay`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a652e58225c2d13e4f9b3c61e43963a9b)
-- [`ResumeAllChannelMediaRelay`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6dd13ac6cd8e77652ee6b6b74be5e8a)
-- The following enumerators in [`CHANNEL_MEDIA_RELAY_EVENT`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a02d1e8579142814739af24c65f320d6e):
+- `blur_degree` and `BACKGROUND_BLUR_DEGREE` in [`VirtualBackgroundSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_virtual_background_source.html)
+- `BACKGROUND_BLUR` in [`BACKGROUND_SOURCE_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_virtual_background_source.html#acc50460b6a0de5f4d2878440f3d06513)
+- [`PushAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#aa791dd3de749a2a2e144e5e28d0b4170)
+- [`SetExternalAudioSourceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a07bb1b1736107af4b4cdb2523f093e17)
+- [`SetAudioMixingPlaybackSpeed`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab09032a08860ae8a3fc2cc390c353320)
+- [`GetAudioTrackCount`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a36fd324b786827c3dfcc7dd4c84026ca)
+- [`SelectAudioTrack`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab7394e0ee051280637c89c432dc03679)
+- [`SetAudioMixingDualMonoMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a79e893c724bc60d3a01d022a69983704)
+- [`PauseAllChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a652e58225c2d13e4f9b3c61e43963a9b)
+- [`ResumeAllChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ae6dd13ac6cd8e77652ee6b6b74be5e8a)
+- The following enumerators in [`CHANNEL_MEDIA_RELAY_EVENT`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a02d1e8579142814739af24c65f320d6e):
   - `RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS(12)`
   - `RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED(13)`
   - `RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS(14)`
   - `RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED(15)`
-- [`GetAudioFileInfo`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a6f9438df3f15a0052cc282d42681a655)
-- [`OnRequestAudioFileInfoHandler`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a0090cc1f5259b022105d3bb3cea84337)
-- `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID(9)` and `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID(10)` in [`LOCAL_AUDIO_STREAM_ERROR`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a635752ff6077fa96e730f513668a0c04)
--  `NETWORK_TYPE_MOBILE_5G(6)` in [`NETWORK_TYPE`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#ad2817b616c08cb15a3505caa75e413b1) 
-- [`StartEchoTest`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a3eed33e686179e037e3cd43c9f597667) [3/3]
-- [`StartScreenCaptureByDisplayId`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9fa9dd48fc3ecf616d39f6fdf00000c2)
-- [`GetScreenCaptureManager`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#aacfde52a4f48e9634083ebcc9560e416)
-- [`GetMediaRecorder`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac3202f06fb134e2e1ed56017fcab2595)
+- [`GetAudioFileInfo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a6f9438df3f15a0052cc282d42681a655)
+- [`OnRequestAudioFileInfoHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a0090cc1f5259b022105d3bb3cea84337)
+- `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID(9)` and `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID(10)` in [`LOCAL_AUDIO_STREAM_ERROR`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a635752ff6077fa96e730f513668a0c04)
+-  `NETWORK_TYPE_MOBILE_5G(6)` in [`NETWORK_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#ad2817b616c08cb15a3505caa75e413b1) 
+- [`StartEchoTest`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a3eed33e686179e037e3cd43c9f597667) [3/3]
+- [`StartScreenCaptureByDisplayId`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9fa9dd48fc3ecf616d39f6fdf00000c2)
+- [`GetScreenCaptureManager`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#aacfde52a4f48e9634083ebcc9560e416)
+- [`GetMediaRecorder`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac3202f06fb134e2e1ed56017fcab2595)
 - [`OnRecorderStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_media_recorder.html?platform=Unity#a35df18677b5416409408eb44bca91993)
-- [`OnRecorderInfoUpdatedHandler`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#ac330fa8083acd46b38343c4da7cd413a)
-- [`StartRecording`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#a7bb3a157427c33f111eb7d5c013cca20)
-- [`StopRecording`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#ade0ca8f80b2ebbc738b683c0cae4b128)
-- [`initMediaRecorderObserver`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#a99e85b49decec8b820298e6700093b84)
-- [`TakeSnapshot`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a4bc1f1ab66339e36e43f8edc4fef7a78)
-- [`OnSnapshotTakenHandler`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a7b23f3773fbf3167fe051b846e490219)
-- The following enumerators in [`LOCAL_VIDEO_STREAM_ERROR`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a66baa891d5de1a2d43341b5460b2f059)：
+- [`OnRecorderInfoUpdatedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#ac330fa8083acd46b38343c4da7cd413a)
+- [`StartRecording`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#a7bb3a157427c33f111eb7d5c013cca20)
+- [`StopRecording`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#ade0ca8f80b2ebbc738b683c0cae4b128)
+- [`initMediaRecorderObserver`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#a99e85b49decec8b820298e6700093b84)
+- [`TakeSnapshot`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a4bc1f1ab66339e36e43f8edc4fef7a78)
+- [`OnSnapshotTakenHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a7b23f3773fbf3167fe051b846e490219)
+- The following enumerators in [`LOCAL_VIDEO_STREAM_ERROR`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a66baa891d5de1a2d43341b5460b2f059)：
   - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID(10)`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED(13)`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED(20)`
-- [`StartRtmpStreamWithoutTranscoding`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2f0994dbc3b1bb8e23853ffdb67d0dd9)
-- [`StartRtmpStreamWithTranscoding`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a34fbe006d84d0542e652a49492711900)
-- [`UpdateRtmpTranscoding`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2454acc0080f36a32c98a41d3c7f08ae)
-- [`StopRtmpStream`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a4a48fd2558f15a25e0845e57f08dc7f3)
-- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in  [`RTMP_STREAM_PUBLISH_STATE`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a2132250fb5d8c8e0f3e52bf15449f2ff) 
-- The following enumerators in [`RTMP_STREAM_PUBLISH_ERROR_TYPE`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#acf64f163b1768d834ce6b8cbabcf235d):
+- [`StartRtmpStreamWithoutTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2f0994dbc3b1bb8e23853ffdb67d0dd9)
+- [`StartRtmpStreamWithTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a34fbe006d84d0542e652a49492711900)
+- [`UpdateRtmpTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2454acc0080f36a32c98a41d3c7f08ae)
+- [`StopRtmpStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a4a48fd2558f15a25e0845e57f08dc7f3)
+- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in  [`RTMP_STREAM_PUBLISH_STATE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a2132250fb5d8c8e0f3e52bf15449f2ff) 
+- The following enumerators in [`RTMP_STREAM_PUBLISH_ERROR_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#acf64f163b1768d834ce6b8cbabcf235d):
   - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`
   - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`
   - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`
   - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`
-- The following enumerators in[`RTMP_STREAMING_EVENT`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a1161b5f270933ebd660b9c29848161aa):
+- The following enumerators in[`RTMP_STREAMING_EVENT`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#a1161b5f270933ebd660b9c29848161aa):
   - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`
   - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`
-- `watermarkCount` and `backgroundImageCount` in [`LiveTranscoding`](./API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_live_transcoding.html) 
-- `zOrder` and `alpha` in [`RtcImage`](./API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_rtc_image.html) 
-- `AUDIO_CODEC_PROFILE_HE_AAC_V2(2)` in  [`AUDIO_CODEC_PROFILE_TYPE`](./API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#ac158d8109203b32bfe60cbadf37dfe80) 
-- [`GetAudioRecordingDefaultDevice`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#a817e38006202b733f8608765d7353a7d)
-- [`GetAudioPlaybackDefaultDevice`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#ad91f0d3230c10042498bfecdbbe9a7c5)
-- [`FollowSystemPlaybackDevice`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#a2884fba3f5506bfc6658c431b3a75111)
-- [`FollowSystemRecordingDevice`](./API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#a52fe58871ce03f0893e19173fa77baaa)
--  `sharpnessLevel` in [`BeautyOptions`](./API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_beauty_options.html)
+- `watermarkCount` and `backgroundImageCount` in [`LiveTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_live_transcoding.html) 
+- `zOrder` and `alpha` in [`RtcImage`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_rtc_image.html) 
+- `AUDIO_CODEC_PROFILE_HE_AAC_V2(2)` in  [`AUDIO_CODEC_PROFILE_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/namespaceagora__gaming__rtc.html#ac158d8109203b32bfe60cbadf37dfe80) 
+- [`GetAudioRecordingDefaultDevice`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#a817e38006202b733f8608765d7353a7d)
+- [`GetAudioPlaybackDefaultDevice`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#ad91f0d3230c10042498bfecdbbe9a7c5)
+- [`FollowSystemPlaybackDevice`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#a2884fba3f5506bfc6658c431b3a75111)
+- [`FollowSystemRecordingDevice`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#a52fe58871ce03f0893e19173fa77baaa)
+-  `sharpnessLevel` in [`BeautyOptions`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.6.1.1/structagora__gaming__rtc_1_1_beauty_options.html)
 
 **Modified**
 
@@ -677,7 +677,7 @@ On Android, to improve user experience, this release improves the following SDK 
   - With versions earlier than v3.5.0.3, the SDK cannot set the audio route as the earpiece.
   - With v3.5.0.3 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
 
-  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="./faq/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
+  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
 
 - If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
   - With versions earlier than v3.5.0.3, the SDK does not play audio through any audio route, which causes a no-audio issue.
@@ -700,7 +700,7 @@ The following improvements have been made to the quality of captured and receive
 
 - On Android and iOS, this release adds the `EnableVirtualBackground` method, with which you can enable and set a virtual background for users as either a solid color or an image in PNG or JPG format. You can use the `OnVirtualBackgroundEnabledHandler` callback to learn whether the virtual background is successfully enabled or the reason for an error.
 
-  <div class="alert info">Before you use virtual backgrounds, ensure that the relevant dynamic library is integrated and that the device performance and user scenarios meet the requirements. See <a href="./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392"> EnableVirtualBackground documentation </a>.</div>
+  <div class="alert info">Before you use virtual backgrounds, ensure that the relevant dynamic library is integrated and that the device performance and user scenarios meet the requirements. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392"> EnableVirtualBackground documentation </a>.</div>
 
 **3. Additional improvements**
 
@@ -730,8 +730,8 @@ This release fixed the following issues：
 
 **Modified**
 
-- [`SetEnableSpeakerphone`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aa8ef8504581b10975ceb2dc86c133481)
-- [`SetDefaultAudioRouteToSpeakerphone`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a7ed850ab08664fb9b847ac9416e7fec5)
+- [`SetEnableSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aa8ef8504581b10975ceb2dc86c133481)
+- [`SetDefaultAudioRouteToSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a7ed850ab08664fb9b847ac9416e7fec5)
 
 ## v3.4.6
 
@@ -856,21 +856,21 @@ This release fixed the following issues:
 
 **Added**
 
-- [`EnableVirtualBackground`](./API%20Reference/unity/v3.4.5/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392)
-- [`OnVirtualBackgroundSourceEnabledHandler`](./API%20Reference/unity/v3.4.5/namespaceagora__gaming__rtc.html#a2b90fcf68a2901aa1ba7184e6cac1d53)
-- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](./API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#adf0b94807c88344092613487b0dfa0c9) 
-- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](./API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#a1161b5f270933ebd660b9c29848161aa) 
-- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a94f249e19d1de6e0a6ac2348ace088fb) 
--  [`encryptionKdfSalt`](./API%20Reference/unity/v3.4.5/structagora__gaming__rtc_1_1_encryption_config.html#ae88de9e9ef42b206d9de307d2f4bc47a) in [`EncryptionConfig`](./API%20Reference/unity/structagora__gaming__rtc_1_1_encryption_config.html) 
-- [`MuteLocalAudioStream`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a6260eac33b6624824872a7140a229ef3) and  [`MuteLocalVideoStream`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a80cd4eaa589f66059912eee08ed8b20a) in `IRtcEngine`
-- [`publishLocalAudio`](./API%20Reference/unity/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#ae7cf13e792f38e45ed5a1a35f8c948c7) and [`publishLocalVideo`](./API%20Reference/unity/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#a4daaa2d2546779e80784f2bfc3728825) in [`ChannelMediaOptions`](./API%20Reference/unity/structagora__gaming__rtc_1_1_channel_media_options.html) 
-- `MEDIA_DEVICE_STATE_IDLE (0)` in [`MEDIA_DEVICE_STATE_TYPE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#ad862a26da27e398f045eb4a95bcfa530)
+- [`EnableVirtualBackground`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.4.5/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392)
+- [`OnVirtualBackgroundSourceEnabledHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.4.5/namespaceagora__gaming__rtc.html#a2b90fcf68a2901aa1ba7184e6cac1d53)
+- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#adf0b94807c88344092613487b0dfa0c9) 
+- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#a1161b5f270933ebd660b9c29848161aa) 
+- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a94f249e19d1de6e0a6ac2348ace088fb) 
+-  [`encryptionKdfSalt`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/v3.4.5/structagora__gaming__rtc_1_1_encryption_config.html#ae88de9e9ef42b206d9de307d2f4bc47a) in [`EncryptionConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_encryption_config.html) 
+- [`MuteLocalAudioStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a6260eac33b6624824872a7140a229ef3) and  [`MuteLocalVideoStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a80cd4eaa589f66059912eee08ed8b20a) in `IRtcEngine`
+- [`publishLocalAudio`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#ae7cf13e792f38e45ed5a1a35f8c948c7) and [`publishLocalVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#a4daaa2d2546779e80784f2bfc3728825) in [`ChannelMediaOptions`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_channel_media_options.html) 
+- `MEDIA_DEVICE_STATE_IDLE (0)` in [`MEDIA_DEVICE_STATE_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#ad862a26da27e398f045eb4a95bcfa530)
 
 
 
 **Modified**
 
-- [`MEDIA_DEVICE_STATE_TYPE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#ad862a26da27e398f045eb4a95bcfa530)
+- [`MEDIA_DEVICE_STATE_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html?platform=Unity#ad862a26da27e398f045eb4a95bcfa530)
 
 **Deprecated**
 
@@ -993,21 +993,21 @@ This release fixed the following issues:
 
 **Added**
 
-- [`AdjustLoopbackRecordingSignalVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2b44e09cccfed942c6df06551d3aca29)
-- [`GetAudioMixingDuration`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a581955d6b97a81c7edf2b9aea88cfcb2) [2/2]
-- [`StartAudioRecording`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a3fde78b23f4f36610c15d22f9392f2ca) [3/3]
-- [`GetEffectDuration`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a9dbc262a96b256b3fcc04c510cc8666a)
-- [`SetEffectPosition`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a89bf6f0ae950354545dc94f94609b753)
-- [`GetEffectCurrentPosition`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a415b3e9805bbf513039ed7ef48c74bd8)
-- [`PlayEffect`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a221f53a8c7c857c1b94133f481a9c3d4) [2/2]
-- [`StartAudioMixing`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a37642f8384220a6494232d90e1fbd8c3) [2/2]
-- `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND(8)` in [`LOCAL_VIDEO_STREAM_ERROR`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a66baa891d5de1a2d43341b5460b2f059)
-- `LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE(6)` and `LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE(7)` in [`LOCAL_AUDIO_STREAM_ERROR`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a635752ff6077fa96e730f513668a0c04)
+- [`AdjustLoopbackRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2b44e09cccfed942c6df06551d3aca29)
+- [`GetAudioMixingDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a581955d6b97a81c7edf2b9aea88cfcb2) [2/2]
+- [`StartAudioRecording`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a3fde78b23f4f36610c15d22f9392f2ca) [3/3]
+- [`GetEffectDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a9dbc262a96b256b3fcc04c510cc8666a)
+- [`SetEffectPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a89bf6f0ae950354545dc94f94609b753)
+- [`GetEffectCurrentPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a415b3e9805bbf513039ed7ef48c74bd8)
+- [`PlayEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_audio_effect_manager_impl.html#a221f53a8c7c857c1b94133f481a9c3d4) [2/2]
+- [`StartAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a37642f8384220a6494232d90e1fbd8c3) [2/2]
+- `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND(8)` in [`LOCAL_VIDEO_STREAM_ERROR`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a66baa891d5de1a2d43341b5460b2f059)
+- `LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE(6)` and `LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE(7)` in [`LOCAL_AUDIO_STREAM_ERROR`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a635752ff6077fa96e730f513668a0c04)
 - Error code: `-160`
 
 **Modified**
 
-- [`OnAudioMixingStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a41f42633cf2053de2dc6b4dd0a085a1f)
+- [`OnAudioMixingStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a41f42633cf2053de2dc6b4dd0a085a1f)
 
 **Deprecated**
 
@@ -1128,20 +1128,20 @@ This release fixed the following issues:
 
 **Added**
 
-- [`SetVoiceConversionPreset`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aee2fb5664266783a9ff855b4ef81e1b6)
-- `AES_128_GCM` and `AES_256_GCM` in [`ENCRYPTION_MODE`](./API%20Reference/unity/structagora__gaming__rtc_1_1_encryption_config.html)
-- [`SetVoiceBeautifierParameters`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#acb6c5d42ea4e14b0f2e7bc8f27bc2def)
-- `SINGING_BEAUTIFIER` in [`VOICE_BEAUTIFIER_PRESET`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a95376eca24c67a6c2bee9d0ca2b2e7d6)
-- [`EnableDeepLearningDenoise`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a401707e8917f9af84c3a77e77f0160e5)
-- [`JoinChannel`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ad64ca959b93b2678df44777ad20e2072)2
-- [`SwitchChannel`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a44cde739692d5a4326b918d631170be9)2
-- [`CreateDataStream`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2779954830d051179e574e1c744fb411)
-- `logConfig` in [`RtcEngineConfig`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_engine_config.html)
-- `qoeQuality`, `qualityChangedReason` and `mosValue` in [`RemoteAudioStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html)
-- [`SetCloudProxy`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ad354f9ec01a0985f76f82cae1fafee5e)
-- `captureBrightnessLevel` in [`LocalVideoStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_local_video_stats.html)
-- `captureWidth` and `captureHeight` in [`CameraCapturerConfiguration`](./API%20Reference/unity/structagora__gaming__rtc_1_1_camera_capturer_configuration.html)
-- `CAPTURER_OUTPUT_PREFERENCE_MANUAL(3)` in [`CAPTURER_OUTPUT_PREFERENCE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a6642195eed7dc4bd5457f41992bf0e36)
+- [`SetVoiceConversionPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aee2fb5664266783a9ff855b4ef81e1b6)
+- `AES_128_GCM` and `AES_256_GCM` in [`ENCRYPTION_MODE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_encryption_config.html)
+- [`SetVoiceBeautifierParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#acb6c5d42ea4e14b0f2e7bc8f27bc2def)
+- `SINGING_BEAUTIFIER` in [`VOICE_BEAUTIFIER_PRESET`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a95376eca24c67a6c2bee9d0ca2b2e7d6)
+- [`EnableDeepLearningDenoise`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a401707e8917f9af84c3a77e77f0160e5)
+- [`JoinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ad64ca959b93b2678df44777ad20e2072)2
+- [`SwitchChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a44cde739692d5a4326b918d631170be9)2
+- [`CreateDataStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2779954830d051179e574e1c744fb411)
+- `logConfig` in [`RtcEngineConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_engine_config.html)
+- `qoeQuality`, `qualityChangedReason` and `mosValue` in [`RemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html)
+- [`SetCloudProxy`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ad354f9ec01a0985f76f82cae1fafee5e)
+- `captureBrightnessLevel` in [`LocalVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_local_video_stats.html)
+- `captureWidth` and `captureHeight` in [`CameraCapturerConfiguration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_camera_capturer_configuration.html)
+- `CAPTURER_OUTPUT_PREFERENCE_MANUAL(3)` in [`CAPTURER_OUTPUT_PREFERENCE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a6642195eed7dc4bd5457f41992bf0e36)
 - Error code: `ERR_MODULE_NOT_FOUND(157)`
 
 **Deprecated**
@@ -1177,7 +1177,7 @@ See the added files for each platform as follows:
 | macOS     | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li><li>`Agoraffmpeg.framework`</li> |
 | Windows | <li>`libagora-fdkaac.dll`</li><li>`libagora-mpg123.dll`</li><li>`libagora-soundtouch.dll`</li><li>`libagora-ffmpeg.dll`</li> |
 
-If you upgrade the SDK to v3.2.1, ensure that you have added the above files in your project according to [Quickstart Guide](https://docs.agora.io/en/Interactive%20Broadcast/start_live_unity?platform=Unity#integrate-the-sdk).
+If you upgrade the SDK to v3.2.1, ensure that you have added the above files in your project according to [Quickstart Guide](../quickstart-guide/start-video-streaming#integrate-the-sdk).
 
 **2. Cloud proxy**
 
@@ -1341,23 +1341,23 @@ This release fixed the following issues:
 
 **Added**
 
-- [`SetClientRole`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9a31f9b8e45c6528d6f56914619de314)
-- [`SetAudioEffectPreset`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a4bbf600b51a400fe6ab261a95e47bad6)
-- [`SetVoiceBeautifierPreset`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab4953c6ce75adc42a13297af41676d9a)
-- [`SetAudioEffectParameters`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9ccf7abdd5f7b4bc0e7f0a7807e34390)
-- [`EnableEncryption`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a54214baf0b421161990eded9c7401976)
-- [`OnAudioPublishStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aabfff11675d45572de8eb5f28d80ac33)
-- [`OnVideoPublishStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#acbe99ccc22853645819110b5cf311142)
-- [`OnAudioSubscribeStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aa0283db27464a1cc827515853db924c5)
-- [`OnVideoSubscribeStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aae17c7a5b5eee64af5402f9f93a5616f)
-- [`OnFirstLocalAudioFramePublishedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a2be635d5257a7673102e0e0e62c73793)
-- [`OnFirstLocalVideoFramePublishedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#abc5c6cb1cfb6e7340fc10dc554d6ab3a)
-- [`OnRtmpStreamingEventHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a78104eee847716bfd43f7efd5cdd8b58)
-- `txPacketLossRate` in [`LocalAudioStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_local_audio_stats.html)
-- `txPacketLossRate` and `captureFrameRate` in [`LocalVideoStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_local_video_stats.html)
-- `publishDuration` in [`RemoteAudioStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html) and [`RemoteVideoStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_remote_video_stats.html)
-- `AUDIO_SCENARIO_MEETING(8)` in [`AUDIO_SCENARIO_TYPE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a7630f2ee913986430344d4aad26098a3) enum
-- `AUDIO_ROUTE_USB`, `AUDIO_ROUTE_HDMI`, `AUDIO_ROUTE_DISPLAYPORT` and `AUDIO_ROUTE_AIRPLAY` in [`AUDIO_ROUTE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aca310af5a1412fa7a7475b245994b3ae) enum
+- [`SetClientRole`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9a31f9b8e45c6528d6f56914619de314)
+- [`SetAudioEffectPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a4bbf600b51a400fe6ab261a95e47bad6)
+- [`SetVoiceBeautifierPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab4953c6ce75adc42a13297af41676d9a)
+- [`SetAudioEffectParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9ccf7abdd5f7b4bc0e7f0a7807e34390)
+- [`EnableEncryption`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a54214baf0b421161990eded9c7401976)
+- [`OnAudioPublishStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#aabfff11675d45572de8eb5f28d80ac33)
+- [`OnVideoPublishStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#acbe99ccc22853645819110b5cf311142)
+- [`OnAudioSubscribeStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#aa0283db27464a1cc827515853db924c5)
+- [`OnVideoSubscribeStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#aae17c7a5b5eee64af5402f9f93a5616f)
+- [`OnFirstLocalAudioFramePublishedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a2be635d5257a7673102e0e0e62c73793)
+- [`OnFirstLocalVideoFramePublishedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#abc5c6cb1cfb6e7340fc10dc554d6ab3a)
+- [`OnRtmpStreamingEventHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a78104eee847716bfd43f7efd5cdd8b58)
+- `txPacketLossRate` in [`LocalAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_local_audio_stats.html)
+- `txPacketLossRate` and `captureFrameRate` in [`LocalVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_local_video_stats.html)
+- `publishDuration` in [`RemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html) and [`RemoteVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_remote_video_stats.html)
+- `AUDIO_SCENARIO_MEETING(8)` in [`AUDIO_SCENARIO_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a7630f2ee913986430344d4aad26098a3) enum
+- `AUDIO_ROUTE_USB`, `AUDIO_ROUTE_HDMI`, `AUDIO_ROUTE_DISPLAYPORT` and `AUDIO_ROUTE_AIRPLAY` in [`AUDIO_ROUTE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#aca310af5a1412fa7a7475b245994b3ae) enum
 
 **Deprecated**
 
@@ -1399,7 +1399,7 @@ This release changes `CLIENT_ROLE` to `CLIENT_ROLE_TYPE`, and changes the name o
 
 **3. Dual-stream mode not enabled in the `COMMUNICATION` profile**
 
-As of v3.0.1, the native SDK does not enable the [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#dual-stream) by default in the `COMMUNICATION` profile. Call the `EnableDualStreamMode (true)` method after joining the channel to enable it. In video scenarios with multiple users, we recommend enabling the dual-stream mode.
+As of v3.0.1, the native SDK does not enable the [dual-stream mode](../reference/glossary#dual-stream-mode) by default in the `COMMUNICATION` profile. Call the `EnableDualStreamMode (true)` method after joining the channel to enable it. In video scenarios with multiple users, we recommend enabling the dual-stream mode.
 
 #### New features
 
@@ -1481,36 +1481,36 @@ This release adds `SetBeautyEffectOptions` on Windows for enabling image enhance
 
 **Added**
 
-- [`GetEngine2`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac1a02000088c915aa36065325f42d166)
-- [`CreateChannel`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac14119e2505e2f44931bed0181c5624f)
-- [`AgoraChannel`](./API%20Reference/unity/classagora__gaming__rtc_1_1_agora_channel.html) class
-- [`SetMultiChannelWant`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a50ddfe8050fd11f1537bd0dddc2eb8a3)
-- [`SetForMultiChannelUser`](./API%20Reference/unity/class_video_surface.html#a2c751c8013e9a20c9f7929ca427b04b9)
-- [`SetAudioMixingPitch`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac1f7b492430f2c3f38826804a418c2a7)
-- [`AdjustUserPlaybackSignalVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a6ae88c74d0dc4e80837cd0a351f81c00)
-- Nine enumerations in [`VOICE_CHANGER_PRESET`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a710b9754965ccb92ed968a562968df2c), such as `VOICE_BEAUTY_VIGOROUS`
-- Twelve enumerations in [`AUDIO_REVERB_PRESET`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a1e681589411dd2f5df62dab5c1fca7b9), such as `AUDIO_REVERB_FX_KTV`
-- [`EnableFaceDetection`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a45f7776f4fd3a6d73186c83e4e15e917)
-- [`OnFacePositionChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a2425866f7157395b0f6cc04e7854d0f5)
-- The [`gatewayRtt`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aef762b5910ca3a7a06a4e37869c34fed), [`memoryAppUsageRatio`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#a5b7d328a6f8e6aca9e1b8b6c8ce16e02), [`memoryTotalUsageRatio`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#a232d695be9b723df8dae4ca219c6745f) and [`memoryAppUsageInKbytes`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aeb37b39c64362e3954b279c6dfc5e774) members in the `RtcStats` class
-- The [`totalActiveTime`](./API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html#a7453a27b08439186f35b3b7bb9eafd3b) member in the `RemoteAudioStats` struct
-- The [`totalActiveTime`](./API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html#a7453a27b08439186f35b3b7bb9eafd3b) member in the `RemoteVideoStats` struct
-- The [`channelId`](./API%20Reference/unity/structagora__gaming__rtc_1_1_audio_volume_info.html#a0b95567512ed7c6642671e805207a8e1) member in the `AudioVolumeInfo` struct
+- [`GetEngine2`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac1a02000088c915aa36065325f42d166)
+- [`CreateChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac14119e2505e2f44931bed0181c5624f)
+- [`AgoraChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_agora_channel.html) class
+- [`SetMultiChannelWant`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a50ddfe8050fd11f1537bd0dddc2eb8a3)
+- [`SetForMultiChannelUser`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/class_video_surface.html#a2c751c8013e9a20c9f7929ca427b04b9)
+- [`SetAudioMixingPitch`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac1f7b492430f2c3f38826804a418c2a7)
+- [`AdjustUserPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a6ae88c74d0dc4e80837cd0a351f81c00)
+- Nine enumerations in [`VOICE_CHANGER_PRESET`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a710b9754965ccb92ed968a562968df2c), such as `VOICE_BEAUTY_VIGOROUS`
+- Twelve enumerations in [`AUDIO_REVERB_PRESET`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a1e681589411dd2f5df62dab5c1fca7b9), such as `AUDIO_REVERB_FX_KTV`
+- [`EnableFaceDetection`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a45f7776f4fd3a6d73186c83e4e15e917)
+- [`OnFacePositionChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a2425866f7157395b0f6cc04e7854d0f5)
+- The [`gatewayRtt`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aef762b5910ca3a7a06a4e37869c34fed), [`memoryAppUsageRatio`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#a5b7d328a6f8e6aca9e1b8b6c8ce16e02), [`memoryTotalUsageRatio`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#a232d695be9b723df8dae4ca219c6745f) and [`memoryAppUsageInKbytes`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aeb37b39c64362e3954b279c6dfc5e774) members in the `RtcStats` class
+- The [`totalActiveTime`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html#a7453a27b08439186f35b3b7bb9eafd3b) member in the `RemoteAudioStats` struct
+- The [`totalActiveTime`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html#a7453a27b08439186f35b3b7bb9eafd3b) member in the `RemoteVideoStats` struct
+- The [`channelId`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/structagora__gaming__rtc_1_1_audio_volume_info.html#a0b95567512ed7c6642671e805207a8e1) member in the `AudioVolumeInfo` struct
 
 **`Renamed`**
 
-Enum type `CLIENT_ROLE` changed to [`CLIENT_ROLE_TYPE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a901253f94f78da34371bf7eb656a19ff). Enum name `BROADCASTER` and `AUDIENCE` changed to `CLIENT_ROLE_BROADCASTER` and `CLIENT_ROLE_AUDIENCE`.
+Enum type `CLIENT_ROLE` changed to [`CLIENT_ROLE_TYPE`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a901253f94f78da34371bf7eb656a19ff). Enum name `BROADCASTER` and `AUDIENCE` changed to `CLIENT_ROLE_BROADCASTER` and `CLIENT_ROLE_AUDIENCE`.
 
 **Deprecated**
 
 - `EnableWebSdkInteroperability`
-- `OnFirstRemoteVideoFrameHandler`, replaced by [`OnRemoteVideoStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a53d577f5c1c2d863f7946d86d76adb13)
-- `OnUserMutedAudioHandler`, `OnFirstRemoteAudioDecodedHandler`, and `OnFirstRemoteAudioFrameHandler`, replaced by [`OnRemoteAudioStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a92f016ea980eba06cf38192191d17e01)
-- `OnStreamPublishedHandler` and `OnStreamUnpublishedHandler`, replaced by [`OnRtmpStreamingStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a589c11ed19b0638824aa1b2e23971271)
+- `OnFirstRemoteVideoFrameHandler`, replaced by [`OnRemoteVideoStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a53d577f5c1c2d863f7946d86d76adb13)
+- `OnUserMutedAudioHandler`, `OnFirstRemoteAudioDecodedHandler`, and `OnFirstRemoteAudioFrameHandler`, replaced by [`OnRemoteAudioStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a92f016ea980eba06cf38192191d17e01)
+- `OnStreamPublishedHandler` and `OnStreamUnpublishedHandler`, replaced by [`OnRtmpStreamingStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a589c11ed19b0638824aa1b2e23971271)
 
 ## v2.9.2
 
-<div class="alert note">As of December 8, 2021, Agora begins implementing the retirement process for the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/rtc_sunset">Service Sunset Plans</a>.</div>
+<div class="alert note">As of December 8, 2021, Agora begins implementing the retirement process for the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0. See <a href="../introduction/service-sunset-plans">Service Sunset Plans</a>.</div>
 v2.9.2 is released on Feb 17, 2020.
 
 - This release fixed some abnormal behaviors on Android devices.
@@ -1538,10 +1538,10 @@ Supports multiple video rendering methods. You can choose any method in  **Auto 
 Supports multithreaded rendering. You can click the **Multithreaded Rendering** option for rendering in multiple threads.
 
 **5. Raw data**
-Supports raw audio data and raw video data in RGBA format. You can capture and process the raw data according to your needs. See details in [Raw Video Data](raw_data_video_unity).
+Supports raw audio data and raw video data in RGBA format. You can capture and process the raw data according to your needs. See details in [Raw Video Data](../advanced-features/raw-video-data).
 
 **6. External data source**
-Provides APIs for accessing to the external data source. You can configure the external audio and video source, and push the data to the Agora Unity SDK. See details in [Custom Video Source and Renderer](custom_video_unity)
+Provides APIs for accessing to the external data source. You can configure the external audio and video source, and push the data to the Agora Unity SDK. See details in [Custom Video Source and Renderer](../advanced-features/custom-video)
 
 **7. Encryption**
 Supports encryption of audio and video streaming. The following table shows the information of the encryption libraries for the Android and iOS platforms. If you do not intend to use this function, you can remove the encryption libraries to decrease the SDK size.
@@ -1553,15 +1553,8 @@ Supports encryption of audio and video streaming. The following table shows the 
 
 **8. Cloud proxy**
 
-Supports the cloud proxy service. See [Use Cloud Proxy](cloudproxy_unity) for details.
+Supports the cloud proxy service. See [Use Cloud Proxy](../basic-features/use-cloud-proxy) for details.
 
-#### Related documentation
-
-See the following documentation to quickly integrate the SDK and implement real-time voice and video communication in your project.
-
-- [Start a Video Call](https://docs.agora.io/en/Video/start_call_unity?platform=Unity) or [Start Live Interactive Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_unity?platform=Unity)
-- [API Reference](./API%20Reference/unity/index.html) 
-
-Agora also provides an open-source [Unity Sample](https://github.com/AgoraIO/Agora-Unity-Quickstart/tree/master/video/Hello-Video-Unity-Agora) on GitHub.
+Agora provides an open-source [Unity Sample](https://github.com/AgoraIO/Agora-Unity-Quickstart/tree/master/API-Example-Unity) on GitHub.
 
 </PlatformWrapper>

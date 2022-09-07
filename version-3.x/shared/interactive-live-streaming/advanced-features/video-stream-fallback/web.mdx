@@ -7,12 +7,12 @@ Unstable network affects the audio and video quality in a video call or interact
 
 ## Implementation
 
-Before proceeding, ensure that you have implemented interactive live video streaming or a video call in your project. See [Start Live Interactive Video Streaming](start_live_web) or [Start a Call](start_call_web) for details.
+Before proceeding, ensure that you have implemented interactive live video streaming or a video call in your project. See [Start Live Interactive Video Streaming](../quickstart-guide/start-video-streaming) or [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk) for details.
 
 Follow these steps to enable video stream fallback:
 
-1. Call `enableDualStreamMode` to enable [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#dual-steram) for the senders.
-	
+1. Call `enableDualStreamMode` to enable [dual-stream mode](../reference/glossary#dual-stream-mode) for the senders.
+
 2. Call `Client.setStreamFallbackOption` to set the stream fallback option for the receivers.
 	- Set `fallbackType` as `1` : Automatically subscribe to the low-quality video stream under poor network conditions.
 	- Set `fallbackType` as `2` : Subscribe to the low-quality video stream when the network conditions worsen, and subscribe to audio only when the conditions become too poor to support video transmission.
@@ -30,18 +30,18 @@ client.enableDualStream(function () {
   console.log(err);
 });
 
-// Configuration for the receiver. When the network condition is poor, receive audio only. 
+// Configuration for the receiver. When the network condition is poor, receive audio only.
 client.setStreamFallbackOption(remoteStream, 2);
 ```
 
 ### API reference
 
-- [`enableDualStream`](./API%20Reference/web/interfaces/agorartc.client.html#enabledualstream)
-- [`setStreamFallbackOption`](./API%20Reference/web/interfaces/agorartc.client.html#setstreamfallbackoption)
+- [`enableDualStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#enabledualstream)
+- [`setStreamFallbackOption`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#setstreamfallbackoption)
 
 ## Considerations
 
-- Agora does not recommend using the track methods ([addTrack](./API%20Reference/web/interfaces/agorartc.stream.html#addtrack)/[removeTrack](./API%20Reference/web/interfaces/agorartc.stream.html#removetrack)/[replaceTrack](./API%20Reference/web/interfaces/agorartc.stream.html#replacetrack)) on dual streams, which may cause different performance in the high-quality and low-quality video streams.
+- Agora does not recommend using the track methods ([addTrack](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#addtrack)/[removeTrack](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#removetrack)/[replaceTrack](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#replacetrack)) on dual streams, which may cause different performance in the high-quality and low-quality video streams.
 
 - The following scenarios do not support dual-stream mode:
   - Audio-only streams.

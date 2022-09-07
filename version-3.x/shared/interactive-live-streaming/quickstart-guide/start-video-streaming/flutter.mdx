@@ -72,7 +72,7 @@ For more details on the environment requirements, see [Install Flutter](https://
 
 ### Other prerequisites
 
-A valid Agora [developer account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
+A valid Agora [developer account](../reference/manage-agora-account#sign-up-and-log-in).
 
 ## Get App ID and token
 
@@ -94,7 +94,7 @@ To copy this App ID, find your project on the [Project Management](https://conso
 
 ### 3. Generate a temporary token
 
-To ensure communication security, Agora recommends using [tokens](https://docs.agora.io/en/AgoraPlatform/term_token) to authenticate users joining a channel.
+To ensure communication security, Agora recommends using [tokens](../reference/glossary#token) to authenticate users joining a channel.
 
 For testing purposes, Agora Console supports generating RTC temporary tokens. To generate an RTC temporary token:
 1. On the [Project Management](https://console.agora.io/projects) page, find your project and click **Config**.
@@ -106,7 +106,7 @@ For testing purposes, Agora Console supports generating RTC temporary tokens. To
 4. Click the copy icon to copy the temporary token. 
  <img src="https://web-cdn.agora.io/docs-files/1649997750496" />
 
-<div class="alert note">Temporary tokens are for demonstration and testing purposes only, and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. For details, see <a href="https://docs.agora.io/en/Video/token_server?platform=Android">Authenticate Your Users with Tokens</a>.</div>
+<div class="alert note">Temporary tokens are for demonstration and testing purposes only, and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. For details, see <a href="../basic-features/token-server">Authenticate Your Users with Tokens</a>.</div>
 
 
 ## Create a Flutter Project
@@ -140,7 +140,16 @@ dependencies:
   permission_handler: ^8.3.0
 ```
 
-~d520b2f0-bd52-11eb-8c2a-ebc670144d74~
+Because JCenter is about to retire, Agora publishes the RTC Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
+
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://www.jitpack.io' }
+    }
+}
+```
 
 ## Implement live video streaming
 
@@ -165,7 +174,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 ### 2: Define App ID and Token
 
-See [Set up Authentication](/en/Agora%20Platform/token_server?platform=All%20Platforms).
+See [Set up Authentication](../basic-features/token-server).
 
 
 ```dart

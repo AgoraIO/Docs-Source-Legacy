@@ -14,7 +14,7 @@ Refer to the sample project on [GitHub](https://github.com/AgoraIO/API-Examples/
 
 ## Implementation
 
-Before using the raw data functions, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](./start_live_windows).
+Before using the raw data functions, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming).
 
 Follow these steps to implement the raw data functions in your project:
 
@@ -50,19 +50,19 @@ BOOL CAgoraOriginalAudioDlg::RegisterAudioFrameObserver(BOOL bEnable, IAudioFram
    // Create an AutoPtr instance using the IMediaEngine as template
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     // See AgoraBase.h in the SDK for the implementation of the AutoPtr class
-    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID. 
+    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID.
     // The AutoPtr instance accesses the pointer to the IMediaEngine instance and calls registerAudioFrameObserver via IMediaEngine.
     mediaEngine.queryInterface(m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
     int nRet = 0;
     if (mediaEngine.get() == NULL)
         return FALSE;
     if (bEnable)
-        // Register audio frame observer		
+        // Register audio frame observer
         nRet = mediaEngine->registerAudioFrameObserver(audioFrameObserver);
     else
         // Unregister audio frame observer
         nRet = mediaEngine->registerAudioFrameObserver(NULL);
-  
+
     return nRet == 0 ? TRUE : FALSE;
 }
 ```
@@ -94,7 +94,7 @@ bool COriginalAudioProcFrameObserver::onRecordAudioFrame(AudioFrame& audioFrame)
     return true;
 }
 ```
-   
+
   Get the playback raw audio data
 
 ```cpp

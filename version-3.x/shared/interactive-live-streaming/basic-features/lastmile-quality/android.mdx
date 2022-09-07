@@ -17,9 +17,9 @@ Agora provides an open-source sample project that implements [pre-call tests](ht
 
 As of v2.4.0, the Agora RTC Native SDK provides the `startLastmileProbeTest` method that probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
 
-### Implementation 
+### Implementation
 
-Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
+Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Streaming](../quickstart-guide/start-video-streaming).
 
 Refer to the following steps to implement the network probe test:
 
@@ -69,10 +69,10 @@ rtcEngine.stopLastmileProbeTest();
 
 ### API reference
 
-- [`startLastmileProbeTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871)
-- [`stopLastmileProbeTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959)
-- [`onLastmileQuality`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2887941e3c105c21309bd2643372e7f5)
-- [`onLastmileProbeResult`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281)
+- [`startLastmileProbeTest`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871)
+- [`stopLastmileProbeTest`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959)
+- [`onLastmileQuality`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2887941e3c105c21309bd2643372e7f5)
+- [`onLastmileProbeResult`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281)
 
 ## Audio call loop test
 
@@ -80,7 +80,7 @@ As of v2.4.0, the Agora RTC Native SDK provides the `startEchoTest` [2/3] method
 
 ### Implementation
 
-Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
+Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Streaming](../quickstart-guide/start-video-streaming).
 
 1. Call `startEchoTest` [2/3] before joining a channel. You need to set the `intervalInSeconds` parameter in this method to notify the SDK when to report the result of this test. The value range is [2,10], and the default value is 10 (in seconds).
 
@@ -103,8 +103,8 @@ rtcEngine.stopEchoTest();
 
 ### API reference
 
-- [`startEchoTest` [2/3]](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a712bb50be350186d097f4deed8e1aa37)
-- [`stopEchoTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a01b8067275003c011f6d81bb41ee0fe1)
+- [`startEchoTest` [2/3]](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a712bb50be350186d097f4deed8e1aa37)
+- [`stopEchoTest`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a01b8067275003c011f6d81bb41ee0fe1)
 
 ## Audio and video call loop test
 
@@ -112,7 +112,7 @@ As of v3.5.2, the Agora RTC Native SDK provides the `startEchoTest` [3/3] method
 
 ### Implementation
 
-Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
+Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Streaming](../quickstart-guide/start-video-streaming).
 
 1. Call `startEchoTest` [3/3] before joining a channel. You need to set the `config` parameter in this method.
 2. When the audio and video call loop test starts, let the user make a sound or face the camera. The audio or video is output after about two seconds. If the audio playback is normal, the audio device and the user's upstream and downstream network are working properly; if the video playback is normal, the video device and the user's upstream and downstream network are working properly.
@@ -147,7 +147,7 @@ if (!echoTesting) {
 ### API reference
 
 - [`startEchoTest` [3/3]](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae4b2638c90a721749abdd9513260e51c)
-- [`stopEchoTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a01b8067275003c011f6d81bb41ee0fe1)
+- [`stopEchoTest`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a01b8067275003c011f6d81bb41ee0fe1)
 
 ## Considerations
 

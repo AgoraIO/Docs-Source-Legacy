@@ -13,7 +13,7 @@ Co-hosting across channels applies to scenarios such as an online singing contes
 
 <div class="alert note">To enable media stream relay, contact <a href="mailto:support@agora.io">support@agora.io</a>.</div>
 
-Before relaying media streams across channels, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start Live Interactive Streaming](start_live_web).
+Before relaying media streams across channels, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming).
 
 As of v3.0.0, the Agora Web SDK supports co-hosting across channels, adding the following methods:
 
@@ -30,7 +30,7 @@ Refer to the following table when implementing your code:
 | State code | Error code                                                   | Event code | The media stream relay state                                 |
 | ---------- | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
 | 2          | 0                                                            | 4          | The channel media relay starts.                              |
-| 3          | See [error code](./API%20Reference/web/classes/agorartc.channelmediaerror.html). | /          | An exception occurs during the media stream relay. Call `startChannelMediaRelay` to restart. |
+| 3          | See [error code](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/classes/agorartc.channelmediaerror.html). | /          | An exception occurs during the media stream relay. Call `startChannelMediaRelay` to restart. |
 | 0          | 0                                                            | /          | The channel media relay stops.                               |
 
 **Note**:
@@ -52,7 +52,7 @@ Refer to the following table when implementing your code:
    uid: 0,
    token: "yourSrcToken",
   })
-  // Set the destination channel information. 
+  // Set the destination channel information.
   // You can set a maximum of four detination channels.
   channelMediaConfig.setDestChannelInfo("destChannel1", {
    channelName: "destChannel1",

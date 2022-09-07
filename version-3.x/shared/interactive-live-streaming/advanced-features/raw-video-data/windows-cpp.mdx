@@ -14,7 +14,7 @@ Refer to the sample project on [GitHub](https://github.com/AgoraIO/API-Examples/
 
 ## Implementation
 
-Before using the raw data functions, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](./start_live_windows).
+Before using the raw data functions, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming).
 
 Follow these steps to implement the raw data functions in your project:
 
@@ -49,7 +49,7 @@ BOOL CAgoraOriginalVideoDlg::RegisterVideoFrameObserver(BOOL bEnable,IVideoFrame
 {
    // Create an AutoPtr instance using the IMediaEngine as template
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID. 
+    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID.
     // The AutoPtr instance accesses the pointer to the IMediaEngine instance and calls registerVideoFrameObserver via IMediaEngine.
     mediaEngine.queryInterface(m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
     int nRet = 0;
@@ -80,9 +80,9 @@ bool CGrayVideoProcFrameObserver::onCaptureVideoFrame(VideoFrame & videoFrame)
     memset(videoFrame.vBuffer, 128, nSize / 4);
     return true;
 }
-  
-  
-  
+
+
+
 // Get the raw video data captured by the camera via onCaptureVideoFrame and process with an average filter, and return the data to the SDK
 bool CAverageFilterVideoProcFrameObserver::onCaptureVideoFrame(VideoFrame & videoFrame)
 {
@@ -111,7 +111,7 @@ bool CAverageFilterVideoProcFrameObserver::onCaptureVideoFrame(VideoFrame & vide
 }
 ```
 
-   
+
    Get the raw video data from the remote user:
 
 ```cpp
@@ -120,7 +120,7 @@ bool CGrayVideoProcFrameObserver::onRenderVideoFrame(unsigned int uid, VideoFram
 {
     return true;
 }
- 
+
 ```
 
 ### API reference

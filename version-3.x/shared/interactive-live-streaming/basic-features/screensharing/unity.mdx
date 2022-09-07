@@ -25,7 +25,7 @@ The following screen shots give you a glimpse of the two sample projects when im
 
 ## Implementation
 
-Before sharing the screen, ensure that you have implemented the basic real-time communication functions in your project. See [Start a Video Call](https://docs.agora.io/en/Video/start_call_unity?platform=Unity) or [Start Interactive Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_unity?platform=Unity) for details.
+Before sharing the screen, ensure that you have implemented the basic real-time communication functions in your project. See [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming) for details.
 
 The differences of the two approaches for screen sharing are as follows:
 
@@ -41,22 +41,22 @@ Refer to the following steps to share the screen via **external video source** i
 
 1. Specify the external video source by calling `SetExternalVideoSource` before `JoinChannelByKey`.
 
-    ```c#
+    ```csharp
     mRtcEngine.SetExternalVideoSource(true, false);
     ```
 
 2. Define the Texture2D, and use Texture2D to read screen pixels as an external video source.
 
-    ```c#
+    ```csharp
     mRect = new Rect(0, 0, Screen.width, Screen.height);
     mTexture = new Texture2D((int)mRect.width, (int)mRect.height, TextureFormat.RGBA32, false);
     mTexture.ReadPixels(mRect, 0, 0);
     mTexture.Apply();
     ```
-   
+
 3. Call `PushVideoFrame` to send the video source to the SDK and to implement screen sharing.
 
-    ```c#
+    ```csharp
     int a = rtc.PushVideoFrame(externalVideoFrame);
     ```
 
@@ -70,7 +70,7 @@ The following diagram shows the API call sequence for sharing the screen via ext
 
 Refer to the following code to share the screen in your project.
 
-```c#
+```csharp
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,7 +90,7 @@ public class ShareScreen : MonoBehaviour
    private string channelName = "agora";
    public IRtcEngine mRtcEngine;
    int i = 100;
-	
+
    void Start()
    {
        Debug.Log("ScreenShare Activated");
@@ -115,7 +115,7 @@ public class ShareScreen : MonoBehaviour
    {
        StartCoroutine(shareScreen());
    }
-			 
+
    // Starts to share the screen.
    IEnumerator shareScreen()
    {
@@ -162,19 +162,19 @@ public class ShareScreen : MonoBehaviour
 
 #### API reference
 
-- [SetExternalVideoSource](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aae4a31d2375ed620605360ae1199eee8)
-- [PushVideoFrame](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#af9e8d34e2a1ac07b8984fb6181a6ab81)
+- [SetExternalVideoSource](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aae4a31d2375ed620605360ae1199eee8)
+- [PushVideoFrame](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#af9e8d34e2a1ac07b8984fb6181a6ab81)
 
 ### Desktop screen sharing
 
 Agora provides the following APIs for you to implement screen share on the desktop:
 
-- [StartScreenCaptureByDisplayId](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9fa9dd48fc3ecf616d39f6fdf00000c2)
-- [StartScreenCaptureByScreenRect](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a7cc7cb7e1edc249e42c7e171ec85d7a5)
-- [SetScreenCaptureContentHint](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#abce8b56ed71e8a4ff0cae0a8454c4b49)
-- [UpdateScreenCaptureParameters](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a26cdd88667b3c85448b1759117ddac7c)
-- [UpdateScreenCaptureRegion](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a3a49178f9f688841e634e6a9519b7060)
-- [StopScreenCapture](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a58ee4ff8e3de98b0b13571031904d2ba)
+- [StartScreenCaptureByDisplayId](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9fa9dd48fc3ecf616d39f6fdf00000c2)
+- [StartScreenCaptureByScreenRect](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a7cc7cb7e1edc249e42c7e171ec85d7a5)
+- [SetScreenCaptureContentHint](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#abce8b56ed71e8a4ff0cae0a8454c4b49)
+- [UpdateScreenCaptureParameters](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a26cdd88667b3c85448b1759117ddac7c)
+- [UpdateScreenCaptureRegion](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a3a49178f9f688841e634e6a9519b7060)
+- [StopScreenCapture](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a58ee4ff8e3de98b0b13571031904d2ba)
 
 You can also use the sample codes in [DesktopScreenShare](https://github.com/AgoraIO/Agora-Unity-Quickstart/blob/master/Advanced-Demos/Assets/AgoraEngine/Demo%2B/Scripts/DesktopScreenShare.cs) as a reference.
 
