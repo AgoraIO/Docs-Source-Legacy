@@ -1,10 +1,10 @@
 import * as data from '@site/data/variables';
 
-Agora Interactive Live Streaming Premium enables one-to-many and many-to-many audio or video live streaming with the Agora RTC SDK. 
+Agora Interactive Live Streaming Premium and Standard enables one-to-many and many-to-many audio or video live streaming with the Agora RTC SDK.
 
-Agora Interactive Live Streaming is different from [Agora Video Call](/3.7.1/video-calling/introduction/product-overview). In a video call, all users are the same role and can talk to each other freely. In an interactive live streaming, users can be the host or audience, where only the host can talk. For details, see this [FAQ](https://docs.agora.io/en/faq/profile_difference).
+Agora Interactive Live Streaming is different from [Agora Video Call](/3.x/video-calling/introduction/product-overview). In a video call, all users are the same role and can talk to each other freely. In an interactive live streaming, users can be the host or audience, where only the host can talk. For details, see this [FAQ](https://docs.agora.io/en/faq/profile_difference).
 
-Different from the traditional CDN live broadcast, which only allows one-way communication from the hosts to the audience, the Agora RTC SDK empowers the audience to interact with the hosts by [becoming a host](../reference/glossary#host-becoming), like a viewer jumping onto the stage in the middle of a play to perform. 
+Different from the traditional CDN live broadcast, which only allows one-way communication from the hosts to the audience, the Agora RTC SDK empowers the audience to interact with the hosts by [becoming a host](../reference/glossary#host-becoming), like a viewer jumping onto the stage in the middle of a play to perform.
 
 ## Live streaming solution comparison
 
@@ -20,7 +20,7 @@ The following table shows the differences between Agora live streaming products 
 
 <div class="alert info"><ul><li>A host‘s client refers to the client that calls an API to set the user role as host. An audience's client refers to the client that calls an API to set the user role as audience. A host can both send and receive streams, while an audience member can only receive streams.</li><li>The latency between host's clients in Interactive Live Streaming Standard is the same as that in Interactive Live Streaming Premium, while the latency level on the audience's client in these two products is different:</li><ul><li>Interactive Live Streaming Standard: Low latency (1500 ms - 2000 ms) from the host's client to the audience's client.</li><li>Interactive Live Streaming Premium: Ultra-low latency (400 ms - 800 ms) from the host's client to the audience's client.</li></ul><li>You can switch seamlessly between Interactive Live Streaming Standard and Interactive Live Streaming Premium by calling <code>setClientRole</code> and setting the latency level as <code>low</code> on the audience's client.</li></ul></div>
 
-## Functions and scenarios
+## Functions and scenarios (Premium)
 
 Agora Interactive Live Streaming Premium boasts a flexible combination of functions for different scenarios.
 
@@ -48,17 +48,45 @@ See the following sample code for application scenarios:
 - [Clip Doll Machine](https://github.com/AgoraIO/Wawaji)
 - [Murder Mystery Game](https://github.com/AgoraIO-Usecase/Murder-Mystery-Game)
 
+## Functions and scenarios (Standard)
+
+Together with the Agora RTM SDK, Interactive Live Streaming Standard enables you to implement the following live streaming scenarios:
+
+| Scenario             | Description                                                  |
+| :------------------- | :----------------------------------------------------------- |
+| Lecture Hall         | In a large online class, the low latency of Interactive Live Streaming Standard allows the teacher's audio and video to be quickly synchronized to the clients of thousands of students. The low latency between the audio and video of the teacher and the courseware makes real-time teaching more effective. Students can interact with the teacher through text messages, online quizzes, and similar means to enhance the learning experience. |
+| Showroom             | In a showroom live streaming, the audience can send virtual gifts to the host. Thanks to the low latency of Interactive Live Streaming Standard, the host can promptly thank the audience for their gifts, and the audience can receive the host's thanks in a timely fashion, which helps to strengthen the emotional connection on both sides. |
+| Live-stream Shopping | In a live-stream shopping scenario, customers can ask sellers for product and activity information via real-time messages. The low latency of Interactive Live Streaming Standard allows sellers to quickly respond to customers' questions, and customers can promptly see sellers' answers, thus encouraging transactions. In addition, the high synchronization of Interactive Live Streaming Standard ensures a consistent experience on the audiences' clients for activities such as responding to flash sales, and grabbing time-sensitive offers (seckilling) and coupons. |
+| Live match streaming | Live streaming sporting events or games in real time, synchronized so that there are no problematic delays. |
+| Trivia Game          | Apart from providing a smooth live streaming experience, the high synchronization of Interactive Live Streaming Standard also ensures that players receive the questions at the same time. This gives the audience members the same amount of time to answer—and an equal chance to win. |
+
+Interactive Live Streaming Standard boasts a flexible combination of functions for different scenarios.
+
+| Function                                | Description                                                  |
+| :-------------------------------------- | :----------------------------------------------------------- |
+| Single Host                             | Low-latency live streaming by one host. The audience can join the channel and watch the live streaming. |
+| Becoming a host                         | An audience member can switch their user role and become a host. Then they can interact with other hosts via audio and video. |
+| Co-hosting across channels              | Hosts interact with each other across channels.              |
+| Audio mixing                            | Hosts combine the audio of a local or online file with their own voice, and then send it out in the channel. |
+| Basic image enhancement                 | Sets basic beauty effects in a video call, including skin smoothening, whitening, and cheek blushing. |
+| Screen sharing                          | Hosts share their screens with the audience in the channel. Supports sharing the whole or part of a window or screen. |
+| Modify the raw data                     | Developers obtain and modify the raw voice or video data of the SDK engine to create special effects, such as voice-changing effects. |
+| Customize the video source and renderer | Users process videos (from self-built cameras, screen sharing, or files) for image enhancement and filtering. |
+| Push streams to the CDN                 | The host publishes the audio and video in the channel to the CDN (Content Delivery Network):<ul><li>Starts or stops publishing at any time.</li><li>Adds or removes an address while continuously publishing the stream.</li><li>Adjusts the picture-in-picture layout.</li></ul> |
+
+<div class="alert info">Temporarily, the Agora RTC Web SDK does not support modifying the raw data. </div>
+
 ## Key properties
 
-| Property                                 | Agora specifications        |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| SDK package size                         | 4.61 MB to 13.94 MB                                          |
-| Host capacity                            | 17 users                                                     |
-| Latency on the audience's client    | 400 ms to 800 ms    |
-| Audience capacity                        | One million users                                            |
-| Video profile                            | <li>SDK video source: Up to 1080p @ 60fps.</li><li>Custom video source: Up to 4K</li> |
-| Audio profile                            | <li>Sample rate: 16 kHz to 48 kHz.</li><li>Support for mono and stereo sound</li> |
-| Audio anti-packet-loss rate              | 80% (uplink and downlink)                                    |
+| Property                                 | Agora specifications (Premium)        | Agora specifications (Standard)        |
+| ---------------------------------------- | ------------------------------------------------------------ |-------------------------------------- |
+| SDK package size                         | 4.61 MB to 13.94 MB                                          | 4.61 MB to 13.94 MB                                          |
+| Host capacity                            | 17 users                                                     | Up to 17 users                                               |
+| Latency on the audience's client    | 400 ms to 800 ms    | 1500 ms - 2000 ms |
+| Audience capacity                        | One million users                                            | Up to one million users                                        |
+| Video profile                            | <li>SDK video source: Up to 1080p @ 60fps.</li><li>Custom video source: Up to 4K</li> | <li>SDK video source: Up to 1080p @ 60 fps.</li><li>Custom video source: Up to 4K resolution.</li> |
+| Audio profile                            | <li>Sample rate: 16 kHz to 48 kHz.</li><li>Support for mono and stereo sound</li> | <li>Sample rate: 16 kHz to 48 kHz.</li><li>Support for mono and stereo sound.</li> |
+| Audio anti-packet-loss rate              | 80% (uplink and downlink)                                    | 70% (uplink and downlink)                                    |
 
 
 ## Compatibility
@@ -72,7 +100,7 @@ Agora Interactive Live Streaming Premium is supported on platforms such as iOS, 
 | Windows              | ≥ Windows 7<br/>The Windows SDK supports the following architecture:<li>x86</li><li>x86-64</li>                                                      |
 | macOS                | ≥ 10.10<br/>The macOS SDK supports the following architecture:<li>x86-64</li><li>arm64 </li>                                                       |
 | Unity                | ≥ 2017<br/>The Unity SDK supports the following platforms:<br/><ul><li>Android (armeabi-v7a, arm64-v8a, x86)</li><li>iOS</li><li>Windows (x86, x86-64)</li><li>macOS </li> </ul>                                                      |
-| Web                  | See [Web SDK Compatibility](./web_sdk_compatibility?platform=Web) |
+| Web                  | See [Web SDK Compatibility](https://docs.agora.io/en/Interactive%20Broadcast/faq/browser_support?platform=Web)) |
 |Electron |≥ Electron 1.8.3|
 |Flutter  |≥ Flutter 1.0.0 |
 |React Native |≥ React Native 0.59.10|

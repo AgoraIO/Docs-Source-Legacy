@@ -4,7 +4,7 @@
 
 In a call or interactive live streaming, you may need to play custom audio or music files to all users in the channel. For example, adding sound effects in a game, or playing background music. Agora provides two groups of methods for playing audio effect files and audio mixing.
 
-Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a  Call](start_call_ios) or [Start Live Interactive Streaming](start_live_ios) for details.
+Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a  Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming) for details.
 
 <div class="alert info">Click the <a href="https://webdemo.agora.io/agora-web-showcase/examples/AgoraAudioIO-Web/">online demo</a> to try this feature out.</div>
 
@@ -39,7 +39,7 @@ stream.playEffect({
     // Process after playing the audio effect successfully
 });
 
-// Gets the volume of all the audio effects. 
+// Gets the volume of all the audio effects.
 var volumes = stream.getEffectsVolume();
 volumes.forEach(function({soundId, volume}){
     console.log("SoundId", soundId, "Volume", volume);
@@ -105,10 +105,10 @@ stream.unloadEffect(1, function(err){
 
 ## Audio mixing
 
-Audio mixing is playing a local or online music file while speaking, so that other users in the channel can hear the music. The audio mixing methods can be used to play background music. For example, playing music in the interactive live streaming. Only one music file can be played at one time. 
+Audio mixing is playing a local or online music file while speaking, so that other users in the channel can hear the music. The audio mixing methods can be used to play background music. For example, playing music in the interactive live streaming. Only one music file can be played at one time.
 Agora audio mixing supports the following options:
 
-- Mix or replace the audio: 
+- Mix or replace the audio:
 	- Mix the music file with the audio captured by the microphone and send it to other users.
 	- Replace the audio captured by the microphone with the music file.
 - Loop: Sets whether to loop the audio mixing file and the number of times to play the file.
@@ -119,13 +119,13 @@ Agora audio mixing supports the following options:
 // Sets the audio mixing options.
 // filePath is a mandatory parameter used to indicate an online URL of the mixing audio.
 // cycle is an optional parameter used to indicate the number of playback loops and it needs to be a positive integer. The web browser needs to be Google Chrome 65+.
-// replace is an optional parameter used to indicate if the audio mixing replaces the original audio. 
+// replace is an optional parameter used to indicate if the audio mixing replaces the original audio.
 // playTime is a mandatory parameter used to set the starting position of mixing audio playback. 0 means playing the mixing file from the beginning.
 var options = {
-      filePath: "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3", 
-      cycle: 1, 
-      replace: false, 
-      playTime:0 
+      filePath: "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3",
+      cycle: 1,
+      replace: false,
+      playTime:0
 }
 
 // Starts audio mixing.
@@ -150,7 +150,7 @@ localStream.pauseAudioMixing();
 // Resumes audio mixing.
 localStream.resumeAudioMixing();
 
-// Gets the duration (ms) of audio mixing. 
+// Gets the duration (ms) of audio mixing.
 localStream.getAudioMixingDuration();
 
 // Stops audio mixing.
@@ -160,12 +160,12 @@ localStream.stopAudioMixing();
 ### API Reference
 
 - [`startAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#startaudiomixing)
-- [`stopAudioMixing`](./API%20Reference/web/interfaces/agorartc.stream.html#stopaudiomixing)
-- [`adjustAudioMixingVolume`](./API%20Reference/web/interfaces/agorartc.stream.html#adjustaudiomixingvolume)
-- [`pauseAudioMixing`](./API%20Reference/web/interfaces/agorartc.stream.html#pauseaudiomixing)
+- [`stopAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#stopaudiomixing)
+- [`adjustAudioMixingVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#adjustaudiomixingvolume)
+- [`pauseAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#pauseaudiomixing)
 - [`resumeAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#resumeaudiomixing)
-- [`getAudioMixingDuration`](./API%20Reference/web/interfaces/agorartc.stream.html#getaudiomixingduration)
-- [`getAudioMixingCurrentPosition`](./API%20Reference/web/interfaces/agorartc.stream.html#getaudiomixingcurrentposition)
+- [`getAudioMixingDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#getaudiomixingduration)
+- [`getAudioMixingCurrentPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#getaudiomixingcurrentposition)
 - [`setAudioMixingPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#setaudiomixingposition)
 
 ### Considerations

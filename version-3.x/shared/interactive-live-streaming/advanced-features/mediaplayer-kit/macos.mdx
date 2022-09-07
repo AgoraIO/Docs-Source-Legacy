@@ -18,7 +18,7 @@ The MediaPlayer Kit is a powerful player that supports playing local and online 
 - Xcode 9.0 or later
 - A macOS device running macOS 10.12 or later
 
-> Open the specified ports in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms) if your network has a firewall.
+> Open the specified ports in [Firewall Requirements](../reference/firewall) if your network has a firewall.
 >
 > A valid Agora account ([Sign up](https://dashboard.agora.io/) for free) is necessary when sharing media resources to remote users.
 
@@ -39,7 +39,7 @@ Now, let's build a macOS project from scratch.
 
 ### Integrate the MediaPlayer Kit
 
-1. Go to [Downloads](./downloads?platform=macOS), download the latest version of the MediaPlayer Kit, and extract the files from the download package.
+1. Go to [Downloads](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=macOS), download the latest version of the MediaPlayer Kit, and extract the files from the download package.
 
 2. Add the `AgoraMediaPlayer.framework` file in the **libs** folder to the project folder.
 
@@ -69,7 +69,7 @@ Now, let's build a macOS project from scratch.
 
 Version requirements: 2.4.0 or later
 
-Integration steps: See [Integrate the Native SDK](https://docs.agora.io/en/Interactive%20Broadcast/start_live_mac?platform=macOS#a-nameintegratesdkaintegrate-the-sdk).
+Integration steps: See [Integrate the Native SDK](../quickstart-guide/start-video-streaming#a-nameintegratesdkaintegrate-the-sdk).
 
 ### Integrate the RtcChannelPublishPlugin
 
@@ -128,7 +128,7 @@ You can call several other methods in the ` AgoraMediaPlayer` interface to imple
 
 **Sample code**
 
-```objc
+```objective-c
 _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 [_mediaPlayerKit setView:self.containerView];
 [_mediaPlayerKit open:url startPos:0];
@@ -187,7 +187,7 @@ After integrating the MediaPlayer Kit, the Agora Native SDK, and the RtcChannelP
 
 **Instantiate required objects**
 
-1. [Instantiate an AgoraRtcEngineKit object](https://docs.agora.io/en/Interactive%20Broadcast/start_live_mac?platform=macOS#3-initialize-agorartcenginekit).
+1. [Instantiate an AgoraRtcEngineKit object](../quickstart-guide/start-video-streaming#3-initialize-agorartcenginekit).
 2. Instantiate the ` AgoraMediaPlayer` and `RtcChannelPublishHelper` objects.
 
 **Enable the player to complete playback preparations**
@@ -198,7 +198,7 @@ Register the player, audio, and video observer objects, and complete the prepara
 
 **Enable the local user to join the channel by using the SDK**
 
-Refer to [the RTC quickstart guide](https://docs.agora.io/en/Interactive%20Broadcast/start_live_mac?platform=macOS#4-set-the-channel-profile) for details about how to enable the local user to join the `LIVE_BROADCASTING` channel in the role of `BROADCASTER`:
+Refer to [the RTC quickstart guide](../quickstart-guide/start-video-streaming#4-set-the-channel-profile) for details about how to enable the local user to join the `LIVE_BROADCASTING` channel in the role of `BROADCASTER`:
 
 1. Call the `setChannelProfile` method to set the channel mode to `LIVE_BROADCASTING`.
 
@@ -238,7 +238,7 @@ When the role of the remote user is `BROADCASTER`, the Native SDK automatically 
 
 **Sample code**
 
-```objc
+```objective-c
 _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:@"YOUR_APPID" delegate:self];
 [_rtcEnginekit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
 [_rtcEnginekit setClientRole:AgoraClientRoleBroadcaster];
@@ -271,6 +271,6 @@ Common audio routers include Bluetooth devices, ordinary headsets, and device sp
 - When sharing media resources, Agora recommends using the Native SDK v3.0.0 and switching the audio router after calling the `mute` method.
 
 ## API documentation
-See the [API documentation](./API%20Reference/mediaplayer_oc/docs/headers/MediaPlayer-Kit-Objective-C-API-Overview.html).
+See the [API documentation](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/mediaplayer_oc/docs/headers/MediaPlayer-Kit-Objective-C-API-Overview.html).
 
 </PlatformWrapper>

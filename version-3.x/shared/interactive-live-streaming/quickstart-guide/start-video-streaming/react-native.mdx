@@ -1,5 +1,7 @@
 <PlatformWrapper platform="react-native">
 
+This article describes how to build a React Native project that implements basic interactive live video streaming using the Agora React Native SDK.
+
 ## Understand the tech
 
 The following figure shows the workflow to integrate into your app in order to add Interactive Live Streaming Premium functionality.
@@ -18,7 +20,7 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an audience member to send audio and video, you can call `setClientRole` to switch the client role. 
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
@@ -26,321 +28,513 @@ For an app client to join a channel, you need the following information:
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
 - The channel name: A string that identifies the channel for the live stream. 
 
+## Sample project
+Agora provides an open-source sample project [API-Example-ReactNative](https://github.com/AgoraIO-Community/react-native-agora/tree/master/example) on GitHub that implements interactive live audio and video streaming. You can download it and view the source code.
+
 ## Prerequisites
 
 ### Development environment
 
 If your target platform is iOS, your development environment must meet the following requirements:
-
-- Flutter 2.0 or later
-- Dart 2.14.0 or later
+- React Native 0.59.10 or later
 - macOS
-- Xcode (Latest version recommended)
+- Node 10 or later
+- Xcode 9.4 or later
+- CocoaPods
+- A physical or virtual mobile device running iOS 9.0 or later
 
 If your target platform is Android, your development environment must meet the following requirements:
-
-- Flutter 2.0 or later
-- Dart 2.14.0 or later
-- macOS or Windows
-- Android Studio (Latest version recommended)
-
-If your target platform is macOS, your development environment must meet the following requirements:
-
-- Flutter 2.0 or later
-- Dart 2.14.0 or later
-- macOS
-- Xcode (Latest version recommended)
-
-If your target platform is Windows, your development environment must meet the following requirements:
-
-- Flutter 2.0 or later
-- Dart 2.14.0 or later
-- Windows
-- Visual Studio (Latest version recommended)
-
-For more details on the environment requirements, see [Install Flutter](https://docs.flutter.dev/get-started/install).
-
-
-### Deployment environment
-
-- If your target platform is iOS, you need a real iOS device.
-- If your target platform is Android, you need an Android simulator or a real Android device.
-- If your target platform is macOS, you need a Mac device.
-- If your target platform is Windows, you need a Windows device.
-
-<div class="alert note">You need to run <code>flutter doctor</code> to check whether the development environment and the deployment environment are correct.</div>
+- React Native 0.59.10 or later
+- macOS, Windows, or Linux
+- Node 10 or later
+- Java Development Kit (JDK) 8 or later
+- Android Studio (latest version recommended)
+- A physical or virtual mobile device running Android 5.0 or later
+<div class="alert info">For more information, see [Setting up the development environment](https://reactnative.dev/docs/environment-setup).</div>
 
 ### Other prerequisites
 
-A valid Agora [developer account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-
-## Get App ID and token
-
-### 1. Create an Agora project
-
-To create an Agora project, do the following:
-
-1. Enter the [Project Management](https://console.agora.io/projects) page.
-2. Click **Create**.
-3. Follow the on-screen instructions to enter a project name and use case, and check **Secured mode: APP ID + Token (Recommended)** as the authentication mechanism.
-4. Click **Submit**. You can now see the project on the **Project Management** page.
-
-### 2. Get an App ID
-
-To copy this App ID, find your project on the [Project Management](https://console.agora.io/projects) page in Agora Console, and click the <img src="https://web-cdn.agora.io/docs-files/1637824227532" />  icon in the App ID column.
+A valid [Agora account](https://console.agora.io/)..
+<div class="alert note">If your network has a firewall, follow the instructions in [Firewall Requirements](firewall) to access Agora's services.</div>
 
 
+## Create a React Native project
 
-### 3. Generate a temporary token
+    1. Make sure you have set up the development environment based on your operating system and target platform.
 
-To ensure communication security, Agora recommends using [tokens](https://docs.agora.io/en/AgoraPlatform/term_token) to authenticate users joining a channel.
+    2. Run the following command and fill in your project name in ProjectName to create and initialize a new React Native project.
 
-For testing purposes, Agora Console supports generating RTC temporary tokens. To generate an RTC temporary token:
-1. On the [Project Management](https://console.agora.io/projects) page, find your project and click **Config**.
-  !1641971834422](https://web-cdn.agora.io/docs-files/1641971834422) 
-2. Click **Generate temp RTC token** under **Primary Certificate**.
-  ![1641971893263](https://web-cdn.agora.io/docs-files/1641971893263)
-3. Enter the name of the channel that you want to join, and click **Generate**. When joining the channel later, ensure that the channel name is the same with the one you enter here.
- <img src="https://web-cdn.agora.io/docs-files/1649997524064" />
-4. Click the copy icon to copy the temporary token. 
- <img src="https://web-cdn.agora.io/docs-files/1649997750496" />
+        ```
+        npx react-native init ProjectName
+        ```
 
-<div class="alert note">Temporary tokens are for demonstration and testing purposes only, and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. For details, see <a href="https://docs.agora.io/en/Video/token_server?platform=Android">Authenticate Your Users with Tokens</a>.</div>
+        A successful execution of this command generates a simple sample project in the directory that you run the command.
+
+    3. Launch your Android or iOS simulator and run your project by executing the following command:
+        a. Run npx react-native start in the root of your project to start Metro.
+        b. Open another terminal in the root of your project and run npx react-native run-android to start the Android app, or run npx react-native run-ios to start the iOS app.
+
+If everything is set up correctly, you should see your new app running in your Android or iOS simulator shortly.
+<div class="alert info">You can also run your project on a physical Android or iOS device. For detailed instructions, see <a href="https://reactnative.dev/docs/running-on-device">Running on device</a>.</div>
+
+Now that you have your project running successfully, you can start trying to integrate the Agora React Native SDK and modify your project.
+
+## Integrate the SDK
+This section describes how to integrate the SDK on React Native 0.60.0 or later.
+
+<div class="alert note">If you use React Native 0.59.x, see <a href="">Installing (React Native == 0.59.x)</a> to integrate the Agora SDK.</div>
+
+1. Install the latest version of the Agora React Native SDK:
+
+    **Method one**: Install the SDK using npm
+
+    ```
+    npm i --save react-native-agora  
+    ```
+
+    **Method two**: Install the SDK using yarn
+
+    ```
+    // Install yarn.
+    npm install -g yarn
+
+    // Download the Agora React Native SDK using yarn.
+    yarn add react-native-agora
+    ```
+
+    <div class="alert note">Do not link native modules manually, as React Native 0.60.0 and later support automatically linking native modules. For details, see <a href="https://github.com/react-native-community/cli/blob/master/docs/autolinking.md">Autolinking</a>.</div>
+
+2. If your target platform is iOS, you also need to run the following command to install the SDK:
+
+    ```
+    npx pod-install
+    ```
+
+    <div class="alert note">Ensure that you have already installed CocoaPods before performing this step. See <a href="https://guides.cocoapods.org/using/getting-started.html#getting-started">Getting Started with CocoaPods</a>.</div>
+
+3. The Agora React Native SDK uses Swift in native modules, and therefore your project must support compiling Swift. Otherwise, you will get errors when building the iOS app.
+    a. Open `ios/ProjectName.xcworkspace` with Xcode.
+    b. Click **File** > **New** > **File**, select **iOS** > **Swift File**, and then click Next > Create to create a new `File.swift` file.
 
 
-## Create a Flutter Project
+## Add TypeScript
 
-This article uses Visual Studio Code to create a Flutter project. Before you begin, you need to install the Flutter plugin in Visual Studio Code. See [Set up an editor](https://flutter.dev/docs/get-started/editor?tab=vscode).
+    The sample code in this article is written in TypeScript. If you want to use this sample code directly, you need to add support for TypeScript to your project.
 
-1. Launch Visual Studio Code. Select the **Flutter: New Project** command in **View > Command**. Enter the project name and press `<Enter>`.
-2. Select the location of the project in the pop-up window. Visual Studio Code automatically generates a simple project.
+    1. Run one of the following commands in the root of your project to add TypeScript dependencies:
 
-## Add dependencies
+        **Method one**: Using npm
 
-Add the following dependencies in `pubspec.yaml`:
+        ```
+        npm install --save-dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+        ```
 
-1. Add the `agora_rtc_engine` dependency to integrate Agora Flutter SDK. See https://pub.dev/packages/agora_rtc_engine for the latest version of `agora_rtc_engine`.
-2. Add the `permission_handler` dependency to add the permission handling function.
+        **Method two**: Using yarn
 
-```yaml
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+        ```
+        yarn add --dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+        ```
 
-dependencies:
-  flutter:
-    sdk: flutter
+2. Create a `tsconfig.json` file in the root of your project, and copy the following code to the file:
 
+    ```json
+    {
+    "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext"
+    },
+    "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+    ]
+    }
+    ```
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
-  # Please use the latest version of agora_rtc_engine
-  agora_rtc_engine: ^5.2.0
-  permission_handler: ^8.3.0
+3. Create a `jest.config.js` file in the root of your project, and copy the following code to the file:
+
+    ```javascript
+    module.exports = {
+    preset: 'react-native',
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+    };
+    ```
+
+4. Rename `App.js` to `App.tsx`.
+
+<div class="alert info">For more information, see <a href="https://reactnative.dev/docs/typescript">Using TypeScript</a>.</div>
+
+## Implementation
+
+### **1. Create the UI**
+
+Create the user interface (UI) for interactive live video streaming in the layout file of your project. 
+
+For interactive live video streaming, we recommend adding the following elements into the UI:
+
+- The start-call button
+- The end-call button
+- The local video view
+- The remote video view
+
+The `components/Style.ts` file in the [Agora-RN-Quickstart](https://github.com/AgoraIO-Community/Agora-RN-Quickstart) sample project defines the styles of the UI elements. You can create a `components` folder for your project, add a `Style.ts` file under that folder, and then copy the following code to the file:
+
+```typescript
+import {Dimensions, StyleSheet} from 'react-native'
+
+const dimensions = {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+}
+
+export default StyleSheet.create({
+    max: {
+        flex: 1,
+    },
+    buttonHolder: {
+        height: 100,
+        alignItems: 'center',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    button: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: '#0093E9',
+        borderRadius: 25,
+    },
+    buttonText: {
+        color: '#fff',
+    },
+    fullView: {
+        width: dimensions.width,
+        height: dimensions.height - 100,
+    },
+    remoteContainer: {
+        width: '100%',
+        height: 150,
+        position: 'absolute',
+        top: 5
+    },
+    remote: {
+        width: 150,
+        height: 150,
+        marginHorizontal: 2.5
+    },
+    noUserText: {
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        color: '#0093E9',
+    },
+})
 ```
 
-Because JCenter is about to retire, Agora publishes the RTC Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
+### 2. Import classes
 
+Open the `App.tsx` file, and delete all code. Add the following code to the beginning of the `App.tsx` file:
+
+```typescript
+import React, {Component} from 'react'
+import {Platform, ScrollView, Text, TouchableOpacity, View, PermissionsAndroid} from 'react-native'
+// Import the RtcEngine class and view rendering components into your project.
+import RtcEngine, {RtcLocalView, RtcRemoteView, VideoRenderMode, ChannelProfile,ClientRole,} from 'react-native-agora'
+// Import the UI styles.
+import styles from './components/Style'
 ```
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://www.jitpack.io' }
+
+### 3. Add project permissions 
+
+**Android**
+
+Add the following code to the `App.tsx` file to set a prompt box for getting permissions to use the microphone and camera on an Android device:
+
+```typescript
+const requestCameraAndAudioPermission = async () =>{
+    try {
+        const granted = await PermissionsAndroid.requestMultiple([
+            PermissionsAndroid.PERMISSIONS.CAMERA,
+            PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        ])
+        if (
+            granted['android.permission.RECORD_AUDIO'] === PermissionsAndroid.RESULTS.GRANTED
+            && granted['android.permission.CAMERA'] === PermissionsAndroid.RESULTS.GRANTED
+        ) {
+            console.log('You can use the cameras & mic')
+        } else {
+            console.log('Permission denied')
+        }
+    } catch (err) {
+        console.warn(err)
     }
 }
 ```
 
-## Implement live video streaming
+**iOS**
 
-Open `main.dart`, remove all code after `void main() => runApp(MyApp());`.
+In Xcode, open the `info.plist` file. Add the following contents to add permissions for your device:
 
-<div class="alert note">If your first line is not <code>void main() => runApp(MyApp());</code>, replace it with <code>void main() => runApp(MyApp());</code> and remove all code after it.</div>
-
-Refer to the following steps to add code to the file:
-
-### 1: Import packages
-
-```dart
-import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter/foundation.dart';
-import 'package:agora_rtc_engine/rtc_engine.dart';
-import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
-import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
-import 'package:permission_handler/permission_handler.dart';
-```
+| Key | Type | Value |
+| ---------------- | ---------------- | ---------------- |
+| Privacy - Microphone Usage Description      | String      | To access the microphone, such as for a call or interactive live streaming.      |
+| Privacy - Camera Usage Description      | String      | To access the camera, such as for a call or interactive live streaming.      |
 
 
-### 2: Define App ID and Token
+### 4. Create an App component
 
-See [Set up Authentication](/en/Agora%20Platform/token_server?platform=All%20Platforms).
+When creating an App component, you need to define your App ID, token, and channel name, which will be used for initializing the `RtcEngine` object and joining the channel. Ensure the App ID and channel name are the same as the App ID and channel name used for generating the token.
 
+- `appId`：The App ID of your Agora project. See [Get an App ID](../reference/manage-agora-account#sign-up-and-log-in) for details.
 
-```dart
-/// Define App ID and Token
-const APP_ID = '<Your App ID>';
-const Token = '<Your Token>';
-```
+- `channelName`：The unique channel name for the AgoraRTC session. Users with the same App ID and channel name can join the same channel.
 
-### 3: Define MyApp Class
+- `token`：Pass a token that identifies the role and privilege of the user. The token must be generated using the preceding App ID and channel name. You can set it to one of the following values:
 
+- * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](../reference/manage-agora-account#generate-a-temporary-token).
 
-```dart
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+- * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server).
+
+<div class="alert note">If your project has enabled the app certificate, ensure that you provide a token.</div>
+
+```typescript
+// Define a Props interface.
+interface Props {
+}
+
+// Define a State interface.
+interface State {
+    appId: string,
+    channelName: string,
+    token: string,
+    joinSucceed: boolean,
+    peerIds: number[],
+}
+
+// Create an App component, which extends the properties of the Pros and State interfaces.
+export default class App extends Component<Props, State> {
+    _engine?: RtcEngine
+    // Add a constructor，and initialize this.state. You need:
+    // Replace yourAppId with the App ID of your Agora project.
+    // Replace yourChannel with the channel name that you want to join.
+    // Replace yourToken with the token that you generated using the App ID and channel name above.
+    constructor(props) {
+        super(props)
+        this.state = {
+            appId: 'yourAppId',
+            channelName: 'yourChannel',
+            token: 'yourToken',
+            joinSucceed: false,
+            peerIds: [],
+        }
+        if (Platform.OS === 'android') {
+            requestCameraAndAudioPermission().then(() => {
+                console.log('requested!')
+            })
+        }
+    }
+    // Other code. See step 5 to step 10.
+    ...
 }
 ```
 
-### 4: Define app states
+### 5. Initialize RtcEngine
 
-```dart
-// App state class
-class _MyAppState extends State<MyApp> {
-  bool _joined = false;
-  int _remoteUid = 0;
-  bool _switch = false;
+Create and initialize the `RtcEngine` object before calling any other Agora APIs.
 
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
+You can also listen for callback events, such as when the local user joins the channel, when a remote user joins the channel, and when a remote user leaves the channel.
 
-  // Init the app
-  Future<void> initPlatformState() async {
-    if (defaultTargetPlatform == TargetPlatform.android) {
-           await [Permission.microphone, Permission.camera].request();
-    }
+You need to call `setChannelProfile` to set the channel profile as live streaming.
 
-    // Create RTC client instance
-    RtcEngineContext context = RtcEngineContext(APP_ID);
-    var engine = await RtcEngine.createWithContext(context);
-    // Define event handling logic
-    engine.setEventHandler(RtcEngineEventHandler(
-        joinChannelSuccess: (String channel, int uid, int elapsed) {
-          print('joinChannelSuccess ${channel} ${uid}');
-          setState(() {
-            _joined = true;
-          });
-        }, userJoined: (int uid, int elapsed) {
-      print('userJoined ${uid}');
-      setState(() {
-        _remoteUid = uid;
-      });
-    }, userOffline: (int uid, UserOfflineReason reason) {
-      print('userOffline ${uid}');
-      setState(() {
-        _remoteUid = 0;
-      });
-    }));
-    // Enable video
-    await engine.enableVideo();
-	// Set channel profile as livestreaming
-    await engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
-    // Set user role as broadcaster
-    await engine.setClientRole(ClientRole.Broadcaster);
-	// Join channel with channel name as 123
-    await engine.joinChannel(Token, '123', null, 0);
-  }
+A live-streaming channel has two user roles: `Broadcaster` and `Audience`, and the default role is `Audience`. The sample code in this section sets the role of all users as `Broadcaster`, but your app may use the following steps to set the client role:
 
+  1. Allow the user to set the role as `Broadcaster` or `Audience`.
+  2. Call `setClientRole` and pass in the client role set by the user.
 
-  // Build UI
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter example app'),
-        ),
-        body: Stack(
-          children: [
-            Center(
-              child: _switch ? _renderRemoteVideo() : _renderLocalPreview(),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _switch = !_switch;
-                    });
-                  },
-                  child: Center(
-                    child:
-                    _switch ? _renderLocalPreview() : _renderRemoteVideo(),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+Note that in the interactive live streaming, only the host can be heard and seen. If you want to switch the user role after joining the channel, call the `setClientRole` method.
 
-  // Local video rendering
-  Widget _renderLocalPreview() {
-    if (_joined && defaultTargetPlatform == TargetPlatform.android ||
-            _joined && defaultTargetPlatform == TargetPlatform.iOS) {
-      return RtcLocalView.SurfaceView();
-    } 
-    
-    if (_joined && defaultTargetPlatform == TargetPlatform.windows ||
-            _joined && defaultTargetPlatform == TargetPlatform.macOS) {
-      return RtcLocalView.TextureView();
-    } 
+Add the following code after `// Other code` in `App.tsx`：
 
-    else {
-      return Text(
-        'Please join channel first',
-        textAlign: TextAlign.center,
-      );
-    }
-  }
-
-  // Remote video rendering
-  Widget _renderRemoteVideo() {
-    if (_remoteUid != 0 && defaultTargetPlatform == TargetPlatform.android || _remoteUid != 0 && defaultTargetPlatform == TargetPlatform.iOS) {
-      return RtcRemoteView.SurfaceView(
-        uid: _remoteUid,
-        channelId: "123",
-      );
-    } 
-    
-    if (_remoteUid != 0 && defaultTargetPlatform == TargetPlatform.windows || _remoteUid != 0 && defaultTargetPlatform == TargetPlatform.macOS) {
-      return RtcRemoteView.TextureView(
-        uid: _remoteUid,
-        channelId: "123",
-      );
-    } 
-    
-    else {
-      return Text(
-        'Please wait remote user join',
-        textAlign: TextAlign.center,
-      );
-    }
-  }
+```typescript
+// Mount the App component into the DOM.
+componentDidMount() {
+    this.init()
 }
+// Pass in your App ID through this.state, create and initialize an RtcEngine object.
+init = async () => {
+    const {appId} = this.state
+    this._engine = await RtcEngine.create(appId)
+    // Enable the video module.
+    await this._engine.enableVideo()
+    // Enable the local video preview.
+    await this._engine.startPreview()
+    // Set the channel profile as live streaming.
+    await this._engine.setChannelProfile(ChannelProfile.LiveBroadcasting)
+    // Set the usr role as host.
+    await this._engine.setClientRole(ClientRole.Broadcaster)
+
+    // Listen for the UserJoined callback.
+    // This callback occurs when the remote user successfully joins the channel.
+    this._engine.addListener('UserJoined', (uid, elapsed) => {
+        console.log('UserJoined', uid, elapsed)
+        const {peerIds} = this.state
+        if (peerIds.indexOf(uid) === -1) {
+            this.setState({
+                peerIds: [...peerIds, uid]
+            })
+        }
+    })
+
+    // Listen for the UserOffline callback.
+    // This callback occurs when the remote user leaves the channel or drops offline.
+    this._engine.addListener('UserOffline', (uid, reason) => {
+        console.log('UserOffline', uid, reason)
+        const {peerIds} = this.state
+        this.setState({
+            // Remove peer ID from state array
+            peerIds: peerIds.filter(id => id !== uid)
+        })
+    })
+
+    // Listen for the JoinChannelSuccess callback.
+    // This callback occurs when the local user successfully joins the channel.
+    this._engine.addListener('JoinChannelSuccess', (channel, uid, elapsed) => {
+        console.log('JoinChannelSuccess', channel, uid, elapsed)
+        this.setState({
+            joinSucceed: true
+        })
+    })
+}
+```
+
+### 6.  Join a channel
+
+After initializing the `RtcEngine` object, you can call `joinChannel` to join a channel. 
+
+```typescript
+// Pass in your token and channel name through this.state.token and this.state.channelName.
+// Set the ID of the local user, which is an integer and should be unique. If you set uid as 0,
+// the SDK assigns a user ID for the local user and returns it in the JoinChannelSuccess callback.
+
+startCall = async () => {
+        await this._engine?.joinChannel(this.state.token, this.state.channelName, null, 0)
+    }
+```
+
+### 7. Render UI elements
+
+Call the `render()` method in the App component to render the UI elements and handle the button click event.
+
+```typescript
+render() {
+        return (
+            <View style={styles.max}>
+                <View style={styles.max}>
+                    <View style={styles.buttonHolder}>
+                        <TouchableOpacity
+                            onPress={this.startCall}
+                            style={styles.button}>
+                            <Text style={styles.buttonText}> Start Call </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={this.endCall}
+                            style={styles.button}>
+                            <Text style={styles.buttonText}> End Call </Text>
+                        </TouchableOpacity>
+                    </View>
+                    {this._renderVideos()}
+                </View>
+            </View>
+        )
+    }
+```
+
+### 8. Render the local video view
+
+Configure the video view of the local user. After joining the channel, the user can see themselves. You can also call `startPreview` to start the local video preview before joining the channel.
+
+```typescript
+// Set the rendering mode of the video view as Hidden, 
+// which uniformly scales the video until it fills the visible boundaries.
+_renderVideos = () => {
+        const {joinSucceed} = this.state
+        return joinSucceed ? (
+            <View style={styles.fullView}>
+                <RtcLocalView.SurfaceView
+                    style={styles.max}
+                    channelId={this.state.channelName}
+                    renderMode={VideoRenderMode.Hidden}/>
+                {this._renderRemoteVideos()}
+            </View>
+        ) : null
+    }
+```
+
+
+
+### 9. Render the remote video view
+
+During interactive live video streaming, you should also be able to see all the hosts, regardless of your role. After joining the channel, pass in the `uid` of the remote user sending the video, and set the video view of the remote user.
+
+```typescript
+// Set the rendering mode of the video view as Hidden, 
+// which uniformly scales the video until it fills the visible boundaries.
+_renderRemoteVideos = () => {
+        const {peerIds} = this.state
+        return (
+            <ScrollView
+                style={styles.remoteContainer}
+                contentContainerStyle={{paddingHorizontal: 2.5}}
+                horizontal={true}>
+                {peerIds.map((value, index, array) => {
+                    return (
+                        <RtcRemoteView.SurfaceView
+                            style={styles.remote}
+                            uid={value}
+                            channelId={this.state.channelName}
+                            renderMode={VideoRenderMode.Hidden}
+                            zOrderMediaOverlay={true}/>
+                    )
+                })}
+            </ScrollView>
+        )
+    }
+```
+
+### 10. Leave the channel
+
+Call `leaveChannel` to leave the current channel according to your scenario. For example, when the interactive live streaming ends, when you need to close the app, or when your app runs in the background.
+
+```typescript
+endCall = async () => {
+        await this._engine?.leaveChannel()
+        this.setState({peerIds: [], joinSucceed: false})
+    }
 ```
 
 ## Run the project
 
-1. Run the following command in the root folder to install dependencies.
+Agora recommends you run this project on a physical mobile device, as some simulators may not support the full features of this project.
 
-	```shell
-	flutter packages get
-	```
+**To run the Android app on a physical device:**
 
-2. Select the device to run your project on from the status bar of Visual Studio Code and run the project.
+1. Enable **Developer options** on your Android device, and then connect it to your computer using a USB cable.
+2. Run `npx react-native run-android` in the project root directory. 
 
-	```shell
-	flutter run
-	```
+**To run the iOS app on a physical device:**
+
+1. Open the `ProjectName/ios/ProjectName.xcworkspace` folder with Xcode.
+2. Connect your iOS device to your computer using a USB cable.
+3. Click the **Build and run** button in Xcode.
+
+You should see the app installed on your device after a while. When you set the role as host and successfully start interactive live streaming, you can see the video view of yourself in the app. When you set the role as audience and successfully join interactive live streaming, you can see the video view of the host in the app.
 
 </PlatformWrapper>

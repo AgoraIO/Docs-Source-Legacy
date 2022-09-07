@@ -1,0 +1,228 @@
+<PlatformWrapper platform="android">
+
+This page provides release notes for the Agora MediaPlayer Kit plugin.
+
+## Overview
+The Agora MediaPlayer Kit is a media player plug-in developed for interactive live streaming scenes, and is compatible with the Agora Native SDK (v2.4.0 or later).
+
+This plug-in helps developers enable the function of playing media resources in real-time interactive live streaming through the use of streamlined and flexible APIs, and synchronously sharing local or online media resources played by the host to all users in the channel. See [function description](../advanced-features/mediaplayer-kit#function-description) for details.
+
+To enrich the interactive live streaming playability and improve the real-time interactive experience, we recommend using the mediaplayer kit in the following scenarios:
+- Local playback: Play local or online media resources.
+- Online education: The teacher shares a currently playing video with the students during an online class.
+- Live sports: The host shares the live sports with the audience during his/her interactive live streaming.
+- Pseudo interactive live streaming: Share or publish the video recorded by the host in advance to the audience.
+
+## v1.3.0
+
+v1.3.0 was released on July 26, 2021.
+
+#### Compatibility changes
+
+**Support for SDK Integration with mavenCentral**
+
+As of this release, Agora publishes the SDK package to mavenCentral. To integrate the SDK with mavenCentral, see [Integrate the MediaPlayer Kit](../advanced-features/mediaplayer-kit#integrate-the-mediaplayer-kit).
+
+#### New features
+
+**Multiple bitrate switching**
+
+In order to ensure the playback quality of media resources when network conditions can change, this release adds the `switchSrc` method, allowing you to switch the bitrate at any time according to the current network status. This method supports the synchronization of the current playback position of an on-demand stream through the `syncPts` parameter to achieve smooth switching between multiple bitrates.
+
+After calling `switchSrc`, if you receive the `onPlayerEvent` callback event `PLAYER_EVENT_SWITCH_COMPLETE`, the bitrate switch is successful; if you receive the `onPlayerEvent` callback event `PLAYER_EVENT_SWITCH_ERROR`, the bitrate switch fails.
+
+**Preload**
+
+In order to improve the continuity of multiple file playback, this release supports the preloading function. You can call the `addPreloadSrc` method to load a media resource into the playlist in advance, and then call `playPreload` to play the file. To preload multiple media resources, you need to call `addPreloadSrc` multiple times.
+
+After calling `addPreloadSrc`, if you receive the `onPreloadEvent` callback event `PLAYER_PRELOAD_EVENT_COMPLETE`, the preload is successful; if you receive the `onPreloadEvent` callback event `PLAYER_PRELOAD_EVENT_ERROR`, the preload fails.
+
+#### Improvements
+
+To improve the user experience, this release makes the following improvements to the playback behavior of MediaPlayer Kit:
+
+- After playing a video in the background, the MediaPlayer Kit displays the last frame of the video when switching back to the foreground.
+- When `seek` is called and the value of the `pos` parameter is greater than the total duration of the media file, the MediaPlayer Kit positions to the last frame.
+
+In order to reduce CPU consumption and improve performance, this version changes the default decoding mode from software decoding to hardware decoding.
+
+#### Fixed issues
+
+This release fixed the following issues:
+
+- Occasional crash occurred when calling `destroy` multiple times.
+- An error occurred when playing high-definition videos above 4K.
+- A crash occurred when calling `open` on a device without Bluetooth.
+- Occasional crash occurred when killing the app process.
+- The delay for the first frame was too long when calling `open.`
+- A crash occurred when calling `stop`.
+
+## v1.2.9
+
+v1.2.9 was released on April 25, 2021.
+
+#### Compatibility changes
+
+** Integration changes**
+Because JCenter is about to retire, as of this release, Agora publishes the SDK package to JitPack instead of JCenter. To integrate the SDK with JitPack, see [Integrate the MediaPlayer Kit](../advanced-features/mediaplayer-kit#integrate-the-mediaplayer-kit).
+
+#### Improvements
+To tailor to user habits, since this release, the MediaPlayer Kit uses the media volume by default. Compared with in-call volume, media volume has better sound performance and can be adjusted to 0, which is more suitable for playing media resources.
+
+####  Fixed issues
+
+This release fixed the following issues:
+
+- Fixed some crashes and memory leaks problems.
+- Calling the `seek` method while MediaPlayer had finished playing (PLAYER_STATE_PLAYBACK_COMPLETED(6)) occasionally did not take effect.
+- A black screen most likely occurred in the first frame when opened a media file.
+
+#### API changes
+
+[setAudioMode](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/mediaplayer_java/classio_1_1agora_1_1mediaplayer_1_1_agora_media_player_kit.html#a30705cc0ec21717fa2886c21767c3290)
+
+
+## v1.2.5
+
+v1.2.5 was released on Mar 26, 2021.
+
+Fix a crash bug which occasionally occurred.
+
+
+## v1.2.4
+
+v1.2.4 was released on Mar 17, 2021.
+
+Improvements and fixed issues are as follows:
+
+- The unit of the `position` parameter in the `onPositionChanged` event changes from second to millisecond.
+- The media file plays automatically after calling `seek`.
+- A screen stuck occurs occasionally on low-end machines when calling `seek` and `play` sequentially.
+- Unable to properly zoom the view when playing a video resource.
+- Calling `play` to replay a video after the playback finished got a black screen.
+
+## v1.2.3
+
+v1.2.3 was released on Mar 1, 2021.
+
+Improvements and fixed issues are as follows:
+
+- The unit of the playback position parameter in the `open` and `seek` methods changes from second to millisecond.
+- The unit of the `duration` returned by `getDuration` method changes from second to millisecond.
+- Supports playing media audio and video in WebM format.
+- Fixed the issue of apparent loading time with a black screen when the media resources start playing.
+
+## v1.2.2
+
+v1.2.2 was released on January 13, 2021.
+
+This release fixed incompatibility with Agora Native SDK v3.2.0 and later.
+
+## v1.2.1
+
+v1.2.1 was released on December 31, 2020.
+
+### Compatibility changes
+
+Since this release, the `libagora-ffmpeg.so` file has been added to the MediaPlayer Kit package. To upgrade to v1.2.1 or later, ensure that you copy the `libagora-ffmpeg.so` file to the folder where the `libAgoraMediaPlayer.so` file is located.
+
+### New features
+
+**1. More playback features**
+
+To meet varied playback needs, this release adds the following APIs:
+
+- `changePlaybackSpeed`: Change the playback speed, for example to double-speed playback.
+- `selectAudioTrack`: Select the audio track used during the playback.
+
+**2. Reporting online buffering**
+
+This release adds the online buffering report. When playing online media resources, the MediaPlayer Kit triggers the `onPlayBufferUpdated` callback every second to report how long the currently buffered data can support playback.
+
+**3. Getting the version number**
+
+Since this release, you can call `getPlayerSdkVersion` to get the version number of the MediaPlayer Kit currently in use.
+
+**5. Setting log files**
+
+To support customizing log files, this release adds the following APIs:
+
+- `setLogFile`: Specify the path of the log file.
+- `setLogFilter`: Set the filtering level of the output log file.
+
+### Improvements
+
+**1. Media metadata**
+
+To parse more types of the SEI (Supplemental Enhancement Information) data, such as the SEI data sent in the Agora Media Push service, the trigger timing of the `onMetaData` callback has been changed since this release:
+
+| Earlier than v1.2.1 | v1.2.1 or later |
+|-----------|-----------|
+| The type of SEI received by the MediaPlayer Kit is 5.|The type of SEI received by the MediaPlayer Kit is 5 or 100.|
+
+**2. Default volume type**
+
+To tailor to user habits, since this release, the MediaPlayer Kit uses the media volume by default. Compared with in-call volume, media volume has better sound performance and can be adjusted to 0, which is more suitable for playing media resources.
+
+**3. Getting playback progress**
+
+To allow developers to get more precise playback progress, since this release, the unit of the value returned by the `getPlayPosition` method has been changed from seconds to milliseconds.
+
+**4. Playback formats**
+
+Since this release, the MediaPlayer Kit supports playing media resources in two more codec formats:
+
+- Vobis (decoding codec)
+- HEVC/H.265 (encoding codec)
+
+## v1.1.4.0
+
+v1.1.4.0 was released on August 19, 2020.
+
+Improvements and fixed issues are as follows:
+- Reduced the performance loss of the device during playback.
+- Reduced the size of the MediaPlayer Kit package.
+- Fixed occasional crashes and application unresponsiveness issues.
+
+## v1.1.2
+
+v1.1.2 was released on Jun 15, 2020.
+
+New features and improvements are as follows:
+- Added support for the X86_64 architecture.
+- Added support for using MediaPlayer Kit C++ APIs.
+- Optimized the structure of the MediaPlayer Kit package.
+
+## v1.1.1
+
+v1.1.1 was released on May 11, 2020.
+
+This release fixed errors that occur when you play some special video files.
+
+## v1.1.0
+
+v1.1.0 was released on Feb 28, 2020.
+
+This is the first release of the mediaplayer kit. You can use it in your project to enable the following functions:
+
+#### 1. Sharing media resources
+To enrich the live playability, the host can synchronously share the playback of the local and online media resource with all users in the channel.
+
+#### 2. Playing multiple media resources simultaneously
+To meet various demands for a varied audience, the host can play multiple media resources simultaneously by creating multiple instances of AgoraMediaPlayerKit.
+
+#### 3. Playback controls
+The host has access to real-time playback controls for opening the media resource, playing the media resource, pausing the playback, resuming the playback, and seeking to the new playback position of the media resource.
+
+#### 4. Precise volume controls
+To precisely control the playback volume at different stages, the hosts can adjust the local and remote playback volume separately, which improves the user experience on both the playback and subscription ends.
+
+#### 5. Getting playback information
+The host can actively obtain various playback information, such as current playback progress, playback state, and detailed media stream information.
+
+#### 6. Registering observer and monitoring events
+The observer class contains a series of events, such as playback progress, playback state, and the result of a seek operation to a new playback position. By listening for these events, you can have more control over the playback process. When an exception occurs, you can use these event callbacks for troubleshooting.
+
+Besides, you can listen for events that report receiving the media metadata, each audio frame and each video frame. These events help you include more complex functions in multiple scenarios, such as using custom format data, recording audio, recording video, and screenshots.
+
+</PlatformWrapper>

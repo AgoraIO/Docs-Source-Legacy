@@ -1,6 +1,6 @@
 Authentication is the act of validating the identity of each user before they access your system. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging into the real-time messaging system.
 
-To enhance its authentication and security services, Agora provides a new version of token called AccessToken2 as of August 18, 2022. For how to upgrade from AccessToken to AccessToken2, see  <a href="./upgrade_token">Upgrade from AccessToken to AccessToken2</a>.
+To enhance its authentication and security services, Agora provides a new version of token called AccessToken2 as of August 18, 2022. For how to upgrade from AccessToken to AccessToken2, see  <a href="../reference/upgrade-token">Upgrade from AccessToken to AccessToken2</a>.
 
 This page shows you how to create a token server and a client app for AccessToken2. The client app retrieves a token from the token server. This token authenticates the current user when the user accesses the Agora service.
 
@@ -22,8 +22,8 @@ A token is a dynamic key generated on your app server that is valid for a maximu
 
 In order to follow this procedure you must have the following:
 
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-- An Agora project with the [App Certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
+- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in).
+- An Agora project with the [App Certificate](../reference/manage-agora-account#manage-app-certificates) enabled.
 - [Golang](https://golang.org/) 1.14+ with GO111MODULE set to on.
     <div class="alert note"> If you are using Go 1.16+, GO111MODULE is on by default. See <a href="https://blog.golang.org/go116-module-changes">this blog</a> for details.</div>
 - [npm](https://www.npmjs.com/get-npm) and a [supported browser](https://docs.agora.io/en/All/faq/browser_support).
@@ -48,9 +48,12 @@ To copy this App ID, find your project on the [Project Management](https://conso
 To get an App Certificate, do the following:
 
 1. On the [Project Management](https://console.agora.io/projects) page, click **Config** for the project you want to use.
-	![1641971710869](https://web-cdn.agora.io/docs-files/1641971710869)
+
+    ![1641971710869](https://web-cdn.agora.io/docs-files/1641971710869)
+
 1. Click the copy icon under **Primary Certificate**.
-  ![1637660100222](https://web-cdn.agora.io/docs-files/1637660100222)
+
+    ![1637660100222](https://web-cdn.agora.io/docs-files/1637660100222)
 
 ### Deploy a token server
 
@@ -503,5 +506,5 @@ Once you have enabled co-host authentication, a user using your app must meet bo
 
 ### Upgrade from AccessToken to AccessToken2
 
-For how to use AccessToken to authenticate your users and how to upgrade to AccessToken2, see <a href="./upgrade_token">Upgrade from AccessToken to AccessToken2</a>.
+For how to use AccessToken to authenticate your users and how to upgrade to AccessToken2, see <a href="../reference/upgrade-token">Upgrade from AccessToken to AccessToken2</a>.
 

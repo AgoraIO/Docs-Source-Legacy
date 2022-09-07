@@ -37,7 +37,7 @@ For example, if you specify North America as the region for connection, when two
 
 As of v3.0.1, the Agora RTC Unity SDK supports network geofencing.
 
-When initializing the SDK by calling [`GetEngine`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac1a02000088c915aa36065325f42d166) , set the `areaCode` parameter in `RtcEngineConfig` to specify the region for connection.
+When initializing the SDK by calling [`GetEngine`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac1a02000088c915aa36065325f42d166) , set the `areaCode` parameter in `RtcEngineConfig` to specify the region for connection.
 
 - `AREA_CODE_GLOB`: (Default) Global
 - `AREA_CODE_CN`: Mainland China
@@ -51,7 +51,7 @@ When initializing the SDK by calling [`GetEngine`](./API%20Reference/unity/class
 
 ## Sample code
 
-```C#
+```csharp
 // Initialize IRtcEngine and specify the region as North America.
 RtcEngineConfig mRtcEngineConfig = new RtcEngineConfig(appId, AREA_CODE.AREA_CODE_NA);
 mRtcEngine = IRtcEngine.GetEngine(mRtcEngineConfig);
@@ -60,6 +60,6 @@ mRtcEngine = IRtcEngine.GetEngine(mRtcEngineConfig);
 
 ## Considerations
 
-If a firewall is deployed in your network environment, ensure that you whitelist all domains and ports listed in [Use Cloud Proxy](cloudproxy_native).
+If a firewall is deployed in your network environment, ensure that you whitelist all domains and ports listed in [Use Cloud Proxy](../basic-features/use-cloud-proxy).
 
 </PlatformWrapper>

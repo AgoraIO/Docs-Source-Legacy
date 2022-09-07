@@ -13,7 +13,7 @@ The following figure shows the workflow to integrate into your app in order to a
 As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
 
 1. Set the client role
-Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.
 
 2. Retrieve a token
 A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
@@ -22,21 +22,21 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the live stream. 
+- The channel name: A string that identifies the channel for the live stream.
 
 
 ## Prerequisites
 - Microsoft Visual Studio 2017 or later
 - A Windows device running Windows 7 or later
 - A valid Agora account. ([Sign up](https://dashboard.agora.io) for free)
-- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms).
-A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](./firewall?platform=Windows).
+- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](../reference/manage-agora-account#get-started-with-agora).
+A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall).
 
 ## Set up the development environment
 In this section, we will create a Windows project and integrate the SDK into the project.
@@ -51,7 +51,7 @@ Now, let's build a Windows project from scratch. Skip to [Integrate the SDK](#in
 1. Open <b>Microsoft Visual Studio</b> and click <b>Create new project</b>.
 2. On the <b>New Project</b> panel, choose <b>MFC Application</b> as the project type, input the project name, choose the project location, and click <b>OK</b>.
 3. On the <b>MFC Application</b> panel, choose <b>Application type > Dialog based</b>, and click <b>Finish</b>.
-	
+
 
 </details>
 
@@ -91,7 +91,7 @@ If you are implementing an interactive video streaming, we recommend adding the 
 
 Add the following line to import the Agora SDK:
 
-```c#
+```csharp
 using agora.rtc;
 ```
 
@@ -99,7 +99,7 @@ using agora.rtc;
 
 The C# SDK is developed upon C++. In this step, we create an `AgoraRtcEventHandler` class from `IAgoraRtcEngineEventHandler` for managing callback events:
 
-```c#
+```csharp
 class AgoraRtcEventHandler : IAgoraRtcEngineEventHandler
 {
       public AgoraRtcEventHandler()
@@ -117,7 +117,7 @@ Call the `CreateAgoraRtcEngine` and `Initialize` methods, and pass in the App ID
 
 You can also listen for callback events, such as when the local user joins or leaves the channel.
 
-```c#
+```csharp
 // Declare variables
 IAgoraRtcEngine rtc_engine_ = null;
 IAgoraRtcEngineEventHandler event_handler_ = null;
@@ -146,7 +146,7 @@ After initializing the `IAgoraRtcEngine` object, call the `SetChannelProfile` me
 
 One `IAgoraRtcEngine` object uses one profile only. If you want to switch to another profile, release the current `IAgoraRtcEngine` object with the release method and create a new one before calling the `SetChannelProfile` method.
 
-```c#
+```csharp
 rtc_engine_.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
 ```
 
@@ -159,16 +159,16 @@ A `LIVE_BROADCASTING` channel has two client roles: `BROADCASTER` and `AUDIENCE`
 
 Note that in the interactive live streaming, only the host can be heard and seen. If you want to switch the client role after joining the channel, call the `SetClientRole` method.
 
-```c#
+```csharp
 rtc_engine_.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
 ```
 
 
 ### 7. Set the local video view
 
-After initializing the `IAgoraRtcEngine` object, set the local video view before joining the channel so that hosts can see themselves. 
+After initializing the `IAgoraRtcEngine` object, set the local video view before joining the channel so that hosts can see themselves.
 
-```c#
+```csharp
 VideoCanvas vs = new VideoCanvas((ulong)localWindowId.Handle, RENDER_MODE_TYPE.RENDER_MODE_FIT);
 rtc_engine_.SetupLocalVideo(vs);
 ```
@@ -180,9 +180,9 @@ After initializing the `IAgoraRtcEngine` object and setting the local video view
 - `channelName`: Specify the channel name that you want to join.
 
 * `token`: Pass a token that identifies the role and privilege of the user.  You can set it as one of the following values:
-  * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](token#get-a-temporary-token). When joining a channel, ensure that the channel name is the same with the one you use to generate the temporary token.
-  * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](./token_server). When joining a channel, ensure that the channel name and `uid` is the same with those you use to generate the token.
-  
+  * A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](../reference/manage-agora-account#generate-a-temporary-token). When joining a channel, ensure that the channel name is the same with the one you use to generate the temporary token.
+  * A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server). When joining a channel, ensure that the channel name and `uid` is the same with those you use to generate the token.
+
  <div class="alert note"><ul><li>If your project has enabled the app certificate, ensure that you provide a token.</li><li>Ensure that you do not set <code>token</code> as "".</li></ul></div>
 
 
@@ -190,7 +190,7 @@ After initializing the `IAgoraRtcEngine` object and setting the local video view
   <div class="alert note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <code>mute</code> methods accordingly.</div>
 
 
-```c#
+```csharp
 rtc_engine_.JoinChannel("", "testChannelId","", 0, new ChannelMediaOptions(true, true, true, true));
 ```
 
@@ -200,9 +200,9 @@ In a video streaming, you should be able to see all the hosts, regardless of you
 
 Shortly after a remote host joins the channel, the SDK gets the host's ID in the `OnUserJoined` callback. Call the `SetupRemoteVideo` method in the callback, and pass in the `uid` to set the video view of the remote host.
 
-```c#
+```csharp
 // Call SetupRemoteVideo to set the remote video view
-VideoCanvas  vc = new VideoCanvas((ulong)remoteWindowId, 
+VideoCanvas  vc = new VideoCanvas((ulong)remoteWindowId,
 RENDER_MODE_TYPE.RENDER_MODE_FIT, "testChannelId", remoteUid);
 rtc_engine_.SetupRemoteVideo(vc);
 ```
@@ -211,11 +211,11 @@ rtc_engine_.SetupRemoteVideo(vc);
 
 Call the `LeaveChannel` method to leave the current channel according to your scenario, for example, when the interactive streaming ends, when you need to close the app, or when your app runs in the background.
 
-```c#
+```csharp
 rtc_engine_.LeaveChannel();
 ```
- 
- 
+
+
 ## Run the project
 
 After building the app, follow the steps to add the necessary libraries to the execution path:
@@ -235,6 +235,6 @@ Agora provides an open-source [JoinChannelVideo](https://github.com/AgoraIO/Agor
 
 - [How can I set the log file?](https://docs.agora.io/en/faq/logfile)
 - [How can I solve black screen issues?](https://docs.agora.io/en/faq/video_blank)
-- [How can I implement call notification in a call application?](./faq/call_invite_notification)
+- [How can I implement call notification in a call application?](https://docs.agora.io/en/All/faq/call_invite_notification)
 
 </PlatformWrapper>

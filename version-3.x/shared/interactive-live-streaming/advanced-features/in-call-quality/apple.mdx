@@ -8,14 +8,14 @@
 <PlatformWrapper notAllowed="cocos-creator">
 <PlatformWrapper notAllowed="cocos-2d-x">
 <PlatformWrapper notAllowed="react-native">
-    
+
 ## Introduction
 
 **After joining the channel**, the SDK triggers the following callbacks related to the call quality **once every two seconds**. You can see the last mile network quality, local statistics, audio quality, and video quality of the current call.
 
 <div class="alert note">Ensure that you implement a video call or interactive video streaming in your project. For details, see the following documents:
-  <li>iOS: <a href="start_call_ios">Start a Call</a> or <a href="start_live_ios">Start Live Interactive Streaming</a></li>
-  <li>macOS: <a href="start_call_mac">Start a Call</a> or <a href="start_live_mac">Start Live Interactive Streaming</a></li></div>
+  <li>iOS: <a href="/3.x/video-calling/quickstart-guide/get-started-sdk">Start a Call</a> or <a href="../quickstart-guide/start-video-streaming">Start Live Interactive Streaming</a></li>
+  <li>macOS: <a href="/3.x/video-calling/quickstart-guide/get-started-sdk">Start a Call</a> or <a href="../quickstart-guide/start-video-streaming">Start Live Interactive Streaming</a></li></div>
 
 ## Sample project
 
@@ -27,7 +27,7 @@ Agora provides an open-source sample project on GitHub that implements the in-ca
 
 ## Network quality report
 
-The `networkQuality` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](./API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891) for details.
+The `networkQuality` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891) for details.
 Last mile refers to the network from your device to Agora’s edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter.
 
 >- In the <code>Communication</code> profile, you receive network quality reports of all the users (including yours) in the channel once every two seconds.
@@ -85,7 +85,7 @@ When the state of the local audio stream changes (including the state of the aud
 
 ![1565945275984](https://web-cdn.agora.io/docs-files/1565945275984)
 
-The `remoteAudioStats` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](./API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891)), the number of channels (mono or dual), and the following parameters.
+The `remoteAudioStats` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891)), the number of channels (mono or dual), and the following parameters.
 
 | Parameter               | Description                                                  | Comment                                                      |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -131,7 +131,7 @@ When the state of **remote** audio stream changes, the SDK triggers the `remoteA
 
 The `localVideoStats` callback reports the statistics of the video streams sent. You can see the dimensions of the encoding frame and the following parameters.
 
-> If you have called the `enableDualStreamMode` method to enable [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode), this callback reports the statistics of the high-video streams sent.
+> If you have called the `enableDualStreamMode` method to enable [dual-stream mode](../reference/glossary#dual-stream-mode), this callback reports the statistics of the high-video streams sent.
 
 | Parameter                 | Description                                                  | Comment                                                      |
 | :------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -167,7 +167,7 @@ The `remoteVideoStats` callback reports the video statistics of each remote user
 
 | Parameter                 | Description                                                  | Comment                                                      |
 | :------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `rxStreamType`            | The type of video streams.                                   | High-video streams or low-video streams, see [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode). |
+| `rxStreamType`            | The type of video streams.                                   | High-video streams or low-video streams, see [dual-stream mode](../reference/glossary#dual-stream-mode). |
 | `receivedBitrate`         | The bitrate of the video received in the reported interval.  |                                                              |
 | `packetLossRate`          | The packet loss rate of the video received in the reported interval. | <li>Stages 2 + 3 + 4 in the figure above</li><li>The packet loss rate after using the **anti-packet-loss** method, which is lower than before.</li> |
 | `decoderOutputFrameRate`  | The output frame rate of the remote video decoder.           |                                                              |
@@ -198,16 +198,16 @@ When the state of remote video streams changes, the SDK triggers the `remoteVide
 
 ## API reference
 
-- [`networkQuality`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkQuality:txQuality:rxQuality:)
-- [`reportRtcStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:)
-- [`localAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
-- [`localAudioStateChange`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
-- [`remoteAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)
-- [`remoteAudioStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
-- [`localVideoStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStats:)
-- [`localVideoStateChange`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStateChange:error:)
-- [`remoteVideoStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStats:)
-- [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:)
+- [`networkQuality`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkQuality:txQuality:rxQuality:)
+- [`reportRtcStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:)
+- [`localAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
+- [`localAudioStateChange`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
+- [`remoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)
+- [`remoteAudioStateChangedOfUid`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
+- [`localVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStats:)
+- [`localVideoStateChange`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStateChange:error:)
+- [`remoteVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStats:)
+- [`remoteVideoStateChangedOfUid`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:)
 
 ## Considerations
 

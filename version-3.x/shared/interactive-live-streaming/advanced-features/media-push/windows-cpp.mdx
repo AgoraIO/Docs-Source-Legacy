@@ -15,7 +15,7 @@ Ensure that you enable the Media Push service before using this function:
 1. Log in to [Agora Console](https://console.agora.io/), and click the **Project Management** icon on the left navigation panel.
 
 2. On the **Project Management** page, find the project for which you want to enable the Media Push service, and click the edit icon.
-3. 
+
 
     <img src="https://web-cdn.agora.io/docs-files/1637660034129"/>
 
@@ -24,8 +24,8 @@ Ensure that you enable the Media Push service before using this function:
     <img src="https://web-cdn.agora.io/docs-files/1661509060968" />
 
 4. Click the **Status** button to enable the Media Push **Client-side SDK API** service. Read the pop-up prompt carefully, and then click **Save**. <div class="alert note">The service cannot be disabled after enabling. </div>
- <img src="https://web-cdn.agora.io/docs-files/1661509241680" />
 
+   <img src="https://web-cdn.agora.io/docs-files/1661509241680" />
 
 5. The **Enable** button of **Media Push** changes to the **Config** button, which allows you to configure the Media Push service.
     <img src="https://web-cdn.agora.io/docs-files/1661509305442" />
@@ -45,17 +45,17 @@ You can refer to the following API call sequence diagram and steps to implement 
 ![1646892692839](https://web-cdn.agora.io/docs-files/1646892692839)
 
 
-1. Refer to [Start Interactive Live Video Streaming](start_live_windows) or [Start Interactive Live Audio Streaming](start_live_audio_windows) to implement the basic audio and video interaction.
+1. Refer to [Start Interactive Live Video Streaming](../quickstart-guide/start-video-streaming) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction.
 
 
 2. Call `startRtmpStreamWithTranscoding` and pass in the address of the Media Push and the transcoding configuration to start pushing transcoded streams to a CDN address.
 
    <div class="alert note"><ul>
-   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="./API%20Reference/cpp/structagora_1_1rtc_1_1_live_transcoding.html">LiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>userCount</code> and <code>transcodingUsers</code> fields in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
+   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/structagora_1_1rtc_1_1_live_transcoding.html">LiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>userCount</code> and <code>transcodingUsers</code> fields in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
    <li>For live audio scenarios, leave the video-related fields in the transcoding configuration empty.</li>
    <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
    <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
-   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 3. You can call `updateRtmpTranscoding` to dynamically update the transcoding configuration according to a scenario change, such as adjusting the number of hosts or the video layout of the hosts. After the transcoding configuration is updated successfully, the SDK triggers the `onTranscodingUpdated` callback.
@@ -65,7 +65,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 
    <div class="alert note"><ul>
    <li>If you need to stop the live streaming at multiple addresses, call <code>stop</code> multiple times and pass in the corresponding CDN addresses.</li>
-   <li>After stopping the streaming, you can receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After stopping the streaming, you can receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 
@@ -75,14 +75,14 @@ You can refer to the following API call sequence diagram and steps to implement 
 
 ![1638787358303](https://web-cdn.agora.io/docs-files/1638787358303)
 
-1. Refer to [Start Interactive Live Video Streaming](start_live_windows) or [Start Interactive Live Audio Streaming](start_live_audio_windows) to implement the basic audio and video interaction. The `uid` parameter in the `joinChannel` method cannot be empty or 0; otherwise, the hosts in the channel cannot push any media streams to CDN.
+1. Refer to [Start Interactive Live Video Streaming](../quickstart-guide/start-video-streaming) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction. The `uid` parameter in the `joinChannel` method cannot be empty or 0; otherwise, the hosts in the channel cannot push any media streams to CDN.
 
 2. Call `startRtmpStreamWithoutTranscoding` and pass in the address of the Media Push to start pushing non-transcoded streams to a CDN address.
 
    <div class="alert note"><ul>
    <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
    <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
-   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After each call to <code>start</code>, make sure to wait until you receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>RUNNING(2)</code> before performing any other actions. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 
@@ -91,7 +91,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 
    <div class="alert note"><ul>
    <li>If you need to stop the live streaming at multiple addresses, call <code>stop</code> multiple times and pass in the corresponding CDN addresses.</li>
-   <li>After stopping the streaming, you can receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.</li>
+   <li>After stopping the streaming, you can receive the <code>onRtmpStreamingStateChanged</code> callback reporting the streaming state as <code>IDLE(0)</code>. If you receive another streaming state, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.</li>
    </ul></div>
 
 
@@ -153,7 +153,7 @@ Agora recommends that you use the default values when setting the video resoluti
 
 This section describes how to implement Media Push using versions of the SDK earlier than v3.6.0.
 
-1. Refer to [Start Interactive Live Video Streaming](start_live_windows) or [Start Interactive Live Audio Streaming](start_live_audio_windows) to implement the basic audio and video interaction.
+1. Refer to [Start Interactive Live Video Streaming](../quickstart-guide/start-video-streaming) or [Start Interactive Live Audio Streaming](../quickstart-guide/start-audio-streaming) to implement the basic audio and video interaction.
 
 2. The host in a channel calls the `setLiveTranscoding` method to set the transcoding configuration of the media streams (`LiveTranscoding`), such as the resolution, bitrate, frame rate, and position of the watermark/background image. If you need a transcoded picture, set the picture-in-picture layout for each user in the `TranscodingUser` class.
 
@@ -169,7 +169,7 @@ This section describes how to implement Media Push using versions of the SDK ear
 
 5. The host in a channel calls the `removePublishStreamUrl` method to remove a media stream from the Media Push.
 
-When the streaming state changes, the SDK triggers the `onRtmpStreamingStateChanged` callback to report the current streaming state to the host. Make sure to wait until you receive the `onRtmpStreamingStateChanged` callback before performing any other actions. If adding or removing a CDN address fails, see <a href="./cdn_streaming_error">Exception Handling for Media Push</a>.
+When the streaming state changes, the SDK triggers the `onRtmpStreamingStateChanged` callback to report the current streaming state to the host. Make sure to wait until you receive the `onRtmpStreamingStateChanged` callback before performing any other actions. If adding or removing a CDN address fails, see <a href="../best-practices/exception-handling-for-media-push">Exception Handling for Media Push</a>.
 
 
 ```cpp
@@ -221,22 +221,22 @@ m_rtcEngine->removePublishStreamUrl(url);
 
 The following APIs are recommended by Agora when implementing Media Push:
 
-- [`startRtmpStreamWithoutTranscoding`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acfc4de5d9454cad1dfd1d154e180d78c)
-- [`startRtmpStreamWithTranscoding`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0f91aa3af0a7c9a8428966028b5a010c)
-- [`updateRtmpTranscoding`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8689685218a15a34a376944555340261)
-- [`stopRtmpStream`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab9807b2e5fb708d01066759af02cc630)
-- [`onTranscodingUpdated`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0583fb2aecbd4c51bba1af97ce1aa318)
-- [`onRtmpStreamingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
-- [`onRtmpStreamingEvent`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa2beb17562a3be9b5ddbe9366245cb0e)
+- [`startRtmpStreamWithoutTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acfc4de5d9454cad1dfd1d154e180d78c)
+- [`startRtmpStreamWithTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0f91aa3af0a7c9a8428966028b5a010c)
+- [`updateRtmpTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8689685218a15a34a376944555340261)
+- [`stopRtmpStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab9807b2e5fb708d01066759af02cc630)
+- [`onTranscodingUpdated`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0583fb2aecbd4c51bba1af97ce1aa318)
+- [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
+- [`onRtmpStreamingEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa2beb17562a3be9b5ddbe9366245cb0e)
 
 
 The following APIs are still functional but not recommended by Agora when implementing Media Push:
 
-- [`setLiveTranscoding`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)
-- [`addPublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)
-- [`removePublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)
-- [`onStreamPublished`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a475fb73ea513eb367cea2d73299b5f91)
-- [`onStreamUnpublished`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a318ea7cd8fc614038850bf7791d4106e)
+- [`setLiveTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)
+- [`addPublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)
+- [`removePublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)
+- [`onStreamPublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a475fb73ea513eb367cea2d73299b5f91)
+- [`onStreamUnpublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a318ea7cd8fc614038850bf7791d4106e)
 
 
 ### Related docs
@@ -244,7 +244,7 @@ The following APIs are still functional but not recommended by Agora when implem
 When using the Media Push function, you may also need to refer to the following docs:
 
 - [Pricing for Media Push](./billing_streaming?platform=RESTful)
-- [Exception Handling for Media Push](./cdn_streaming_error)
+- [Exception Handling for Media Push](../best-practices/exception-handling-for-media-push)
 - [How to solve SEI-related issues?](./faq/sei)
 - [What is the relationship between the old and new callbacks of Media Push?](./faq/cdnStreaming_callback_relationship)
 - [Overview of the Media Push using RESTful API](./streaming_product?platform=RESTful)

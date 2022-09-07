@@ -1,12 +1,12 @@
 import * as data from '@site/data/variables';
 
-This page explains how Agora calculates your monthly bill for using [Voice Call](/en/Voice/product_voice), [Video Call](/en/Video/product_video), and [Interactive Live Streaming Premium](/en/Interactive%20Broadcast/product_live).
+This page explains how Agora calculates your monthly bill for using [Voice Call](/3.x/voice-calling/introduction/product-overview), [Video Call](/3.x/video-calling/introduction/product-overview), and [Interactive Live Streaming](/3.x/interactive-live-streaming/introduction/product-overview).
 
 Note that if you have already signed a contract with Agora, the billing terms and conditions within that contract take precedence.
 
 ## Cost calculation
 
-Billing occurs monthly. At the end of each month, Agora calculates the total duration of the audio and video usage (in minutes) for that month in all projects under your [Agora account](https://console.agora.io/). Note that video usage is divided into four different types based on aggregate resolution and priced individually. After deducting the monthly [10,000 free-of-charge minutes](https://docs.agora.io/en/Video/faq/billing_free) that Agora grants to every account, Agora multiplies any remaining usage by its corresponding unit price and adds up the costs to get the total cost for that month. 
+Billing occurs monthly. At the end of each month, Agora calculates the total duration of the audio and video usage (in minutes) for that month in all projects under your [Agora account](https://console.agora.io/). Note that video usage is divided into four different types based on aggregate resolution and priced individually. After deducting the monthly [10,000 free-of-charge minutes](../reference/billing-policies) that Agora grants to every account, Agora multiplies any remaining usage by its corresponding unit price and adds up the costs to get the total cost for that month.
 
 The basic formula is shown here:
 
@@ -14,7 +14,7 @@ The basic formula is shown here:
 
 ### Usage
 
-In each video call or live streaming event, users communicate with each other in an RTC [channel](https://docs.agora.io/en/Agora%20Platform/channel). Agora measures the usage for each user from the moment they join a channel to the moment they leave it. If a user subscribes to video from other users in the channel, the usage is counted as video usage (of the applicable type); otherwise, the usage is counted as audio usage.
+In each video call or live streaming event, users communicate with each other in an RTC [channel](../reference/glossary#channel). Agora measures the usage for each user from the moment they join a channel to the moment they leave it. If a user subscribes to video from other users in the channel, the usage is counted as video usage (of the applicable type); otherwise, the usage is counted as audio usage.
 
 Agora calculates usage based solely on a user’s subscriptions in the channels they join. Whether they publish streams does not matter.
 
@@ -43,15 +43,22 @@ For example, if a user subscribes to two 960 × 720 video streams at the same ti
 
 ### Unit pricing
 
+In a live-streaming channel, the audio and video usage is billed based on the user role and latency level:
+
+- Host: The audio and video usage of a host is billed based on the pricing for Premium.
+- Audience:
+  - The audio and video usage of an audience member at the ultra-low latency level is billed based on the pricing for Premium.
+  - The audio and video usage of an audience member at the low latency level is billed based on the pricing for Standard.
+
 The unit prices for audio and video usage are as follows:
 
-| Usage type    | Pricing (US$/1,000 minutes) |
-| :------------ | :-------------------------- |
-| Audio         | 0.99                        |
-| Video HD      | 3.99                        |
-| Video Full HD | 8.99                        |
-| Video 2K      | 15.99                       |
-| Video 2K+     | 35.99                       |
+| Usage type    | Pricing for Premium (US$/1,000 minutes) | Pricing for Standard (US$/1,000 minutes) |
+| :------------ | :-------------------------- | :-------------------------- |
+| Audio         | 0.99                        | 0.59                            |
+| Video HD      | 3.99                        | 1.99                            |
+| Video Full HD | 8.99                        | 4.59                            |
+| Video 2K      | 15.99                       | 7.99                            |
+| Video 2K+     | 35.99                       | 17.99                           |
 
 ### Usage-based volume discounts
 
@@ -71,7 +78,7 @@ These discounts apply to the usage within each tier. For example, if Agora bills
 
 This section illustrates how Agora calculates aggregate video resolution, total usage per service type, and the associated costs.
 
-Suppose that five users join a channel at the same time and have interactive live video streaming for 60 minutes. In the video streaming, there are three hosts (Host A, B, and C), each with a video resolution set to 960 × 720. Two audience members subscribe to the video streams from the hosts. Additionally, Host A shares their screen with all other users in the channel. The video resolution of the screen-sharing stream is set to and received at 1920 × 1080.
+Suppose that five users join a channel at the same time and have interactive live video streaming for 60 minutes. In the video streaming, there are three hosts (Host A, B, and C), each with a video resolution set to 960 × 720. Two audience members subscribe to the video streams from the hosts using the ultra-low latency configurations. Additionally, Host A shares their screen with all other users in the channel. The video resolution of the screen-sharing stream is set to and received at 1920 × 1080.
 
 ### Calculate aggregate video resolution
 
@@ -154,7 +161,7 @@ When calculating aggregate resolution, Agora counts the 640 × 352 (225,280) res
 
 ### Pricing for other products or services
 
-If your scenario involves video calling or interactive live streaming alongside other Agora products or services, such as [Real-time Messaging](https://docs.agora.io/en/Real-time-Messaging/billing_rtm?platform=Android), [Cloud Recording](https://docs.agora.io/en/cloud-recording/billing_cloud_recording?platform=RESTful), or [Interactive Whiteboard](https://docs.agora.io/en/whiteboard/billing_whiteboard?platform=Web), expect additional charges. For details, see the pricing documents for each Agora product or service.
+If your scenario involves video calling or interactive live streaming alongside other Agora products or services, such as [Real-time Messaging](/signaling/reference/billing-policies), [Cloud Recording](/cloud-recording/reference/billing-policies), or [Interactive Whiteboard](/interactive-whiteboard/reference/billing-policies), expect additional charges. For details, see the pricing documents for each Agora product or service.
 
 <a name="previous"></a>
 ## FAQ
@@ -164,11 +171,11 @@ If your scenario involves video calling or interactive live streaming alongside 
 The pricing for audio and video was as follows:
 
 |       Service type    |       Category        |       Pricing ($US/1,000 minutes)     |
-|-----------------------:-----------------------:---------------------------------------|
+|-----------------------:|:-----------------------:|:---------------------------------------:|
 |       Audio           |           N/A         |                   0.99                |
 |       Video           |High-Definition (HD)   |                   3.99                |
 |                       ||High-Definition Plus (HD+)                4.99                |
-				
+
 <div class="alert note">The live video streaming pricing stated on <a href="https://www.agora.io/en/pricing/">the official website</a> does not apply by default. Please <a href="mailto:support.agora.io">contact our sales</a> to get this rate.</div>
 
 #### Aggregate video resolution
@@ -188,6 +195,6 @@ No. The usage that you see on your bill are the total audio and video minutes us
 
 ## See also
 
-- [Agora's free-of-charge policy for the first 10,000 minutes](https://docs.agora.io/en/faq/billing_free)
-- [Billing, free deduction, and account suspension](https://docs.agora.io/en/faq/billing_account)
+- [Agora's free-of-charge policy for the first 10,000 minutes](../reference/billing-policies#agoras-free-of-charge-policy-for-the-first-10000-minutes)
+- [Billing, free deduction, and account suspension](../reference/billing-policies#billing-fee-deductions-and-account-suspension-policies)
 - [How do I get the user's call duration?](https://docs.agora.io/en/faq/business_billing)

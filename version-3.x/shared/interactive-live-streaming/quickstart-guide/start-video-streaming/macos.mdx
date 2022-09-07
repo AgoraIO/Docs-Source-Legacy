@@ -11,7 +11,7 @@ The following figure shows the workflow to integrate into your app in order to a
 As shown in the figure, the workflow for adding Interactive Live Streaming Premium in your project is as follows:
 
 1. Set the client role
-Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.  
+Each user in an Interactive Live Streaming Premium channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams.
 
 2. Retrieve a token
 A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
@@ -20,21 +20,21 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. Publish and subscribe to audio and video in the channel
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the live stream. 
+- The channel name: A string that identifies the channel for the live stream.
 
 ## Prerequisites
 
 - Xcode 11.0 or later (the interface description in this article is based on Xcode 11.0).
 - A macOS device running macOS 10.10 or later.
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=macOS).
+- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in).
 
-<div class="alert note">If your network has a firewall, follow the instructions in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=macOS">Firewall Requirements</a> to access Agora services.</div>
+<div class="alert note">If your network has a firewall, follow the instructions in <a href="../reference/firewall">Firewall Requirements</a> to access Agora services.</div>
 
 ## Create a macOS project
 
@@ -75,7 +75,7 @@ Choose one of the following methods to obtain the Agora macOS SDK:
 
 ### Method 2: Through the Agora website
 
-1. Navigate to [SDK Downloads](./downloads?platform=macOS), download the latest version of the Agora macOS SDK, and extract the files from the downloaded SDK package.
+1. Navigate to [SDK Downloads](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=macOS), download the latest version of the Agora macOS SDK, and extract the files from the downloaded SDK package.
 
 2. According to your requirements, copy the libraries from the `libs` folder of the SDK to the `./project_name` folder in your project (`project_name` is an example of your project name).
 
@@ -89,8 +89,8 @@ Choose one of the following methods to obtain the Agora macOS SDK:
 
 1. In Xcode, go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
 
-   ```text
-   <%= url %>
+   ```shellscript
+   https://github.com/AgoraIO/AgoraRtcEngine_macOS
    ```
 
 2. In **Choose Package Options**, specify the SDK version that you want to integrate. If the version number is x.y.z, fill in **x.y.z**; if the version number is x.y.z.a, fill in **x.y.z-r.a**.
@@ -113,7 +113,7 @@ When creating the user interface for basic interactive live video streaming, Ago
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.h
 // Import AppKit
 #import &lt;AppKit/AppKit.h&gt;
@@ -192,7 +192,7 @@ Before calling any Agora API, import the `AgoraRtcKit` class, and define `agoraK
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.h
 // Imports the AgoraRtcKit class
 // For SDKs earlier than 3.0.0, AgoraRtcKit is named AgoraRtcEngineKit
@@ -224,13 +224,13 @@ class ViewController: NSViewController {
 
 Call the `sharedEngineWithAppId` method to create and initialize the `AgoraRtcEngineKit` object.
 
-When adding the following code in your project, replace `YourAppID` with the App ID of your project. See [Get an App ID](https://docs.agora.io/en/Video/run_demo_video_call_macos?platform=macOS#appid).
+When adding the following code in your project, replace `YourAppID` with the App ID of your project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id).
 
 If you want to monitor a callback for your app scenario, register it when initializing `AgoraRtcEngineKit`.
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:@"YourAppID" delegate:self];
@@ -252,7 +252,7 @@ Each `AgoraRtcEngineKit` object supports one profile only. If you want to switch
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 [self.agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
@@ -278,7 +278,7 @@ Note that in interactive live streaming, only the host can be seen and heard. If
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 // Sets the client role as the host
@@ -303,7 +303,7 @@ Set the local video view before joining a channel so that hosts can see themselv
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 // Enables the video module
@@ -335,14 +335,14 @@ agoraKit?.setupLocalVideo(videoCanvas)
 
 Call the `joinChannelByToken` method to join a channel. When adding the following code in your project, replace `YourToken` with the token of your project, and replace `YourChannelName` with the channel name used to generate the token of your project.
 
-- For testing, you can [generate a temporary token](https://docs.agora.io/en/Video/run_demo_video_call_macos?platform=macOS#temptoken) in Agora Console.
-- For production, Agora recommends using a token generated at your server. See [Generate a Token](https://docs.agora.io/en/Video/token_server?platform=macOS).
+- For testing, you can [generate a temporary token](../reference/manage-agora-account#generate-a-temporary-token) in Agora Console.
+- For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 <div class="alert note">By default, a user who has joined a channel subscribes to the audio and video streams of all the other users in the channel. This will generate usage and affect billing. If you do not want to subscribe to a specific stream or all remote streams, call the <tt>mute</tt> methods accordingly.</div>
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Types the followiing code in the function you defines, such as viewDidLoad()
 // The uid of each user in the channel must be unique.
@@ -369,7 +369,7 @@ To set the video view of a remote host, monitor the `didJoinedOfUid` callback, w
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Monitors the didJoinedOfUid callback
 // The SDK triggers the callback when a remote host joins the channel
@@ -408,7 +408,7 @@ Call the `leaveChannel` method when you need to leave the channel, for example, 
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Types the followiing code in the function you defines
 [self.agoraKit leaveChannel:nil];
@@ -429,7 +429,7 @@ After leaving the channel, if you want to release all resources used by the Agor
 
 #### Objective-C
 
-```objc
+```objective-c
 // ViewController.m
 // Types the followiing code in the function you defines
 [AgoraRtcEngineKit destroy];
@@ -473,8 +473,8 @@ Before running the project, you need to set your signing and team, and add devic
 | Hardened Runtime | Resource Access | <ul><li>Camera</li><li>Audio Input</li></ul>                                          |
 
  <div class="alert note"><ul><li>If you need to add a third-party plug-in or library (such as a third-party camera), and the signing of the third-party plug-in or library is different from your project, you need to navigate to <b>Hardened Runtime</b> > <b>Runtime Exceptions</b>, and check the <b>Disable Library Validation</b> option.</li><li>See more considerations in <a href="https://developer.apple.com/documentation/xcode/preparing_your_app_for_distribution">Preparing Your App for Distribution</a >.</li></ul></div>
- 
- 
+
+
 3. In Xcode 12.2 and later, to avoid compliation errors, you need to navigate to **TARGETS** > **Project Name** > **Build Settings** > **Architectures**, and set the **Architectures** property to **x86_64** before the compilation.
 
 
@@ -496,7 +496,7 @@ Choose one of the following methods to integrate a version of the Agora macOS SD
 2. In Terminal, navigate to the project path, and run the `pod init` command to create a `Podfile` in the project folder.
 
 
-3. Open the `Podfile`, delete all contents, and input the following codes. Remember to replace `Your App` with the target name of your project and replace `version` with the version of the SDK that you want to integrate. For information about the SDK version, see [Release Notes](./release_mac_video?platform=macOS).
+3. Open the `Podfile`, delete all contents, and input the following codes. Remember to replace `Your App` with the target name of your project and replace `version` with the version of the SDK that you want to integrate. For information about the SDK version, see [Release Notes](../introduction/release-notes).
 
 
  ```
@@ -536,7 +536,7 @@ You need to use different integration methods to integrate different versions of
 1. Copy the `AgoraRtcKit.framework` dynamic library to the `./project_name` folder in your project (`project_name` is an example of your project name).
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**. Once the dynamic library is added, the project automatically links to other system libraries.
- 
+
  <div class="alert note"><ul><li>According to the official requirements of Apple, the Extension of an app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the Extension, change the file status to <b>Do Not Embed</b>.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
 
 </details>
@@ -554,9 +554,9 @@ The paths of the two libraries in the SDK package are as follows:
 **Integrate the dynamic library:**
 1. Copy the `AgoraRtcKit.framework` dynamic library from the `./libs` path of the SDK package to the `./project_name` folder in your project (`project_name` is an example of your project name).
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
-3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**. 
+3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**.
  Once the dynamic library is added, the project automatically links to other system libraries.
- 
+
  <div class="alert note">According to the official requirements of Apple, the Extension of an app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the Extension, change the file status to <b>Do Not Embed</b>.</div>
 
 **Integrate the static library:**
@@ -583,7 +583,7 @@ The paths of the two libraries in the SDK package are as follows:
 | Video SDK | <li>`AgoraRtcEngineKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li><li>`VideoToolbox.framework`</li> |
 
 <div class="alert note">The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</div>
-	
+
 </details>
 
 

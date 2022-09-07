@@ -4,11 +4,11 @@
 
 **After joining the channel**, the SDK triggers the following callbacks related to the call quality **once every two seconds**. You can see the last mile network quality, local statistics, audio quality, and video quality of the current call.
 
-<div class="alert note">Ensure that you implement a video call or interactive video streaming in your project. For details, see <a href="https://docs.agora.io/en/Video/start_call_unity?platform=Unity">Start a Video Call</a> or <a href="https://docs.agora.io/en/Interactive%20Broadcast/start_live_unity?platform=Unity">Start Live Interactive Video Streaming</a>.</div>
+<div class="alert note">Ensure that you implement a video call or interactive video streaming in your project. For details, see <a href="/3.x/video-calling/quickstart-guide/get-started-sdk">Start a Video Call</a> or <a href="../quickstart-guide/start-video-streaming">Start Live Interactive Video Streaming</a>.</div>
 
 ## Network quality report
 
-The `OnNetworkQualityHandler` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aaf4ce18af5bb87f13c49746af9ee075a) for details. Last mile refers to the network from your device to Agora’s edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter.
+The `OnNetworkQualityHandler` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#aaf4ce18af5bb87f13c49746af9ee075a) for details. Last mile refers to the network from your device to Agora’s edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter.
 
 <div class="alert note"><li>In the <code>COMMUNICATION</code> profile, you receive network quality reports of all the users (including yours) in the channel once every two seconds.</li><li>In the <code>LIVE_BROADCASTING</code> profile, if you are the host, you receive network quality reports of all hosts (including yours) in the channel once every two seconds; if you are the audience, you receive the report of all hosts and yourself once every two seconds.</li><li>The higher the ratio of the actual transmission bitrate to the target transmission bitrate, the better the call quality and the higher the network quality.</li><li>**The average round-trip delay** refers to the average value of multiple round-trip delays in the reported interval.</li></div>
 
@@ -45,7 +45,7 @@ When the state of the local audio stream changes (including the state of the aud
 
 ![1565945275984](https://web-cdn.agora.io/docs-files/1565945275984)
 
-The `OnRemoteAudioStatsHandler` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aaf4ce18af5bb87f13c49746af9ee075a), the number of channels (mono or dual), and the following parameters.
+The `OnRemoteAudioStatsHandler` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#aaf4ce18af5bb87f13c49746af9ee075a), the number of channels (mono or dual), and the following parameters.
 
 | Parameter               | Description                                                  | Comment                                                      |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -62,7 +62,7 @@ The `OnRemoteAudioStatsHandler` callback reports statistics more closely linked 
 <div class="alert note"><li>In the <code>COMMUNICATION</code> profile, you receive the audio stream statistics of all the remote users (excluding yours) in the channel once every two seconds.</li><li>In the <code>LIVE_BROADCASTING</code> profile, if you are the host, you receive the audio stream statistics of all remote hosts (excluding yours) in the channel once every two seconds; if you are the audience, you receive the statistics of all hosts in the channel once every two seconds.</li><li>Agora's <b>audio module</b> refers to the audio processing process, and not the actual module in the SDK. When sending audio streams, the audio module refers to the processes of audio sampling, pre-processing, and encoding; when receiving audio streams, the audio module refers to the processes of audio decoding, post-processing, and playback.</li><li>Users can only turn on/off their own audio modules.</li><li>By default, the audio freezes at most once in each reported interval.</li></div>
 
 <a name="34"></a>
-### State changes of remote audio streams 
+### State changes of remote audio streams
 
 When the state of **remote** audio stream changes, the SDK triggers the `OnRemoteAudioStateChangedHandler` callback to report the current state and the reason for the state change.
 
@@ -119,16 +119,16 @@ When the state of remote video streams changes, the SDK triggers the `OnRemoteVi
 
 ## API reference
 
-- [`OnNetworkQualityHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a1c331efe111ae4b958dc64a6f12ecf8a)
-- [`OnRtcStatsHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a931fc3d5383ece93efe5bb97ab7271f4)
-- [`OnLocalAudioStatsHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a5f1f0ac357fa5985af4f2cf7d76e26bf)
-- [`OnLocalAudioStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a6d3dde84ac7c4c9bd5cb290c2ab717b2)
-- [`OnRemoteAudioStatsHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a2c15901cdd77defbeb01709e5c954d9a)
-- [`OnRemoteAudioStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a92f016ea980eba06cf38192191d17e01)
-- [`OnLocalVideoStatsHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a40eab1be7af0f19840212bf47aeae841)
-- [`OnLocalVideoStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#ae677bebf52f50d861389acec8197b771)
-- [`OnRemoteVideoStatsHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a4a0e9e6402f4e279446a0e048423e30d)
-- [`OnRemoteVideoStateChangedHandler`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a53d577f5c1c2d863f7946d86d76adb13)
+- [`OnNetworkQualityHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a1c331efe111ae4b958dc64a6f12ecf8a)
+- [`OnRtcStatsHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a931fc3d5383ece93efe5bb97ab7271f4)
+- [`OnLocalAudioStatsHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a5f1f0ac357fa5985af4f2cf7d76e26bf)
+- [`OnLocalAudioStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a6d3dde84ac7c4c9bd5cb290c2ab717b2)
+- [`OnRemoteAudioStatsHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a2c15901cdd77defbeb01709e5c954d9a)
+- [`OnRemoteAudioStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a92f016ea980eba06cf38192191d17e01)
+- [`OnLocalVideoStatsHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a40eab1be7af0f19840212bf47aeae841)
+- [`OnLocalVideoStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#ae677bebf52f50d861389acec8197b771)
+- [`OnRemoteVideoStatsHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a4a0e9e6402f4e279446a0e048423e30d)
+- [`OnRemoteVideoStateChangedHandler`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/namespaceagora__gaming__rtc.html#a53d577f5c1c2d863f7946d86d76adb13)
 
 ## Considerations
 

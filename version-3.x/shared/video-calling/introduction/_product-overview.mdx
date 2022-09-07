@@ -1,0 +1,46 @@
+Agora Video Call enables easy and convenient one-to-one or one-to-many calls and supports voice-only and video modes with the Agora RTC SDK.
+
+## Functions and scenarios
+
+Agora Video Call boasts a flexible combination of functions for different scenarios.
+
+
+| Function                                | Description                                                  | Scenario                                                     |
+| --------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Audio mixing                            | Sends the local and online audio with the user's voice to other users in the channel. | <li>Online KTV. </li><li>Interactive music classes.</li>               |
+| Screen sharing                          | Enables the local user to share the screen to other users in the channel. Supports specifying which screen or which window to share, and supports specifying the sharing region. | Interactive online classes.                                  |
+| Basic image enhancement                 | Sets basic beauty effects, including skin smoothening, whitening, and cheek blushing. | Image enhancement in a video call.                           |
+| Modify the raw data                     | Enables developers to obtain and modify the raw voice or video data and to create special effects, such as a voice change. | <li>To change the voice in an online chatroom. </li><li>Image enhancement in a video call.</li> |
+| Customize the video source and renderer | Enables customization of the video sources and renderers. This allows users to use self-built cameras and videos from screen sharing or files to process videos, such as for image enhancement and filtering. | <li>To use a customized image enhancement library or pre-processing library.</li><li>To customize the application's built-in image and video modules.</li><li>To use other video sources, such as a recorded video.</li><li>To provide flexible device management for exclusive video capture devices to avoid conflicts with other services.</li> |
+
+<div class="alert info">Temporarily, the Agora RTC Web SDK does not support modifying the raw data. </div>
+
+## Key properties
+
+| Property                    | Agora Video Call specifications                              |
+| --------------------------- | ------------------------------------------------------------ |
+| SDK package size            | 4.61 MB to 13.94 MB                                          |
+| Capacity                    | 17 users                                                     |
+| Video profile               | <li>SDK video source: Up to 1080p @ 60 fps</li><li>Custom video source: Up to 4K</li> |
+| Audio profile               | <li>Sample rate: 16 kHz to 48 kHz</li><li>Support for mono and stereo sound</li> |
+| Audio anti-packet-loss rate | 80% (uplink and downlink)                                    |
+
+## Compatibility
+
+Agora Video Call is supported on platforms such as iOS, Android, Windows, macOS, Electron, Unity, and Web, and allows for cross-platform connections. The following is a list of supported platforms and their versions.
+
+| Platform             | Supported Version                                            |
+| -------------------- | ------------------------------------------------------------ |
+| Android              | <p>≥ 4.1</p>The Android SDK supports the following ABIs:<li>armeabi-v7a</li><li>arm64-v8a</li><li>x86</li><li>x86-64</li> |
+| iOS                  | ≥ 9.0                                                       |
+| Windows              | <p>≥ Windows 7</p>The Windows SDK supports the following architecture:<li>x86</li><li>x86-64</li>                                                      |
+| macOS                | <p>≥ 10.10</p>The macOS SDK supports the following architecture:<li>x86-64</li><li>arm64</li>                                                        |
+| Unity                | <p>≥ 2017</p>The Unity SDK supports the following platforms:<ul><li>Android (armeabi-v7a, arm64-v8a, x86)</li><li>iO</li><li>Windows (x86, x86-64)</li><li>macOS</li></ul>                                                        |
+| Web                  | See [Web SDK Compatibility](https://docs.agora.io/en/Video/faq/browser_support?platform=Web) |
+|Electron |≥ Electron 1.8.3|
+|Flutter  |≥ Flutter 1.0.0 |
+|React Native |≥ React Native 0.59.10|
+
+## Reference
+
+[How many users can Agora RTC SDK support at the same time?](https://docs.agora.io/en/faq/capacity)

@@ -15,7 +15,7 @@ This article describes how to use the Agora Unity SDK to customize the video sou
 
 ## Implementation
 
-Before customizing the video source or renderer, ensure that you have implemented the basic real-time communication functions in your project. See [Start a Video Call](https://docs.agora.io/en/Video/start_call_unity?platform=Unity) or [Start Interactive Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_unity?platform=Unity) for details.
+Before customizing the video source or renderer, ensure that you have implemented the basic real-time communication functions in your project. See [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming) for details.
 
 Refer to the following steps to customize the video source and renderer in your project:
 
@@ -27,25 +27,25 @@ The following steps show how to implement screen sharing by customizing the vide
 
 1. Specify the external video source by calling `SetExternalVideoSource` before `JoinChannelByKey`.
 
-   ```c#
+   ```csharp
 mRtcEngine.SetExternalVideoSource(true, false);
 	 ```
 
 2. Define the Texture2D, and use Texture2D to read screen pixels as an external video source.
 
-   ```c#
+   ```csharp
 mRect = new Rect(0, 0, Screen.width, Screen.height);
 mTexture = new Texture2D((int)mRect.width, (int)mRect.height, TextureFormat.BGRA32, false);
 mTexture.ReadPixels(mRect, 0, 0);
 mTexture.Apply();
 	 ```
-   
+
 3. Call `PushVideoFrame` to send the video source to the SDK and to implement screen sharing.
 
-   ```c#
+   ```csharp
 int a = rtc.PushVideoFrame(externalVideoFrame);
 	 ```
-   
+
 
 ### API call sequence
 
@@ -57,7 +57,7 @@ The following diagram shows the API call sequence for customizing the video sour
 
 Refer to the following code to customize the video source in your project, for functions such as screen sharing.
 
-```c#
+```csharp
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,7 +76,7 @@ public class ShareScreen : MonoBehaviour
    [SerializeField]
    private string channelName = "agora";
    public IRtcEngine mRtcEngine;
-	
+
    void Start()
    {
        Debug.Log("ScreenShare Activated");
@@ -101,7 +101,7 @@ public class ShareScreen : MonoBehaviour
    {
        StartCoroutine(shareScreen());
    }
-			 
+
    // Starts to share the screen.
    IEnumerator shareScreen()
    {
@@ -148,8 +148,8 @@ public class ShareScreen : MonoBehaviour
 
 ### API reference
 
-- [SetExternalVideoSource](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aae4a31d2375ed620605360ae1199eee8)
-- [PushVideoFrame](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#af9e8d34e2a1ac07b8984fb6181a6ab81)
+- [SetExternalVideoSource](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#aae4a31d2375ed620605360ae1199eee8)
+- [PushVideoFrame](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#af9e8d34e2a1ac07b8984fb6181a6ab81)
 
 ## Relevant links
 For details of the AR feature, see [Video chat with Unity3D and ARFoundation](https://www.agora.io/en/blog/video-chat-with-unity3d-the-arfoundation-version).

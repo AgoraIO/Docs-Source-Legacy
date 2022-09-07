@@ -16,7 +16,7 @@ This page lists the known issues and limitations of using the Web SDK.
  **Solution:** Agora recommends using VP8 instead of H.264 for Chrome 84 and later versions on macOS.
 - Acoustic Echo Cancellation(AEC) fails to work on Chrome in certain scenarios.
  **Cause:** If you apply extra processing (for example, spatial audio) to the received remote audio stream, AEC fails to get the AEC Reference signal. For details, see the Chrome [Issue 687574](https://bugs.chromium.org/p/chromium/issues/detail?id=687574).
-**Solution:** Agora recommends that all users wear headphones instead of using speakers. To use speakers in this scenario, contact [support@agora.io](mailto:support@agora.io). 
+**Solution:** Agora recommends that all users wear headphones instead of using speakers. To use speakers in this scenario, contact [support@agora.io](mailto:support@agora.io).
 
 <a name="safari"></a>
 
@@ -30,7 +30,7 @@ This page lists the known issues and limitations of using the Web SDK.
 - Safari 11 only supports video resolutions of 480P and higher.
 - Safari does not support getting the output device information, so it does not support the `getPlayoutDevices` and `setAudioOutput` methods.
 - On Safari, when calling APIs to get quality statistics, the values of some properties are 0. For example, when calling `getLocalAudioStats` to get the quality statistics of the local audio track, the value of `sendPacketsLost` is 0.
-- If **Auto-Play** is not enabled on Safari (as the following figure shows), the stream playback has no audio. You have to call the `navigator.mediaDevices.getUserMedia` method to get the device permissions before playing a stream. 
+- If **Auto-Play** is not enabled on Safari (as the following figure shows), the stream playback has no audio. You have to call the `navigator.mediaDevices.getUserMedia` method to get the device permissions before playing a stream.
   ![img](https://web-cdn.agora.io/docs-files/1591078696865)
 
 <a name="firefox"></a>
@@ -52,7 +52,7 @@ This page lists the known issues and limitations of using the Web SDK.
 - The `setPlaybackDevice` method is only supported on Chrome. Calling this method on other browsers throws the `NOT_SUPPORTED` error.
 - The `setOptimizationMode` method and the `optimizationMode` parameter in `CameraVideoTrackInitConfig`, `ScreenVideoTrackInitConfig`, and `CustomVideoTrackInitConfig` are only supported on Chrome.
 - Calling `createScreenVideoTrack` to enable screen sharing has the following restrictions:
-   - The Web SDK supports screen sharing on Chrome 58 or later. If the Chrome version is earlier than 72, you need to add the [Google Chrome Extension for Screen Sharing](/en/Interactive%20Broadcast/chrome_screensharing_plugin) provided by Agora, get the `extensionId`, and set the `extensionId` parameter when you create a video track for screen sharing. If the Chrome version is 72 or later, simply call `createScreenVideoTrack`.
+   - The Web SDK supports screen sharing on Chrome 58 or later. If the Chrome version is earlier than 72, you need to add the [Google Chrome Extension for Screen Sharing](../basic-features/screensharing#screen-sharing-on-chrome) provided by Agora, get the `extensionId`, and set the `extensionId` parameter when you create a video track for screen sharing. If the Chrome version is 72 or later, simply call `createScreenVideoTrack`.
    - The Web SDK supports screen sharing on Firefox 56 or later. Firefox on Windows does not support the `application` mode.
    - The Web SDK supports screen sharing on Edge 80 or later on Windows 10+.
    - The Web SDK supports screen sharing on macOS Safari 13 or later. The end-user can only share the whole screen on Safari.
@@ -103,7 +103,8 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-    <summary>iOS 15.0 to 15.3: Low audio volume</summary>
+   <summary>iOS 15.0 to 15.3: Low audio volume</summary>
+
 **Impact**: All browsers and apps that use WKWebView on iOS 15.0 to 15.3, such as Safari and Chrome.
 
 **Details**: On iOS 15.0 to 15.3, after the local user subscribes to the `RemoteAudioTrack` and plays it, sometimes the audio is routed to the earpiece instead of the speaker, and the volume that the local user hear may be very low.
@@ -185,7 +186,7 @@ createClient({codec:'vp8', mode})
 - If you call `getUserMedia` twice to get two tracks of the same media type, the first track goes muted or black.
 - After a user switches to another app that uses the microphone or camera (such as Siri or Skype) and then switches back, the audio sampling or video capture fails.
 </details>
-	 
+
 ### iOS known limitations
 
 <details>

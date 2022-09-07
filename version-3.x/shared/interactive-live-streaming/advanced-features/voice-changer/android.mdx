@@ -90,11 +90,11 @@ You can implement the singing beautifier by the enumeration `SINGING_BEAUTIFIER`
 <div class="alert note">To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY(4)</tt> or <tt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AUDIO_SCENARIO_GAME_STREAMING(3)</tt> before setting this enumerator.</div>
 
 ```java
-// Beautifies the singing voice of the local user.   
-mRtcEngine.setVoiceBeautifierPreset(Constants.SINGING_BEAUTIFIER);   
-// Beautifies a female-sounding voice and add a reverberation effect that sounds like singing in a hall.  
-mRtcEngine.setVoiceBeautifierParameters(Constants.SINGING_BEAUTIFIER, 2, 3);   
-// Disables voice effects.  
+// Beautifies the singing voice of the local user.
+mRtcEngine.setVoiceBeautifierPreset(Constants.SINGING_BEAUTIFIER);
+// Beautifies a female-sounding voice and add a reverberation effect that sounds like singing in a hall.
+mRtcEngine.setVoiceBeautifierParameters(Constants.SINGING_BEAUTIFIER, 2, 3);
+// Disables voice effects.
 mRtcEngine.setVoiceBeautifierPreset(Constants.VOICE_BEAUTIFIER_OFF);
 ```
 
@@ -235,13 +235,13 @@ You can implement the voice changer by the enumerations in `setVoiceConversionPr
 <div class="alert note">To achieve better audio effect quality, Agora recommends calling <tt>setAudioProfile</tt>, setting the <tt>profile</tt> parameter to <tt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY(4)</tt> or <tt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)</tt>, and setting the <tt>scenario</tt> parameter to <tt>AUDIO_SCENARIO_GAME_STREAMING(3)</tt> before setting this enumerator.</div>
 
 ```java
-// Presets the local voice by making it sound like a gender-neutral voice. 
-mRtcEngine.setVoiceConversionPreset(Constants.VOICE_CHANGER_NEUTRAL);  
-// Disables voice effects. 
+// Presets the local voice by making it sound like a gender-neutral voice.
+mRtcEngine.setVoiceConversionPreset(Constants.VOICE_CHANGER_NEUTRAL);
+// Disables voice effects.
 mRtcEngine.setVoiceConversionPreset(Constants.VOICE_CONVERSION_OFF);
 ```
 
-## Customize voice effects 
+## Customize voice effects
 
 If the preset effect does not meet your requirement, you can also customize the voice effects by adjusting the voice pitch, equalization, and reverberation settings through `setLocalVoicePitch`, `setLocalVoiceEqualization`, and `setLocalVoiceReverb`.
 
@@ -251,7 +251,7 @@ The following sample code shows how to change the original user's voice to the H
 // Sets the pitch. The value ranges between 0.5 and 2.0. The lower the value, the lower the pitch. The default value is 1.0, which is the original pitch.
 double pitch = 0.5;
 mRtcEngine.setLocalVoicePitch(pitch);
- 
+
 // Sets the local voice equalization.
 // The first parameter sets the band frequency. The value ranges between 0 and 9. Each value represents the center frequency of the band: 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, and 16k Hz.
 // The second parameter sets the gain of each band. The value ranges between -15 and 15 dB. The default value is 0.
@@ -265,19 +265,19 @@ mRtcEngine.setLocalVoiceEqualization(6, -3);
 mRtcEngine.setLocalVoiceEqualization(7, -2);
 mRtcEngine.setLocalVoiceEqualization(8, -1);
 mRtcEngine.setLocalVoiceEqualization(9, 1);
- 
+
 // The level of the dry signal in dB. The value ranges between -20 and 10.
 mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_DRY_LEVEL, 10);
- 
+
 // The level of the early reflection signal (wet signal) in dB. The value ranges between -20 and 10.
 mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_WET_LEVEL, 7);
- 
+
 // The room size of the reverberation. A larger room size means a stronger reverberation. The value ranges between 0 and 100.
 mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_ROOM_SIZE, 6);
- 
+
 // The length of the initial delay of the wet signal (ms). The value ranges between 0 and 200.
 mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_WET_DELAY, 124);
- 
+
 // The reverberation strength. The value ranges between 0 and 100. The higher the value, the stronger the reverberation.
 mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_STRENGTH, 78);
 ```
@@ -286,17 +286,17 @@ mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_STRENGTH, 78);
 
 **Preset voice effects**
 
-- [`setAudioEffectPreset`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af12f990d231904787e1cfc3d9097af04)
-- [`setVoiceBeautifierPreset`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5977ae8d823d23314faab78fa1a72a29)
-- [`setAudioEffectParameters`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a62beca2921fbd86a9b0041a051d8564e)
-- [`setVoiceBeautifierParameters`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa7124a19c0704d8c549bde165a450be3)
+- [`setAudioEffectPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af12f990d231904787e1cfc3d9097af04)
+- [`setVoiceBeautifierPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5977ae8d823d23314faab78fa1a72a29)
+- [`setAudioEffectParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a62beca2921fbd86a9b0041a051d8564e)
+- [`setVoiceBeautifierParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa7124a19c0704d8c549bde165a450be3)
 - [`setVoiceConversionPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html?platform=iOS#//api/name/setVoiceConversionPreset:)
 
 **Customized voice effects**
 
-- [`setLocalVoicePitch`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a41b525f9cbf2911594bcda9b20a728c9)
-- [`setLocalVoiceEqualization`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9e3aa79f0d6d8f2ea81907543506d960)
-- [`setLocalVoiceReverb`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4afc32ba68e997e90ba3f128317827fa)
+- [`setLocalVoicePitch`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a41b525f9cbf2911594bcda9b20a728c9)
+- [`setLocalVoiceEqualization`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9e3aa79f0d6d8f2ea81907543506d960)
+- [`setLocalVoiceReverb`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4afc32ba68e997e90ba3f128317827fa)
 
 ## Considerations
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-By default, the Agora SDK uses default audio and video modules for capturing and rendering in real-time communications. 
+By default, the Agora SDK uses default audio and video modules for capturing and rendering in real-time communications.
 
 However, the default modules might not meet your development requirements, such as in the following scenarios:
 
@@ -18,11 +18,11 @@ This article explains how to customize the video source and renderer with the Ag
 
 ## Implementation
 
-Before customizing the video source and renderer, ensure that you have implemented the basic real-time communication functions. For details, see [Start a Video Call](start_call_web) or [Start Interactive Video Streaming](start_live_web).
+Before customizing the video source and renderer, ensure that you have implemented the basic real-time communication functions. For details, see [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
 
 ### Customize the audio/video source
 
-When creating a stream with the `createStream` method, you can specify customized audio/video sources by the [`audioSource`](./API%20Reference/web/interfaces/agorartc.streamspec.html#audiosource) and [`videoSource`](./API%20Reference/web/interfaces/agorartc.streamspec.html#videosource) properties. 
+When creating a stream with the `createStream` method, you can specify customized audio/video sources by the [`audioSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.streamspec.html#audiosource) and [`videoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.streamspec.html#videosource) properties.
 
 For example, you can use the `mediaStream` method to get the audio and video tracks from `MediaStreamTrack`, and then set `audioSource` and `videoSource`:
 
@@ -52,7 +52,7 @@ navigator.mediaDevices.getUserMedia(
 
 ### Customize the video renderer
 
-Call the [`Stream.getVideoTrack`](./API%20Reference/web/interfaces/agorartc.stream.html#getvideotrack) method and attach the track to the local canvas.
+Call the [`Stream.getVideoTrack`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#getvideotrack) method and attach the track to the local canvas.
 
 ### Sample code
 

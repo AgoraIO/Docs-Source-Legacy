@@ -1,0 +1,390 @@
+<PlatformWrapper platform="unity">
+
+Real-time video immerses people in the sights and sounds of human connections, keeping them engaged in your app longer.
+
+Video Calling enables you to host large-scale live audio and video streaming events with real-time interactivity. Agora’s Video SDK makes it easy to embed real-time video chat into web, mobile and native apps.
+
+Thanks to Agora’s intelligent and global Software Defined Real-time Network (SD-RTN™), you can rely on the highest available video and audio quality.
+
+This page shows the minimum code you need to integrate high-quality, low-latency Video Calling features into your app using Video SDK.
+
+## Understand the tech
+
+This section explains how you can integrate Video Calling features into your app. The following figure shows the workflow you need to integrate this feature into your app.
+
+![](https://web-cdn.agora.io/docs-files/1662445896735)
+
+To start a session, implement the following steps in your app:
+
+1. **Retrieve a token**
+    A token is a computer-generated string that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
+
+2. **Join a channel**
+    Call methods to create and join a channel; app clients that pass the same channel name join the same channel.
+
+3. **Send and receive video and audio in the channel**
+    All users send and receive video and audio streams from all users in the channel.
+
+## Prerequisites
+
+In order to follow this procedure you must have:
+
+- [Unity Hub](https://unity.com/download)
+- Unity Editor 2018.4 or higher
+- Microsoft Visual Studio 2017 or higher
+- Target platform:
+  * iOS:
+    - iOS Build Support module
+    - Xcode 9.0 or higher
+  * macOS:
+    - Xcode 9.0 or higher
+    - macOS 10.0 or higher
+  * Android:
+    - Android 4.1 or later
+    - Android Studio 3.0 or later
+  * Windows:
+    - Windows 7 or later
+- In order to future-proof your app, if you use Unity 2021.2.0 or higher, you must rename the Agora Android plugin from `AgoraRtcEngineKit.plugin` to `AgoraRtcEngineKit.androidlib`. Changing the name in Video SDK would have broken backward compatibility with earlier versions.
+- A computer that can access the Internet.
+  Ensure that no firewall is blocking your network communication; otherwise, the project may fail.
+- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in) and an Agora project.
+  [Get Started with Agora](../reference/manage-agora-account#get-started-with-agora) shows you how to create an account and retrieve authentication information from Agora Console.
+
+## Project setup
+
+In order to create the environment necessary to integrate Video Calling into your game, do the following:
+
+1. **Create a Unity project**
+    1. In Unity Hub, select **Projects**, then click **New Project**.
+    2. In **All templates**, select **3D**. Set the **Project name** and **Location**, then click **Create Project**.
+    3. In **Projects**, double-click the project you created. The project opens in Unity.
+
+2. **Add Video SDK to your game**
+    1. In Unity, click **Window** > **Asset Store**. Unity Asset Store opens in your browser.
+    2. In **Search for assets**, type **Agora Video SDK for Unity** and press **Enter**.
+    3. From the search results, open **Agora Video SDK for unity** and click **Download**.
+    4. Once the download is finished, the **Download** button becomes **Open in Unity**. To open SDK in Package Manager, click **Open in Unity**.
+    5. In Package Manager, click **import**, and select your targeted platform packages.
+    6. To add the selected packages to your game, click **import**. You see Agora Engine in the project Assets. Close the import window.
+
+You are ready to add Video Calling functionality to your game.
+
+## Implement a client for Video Calling
+
+When a user opens the game, you initialize Agora Engine. When the user taps a button, the game joins or leaves a channel. When another user joins the same channel, their video and audio is rendered in the game. This simple workflow enables you to concentrate on implementing Agora functionality and not UX bells and whistles.
+
+This section shows how to use the Video SDK to implement Video Calling into your game, step-by-step.
+
+### Create the UI
+
+For a basic Video Calling app, you need:
+
+-   One view for local video
+-   One view for remote video
+-   Buttons so the user can join or leave a channel
+
+To create this UI:
+
+1.  **Add the join and leave buttons**
+
+    You create buttons using Unity that you access programmatically to implement the Video Calling workflow.
+
+    a.  In your Unity project, right-click **Sample Scene**, then click **Game Object** &gt; **UI** &gt; **Button**. A button appears in the scene Canvas.
+
+       If you can’t see the button clearly, in Unity, zoom out and rotate the scene.
+
+    b.  In **Inspector**, rename **Button** to `Leave`, and then change the following coordinates:
+
+       -   **Pos X** - `350`
+
+       -   **Pos Y** - `-172`
+
+    c.  Select the **Text** sub-item of **Leave**, and in **Inspector** change **Text** to `Leave`.
+
+    d.  Use the same procedure to create a button called `Join` with a **Text** sub-item where **Text** says `Join`.
+
+    e.  To shift **Join** to the left of the Canvas, and in **Inspector** change the following coordinates:
+
+       -   **Pos X** - `-350`
+
+       -   **Pos Y** - `-172`
+
+2.  **Add the local and remove video views**
+
+    You create raw images using Unity that you access programmatically to display video streams on.
+
+    a.  For local video, in your Unity project, right-click **Canvas**, and then click **UI** &gt; **Raw Image**.
+
+    b.  In **Inspector**, rename **RawImage** to `LocalView`, and change the following coordinates:
+
+       -   **Pos X** - `-250`
+
+       -   **Pos Y** - `0`
+
+       -   **Width** - `250`
+
+       -   **Height** - `250`
+
+    c.  For remote video, use the same procedure to create a **RawImage** called `RemoteView` with the following coordinates:
+
+       -   **Pos X** - `250`
+
+       -   **Pos Y** - `0`
+
+       -   **Width** - `250`
+
+       -   **Height** - `250`
+
+3.  Save your changes.
+
+This UI should resemble:
+
+![get-started-video-unity](https://web-cdn.agora.io/docs-files/1649768932440)
+
+
+### Handle the system logic
+
+When your app launches, ensure that the permissions necessary to insert Video Calling features into the game are granted. In this section you import the necessary .NET libraries, set up your game to run on Android, and request permissions for the camera and microphone.
+
+To handle Android system logic for your game:
+
+1. **Create a new script and import the Unity libraries**
+    1. In **Project**, open **Assets** > **AgoraEngine**. Right-click **Scripts**, then click **Create** > **C# Script**. In Assets you see `NewBehaviourScript`. Rename `NewBehaviourScript` to `AgoraImplementation`. The template code is visible in **Inspector**.
+    2. In **Inspector**, click **Open**. `AgoraImplementation.cs` opens in your default text editor.
+    3. Add the following code after `using UnityEngine;`:
+
+        ```csharp
+        using UnityEngine.UI;
+        ```
+
+2. **Manage Android permissions**
+
+    a. Add the Unity Android libraries. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code after `using UnityEngine.UI;`:
+
+        ```csharp
+        #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
+        using UnityEngine.Android;
+        #endif
+        ```
+
+    b. Create a permissions list. Add the following lines before start:
+
+        ```csharp
+        #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
+            private ArrayList permissionList = new ArrayList() { Permission.Camera, Permission.Microphone };
+        #endif
+        ```
+
+
+    c. Check permissions are granted. Add the following code before Update:
+
+        ```csharp
+        private void CheckPermissions()
+        {
+        #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
+                foreach (string permission in permissionList)
+                {
+                    if (!Permission.HasUserAuthorizedPermission(permission))
+                    {
+                        Permission.RequestUserPermission(permission);
+                    }
+                }
+        #endif
+        }
+        ```
+
+3. **Bind your script to the EventSystem**
+
+    In **Project**, navigate to `Assets/AgoraEngine/Scripts`, then drag `AgoraImplementation.cs` and drop on **EventSystem** in the hierarchy. Click **Inspector**, you see that `AgoraImplementation` is added to Event System.
+
+
+
+### Implement the Video Calling logic
+
+The following figure and steps show the API call sequence of implementing Video Calling.
+
+![video call logic unity](https://web-cdn.agora.io/docs-files/1649771323519)
+
+To implement this logic, take the following steps:
+
+1.  **Import the Agora library**
+
+    In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following library before `using UnityEngine`:
+
+    ```csharp
+    using agora_gaming_rtc;
+    ```
+
+2.  **Create the variables that you use to create and join a channel**
+
+    In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following lines after `AgoraImplementation : MonoBehaviour {`:
+
+    ```csharp
+    private string APP_ID= "";
+    private string CHANNEL = "";
+    private string TOKEN = "";
+    private VideoSurface LocalView;
+    private VideoSurface RemoteView;
+    private IRtcEngine mRtcEngine;
+    ```
+
+3.  **Set up Agora Engine**
+
+    When your game launches, call `SetupVideoSDKEngine` to create and initialize an Agora Engine instance. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code before `Update`:
+
+    ```csharp
+    private void SetupVideoSDKEngine()
+    {
+        mRtcEngine = IRtcEngine.GetEngine(APP_ID);
+        mRtcEngine.OnUserJoined = OnUserJoined;
+        mRtcEngine.OnUserOffline = OnUserOffline;
+    }
+    ```
+
+4.  **Reference the UI elements from SampleScene**
+
+    In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the reference code before `Start`:
+
+    ```csharp
+    void SetupUI()
+    {
+        GameObject go = GameObject.Find("LocalView");
+        LocalView = go.AddComponent<VideoSurface>();
+        go.transform.Rotate(0.0f, 0.0f, -180.0f);
+        go= GameObject.Find("RemoteView");
+        RemoteView = go.AddComponent<VideoSurface>();
+        go.transform.Rotate(0.0f, 0.0f, -180.0f);
+        go = GameObject.Find("Leave");
+        go?.GetComponent<Button>()?.onClick.AddListener(Leave);
+        go = GameObject.Find("Join");
+        go?.GetComponent<Button>()?.onClick.AddListener(Join);
+    }
+    ```
+
+5.  **Set up local video and join a channel**
+
+    To join a channel and start local video, in `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the reference code before `Update`:
+
+    ```csharp
+    void Join()
+    {
+        mRtcEngine.EnableVideo();
+        mRtcEngine.EnableVideoObserver();
+        LocalView.SetEnable(true);
+        mRtcEngine.JoinChannelByKey(TOKEN, CHANNEL, null, 0);
+    }
+    ```
+
+6.  **View the remote user when they join a channel**
+
+    When a remote user joins the channel, Agora fires the `OnUserJoined` callback. You catch this callback and start remote video. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code before `Update`:
+
+    ```csharp
+    void OnUserJoined(uint uid, int elapsed)
+    {
+        RemoteView.SetForUser(uid);
+        RemoteView.SetVideoSurfaceType(AgoraVideoSurfaceType.RawImage);
+        RemoteView.SetEnable(true);
+        RemoteView.SetGameFps(30);
+        Debug.Log("Remote user joined");
+    }
+    ```
+
+7.  **Stop remote video when the remote user leaves the channel**
+
+    When a remote user leaves the channel or drops offline, Agora fires the `OnUserOffline` callback. When you app catches this callback, stop remote video. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the reference code before `Update`:
+
+    ```csharp
+    void OnUserOffline(uint uid, USER_OFFLINE_REASON reason)
+    {
+        RemoteView.SetEnable(false);
+    }
+    ```
+
+8.  **Clean up resources when the local user leaves the channel**
+
+    When your game launches, users click the buttons in the UI to join and leave a channel. When a user clicks `Leave`, you catch the `Leave` action, leave the channel and clean up resources. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code before `Update`:
+
+    ```csharp
+     void Leave()
+    {
+        Debug.Log("Leaving Channel");
+        mRtcEngine.LeaveChannel();
+        mRtcEngine.DisableVideo();
+        RemoteView.SetEnable(false);
+        LocalView.SetEnable(false);
+        mRtcEngine.DisableVideoObserver();
+    }
+    ```
+
+### Start and stop your game
+
+In this implementation, you initiate Video SDK when you the user opens the game. The game user joins and leaves a call using the buttons in the UI.
+
+To implement this functionality:
+
+1. **Check that the game has the correct permissions to start**
+
+    For Android, call `CheckPermissions` and check that the permissions are granted. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, replace `Update` with the following code:
+
+    ```csharp
+    void Update()
+    {
+        CheckPermissions();
+    }
+    ```
+
+2. **Start Video Calling**
+
+    In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, replace `Start` with the following code:
+
+    ```csharp
+    void Start()
+    {
+        SetupVideoSDKEngine();
+        SetupUI();
+    }
+    ```
+
+3. **Clean up the resources used by your game**
+
+    When the user closes this game, use `OnApplicationQuit` to clean up the resources you created in `SetupVideoSDKEngine`. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add `OnApplicationQuit` before `Update`:
+
+    ```csharp
+    void OnApplicationQuit()
+    {
+        if (mRtcEngine != null)
+        {
+            Leave();
+            IRtcEngine.Destroy();
+            mRtcEngine = null;
+        }
+    }
+    ```
+
+## Test your implementation
+
+To ensure that you have implemented Video Calling in your game:
+
+1.  [Generate a temporary token](../reference/manage-agora-account#generate-a-temporary-token) in Agora Console.
+
+2.  In your browser, navigate to [Agora web demo](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/) and update *App ID*, *Channel* and *Token* with the values for your temporary token, then click **JOIN**.
+
+3.  In Unity Editor, in `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, update `APP_ID`, `CHANNEL` and `TOKEN` with the values for your temporary token.
+
+4.  In Unity Editor, click `Play`. A moment later you see the game running on your development device.
+
+5.  Click `Join` button to join a channel.
+
+6.  Now, you can see yourself in the local view and talk to the other user in your game.
+
+
+## Reference
+
+This section contains information that completes the information in this page, or points you to documentation that explains other aspects to this product.
+
+- To ensure communication security in a test or production environment, use of a token server is recommended to ensure communication security, see [Authenticate Your Users with Tokens](../basic-features/token-server).
+
+- For a more complete example, see the [open source Video Calling example project](https://github.com/AgoraIO/Agora-Unity-Quickstart/tree/master/API-Example-Unity).
+
+</PlatformWrapper>

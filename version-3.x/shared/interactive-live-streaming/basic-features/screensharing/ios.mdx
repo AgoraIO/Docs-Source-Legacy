@@ -22,7 +22,7 @@ This section describes how to implement screen sharing using the iOS SDK v3.7.0 
 <li>This feature requires a high-performance device. Agora recommends that you use this feature on iPhone X or later models.</li></div>
 
 
-Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](https://docs-preprod.agora.io/en/Interactive%20Broadcast/start_call_ios) or [Start Interactive Video Streaming](https://docs-preprod.agora.io/en/Interactive%20Broadcast/start_live_ios).
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
 
 
 1. Ensure that `AgoraReplayKitExtension.framework` is integrated into the project. This dynamic library wraps the following functionality:
@@ -47,7 +47,7 @@ Before you begin, ensure that you understand how to start a video call or start 
 
         - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
 
-            ```objc
+            ```objective-c
             // Objective-C
             #import "SampleHandler.h"
             #import "AgoraReplayKitExt.h"
@@ -148,9 +148,9 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO/API-Ex
 
 Some restrictions and cautions exist for using the screen sharing feature, and charges can apply. Agora recommends that you read the following API references before calling the API:
 
-- [`startScreenCapture`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#/api/name/startScreenCapture:)
-- [`updateScreenCapture`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#/api/name/updateScreenCapture:)
-- [`stopScreenCapture`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#/api/name/stopScreenCapture)
+- [`startScreenCapture`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#/api/name/startScreenCapture:)
+- [`updateScreenCapture`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#/api/name/updateScreenCapture:)
+- [`stopScreenCapture`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#/api/name/stopScreenCapture)
 
 
 ### Implementations earlier than v3.7.0
@@ -160,7 +160,7 @@ This section describes how to implement screen sharing using the iOS SDK earlier
 <div class="alert note">The implementation method introduced in this section applies to iOS 12.0 or later.</div>
 
 
-Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](https://docs-preprod.agora.io/en/Interactive%20Broadcast/start_call_ios) or [Start Interactive Video Streaming](https://docs-preprod.agora.io/en/Interactive%20Broadcast/start_live_ios).
+Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
 
 
 #### 1. Create an Extension for screen sharing

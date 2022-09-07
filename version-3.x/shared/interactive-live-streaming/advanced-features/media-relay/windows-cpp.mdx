@@ -17,7 +17,7 @@ We provide an open-source demo project that implements [channel media relay](htt
 
 <div class="alert note">To enable channel media relay, contact <a href="mailto:support@agora.io">support@agora.io</a>.</div>
 
-Before relaying media streams across channels, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start Live Interactive Streaming](start_live_windows).
+Before relaying media streams across channels, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming).
 
 As of v2.9.0, the Agora Native SDK supports co-hosting across channels with the following methods:
 
@@ -55,7 +55,7 @@ lpSrcinfo->channelName = nullptr;
 lpSrcinfo->token = nullptr;
 lpSrcinfo->uid = 0;
 ChannelMediaInfo  *lpDestInfos = NULL;
-int nDestCount = arrayDestInfos.size();	
+int nDestCount = arrayDestInfos.size();
 for(int nIndex = 0; nIndex < nDestCount; nIndex++) {
 		std::string strChannelName = arrayDestInfos[nIndex]["channelName"].asString();
 		std::string strtoken  = arrayDestInfos[nIndex]["token"].asString();
@@ -82,18 +82,18 @@ lpUpdateDestInfos->token = nullptr;
 lpUpdateDestInfos->uid = 0;
 cmrc.destInfos = lpUpdateDestInfos;
 cmrc.destCount = 1;
-ret = m_lpAgoraEngine->updateChannelMediaRelay(cmrc);	
+ret = m_lpAgoraEngine->updateChannelMediaRelay(cmrc);
 ```
 
 <div class="alert note">After calling the <code>startChannelMediaRelay</code> method, you can call the <code>updateChannelMediaRelay</code> method to add or delete the relay channels.</div>
 
 ### API reference
 
-- [`startChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acb72f911830a6fdb77e0816d7b41dd5c)
-- [`updateChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afad0d3f3861c770200a884b855276663)
-- [`stopChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab4a1c52a83a08f7dacab6de36f4681b8)
-- [`onChannelMediaRelayStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a8f22b85194d4b771bbab0e1c3b505b22)
-- [`onChannelMediaRelayEvent`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89a4085f36c25eeed75c129c82ca9429)
+- [`startChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acb72f911830a6fdb77e0816d7b41dd5c)
+- [`updateChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afad0d3f3861c770200a884b855276663)
+- [`stopChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab4a1c52a83a08f7dacab6de36f4681b8)
+- [`onChannelMediaRelayStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a8f22b85194d4b771bbab0e1c3b505b22)
+- [`onChannelMediaRelayEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89a4085f36c25eeed75c129c82ca9429)
 
 ## Considerations
 

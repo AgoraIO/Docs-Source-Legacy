@@ -9,7 +9,7 @@
 <PlatformWrapper notAllowed="cocos-2d-x">
 <PlatformWrapper notAllowed="react-native">
 
-Apps need to provide different audio experiences according to different business needs. In order to provide these different audio experiences, you can use the Agora RTC SDK to set the appropriate audio profile ([`profile`](./API%20Reference/oc/Constants/AgoraAudioProfile.html)) and audio scenario ([`scenario`](./API%20Reference/oc/Constants/AgoraAudioScenario.html)).
+Apps need to provide different audio experiences according to different business needs. In order to provide these different audio experiences, you can use the Agora RTC SDK to set the appropriate audio profile ([`profile`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Constants/AgoraAudioProfile.html)) and audio scenario ([`scenario`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Constants/AgoraAudioScenario.html)).
 
 This article describes how to use the Agora RTC SDK to set the audio profile and scenario in your app.
 
@@ -23,8 +23,8 @@ The SDK uses the `AgoraAudioProfileDefault` profile and the `AgoraAudioScenarioD
 
 Before setting the audio profile and scenario, ensure that you have implemented the basic real-time communication functions in your project. See the Quickstart Guides for details:
 
-- iOS: [Start a Call](start_call_ios?platform=iOS)/[Start Live Interactive Streaming](start_live_ios?platform=iOS)
-- macOS: [Start a call](start_call_mac?platform=macOS)/[Start Live Interactive Streaming](start_live_mac?platform=macOS)
+- iOS: [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk)/[Start Live Interactive Streaming](../quickstart-guide/start-video-streaming)
+- macOS: [Start a call](/3.x/video-calling/quickstart-guide/get-started-sdk)/[Start Live Interactive Streaming](../quickstart-guide/start-video-streaming)
 
 ## Implementation
 
@@ -39,7 +39,7 @@ This scenario mainly requires good call quality with smooth transmission. Agora 
 agoraKit.setAudioProfile(.default, scenario: .default)
 ```
 
-```objc
+```objective-c
 // objective-c
 [agoraKit setAudioProfile: AgoraAudioProfileDefault, scenario: AgoraAudioScenarioDefault]
 ```
@@ -53,7 +53,7 @@ This scenario mainly requires voice clarity, no noise, and a lower bitrate. Agor
 agoraKit.setAudioProfile(.speechStandard, scenario: .chatRoomGaming)
 ```
 
-```objc
+```objective-c
 // objective-c
 [agoraKit setAudioProfile: AgoraAudioProfileSpeechStandard, scenario: AgoraAudioScenarioChatRoomGaming]
 ```
@@ -67,7 +67,7 @@ This scenario mainly requires high audio performance, with no volume or audio qu
 agoraKit.setAudioProfile(.musicStandard, scenario: .chatRoomEntertainment)
 ```
 
-```objc
+```objective-c
 // objective-c
 [agoraKit setAudioProfile: AgoraAudioProfileMusicStandard, scenario: AgoraAudioScenarioChatRoomEntertainment]
 ```
@@ -81,7 +81,7 @@ This scenario mainly requires high-fidelity audio, a high performance to music o
 agoraKit.setAudioProfile(.musicHighQuality, scenario: .gameStreaming)
 ```
 
-```objc
+```objective-c
 // objective-c
 [agoraKit setAudioProfile: AgoraAudioProfileMusicHighQuality, scenario: AgoraAudioScenarioGameStreaming]
 ```
@@ -95,7 +95,7 @@ This scenario usually uses professional audio hardware devices and requires high
 agoraKit.setAudioProfile(.musicHighQualityStereo, scenario: .showRoom)
 ```
 
-```objc
+```objective-c
 // objective-c
 [agoraKit setAudioProfile: AgoraAudioProfileMusicHighQualityStereo, scenario: AgoraAudioScenarioShowRoom]
 ```
@@ -109,7 +109,7 @@ This scenario mainly requires high-fidelity audio and support for transmitting t
 agoraKit.setAudioProfile(.musicStandardStereo, scenario: .gameStreaming)
 ```
 
-```objc
+```objective-c
 // objective-c
 [agoraKit setAudioProfile: AgoraAudioProfileMusicStandardStereo, scenario: AgoraAudioScenarioGameStreaming]
 ```
@@ -123,7 +123,7 @@ This scenario mainly requires high-fidelity audio, support for rich audio effect
 agoraKit.setAudioProfile(.musicStandardStereo, scenario: .chatRoomEntertainment)
 ```
 
-```objc
+```objective-c
 // objective-c
 [agoraKit setAudioProfile: AgoraAudioProfileMusicStandardStereo, scenario: AgoraAudioScenarioChatRoomEntertainment]
 ```
@@ -138,7 +138,7 @@ Agora provides an open-source demo project [SetAudioProfile](https://github.com/
 
 #### API reference
 
-- [`setAudioProfile`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioProfile:scenario:)
+- [`setAudioProfile`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioProfile:scenario:)
 
 #### Volume type
 
