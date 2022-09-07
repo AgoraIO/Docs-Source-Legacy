@@ -153,15 +153,15 @@ To handle Android system logic for your game:
     2. In **Inspector**, click **Open**. `AgoraImplementation.cs` opens in your default text editor.
     3. Add the following code after `using UnityEngine;`:
 
-        ```c#
-        using UnityEngine.UI;       
+        ```csharp
+        using UnityEngine.UI;
         ```
 
 2. **Manage Android permissions**
-    
+
     a. Add the Unity Android libraries. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code after `using UnityEngine.UI;`:
 
-        ```c#
+        ```csharp
         #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
         using UnityEngine.Android;
         #endif
@@ -169,7 +169,7 @@ To handle Android system logic for your game:
 
     b. Create a permissions list. Add the following lines before start:
 
-        ```c#
+        ```csharp
         #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
             private ArrayList permissionList = new ArrayList() { Permission.Camera, Permission.Microphone };
         #endif
@@ -178,7 +178,7 @@ To handle Android system logic for your game:
 
     c. Check permissions are granted. Add the following code before Update:
 
-        ```c#
+        ```csharp
         private void CheckPermissions()
         {
         #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
@@ -211,7 +211,7 @@ To implement this logic, take the following steps:
 
     In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following library before `using UnityEngine`:
 
-    ```C#
+    ```csharp
     using agora_gaming_rtc;
     ```
 
@@ -219,7 +219,7 @@ To implement this logic, take the following steps:
 
     In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following lines after `AgoraImplementation : MonoBehaviour {`:
 
-    ```C#
+    ```csharp
     private string APP_ID= "";
     private string CHANNEL = "";
     private string TOKEN = "";
@@ -232,7 +232,7 @@ To implement this logic, take the following steps:
 
     When your game launches, call `SetupVideoSDKEngine` to create and initialize an Agora Engine instance. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code before `Update`:
 
-    ```C#
+    ```csharp
     private void SetupVideoSDKEngine()
     {
         mRtcEngine = IRtcEngine.GetEngine(APP_ID);
@@ -245,7 +245,7 @@ To implement this logic, take the following steps:
 
     In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the reference code before `Start`:
 
-    ```C#
+    ```csharp
     void SetupUI()
     {
         GameObject go = GameObject.Find("LocalView");
@@ -265,7 +265,7 @@ To implement this logic, take the following steps:
 
     To join a channel and start local video, in `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the reference code before `Update`:
 
-    ```C#
+    ```csharp
     void Join()
     {
         mRtcEngine.EnableVideo();
@@ -279,7 +279,7 @@ To implement this logic, take the following steps:
 
     When a remote user joins the channel, Agora fires the `OnUserJoined` callback. You catch this callback and start remote video. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code before `Update`:
 
-    ```C#
+    ```csharp
     void OnUserJoined(uint uid, int elapsed)
     {
         RemoteView.SetForUser(uid);
@@ -294,7 +294,7 @@ To implement this logic, take the following steps:
 
     When a remote user leaves the channel or drops offline, Agora fires the `OnUserOffline` callback. When you app catches this callback, stop remote video. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the reference code before `Update`:
 
-    ```C#
+    ```csharp
     void OnUserOffline(uint uid, USER_OFFLINE_REASON reason)
     {
         RemoteView.SetEnable(false);
@@ -305,7 +305,7 @@ To implement this logic, take the following steps:
 
     When your game launches, users click the buttons in the UI to join and leave a channel. When a user clicks `Leave`, you catch the `Leave` action, leave the channel and clean up resources. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add the following code before `Update`:
 
-    ```C#
+    ```csharp
      void Leave()
     {
         Debug.Log("Leaving Channel");
@@ -327,7 +327,7 @@ To implement this functionality:
 
     For Android, call `CheckPermissions` and check that the permissions are granted. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, replace `Update` with the following code:
 
-    ```c#
+    ```csharp
     void Update()
     {
         CheckPermissions();
@@ -338,7 +338,7 @@ To implement this functionality:
 
     In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, replace `Start` with the following code:
 
-    ```c#
+    ```csharp
     void Start()
     {
         SetupVideoSDKEngine();
@@ -350,7 +350,7 @@ To implement this functionality:
 
     When the user closes this game, use `OnApplicationQuit` to clean up the resources you created in `SetupVideoSDKEngine`. In `Assets/AgoraEngine/Scripts/AgoraImplementation.cs`, add `OnApplicationQuit` before `Update`:
 
-    ```c#
+    ```csharp
     void OnApplicationQuit()
     {
         if (mRtcEngine != null)
