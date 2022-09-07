@@ -137,9 +137,9 @@ This release upgrades transmission protocols and algorithms to enhance the SDK's
 
 **Deprecated**
 
-- `startScreenCaptureByScreenRect`. Use `startScreenCaptureByDisplayId` instead. 
+- `startScreenCaptureByScreenRect`. Use `startScreenCaptureByDisplayId` instead.
 - Error code `ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED(119)`. Use `CLIENT_ROLE_CHANGE_FAILED_REASON` instead.
-- `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED(20)` 
+- `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED(20)`
 
 ## v3.6.2
 
@@ -222,7 +222,7 @@ This release fixed the following issues:
 - `setVideoDenoiserOptions`
 - `setLowLightEnhanceOptions`
 - `setColorEnhanceOptions`
-- `onAudioDeviceTestVolumeIndication` 
+- `onAudioDeviceTestVolumeIndication`
 - `recordingChannel` in `AudioRecordingConfiguration`
 - `AUDIO_RECORDING_QUALITY_ULTRA_HIGH(3)` in `AudioRecordingConfiguration.recordingQuality`
 - `onProxyConnected`
@@ -230,13 +230,13 @@ This release fixed the following issues:
 
 **Modified**
 
-- The names of several fields reported by the `onScreenCaptureInfoUpdated` callback. 
-- Timing restrictions for the `startRecordingDeviceTest`, `startPlaybackDeviceTest`, and `startAudioDeviceLoopbackTest` method calls. 
+- The names of several fields reported by the `onScreenCaptureInfoUpdated` callback.
+- Timing restrictions for the `startRecordingDeviceTest`, `startPlaybackDeviceTest`, and `startAudioDeviceLoopbackTest` method calls.
 - The behavior of `NONE_PROXY(0)` in `CLOUD_PROXY_TYPE`.
 
 ## v3.6.1.1
 
-v3.6.1.1 was released on January 16, 2022. 
+v3.6.1.1 was released on January 16, 2022.
 
 This release fixed the following audio issue:
 
@@ -1011,7 +1011,7 @@ v3.3.0 was released on January 22, 2021.
 **1. Integration change**
 
 This release adds the following frameworks:
-- `libagora-core.dll`: The Agora basic calculation framework. 
+- `libagora-core.dll`: The Agora basic calculation framework.
 - `av1.dll`: The AV1 framework for screen sharing.
 
 To integrate the SDK into your project, see [Integrate the SDK](../quickstart-guide/start-video-streaming#integrate-the-sdk).
@@ -1165,7 +1165,7 @@ This release adds `setClientRole` for setting the latency level of an audience m
 - Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
 - Set the latency level as low latency to use Interactive Live Streaming Standard.
 
-For details, see the [product overview](../introduction/product-overview) of Interactive Live Streaming Standard. 
+For details, see the [product overview](../introduction/product-overview) of Interactive Live Streaming Standard.
 
 #### Improvements
 
@@ -2148,7 +2148,7 @@ Before upgrading your SDK, ensure that your version is:
 - Native SDK v1.11 or later.
 - Web SDK v2.1 or later.
 .
-If you using an Agora SDK version v2.0.8 and wish to migrate the v2.3.2, refer to the [Migration Guide](/3.7.1/video-calling/introduction/migration-guide) for major API changes.
+If you using an Agora SDK version v2.0.8 and wish to migrate the v2.3.2, refer to the [Migration Guide](/3.x/video-calling/introduction/migration-guide) for major API changes.
 
 #### New features
 
@@ -2484,7 +2484,7 @@ Due to the upgrade of Agora products, Windows SDK 2.0 no longer supports the Ago
 
 **Two solutions are available:**
 
-1.  Migrate from the Agora Recording Server v1.8.2 or before to the Agora Recording SDK v1.12 or later. The Agora Recording SDK does not require recording on the client side and does not affect subsequent upgrades of the Windows SDK (recommended). 
+1.  Migrate from the Agora Recording Server v1.8.2 or before to the Agora Recording SDK v1.12 or later. The Agora Recording SDK does not require recording on the client side and does not affect subsequent upgrades of the Windows SDK (recommended).
 
 2.  If you want to continue using the Agora Recording Server, you can use your current Windows SDK version (v1.14 and before). Contact Technical Support for any questions.
 

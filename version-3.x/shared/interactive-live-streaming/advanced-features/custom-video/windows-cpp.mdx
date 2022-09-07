@@ -27,13 +27,13 @@ Refer to the following sample projects on GitHub to learn how to customize the v
 
 ## Implementation (Push)
 
-Before customizing the video source or renderer, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
+Before customizing the video source or renderer, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
 
 Refer to the following steps to customize the video source and renderer:
 
 1. Before calling `joinChannel`, call `setExternalVideoSource` to set the custom video source.
 2. Implement the custom video capture module.
-3. (Optional) Implement the custom video rendering module. 
+3. (Optional) Implement the custom video rendering module.
 4. Start the capture module. Call `consumeRawVideoFrame` to read the captured video frames and send them to the SDK. The SDK automatically renders the video frames.
 
 ### API call sequence
@@ -49,9 +49,9 @@ The following diagram shows the video frame transfer in the Push method:
 ![1606281730037](https://web-cdn.agora.io/docs-files/1606281730037)
 
 - Develop the capture module using the platform's native libraries, such as DirectShow, to get video frames from the capturing device.
-- (Optional) Develop the rendering module using the platform's native libraries, such as Direct3D, to render video frames. You must implement the data transfer between the capture module and the rendering module yourself. 
+- (Optional) Develop the rendering module using the platform's native libraries, such as Direct3D, to render video frames. You must implement the data transfer between the capture module and the rendering module yourself.
 - Call `setExternalVideoSource` to set the video source.
-- Call `pushVideoFrame` to send the captured video frames. 
+- Call `pushVideoFrame` to send the captured video frames.
 
 ### Sample code
 
@@ -105,13 +105,13 @@ void CAgoraCaptureVideoDlg::EnableCaputre(BOOL bEnable)
         m_agVideoCaptureDevice.CreateCaptureFilter();
         // Get the selected capture device
         m_agVideoCaptureDevice.GetCurrentVideoCap(&videoInfo);
-        // The following parameters can be acquired from the bmiHeader parameter of videoInfo. 
+        // The following parameters can be acquired from the bmiHeader parameter of videoInfo.
 		// bmiHeader belongs to Win32 _BITMAPINFOHEADER and includes color and dimension information of the image bitmap.
         // Set the config parameter of setVideoEncoderConfiguration
         config.dimensions.width = videoInfo.bmiHeader.biWidth;
         config.dimensions.height = videoInfo.bmiHeader.biHeight;
         // m_videoFrame is an instance of ExternalVideoFrame in IVideoFrame. The following code sets external video frame attributes.
-        // The following parameters are from the bmiHeader parameter in videoInfo. 
+        // The following parameters are from the bmiHeader parameter in videoInfo.
 		// bmiHeader belongs to Win32 _BITMAPINFOHEADER and includes color and dimension information of the image bitmap.
         m_videoFrame.stride = videoInfo.bmiHeader.biWidth;
         m_videoFrame.height = videoInfo.bmiHeader.biHeight;
@@ -155,15 +155,15 @@ void CAgoraCaptureVideoDlg::PushVideoFrameThread(CAgoraCaptureVideoDlg * self)
 {
    // Create an AutoPtr instance using the IMediaEngine as template
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID. 
+    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID.
 	// The AutoPtr instance accesses the pointer to the IMediaEngine instance and calls pushVideoFrame via IMediaEngine.
     mediaEngine.queryInterface(self->m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
     // Start local preview
     self -> m_rtcEngine->startPreview();
     // If the self-capture is enabled in the UI and the local user has joined the channel
     while (self->m_extenalCaptureVideo && self->m_joinChannel)
-    { 
-        // If the video frame is YUV 4:2;0, read the buffer, set timestamp, 
+    {
+        // If the video frame is YUV 4:2;0, read the buffer, set timestamp,
 		// use the rendering module (d3d) to render video frames, and call pushAudioFrame to push video frames to the SDK
         if (self->m_videoFrame.format == agora::media::ExternalVideoFrame::VIDEO_PIXEL_I420) {
             int bufSize = self->m_videoFrame.stride * self->m_videoFrame.height * 3 / 2;
@@ -174,7 +174,7 @@ void CAgoraCaptureVideoDlg::PushVideoFrameThread(CAgoraCaptureVideoDlg * self)
             }
             else
             {
-                // If there are no available video frames from the capture module, 
+                // If there are no available video frames from the capture module,
 				// sleep for 1 millisecond, skip the steps below, and continue with the loop
                 Sleep(1);
                 continue;
@@ -204,7 +204,7 @@ void CAgoraCaptureVideoDlg::PushVideoFrameThread(CAgoraCaptureVideoDlg * self)
 
 ## Implementation (mediaIO)
 
-Before customizing the video source or renderer, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
+Before customizing the video source or renderer, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
 
 Refer to the following steps to customize the video source and renderer:
 
@@ -218,9 +218,9 @@ Refer to the following steps to customize the video source and renderer:
 
 3. Implement the custom video capture module.
 
-4. (Optional) Implement the custom video rendering module. 
+4. (Optional) Implement the custom video rendering module.
 
-5. Start the capture module. Call `consumeRawVideoFrame` to read the captured video frames and send them to the SDK. 
+5. Start the capture module. Call `consumeRawVideoFrame` to read the captured video frames and send them to the SDK.
 
 ### API call sequence
 
@@ -235,7 +235,7 @@ The following diagram shows the video frame transfer in the MediaIO method:
 ![1606281760910](https://web-cdn.agora.io/docs-files/1606281760910)
 
 - Develop the capture module using the platform's native libraries, such as DirectShow, to get video frames from the capturing device.
-- (Optional) Develop the rendering module using the platform's native libraries, such as Direct3D, to render video frames. You must implement the data transfer between the capture module and the rendering module yourself. 
+- (Optional) Develop the rendering module using the platform's native libraries, such as Direct3D, to render video frames. You must implement the data transfer between the capture module and the rendering module yourself.
 - Call `setVideoSource` to set the video source.
 - Call `consumeRawVideoFrame` to send captured video frames to the SDK.
 
@@ -247,7 +247,7 @@ Refer to the following steps to custom video source:
 
 ```cpp
 class CAgoraVideoSource :public IVideoSource {
-  
+
     // Override the onInitialize callback
     virtual bool onInitialize(IVideoFrameConsumer *consumer) override
     {
@@ -257,14 +257,14 @@ class CAgoraVideoSource :public IVideoSource {
         OutputDebugString(_T("onInitialize\n"));
         return true;
     }
-  
+
     // Override the onDispose callback
     virtual void onDispose() override
     {
         OutputDebugString(_T("onDispose\n"));
         Stop();
     }
-  
+
     // Override the onStart callback
     virtual bool onStart() override
     {
@@ -273,8 +273,8 @@ class CAgoraVideoSource :public IVideoSource {
         CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadRun, this, 0, NULL);
         return true;
     }
-  
-  
+
+
     // The thread reads video frames from the capture module and send the video frames to the SDK
     static void ThreadRun(CAgoraVideoSource* self)
     {
@@ -302,48 +302,48 @@ class CAgoraVideoSource :public IVideoSource {
             }
         }
     }
-  
+
     // Override the onStop method
     virtual void onStop() override
     {
         OutputDebugString(_T("onStop\n"));
         Stop();
     }
-  
-    // Override the getBufferType to return VIDEO_PIXEL_I420. 
+
+    // Override the getBufferType to return VIDEO_PIXEL_I420.
     // The video type in getBufferType and consumeRawVideoFrame must be consistent.
     virtual agora::media::ExternalVideoFrame::VIDEO_PIXEL_FORMAT getBufferType() override
     {
         return ExternalVideoFrame::VIDEO_PIXEL_I420;
     }
-  
+
     // Override to return VIDEO_CAPTURE_CAMERA
     virtual VIDEO_CAPTURE_TYPE getVideoCaptureType() override
     {
         return VIDEO_CAPTURE_CAMERA;
     }
-  
-  
+
+
     // Override to return CONTENT_HINT_DETAILS
     virtual VideoContentHint getVideoContentHint() override
     {
         return CONTENT_HINT_DETAILS;
     }
-  
-      
+
+
 public:
     // Constructor
     CAgoraVideoSource()
     {
         m_buffer = new BYTE[1920 * 1080 * 4 * 4];
     }
-  
+
     // Destructor
     ~CAgoraVideoSource()
     {
         delete m_buffer;
     }
-      
+
     // Stop the thread
     void Stop()
     {
@@ -351,7 +351,7 @@ public:
         m_isExit = true;
         m_videoConsumer = nullptr;
     }
-  
+
     // Set parameters
     void SetParameters(bool isExit, int width, int height, int rotation,int fps)
     {
@@ -362,7 +362,7 @@ public:
         m_rotation = rotation;
         m_fps = fps;
     }
-  
+
 private:
     // IVideoFrameConsumer object
     IVideoFrameConsumer * m_videoConsumer;
@@ -374,8 +374,8 @@ private:
     int m_fps;
     std::mutex m_mutex;
 };
-  
-  
+
+
 // Video source object
 CAgoraVideoSource m_videoSouce;
 ```
@@ -411,7 +411,7 @@ BOOL CAgoraMediaIOVideoCaptureDlg::EnableExtendVideoCapture(BOOL bEnable)
 void CAgoraMediaIOVideoCaptureDlg::EnableCapture(BOOL bEnable)
 {
     if (bEnable == (BOOL)!m_extenalCaptureVideo)return;
-  
+
     int nIndex = m_cmbVideoType.GetCurSel();
     if (bEnable)
     {
@@ -426,7 +426,7 @@ void CAgoraMediaIOVideoCaptureDlg::EnableCapture(BOOL bEnable)
         // Get the selected video capture device
         m_agVideoCaptureDevice.GetCurrentVideoCap(&videoInfo);
         // Set the config parameter of setVideoEncoderConfiguration
-        // The following parameters are from the bmiHeader parameter in videoInfo. 
+        // The following parameters are from the bmiHeader parameter in videoInfo.
 		// bmiHeader belongs to Win32 _BITMAPINFOHEADER and includes color and dimension information of the image bitmap.
         config.dimensions.width = videoInfo.bmiHeader.biWidth;
         config.dimensions.height = videoInfo.bmiHeader.biHeight;

@@ -18,7 +18,7 @@ Agora provides an [open-source project](https://github.com/AgoraIO/API-Examples/
 
 ## Implementation
 
-Before customizing the audio source or sink, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](/3.7.1/video-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming).
+Before customizing the audio source or sink, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Live Interactive Streaming](../quickstart-guide/start-video-streaming).
 
 ### Custom Audio Source
 
@@ -91,8 +91,8 @@ void CAgoraCaptureAduioDlg::EnableCaputre(BOOL bEnable) {
         m_audioFrame.channels = waveFormat.nChannels;
         m_audioFrame.samplesPerSec = waveFormat.nSamplesPerSec;
         m_audioFrame.samples = m_audioFrame.samplesPerSec / 100;
-  
-        // Set the recorded audio format in onRecordAudioFrame. 
+
+        // Set the recorded audio format in onRecordAudioFrame.
         // You must set mode as RAW_AUDIO_FRAME_OP_MODE_READ_WRITE to read and write data.
         m_rtcEngine->setRecordingAudioFrameParameters(waveFormat.nSamplesPerSec, waveFormat.nChannels, RAW_AUDIO_FRAME_OP_MODE_READ_WRITE, waveFormat.nSamplesPerSec * waveFormat.nChannels / 100);
         // Create audio capture filter
@@ -114,10 +114,10 @@ void CAgoraCaptureAduioDlg::EnableCaputre(BOOL bEnable) {
 ```cpp
 // Send the captured audio frames to the SDK
 void CAgoraCaptureAduioDlg::PushAudioFrameThread(CAgoraCaptureAduioDlg * self)
-{ 
+{
     // Create an AutoPtr instance using the IMediaEngine as template
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID. 
+    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID.
     // The AutoPtr instance accesses the pointer to the IMediaEngine instance and calls pushAudioFrame via IMediaEngine.
     mediaEngine.queryInterface(self->m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
     int fps = self->m_audioFrame.samplesPerSec / self->m_audioFrame.samples;
@@ -177,7 +177,7 @@ The following diagram shows the audio data transfer for using a custom audio ren
 1. Call `setExternalAudioSink` to set the audio rendering module outside the SDK.
 
 ```cpp
-// Set the custom audio renderer 
+// Set the custom audio renderer
 int nRet = 0;
 nRet = m_rtcEngine->setExternalAudioSink(true, m_renderAudioInfo.sampleRate, m_renderAudioInfo.channels);
 ```
@@ -191,7 +191,7 @@ void CAgoraCaptureAduioDlg::PullAudioFrameThread(CAgoraCaptureAduioDlg * self)
     int nRet = 0;
     // Create an AutoPtr instance using the IMediaEngine as template
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID. 
+    // The AutoPtr instance calls queryInterface and gets a pointer to the IMediaEngine instance via IID.
     // The AutoPtr instance accesses the pointer to the IMediaEngine instance and calls pullAudioFrame via IMediaEngine.
     mediaEngine.queryInterface(self->m_rtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
     // Set the parameters for AudioFrame in IAudioFrameObserver
