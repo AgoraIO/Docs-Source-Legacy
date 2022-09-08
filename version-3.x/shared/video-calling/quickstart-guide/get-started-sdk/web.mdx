@@ -8,7 +8,7 @@ The following video demonstrates how to build an app that implements the Agora v
 
 ## Prerequisites
 
-- A valid Agora [account](../reference/manage-agora-account#sign-up-and-log-in?platform=Web).
+- A valid Agora [account](../reference/manage-agora-account#sign-up-and-log-in).
 - An [Agora project](../reference/manage-agora-account#get-started-with-agora) with an App ID and a temp token
 - A Windows or macOS computer meets the following requirements:
   - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall) to access Agora services.
@@ -191,7 +191,7 @@ client.init("yourAppId", function() {
 
 Pay attention to the settings of `mode` and `codec` in the `AgoraRTC.createClient` method:
 
-- `mode` determines the [channel profile](../reference/glossary?platform=Web#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
+- `mode` determines the [channel profile](../reference/glossary#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
 - `codec` sets the codec that the web browser uses for encoding and decoding. If your app needs to support Safari 12.1 or earlier, set it as `h264`. Otherwise, set it as `vp8`.
 
 ### 2. Join a channel
