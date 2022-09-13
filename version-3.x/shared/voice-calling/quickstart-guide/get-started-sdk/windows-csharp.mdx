@@ -19,13 +19,13 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 3. Publish and subscribe to audio in the channel
-After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel. 
+After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the voice call. 
+- The channel name: A string that identifies the channel for the voice call.
 
 For an app client to join an RTC channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io/).
@@ -93,7 +93,7 @@ If you are implementing a voice call, we recommend adding an end-call button.
 
 Add the following line to import the Agora SDK:
 
-```C#
+```csharp
 using agora.rtc;
 ```
 
@@ -101,7 +101,7 @@ using agora.rtc;
 
 The C# SDK is developed upon C++. In this step, we create an `AgoraRtcEventHandler` class from `IAgoraRtcEngineEventHandler` for managing callback events:
 
-```C#
+```csharp
 class AgoraRtcEventHandler : IAgoraRtcEngineEventHandler
 {
       public AgoraRtcEventHandler()
@@ -119,7 +119,7 @@ Call the `CreateAgoraRtcEngine` and `Initialize` methods, and pass in the App ID
 
 You can also listen for callback events, such as when the local user joins or leaves the channel.
 
-```C#
+```csharp
 // Declare variables
 IAgoraRtcEngine rtc_engine_ = null;
 IAgoraRtcEngineEventHandler event_handler_ = null;
@@ -157,7 +157,7 @@ After initializing the IRtcEngine object, you can call the `JoinChannel` method 
   <div class="alert note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <code>mute</code> methods accordingly.</div>
 
 
-```C#
+```csharp
 rtc_engine_.JoinChannel("", "testChannelId","", 0, new ChannelMediaOptions(true, true, true, true));
 ```
 
@@ -165,11 +165,11 @@ rtc_engine_.JoinChannel("", "testChannelId","", 0, new ChannelMediaOptions(true,
 
 Call the `LeaveChannel` method to leave the current call according to your scenario, for example, when the call ends, when you need to close the app, or when your app runs in the background.
 
-```C#
+```csharp
 rtc_engine_.LeaveChannel();
 ```
- 
- 
+
+
 ## Run the project
 
 After building the app, follow the steps to add the necessary libraries to the execution path:

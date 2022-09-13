@@ -16,19 +16,19 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 3. Publish and subscribe to audio in the channel
-After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel. 
+After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel.
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the voice call. 
+- The channel name: A string that identifies the channel for the voice call.
 
 ## Sample projects
 We provide the open-source sample projects that implement the video call on GitHub:
 
-- [Agora-Windows-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Windows-Tutorial-1to1) 
-- [GroupVideoCall-Windows-MFC](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Windows-MFC) 
+- [Agora-Windows-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Windows-Tutorial-1to1)
+- [GroupVideoCall-Windows-MFC](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Windows-MFC)
 
 Before implementing a voice call, you can download the sample projects and refer to the source code.
 
@@ -51,7 +51,7 @@ Now, let's build a Windows project from scratch. Skip to [Integrate the SDK](#in
 1. Open <b>Microsoft Visual Studio</b> and click <b>Create new project</b>.
 2. On the <b>New Project</b> panel, choose <b>MFC Application</b> as the project type, input the project name, choose the project location, and click <b>OK</b>.
 3. On the <b>MFC Application</b> panel, choose <b>Application type > Dialog based</b>, and click <b>Finish</b>.
-	
+
 
 </details>
 
@@ -99,7 +99,7 @@ Call the `createAgoraRtcEngine` method and the `initialize` method, and pass in 
 
 You can also listen for callback events, such as when the local user joins the channel, and when the local user leaves the channel.
 
-```C++
+```cpp
 CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpAppId)
 {
     if (m_lpAgoraObject == NULL)
@@ -125,7 +125,7 @@ CAgoraObject *CAgoraObject::GetAgoraObject(LPCTSTR lpAppId)
 }
 ```
 
-```C++
+```cpp
 // Inherit the events and callbacks of IRtcEngineEventHandler.
 class CAGEngineEventHandler :
     public IRtcEngineEventHandler
@@ -135,17 +135,17 @@ public:
     ~CAGEngineEventHandler(void);
     void SetMsgReceiver(HWND hWnd = NULL);
     HWND GetMsgReceiver() {return m_hMainWnd;};
-  
+
     // Listen for the onJoinChannelSuccess callback.
     // This callback occurs when the local user successfully joins the channel.
     virtual void onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed);
-  
- 
+
+
     // Listen for the onLeaveChannel callback.
     // This callback occurs when the local user successfully leaves the channel.
     virtual void onLeaveChannel(const RtcStats& stat);
-  
-  
+
+
     // Listen for the onUserOffline callback.
     // This callback occurs when the remote user leaves the channel or drops offline.
     virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason);
@@ -170,7 +170,7 @@ After initializing the `IRtcEngine` object, you can call the `joinChannel` metho
 
 For more details on the parameter settings, see [joinChannel](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#adc937172e59bd2695ea171553a88188c).
 
-```C++
+```cpp
 BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID,LPCTSTR lpToken)
 {
     int nRet = 0;
@@ -199,7 +199,7 @@ BOOL CAgoraObject::JoinChannel(LPCTSTR lpChannelName, UINT nUID,LPCTSTR lpToken)
 ### 4. Leave the channel
 Call the `leaveChannel` method to leave the current call according to your scenario, for example, when the call ends, when you need to close the app, or when your app runs in the background.
 
-```C++
+```cpp
 BOOL CAgoraObject::LeaveChannel()
 {
     m_lpAgoraEngine->stopPreview();
@@ -207,8 +207,8 @@ BOOL CAgoraObject::LeaveChannel()
     int nRet = m_lpAgoraEngine->leaveChannel();
     return nRet == 0 ? TRUE : FALSE;
 }
- 
- 
+
+
 void CAgoraObject::CloseAgoraObject()
 {
     if(m_lpAgoraEngine != NULL)
@@ -226,7 +226,7 @@ Run the project on your Windows device. You can hear the remote user when you su
 
 ## Reference
 
-When integrating the Agora Voice SDK, you can also refer to the following articles: 
+When integrating the Agora Voice SDK, you can also refer to the following articles:
 
 - [How can I set the log file?](https://docs.agora.io/en/faq/logfile)
 - [How can I implement call notification in a call application?](https://docs.agora.io/en/faq/call_invite_notification)

@@ -21,14 +21,14 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 3. Publish and subscribe to audio and video in the channel
-After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel. 
+After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel.
 
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the video call. 
+- The channel name: A string that identifies the channel for the video call.
 
 ## Prerequisites
 
@@ -57,11 +57,11 @@ Use the following steps or follow the[ Unity official manual](https://docs.unity
 
 <details>
 	<summary><font color="#3ab7f8">Create a Unity Project</font></summary>
-	
+
 1. Ensure that you have downloaded and installed **Unity** before the following steps. If not, click <a href="https://store.unity.com/?_ga=2.210473373.969150697.1571977051-1808388573.1570601452#plans-individual">here</a > to download.
-	
+
 2. Open **Unity** and click **New**.
-	
+
 3. Fill in and select the options in the following fields, and click **Create project**.
 	 - Project name
 	 - Location
@@ -126,38 +126,38 @@ If you build for Android, you should add in APIs to check and request the device
 
 Unity versions later than **UNITY_2018_3_OR_NEWER** do not automatically request camera and microphone permissions from your Android device. If you are using one of these versions, call the `CheckPermission` method to request access to the camera and microphone of your Android device.
 
-```c#
-#if(UNITY_2018_3_OR_NEWER) 
-using UnityEngine.Android; 
-#endif 
-void Start () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
-permissionList.Add(Permission.Microphone);  
-permissionList.Add(Permission.Camera);  
-#endif  
-} 
+```csharp
+#if(UNITY_2018_3_OR_NEWER)
+using UnityEngine.Android;
+#endif
+void Start ()
+{
+#if(UNITY_2018_3_OR_NEWER)
+permissionList.Add(Permission.Microphone);
+permissionList.Add(Permission.Camera);
+#endif
+}
 private void CheckPermission()
-{ 
-#if(UNITY_2018_3_OR_NEWER) 
-foreach(string permission in permissionList) 
-{ 
-if (Permission.HasUserAuthorizedPermission(permission)) 
-{ 
-} 
-else 
-{  
-Permission.RequestUserPermission(permission); 
-} 
-} 
-#endif 
-} 
-void Update () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
+{
+#if(UNITY_2018_3_OR_NEWER)
+foreach(string permission in permissionList)
+{
+if (Permission.HasUserAuthorizedPermission(permission))
+{
+}
+else
+{
+Permission.RequestUserPermission(permission);
+}
+}
+#endif
+}
+void Update ()
+{
+#if(UNITY_2018_3_OR_NEWER)
 // Ask for your Android device's permissions.
-CheckPermission(); 
-#endif  
+CheckPermission();
+#endif
 }
 ```
 
@@ -172,16 +172,16 @@ Call the `GetEngine` method and pass in the App ID to initialize the IRtcEngine 
 
 Listen for callback events, such as when the local user joins the channel, and when the first video frame of a remote user is decoded.
 
-```c#
+```csharp
 // Pass an App ID to create and initialize an IRtcEngine object.
-mRtcEngine = IRtcEngine.GetEngine (appId); 
+mRtcEngine = IRtcEngine.GetEngine (appId);
 // Listen for the OnJoinChannelSuccessHandler callback.
 // This callback occurs when the local user successfully joins the channel.
-mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler; 
+mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler;
 // Listen for the OnUserJoinedHandler callback.
 // This callback occurs when the first video frame of a remote user is received and decoded after the remote user successfully joins the channel.
 // You can call the SetForUser method in this callback to set the remote video.
-mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler; 
+mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler;
 // Listen for the OnUserOfflineHandler callback.
 // This callback occurs when the remote user leaves the channel or drops offline.
 mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
@@ -196,23 +196,23 @@ After initializing an `IRtcEngine` object, set the local video before joining a 
 
 - Call `EnableVideoObserver` to get the local video.
 
-    ```c#
+    ```csharp
 	// Enable the video module.
 	mRtcEngine.EnableVideo();
 	// Get the local video and pass it on to Unity.
 	mRtcEngine.EnableVideoObserver();`
 	```
-	
+
 - Choose an object to display the local video, and drag the **VideoSurface.cs** file to **Script**, so that you can bind the **VideoSurface.cs** file to the object and see the local video. Unity renders 3D objects by default, such as Cube, Cylinder and Plane. To render the object in other types, modify the renderer in the **VideoSurface.cs** file.
-  
+
   ![1576208681884](https://web-cdn.agora.io/docs-files/1576208681884)
 
-    ```c#
+    ```csharp
     // The default renderer is Renderer.
-	Renderer rend = GetComponent(); 
-	rend.material.mainTexture = nativeTexture; 
+	Renderer rend = GetComponent();
+	rend.material.mainTexture = nativeTexture;
 	// Change the renderer to RawImage.
-	RawImage rend = GetComponent(); 
+	RawImage rend = GetComponent();
 	rend.texture = nativeTexture;`
 	```
 
@@ -233,9 +233,9 @@ After initializing an `IRtcEngine` object and setting the local video, call `Joi
 - `uid`: Integer. The unique ID of the local user. If you set `uid` as 0, the SDK automatically assigns one user ID and returns it in the `OnJoinChannelSuccessHandler` callback.
 
  <div class="alert note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <tt>Mute</tt> methods accordingly.</div>
- 
-```c#
-// Join a channel. 
+
+```csharp
+// Join a channel.
 mRtcEngine.JoinChannelByKey(null, channel, null, 0);
 ```
 
@@ -253,7 +253,7 @@ When you are in a channel and a remote user joins this channel, the SDK triggers
 
   <div class="alert note">The default value of uid in the SetForUser method is 0. To see the remote user, ensure that you input the uid of the remote user in SetForUser. Otherwise, the SDK uses the default value and you can only see the local video.</div>
 
-    ```c#
+    ```csharp
     // This callback occurs when the first video frame of a remote user is received and decoded after the remote user successfully joins the channel.
     // You can call the SetForUser method in this callback to set up the remote video view.
     private void OnUserJoinedHandler(uint uid, int elapsed)
@@ -261,7 +261,7 @@ When you are in a channel and a remote user joins this channel, the SDK triggers
             Debug.Log ("OnUserJoinedHandler: uid = " + uid)
             GameObject go = GameObject.Find (uid.ToString ());
             if (!ReferenceEquals (go, null)) {
-                return; 
+                return;
             }
             go = GameObject.CreatePrimitive (PrimitiveType.Plane);
             if (!ReferenceEquals (go, null)) {
@@ -277,10 +277,10 @@ When you are in a channel and a remote user joins this channel, the SDK triggers
             mRemotePeer = uid;
         }
     ```
-  
+
   To remove the **VideoSurface.cs** script from the object, see the following sample codes.
 
-    ```c#
+    ```csharp
     private void OnUserOfflineHandler(uint uid, USER_OFFLINE_REASON reason)
         {
             // Remove video stream.
@@ -291,13 +291,13 @@ When you are in a channel and a remote user joins this channel, the SDK triggers
             }
         }
     ```
-  
+
 
 ### 7. Leave the channel
 
 According to your scenario, such as when the call ends and when you need to close the app, call `LeaveChannel` to leave the current call, and call `DisableVideoObserver` to disable the video.
 
-```c#
+```csharp
 public void leave()
 	{
 		Debug.Log ("calling leave");
@@ -315,7 +315,7 @@ public void leave()
 
 After leaving the channel, if you want to exit the app or release the memory of `IRtcEngine`, call `Destroy` to destroy the `IRtcEngine` object.
 
-```c#
+```csharp
 void OnApplicationQuit()
 {
 	if (mRtcEngine != null)
@@ -334,11 +334,11 @@ You can find the complete code in the [sample project](https://github.com/AgoraI
 ## Run the project
 
 Run the project in Unity. You should be able to see both the local and remote video if you successfully start a one-to-one video call.
-	
+
 ## Reference
-	
+
 When using the Agora Unity SDK, you can also use the dollowing documents as a reference:
-	
+
 - FAQ: [Why do crashes occur on Unity SDK v3.0.1 or earlier?](https://docs.agora.io/en/faq/unity_crash)
 
 </PlatformWrapper>
