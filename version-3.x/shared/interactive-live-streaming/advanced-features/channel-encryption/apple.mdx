@@ -75,7 +75,7 @@ If you use the SDK of versions ealier than v3.2.0, after integrating the `AgoraR
 import AgoraRtcCryptoLoader
  ```
 
- ```objective-c
+ ```objc
 // Objective-C
 #import <AgoraRtcCryptoLoader/AgoraRtcCryptoLoader.h>
  ```
@@ -265,7 +265,7 @@ Refer to the following steps to implement customized encryption:
 
     In the `.mm` file, call `registerPacketObserver` to register the packet observer.
 
-    ```objective-c
+    ```objc
     + (void)registerPacketProcessing:(AgoraRtcEngineKit *)rtcEngineKit {
         if (!rtcEngineKit) {
             return;
@@ -290,7 +290,7 @@ Refer to the following steps to implement customized encryption:
 
     In the `.mm` file, call `registerPacketObserver(NULL)` to unregister the packet observer.
 
-    ```objective-c
+    ```objc
     + (void)deregisterPacketProcessing:(AgoraRtcEngineKit *)rtcEngineKit {
         if (!rtcEngineKit) {
             return;

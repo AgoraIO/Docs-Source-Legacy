@@ -4,11 +4,13 @@ This article describes how to build a Web project that implements a basic voice 
 
 ## Prerequisites
 
-$$ c390eaa0-255e-11eb-9a02-174bd398edc4
-{
-  "device": "A physical audio sampling device, such as a built-in microphone."
-}
-$$
+- A valid Agora [account](../reference/manage-agora-account#sign-up-and-log-in?platform=Web).
+- An [Agora project](/en/Agora%20Platform/get_appid_token?platform=Web) with an App ID and a temp token
+- A Windows or macOS computer meets the following requirements:
+  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall) to access Agora services.
+  - A browser that matches the [supported browser list](https://docs.agora.io/en/Agora%20Platform/faq/browser_support). Agora highly recommends using the [latest version](https://www.google.com/chrome/) of Google Chrome.
+  - A physical audio sampling device, such as a built-in microphone.
+  - An Intel 2.2GHz Core i3/i5/i7 processor (2nd generation) or equivalent
 
 ## Create a Web project
 
@@ -106,7 +108,7 @@ Add the following code to the line after `<head>` in the `index.html` file:
 
 ### Method 3: Through the Agora website
 
-1. Download the latest [Agora Web SDK](./downloads?platform=Web).
+1. Download the latest [Agora Web SDK](https://docs.agora.io/en/Voice/downloads?platform=Web).
 
 2. Copy the `AgoraRTCSDK-3.6.11.js` file to the `scripts` directory.
 
@@ -122,8 +124,8 @@ Once the project is set up, use the core APIs of the Agora Web SDK in `script.js
 
 You need to work with two types of objects when using the Agora Web SDK:
 
-- The client object, which represents the local client. The Client methods provide the major functions for a voice/video call, such as joining a [channel](https://docs.agora.io/en/Agora%20Platform/terms#channel) and [publishing](https://docs.agora.io/en/Agora%20Platform/terms#pub) a stream.
-- Stream objects, which represent the local and remote [streams](https://docs.agora.io/en/Agora%20Platform/terms#media-stream). The Stream methods define the behaviors of a stream object, such as the playback control and video encoder configurations. When you call a Stream method, you need to distinguish between the local and the remote streams.
+- The client object, which represents the local client. The Client methods provide the major functions for a voice/video call, such as joining a [channel](../reference/glossary#channel) and [publishing](../reference/glossary#publish) a stream.
+- Stream objects, which represent the local and remote [streams](../reference/glossary#media-stream). The Stream methods define the behaviors of a stream object, such as the playback control and video encoder configurations. When you call a Stream method, you need to distinguish between the local and the remote streams.
 
 The major steps for implementing a basic video call are as follows:
 
@@ -134,7 +136,7 @@ The major steps for implementing a basic video call are as follows:
 
 The following figure shows the API call sequence of a basic one-to-one voice call. Note that these methods apply to different objects. 
 
-![](https://web-cdn.agora.io/docs-files/1592906455910)
+![1592906455910](https://web-cdn.agora.io/docs-files/1592906455910)
 
 Before you begin, it is helpful to define some functions to handle errors and add/remove views of remote users. Add the following code to the beginning of the `script.js` file.
 
@@ -168,7 +170,7 @@ function removeVideoStream(elementId) {
 
 ### 1. Create a client
 
-Create and initialize a client object to control the call. You need to replace `yourAppId` with the App ID of your Agora project. See [Get an App ID](./run_demo_video_call_web?platform=Web#appid) for details.
+Create and initialize a client object to control the call. You need to replace `yourAppId` with the App ID of your Agora project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id) for details.
 
 ```javascript
 let client = AgoraRTC.createClient({
@@ -185,15 +187,15 @@ client.init("yourAppId", function() {
 
 Pay attention to the settings of `mode` and `codec` in the `AgoraRTC.createClient` method:
 
-- `mode` determines the [channel profile](https://docs.agora.io/en/Agora%20Platform/terms?platform=Web#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
+- `mode` determines the [channel profile](../reference/glossary#channel-profile). Agora recommends using the `rtc` mode for one-to-one or group calls and the `live` mode for interactive live streaming.
 - `codec` sets the codec that the web browser uses for encoding and decoding. If your app needs to support Safari 12.1 or earlier, set it as `h264`. Otherwise, set it as `vp8`.
 
 ### 2. Join a channel
 
 Call `client.join` to join a channel. You need to generate a token to replace `yourToken` in the code sample below.
 
-- For testing, you can [generate a temporary token](./run_demo_video_call_web?platform=Web#temptoken) in Agora Console.
-- For production, Agora recommends using a token generated at your server. See [Generate a Token](./token_server?platform=Web).
+- For testing, you can [generate a temporary token](../reference/manage-agora-account#generate-a-temporary-token) in Agora Console.
+- For production, Agora recommends using a token generated at your server. See [Generate a Token](../basic-features/token-server).
 
 ```javascript
 // Join a channel
@@ -265,8 +267,7 @@ client.on("peer-leave", function(evt){
 
 Agora recommends running and debugging your project through a local web server. In this section, we use the npm `live-server` package to set up a local web server.
 
-<div class="alert note">
-  <li>Running the web app through a local server (localhost) is for testing purposes only. In production, ensure that you use the HTTPS protocol when deploying your project.</li>
+<div class="alert note"><li>Running the web app through a local server (localhost) is for testing purposes only. In production, ensure that you use the HTTPS protocol when deploying your project.</li>
   <li>Due to security limits on HTTP addresses except 127.0.0.1, Agora Web SDK only supports HTTPS or <code>http://localhost</code> (<code>http://127.0.0.1</code>). Do not deploy your project over HTTP.</li></div>
 
 
@@ -303,9 +304,9 @@ If the project does not work properly, open the browser console and check for er
 
 ## See also
 
-- [How can I set the log file?](/en/faq/logfile)
-- [How can I implement call notification in a call application?](/en/faq/call_invite_notification)
-- [What are the common errors in Web browsers' console log?](/en/faq/console_error_web)
-- [Why do errors occur when calling the Stream.init method?](/en/faq/streaminit_error)
+- [How can I set the log file?](https://docs.agora.io/en/faq/logfile)
+- [How can I implement call notification in a call application?](https://docs.agora.io/en/faq/call_invite_notification)
+- [What are the common errors in Web browsers' console log?](https://docs.agora.io/en/faq/console_error_web)
+- [Why do errors occur when calling the Stream.init method?](https://docs.agora.io/en/faq/streaminit_error)
 
 </PlatformWrapper>

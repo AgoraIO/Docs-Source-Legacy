@@ -36,8 +36,8 @@ Before proceeding, ensure that your development environment meets the following 
 - Android Studio 3.0 or later.
 - Android SDK API Level 16 or higher.
 - A valid [Agora account](https://console.agora.io/).
-- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
-- A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms).
+- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](../reference/manage-agora-account#get-started-with-agora).
+- A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall).
 - A mobile device that runs Android 4.1 or later.
 
 ## Project setup
@@ -51,22 +51,22 @@ Follow the steps to create the environment necessary to add voice call into your
 
     a. In `/Gradle Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the Maven Central dependency:
 
-	```java
-	buildscript {
-		repositories {
-			...
-			mavenCentral()
-		}
-		...
-}
+    ```java
+        buildscript {
+            repositories {
+                ...
+                mavenCentral()
+            }
+            ...
+    }
 
-	allprojects {
-		repositories {
-			...
-			mavenCentral()
-		}
-}
-	```
+        allprojects {
+            repositories {
+                ...
+                mavenCentral()
+            }
+    }
+    ```
 	
 	<div class="alert note">The way to add the Maven Central dependency can be different if you set  <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a> in your Android project.</div>
 
@@ -212,7 +212,7 @@ When your app opens, you create an `RtEngine` instance, join a channel, and publ
 
 The following figure shows the API call sequence of implementing Voice Call.
 
-![](https://web-cdn.agora.io/docs-files/1630576315935)
+![1630576315935](https://web-cdn.agora.io/docs-files/1630576315935)
 
 To implement this logic, take the following steps:
 
@@ -358,7 +358,7 @@ After your friend joins the channel, you should be able to hear each other.
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Voice/token_server?platform=All%20Platforms) shows you how to start video calling with a token that you retrieve from your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](../basic-features/token-server) shows you how to start video calling with a token that you retrieve from your server.
 
 
 ## See also

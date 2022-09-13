@@ -47,7 +47,7 @@ Before playing an audio effect file, you need to set `filePath` and `soundId` to
 
 #### Objective-C
 
-```objective-c
+```objc
 // Sets the audio effect ID.
 int EFFECT_ID = 1;
 // Sets the path of the audio effect file.
@@ -77,7 +77,7 @@ To preload multiple audio effect files, you need to call `preloadEffect` multipl
 
 #### Objective-C
 
-```objective-c
+```objc
 // Preloads the specified local audio effect file into the memory.
 [agoraKit preloadEffect: EFFECT_ID filePath: filePath];
 // Unloads the preloaded audio effect file.
@@ -102,7 +102,7 @@ Call `playEffect` to play the audio effect file. You can call `playEffect` multi
 
 #### Objective-C
 
-```objective-c
+```objc
 // Sets the number of times the audio effect loops. -1 represents an infinite loop.
 int loopCount = 1;
 // Sets the pitch of the audio effect. The value range is 0.5 to 2.0, where 1.0 is the original pitch.
@@ -149,7 +149,7 @@ After successfully playing audio effect files, you can stop playing either a spe
 
 #### Objective-C
 
-```objective-c
+```objc
 // Stops playing a specified audio effect file.
 [agoraKit stopEffect: EFFECT_ID];
 // Stops playing all audio effect files.
@@ -174,7 +174,7 @@ When you play audio effect files, you can pause or resume playing either a speci
 
 #### Objective-C
 
-```objective-c
+```objc
 // Pauses playing a specified audio effect file.
 [agoraKit pauseEffect: EFFECT_ID];
 // Pauses playing all audio effect files.
@@ -207,7 +207,7 @@ If you need to adjust the playback position after playing the audio effect file,
 
 #### Objective-C
 
-```objective-c
+```objc
 // Gets the total duration of a specified local audio effect file.
 [agoraKit getEffectDuration: filePath: filePath];
 // Sets the playback position (ms) of a specified local audio effect file. 500 represents that the playback starts at the 500 ms mark of the audio effect file.
@@ -235,7 +235,7 @@ After the audio effect file starts to play, you can call this group of methods t
 
 #### Objective-C
 
-```objective-c
+```objc
 // Sets the playback volume of all audio effect files. The value range is 0 to 100. 100 represents the original volume.
 [agoraKit setEffectsVolume: volume: 50.0];
 // Sets the playback volume of a specified audio effect file. The value range is 0 to 100. 100 represents the original volume.
@@ -297,7 +297,7 @@ Call `startAudioMixing` to play a music file. When playing a music file, you can
 
 #### Objective-C
 
-```objective-c
+```objc
 // Specifies the absolute path of the local or online music file that you want to play.
 NSString *filePath = @"your file path";
 // Sets whether to only play a music file on the local client. true represents that only the local user can hear the music; false represents that both the local user and remote users can hear the music.
@@ -339,7 +339,7 @@ After successfully playing the music file, you can call `stopAudioMixing` to sto
 
 #### Objective-C
 
-```objective-c
+```objc
 // Stops playing the music file.
 [agoraKit stopAudioMixing];
 ```
@@ -360,7 +360,7 @@ When you play the music file, you can pause or resume playing the music file.
 
 #### Objective-C
 
-```objective-c
+```objc
 // Pauses playing the music file.
 [agoraKit pauseAudioMixing];
 // Resumes playing the music file.
@@ -384,7 +384,7 @@ When the music file is playing, you can call this group of methods to adjust the
 
 #### Objective-C
 
-```objective-c
+```objc
 // Gets the total duration of the current music file.
 [agoraKit getAudioMixingDuration];
 // Sets the playback position (ms) of the current music file. 500 represents that the playback starts at the 500 ms mark of the music file.
@@ -413,7 +413,7 @@ After successfully playing the music file, you can call this group of methods to
 
 #### Objective-C
 
-```objective-c
+```objc
 // Adjusts the playback volume of the current music file for both local and remote playback. The value range is 0 to 100. 100 represents the original volume.
 [agoraKit adjustAudioMixingVolume: volume: 50];
 // Adjusts the playback volume of the current music file for the remote playback. The value range is 0 to 100. 100 represents the original volume.
@@ -454,7 +454,7 @@ After successfully playing a music file, you can call `setAudioMixingPlaybackSpe
 
 #### Objective-C
 
-```objective-c
+```objc
 // Agora recommends that you limit this value to between 50 and 400.
 // 50 represents half the original speed, 100 represents the original speed, and 400 represents 4 times the original speed.
 [agoraKit setAudioMixingPlaybackSpeed: speed: 50];
@@ -477,7 +477,7 @@ After successfully playing a music file, you can call this group of methods to s
 
 #### Objective-C
 
-```objective-c
+```objc
 // Gets the number of audio tracks of the current music file.
 [agoraKit getAudioTrackCount];
 // Specifies the playback track of the current music file.
@@ -508,7 +508,7 @@ After successfully playing a music file, you can call `setAudioMixingDualMonoMod
 
 #### Objective-C
 
-```objective-c
+```objc
 [agoraKit setAudioMixingDualMonoMode: AgoraAudioMixingDualMonoAuto];
 ```
 
