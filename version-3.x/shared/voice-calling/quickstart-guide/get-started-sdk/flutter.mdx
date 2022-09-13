@@ -1,0 +1,189 @@
+<PlatformWrapper platform="flutter">
+
+## Understand the tech
+
+
+
+$$0bc9e410-d000-11eb-9521-2d3265d0c546
+{
+"platform":"framework"
+}
+$$
+
+~fbc010e0-67b6-11ec-9efd-4ba4c822b48e~
+
+
+## Get App ID and token
+
+### 1. Create an Agora project
+
+~360159b0-2494-11eb-a6fc-dfd7ed4260bd~
+
+
+### 2. Get an App ID
+
+~a57db1d0-2494-11eb-a6fc-dfd7ed4260bd~
+
+
+### 3. Generate a temporary token
+
+~7883e950-2495-11eb-a6fc-dfd7ed4260bd~
+
+
+## Create a Flutter Project
+
+This article uses Visual Studio Code to create a Flutter project. Before you begin, you need to install the Flutter plugin in Visual Studio Code. See [Set up an editor](https://flutter.dev/docs/get-started/editor?tab=vscode).
+
+1. Launch Visual Studio Code. Select the **Flutter: New Project** command in **View > Command**. Enter the project name and press `<Enter>`.
+2. Select the location of the project in the pop-up window. Visual Studio Code automatically generates a simple project.
+
+## Add dependencies
+
+Add the following dependencies in `pubspec.yaml`:
+
+1. Add the `agora_rtc_engine` dependency to integrate Agora Flutter SDK. See https://pub.dev/packages/agora_rtc_engine for the latest version of `agora_rtc_engine`.
+2. Add the `permission_handler` dependency to add the permission handling function.
+
+```yaml
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.3
+	 # Please use the latest version of agora_rtc_engine
+  agora_rtc_engine: ^5.2.0
+  permission_handler: ^8.3.0
+```
+
+~d520b2f0-bd52-11eb-8c2a-ebc670144d74~
+
+
+## Implement voice call
+
+Open `main.dart`, remove all code after `void main() => runApp(MyApp());`.
+
+<div class="alert note">If your first line is not <code>void main() => runApp(MyApp());</code>, replace it with <code>void main() => runApp(MyApp());</code> and remove all code after it.</div>
+
+Refer to the following steps to add code to the file:
+
+### 1: Import packages
+
+```dart
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter/foundation.dart';
+import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:permission_handler/permission_handler.dart';
+```
+
+
+### 2: Define App ID and Token
+
+See [Set up Authentication](/en/Agora%20Platform/token?platform=All%20Platforms).
+
+
+```dart
+/// Define App ID and Token
+const APP_ID = '<Your App ID>';
+const Token = '<Your Token>';
+```
+
+### 3: Define MyApp Class
+
+
+```dart
+// App class
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+```
+
+### 4: Define app states
+
+```dart
+// App state class
+class _MyAppState extends State<MyApp> {
+  bool _joined = false;
+  int _remoteUid = 0;
+  bool _switch = false;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  // Init the app
+  Future<void> initPlatformState() async {
+    // Get microphone permission
+    if (defaultTargetPlatform == TargetPlatform.android) {
+           await [Permission.microphone].request();
+    }
+
+    // Create RTC client instance
+    RtcEngineContext context = RtcEngineContext(APP_ID);
+    var engine = await RtcEngine.createWithContext(context);
+    // Define event handling logic
+    engine.setEventHandler(RtcEngineEventHandler(
+        joinChannelSuccess: (String channel, int uid, int elapsed) {
+          print('joinChannelSuccess ${channel} ${uid}');
+          setState(() {
+            _joined = true;
+          });
+        }, userJoined: (int uid, int elapsed) {
+      print('userJoined ${uid}');
+      setState(() {
+        _remoteUid = uid;
+      });
+    }, userOffline: (int uid, UserOfflineReason reason) {
+      print('userOffline ${uid}');
+      setState(() {
+        _remoteUid = 0;
+      });
+    }));
+    // Join channel with channel name as 123
+    await engine.joinChannel(Token, '123', null, 0);
+  }
+
+  // Build chat UI
+    Widget build(BuildContext context) {
+            return MaterialApp(
+                title: 'Agora Audio quickstart',
+                home: Scaffold(
+                    appBar: AppBar(
+                        title: Text('Agora Audio quickstart'),
+                    ),
+                    body: Center(
+                        child: Text('Please chat!'),
+                    ),
+                ),
+            );
+        }
+
+}
+```
+
+
+## Run the project
+
+1. Run the following command in the root folder to install dependencies.
+
+	```dart
+	flutter packages get
+	```
+
+2. Select the device to run the project on from the status bar of Visual Studio Code and run the project.
+
+	```dart
+	flutter run
+	```
+
+
+</PlatformWrapper>
