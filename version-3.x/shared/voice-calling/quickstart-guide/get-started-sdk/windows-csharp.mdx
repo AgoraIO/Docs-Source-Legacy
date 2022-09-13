@@ -1,0 +1,194 @@
+<PlatformWrapper platform="windows-csharp">
+
+People engage longer when they see, hear, and interact with each other. The Agora SDK enables you to embed real-time voice and video interaction in any app, on any device, anywhere.
+
+This page shows the minimum code you need to add voice call into your app by using the Agora Video SDK.
+
+## Understand the tech
+
+The following figure shows the workflow to integrate into your app in order to add Voice Call functionality.
+
+![1627550978702](https://web-cdn.agora.io/docs-files/1627550978702)
+
+As shown in the figure, the workflow for adding Voice Call in your project is as follows:
+
+1. Retrieve a token
+A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
+
+2. Join a channel
+Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+3. Publish and subscribe to audio in the channel
+After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel. 
+
+For an app client to join a channel, you need the following information:
+- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
+- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
+- A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+- The channel name: A string that identifies the channel for the voice call. 
+
+For an app client to join an RTC channel, you need the following information:
+- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io/).
+- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
+- A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+- The channel name: A string that identifies the channel for the voice call.
+
+
+## Prerequisites
+- Microsoft Visual Studio 2017 or later
+- A Windows device running Windows 7 or later
+- A valid Agora account. ([Sign up](https://dashboard.agora.io) for free)
+- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](../reference/manage-agora-account#get-started-with-agora).
+A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](../reference/firewall).
+
+## Set up the development environment
+In this section, we will create a Windows project and integrate the SDK into the project.
+
+### Create a Windows project
+
+Now, let's build a Windows project from scratch. Skip to [Integrate the SDK](#inte) if a Windows project already exists.
+
+<details>
+	<summary><font color="#3ab7f8">Create a Windows project</font></summary>
+
+1. Open <b>Microsoft Visual Studio</b> and click <b>Create new project</b>.
+2. On the <b>New Project</b> panel, choose <b>MFC Application</b> as the project type, input the project name, choose the project location, and click <b>OK</b>.
+3. On the <b>MFC Application</b> panel, choose <b>Application type > Dialog based</b>, and click <b>Finish</b>.
+
+
+</details>
+
+<a name="inte"></a>
+### Integrate the SDK
+
+Choose one of the following ways to add `agora_rtc_sdk` into the project according to the type of your Windows Forms App.
+
+- `.net core`
+
+  1. In Visual Studio, create a Windows Forms App .net core application.
+  2. In **Solution Explorer**, right click **Dependencies**. Click **Manage Nuget Packages** > **Browse**, input `agora_rtc_sdk`, select the **Latest stable** SDK, and then click **Install**. The SDK is now added to your project.
+
+- `.net framework`
+
+  1. In Visual Studio, create a Windows Forms App .net framework application.
+  2. In **Solution Explorer**, right click **References**. Click  **Manage Nuget Packages** > **Browse**, input `agora_rtc_sdk`, select the **Latest stable** SDK, and then click **Install**. The SDK is now added to your project.
+
+
+## Implement the voice call
+
+This section introduces how to use the Agora SDK to make a voice call. The following figure shows the API call sequence of a basic one-to-one video call.
+
+![](https://web-cdn.agora.io/docs-files/1651832616702)
+
+### 1. Create the UI
+
+Create the user interface (UI) for the one-to-one video call in your project. Skip to [Import the SDK](#import) if you already have a UI in your project.
+
+If you are implementing a voice call, we recommend adding an end-call button.
+
+
+<a name="import"></a>
+
+### 2. Import the SDK
+
+Add the following line to import the Agora SDK:
+
+```C#
+using agora.rtc;
+```
+
+### 3. Inherit IAgoraRtcEngineEventHandler
+
+The C# SDK is developed upon C++. In this step, we create an `AgoraRtcEventHandler` class from `IAgoraRtcEngineEventHandler` for managing callback events:
+
+```C#
+class AgoraRtcEventHandler : IAgoraRtcEngineEventHandler
+{
+      public AgoraRtcEventHandler()
+      {
+
+      }
+};
+```
+
+### 4. Initialize IRtcEngine
+
+Create and initialize the `IAgoraRtcEngine` object before calling any other Agora APIs.
+
+Call the `CreateAgoraRtcEngine` and `Initialize` methods, and pass in the App ID to initialize the `IAgoraRtcEngine` object.
+
+You can also listen for callback events, such as when the local user joins or leaves the channel.
+
+```C#
+// Declare variables
+IAgoraRtcEngine rtc_engine_ = null;
+IAgoraRtcEngineEventHandler event_handler_ = null;
+
+if (null == rtc_engine_)
+{
+    // Create rtc engine
+    rtc_engine_ = AgoraRtcEngine.CreateAgoraRtcEngine();
+}
+
+RtcEngineContext context = new RtcEngineContext(appId);
+// Initialize rtc engine
+int ret = rtc_engine_.Initialize(context);
+event_handler_ = new AgoraRtcEventHandler();
+
+// Initialize the engine event handler
+rtc_engine_.InitEventHandler(event_handler_);
+```
+
+### 5. Join a channel
+
+After initializing the IRtcEngine object, you can call the `JoinChannel` method to join a channel. In this method, set the following parameters:
+
+- `channelName`: Specify the channel name that you want to join.
+
+- `token`：Pass a token that identifies the role and privilege of the user. The token must be generated using the preceding App ID and channel name.  You can set it to one of the following values:
+
+  - A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](../reference/manage-agora-account#generate-an-rtc-temporary-token).
+
+  - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server).
+
+ <div class="alert note">If your project has enabled the app certificate, ensure that you provide a token.</div>
+
+- `uid`: ID of the local user that is an integer and should be unique. If you set `uid` as 0,  the SDK assigns a user ID for the local user and returns it in the `OnJoinChannelSuccess` callback.
+  <div class="alert note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <code>mute</code> methods accordingly.</div>
+
+
+```C#
+rtc_engine_.JoinChannel("", "testChannelId","", 0, new ChannelMediaOptions(true, true, true, true));
+```
+
+### 6. Leave the channel
+
+Call the `LeaveChannel` method to leave the current call according to your scenario, for example, when the call ends, when you need to close the app, or when your app runs in the background.
+
+```C#
+rtc_engine_.LeaveChannel();
+```
+ 
+ 
+## Run the project
+
+After building the app, follow the steps to add the necessary libraries to the execution path:
+
+- For `.netcore` 64-bit apps, copy all the libraries under `netCore/x86_64`.
+- For `.netframework` 32-bit apps, copy all the libraries under `netFramework/x86`.
+
+Run the project on your Windows device. You can hear the remote user when you successfully start a one-to-one voice call in your app.
+
+## Reference
+
+### Sample project
+
+Agora provides an open-source [JoinChannelAudio](https://github.com/AgoraIO/Agora-C_Sharp-SDK/tree/release/3.6.2/APIExample/src/Basic/JoinChannelAudio) sample project on GitHub. You can try it out or view the source code.
+
+### FAQ
+
+- [How can I set the log file?](https://docs.agora.io/en/faq/logfile)
+- [How can I solve black screen issues?](https://docs.agora.io/en/faq/video_blank)
+- [How can I implement call notification in a call application?](https://docs.agora.io/en/faq/call_invite_notification)
+
+</PlatformWrapper>

@@ -58,7 +58,7 @@ When calling `EnableLoopbackRecording` for the loopback audio capture, developer
 
 To improve the loopback audio capture experience, Agora has developed its own virtual sound card: AgoraALD (Agora Audio Loopback Device). You can replace your current virtual sound card with AgoraALD using the following steps:
 
-1. Install AgoraALD. See <Link to="/3.x/shared/interactive-live-streaming/advanced-features/virtual-sound-card?platform={{platform.PATH}}">AgoraALD Virtual Sound Card</Link>
+1. Install AgoraALD. See <Link to="../advanced-features/virtual-sound-card?platform=macos">AgoraALD Virtual Sound Card</Link>
 2. Change the value of `deviceName` in the `EnableLoopbackRecording` method to `"AgoraALD"`.
 
 **Spatial audio effect**
@@ -205,7 +205,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `UpdateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `SetLiveTranscoding`.
 - `StopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `RemovePublishStreamUrl`.
 
-<div class="alert info"> This release deprecates three old methods for CDN live streaming: <code>AddPublishStreamUrl</code>, <code>SetLiveTranscoding</code>, and <code>RemovePublishStreamUrl</code>. Agora recommends that you use the new methods for CDN live streaming and update your code logic by referring to <Link to="/3.x/shared/interactive-live-streaming/media-push?platform={{platform.PATH}}">Media Push</Link>. </div>
+<div class="alert info"> This release deprecates three old methods for CDN live streaming: <code>AddPublishStreamUrl</code>, <code>SetLiveTranscoding</code>, and <code>RemovePublishStreamUrl</code>. Agora recommends that you use the new methods for CDN live streaming and update your code logic by referring to <Link to="/3.x/interactive-live-streaming/advanced-features/media-push?platform={{platform.PATH}}">Media Push</Link>. </div>
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -218,7 +218,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
     - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the CDN live streaming function. Check your application code logic.
     - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `UpdateRtmpTranscoding` or `SetLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
     - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-    - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the CDN live streaming function. Refer to <Link to="/3.x/shared/interactive-live-streaming/media-push#prerequisites?platform={{platform.PATH}}">Prerequisites</Link> to enable the CDN live streaming permission.
+    - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the CDN live streaming function. Refer to <Link to="/3.x/interactive-live-streaming/advanced-features/media-push?platform={{platform.PATH}}#prerequisites">Prerequisites</Link> to enable the CDN live streaming permission.
 
   - Adding the following to the `RTMP_STREAMING_EVENT` event code:
 
@@ -749,7 +749,7 @@ This release deprecates `SetDefaultMuteAllRemoteAudioStreams` and changes the be
 - Methods with the prefix `MuteAll` are no longer the master switch, and each `Mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `MuteAll` and `MuteRemote` together, the method that is called later takes effect.
 - Methods with the prefix `MuteAll` set whether to subscribe to the audio streams of all remote users, including all subsequent users, which means methods with the prefix `MuteAll` contain the function of methods with the prefix `SetDefaultMute`. Agora recommends not calling methods with the prefixes `MuteAll` and `SetDefaultMute` together; otherwise, the setting may not take effect.
 
-See details in <Link to="/3.x/shared/common/set-subscribing-state?platform={{platform.PATH}}">Set the Subscribing State</Link>.
+See details in <Link to="../best-practices/set-subscribing-state?platform={{platform.PATH}}">Set the Subscribing State</Link>.
 
 #### New features
 
@@ -763,7 +763,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **3. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `SetCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see <Link to="/3.x/shared/interactive-live-streaming/basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
+To improve the usability of the Agora Cloud Proxy, this release adds the `SetCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see <Link to="../basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
 
 **4. Deep-learning noise reduction**
 
@@ -779,7 +779,7 @@ You can call `SetVoiceBeautifierPreset(SINGING_BEAUTIFIER)` to beautify the male
 
 **6. Voice Conversion**
 
-This release adds the `SetVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See <Link to="/3.x/shared/interactive-live-streaming/voice-changer?platform={{platform.PATH}}">Set the Voice Effect</Link>.
+This release adds the `SetVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See <Link to="../advanced-features/voice-changer?platform={{platform.PATH}}">Set the Voice Effect</Link>.
 
 **7. Log files**
 
@@ -870,15 +870,15 @@ See the added files for each platform as follows:
 | macOS     | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li>|
 | Windows | <li>`libagora-fdkaac.dll`</li><li>`libagora-mpg123.dll`</li><li>`libagora-soundtouch.dll`</li> |
 
-If you upgrade the SDK to v3.2.1, ensure that you have added the above files in your project according to [Quickstart Guide](../quickstart-guide/start-audio-streaming).
+If you upgrade the SDK to v3.2.1, ensure that you have added the above files in your project according to [Quickstart Guide](../quickstart-guide/get-started-sdk).
 
 **2. Cloud proxy**
 
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact [support@agora.io](mailto:support@agora.io) before upgrading the SDK. See <Link to="/3.x/shared/interactive-live-streaming/basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact [support@agora.io](mailto:support@agora.io) before upgrading the SDK. See <Link to="../basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
 
 **3. Security and compliance**
 
-Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See <Link to="/3.x/shared/interactive-live-streaming/reference/security#iso-certificates?platform={{platform.PATH}}">ISO Certificates</Link>.
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See <Link to="../reference/security#iso-certificates?platform={{platform.PATH}}">ISO Certificates</Link>.
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
@@ -1061,7 +1061,7 @@ This release adds `GetEngine2` for specifying the area of connection when creati
 
 To enable a user to join an unlimited number of channels at a time, this release adds the `AgoraChannel` class. By creating multiple `AgoraChannel` objects, a user can join the corresponding channels at the same time. Besides, this release adds `SetMultiChannelWant` for enabling the multi-channel mode.
 
-After joining multiple channels, users can receive the audio streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See <Link to="/3.x/shared/interactive-live-streaming/multiple-channel?platform={{platform.PATH}}">Join multiple channels</Link>.
+After joining multiple channels, users can receive the audio streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See <Link to="/3.x/interactive-live-streaming/advanced-features/multiple-channel?platform={{platform.PATH}}">Join multiple channels</Link>.
 
 **3. Audio mixing pitch**
 
@@ -1139,8 +1139,6 @@ Enum type `CLIENT_ROLE` changed to [`CLIENT_ROLE_TYPE`](https://docs.agora.io/en
 
 ## v2.9.2
 
-~18635170-57d7-11ec-8689-2164ade84c59~
-
 v2.9.2 is released on Feb 17, 2020.
 
 - This release fixed some abnormal behaviors on Android devices.
@@ -1172,17 +1170,17 @@ Supports encryption of audio streaming. The following table shows the informatio
    | Platform | Encryption libraries                          |
    | :------- | :-------------------------------------------- |
    | Android  | libagora-crypto.so                            |
-   | iOS      | <ul><li>AgoraRtcCryptoLoader.framework <li>libcrypto.a</li></ul> |
+   | iOS      | <ul><li>AgoraRtcCryptoLoader.framework</li> <li>libcrypto.a</li></ul> |
 
 **6. Cloud proxy**
 
-Supports the cloud proxy service. See [Use Cloud Proxy](cloudproxy_unity) for details.
+Supports the cloud proxy service. See [Use Cloud Proxy](../basic-features/use-cloud-proxy) for details.
 
 #### Related documentation
 
 See the following documentation to quickly integrate the SDK and implement real-time voice and video communication in your project.
 
-- [Start a Voice Call](start_call_audio_unity) or [Start Live Interactive Audio Streaming](start_live_audio_unity)
+- [Start a Voice Call](../quickstart-guide/get-started-sdk) or <Link to="/3.x/interactive-live-streaming/quickstart-guide/start-audio-streaming?platform={{platform.PATH}}">Start Live Interactive Audio Streaming</Link>
 - [API Reference](https://docs.agora.io/en/Voice/API%20Reference/unity/index.html) 
 
 Agora also provides an open-source [Unity Sample](https://github.com/AgoraIO/Agora-Unity-Quickstart/tree/master/audio/Hello-Unity3D-Agora) on GitHub.
