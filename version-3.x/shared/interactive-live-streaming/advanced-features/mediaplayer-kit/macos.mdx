@@ -128,7 +128,7 @@ You can call several other methods in the ` AgoraMediaPlayer` interface to imple
 
 **Sample code**
 
-```objective-c
+```objc
 _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 [_mediaPlayerKit setView:self.containerView];
 [_mediaPlayerKit open:url startPos:0];
@@ -238,7 +238,7 @@ When the role of the remote user is `BROADCASTER`, the Native SDK automatically 
 
 **Sample code**
 
-```objective-c
+```objc
 _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:@"YOUR_APPID" delegate:self];
 [_rtcEnginekit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
 [_rtcEnginekit setClientRole:AgoraClientRoleBroadcaster];

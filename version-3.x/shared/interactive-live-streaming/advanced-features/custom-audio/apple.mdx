@@ -173,7 +173,7 @@ The API call sequence is as follows:
 
 Define the `setupExternalAudioWithAgoraKit` method: First set the sample rate, number of audio channels, capture and render mode, and the playback channel, and then call `registerAudioFrameObserver` to register the audio frame observer.
 
-```objective-c
+```objc
 // Define setupExternalAudioWithAgoraKit to set the external audio
 - (void)setupExternalAudioWithAgoraKit:(AgoraRtcEngineKit *)agoraKit sampleRate:(uint)sampleRate channels:(uint)channels audioCRMode:(AudioCRMode)audioCRMode IOType:(IOUnitType)ioType {
 
@@ -216,7 +216,7 @@ agoraKit.setParameters("{\"che.audio.keep.audiosession\": true}")
 
 After registering the audio frame observer, the SDK returns the raw audio data of remote users in the `onPlaybackAudioFrame` callback. Render the audio data in this callback.
 
-```objective-c
+```objc
 virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame) override
 {
 // Implement your own audio renderer
@@ -247,7 +247,7 @@ let result = agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelNa
 
 Define `stopWork` and `cancelRegister.`
 
-```objective-c
+```objc
 - (void)stopWork {
     [self.audioController stopWork];
     [self cancelRegister];

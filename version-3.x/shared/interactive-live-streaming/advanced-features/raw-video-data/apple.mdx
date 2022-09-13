@@ -73,7 +73,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
 
    In the `.mm` file, call the C++ APIs to implement `registerVideoRawDataObserver`.
 
-   ```objective-c
+   ```objc
    - (void)registerVideoRawDataObserver:(ObserverVideoType)observerType {
      // Get the C++ handle of the Native SDK
      agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
@@ -113,7 +113,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
 
    In the `.mm` file, call the C++ APIs to implement the callbacks that get the raw data.
 
-   ```objective-c
+   ```objc
    // Get the video frame captured by the local camera through the onCaptureVideoFrame callback
    virtual bool onCaptureVideoFrame(VideoFrame& videoFrame) override
    {
@@ -154,7 +154,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
 
    Call the C++ APIs in the `.mm` file to implement `deregisterVideoRawDataObserver`.
 
-   ```objective-c
+   ```objc
    - (void)deregisterVideoRawDataObserver:(ObserverVideoType)observerType {
      // Get the C++ handle of the Native SDK
      agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
