@@ -156,7 +156,7 @@ You can call several other methods in the ` AgoraMediaPlayer` interface to imple
 
 **Sample code**
 
-```objective-c
+```objc
 _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 [_mediaPlayerKit setView:self.containerView];
 [_mediaPlayerKit open:url startPos:0];
@@ -260,7 +260,7 @@ Refer to [the RTC quickstart guide](../quickstart-guide/start-video-streaming) f
 
 **Sample code**
 
-```objective-c
+```objc
 _rtcEnginekit = [AgoraRtcEngineKit sharedEngineWithAppId:@"YOUR_APPID" delegate:self];
 [_rtcEnginekit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
 [_rtcEnginekit setClientRole:AgoraClientRoleBroadcaster];
