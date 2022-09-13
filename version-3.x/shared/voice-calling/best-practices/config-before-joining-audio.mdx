@@ -1,0 +1,18 @@
+This article describes possible API calls and configurations before joining a channel. Usually, you can quickly implement real-time communications by calling one or two APIs, but if your scenarios require high quality and stability, refer to the additional configurations here.
+
+## Log file configurations
+
+For easier debugging and to ensure that the log files contain complete log information, Agora recommends configuring the log files when initializing the Agora service. See [How can I set the log file](https://docs.agora.io/en/faqs/logfile) for details.
+
+
+## Audio configurations
+
+If your scenarios require high-fidelity audio, call `setAudioProfile` before joining a channel, and set `profile` as `MUSIC_HIGH_QUALITY`(4) and `scenario` as `GAME_STREAMING`(3). See **Basic Features > Audio Profiles**  for more configurations.
+
+<div class="alert note">The actual code may vary on different platforms. Adjust your code accordingly.</div>
+
+## Interoperability with the Web SDK
+
+If you are using Native SDKs earlier than v3.0.0 in the interactive live streaming scenario, and your scenario involves the RTC SDK for Web, ensure that you call `enableWebSdkInteroperability` before joining a channel.
+
+<div class="alert info">As of v3.0.0, the interoperability between the Native SDK and the Web SDK is enabled by default.</div>

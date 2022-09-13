@@ -4,13 +4,180 @@ This article describes how to build a React Native project that implements the v
 
 ## Understand the tech
 
-$$0bc9e410-d000-11eb-9521-2d3265d0c546
-{
-"platform":"framework"
-}
-$$
+The following figure shows the workflow to integrate into your app in order to add Voice Call functionality.
 
-~e71cdb40-edab-11ea-b8b9-41d66d687758~
+![1627550978702](https://web-cdn.agora.io/docs-files/1627550978702)
+
+As shown in the figure, the workflow for adding Voice Call in your project is as follows:
+
+1. Retrieve a token
+A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
+
+2. Join a channel
+Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+3. Publish and subscribe to audio in the channel
+After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel. 
+
+For an app client to join a channel, you need the following information:
+- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
+- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
+- A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+- The channel name: A string that identifies the channel for the voice call. 
+
+For an app client to join an RTC channel, you need the following information:
+- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io/).
+- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
+- A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+- The channel name: A string that identifies the channel for the voice call.
+
+## Prerequisites
+
+### Development environment
+
+If your target platform is iOS, your development environment must meet the following requirements:
+
+- React Native 0.59.10 or later
+- macOS 
+- Node 10 or later
+- Xcode 9.4 or later
+- CocoaPods
+- A physical or virtual mobile device running iOS 9.0 or later
+
+If your target platform is Android, your development environment must meet the following requirements:
+
+- React Native 0.59.10 or later
+- macOS, Windows, or Linux
+- Node 10 or later
+- Java Development Kit (JDK) 8 or later
+- Android Studio (latest version recommended)
+- A physical or virtual mobile device running Android 5.0 or later
+
+
+<div class="alert info">For more information, see <a href="https://reactnative.dev/docs/environment-setup">Setting up the development environment</a >.</div>
+
+### Other prerequisites
+
+A valid Agora [account](../reference/manage-agora-account#sign-up-and-log-in).
+
+<div class="alert note">If your network has a firewall, follow the instructions in <a href="../reference/firewall">Firewall Requirements</a> to access Agora's services.</div>
+
+
+## Create a React Native project
+
+1. Make sure you have set up the development environment based on your operating system and target platform.
+
+2. Run the following command and fill in your project name in `ProjectName` to create and initialize a new React Native project.
+```shell
+npx react-native init ProjectName
+```
+   
+   A successful execution of this command generates a simple sample project in the directory that you run the command.
+
+3. Launch your Android or iOS simulator and run your project by executing the following command:
+
+   a. Run `npx react-native start` in the root of your project to start Metro.
+   b. Open another terminal in the root of your project and run `npx react-native run-android` to start the Android app, or run `npx react-native run-ios` to start the iOS app.
+
+If everything is set up correctly, you should see your new app running in your Android or iOS simulator shortly.
+
+<div class="alert info">You can also run your project on a physical Android or iOS device. For detailed instructions, see <a href="https://reactnative.dev/docs/running-on-device">Running on device</a >.</div>
+
+Now that you have your project running successfully, you can start trying to integrate the Agora React Native SDK and modify your project.
+
+## Integrate the SDK
+
+This section describes how to integrate the SDK on React Native 0.60.0 or later.
+
+<div class="alert note">If you use React Native 0.59.x, see <a href="https://github.com/AgoraIO-Community/react-native-agora/blob/master/README.md#installing-react-native--059x">Installing (React Native == 0.59.x</a > to integrate the Agora SDK.</div>
+
+
+1. Install the latest version of the Agora React Native SDK:
+
+   **Method one**: Install the SDK using npm
+	 
+ ```shell
+  npm i --save react-native-agora  
+```
+
+   **Method two**: Install the SDK using yarn
+	 
+ ```shell
+  // Install yarn.
+  npm install -g yarn
+	
+  // Download the Agora React Native SDK using yarn.
+  yarn add react-native-agora
+ ```
+
+   <div class="alert note">Do not link native modules manually, as React Native 0.60.0 and later support automatically linking native modules. For details, see <a href="https://github.com/react-native-community/cli/blob/master/docs/autolinking.md">Autolinking</a >.</div>
+
+
+2. If your target platform is iOS, you also need to run the following command to install the SDK:
+
+ ```shell
+npx pod-install
+```
+ 
+   <div class="alert note">Ensure that you have already installed CocoaPods before performing this step. See <a href="https://guides.cocoapods.org/using/getting-started.html#getting-started">Getting Started with CocoaPods</a>.</div>
+
+3. The Agora React Native SDK uses Swift in native modules, and therefore your project must support compiling Swift. Otherwise, you will get errors when building the iOS app.
+   a. Open `ios/ProjectName.xcworkspace` with Xcode.
+   b. Click **File > New > File**, select **iOS > Swift File**, and then click **Next > Create** to create a new `File.swift` file.
+
+## Add TypeScript
+
+The sample code in this article is written in TypeScript. If you want to use this sample code directly, you need to add support for TypeScript to your project. 
+
+1. Run one of the following commands in the root of your project to add TypeScript dependencies:
+
+   **Method one**: Using npm
+```shell
+npm install --save-dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+```
+
+   **Method two**: Using yarn
+```shell
+yarn add --dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+```
+
+2. Create a `tsconfig.json` file in the root of your project, and copy the following code to the file:
+
+ ```json
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext"
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}
+```  
+
+3. Create a `jest.config.js` file in the root of your project, and copy the following code to the file:
+
+ ```javascript
+module.exports = {
+     preset: 'react-native',
+     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+};
+```
+
+4. Rename `App.js` to `App.tsx`.
+
+<div class="alert info">For more information, see <a href="https://reactnative.dev/docs/typescript">Using TypeScript</a >.</div>
 
 ## Implementation
 
@@ -63,11 +230,52 @@ import styles from './components/Style'
 
 ### 3. Add project permissions
 
-~0a2693f0-d709-11eb-b768-51ffcd29c763~
+**Android**
+
+Add the following code to the `App.tsx` file to set a prompt box for getting permissions to use the microphone and camera on an Android device:
+
+```typescript
+const requestCameraAndAudioPermission = async () =>{
+    try {
+        const granted = await PermissionsAndroid.requestMultiple([
+            PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        ])
+        if (
+            granted['android.permission.RECORD_AUDIO'] === PermissionsAndroid.RESULTS.GRANTED
+        ) {
+            console.log('You can use the mic')
+        } else {
+            console.log('Permission denied')
+        }
+    } catch (err) {
+        console.warn(err)
+    }
+}
+```
+
+**iOS**
+
+In Xcode, open the `info.plist` file. Add the following contents to add permissions for your device:
+
+| Key                                    | Type   | Value                                                        |
+| :------------------------------------- | :----- | :----------------------------------------------------------- |
+| Privacy - Microphone Usage Description | String | The purpose for accessing the microphone, such as for a call or interactive live streaming. |
 
 ### 4. Create an App component
 
-~7b2fd800-50f7-11ec-8689-2164ade84c59~
+When creating an App component, you need to define your App ID, token, and channel name, which will be used for initializing the `RtcEngine` object and joining the channel. Ensure the App ID and channel name are the same as the App ID and channel name used for generating the token.
+
+- `appId`：The App ID of your Agora project. See [Get an App ID](../reference/manage-agora-account#get-the-app-id) for details.
+
+- `channelName`：The unique channel name for the AgoraRTC session. Users with the same App ID and channel name can join the same channel.
+
+- `token`：Pass a token that identifies the role and privilege of the user. The token must be generated using the preceding App ID and channel name.  You can set it to one of the following values:
+
+  - A temporary token generated in Console. A temporary token is valid for 24 hours. For details, see [Get a Temporary Token](../reference/manage-agora-account#generate-an-rtc-temporary-token).
+
+  - A token generated at the server. This applies to scenarios with high-security requirements. For details, see [Generate a token from Your Server](../basic-features/token-server).
+
+ <div class="alert note">If your project has enabled the app certificate, ensure that you provide a token.</div>
 
 ```typescript
 // Define a Props interface.

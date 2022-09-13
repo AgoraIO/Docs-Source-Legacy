@@ -2,32 +2,49 @@
 
 ## Understand the tech
 
+The following figure shows the workflow to integrate into your app in order to add Voice Call functionality.
+
+![1627550978702](https://web-cdn.agora.io/docs-files/1627550978702)
+
+As shown in the figure, the workflow for adding Voice Call in your project is as follows:
+
+1. Retrieve a token
+A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
+
+2. Join a channel
+Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+3. Publish and subscribe to audio in the channel
+After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel. 
+
+For an app client to join a channel, you need the following information:
+- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
+- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
+- A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+- The channel name: A string that identifies the channel for the voice call. 
+
+## <a name="configure"></a>Configure the Agora project
+
+### 1. Get an App ID
+
+To copy this App ID, find your project on the [Project Management](https://console.agora.io/projects) page in Agora Console, and click the <img src="https://web-cdn.agora.io/docs-files/1637824227532" />  icon in the App ID column.
 
 
-$$0bc9e410-d000-11eb-9521-2d3265d0c546
-{
-"platform":"framework"
-}
-$$
+### 2. Generate a temporary token
 
-~fbc010e0-67b6-11ec-9efd-4ba4c822b48e~
+To ensure communication security, Agora recommends using [tokens](../reference/glossary#token) to authenticate users joining a channel.
 
+For testing purposes, Agora Console supports generating RTC temporary tokens. To generate an RTC temporary token:
+1. On the [Project Management](https://console.agora.io/projects) page, find your project and click **Config**.
+  ![1641971834422](https://web-cdn.agora.io/docs-files/1641971834422)
+2. Click **Generate temp RTC token** under **Primary Certificate**.
+  ![1641971893263](https://web-cdn.agora.io/docs-files/1641971893263)
+3. Enter the name of the channel that you want to join, and click **Generate**. When joining the channel later, ensure that the channel name is the same with the one you enter here.
+ <img src="https://web-cdn.agora.io/docs-files/1649997524064" />
+4. Click the copy icon to copy the temporary token.
+ <img src="https://web-cdn.agora.io/docs-files/1649997750496" />
 
-## Get App ID and token
-
-### 1. Create an Agora project
-
-~360159b0-2494-11eb-a6fc-dfd7ed4260bd~
-
-
-### 2. Get an App ID
-
-~a57db1d0-2494-11eb-a6fc-dfd7ed4260bd~
-
-
-### 3. Generate a temporary token
-
-~7883e950-2495-11eb-a6fc-dfd7ed4260bd~
+<div class="alert note">Temporary tokens are for demonstration and testing purposes only, and remain valid for 24 hours. In a production environment, you need to deploy your own server for generating tokens. For details, see <a href="../basic-features/token-server">Authenticate Your Users with Tokens</a>.</div>
 
 
 ## Create a Flutter Project
@@ -61,7 +78,16 @@ dependencies:
   permission_handler: ^8.3.0
 ```
 
-~d520b2f0-bd52-11eb-8c2a-ebc670144d74~
+Because JCenter is about to retire, Agora publishes the RTC Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
+
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://www.jitpack.io' }
+    }
+}
+```
 
 
 ## Implement voice call
@@ -85,7 +111,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 ### 2: Define App ID and Token
 
-See [Set up Authentication](/en/Agora%20Platform/token?platform=All%20Platforms).
+See [Authenticate Your Users with Tokens](../basic-features/token-server).
 
 
 ```dart

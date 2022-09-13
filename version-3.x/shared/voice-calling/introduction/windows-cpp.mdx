@@ -130,9 +130,9 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](./faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/Voice/faq/audio_format).
 
-If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](./reduce_rtc_app_size#extension-libraries).
+If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see <Link to="/3.x/shared/common/reduce-app-size?platform={{platform.PATH}}">Reduce App Size</Link>.
 
 #### Fixed issues
 
@@ -186,7 +186,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
 <div class="alert note">
-This release deprecates three old methods for Media Push: <code>addPublishStreamUrl</code>, <code>setLiveTranscoding</code>, and <code>removePublishStreamUrl</code>. Agora recommends that you use the new methods for Media Push and update your code logic by referring to <a href="./cdn_streaming_windows?platform=Windows">Media Push</a>.</div>
+This release deprecates three old methods for Media Push: <code>addPublishStreamUrl</code>, <code>setLiveTranscoding</code>, and <code>removePublishStreamUrl</code>. Agora recommends that you use the new methods for Media Push and update your code logic by referring to <Link to="/3.x/shared/interactive-live-streaming/media-push?platform={{platform.PATH}}">Media Push</Link>.</div>
 
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
@@ -198,7 +198,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
         - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](./cdn_streaming_windows?platform=Windows#prerequisites) to enable the Media Push permission.
+        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to <Link to="/3.x/shared/interactive-live-streaming/media-push#prerequisites?platform={{platform.PATH}}">Prerequisites</Link> to enable the Media Push permission.
     - Adding the following to the `RTMP_STREAMING_EVENT` event code:
         - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`: The feature is not supported.
         - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`: Reserved.
@@ -293,7 +293,7 @@ This release fixed the following issues:
 
 #### API changes
 
-This release adds the [`startEchoTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a394c60056c0cd31af48e8015b0c553f4) [3/3] method.
+This release adds the [`startEchoTest`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a394c60056c0cd31af48e8015b0c553f4) [3/3] method.
 
 ## v3.5.1
 
@@ -374,23 +374,23 @@ This release has fixed the following issues:
 
 **Added**
 
-- [`pushAudioFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#ae8c816681bcf4843f59dc7a8bdba89d7)[3/3]
-- [`setExternalAudioSourceVolume`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#a802af60896bcb126e099b9d199eb6249)
-- [`setAudioMixingPlaybackSpeed`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a1850045b8ced9a43118b660f808fed9e)
-- [`getAudioTrackCount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a7d365b13d852a46192c663440c598304)
-- [`selectAudioTrack`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21e4aa7b76079be0f91f19acd5e9c42b)
-- [`setAudioMixingDualMonoMode`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a90879ca474a4fcaac94b28b9d9bc06c1)
-- [`pauseAllChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6761e2f090290567d1f592841c40d96c)
-- [`resumeAllChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a92a74b5b3752d285dfdb769607220e70)
-- The following enumerators in [`CHANNEL_MEDIA_RELAY_EVENT`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#af564e2eaf05e8391929b881978821c78):
+- [`pushAudioFrame`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#ae8c816681bcf4843f59dc7a8bdba89d7)[3/3]
+- [`setExternalAudioSourceVolume`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#a802af60896bcb126e099b9d199eb6249)
+- [`setAudioMixingPlaybackSpeed`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a1850045b8ced9a43118b660f808fed9e)
+- [`getAudioTrackCount`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a7d365b13d852a46192c663440c598304)
+- [`selectAudioTrack`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21e4aa7b76079be0f91f19acd5e9c42b)
+- [`setAudioMixingDualMonoMode`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a90879ca474a4fcaac94b28b9d9bc06c1)
+- [`pauseAllChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6761e2f090290567d1f592841c40d96c)
+- [`resumeAllChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a92a74b5b3752d285dfdb769607220e70)
+- The following enumerators in [`CHANNEL_MEDIA_RELAY_EVENT`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#af564e2eaf05e8391929b881978821c78):
   - `RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS(12)`
   - `RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED(13)`
   - `RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS(14)`
   - `RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED(15)`
-- [`getAudioFileInfo`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a750ac7f4cf1c471fb1c8a0a8f4346f51)
-- [`onRequestAudioFileInfo`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a69e4af0282ba8b2b97a6e2fbe2ca43c4)
-- `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID(9)` and `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID(10)` in [`LOCAL_AUDIO_STREAM_ERROR`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a3929991eea3a522dcbf6ac078810045e)
-- `NETWORK_TYPE_MOBILE_5G(6)` in [`NETWORK_TYPE`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#ab5e06b511f978f1a997008401da46505)
+- [`getAudioFileInfo`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a750ac7f4cf1c471fb1c8a0a8f4346f51)
+- [`onRequestAudioFileInfo`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a69e4af0282ba8b2b97a6e2fbe2ca43c4)
+- `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID(9)` and `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID(10)` in [`LOCAL_AUDIO_STREAM_ERROR`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a3929991eea3a522dcbf6ac078810045e)
+- `NETWORK_TYPE_MOBILE_5G(6)` in [`NETWORK_TYPE`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#ab5e06b511f978f1a997008401da46505)
 
 **Deprecated**
 
@@ -438,7 +438,7 @@ This release fixed the following issues:
 
 #### API changes
 
-This release added the [error code](./error_rtc?platform=Windows): `ERR_ADM_WIN_CORE_SERVRE_SHUT_DOWN (1735)`.
+This release added the <Link to="/3.x/shared/common/error-codes?platform={{platform.PATH}}">error code</Link>: `ERR_ADM_WIN_CORE_SERVRE_SHUT_DOWN (1735)`.
 
 ## v3.4.6
 
@@ -460,7 +460,7 @@ To further improve the security during real-time audio transmission process, thi
 
 This release also changes the default encryption mode from `AES_128_XTS (1)` to `AES_128_GCM2 (7)`. If you use the default encryption mode in earlier versions, after upgrading the SDK to v3.4.5, ensure that you call `enableEncryption` and set `ENCRYPTION_MODE` to `AES_128_XTS (1)`.
 
-See [Media Stream Encryption](./channel_encryption_windows?platform=Windows).
+See <Link to="/3.x/interactive-live-streaming/advanced-features/channel-encryption?platform={{platform.PATH}}">Media Stream Encryption</Link>.
 
 <div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
 
@@ -484,7 +484,7 @@ The above improvements bring the following changes in the `IRtcEngine` class:
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `publish`, and `unpublish`.
 
-See [Set the Publishing State](./set_publishing_state?platform=Windows) and [Join Multiple Channels](./multiple_channel_windows?platform=Windows).
+See <Link to="/3.x/shared/common/set-subscribing-state?platform={{platform.PATH}}">Set the Subscribing State</Link> and <Link to="/3.x/shared/interactive-live-streaming/multiple-channel?platform={{platform.PATH}}">Join multiple channels</Link>.
 
 **3. startAudioMixing changes**
 
@@ -527,18 +527,18 @@ This release fixed the following issues:
 
 **Added**
 
-- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a4e520a87875a922c00cee3998d220af3)
-- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a82a4c69d97a3dac5b55f9bd5b423f14c)
-- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`ENCRYPTION_MODE`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a906cebebbabf534c86ca71de0d1a4cf0)
-- `encryptionKdfSalt` in [`EncryptionConfig`](./API%20Reference/cpp/structagora_1_1rtc_1_1_encryption_config.html)
-- [`muteLocalAudioStream`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_channel.html#aef5c790faea22bfefe7299bb62bdb899) in `IChannel`
-- `publishLocalAudio` in [`ChannelMediaOptions`](./API%20Reference/cpp/structagora_1_1rtc_1_1_channel_media_options.html)
-- `MEDIA_DEVICE_STATE_IDLE (0)` in [`MEDIA_DEVICE_STATE_TYPE`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a089cee6e2323c5bb04849df711bb4a52)
+- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a4e520a87875a922c00cee3998d220af3)
+- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a82a4c69d97a3dac5b55f9bd5b423f14c)
+- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`ENCRYPTION_MODE`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a906cebebbabf534c86ca71de0d1a4cf0)
+- `encryptionKdfSalt` in [`EncryptionConfig`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_encryption_config.html)
+- [`muteLocalAudioStream`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_channel.html#aef5c790faea22bfefe7299bb62bdb899) in `IChannel`
+- `publishLocalAudio` in [`ChannelMediaOptions`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_channel_media_options.html)
+- `MEDIA_DEVICE_STATE_IDLE (0)` in [`MEDIA_DEVICE_STATE_TYPE`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a089cee6e2323c5bb04849df711bb4a52)
 
 **Modified**
 
-- [`MEDIA_DEVICE_STATE_TYPE`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a089cee6e2323c5bb04849df711bb4a52)
-- [`startAudioMixing`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21063bfb71a8a5cbc0d391f9d7ac75be)
+- [`MEDIA_DEVICE_STATE_TYPE`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a089cee6e2323c5bb04849df711bb4a52)
+- [`startAudioMixing`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21063bfb71a8a5cbc0d391f9d7ac75be)
 
 **Deprecated**
 
@@ -568,7 +568,7 @@ v3.4.0 was released on April 16, 2021.
 
 **Integration changes**
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](./faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see <Link to="/3.x/shared/common/reduce-app-size?platform={{platform.PATH}}">Extension libraries</Link>. If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 
@@ -634,21 +634,21 @@ This release fixed this issues: the `onAudioVolumeIndication` callback returned 
 
 **Added**
 
-- [`adjustLoopbackRecordingSignalVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
-- [`getAudioMixingDuration`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3b67f2476a43679cc5174ac5424efed5)[2/2]
-- [`startAudioRecording`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ace2bdbb7456d52e117e80a96c9e9b7b4)[3/3]
-- [`getEffectDuration`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4d2a31c0016d1da9106222edb6c395fd)
-- [`setEffectPosition`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acc753bf864b6c84d97c2d6778234c36e)
-- [`getEffectCurrentPosition`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abe60e8ce475a3fef96245ffc47e95e50)
-- [`playEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa713b173d4b9aa234f482ebb932f5955)[2/2]
-- [`startAudioMixing`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21063bfb71a8a5cbc0d391f9d7ac75be)[2/2]
-- `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND(8)` in [`LOCAL_VIDEO_STREAM_ERROR`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#aca8292c30c50a78f6fbd1ef1b264d842)
-- `LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE(6)` and `LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE(7)` in [`LOCAL_AUDIO_STREAM_ERROR`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a3929991eea3a522dcbf6ac078810045e)
-- [Error code](./error_rtc?platform=Windows): `ERR_ALREADY_IN_RECORDING(160)`
+- [`adjustLoopbackRecordingSignalVolume`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
+- [`getAudioMixingDuration`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3b67f2476a43679cc5174ac5424efed5)[2/2]
+- [`startAudioRecording`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ace2bdbb7456d52e117e80a96c9e9b7b4)[3/3]
+- [`getEffectDuration`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4d2a31c0016d1da9106222edb6c395fd)
+- [`setEffectPosition`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acc753bf864b6c84d97c2d6778234c36e)
+- [`getEffectCurrentPosition`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abe60e8ce475a3fef96245ffc47e95e50)
+- [`playEffect`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa713b173d4b9aa234f482ebb932f5955)[2/2]
+- [`startAudioMixing`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21063bfb71a8a5cbc0d391f9d7ac75be)[2/2]
+- `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND(8)` in [`LOCAL_VIDEO_STREAM_ERROR`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#aca8292c30c50a78f6fbd1ef1b264d842)
+- `LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE(6)` and `LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE(7)` in [`LOCAL_AUDIO_STREAM_ERROR`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a3929991eea3a522dcbf6ac078810045e)
+- [Error code](https://docs.agora.io/en/Voice/error_rtc?platform=Windows): `ERR_ALREADY_IN_RECORDING(160)`
 
 **Modified**
 
-- [`onAudioMixingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae2e257d7bbf120b970b600b9b3731a07)
+- [`onAudioMixingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae2e257d7bbf120b970b600b9b3731a07)
 
 **Deprecated**
 
@@ -670,7 +670,7 @@ v3.3.1 was released on March 4, 2021.
 
 **Voice Conversion**
 
-This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See [Set the Voice Effect](./voice_changer_windows?platform=Windows).
+This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See <Link to="/3.x/shared/interactive-live-streaming/voice-changer?platform={{platform.PATH}}">Set the Voice Effect</Link>.
 
 #### Improvements
 
@@ -692,9 +692,9 @@ To monitor quality of experience (QoE) of the local user when receiving a remote
 #### API changes
 
 This release adds the following APIs:
-- [`setVoiceConversionPreset`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aee9553948bf2c4e2b79a00cddce41499)
-- `AES_128_GCM` and `AES_256_GCM` in [`ENCRYPTION_MODE`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a906cebebbabf534c86ca71de0d1a4cf0)
-- `mosValue` in [`RemoteAudioStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html)
+- [`setVoiceConversionPreset`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aee9553948bf2c4e2b79a00cddce41499)
+- `AES_128_GCM` and `AES_256_GCM` in [`ENCRYPTION_MODE`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a906cebebbabf534c86ca71de0d1a4cf0)
+- `mosValue` in [`RemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html)
 
 ## v3.3.0
 
@@ -704,7 +704,7 @@ v3.3.0 was released on January 22, 2021.
 
 **1. Integration change**
 
-This release adds the Agora basic calculation framework `libagora-core.dll`. To integrate the SDK into your project, see [Integrate the SDK](./start_call_audio_windows?platform=Windows#integrate-the-sdk).
+This release adds the Agora basic calculation framework `libagora-core.dll`. To integrate the SDK into your project, see <Link to="/3.x/shared/interactive-live-streaming/quickstart-guide/start-audio-streaming#integrate-the-sdk?platform={{platform.PATH}}">Integrate the SDK</Link>.
 
 **2. Changes to subscribing behavior**
 
@@ -714,7 +714,7 @@ This release deprecates `setDefaultMuteAllRemoteAudioStreams` and changes the be
 - Methods with the prefix `muteAll` are no longer the master switch, and each `mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `muteAll` and `muteRemote` together, the method that is called later takes effect.
 - Methods with the prefix `muteAll` set whether to subscribe to the audio streams of all remote users, including all subsequent users, which means methods with the prefix `muteAll` contain the function of methods with the prefix `setDefaultMute`. Agora recommends not calling methods with the prefixes `muteAll` and `setDefaultMute` together; otherwise, the setting may not take effect.
 
-See details in [Set the Subscribing State](./set_subscribing_state?platform=Windows).
+See details in <Link to="/3.x/shared/common/set-subscribing-state?platform={{platform.PATH}}">Set the Subscribing State</Link>.
 
 **3. Changes to voice activity behavior**
 
@@ -728,7 +728,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **2. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see [Cloud Proxy](./cloudproxy_native?platform=Windows).
+To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see <Link to="/3.x/shared/interactive-live-streaming/basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
 
 **3. Deep-learning noise reduction**
 
@@ -744,7 +744,7 @@ You can call `setVoiceBeautifierPreset(SINGING_BEAUTIFIER)` to beautify the male
 
 **5. Log files**
 
-To ensure the integrity of log content, this release adds the `logConfig` member variable to `RtcEngineContext`. You can use `logConfig` to set the log files output by the Agora SDK when you initialize `RtcEngine`. See [How can I set the log file?](./faq/logfile) for details.
+To ensure the integrity of log content, this release adds the `logConfig` member variable to `RtcEngineContext`. You can use `logConfig` to set the log files output by the Agora SDK when you initialize `RtcEngine`. See [How can I set the log file?](https://docs.agora.io/en/Voice/faq/logfile) for details.
 
 As of v3.3.0, Agora does not recommend using the `setLogFile`, `setLogFileSize`, or `setLogFilter` methods to set the log files.
 
@@ -769,15 +769,15 @@ This release fixed the following issues:
 
 **Added**
 
-- [`setVoiceBeautifierParameters`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afe1e3302f3d1f670bc5cdaa870fe95e8)
-- `SINGING_BEAUTIFIER` in the [`VOICE_BEAUTIFIER_PRESET`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a1e88a96390a2c9fcca2db1ec56ee01fd) enum
-- [`enableDeepLearningDenoise`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac0ba6ab3d831c93ae5916dd62d5d5888)
-- [`joinChannel` [2/2]](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a31ae82fd9862ba8e6912655e4c1a4290)
-- [`switchChannel` [2/2]](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa53dc6f39ee75549e170b68630b9faaf)
-- [`createDataStream`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a7cfb5869a4554242875b6a7225a69b1e)
-- `logConfig` in the [`RtcEngineContext`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_engine_context.html) struct
-- `qoeQuality` and `qualityChangedReason` in the [`RemoteAudioStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) struct
-- [`setCloudProxy`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aff1329c23bbcaff769101ae08f91b869)
+- [`setVoiceBeautifierParameters`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afe1e3302f3d1f670bc5cdaa870fe95e8)
+- `SINGING_BEAUTIFIER` in the [`VOICE_BEAUTIFIER_PRESET`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a1e88a96390a2c9fcca2db1ec56ee01fd) enum
+- [`enableDeepLearningDenoise`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac0ba6ab3d831c93ae5916dd62d5d5888)
+- [`joinChannel` [2/2]](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a31ae82fd9862ba8e6912655e4c1a4290)
+- [`switchChannel` [2/2]](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa53dc6f39ee75549e170b68630b9faaf)
+- [`createDataStream`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a7cfb5869a4554242875b6a7225a69b1e)
+- `logConfig` in the [`RtcEngineContext`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_engine_context.html) struct
+- `qoeQuality` and `qualityChangedReason` in the [`RemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) struct
+- [`setCloudProxy`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aff1329c23bbcaff769101ae08f91b869)
 - Error code: `ERR_MODULE_NOT_FOUND(157)`
 
 **Deprecated**
@@ -813,11 +813,11 @@ If you upgrade the SDK to v3.2.0 or later, ensure that you have copied the above
 
 **2. Cloud proxy**
 
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See [Cloud Proxy](./cloudproxy_native?platform=Windows).
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See <Link to="/3.x/shared/interactive-live-streaming/basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
 
 **3. Security and compliance**
 
-Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See [ISO Certificates](https://docs.agora.io/en/Agora%20Platform/iso_cert?platform=Windows).
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See <Link to="/3.x/shared/interactive-live-streaming/reference/security#iso-certificates?platform={{platform.PATH}}">ISO Certificates</Link>.
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
@@ -832,7 +832,7 @@ This release adds `setClientRole` for setting the latency level of an audience m
 - Set the latency level as ultra low latency to use Interactive Live Streaming Premium.
 - Set the latency level as low latency to use Interactive Live Streaming Standard.
 
-For details, see the [product overview](https://docs.agora.io/en/live-streaming/product_live_standard?platform=Windows) of Interactive Live Streaming Standard. 
+For details, see the [product overview](product-overview) of Interactive Live Streaming Standard. 
 
 #### Improvements
 
@@ -856,11 +856,11 @@ This release reduces the latency on the audience's client during an interactive 
 
 **Added**
 
-- [`setAudioEffectPreset`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6111d2648909601c976b0190fe6de798)
-- [`setVoiceBeautifierPreset`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a577b68f53ed63771da80ec8901ed93e5)
-- [`setAudioEffectParameters`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a9e5a3c34818abd26b0d0a9434f7ce4ca)
-- `AUDIO_SCENARIO_MEETING(8)` in [`AUDIO_SCENARIO_TYPE`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a2c5708461a9e1568bbda636d95055533) `enum`
-- [`setClientRole`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a7f01b7bbf512a041afa99ec7ecfa11c4)
+- [`setAudioEffectPreset`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6111d2648909601c976b0190fe6de798)
+- [`setVoiceBeautifierPreset`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a577b68f53ed63771da80ec8901ed93e5)
+- [`setAudioEffectParameters`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a9e5a3c34818abd26b0d0a9434f7ce4ca)
+- `AUDIO_SCENARIO_MEETING(8)` in [`AUDIO_SCENARIO_TYPE`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a2c5708461a9e1568bbda636d95055533) `enum`
+- [`setClientRole`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a7f01b7bbf512a041afa99ec7ecfa11c4)
 
 **Deprecated**
 
@@ -881,7 +881,7 @@ This release changes the `AREA_CODE` for regional connection. The latest area co
 - `AREA_CODE_IN`: India.
 - `AREA_CODE_GLOB`: (Default) Global.
 
-If you have specified a region for connection when calling [`initialize`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac71db65e66942e4e0a0550e95c16890f), ensure that you use the latest area code when migrating from an earlier SDK version.
+If you have specified a region for connection when calling [`initialize`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac71db65e66942e4e0a0550e95c16890f), ensure that you use the latest area code when migrating from an earlier SDK version.
 
 ## v3.1.0
 
@@ -956,14 +956,14 @@ This release fixed the occasional howling issue on some Huawei laptops.
 
 **Added**
 
-- [`onAudioPublishStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af5188bdc817fa62aac51b3dc627dfb64)
-- [`onAudioSubscribeStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae3f517bd166a9e34aa77f9fbf137a7b9)
-- [`onFirstLocalAudioFramePublished`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a03058e62a0a4a41e80ecf0279975ab99)
-- [`enableEncryption`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad5ea5f0dfd8117f38d9c4b12fe01fece)
-- `txPacketLossRate` in the [`LocalAudioStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_local_audio_stats.html) struct
-- `txPacketLossRate` and `captureFrameRate` in the [`LocalVideoStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_local_video_stats.html) struct
-- `publishDuration` in the [`RemoteAudioStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) struct
-- [`onRtmpStreamingEvent`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa2beb17562a3be9b5ddbe9366245cb0e)
+- [`onAudioPublishStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af5188bdc817fa62aac51b3dc627dfb64)
+- [`onAudioSubscribeStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae3f517bd166a9e34aa77f9fbf137a7b9)
+- [`onFirstLocalAudioFramePublished`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a03058e62a0a4a41e80ecf0279975ab99)
+- [`enableEncryption`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad5ea5f0dfd8117f38d9c4b12fe01fece)
+- `txPacketLossRate` in the [`LocalAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_local_audio_stats.html) struct
+- `txPacketLossRate` and `captureFrameRate` in the [`LocalVideoStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_local_video_stats.html) struct
+- `publishDuration` in the [`RemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) struct
+- [`onRtmpStreamingEvent`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa2beb17562a3be9b5ddbe9366245cb0e)
 - Error code: `ERR_NO_SERVER_RESOURCES(103)`
 - Warning code: `WARN_APM_RESIDUAL_ECHO(1053)`
 
@@ -1006,18 +1006,18 @@ After successfully registering the audio observer, if you set the return value o
 #### Fixed issues
 
 - Audio mixing issues and abnormal loopback test results.
-- Inaccurate report of the [`onClientRoleChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a36d3f45184cbb37ed2c4846654a14368) callback, authentication with an App ID and token, and a garbled log directory.
+- Inaccurate report of the [`onClientRoleChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a36d3f45184cbb37ed2c4846654a14368) callback, authentication with an App ID and token, and a garbled log directory.
 
 #### API changes
 
 **Added**
 
-- [`setAudioMixingPitch`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a26b117f7e097801b03522f7da9257425)
-- Nine enumerations in [`VOICE_CHANGER_PRESET`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#ae29d1fb09d785334eabf0f3def8b4117), such as `VOICE_BEAUTY_VIGOROUS`
-- Twelve enumerations in [`AUDIO_REVERB_PRESET`](./API%20Reference/cpp/namespaceagora_1_1rtc.html#a2476d004b44df3950ef62022cd41e564), such as `AUDIO_REVERB_FX_KTV`
-- [`isMultipleChannelFrameWanted`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b) in the [`IAudioFrameObserver`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html) class
-- The `totalActiveTime` member in the [`RemoteAudioStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) struct
-- `WARN_ADM_WINDOWS_NO_DATA_READY_EVENT(1040)` and `WARN_ADM_INCONSISTENT_AUDIO_DEVICE(1042)` in the [warning codes](./API%20Reference/cpp/namespaceagora.html#a32d042123993336be6646469da251b21)
+- [`setAudioMixingPitch`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a26b117f7e097801b03522f7da9257425)
+- Nine enumerations in [`VOICE_CHANGER_PRESET`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#ae29d1fb09d785334eabf0f3def8b4117), such as `VOICE_BEAUTY_VIGOROUS`
+- Twelve enumerations in [`AUDIO_REVERB_PRESET`](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora_1_1rtc.html#a2476d004b44df3950ef62022cd41e564), such as `AUDIO_REVERB_FX_KTV`
+- [`isMultipleChannelFrameWanted`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b) in the [`IAudioFrameObserver`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html) class
+- The `totalActiveTime` member in the [`RemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) struct
+- `WARN_ADM_WINDOWS_NO_DATA_READY_EVENT(1040)` and `WARN_ADM_INCONSISTENT_AUDIO_DEVICE(1042)` in the [warning codes](https://docs.agora.io/en/Voice/API%20Reference/cpp/namespaceagora.html#a32d042123993336be6646469da251b21)
 
 ## v3.0.0.2
 
@@ -1038,7 +1038,7 @@ After specifying the area of connection:
 
 **Added**
 
-`areaCode` member in the [`RtcEngineContext`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_engine_context.html) struct
+`areaCode` member in the [`RtcEngineContext`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_engine_context.html) struct
 
 ## v3.0.0
 
@@ -1096,18 +1096,18 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 
 **Added**
 
-- The [`channelId`](./API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html#ab67471def88118f010e6d5add7d83f64) member in the [`AudioVolumeInfo`](./API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html) struct
-- [`createChannel`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine2.html#a9cabefe84d3a52400f941f1bd8c0f486)
-- [`IChannel`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_channel.html) class
-- [`IChannelEventHandler`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_channel_event_handler.html) class
-- The [`gatewayRtt`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html) class
+- The [`channelId`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html#ab67471def88118f010e6d5add7d83f64) member in the [`AudioVolumeInfo`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html) struct
+- [`createChannel`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine2.html#a9cabefe84d3a52400f941f1bd8c0f486)
+- [`IChannel`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_channel.html) class
+- [`IChannelEventHandler`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_channel_event_handler.html) class
+- The [`gatewayRtt`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html) class
 
 **Deprecated**
 
 * `RtcEngineParameters` class
 * `enableWebSdkInteroperability`
-* `onFirstRemoteAudioDecoded`, and `onFirstRemoteAudioFrame`, replaced by [`onRemoteAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612)
-* `onStreamPublished` and `onStreamUnpublished`, replaced by [`onRtmpStreamingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
+* `onFirstRemoteAudioDecoded`, and `onFirstRemoteAudioFrame`, replaced by [`onRemoteAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612)
+* `onStreamPublished` and `onStreamUnpublished`, replaced by [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
 
 ## v2.9.1
 
@@ -1119,13 +1119,13 @@ v2.9.1 is released on Sep 19, 2019.
 
 **Detecting local voice activity**
 
-This release adds the `report_vad(bool)` parameter to the [`enableAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4b30a8ff1ae50c4c114ae4f909c4ebcb) method to enable local voice activity detection. Once it is enabled, you can check the [`AudioVolumeInfo`](./API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html) struct of the [`onAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4) callback for the voice activity status of the local user.
+This release adds the `report_vad(bool)` parameter to the [`enableAudioVolumeIndication`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4b30a8ff1ae50c4c114ae4f909c4ebcb) method to enable local voice activity detection. Once it is enabled, you can check the [`AudioVolumeInfo`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html) struct of the [`onAudioVolumeIndication`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4) callback for the voice activity status of the local user.
 
 #### Improvements
 
 **Supporting more audio sample rates for recording**
 
-To enable more audio sample rate options for recording, this release adds a new [`startAudioRecording`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c05d82c97a9d63ebda116b9a1e5ca3f) method with a `sampleRate` parameter. In the new method, you can set the sample rate as 16, 32, 44.1 or 48 kHz. The original method supports only a fixed sample rate of 32 kHz and is deprecated.
+To enable more audio sample rate options for recording, this release adds a new [`startAudioRecording`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c05d82c97a9d63ebda116b9a1e5ca3f) method with a `sampleRate` parameter. In the new method, you can set the sample rate as 16, 32, 44.1 or 48 kHz. The original method supports only a fixed sample rate of 32 kHz and is deprecated.
 
 #### Issues fixed
 
@@ -1139,9 +1139,9 @@ To improve the user experience, we made the following changes in v2.9.1:
 
 **Added**
 
-- [`startAudioRecording`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c05d82c97a9d63ebda116b9a1e5ca3f)
-- The `report_vad` parameter in the [`enableAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4b30a8ff1ae50c4c114ae4f909c4ebcb) method
-- The `vad` member in the [`AudioVolumeInfo`](./API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html) class
+- [`startAudioRecording`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c05d82c97a9d63ebda116b9a1e5ca3f)
+- The `report_vad` parameter in the [`enableAudioVolumeIndication`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4b30a8ff1ae50c4c114ae4f909c4ebcb) method
+- The `vad` member in the [`AudioVolumeInfo`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_audio_volume_info.html) class
 
 **Deprecated**
 
@@ -1161,10 +1161,10 @@ In this release, we deleted the following methods:
 
 If your app implements Media Push with the methods above, ensure that you upgrade the SDK to the latest version and use the following methods for the same function:
 
-- [`setLiveTranscoding`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)
-- [`addPublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)
-- [`removePublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)
-- [`onRtmpStreamingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
+- [`setLiveTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)
+- [`addPublishStreamUrl`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)
+- [`removePublishStreamUrl`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)
+- [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
 
 
 **2. Disabling/enabling the local audio**
@@ -1175,28 +1175,28 @@ To improve the audio quality in the `COMMUNICATION` profile, this release sets t
 
 **1. Faster switching to another channel**
 
-This release adds the [`switchChannel`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3eb5ee494ce124b34609c593719c89ab) method to enable the audience in a `LIVE_BROADCASTING` channel to quickly switch to another channel. With this method, you can achieve a much faster switch than with the `leaveChannel` and `joinChannel` methods. After the audience successfully switches to another channel by calling the `switchChannel` method, the SDK triggers the `onLeaveChannel` and `onJoinChannelSuccess` callbacks to indicate that the audience has left the original channel and joined a new one.
+This release adds the [`switchChannel`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3eb5ee494ce124b34609c593719c89ab) method to enable the audience in a `LIVE_BROADCASTING` channel to quickly switch to another channel. With this method, you can achieve a much faster switch than with the `leaveChannel` and `joinChannel` methods. After the audience successfully switches to another channel by calling the `switchChannel` method, the SDK triggers the `onLeaveChannel` and `onJoinChannelSuccess` callbacks to indicate that the audience has left the original channel and joined a new one.
 
 **2. Channel media stream relay**
 
 This release adds the following methods to relay the media streams of a host from a source channel to a destination channel. This feature applies to scenarios such as online singing contests, where hosts of different `LIVE_BROADCASTING` channels interact with each other.
 
-- [`startChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acb72f911830a6fdb77e0816d7b41dd5c)
-- [`updateChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afad0d3f3861c770200a884b855276663)
-- [`stopChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab4a1c52a83a08f7dacab6de36f4681b8)
+- [`startChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acb72f911830a6fdb77e0816d7b41dd5c)
+- [`updateChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afad0d3f3861c770200a884b855276663)
+- [`stopChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab4a1c52a83a08f7dacab6de36f4681b8)
 
-During the media stream relay, the SDK reports the states and events of the relay with the [`onChannelMediaRelayStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a8f22b85194d4b771bbab0e1c3b505b22) and [`onChannelMediaRelayEvent`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89a4085f36c25eeed75c129c82ca9429) callbacks.
+During the media stream relay, the SDK reports the states and events of the relay with the [`onChannelMediaRelayStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a8f22b85194d4b771bbab0e1c3b505b22) and [`onChannelMediaRelayEvent`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89a4085f36c25eeed75c129c82ca9429) callbacks.
 
 **3. Reporting the local and remote audio state**
 
-This release adds the [`onLocalAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a) and [`onRemoteAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612) callbacks to report the local and remote audio states. With these callbacks, the SDK reports the following states for the local and remote audio:
+This release adds the [`onLocalAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a) and [`onRemoteAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612) callbacks to report the local and remote audio states. With these callbacks, the SDK reports the following states for the local and remote audio:
 
 - The local audio: STOPPED(0), RECORDING(1), ENCODING(2), or FAILED(3). When the state is FAILED(3), see the `error` parameter for troubleshooting.
 - The remote audio: STOPPED(0), STARTING(1), DECODING(2), FROZEN(3), or FAILED(4). See the `reason` parameter for why the remote audio state changes.
 
 **4. Reporting the local audio statistics**
 
-This release adds the [`onLocalAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0cb47df6a8ef7acee229eb307d6f32c3) callback to report the statistics of the local audio during a call, including the number of channels, the sending sample rate, and the average sending bitrate of the local audio.
+This release adds the [`onLocalAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0cb47df6a8ef7acee229eb307d6f32c3) callback to report the statistics of the local audio during a call, including the number of channels, the sending sample rate, and the average sending bitrate of the local audio.
 
 #### Improvements
 
@@ -1204,7 +1204,7 @@ This release adds the [`onLocalAudioStats`](./API%20Reference/cpp/classagora_1_1
 
 This release adds the following statistics in the `RtcStats` class:
 
-- [`RtcStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html): The total number of the sent audio bytes and  received audio bytes during a session.
+- [`RtcStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html): The total number of the sent audio bytes and  received audio bytes during a session.
 
 **2. Other Improvements**
 
@@ -1231,21 +1231,21 @@ To improve the user experience, we made the following changes in v2.9.0:
 
 **Added**
 
-- [`onLocalAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a)
-- [`onRemoteAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612)
-- [`onLocalAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0cb47df6a8ef7acee229eb307d6f32c3)
-- [`switchChannel`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3eb5ee494ce124b34609c593719c89ab)
-- [`startChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acb72f911830a6fdb77e0816d7b41dd5c)
-- [`updateChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afad0d3f3861c770200a884b855276663)
-- [`stopChannelMediaRelay`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab4a1c52a83a08f7dacab6de36f4681b8)
-- [`onChannelMediaRelayStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a8f22b85194d4b771bbab0e1c3b505b22)
-- [`onChannelMediaRelayEvent`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89a4085f36c25eeed75c129c82ca9429)
-- [`RtcStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html): `txAudioBytes` and `rxAudioBytes`
+- [`onLocalAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a)
+- [`onRemoteAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa168380f86f1dc2df1c269a785c56612)
+- [`onLocalAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0cb47df6a8ef7acee229eb307d6f32c3)
+- [`switchChannel`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3eb5ee494ce124b34609c593719c89ab)
+- [`startChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acb72f911830a6fdb77e0816d7b41dd5c)
+- [`updateChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#afad0d3f3861c770200a884b855276663)
+- [`stopChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab4a1c52a83a08f7dacab6de36f4681b8)
+- [`onChannelMediaRelayStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a8f22b85194d4b771bbab0e1c3b505b22)
+- [`onChannelMediaRelayEvent`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89a4085f36c25eeed75c129c82ca9429)
+- [`RtcStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html): `txAudioBytes` and `rxAudioBytes`
 
 **Deprecated**
 
-- `onMicrophoneEnabled`. Use LOCAL_AUDIO_STREAM_STATE_CHANGED(0) or LOCAL_AUDIO_STREAM_STATE_RECORDING(1) in the [`onLocalAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a) callback instead.
-- `onRemoteAudioTransportStats`. Use the [`onRemoteAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af8a59626a9265264fb4638e048091d3a) callback instead.
+- `onMicrophoneEnabled`. Use LOCAL_AUDIO_STREAM_STATE_CHANGED(0) or LOCAL_AUDIO_STREAM_STATE_RECORDING(1) in the [`onLocalAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a) callback instead.
+- `onRemoteAudioTransportStats`. Use the [`onRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af8a59626a9265264fb4638e048091d3a) callback instead.
 
 
 **Deleted**
@@ -1263,8 +1263,8 @@ v2.8.0 is released on Jul. 8, 2019.
 
 Many apps use string user IDs. This release adds the following methods to enable apps to join an Agora channel directly with string user IDs as user accounts:
 
-- [registerLocalUserAccount](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0d44b74ced4005ee86353c13186f870d)
-- [joinChannelWithUserAccount](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a14f8c308c6c57c55653552b939a8527a)
+- [registerLocalUserAccount](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0d44b74ced4005ee86353c13186f870d)
+- [joinChannelWithUserAccount](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a14f8c308c6c57c55653552b939a8527a)
 
 For other methods, Agora uses the integer uid parameter. The Agora Engine maintains a mapping table that contains the user ID and string user account, and you can get the corresponding user account or ID by calling the getUserInfoByUid or getUserInfoByUserAccount method.
 
@@ -1281,13 +1281,13 @@ To ensure smooth call, use the same parameter type to identify all users within 
 
 **2. Adding remote audio statistics**
 
-To monitor the audio transmission quality during a call interactive live streaming, this release adds the `totalFrozenTime` and `frozenRate` members in the [RemoteAudioStats](./API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) class, to report the audio freeze time and freeze rate of the remote user.
+To monitor the audio transmission quality during a call interactive live streaming, this release adds the `totalFrozenTime` and `frozenRate` members in the [RemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) class, to report the audio freeze time and freeze rate of the remote user.
 
-This release also adds the `numChannels`, `receivedSampleRate`, and `receivedBitrate` members in the [RemoteAudioStats](./API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) class.
+This release also adds the `numChannels`, `receivedSampleRate`, and `receivedBitrate` members in the [RemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) class.
 
 #### Improvements
 
-This release adds a `CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT(14)` member to the `reason` parameter of the [onConnectionStateChanged](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af409b2e721d345a65a2c600cea2f5eb4) callback. This member indicates a connection state change caused by the timeout of the connection keep-alive between the SDK and Agora's edge server.
+This release adds a `CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT(14)` member to the `reason` parameter of the [onConnectionStateChanged](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af409b2e721d345a65a2c600cea2f5eb4) callback. This member indicates a connection state change caused by the timeout of the connection keep-alive between the SDK and Agora's edge server.
 
 #### API changes
 
@@ -1295,17 +1295,17 @@ To improve your experience, we made the following changes to the APIs:
 
 **Added**
 
-- [registerLocalUserAccount](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0d44b74ced4005ee86353c13186f870d)
-- [joinChannelWithUserAccount](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a14f8c308c6c57c55653552b939a8527a)
-- [getUserInfoByUid](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abf4572004e6ceb99ce0ff76a75c69d0b)
-- [getUserInfoByUserAccount](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4f75984d3c5de5f6e3e4d8bd81e3b409)
-- [onLocalUserRegistered](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a919404869f86412e1945c730e5219b20)
-- [onUserInfoUpdated](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad086cc4d8e5555cc75a0ab264c16d5ff)
-- The `numChannels`, `receivedSampleRate`, `receivedBitrate`, `totalFrozenTime`, and `frozenRate` members in the [RemoteAudioStats](./API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) class
+- [registerLocalUserAccount](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0d44b74ced4005ee86353c13186f870d)
+- [joinChannelWithUserAccount](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a14f8c308c6c57c55653552b939a8527a)
+- [getUserInfoByUid](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abf4572004e6ceb99ce0ff76a75c69d0b)
+- [getUserInfoByUserAccount](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4f75984d3c5de5f6e3e4d8bd81e3b409)
+- [onLocalUserRegistered](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a919404869f86412e1945c730e5219b20)
+- [onUserInfoUpdated](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad086cc4d8e5555cc75a0ab264c16d5ff)
+- The `numChannels`, `receivedSampleRate`, `receivedBitrate`, `totalFrozenTime`, and `frozenRate` members in the [RemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_remote_audio_stats.html) class
 
 **Deprecated**
 
-- The `lowLatency` member in the [LiveTranscoding](./API%20Reference/cpp/structagora_1_1rtc_1_1_live_transcoding.html) class
+- The `lowLatency` member in the [LiveTranscoding](https://docs.agora.io/en/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_live_transcoding.html) class
 
 ## v2.4.1
 
@@ -1313,15 +1313,15 @@ V2.4.1 is released on Jun 12th, 2019.
 
 This is the first release of the Agora Voice SDK for Windows. Refer to the following guides to quickly integrate the SDK and enable real-time communication in your project.
 
-- [Quick start](./start_call_windows)
-- [Use security keys](./token)
-- [Report in-call statistics](./in-call_quality_windows)
-- [Adjust the volume](./volume_windows)
-- [Play audio effects/audio mixing](./audio_effect_mixing_windows)
-- [Set the voice changer and reverberation effects](./voice_changer_windows)
+- [Quickstart Guide](../quickstart-guide/start-audio-streaming)
+- <Link to="/3.x/shared/interactive-live-streaming/basic-features/token-server?platform={{platform.PATH}}">Use security keys</Link>
+- <Link to="/3.x/shared/interactive-live-streaming/advanced-features/in-call-quality?platform={{platform.PATH}}">Report in-call statistics</Link>
+- <Link to="/3.x/shared/interactive-live-streaming/basic-features/adjust-volume?platform={{platform.PATH}}">Adjust the volume</Link>
+- <Link to="/3.x/shared/interactive-live-streaming/advanced-features/audio-effect-mixing?platform={{platform.PATH}}">Play audio effects/audio mixing</Link>
+- <Link to="/3.x/shared/interactive-live-streaming/advanced-features/voice-changer?platform={{platform.PATH}}">Set the voice changer and reverberation effects</Link>
 - [Test or select a media device](./test_switch_device_windows)
-- [Use Cloud Proxy](./cloudproxy_native?platform=Windows)
+- [<Link to="/3.x/shared/interactive-live-streaming/basic-features/use-cloud-proxy?platform={{platform.PATH}}">Use Cloud Proxy</Link>
 
-If you migrate to this SDK from the Windows Video SDK, refer to the [Release notes for the Windows video SDK](./release_windows_video) for audio improvements.
+If you migrate to this SDK from the Windows Video SDK, refer to the <Link to="/3.x/shared/interactive-live-streaming/introduction/release-notes?platform={{platform.PATH}}">Release notes for the Windows video SDK</Link> for audio improvements.
 
 </PlatformWrapper>
