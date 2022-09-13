@@ -1,0 +1,133 @@
+<PlatformWrapper platform="electron">
+
+This page shows you the minimum code you need to add Video Call into your Electron app by using the Agora Video SDK for Electron.
+
+## Prerequisites
+
+~85b42a90-f5cd-11eb-b2d8-f7a2e4e24106~
+
+## Project setup
+
+In order to create the environment necessary to integrate Video Call into your app, do the following:
+
+~9d701040-f5cd-11eb-b2d8-f7a2e4e24106~
+
+## Implement a client for Video Call
+
+This section shows how to use the Agora Video SDK to implement Video Call in your Electron app step by step.
+
+### 1. Create the user interface
+
+To create the user interface, copy the following code into  `index.html`:
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Electron Quickstart</title>
+    </head>
+    <body>
+        <h1>Electron Quickstart</h1>
+        <!--Add a frame for local video -->
+        <div id="join-channel-local-video"></div>
+        <!--Add a frame for remote video -->
+        <div id="join-channel-remote-video"></div>
+    </body>
+</html>
+```
+
+### 2. Create the main process
+
+~6419bb30-f5d1-11eb-b2d8-f7a2e4e24106~
+
+### 3. Implement the client logic
+
+To implement the minimum client logic of Video Call, you need to do the following things:
+
+1. Call [`initialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#initialize) to create an `AgoraRtcEngine` instance.
+2. Call [`enableVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#enablevideo) to enable the video module.
+3. Call [`joinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#joinchannel) to join a channel.
+4. Call [`setupLocalVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setuplocalvideo) to set up the local video frame.
+5. When another user joins the channel, call [`setupRemoteVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setupremotevideo) to set up the remote video frame.
+6. Leave the channel and release all the resources used by `AgoraRtcEngine`.
+
+The API call sequence is shown in the following diagram:
+![](https://web-cdn.agora.io/docs-files/1628157460908)
+
+Copy the following code into `renderer.js` and fill in `APPID`, `token`, and `ChannelName` with [values from your Agora project](https://docs.agora.io/en/AgoraPlatform/get_appid_token):
+
+```javascript
+window.addEventListener("DOMContentLoaded", () => {
+    const AgoraRtcEngine = require("agora-electron-sdk").default;
+
+    const os = require("os");
+    const path = require("path");
+
+    // Pass your App ID here.
+    const APPID = "Your App ID";
+    // Pass your token here.
+    const token = "Your token";
+
+    const localVideoContainer = document.getElementById("join-channel-local-video");
+    const remoteVideoContainer = document.getElementById("join-channel-remote-video");
+    const sdkLogPath = path.resolve(os.homedir(), "./test.log");
+
+    let rtcEngine = new AgoraRtcEngine();
+    // Initialize AgoraRtcEngine.
+    rtcEngine.initialize(APPID);
+
+    // Listen for the "joinedChannel" event of the local user.
+    rtcEngine.on("joinedChannel", (channel, uid, elapsed) => {
+        // If the local user joins the channel, set up the local video frame.
+        rtcEngine.setupLocalVideo(localVideoContainer);
+    });
+
+    rtcEngine.on("error", (err, msg) => {
+        console.log("Error!");
+    });
+
+    // Listen for the "userJoined" event of the remote user.
+    rtcEngine.on("userJoined", uid => {
+        // If the remote user joins the channel, set up the remote video frame.
+        rtcEngine.setupRemoteVideo(uid, remoteVideoContainer);
+    });
+
+    // Enable the video module
+    rtcEngine.enableVideo();
+
+    rtcEngine.setLogFile(sdkLogPath);
+
+    // Pass your channel name here, which must be the same as the channel name you filled in to generate the temporary token.
+    // Join the channel.
+    rtcEngine.joinChannel(token, "Your channel", null, 123456);
+});
+```
+
+
+##  Test your app
+
+Take the following steps to test your Electron app:
+
+1. In Terminal, go to the root folder of your project and run the following command:
+
+ ```
+ npm start
+ ```
+
+ If the app launches successfully, you should be able to see yourself on the local view.
+
+2. Ask a friend to join the call with you on the [demo app](https://webdemo.agora.io/basicVideoCall/index.html). Enter the same App ID and channel name.
+
+3. After your friend joins the channel, you should be able to see and hear each other.
+
+## Next steps
+
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) shows you how to start Video Call with a token that you retrieve from your server.
+
+## See also
+
+Agora provides an open-source sample project  [Agora Electron Quickstart](https://github.com/AgoraIO-Community/Agora-Electron-Quickstart/tree/master/Agora-Electron-API-Example) on GitHub that implements Video Call for your reference.
+
+
+</PlatformWrapper>
