@@ -20,13 +20,13 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 3. Publish and subscribe to audio in the channel
-After joining a channel, the app client automatically publishes and subscribes to audio in the channel. 
+After joining a channel, the app client automatically publishes and subscribes to audio in the channel.
 
 For an app client to join an RTC channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the voice call. 
+- The channel name: A string that identifies the channel for the voice call.
 
 ## Prerequisites
 
@@ -52,13 +52,13 @@ In Xcode, follow the steps to create the environment necessary to add Voice Call
 2. Integrate the Voice SDK into your project:
 
    Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following URL:
-	 
-	 ```http
+
+	 ```shellscript
 	 https://github.com/AgoraIO/AgoraAudio_iOS
 	 ```
- 
+
    In **Choose Package Options**, specify the Voice SDK version you want to use. You need to fill in x.y.z for version x.y.z and x.y.z-r.a for version x.y.z.a. For example, fill in 3.5.0 for version 3.5.0 and 3.5.0-r.2 for version 3.5.0.2.
-	 
+
 <div class="alert note"><li>For the Voice SDK, Agora provides Swift Packages for 3.5.0 or later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a>.</li></div>
 
 
@@ -79,7 +79,7 @@ This section shows how to use the Agora Voice SDK to implement Voice Call in you
 
 When your app opens, you create an `RtcEngine` instance, join a channel, and publish the local audio. When another user joins the channel, your app catches the join event and subscribes to the remote audio.
 
-The following figure shows the API call sequence of implementing Voice Call. 
+The following figure shows the API call sequence of implementing Voice Call.
 
 ![1638415710829](https://web-cdn.agora.io/docs-files/1638415710829)
 
@@ -116,7 +116,7 @@ To implement this logic, take the following steps:
     func initializeAndJoinChannel() {
         // Pass in your App ID here
         agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: "Your App ID", delegate: self)
-        
+
         // Join the channel with a token. Pass in your token and channel name here
         agoraKit?.joinChannel(byToken: "Your token", channelId: "Channel name", info: nil, uid: 0, joinSuccess: { (channel, uid, elapsed) in
         })
@@ -129,7 +129,7 @@ To implement this logic, take the following steps:
     ```swift
     extension ViewController: AgoraRtcEngineDelegate {
         func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
-        }       
+        }
     }
     ```
 
@@ -150,7 +150,7 @@ To implement the functionality of starting and stopping the app:
         initializeAndJoinChannel()
     }
     ```
-   
+
 2. When the user closes this app, clean up all the resources used by your app.
 
    In `ViewController.swift`, add `viewDidDisappear` after the `initializeAndJoinChannel` function.
@@ -180,7 +180,7 @@ Generating a token by hand is not helpful in a production context. [Authenticate
 
 ## See also
 
-This section provides additional information for your reference: 
+This section provides additional information for your reference:
 
 ### Sample project
 
@@ -216,7 +216,7 @@ In addition to integrating the Agora Voice SDK for iOS through Swift Package, yo
 
 2. From the `libs` folder of the downloaded SDK package, copy the files or subfolders you need to the root of your project folder.
 
-   
+
 3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign** from the pop-up menu in the Embed column.
 
    <div class="alert note"><ul><li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
@@ -280,7 +280,7 @@ You need to use different integration methods to integrate different versions of
  b. If you need to use a simulator to run the project, copy the above dynamic library under the path of `./libs/ALL_ARCHITECTURE` in the SDK package. The dynamic libraries under this path contains the x86-64 and i386 architectures, which affects the distribution of your app in the App Store. See solutions in [Distribution consideration](#distribution).
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**. Once the dynamic library is added, the project automatically links to other system libraries.
- 
+
  <div class="alert note"><ul><li>According to the official requirements of Apple, the Extension of an app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the Extension, change the file status to <b>Do Not Embed</b>.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
 
 </details>
@@ -298,9 +298,9 @@ The paths of the two libraries in the SDK package are as follows:
 **Integrate the dynamic library:**
 1. Copy the `AgoraRtcKit.framework` dynamic library from the `./libs` path of the SDK package to the `./project_name` folder in your project (`project_name` is an example of your project name).
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
-3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**. 
+3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**.
  Once the dynamic library is added, the project automatically links to other system libraries.
- 
+
  <div class="alert note">According to the official requirements of Apple, the Extension of an app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the Extension, change the file status to <b>Do Not Embed</b>.</div>
 
 **Integrate the static library:**
@@ -313,7 +313,7 @@ The paths of the two libraries in the SDK package are as follows:
 | Video SDK | <li>`AgoraRtcKit.framework`</li><li>`Accelerate.framework`</li><li>`AudioToolbox.framework`</li><li>`AVFoundation.framework`</li><li>`CoreMedia.framework`</li><li>`libc++.tbd`</li><li>`libresolv.tbd`</li><li>`SystemConfiguration.framework`</li><li>`CoreML.framework`</li><li>`VideoToolbox.framework`</li> |
 
 <div class="alert note"> The Agora SDK uses libc++ (LLVM) by default. Contact Agora support if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</div>
-	
+
 </details>
 
 <details>
@@ -330,7 +330,7 @@ The paths of the two libraries in the SDK package are as follows:
 <div class="alert note"> The Agora SDK uses libc++ (LLVM) by default. Contact Agora support if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</div>
 
 </details>
-	
+
 <a name="distribution"></a>
 ### Distribution consideration
 
@@ -388,7 +388,7 @@ To implement Voice Call in your app using Objective-C:
 }
 
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
-    
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
