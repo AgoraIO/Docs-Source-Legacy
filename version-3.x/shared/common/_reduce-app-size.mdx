@@ -171,6 +171,8 @@ The following table shows the extension library name for each platform and the i
 
 #### JND library (beta feature)
 
+<div class="alert warning">As of v3.7.0, the JND library is statically compiled in the SDK by default and no longer provided as an extension library. If you have integrated the JND library, remove the JND extension library from your project dependencies and recompile your project when upgrading to v3.7.0.</div>
+
 The JND (Just-noticeable difference) function is used for video perceptual coding, which reduces bandwidth consumption while keeping the same image quality. For example, this function can improve video smoothness in bandwidth-constrained scenarios and reduce network traffic consumption in mobile network scenarios. To use this function, contact support@agora.io.
 
 The following table shows the extension library name for each platform and the increase in the app size after integration:
@@ -236,7 +238,7 @@ The following table shows the extension library name for each platform and the i
 
 #### Video enhancement library
 
-As of v3.6.0, Agora offers a video enhancement library that provides the ability to apply basic image enhancement. As of v3.6.2, Agora also adds video noise reduction, low-light enhancement, and color enhancement features to the video enhancement library. See <Link to="../introduction/release-notes?platform={{platform.PATH}}#v362">v3.6.0 and v3.6.2 Release Notes</Link>.
+As of v3.6.0, Agora provides a video enhancement library that provides the ability to apply basic image enhancement. As of v3.6.2, Agora also adds video noise reduction, low-light enhancement, and color enhancement features to the video enhancement library. See <Link to="../introduction/release-notes?platform={{platform.PATH}}#v362">v3.6.0 and v3.6.2 Release Notes</Link>.
 
 You can call the following methods to enable the video enhancement features that you want after integrating the video enhancement library:
 
@@ -273,18 +275,18 @@ The following table shows the extension library name for each platform and the i
 
 | Platform | Architecture | Library name                                | App size increase after integration (KB) |
 | :------- | :----------- | :------------------------------------------ | :--------------------------------------- |
-| Android  | arm64-v8a    | `libagora-all-audio-format-extension.so`    | 4,436                                    |
-| Android  | armeabi-v7a  | `libagora-all-audio-format-extension.so`    | 4,088                                    |
+| Android  | arm64-v8a    | `libagora-full-audio-format-extension.so`    | 4,436                                    |
+| Android  | armeabi-v7a  | `libagora-full-audio-format-extension.so`    | 4,088                                    |
 | iOS      | arm64        | `AgoraFullAudioFormatExtension.xcframework` | 4,432                                    |
 | iOS      | armv7        | `AgoraFullAudioFormatExtension.xcframework` | 3,808                                    |
 | macOS    | arm64        | `AgoraFullAudioFormatExtension.xcframework` | 4,720                                    |
 | macOS    | x86_64       | `AgoraFullAudioFormatExtension.xcframework` | 4,720                                    |
-| Windows  | x86          | `libagora-all-audio-format-extension.dll`   | 5,308                                    |
-| Windows  | x86_64       | `libagora-all-audio-format-extension.dll`   | 7,736                                    |
+| Windows  | x86          | `libagora-full-audio-format-extension.dll`   | 5,308                                    |
+| Windows  | x86_64       | `libagora-full-audio-format-extension.dll`   | 7,736                                    |
 
 #### Spatial audio effect library
 
-As of v3.7.0, Agora offers the spatial audio effect library, which can add a sense of space to remote users' audio and simulate the audio transmission process in the real world. This enables the local user to hear remote users with the spatial audio effect. To use this function, contact [support@agora.io](mailto:support@agora.io).
+As of v3.7.0, Agora provides the spatial audio effect library, which can add a sense of space to remote users' audio and simulate the audio transmission process in the real world. This enables the local user to hear remote users with the spatial audio effect. To use this function, contact [support@agora.io](mailto:support@agora.io).
 
 The following table shows the extension library name for each platform and the increase in the app size after integration:
 
@@ -299,6 +301,14 @@ The following table shows the extension library name for each platform and the i
 | Windows  | x86          | `libagora_spatial_audio_extension.dll`   | 5,096                                    |
 | Windows  | x86_64       | `libagora_spatial_audio_extension.dll`   | 5,232                                    |
 
+#### ReplayKit library (iOS only)
+
+As of v3.7.0, the SDK provides the `startScreenCapture` method and the `AgoraReplayKitExtension.xcframework` extension library for screen sharing. See <Link to="../basic-features/screensharing?platform=iOS">Share the Screen</Link>.
+The following table shows the extension library name and the increase in the app size after integration:
+| Platform | Architecture | Library name                             | App size increase after integration (KB) |
+| :------- | :----------- | :--------------------------------------- | :--------------------------------------- |
+| iOS     | arm64       | `AgoraReplayKitExtension.xcframework` | 96        |
+| iOS     | armv7       | `AgoraReplayKitExtension.xcframework` | 96   |
 
 <a name="subspec"></a>
 
@@ -313,13 +323,14 @@ When you integrate the iOS/macOS SDK with CocoaPods, you can reduce the size of 
 | <li>`AgoraRtcKit.xcframework`</li><li>`AgoraCore.xcframework`</li><li>`Agorafdkaac.xcframework`</li><li>`AgoraSoundTouch.xcframework`</li><li>`Agoraffmpeg.xcframework`</li> | Required | RtcBasic             |
 | `AgoraAIDenoiseExtension.xcframework`                        | Optional | AINS                 |
 | `AgoraDav1dExtension.xcframework`                            | Optional | AV1Dec               |
-| `AgoraJNDExtension.xcframework`                              | Optional | JND                  |
+| `AgoraJNDExtension.xcframework`                              | Optional | JND (< 3.7.0 and ≥ 3.6.2) |
 | `AgoraVideoSegmentationExtension.xcframework`                | Optional | VirtualBackground    |
 | `AgoraFDExtension.xcframework`                               | Optional | ROIEnc               |
 | `AgoraSuperResolutionExtension.xcframework`                  | Optional | SuperResolution      |
 | `AgoraVideoProcessExtension.xcframework`                     | Optional | VideoPreprocess      |
 | `AgoraFullAudioFormatExtension.xcframework`                  | Optional | FullAudioFormat      |
 | `AgoraSpatialAudioExtension.xcframework`                     | Optional | SpatialAudio         |
+| `AgoraReplayKitExtension.xcframework`                        | Optional | ReplayKit (≥ 3.7.0)  |
 
 
 #### iOS Voice SDK
@@ -339,7 +350,7 @@ When you integrate the iOS/macOS SDK with CocoaPods, you can reduce the size of 
 | <li>`AgoraRtcKit.xcframework`</li><li>`AgoraCore.xcframework`</li><li>`Agorafdkaac.xcframework`</li><li>`AgoraSoundTouch.xcframework`</li><li>`Agoraffmpeg.xcframework`</li><li>`av1.framework`</li> | Required | RtcBasic             |
 | `AgoraAIDenoiseExtension.xcframework`                        | Optional | AINS                 |
 | `AgoraDav1dExtension.xcframework`                            | Optional | AV1Dec               |
-| `AgoraJNDExtension.xcframework`                              | Optional | JND                  |
+| `AgoraJNDExtension.xcframework`                              | Optional | JND (< 3.7.0 and ≥ 3.6.2)  |
 | `AgoraVideoSegmentationExtension.xcframework`                | Optional | VirtualBackground    |
 | `AgoraFDExtension.xcframework`                               | Optional | ROIEnc               |
 | `AgoraVideoProcessExtension.xcframework`                     | Optional | VideoPreprocess      |
@@ -370,7 +381,7 @@ When you integrate the Android SDK with Maven Central, you can reduce the size o
 | <li>`agora-rtc-sdk.jar`</li><li>Header files under the `include` folder</li><li>`libagora-rtc-sdk.so`</li><li>`libagora_fdkaac.so`</li><li>`libagora_mpg123.so`</li><li>`libagora-core.so`</li><li>`libagora-soundtouch.so`</li><li>`libagora-ffmpeg.so`</li> | Required | io.agora.rtc:full-rtc-basic                                  |
 | `libagora_ai_denoise_extension.so`                           | Optional | <li>io.agora.rtc:full-ains (v3.6.2)</li><li>io.agora.rtc::ains (as of v3.7.0)</li> |
 | `libagora_dav1d_extension.so`                                | Optional | io.agora.rtc:full-av1-dec                                    |
-| `libagora_jnd_extension.so`                                  | Optional | io.agora.rtc:full-jnd                                        |
+| `libagora_jnd_extension.so`                                  | Optional | io.agora.rtc:full-jnd (< 3.7.0 and ≥ 3.6.2)                                        |
 | `libagora_segmentation_extension.so`                         | Optional | io.agora.rtc:full-virtual-background                         |
 | `libagora_fd_extension.so`                                   | Optional | io.agora.rtc:full-roi-enc                                    |
 | `libagora_super_resolution_extension.so`                     | Optional | io.agora.rtc:full-super-resolution                           |
