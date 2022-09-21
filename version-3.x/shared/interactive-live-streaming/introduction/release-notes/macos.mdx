@@ -72,7 +72,11 @@ v3.7.0 was released on April 11, 2022.
 
 #### Compatibility changes
 
-**1. Optimized integration with Swift API**
+**1. JND library integration change**
+
+As of v3.7.0, the JND library is statically compiled in the SDK by default and no longer provided as an extension library. If you have integrated the JND library, remove the JND extension library from your project dependencies and recompile your project when upgrading to v3.7.0. For the description of the JND library, see [extension libraries](../best-practices/reduce-app-size#extension-libraries).
+
+**2. Optimized integration with Swift API**
 
 Swift developers automatically convert the Objective-C API provided by the Agora SDK to the Swift API by using Xcode for integration development. To avoid API semantic confusion due to automatic conversion, this release uses the `NS_SWIFT_NAME` macro to explicitly define the name of the Swift API for each Objective-C API in the header files.
 
@@ -86,7 +90,7 @@ When you use the Swift API, note that the following Swift API names defined by A
 | + (instancetype _Nonnull)screenCaptureWithId:(NSUInteger)displayId rect:(CGRect)rect dimensions:(CGSize)dimensions frameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate captureMouseCursor:(BOOL)captureMouseCursor; in the `AgoraRtcScreenCapture` interface | screenCapture(withId: rect: dimensions: frameRate: bitrate: captureMouseCursor:) | init(id: rect: dimensions: frameRate: bitrate: captureMouseCursor:) |
 
 
-**2. Log path**
+**3. Log path**
 
 As of v3.7.0, on macOS, the default SDK log path when disabling the sandbox has changed from `～/Library/Logs/agorasdk.log` to `/Users/<username>/Library/Caches/<App Bundle Identifier>/Logs/agorasdk.log`. If you upgrade the SDK, the old logs are stored at the old path, but the new logs are stored at the new path.
 

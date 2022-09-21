@@ -33,7 +33,7 @@ Screen sharing on iOS is implemented by using the native iOS ReplayKit framework
 
 1. Go to your project directory, and open `ios/.xcodeproj` with Xcode.
 
-2. Ensure that `AgoraReplayKitExtension.framework` is integrated into the project. This dynamic library wraps the following functionality:
+2. Ensure that `AgoraReplayKitExtension.xcframework` is integrated into the project. This dynamic library wraps the following functionality:
 
    - Record the screen with Apple ReplayKit.
    - Use the custom video source feature of the SDK to capture the screen recording data and send it to other users in the channel.
@@ -52,11 +52,11 @@ Screen sharing on iOS is implemented by using the native iOS ReplayKit framework
 
    d. Modify the `SampleHandler.h` file to modify the code logic that implements screen sharing:
 
-      - If you only need to use the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by checking `Target` for the Extension you created, and setting the **Value** of the **NSExtension > NSExtensionPrincipalClass** key in the **Info** settings from **SampleHandler** to **AgoraReplayKitHandler**.
+      - If you only need to use the functionality in `AgoraReplayKitExtension.xcframework` provided by Agora, modify it by checking `Target` for the Extension you created, and setting the **Value** of the **NSExtension > NSExtensionPrincipalClass** key in the **Info** settings from **SampleHandler** to **AgoraReplayKitHandler**.
 
         ![img](https://web-cdn.agora.io/docs-files/1648112619203)
 
-      - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
+      - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.xcframework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
 
         ```objc
           // Objective-C
