@@ -1,3 +1,18 @@
+import NotSupported from '@docs/shared/common/no-bp.mdx';
+
+<PlatformWrapper notAllowed="android">
+<PlatformWrapper notAllowed="ios">
+<PlatformWrapper notAllowed="macos">
+<PlatformWrapper notAllowed="windows-cpp">
+
+<NotSupported />
+
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+
+<PlatformWrapper notAllowed="windows-csharp">
 <PlatformWrapper notAllowed="web">
 <PlatformWrapper notAllowed="unity">
 <PlatformWrapper notAllowed="flutter">
@@ -399,6 +414,7 @@ When you integrate the Android SDK with Maven Central, you can reduce the size o
 | `libagora_full_audio_format_extension.so`                    | Optional | <li>io.agora.rtc:voice-full-audio-format (v3.6.2)</li><li>io.agora.rtc:full-audio-format (as of v3.7.0)</li> |
 | `libagora_spatial_audio_extension.so`                        | Optional | io.agora.rtc:spatial-audio                                   |
 
+</PlatformWrapper>
 </PlatformWrapper>
 </PlatformWrapper>
 </PlatformWrapper>

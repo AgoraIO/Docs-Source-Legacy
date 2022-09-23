@@ -1,3 +1,18 @@
+import NotSupported from '@docs/shared/common/no-bp.mdx';
+
+<PlatformWrapper notAllowed="android">
+<PlatformWrapper notAllowed="ios">
+<PlatformWrapper notAllowed="macos">
+<PlatformWrapper notAllowed="windows-cpp">
+
+<NotSupported />
+
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+
+<PlatformWrapper notAllowed="windows-csharp">
 <PlatformWrapper notAllowed="web">
 <PlatformWrapper notAllowed="unity">
 <PlatformWrapper notAllowed="flutter">
@@ -25,6 +40,7 @@ When switching channels, if the user calls [`leaveChannel`](https://docs.agora.i
 
 If you add a time-consuming operation to the callback thread of the SDK, the latency of SDK event notifications increases. For example, the `onUserJoined` callback could be delayed, making it take longer for you to get the user ID of the remote user by the callback, which results in a slower time for creating the remote view. For this reason, Agora strongly recommends that you do not add any time-consuming operations to the callback thread of the SDK.
 
+</PlatformWrapper>
 </PlatformWrapper>
 </PlatformWrapper>
 </PlatformWrapper>
