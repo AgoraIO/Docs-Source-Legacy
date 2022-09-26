@@ -15,19 +15,19 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 3. Publish and subscribe to audio in the channel
-After joining a channel, the app client automatically publishes and subscribes to audio in the channel. 
+After joining a channel, the app client automatically publishes and subscribes to audio in the channel.
 
 For an app client to join an RTC channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
-- The channel name: A string that identifies the channel for the voice call. 
+- The channel name: A string that identifies the channel for the voice call.
 
 ## Prerequisites
 
 - Xcode 11.0 or later (the interface description in this article is based on Xcode 11.0).
 - A macOS device running macOS 10.10 or later.
-- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in?platform=macOS).
+- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in).
 
 <div class="alert note">If your network has a firewall, follow the instructions in <a href="../reference/firewall">Firewall Requirements</a> to access Agora services.</div>
 
@@ -84,7 +84,7 @@ Choose one of the following methods to obtain the Agora macOS SDK:
 
 1. In Xcode, go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
 
-   ```text
+   ```shellscript
    https://github.com/AgoraIO/AgoraAudio_macOS
    ```
 
@@ -264,7 +264,7 @@ Before running the project, you need to set your signing and team, and add devic
 
  <div class="alert note"><ul><li>If you need to add a third-party plug-in or library, and the signing of the third-party plug-in or library is different from your project, you need to navigate to <b>Hardened Runtime</b> > <b>Runtime Exceptions</b>, and check the <b>Disable Library Validation</b> option.</li><li>See more considerations in <a href="https://developer.apple.com/documentation/xcode/preparing_your_app_for_distribution">Preparing Your App for Distribution</a >.</li></ul></div>
 
- 
+
 3. In Xcode 12.2 and later, to avoid compliation errors, you need to navigate to **TARGETS** > **Project Name** > **Build Settings** > **Architectures**, and set the **Architectures** property to **x86_64** before the compilation.
 
 ### 3. Try a voice call
@@ -327,7 +327,7 @@ You need to use different integration methods to integrate different versions of
 1. Copy the `AgoraRtcKit.framework` dynamic library to the `./project_name` folder in your project (`project_name` is an example of your project name).
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**. Once the dynamic library is added, the project automatically links to other system libraries.
- 
+
  <div class="alert note"><ul><li>According to the official requirements of Apple, the Extension of an app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the Extension, change the file status to <b>Do Not Embed</b>.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
 
 </details>
@@ -345,9 +345,9 @@ The paths of the two libraries in the SDK package are as follows:
 **Integrate the dynamic library:**
 1. Copy the `AgoraRtcKit.framework` dynamic library from the `./libs` path of the SDK package to the `./project_name` folder in your project (`project_name` is an example of your project name).
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
-3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**. 
+3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**.
  Once the dynamic library is added, the project automatically links to other system libraries.
- 
+
  <div class="alert note">According to the official requirements of Apple, the Extension of an app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the Extension, change the file status to <b>Do Not Embed</b>.</div>
 
 **Integrate the static library:**
@@ -374,7 +374,7 @@ The paths of the two libraries in the SDK package are as follows:
 | Video SDK | <li>`AgoraRtcEngineKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li><li>`VideoToolbox.framework`</li> |
 
 <div class="alert note">The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</div>
-	
+
 </details>
 
 ## Reference
@@ -382,6 +382,5 @@ The paths of the two libraries in the SDK package are as follows:
 When integrating the Agora Voice SDK, you can also refer to the following articles:
 
 - [How can I set the log file?](https://docs.agora.io/en/faq/logfile)
-- [How can I implement call notification in a call application?](https://docs.agora.io/en/faq/call_invite_notification)
 
 </PlatformWrapper>
