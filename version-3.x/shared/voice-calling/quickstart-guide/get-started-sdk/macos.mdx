@@ -15,7 +15,8 @@ As shown in the figure, the workflow for adding Voice Call in your project is as
    Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 3. Publish and subscribe to audio in the channel
-   After joining a channel, the app client automatically publishes and subscribes to audio in the channel.
+
+After joining a channel, the app client automatically publishes and subscribes to audio in the channel.
 
 For an app client to join an RTC channel, you need the following information:
 
@@ -28,7 +29,7 @@ For an app client to join an RTC channel, you need the following information:
 
 - Xcode 11.0 or later (the interface description in this article is based on Xcode 11.0).
 - A macOS device running macOS 10.10 or later.
-- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in?platform=macOS).
+- A valid [Agora account](../reference/manage-agora-account#sign-up-and-log-in).
 
 <div class="alert note">
   If your network has a firewall, follow the instructions in{' '}
@@ -112,9 +113,12 @@ Choose one of the following methods to obtain the Agora macOS SDK:
 
 1. In Xcode, go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
 
-   ```html
-   https://github.com/AgoraIO/AgoraAudio_macOS
-   ```
+<<<<<<< HEAD
+
+````html
+======= ```shellscript >>>>>>> d84c52ac5de0cbe354c8887ade79e98fe99216c9
+https://github.com/AgoraIO/AgoraAudio_macOS
+````
 
 2. In **Choose Package Options**, specify the SDK version that you want to integrate. If the version number is x.y.z, fill in **x.y.z**; if the version number is x.y.z.a, fill in **x.y.z-r.a**.
 
@@ -299,6 +303,7 @@ Before running the project, you need to set your signing and team, and add devic
 | Hardened Runtime | Resource Access | Audio Input                                                                           |
 
 {' '}
+
 <div class="alert note">
   <ul>
     <li>
@@ -317,7 +322,9 @@ Before running the project, you need to set your signing and team, and add devic
   </ul>
 </div>
 
-3. In Xcode 12.2 and later, to avoid compliation errors, you need to navigate to **TARGETS** > **Project Name** > **Build Settings** > **Architectures**, and set the **Architectures** property to **x86_64** before the compilation.
+# <<<<<<< HEAD
+
+> > > > > > > d84c52ac5de0cbe354c8887ade79e98fe99216c9 3. In Xcode 12.2 and later, to avoid compliation errors, you need to navigate to **TARGETS** > **Project Name** > **Build Settings** > **Architectures**, and set the **Architectures** property to **x86_64** before the compilation.
 
 ### 3. Try a voice call
 
@@ -365,6 +372,7 @@ You need to use different integration methods to integrate different versions of
    Once these dynamic libraries are added, the project automatically links to other system libraries.
 
 {' '}
+
 <div class="alert note">
   <ul>
     <li>
@@ -391,7 +399,9 @@ You need to use different integration methods to integrate different versions of
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**. Once the dynamic library is added, the project automatically links to other system libraries.
 
+<<<<<<< HEAD
 {' '}
+
 <div class="alert note">
   <ul>
     <li>
@@ -408,6 +418,24 @@ You need to use different integration methods to integrate different versions of
     </li>
   </ul>
 </div>
+=======
+<div class="alert note">
+  <ul>
+    <li>
+      According to the official requirements of Apple, the Extension of an app
+      cannot contain the dynamic library. If you need to integrate the SDK with
+      the dynamic library in the Extension, change the file status to{' '}
+      <b>Do Not Embed</b>.
+    </li>
+    <li>
+      The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if
+      you want to use libstdc++ (GNU). The SDK provides FAT image libraries with
+      multi-architecture support for both 32/64-bit audio emulators and
+      32/64-bit audio/video real devices.
+    </li>
+  </ul>
+</div>
+>>>>>>> d84c52ac5de0cbe354c8887ade79e98fe99216c9
 
 </details>
 
@@ -439,7 +467,19 @@ The paths of the two libraries in the SDK package are as follows:
 1. Copy the `AgoraRtcKit.framework` dynamic library from the `./libs` path of the SDK package to the `./project_name` folder in your project (`project_name` is an example of your project name).
 2. Open Xcode, and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 3. Click **+ > Add Other… > Add Files** to add the `AgoraRtcKit.framework` dynamic library. Ensure that the **Embed** attribute of the dynamic library is **Embed & Sign**.
+   <<<<<<< HEAD
    Once the dynamic library is added, the project automatically links to other system libraries.
+
+{' '}
+
+<div class="alert note">
+  According to the official requirements of Apple, the Extension of an app
+  cannot contain the dynamic library. If you need to integrate the SDK with the
+  dynamic library in the Extension, change the file status to{' '}
+  <b>Do Not Embed</b>.
+</div>
+======= Once the dynamic library is added, the project automatically links to other
+system libraries.
 
 {' '}
 <div class="alert note">
@@ -448,6 +488,7 @@ The paths of the two libraries in the SDK package are as follows:
   dynamic library in the Extension, change the file status to{' '}
   <b>Do Not Embed</b>.
 </div>
+>>>>>>> d84c52ac5de0cbe354c8887ade79e98fe99216c9
 
 **Integrate the static library:**
 
@@ -473,8 +514,13 @@ The paths of the two libraries in the SDK package are as follows:
 | Voice SDK | <li>`AgoraRtcEngineKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li>                                  |
 | Video SDK | <li>`AgoraRtcEngineKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li><li>`VideoToolbox.framework`</li> |
 
-<div class="alert note">The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</div>
-	
+<div class="alert note">
+  The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you
+  want to use libstdc++ (GNU). The SDK provides FAT image libraries with
+  multi-architecture support for both 32/64-bit audio emulators and 32/64-bit
+  audio/video real devices.
+</div>
+
 </details>
 
 ## Reference
@@ -482,6 +528,5 @@ The paths of the two libraries in the SDK package are as follows:
 When integrating the Agora Voice SDK, you can also refer to the following articles:
 
 - [How can I set the log file?](https://docs.agora.io/en/faq/logfile)
-- [How can I implement call notification in a call application?](https://docs.agora.io/en/faq/call_invite_notification)
 
 </PlatformWrapper>

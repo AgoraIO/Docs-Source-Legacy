@@ -2,9 +2,27 @@ import Android from './android.mdx';
 import Apple from './apple.mdx';
 import Unity from './unity.mdx';
 import WindowsCpp from './windows-cpp.mdx';
+import Web from './web.mdx';
+import NotSupported from '@docs/shared/common/not-supported.mdx';
 
+<PlatformWrapper notAllowed="android">
+<PlatformWrapper notAllowed="ios">
+<PlatformWrapper notAllowed="macos">
+<PlatformWrapper notAllowed="unity">
+<PlatformWrapper notAllowed="windows-cpp">
+<PlatformWrapper notAllowed="web">
+
+<NotSupported />
+
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
+</PlatformWrapper>
 
 <Android />
 <Apple />
 <Unity />
 <WindowsCpp />
+<Web />

@@ -72,7 +72,11 @@ v3.7.0 was released on April 11, 2022.
 
 #### Compatibility changes
 
-**Changes to the implementation fields of dynamic libraries**
+**1. JND library integration change**
+
+As of v3.7.0, the JND library is statically compiled in the SDK by default and no longer provided as an extension library. If you have integrated the JND library, remove the JND extension library from your project dependencies and recompile your project when upgrading to v3.7.0. For the description of the JND library, see [extension libraries](../best-practices/reduce-app-size#extension-libraries).
+
+**2. Changes to the implementation fields of dynamic libraries**
 
 When you integrate the Android SDK with Maven Central, you can reduce the size of your app after integrating the SDK by modifying the `implementation` field in `dependencies` in the `/Gradle Scripts/build.gradle(Module: .app)` file to specify the desired dynamic libraries. See [Reduce App Size](../best-practices/reduce-app-size#remove-extension-libraries-when-using-maven-central) for details.
 
@@ -2637,7 +2641,7 @@ To avoid adding too many users with the same uid into the CDN publishing channel
 -   <code>setUser</code>
 
 
-The following API methods are deleted and no longer supported in v2.3.0. Agora provides the Recording SDK for better recording services. For more information on the Recording SDK, see [Release Notes for Agora Recording SDK](https://docs.agora.io/en/Recording/release_recording?platform=Linux).
+The following API methods are deleted and no longer supported in v2.3.0. Agora provides the Recording SDK for better recording services. For more information on the Recording SDK, see <Link to="/on-premise-recording/reference/release-notes?platform=linux-cpp">Release Notes for Agora Recording SDK</Link>.
 
 -   <code>startRecordingService</code>
 -   <code>stopRecordingService</code>

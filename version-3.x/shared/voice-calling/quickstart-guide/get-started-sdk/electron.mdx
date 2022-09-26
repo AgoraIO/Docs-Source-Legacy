@@ -1,6 +1,6 @@
 <PlatformWrapper platform="electron">
 
-This page shows you the minimum code you need to add Video Call into your Electron app by using the Agora Video SDK for Electron.
+This page shows you the minimum code you need to add Voice Call into your Electron app by using the Agora Voice SDK for Electron.
 
 ## Prerequisites
 
@@ -112,9 +112,9 @@ In order to create the environment necessary to integrate Video Call into your a
 					 
      <div class="alert note">If you already have a <code>node_modules</code> folder in the root folder of your project, Agora recommands deleting the <code>node_modules</code> folder before installing project dependencies. Otherwise, an error might occur.</div>
 
-## Implement a client for Video Call
+## Implement a client for Voice Call
 
-This section shows how to use the Agora Video SDK to implement Video Call in your Electron app step by step.
+This section shows how to use the Agora Voice SDK to implement Voice Call in your Electron app step by step.
 
 ### 1. Create the user interface
 
@@ -129,10 +129,9 @@ To create the user interface, copy the following code into  `index.html`:
     </head>
     <body>
         <h1>Electron Quickstart</h1>
-        <!--Add a frame for local video -->
-        <div id="join-channel-local-video"></div>
-        <!--Add a frame for remote video -->
-        <div id="join-channel-remote-video"></div>
+        <!--For example, you can add a welcome message in the interface -->
+        Congratulations! You have started a voice call.
+        Ask a friend to join and chat.
     </body>
 </html>
 ```
@@ -189,60 +188,41 @@ To implement the minimum client logic of Video Call, you need to do the followin
 1. Call [`initialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#initialize) to create an `AgoraRtcEngine` instance.
 2. Call [`enableVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#enablevideo) to enable the video module.
 3. Call [`joinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#joinchannel) to join a channel.
-4. Call [`setupLocalVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setuplocalvideo) to set up the local video frame.
-5. When another user joins the channel, call [`setupRemoteVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setupremotevideo) to set up the remote video frame.
-6. Leave the channel and release all the resources used by `AgoraRtcEngine`.
+4. Leave the channel and release all the resources used by `AgoraRtcEngine`.
 
 The API call sequence is shown in the following diagram:
-![1628157460908](https://web-cdn.agora.io/docs-files/1628157460908)
+![1628160101710](https://web-cdn.agora.io/docs-files/1628160101710)
 
 Copy the following code into `renderer.js` and fill in `APPID`, `token`, and `ChannelName` with [values from your Agora project](../reference/manage-agora-account#get-started-with-agora):
 
 ```javascript
-window.addEventListener("DOMContentLoaded", () => {
-    const AgoraRtcEngine = require("agora-electron-sdk").default;
+const AgoraRtcEngine = require("agora-electron-sdk").default;
+const os = require("os");
+const path = require("path");
 
-    const os = require("os");
-    const path = require("path");
+// Pass your App ID here.
+const APPID = "Your App ID";
+// Pass your token here.
+const token = "Your token";
 
-    // Pass your App ID here.
-    const APPID = "Your App ID";
-    // Pass your token here.
-    const token = "Your token";
+const sdkLogPath = path.resolve(os.homedir(), "./test.log");
 
-    const localVideoContainer = document.getElementById("join-channel-local-video");
-    const remoteVideoContainer = document.getElementById("join-channel-remote-video");
-    const sdkLogPath = path.resolve(os.homedir(), "./test.log");
+let rtcEngine = new AgoraRtcEngine();
+// Initialize AgoraRtcEngine.
+rtcEngine.initialize(APPID);
 
-    let rtcEngine = new AgoraRtcEngine();
-    // Initialize AgoraRtcEngine.
-    rtcEngine.initialize(APPID);
-
-    // Listen for the "joinedChannel" event of the local user.
-    rtcEngine.on("joinedChannel", (channel, uid, elapsed) => {
-        // If the local user joins the channel, set up the local video frame.
-        rtcEngine.setupLocalVideo(localVideoContainer);
-    });
-
-    rtcEngine.on("error", (err, msg) => {
-        console.log("Error!");
-    });
-
-    // Listen for the "userJoined" event of the remote user.
-    rtcEngine.on("userJoined", uid => {
-        // If the remote user joins the channel, set up the remote video frame.
-        rtcEngine.setupRemoteVideo(uid, remoteVideoContainer);
-    });
-
-    // Enable the video module
-    rtcEngine.enableVideo();
-
-    rtcEngine.setLogFile(sdkLogPath);
-
-    // Pass your channel name here, which must be the same as the channel name you filled in to generate the temporary token.
-    // Join the channel.
-    rtcEngine.joinChannel(token, "Your channel", null, 123456);
+rtcEngine.on("error", (err, msg) => {
+    console.log("Error!");
 });
+
+// The video module is enabled by default. For a voice call, you need to call disableVideo to disable the video module
+rtcEngine.disableVideo();
+
+rtcEngine.setLogFile(sdkLogPath);
+
+// Pass your channel name here, which must be the same as the channel name you filled in to generate the temporary token.
+// Join the channel.
+rtcEngine.joinChannel(token, "ChannelName", null, 123456);
 ```
 
 
@@ -256,11 +236,12 @@ Take the following steps to test your Electron app:
  npm start
  ```
 
- If the app launches successfully, you should be able to see yourself on the local view.
+ If the app launches successfully, you should be able to see a window like the following:
+ ![1626950109383](https://web-cdn.agora.io/docs-files/1626950109383)
 
 2. Ask a friend to join the call with you on the [demo app](https://webdemo.agora.io/basicVideoCall/index.html). Enter the same App ID and channel name.
 
-3. After your friend joins the channel, you should be able to see and hear each other.
+3. After your friend joins the channel, you should be able to hear each other.
 
 ## Next steps
 

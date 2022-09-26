@@ -25,7 +25,7 @@ This section describes how to implement screen sharing using the iOS SDK v3.7.0 
 Before you begin, ensure that you understand how to start a video call or start interactive video streaming. For details, see [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Video Streaming](../quickstart-guide/start-video-streaming).
 
 
-1. Ensure that `AgoraReplayKitExtension.framework` is integrated into the project. This dynamic library wraps the following functionality:
+1. Ensure that `AgoraReplayKitExtension.xcframework` is integrated into the project. This dynamic library wraps the following functionality:
 
     - Record the screen with Apple ReplayKit.
 
@@ -41,11 +41,11 @@ Before you begin, ensure that you understand how to start a video call or start 
 
     3. Modify the `SampleHandler.h` file to modify the code logic that implements screen sharing:
 
-        - If you only need to use the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by checking `Target` for the Extension you created, and setting the **Value** of the **NSExtension > NSExtensionPrincipalClass** key in the **Info** settings from **SampleHandler** to **AgoraReplayKitHandler**.
+        - If you only need to use the functionality in `AgoraReplayKitExtension.xcframework` provided by Agora, modify it by checking `Target` for the Extension you created, and setting the **Value** of the **NSExtension > NSExtensionPrincipalClass** key in the **Info** settings from **SampleHandler** to **AgoraReplayKitHandler**.
 
             ![1648112619203](https://web-cdn.agora.io/docs-files/1648112619203)
 
-        - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.framework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
+        - If you need to add some business logic in addition to using the functionality in `AgoraReplayKitExtension.xcframework` provided by Agora, modify it by replacing the code in the `SampleHandler.h` file with the following code:
 
             ```objc
             // Objective-C
