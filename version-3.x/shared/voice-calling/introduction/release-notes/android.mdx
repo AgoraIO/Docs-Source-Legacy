@@ -149,7 +149,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.so` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size#extension-libraries).
 
@@ -460,7 +460,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK cannot set the audio route as the earpiece.
   - With v3.5.0 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
 
-  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/Video/faq/system_volume">What is the difference between the in-call volume and the media volume?</a> </div>
+  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/help/integration-issues/system_volume">What is the difference between the in-call volume and the media volume?</a> </div>
 
 - If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
 
@@ -666,7 +666,7 @@ Because JCenter is about to retire, as of this release, Agora publishes the SDK 
 
 2. Extension libraries
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/help/integration-issues/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 

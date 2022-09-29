@@ -208,7 +208,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/Interactive%20Broadcast/faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
@@ -766,7 +766,7 @@ To be more transparent to users about errors and events in Media Push, this rele
 
 **3. Custom video source**
 
-You can use the `setVideoSource` method to customize a video source, that is, use the MediaIO method for custom video capture. To enhance the flexibility of video capture, as of this release, Agora supports switching from custom video capture by MediaIO to SDK capture directly in the channel. See [How can I switch from custom video capture to SDK capture](https://docs.agora.io/en/Interactive%20Broadcast/faq/custom_switch_default).
+You can use the `setVideoSource` method to customize a video source, that is, use the MediaIO method for custom video capture. To enhance the flexibility of video capture, as of this release, Agora supports switching from custom video capture by MediaIO to SDK capture directly in the channel. See [How can I switch from custom video capture to SDK capture](https://docs.agora.io/en/help/integration-issues/custom_switch_default).
 
 **4. Media device state**
 
@@ -857,7 +857,7 @@ This release adds the `libagora-wgc.dll` dynamic library, which is related to wi
 
 2. Extension libraries
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/Interactive%20Broadcast/faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/help/integration-issues/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 

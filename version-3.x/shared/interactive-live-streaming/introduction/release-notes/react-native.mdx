@@ -160,8 +160,8 @@ Also, as of this release, whether you use the new or old methods for Media Push,
 
 Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the Android or iOS SDK, you can reduce the size of your app after integrating the SDK by specifing the desired dynamic libraries and excluding unnecessary extension libraries. To achieve this, do the following based on your target platform:
 
-- Android: Modify `dependencies` in the `/android/app/build.gradle` file. For details about the sample code and the `implementation` field in `dependencies`, see [Remove extension libraries when using Maven Central](https://docs.agora.io/en/Video/reduce_rtc_app_size#remove-extension-libraries-when-using-maven-central) in Reduce App Size.
-- iOS: Use the `subspecs` field in the `/ios/Podfile` file. For details about the sample code and the `subspecs` fields, see [Remove extension libraries when using CocoaPods](https://docs.agora.io/en/Video/reduce_rtc_app_size#remove-extension-libraries-when-using-cocoapods) in Reduce App Size.
+- Android: Modify `dependencies` in the `/android/app/build.gradle` file. For details about the sample code and the `implementation` field in `dependencies`, see [Remove extension libraries when using Maven Central](../best-practices/reduce-app-size#remove-extension-libraries-when-using-maven-central) in Reduce App Size.
+- iOS: Use the `subspecs` field in the `/ios/Podfile` file. For details about the sample code and the `subspecs` fields, see [Remove extension libraries when using CocoaPods](../best-practices/reduce-app-size#remove-extension-libraries-when-using-cocoapods) in Reduce App Size.
 
 **2. Video enhancement**
 
@@ -175,7 +175,7 @@ In addition to the image enhancement feature, Agora adds support for more video 
 
 **3. Loading .so files dynamically**
 
-This release adds the `setAgoraLibPath` method for setting the directory of `.so` files. After a successful method call, the SDK dynamically loads `.so` files based on your specified directory when the app is running. This feature can help reduce the size of your app package. For detailed instructions, see [Reduce App Size](https://docs.agora.io/en/Video/reduce_rtc_app_size#load-so-files-dynamically).
+This release adds the `setAgoraLibPath` method for setting the directory of `.so` files. After a successful method call, the SDK dynamically loads `.so` files based on your specified directory when the app is running. This feature can help reduce the size of your app package. For detailed instructions, see [Reduce App Size](../best-practices/reduce-app-size#load-so-files-dynamically).
 
 **4. Audio and video recording on the client**
 
@@ -220,14 +220,14 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/Video/faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the following dynamic library:
 
 - Android：`libagora-full-audio-format-extension.so`
 - iOS：`AgoraFullAudioFormatExtension.xcframework`
 
-Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](https://docs.agora.io/en/Video/reduce_rtc_app_size#extension-libraries).
+Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size#extension-libraries).
 
 **4. Audio file formats (iOS only)**
 
@@ -505,7 +505,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK cannot set the audio route as the earpiece.
   - With v3.5.0 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
 
-  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
+  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/help/integration-issues/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
 
 - If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
 
@@ -971,7 +971,7 @@ allprojects {
 
 2. Extension libraries
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/Interactive%20Broadcast/faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/help/integration-issues/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 
@@ -1289,7 +1289,7 @@ v3.1.2 was released on September 28, 2020.
 
 #### 1. Disabling the local network connection quality report (iOS only)
 
-To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The `gatewayRtt` parameter in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html) callback is disabled by default. Do not use [`gatewayRtt`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html#gatewayrtt) to obtain the round-trip delay between the client and the local router. See the [FAQ](https://docs.agora.io/en/faq/local_network_privacy) for details.
+To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The `gatewayRtt` parameter in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html) callback is disabled by default. Do not use [`gatewayRtt`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html#gatewayrtt) to obtain the round-trip delay between the client and the local router. See the [FAQ](https://docs.agora.io/en/help/integration-issues/local_network_privacy) for details.
 
 If you don't mind the prompt, and want to enable the `gatewayRtt` parameter, please contact Agora technical support via [support@agora.io](mailto:support@agora.io).
 

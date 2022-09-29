@@ -172,7 +172,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v4.0.7, the SDK cannot set the audio route as the earpiece.
   - With v4.0.7 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
 
-  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
+  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/help/integration-issues/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
 
 - If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
 
@@ -658,7 +658,7 @@ allprojects {
 
 4. Extension libraries
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/Interactive%20Broadcast/faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/help/integration-issues/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 
 
@@ -986,6 +986,6 @@ v3.1.2 was released on September 30th, 2020.
 
 Agora provides an open-source [Agora Flutter Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) on GitHub.
 
-<div class="alert note">To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The <code>gatewayRtt</code> parameter in the <code>RtcStats</code> callback is disabled by default. Do not use <code>gatewayRtt</code> to obtain the round-trip delay between the client and the local router. See the <a href="https://docs.agora.io/en/faq/local_network_privacy">FAQ</a> for details.</div>
+<div class="alert note">To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The <code>gatewayRtt</code> parameter in the <code>RtcStats</code> callback is disabled by default. Do not use <code>gatewayRtt</code> to obtain the round-trip delay between the client and the local router. See the <a href="https://docs.agora.io/en/help/integration-issues/local_network_privacy">FAQ</a> for details.</div>
 
 </PlatformWrapper>
