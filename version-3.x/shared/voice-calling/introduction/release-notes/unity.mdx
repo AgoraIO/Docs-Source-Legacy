@@ -18,6 +18,31 @@ If your app is integrated with the SDK earlier than v3.3.1, the app can only run
 
 To avoid this issue, upgrade the SDK to v3.3.1 or later and adapt the app to x86-64 and arm64 architectures.
 
+## v3.7.1
+
+v3.7.1 was released on Sep 28, 2022.
+
+#### Improvements
+
+**Co-hosting across channels**
+
+This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- The local user received the `OnRemoteAudioStateChangedHandler(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
+- `gatewayRtt` reported by the `OnRtcStatsHandler` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- The uplink network quality reported by the `OnNetworkQualityHandler` callback was inaccurate for the user who was sharing a screen.
+- Occasionally, it took users longer than normal to join a channel for the first time.
+- (Android, iOS) Occasional crashes occurred.
+- (Android) The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+. 
+- (iOS) Occasional crashes occurred when you called `PlayEffect` or `StartAudioMixing` to play 8-bit PCM-encoded audio in the WAV format. 
+- (iOS) The local audio error reason reported by the `OnLocalAudioStateChangeHandler` callback after a user denied microphone permission was inaccurate. 
+- (Windows) Occasionally, the app got stuck after a user joined a channel. 
+
+
 ## v3.7.0.3
 
 v3.7.0.3 was  developed from v3.7.0.1 and released on Jun 22.
