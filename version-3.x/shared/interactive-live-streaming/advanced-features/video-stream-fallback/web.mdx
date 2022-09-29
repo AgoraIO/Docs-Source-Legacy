@@ -36,12 +36,12 @@ client.setStreamFallbackOption(remoteStream, 2);
 
 ### API reference
 
-- [`enableDualStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#enabledualstream)
-- [`setStreamFallbackOption`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#setstreamfallbackoption)
+- [`enableDualStream`](https://api-ref.agora.io/en/video-sdk/web/3.x/interfaces/agorartc.client.html#enabledualstream)
+- [`setStreamFallbackOption`](https://api-ref.agora.io/en/video-sdk/web/3.x/interfaces/agorartc.client.html#setstreamfallbackoption)
 
 ## Considerations
 
-- Agora does not recommend using the track methods ([addTrack](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#addtrack)/[removeTrack](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#removetrack)/[replaceTrack](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.stream.html#replacetrack)) on dual streams, which may cause different performance in the high-quality and low-quality video streams.
+- Agora does not recommend using the track methods ([addTrack](https://api-ref.agora.io/en/video-sdk/web/3.x/interfaces/agorartc.stream.html#addtrack)/[removeTrack](https://api-ref.agora.io/en/video-sdk/web/3.x/interfaces/agorartc.stream.html#removetrack)/[replaceTrack](https://api-ref.agora.io/en/video-sdk/web/3.x/interfaces/agorartc.stream.html#replacetrack)) on dual streams, which may cause different performance in the high-quality and low-quality video streams.
 
 - The following scenarios do not support dual-stream mode:
   - Audio-only streams.

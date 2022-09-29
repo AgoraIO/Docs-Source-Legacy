@@ -53,7 +53,7 @@ Video frames captured by the SDK or a custom video source, or received from a re
 
 ### Customize video source (push mode)
 
-The Agora SDK provides the  [`setExternalVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
+The Agora SDK provides the  [`setExternalVideoSource`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
 
 ![1569400609106](https://web-cdn.agora.io/docs-files/1569400609106)
 
@@ -231,9 +231,9 @@ extension CustomVideoSourcePushMain:AgoraCameraSourcePushDelegate
 
 The Agora SDK provides the following classes in the `mediaIO` interface:
 
-- [`AgoraVideoSourceProtocal`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html): Triggers callbacks that control video capturing.
-- [`AgoraVideoSinkProtocal`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html): Triggers callbacks that control video rendering.
-- [`AgoraVideoFrameConsumer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html): Stores the captured video frames. In scenarios involving a custom video source, the `AgoraVideoFrameConsumer` class sends the captured video frames to the SDK. In scenarios involving a custom video renderer, the `AgoraVideoFrameConsumer` class sends the captured video frames to the renderer.
+- [`AgoraVideoSourceProtocal`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSourceProtocol.html): Triggers callbacks that control video capturing.
+- [`AgoraVideoSinkProtocal`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html): Triggers callbacks that control video rendering.
+- [`AgoraVideoFrameConsumer`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoFrameConsumer.html): Stores the captured video frames. In scenarios involving a custom video source, the `AgoraVideoFrameConsumer` class sends the captured video frames to the SDK. In scenarios involving a custom video renderer, the `AgoraVideoFrameConsumer` class sends the captured video frames to the renderer.
 
 This section introduces how to implement a custom video source and renderer with the `mediaIO` interface.
 
@@ -247,11 +247,11 @@ The API call sequence for implementing the custom video source is as follows:
 
 Create a customized video source instance with the `AgoraVideoSourceProtocol` class, and set the following callback logics:
 
-- After receiving  [`bufferType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/bufferType), specify the format of the captured video frames in the return value.
-- After receiving [`shouldInitialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldInitialize), initialize the custom video source, for example, by turning on the video capture device. The SDK maintains the AgoraVideoFrameConsumer instance contained in the callback.
-- After receiving [`shouldStart`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStart), send video frames to the SDK using [`consumePixelBuffer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumePixelBuffer:withTimestamp:rotation:) or [`consumeRawData`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumeRawData:withTimestamp:format:size:rotation:). You can modify the video frame parameters in `AgoraVideoFrameConsumer` according to your app scenario.
-- After receiving [`shouldStop`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStop), stop sending video frames to the SDK.
-- After receiving [`shouldDispose`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldDispose), release the custom video source, for example, by turning off the video capture device.
+- After receiving  [`bufferType`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSourceProtocol.html#//api/name/bufferType), specify the format of the captured video frames in the return value.
+- After receiving [`shouldInitialize`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldInitialize), initialize the custom video source, for example, by turning on the video capture device. The SDK maintains the AgoraVideoFrameConsumer instance contained in the callback.
+- After receiving [`shouldStart`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStart), send video frames to the SDK using [`consumePixelBuffer`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumePixelBuffer:withTimestamp:rotation:) or [`consumeRawData`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoFrameConsumer.html#//api/name/consumeRawData:withTimestamp:format:size:rotation:). You can modify the video frame parameters in `AgoraVideoFrameConsumer` according to your app scenario.
+- After receiving [`shouldStop`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldStop), stop sending video frames to the SDK.
+- After receiving [`shouldDispose`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSourceProtocol.html#//api/name/shouldDispose), release the custom video source, for example, by turning off the video capture device.
 
 In the sample project, we implement a class called `AgoraCameraSourceMediaIO` based on `AgoraVideoSourceProtocol`, and we manage the video-capturing process with the callbacks contained in `AgoraVideoSourceProtocol`.
 
@@ -362,7 +362,7 @@ private extension AgoraCameraSourceMediaIO {
 
 **3. Call setVideoSource to set the custom video source**
 
-Call [`setVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoSource:) of the Agora SDK. Once `setVideoSource` is implemented, the `shouldStart` callback triggers the customized video capturing and calls `consumePixelBuffer` to send the captured frames to the SDK. After the SDK receives the captured video frames, you can call `startPreview` or `setupLocalVideo` to render the video frames.
+Call [`setVideoSource`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setVideoSource:) of the Agora SDK. Once `setVideoSource` is implemented, the `shouldStart` callback triggers the customized video capturing and calls `consumePixelBuffer` to send the captured frames to the SDK. After the SDK receives the captured video frames, you can call `startPreview` or `setupLocalVideo` to render the video frames.
 
 ```swift
 // Swift
@@ -383,9 +383,9 @@ The API call sequence for implementing the custom video renderer is as follows:
 
 Implement `AgoraVideoSinkProtocol` and `AgoraVideoFrameConsumer`, and set the following callback logics:
 
-- After receiving [`bufferType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/bufferType) and [`pixelFormat`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/pixelFormat), specify the format of rendered video frames in the return value.
-- Control the video rendering process with the [`shouldInitialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldInitialize), [`shouldStart`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStart), [`shouldStop`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStop), and [`shouldDispose`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldDispose) callbacks.
-- The SDK triggers [`renderPixelBuffer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderPixelBuffer:rotation:) or [`renderRawData`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderRawData:size:rotation:) according to the video-frames format that you set in `bufferType` or `pixelFormat`.
+- After receiving [`bufferType`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/bufferType) and [`pixelFormat`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/pixelFormat), specify the format of rendered video frames in the return value.
+- Control the video rendering process with the [`shouldInitialize`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldInitialize), [`shouldStart`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStart), [`shouldStop`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldStop), and [`shouldDispose`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/shouldDispose) callbacks.
+- The SDK triggers [`renderPixelBuffer`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderPixelBuffer:rotation:) or [`renderRawData`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraVideoSinkProtocol.html#//api/name/renderRawData:size:rotation:) according to the video-frames format that you set in `bufferType` or `pixelFormat`.
 
 In the sample project, we implement a class called `AgoraMetalRender` based on `AgoraVideoSinkProtocol`, and we control the video-rendering process with the callbacks in `AgoraVideoSinkProtocol`.
 
@@ -461,7 +461,7 @@ extension AgoraMetalRender: AgoraVideoSinkProtocol {
 
 **2. Call setLocalVideoRenderer to set the custom video renderer**
 
-Call [`setLocalVideoRenderer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVideoRenderer:) of the SDK to display the video in the local view.
+Call [`setLocalVideoRenderer`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVideoRenderer:) of the SDK to display the video in the local view.
 
 ```swift
 // Swift

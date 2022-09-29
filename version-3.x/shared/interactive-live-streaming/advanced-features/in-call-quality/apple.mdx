@@ -27,7 +27,7 @@ Agora provides an open-source sample project on GitHub that implements the in-ca
 
 ## Network quality report
 
-The `networkQuality` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891) for details.
+The `networkQuality` callback reports the uplink and downlink last mile network quality of each user/host in the current call, see [Quality Rating](https://api-ref.agora.io/en/video-sdk/cpp/3.x//namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891) for details.
 Last mile refers to the network from your device to Agora’s edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter.
 
 >- In the <code>Communication</code> profile, you receive network quality reports of all the users (including yours) in the channel once every two seconds.
@@ -85,7 +85,7 @@ When the state of the local audio stream changes (including the state of the aud
 
 ![1565945275984](https://web-cdn.agora.io/docs-files/1565945275984)
 
-The `remoteAudioStats` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891)), the number of channels (mono or dual), and the following parameters.
+The `remoteAudioStats` callback reports the audio statistics of each remote user/host in the current call. You can see the quality of the audio stream sent by each remote user/host (see [Quality Rating](https://api-ref.agora.io/en/video-sdk/cpp/3.x//namespaceagora_1_1rtc.html#aeaf419fcafaa4d58da8b6d8718e31891)), the number of channels (mono or dual), and the following parameters.
 
 | Parameter               | Description                                                  | Comment                                                      |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -198,16 +198,16 @@ When the state of remote video streams changes, the SDK triggers the `remoteVide
 
 ## API reference
 
-- [`networkQuality`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkQuality:txQuality:rxQuality:)
-- [`reportRtcStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:)
-- [`localAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
-- [`localAudioStateChange`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
-- [`remoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)
-- [`remoteAudioStateChangedOfUid`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
-- [`localVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStats:)
-- [`localVideoStateChange`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStateChange:error:)
-- [`remoteVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStats:)
-- [`remoteVideoStateChangedOfUid`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:)
+- [`networkQuality`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkQuality:txQuality:rxQuality:)
+- [`reportRtcStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:)
+- [`localAudioStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
+- [`localAudioStateChange`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
+- [`remoteAudioStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)
+- [`remoteAudioStateChangedOfUid`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
+- [`localVideoStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStats:)
+- [`localVideoStateChange`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStateChange:error:)
+- [`remoteVideoStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStats:)
+- [`remoteVideoStateChangedOfUid`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:)
 
 ## Considerations
 

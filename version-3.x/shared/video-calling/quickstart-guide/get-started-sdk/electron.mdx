@@ -186,11 +186,11 @@ app.on("window-all-closed", function () {
 
 To implement the minimum client logic of Video Call, you need to do the following things:
 
-1. Call [`initialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#initialize) to create an `AgoraRtcEngine` instance.
-2. Call [`enableVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#enablevideo) to enable the video module.
-3. Call [`joinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#joinchannel) to join a channel.
-4. Call [`setupLocalVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setuplocalvideo) to set up the local video frame.
-5. When another user joins the channel, call [`setupRemoteVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setupremotevideo) to set up the remote video frame.
+1. Call [`initialize`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#initialize) to create an `AgoraRtcEngine` instance.
+2. Call [`enableVideo`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#enablevideo) to enable the video module.
+3. Call [`joinChannel`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#joinchannel) to join a channel.
+4. Call [`setupLocalVideo`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setuplocalvideo) to set up the local video frame.
+5. When another user joins the channel, call [`setupRemoteVideo`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setupremotevideo) to set up the remote video frame.
 6. Leave the channel and release all the resources used by `AgoraRtcEngine`.
 
 The API call sequence is shown in the following diagram:
