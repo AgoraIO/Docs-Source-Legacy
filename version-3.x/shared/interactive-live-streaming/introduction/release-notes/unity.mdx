@@ -18,6 +18,61 @@ If your app is integrated with the SDK earlier than v3.3.1, the app can only run
 
 To avoid this issue, upgrade the SDK to v3.3.1 or later and adapt the app to x86-64 and arm64 architectures.
 
+## v3.7.1
+
+v3.7.1 was released on Sep 28.
+
+#### New features
+
+**Super resolution**
+
+This release deprecates the previous `EnableRemoteSuperResolution` method, and adds a method with the same name to support super resolution. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b after you enable this feature.
+
+Compared to the deprecated method, the new `EnableRemoteSuperResolution` method adds a parameter mode that can be set as either of following values: 
+
+- `SR_MODE_MANUAL(0)`: Enables super resolution for the remote user you specify.
+- `SR_MODE_AUTO`:  Enables super resolution for the remote user corresponding to the largest rendering window in the channel.
+
+<div class="alert note">Before using super resolution, ensure that you have integrated the relevant dynamical libraries:
+	<ul>
+		<li>Android: <code>libagora_super_resolution_extension.so</code></li>
+		<li>iOS: <code>AgoraSuperResolutionExtension.xcframework</code></li>
+		<li>macOS: <code>AgoraSuperResolutionExtension.xcframework</code></li>
+		<li>Windows: <code>libagora_super_resolution_extension.dll</code></li>
+	</ul>
+</div>	
+
+#### Improvements
+
+**Co-hosting across channels**
+
+This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
+
+#### Issues fixed
+
+This release fixe the following issues:
+
+- The local user received the `OnRemoteAudioStateChangedHandler(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
+- `gatewayRtt` reported by the `OnRtcStatsHandler` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- The uplink network quality reported by the `OnNetworkQualityHandler` callback was inaccurate for the user who was sharing a screen.
+- Occasionally, it took users longer than normal to join a channel for the first time.
+- (Android, iOS) Occasional crashes occurred.
+- (Android, iOS) When the local user shared audio played by a third-party app using the screen sharing feature, remote users heard echoes.  
+- (Android) The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+. 
+- (Android) When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant. 
+- (iOS) The video received by the user appeared to change from dark to bright. 
+- (iOS) Occasionally, screen sharing ended unexpectedly. 
+- (iOS) Occasional crashes occurred when you called `PlayEffect` or `StartAudioMixing` to play 8-bit PCM-encoded audio in the WAV format. 
+- (iOS) The local audio error reason reported by the `OnLocalAudioStateChangeHandler` callback after a user denied microphone permission was inaccurate. 
+- (macOS) Occasionally, `deviceName` returned by the `EnumerateDevices` method was empty when calling `EnumerateDevices` to enumerate video capture devices in the system. 
+- (macOS) When a user started screen sharing on devices with integrated graphics, the shared screen appeared red and flickered. 
+- (macOS) Occasionally, remote users saw the shared video stutter after the local user started screen sharing. 
+- (macOS) Occasionally, the shared screen appeared flickered. 
+- (Windows) Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing. 
+- (Windows) When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green. 
+- (Windows) Occasionally, the app got stuck after a user joined a channel. 
+
+
 ## v3.7.0.3
 
 v3.7.0.3 was  developed from v3.7.0.1 and released on Jun 22.
