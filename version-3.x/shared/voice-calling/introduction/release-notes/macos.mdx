@@ -154,7 +154,7 @@ v3.6.2 was released on February 22, 2022.
 
 This release changes `.framework` files in the SDK to `.xcframework` files. Compared with the Framework format, the XCFramework format is more flexible and supports the [Swift Package Manager](https://github.com/AgoraIO/AgoraAudio_macOS) for integration.
 
-If you are integrating by using the [SDK download link](https://docs.agora.io/en/Voice/downloads?platform=macOS), when you upgrade to v3.6.2, you must modify the project as follows:
+If you are integrating by using the [SDK download link](https://docs.agora.io/en/sdks?platform=macos), when you upgrade to v3.6.2, you must modify the project as follows:
 
 1. In the **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** menu and project folder, remove all `.framework` files.
 2. In this menu and project folder, add the corresponding `.xcframework` files.
@@ -208,7 +208,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 
 If you want to experience these improvements, ensure that you have integrated the `AgoraFullAudioFormatExtension.xcframework` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
@@ -332,35 +332,35 @@ This release fixed the issue that occasionally Web clients could not hear Native
 
 **Added**
 
-- [`startRtmpStreamWithoutTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithoutTranscoding:)
+- [`startRtmpStreamWithoutTranscoding`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithoutTranscoding:)
 
-- [`startRtmpStreamWithTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithTranscoding:transcoding:)
+- [`startRtmpStreamWithTranscoding`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startRtmpStreamWithTranscoding:transcoding:)
 
-- [`updateRtmpTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateRtmpTranscoding:)
+- [`updateRtmpTranscoding`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/updateRtmpTranscoding:)
 
-- [`stopRtmpStream`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRtmpStream:)
+- [`stopRtmpStream`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/stopRtmpStream:)
 
-- `AgoraRtmpStreamingStateDisconnecting(5)` in [`AgoraRtmpStreamingState`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraRtmpStreamingState.html)
+- `AgoraRtmpStreamingStateDisconnecting(5)` in [`AgoraRtmpStreamingState`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraRtmpStreamingState.html)
 
-- The following enumerators in [`AgoraRtmpStreamingErrorCode`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraRtmpStreamingErrorCode.html):
+- The following enumerators in [`AgoraRtmpStreamingErrorCode`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraRtmpStreamingErrorCode.html):
 
   - `AgoraRtmpStreamPublishErrorNotBroadcaster(11)`
   - `AgoraRtmpStreamPublishErrorTranscodingNoMixStream(13)`
   - `AgoraRtmpStreamPublishErrorNetDown(14)`
   - `AgoraRtmpStreamPublishErrorInvalidAppId(15)`
 
-- The following enumerators in [`AgoraRtmpStreamingEvent`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraRtmpStreamingEvent.html):
+- The following enumerators in [`AgoraRtmpStreamingEvent`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraRtmpStreamingEvent.html):
 
   - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`
   - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`
 
-- `AgoraAudioCodecProfileHEAACv2` in the [`AgoraAudioCodecProfileType`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraAudioCodecProfileType.html) class
+- `AgoraAudioCodecProfileHEAACv2` in the [`AgoraAudioCodecProfileType`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraAudioCodecProfileType.html) class
 
-- [`getDefaultAudioDevice`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getDefaultAudioDevice:)
+- [`getDefaultAudioDevice`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/getDefaultAudioDevice:)
 
-- [`followSystemPlaybackDevice`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/followSystemPlaybackDevice:)
+- [`followSystemPlaybackDevice`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/followSystemPlaybackDevice:)
 
-- [`followSystemRecordingDevice`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/followSystemRecordingDevice:)
+- [`followSystemRecordingDevice`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/followSystemRecordingDevice:)
 
 
 ## v3.5.2
@@ -396,7 +396,7 @@ This release fixed the following issues:
 
 #### API changes
 
-This release adds the [`startEchoTestWithConfig`](https://docs.agora.io/en/Voice/API%20Reference/oc//Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithConfig:) method.
+This release adds the [`startEchoTestWithConfig`](https://api-ref.agora.io/en/voice-sdk/macos/3.x//Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithConfig:) method.
 
 ## v3.5.1
 
@@ -627,24 +627,24 @@ This release fixed the following issues:
 
 **Added**
 
-- `AgoraRtmpStreamingErrorCodeUnpublishOK (100)` in [`AgoraRtmpStreamingErrorCode`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraRtmpStreamingErrorCode.html)
-- `AgoraRtmpStreamingEventUrlAlreadyInUse (2)` in [`AgoraRtmpStreamingEvent`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraRtmpStreamingEvent.html)
-- `AgoraEncryptionModeAES128GCM2 (7)` and `AgoraEncryptionModeAES256GCM2 (8)` in [`AgoraEncryptionMode`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraEncryptionMode.html)
-- [`encryptionKdfSalt`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraEncryptionConfig.html#//api/name/encryptionKdfSalt) in `AgoraEncryptionConfig`
-- [`muteLocalAudioStream`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcChannel.html#//api/name/muteLocalAudioStream:) in `AgoraRtcChannel`
-- `publishLocalAudio` in [`AgoraRtcChannelMediaOptions`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcChannelMediaOptions.html)
-- The following callbacks in [`AgoraAudioDataFrameProtocol`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioDataFrameProtocol.html):
-  - [`getObservedAudioFramePosition`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getObservedAudioFramePosition)
-  - [`getRecordAudioParams`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getRecordAudioParams)
-  - [`getMixedAudioParams`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getMixedAudioParams)
-  - [`getPlaybackAudioParams`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getPlaybackAudioParams)
+- `AgoraRtmpStreamingErrorCodeUnpublishOK (100)` in [`AgoraRtmpStreamingErrorCode`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraRtmpStreamingErrorCode.html)
+- `AgoraRtmpStreamingEventUrlAlreadyInUse (2)` in [`AgoraRtmpStreamingEvent`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraRtmpStreamingEvent.html)
+- `AgoraEncryptionModeAES128GCM2 (7)` and `AgoraEncryptionModeAES256GCM2 (8)` in [`AgoraEncryptionMode`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraEncryptionMode.html)
+- [`encryptionKdfSalt`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraEncryptionConfig.html#//api/name/encryptionKdfSalt) in `AgoraEncryptionConfig`
+- [`muteLocalAudioStream`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcChannel.html#//api/name/muteLocalAudioStream:) in `AgoraRtcChannel`
+- `publishLocalAudio` in [`AgoraRtcChannelMediaOptions`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcChannelMediaOptions.html)
+- The following callbacks in [`AgoraAudioDataFrameProtocol`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioDataFrameProtocol.html):
+  - [`getObservedAudioFramePosition`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getObservedAudioFramePosition)
+  - [`getRecordAudioParams`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getRecordAudioParams)
+  - [`getMixedAudioParams`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getMixedAudioParams)
+  - [`getPlaybackAudioParams`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioDataFrameProtocol.html#//api/name/getPlaybackAudioParams)
 
 **Modified**
 
-- The values of the `state` parameter in the [`stateChanged`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:device:type:stateChanged:) callback
-- [`startAudioMixing`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioMixing:loopback:replace:cycle:startPos:)
-- `setAudioFrameDelegate` to [`setAudioDataFrame`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioDataFrame:)
-- `AgoraAudioFrameDelegate` to [`AgoraAudioDataFrameProtocol`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioDataFrameProtocol.html)
+- The values of the `state` parameter in the [`stateChanged`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:device:type:stateChanged:) callback
+- [`startAudioMixing`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startAudioMixing:loopback:replace:cycle:startPos:)
+- `setAudioFrameDelegate` to [`setAudioDataFrame`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setAudioDataFrame:)
+- `AgoraAudioFrameDelegate` to [`AgoraAudioDataFrameProtocol`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioDataFrameProtocol.html)
 
 **Deprecated**
 
@@ -684,7 +684,7 @@ v3.4.0 was released on April 16, 2021.
 
 **Integration changes**
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/help/integration-issues/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 
@@ -739,18 +739,18 @@ This release fixed that the `reportAudioVolumeIndicationOfSpeakers` callback ret
 
 **Added**
 
-- [`adjustLoopbackRecordingSignalVolume`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/adjustLoopbackRecordingSignalVolume:)
-- [`playEffect`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:)3
-- [`getEffectDuration`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getEffectDuration:)
-- [`setEffectPosition`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setEffectPosition:pos:)
-- [`getEffectCurrentPosition`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getEffectCurrentPosition:)
-- [`startAudioMixing`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioMixing:loopback:replace:cycle:startPos:)2
-- [`startAudioRecordingWithConfig`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioRecordingWithConfig:)3
+- [`adjustLoopbackRecordingSignalVolume`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/adjustLoopbackRecordingSignalVolume:)
+- [`playEffect`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/playEffect:filePath:loopCount:pitch:pan:gain:publish:startPos:)3
+- [`getEffectDuration`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/getEffectDuration:)
+- [`setEffectPosition`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setEffectPosition:pos:)
+- [`getEffectCurrentPosition`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/getEffectCurrentPosition:)
+- [`startAudioMixing`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startAudioMixing:loopback:replace:cycle:startPos:)2
+- [`startAudioRecordingWithConfig`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startAudioRecordingWithConfig:)3
 - [Error Code](../reference/error-codes): `AgoraErrorCodeAlreadyInRecording(160)`
 
 **Modified**
 
-- [`localAudioMixingStateDidChanged`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioMixingStateDidChanged:reason:)
+- [`localAudioMixingStateDidChanged`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioMixingStateDidChanged:reason:)
 
 **Deprecated**
 
@@ -791,9 +791,9 @@ To monitor quality of experience (QoE) of the local user when receiving a remote
 #### API changes
 
 This release adds the following APIs:
-- [`setVoiceConversionPreset`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceConversionPreset:)
-- `AgoraEncryptionModeAES128GCM` and `AgoraEncryptionModeAES256GCM` in [`AgoraEncryptionMode`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraEncryptionMode.html)
-- `mosValue` in [`AgoraRtcRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html)
+- [`setVoiceConversionPreset`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceConversionPreset:)
+- `AgoraEncryptionModeAES128GCM` and `AgoraEncryptionModeAES256GCM` in [`AgoraEncryptionMode`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraEncryptionMode.html)
+- `mosValue` in [`AgoraRtcRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcRemoteAudioStats.html)
 
 ## v3.3.0
 
@@ -849,7 +849,7 @@ You can call `setVoiceBeautifierPreset(AgoraSingingBeautifier)` to beautify the 
 
 **6. Log files**
 
-To ensure the integrity of log content, this release adds the `logConfig` property to `AgoraRtcEngineConfig`. You can use `logConfig` to set the log files output by the Agora SDK when you initialize `AgoraRtcEngineKit`. See [How can I set the log file?](https://docs.agora.io/en/Interactive%20Broadcast/faq/logfile) for details.
+To ensure the integrity of log content, this release adds the `logConfig` property to `AgoraRtcEngineConfig`. You can use `logConfig` to set the log files output by the Agora SDK when you initialize `AgoraRtcEngineKit`. See [How can I set the log file?](https://docs.agora.io/en/help/integration-issues/log) for details.
 
 As of v3.3.0, Agora does not recommend using the `setLogFile`, `setLogFileSize`, or `setLogFilter` methods to set the log files.
 
@@ -877,21 +877,21 @@ To monitor quality of experience (QoE) of the local user when receiving a remote
 
 **Added**
 
-- [`setVoiceBeautifierParameters`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierParameters:param1:param2:)
-- `AgoraSingingBeautifier` in the [`AgoraVoiceBeautifierPreset`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraVoiceBeautifierPreset.html) constant
-- [`enableDeepLearningDenoise`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableDeepLearningDenoise:)
-- [`joinChannelByToken`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:options:)2
-- [`switchChannelByToken`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:options:)2
-- [`createDataStream`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/createDataStream:config:)
-- The `logConfig` property in the [`AgoraRtcEngineConfig`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineConfig.html) class
-- [`setAudioFrameDelegate`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioFrameDelegate:)
-- [`onRecordAudioFrame`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioFrameDelegate.html#//api/name/onRecordAudioFrame:)
-- [`onPlaybackAudioFrame`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioFrameDelegate.html#//api/name/onPlaybackAudioFrame:)
-- [`onMixedAudioFrame`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioFrameDelegate.html#//api/name/onMixedAudioFrame:)
-- [`onPlaybackAudioFrameBeforeMixing`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraAudioFrameDelegate.html#//api/name/onPlaybackAudioFrameBeforeMixing:uid:)
-- The `qoeQuality` and `qualityChangedReason` properties in the [`AgoraRtcRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html) class
-- [`setCloudProxy`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setCloudProxy:)
-- Error code: [`AgoraErrorCodeModuleNotFound(157)`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html)
+- [`setVoiceBeautifierParameters`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierParameters:param1:param2:)
+- `AgoraSingingBeautifier` in the [`AgoraVoiceBeautifierPreset`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraVoiceBeautifierPreset.html) constant
+- [`enableDeepLearningDenoise`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/enableDeepLearningDenoise:)
+- [`joinChannelByToken`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:options:)2
+- [`switchChannelByToken`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:options:)2
+- [`createDataStream`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/createDataStream:config:)
+- The `logConfig` property in the [`AgoraRtcEngineConfig`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineConfig.html) class
+- [`setAudioFrameDelegate`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setAudioFrameDelegate:)
+- [`onRecordAudioFrame`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioFrameDelegate.html#//api/name/onRecordAudioFrame:)
+- [`onPlaybackAudioFrame`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioFrameDelegate.html#//api/name/onPlaybackAudioFrame:)
+- [`onMixedAudioFrame`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioFrameDelegate.html#//api/name/onMixedAudioFrame:)
+- [`onPlaybackAudioFrameBeforeMixing`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraAudioFrameDelegate.html#//api/name/onPlaybackAudioFrameBeforeMixing:uid:)
+- The `qoeQuality` and `qualityChangedReason` properties in the [`AgoraRtcRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcRemoteAudioStats.html) class
+- [`setCloudProxy`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setCloudProxy:)
+- Error code: [`AgoraErrorCodeModuleNotFound(157)`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraErrorCode.html)
 
 **Deprecated**
 
@@ -978,12 +978,12 @@ This release fixed the following issues:
 
 **Added**
 
-- [`setClientRole`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setClientRole:options:)
-- [`setBeautyEffectOptions`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setBeautyEffectOptions:options:)
-- [`setAudioEffectPreset`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectPreset:)
-- [`setVoiceBeautifierPreset`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierPreset:)
-- [`setAudioEffectParameters`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectParameters:param1:param2:)
-- `AgoraAudioScenarioMeeting(8)` in [`AgoraAudioScenario`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraAudioScenario.html)
+- [`setClientRole`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setClientRole:options:)
+- [`setBeautyEffectOptions`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setBeautyEffectOptions:options:)
+- [`setAudioEffectPreset`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectPreset:)
+- [`setVoiceBeautifierPreset`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierPreset:)
+- [`setAudioEffectParameters`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setAudioEffectParameters:param1:param2:)
+- `AgoraAudioScenarioMeeting(8)` in [`AgoraAudioScenario`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraAudioScenario.html)
 
 **Deprecated**
 
@@ -1012,7 +1012,7 @@ This release changes the `AgoraAreaCode` for regional connection. The latest are
 - `AgoraAreaCodeIN`: India.
 - `AgoraAreaCodeGLOB`: (Default) Global.
 
-If you have specified a region for connection when calling [`sharedEngineWithConfig`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithConfig:delegate:), ensure that you use the latest area code when migrating from an earlier SDK version.
+If you have specified a region for connection when calling [`sharedEngineWithConfig`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithConfig:delegate:), ensure that you use the latest area code when migrating from an earlier SDK version.
 
 ## v3.1.0
 
@@ -1087,13 +1087,13 @@ This release fixed the issue that the app failed to record any audio because the
 
 **Added**
 
-- [`didAudioPublishStateChange`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didAudioPublishStateChange:oldState:newState:elapseSinceLastState:)
-- [`didAudioSubscribeStateChange`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didAudioSubscribeStateChange:withUid:oldState:newState:elapseSinceLastState:)
-- [`firstLocalAudioFramePublished`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:firstLocalAudioFramePublished:)
-- [`enableEncryption`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableEncryption:encryptionConfig:)
-- `txPacketLossRate` in [`AgoraRtcLocalAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcLocalAudioStats.html) class
-- `publishDuration` in [`AgoraRtcRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html) class
-- [`rtmpStreamingEventWithUrl`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingEventWithUrl:eventCode:)
+- [`didAudioPublishStateChange`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didAudioPublishStateChange:oldState:newState:elapseSinceLastState:)
+- [`didAudioSubscribeStateChange`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didAudioSubscribeStateChange:withUid:oldState:newState:elapseSinceLastState:)
+- [`firstLocalAudioFramePublished`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:firstLocalAudioFramePublished:)
+- [`enableEncryption`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/enableEncryption:encryptionConfig:)
+- `txPacketLossRate` in [`AgoraRtcLocalAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcLocalAudioStats.html) class
+- `publishDuration` in [`AgoraRtcRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcRemoteAudioStats.html) class
+- [`rtmpStreamingEventWithUrl`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingEventWithUrl:eventCode:)
 - Warning code: `AgoraWarningCodeAdmCategoryNotPlayAndRecord(1029)` and `AgoraWarningCodeApmResidualEcho(1053)`
 - Error code: `AgoraErrorCodeNoServerResources(103)`
 
@@ -1140,7 +1140,7 @@ See [Set the Voice Changer and Reverberation Effects](../advanced-features/voice
 
 **3. Data post-processing in multiple channels (C++)**
 
-This release adds support for post-processing remote audio data in a multi-channel scenario by adding [`isMultipleChannelFrameWanted`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b) in the `IAudioFrameObserver` class.
+This release adds support for post-processing remote audio data in a multi-channel scenario by adding [`isMultipleChannelFrameWanted`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b) in the `IAudioFrameObserver` class.
 
 After successfully registering the audio observer, if you set the return value of `isMultipleChannelFrameWanted` as `true`, you can get the corresponding audio data from `onPlaybackAudioFrameBeforeMixingEx`. In a multi-channel scenario, Agora recommends setting the return value as `true`.
 
@@ -1153,10 +1153,10 @@ After successfully registering the audio observer, if you set the return value o
 
 This release adds the following APIs:
 
--  [`setAudioMixingPitch`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioMixingPitch:)
-- Several elements that have the prefixes `AgoraAudioVoiceBeauty` and `AgoraAudioGeneralBeautyVoice` in the [`AgoraAudioVoiceChanger`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraAudioVoiceChanger.html) enumeration
-- `AgoraAudioReverbPresetVirtualStereo` and several elements that have the prefixes `AgoraAudioReverbPresetFx` in the [`AgoraAudioReverbPreset`](https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraAudioReverbPreset.html) enumeration
-- `totalActiveTime` in the [`AgoraRtcRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html) class
+-  [`setAudioMixingPitch`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setAudioMixingPitch:)
+- Several elements that have the prefixes `AgoraAudioVoiceBeauty` and `AgoraAudioGeneralBeautyVoice` in the [`AgoraAudioVoiceChanger`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraAudioVoiceChanger.html) enumeration
+- `AgoraAudioReverbPresetVirtualStereo` and several elements that have the prefixes `AgoraAudioReverbPresetFx` in the [`AgoraAudioReverbPreset`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Constants/AgoraAudioReverbPreset.html) enumeration
+- `totalActiveTime` in the [`AgoraRtcRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcRemoteAudioStats.html) class
 
 ## v3.0.0.2
 
@@ -1181,7 +1181,7 @@ This release fixed issues relating to no audio, disconnecting from a Bluetooth d
 
 **Added**
 
-[`sharedEngineWithConfig`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithConfig:delegate:)
+[`sharedEngineWithConfig`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithConfig:delegate:)
 
 ## v3.0.0
 
@@ -1247,13 +1247,13 @@ The dynamic library is located in the framework folder as an independent library
 
 **1. Multiple channel management**
 
-To enable a user to join an unlimited number of channels at a time, this release adds the [`AgoraRtcChannel`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcChannel.html) and [`AgoraRtcChannelDelegate`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcChannelDelegate.html) classes. By creating multiple `AgoraRtcChannel` objects, a user can join the corresponding channels at the same time.
+To enable a user to join an unlimited number of channels at a time, this release adds the [`AgoraRtcChannel`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcChannel.html) and [`AgoraRtcChannelDelegate`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcChannelDelegate.html) classes. By creating multiple `AgoraRtcChannel` objects, a user can join the corresponding channels at the same time.
 
 After joining multiple channels, users can receive the audio streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](/3.x/interactive-live-streaming/advanced-features/multiple-channel) for details.
 
 **2. Adjusting the playback volume of the specified remote user**
 
-Adds [`adjustUserPlaybackSignalVolume`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/adjustUserPlaybackSignalVolume:volume:) for adjusting the playback volume of a specified remote user. You can call this method as many times as necessary in a call or interactive live streaming to adjust the playback volume of different remote users, or to repeatedly adjust the playback volume of the same remote user.
+Adds [`adjustUserPlaybackSignalVolume`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/adjustUserPlaybackSignalVolume:volume:) for adjusting the playback volume of a specified remote user. You can call this method as many times as necessary in a call or interactive live streaming to adjust the playback volume of different remote users, or to repeatedly adjust the playback volume of the same remote user.
 
 #### Improvements
 
@@ -1269,7 +1269,7 @@ To meet the need for higher audio quality, this release adjusts the correspondin
 
 **2. Quality statistics**
 
-Adds the following members in the [`AgoraChannelStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraChannelStats.html) class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
+Adds the following members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraChannelStats.html) class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
 - `gatewayRtt`
 - `memoryAppUsageRatio`
@@ -1289,22 +1289,22 @@ This release enables interoperability between the Native SDK and the Web SDK by 
 
 **Behavior change**
 
-- Calling [`enableLocalAudio (NO)`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableLocalAudio:) does not change the in-call volume to media volume.
+- Calling [`enableLocalAudio (NO)`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/enableLocalAudio:) does not change the in-call volume to media volume.
 - When connected to a headset or Bluetooth,  the macOS device changes its audio route to be uniform as the audio route shown in the device manager.
 
 **Added**
 
-- The `channelId` parameter in the [`AgoraRtcAudioVolumeInfo`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcAudioVolumeInfo.html) struct
-- [`createRtcChannel`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/createRtcChannel:)
-- [`AgoraRtcChannel`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcChannel.html) class
-- [`AgoraRtcChannelDelegate`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcChannelDelegate.html) class
-- The `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` members in the [`AgoraChannelStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraChannelStats.html) class
+- The `channelId` parameter in the [`AgoraRtcAudioVolumeInfo`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcAudioVolumeInfo.html) struct
+- [`createRtcChannel`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/createRtcChannel:)
+- [`AgoraRtcChannel`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcChannel.html) class
+- [`AgoraRtcChannelDelegate`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcChannelDelegate.html) class
+- The `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraChannelStats.html) class
 
 **Deprecated**
 
 - `enableWebSdkInteroperability`
-- `firstRemoteAudioFrameDecodedOfUid` and `firstRemoteAudioFrameOfUid`. Use the [`remoteAudioStateChangedOfUid`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:) callback instead.
-- `streamPublishedWithUrl` and `streamUnpublishedWithUrl`. Use the [`rtmpStreamingChangedToState`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:) callback instead.
+- `firstRemoteAudioFrameDecodedOfUid` and `firstRemoteAudioFrameOfUid`. Use the [`remoteAudioStateChangedOfUid`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:) callback instead.
+- `streamPublishedWithUrl` and `streamUnpublishedWithUrl`. Use the [`rtmpStreamingChangedToState`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:) callback instead.
 
 ## v2.9.1
 
@@ -1316,13 +1316,13 @@ v2.9.1 is released on Sep 19, 2019.
 
 **Detecting local voice activity**
 
-This release adds the `report_vad(bool)` parameter to the [`enableAudioVolumeIndication`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableAudioVolumeIndication:smooth:report_vad:) method to enable local voice activity detection. Once it is enabled, you can check the [`AgoraRtcAudioVolumeInfo`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcAudioVolumeInfo.html) struct of the [`reportAudioVolumeIndicationOfSpeakers`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:) callback for the voice activity status of the local user.
+This release adds the `report_vad(bool)` parameter to the [`enableAudioVolumeIndication`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/enableAudioVolumeIndication:smooth:report_vad:) method to enable local voice activity detection. Once it is enabled, you can check the [`AgoraRtcAudioVolumeInfo`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcAudioVolumeInfo.html) struct of the [`reportAudioVolumeIndicationOfSpeakers`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:) callback for the voice activity status of the local user.
 
 #### Improvements
 
 **Supporting more audio sample rates for recording**
 
-To enable more audio sample rate options for recording, this release adds a new [`startAudioRecording`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioRecording:sampleRate:quality:) method with a `sampleRate` parameter. In the new method, you can set the sample rate as 16, 32, 44.1 or 48 kHz. The original method supports only a fixed sample rate of 32 kHz and is deprecated.
+To enable more audio sample rate options for recording, this release adds a new [`startAudioRecording`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startAudioRecording:sampleRate:quality:) method with a `sampleRate` parameter. In the new method, you can set the sample rate as 16, 32, 44.1 or 48 kHz. The original method supports only a fixed sample rate of 32 kHz and is deprecated.
 
 #### API changes
 
@@ -1330,9 +1330,9 @@ To improve the user experience, we made the following changes in v2.9.1:
 
 **Added**
 
-- [`startAudioRecording`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioRecording:sampleRate:quality:)
-- The `report_vad` parameter in the [`enableAudioVolumeIndication`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableAudioVolumeIndication:smooth:report_vad:) method
-- The `vad` member in the [`AgoraRtcAudioVolumeInfo`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcAudioVolumeInfo.html) class
+- [`startAudioRecording`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startAudioRecording:sampleRate:quality:)
+- The `report_vad` parameter in the [`enableAudioVolumeIndication`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/enableAudioVolumeIndication:smooth:report_vad:) method
+- The `vad` member in the [`AgoraRtcAudioVolumeInfo`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcAudioVolumeInfo.html) class
 
 **Deprecated**
 
@@ -1351,10 +1351,10 @@ In this release, we deleted the following methods:
 
 If your app implements Media Push with the methods above, ensure that you upgrade the SDK to the latest version and use the following methods for the same function:
 
-- [`setLiveTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLiveTranscoding:)
-- [`addPublishStreamUrl`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:)
-- [`removePublishStreamUrl`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)
-- [`rtmpStreamingChangedToState`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:)
+- [`setLiveTranscoding`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setLiveTranscoding:)
+- [`addPublishStreamUrl`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:)
+- [`removePublishStreamUrl`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)
+- [`rtmpStreamingChangedToState`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:)
 
 For how to implement the new methods, see [Media Push](cdn_streaming_apple).
 
@@ -1366,39 +1366,39 @@ To improve the audio quality in the `Communication` profile, this release sets t
 
 **1. Faster switching to another channel**
 
-This release adds the [`switchChannelByToken`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:) method to enable the audience in an interactive streaming channel to quickly switch to another channel. With this method, you can achieve a much faster switch than with the [`leaveChannel`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/leaveChannel:) and [`joinChannelByToken`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:joinSuccess:) methods. After the audience successfully switches to another channel by calling the [`switchChannelByToken`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:) method, the SDK triggers the [`didLeaveChannelWithStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didLeaveChannelWithStats:) and [`didJoinChannel`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didJoinChannel:withUid:elapsed:) callbacks to indicate that the audience has left the original channel and joined a new one.
+This release adds the [`switchChannelByToken`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:) method to enable the audience in an interactive streaming channel to quickly switch to another channel. With this method, you can achieve a much faster switch than with the [`leaveChannel`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/leaveChannel:) and [`joinChannelByToken`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:joinSuccess:) methods. After the audience successfully switches to another channel by calling the [`switchChannelByToken`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:) method, the SDK triggers the [`didLeaveChannelWithStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didLeaveChannelWithStats:) and [`didJoinChannel`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didJoinChannel:withUid:elapsed:) callbacks to indicate that the audience has left the original channel and joined a new one.
 
 **2. Channel media stream relay**
 
 This release adds the following methods to relay the media streams of a host from a source channel to a destination channel. This feature applies to scenarios such as online singing contests, where hosts of different interactive streaming channels interact with each other.
 
-- [`startChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
-- [`updateChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
-- [`stopChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
+- [`startChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
+- [`updateChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
+- [`stopChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
 
-During the media stream relay, the SDK reports the states and events of the relay with the  [`channelMediaRelayStateDidChange`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:channelMediaRelayStateDidChange:error:) and [`didReceiveChannelMediaRelayEvent`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didReceiveChannelMediaRelayEvent:) callbacks.
+During the media stream relay, the SDK reports the states and events of the relay with the  [`channelMediaRelayStateDidChange`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:channelMediaRelayStateDidChange:error:) and [`didReceiveChannelMediaRelayEvent`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didReceiveChannelMediaRelayEvent:) callbacks.
 
 For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host Across Channels](media_relay_apple).
 
 **3. Reporting the local and remote audio state**
 
-This release adds the [`localAudioStateChange`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:) and [`remoteAudioStateChangedOfUid`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:) callbacks to report the local and remote audio states. With these callbacks, the SDK reports the following states for the local and remote audio:
+This release adds the [`localAudioStateChange`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:) and [`remoteAudioStateChangedOfUid`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:) callbacks to report the local and remote audio states. With these callbacks, the SDK reports the following states for the local and remote audio:
 
 - The local audio: Stopped(0), Recording(1), Encoding(2), or Failed(3). When the state is Failed(3), see the `error` parameter for troubleshooting.
 - The remote audio: Stopped(0), Starting(1), Decoding(2), Frozen(3), or Failed(4). See the `reason` parameter for why the remote audio state changes.
 
 **4. Reporting the local audio statistics**
 
-This release adds the [`localAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:) callback to report the statistics of the local audio during a call, including the number of channels, the sending sample rate, and the average sending bitrate of the local audio.
+This release adds the [`localAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:) callback to report the statistics of the local audio during a call, including the number of channels, the sending sample rate, and the average sending bitrate of the local audio.
 
 **5. Pulling the remote audio data**
 
 To improve the experience in audio playback, this release adds the following methods to pull the remote audio data. After getting the audio data, you can process it and play it with the audio effects that you want.
 
-- [`enableExternalAudioSink`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
-- [`disableExternalAudioSink`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
-- [`pullPlaybackAudioFrameRawData`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
-- [`pullPlaybackAudioFrameSampleBufferByLengthInByte`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameSampleBufferByLengthInByte:)
+- [`enableExternalAudioSink`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
+- [`disableExternalAudioSink`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
+- [`pullPlaybackAudioFrameRawData`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
+- [`pullPlaybackAudioFrameSampleBufferByLengthInByte`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameSampleBufferByLengthInByte:)
 
 The difference between the `onPlaybackAudioFrame` callback and the `pullPlaybackAudioFrameRawData` / `pullPlaybackAudioFrameSampleBufferByLengthInByte` method is as follows:
 
@@ -1409,7 +1409,7 @@ The difference between the `onPlaybackAudioFrame` callback and the `pullPlayback
 
 **1. Reporting more statistics of the in-call quality**
 
-This release adds the following statistics in the [`AgoraChannelStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraChannelStats.html) class:
+This release adds the following statistics in the [`AgoraChannelStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraChannelStats.html) class:
 
 - `AgoraChannelStats`: The total number of the sent audio bytes and received audio bytes during a session.
 
@@ -1434,25 +1434,25 @@ This release adds the following statistics in the [`AgoraChannelStats`](https://
 To improve the user experience, we made the following changes in v2.9.0:
 
 **Added**
-- [`enableExternalAudioSink`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
-- [`disableExternalAudioSink`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
-- [`pullPlaybackAudioFrameRawData`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
-- [`pullPlaybackAudioFrameSampleBufferByLengthInByte`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameSampleBufferByLengthInByte:)
-- [`localAudioStateChange`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
-- [`remoteAudioStateChangedOfUid`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
-- [`localAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
-- [`switchChannelByToken`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:)
-- [`startChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
-- [`updateChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
-- [`stopChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
-- [`channelMediaRelayStateDidChange`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:channelMediaRelayStateDidChange:error:)
-- [`didReceiveChannelMediaRelayEvent`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didReceiveChannelMediaRelayEvent:)
-- [`AgoraChannelStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraChannelStats.html): `txAudioBytes` and `rxAudioBytes`
+- [`enableExternalAudioSink`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
+- [`disableExternalAudioSink`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
+- [`pullPlaybackAudioFrameRawData`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
+- [`pullPlaybackAudioFrameSampleBufferByLengthInByte`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameSampleBufferByLengthInByte:)
+- [`localAudioStateChange`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
+- [`remoteAudioStateChangedOfUid`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
+- [`localAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
+- [`switchChannelByToken`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:)
+- [`startChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
+- [`updateChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
+- [`stopChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
+- [`channelMediaRelayStateDidChange`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:channelMediaRelayStateDidChange:error:)
+- [`didReceiveChannelMediaRelayEvent`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didReceiveChannelMediaRelayEvent:)
+- [`AgoraChannelStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraChannelStats.html): `txAudioBytes` and `rxAudioBytes`
 
 **Deprecated**
 
-- [`didMicrophoneEnabled`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didMicrophoneEnabled:). Use AgoraAudioLocalStateStopped(0) or AgoraAudioLocalStateRecording(1) in the [`localAudioStateChange`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:) callback instead.
-- [`audioTransportStatsOfUid`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate:). Use the [`remoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:) callback instead.
+- [`didMicrophoneEnabled`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didMicrophoneEnabled:). Use AgoraAudioLocalStateStopped(0) or AgoraAudioLocalStateRecording(1) in the [`localAudioStateChange`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:) callback instead.
+- [`audioTransportStatsOfUid`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate:). Use the [`remoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:) callback instead.
 
 **Deleted**
 
@@ -1468,8 +1468,8 @@ v2.8.0 is released on Jul. 8, 2019.
 
 Many apps use string user IDs. This release adds the following methods to enable apps to join an Agora channel directly with string user IDs as user accounts:
 
-- [registerLocalUserAccount](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/registerLocalUserAccount:appId:)
-- [joinChannelByUserAccount](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByUserAccount:token:channelId:joinSuccess:)
+- [registerLocalUserAccount](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/registerLocalUserAccount:appId:)
+- [joinChannelByUserAccount](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByUserAccount:token:channelId:joinSuccess:)
 
 For other methods, Agora uses the integer uid parameter. The Agora Engine maintains a mapping table that contains the user ID and string user account, and you can get the corresponding user account or ID by calling the getUserInfoByUid or getUserInfoByUserAccount method.
 
@@ -1486,13 +1486,13 @@ To ensure smooth communication, use the same parameter type to identify all user
 
 **2. Adding remote statistics**
 
-To monitor the audio transmission quality during a call or interactive live streaming, this release adds the `totalFrozenTime` and `frozenRate` members in the [AgoraRtcRemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html) class, to report the audio freeze time and freeze rate of the remote user.
+To monitor the audio transmission quality during a call or interactive live streaming, this release adds the `totalFrozenTime` and `frozenRate` members in the [AgoraRtcRemoteAudioStats](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcRemoteAudioStats.html) class, to report the audio freeze time and freeze rate of the remote user.
 
-This release also adds the `numChannels`, `receivedSampleRate`, and `receivedBitrate` members in the [AgoraRtcRemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html) class.
+This release also adds the `numChannels`, `receivedSampleRate`, and `receivedBitrate` members in the [AgoraRtcRemoteAudioStats](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcRemoteAudioStats.html) class.
 
 #### Improvements
 
-This release adds a `AgoraConnectionChangedKeepAliveTimeout(14)` member to the `AgoraConnectionChangedReason` parameter of the [connectionChangedToState](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:connectionChangedToState:reason:) callback. This member indicates a connection state change caused by the timeout of the connection keep-alive between the SDK and Agora's edge server.
+This release adds a `AgoraConnectionChangedKeepAliveTimeout(14)` member to the `AgoraConnectionChangedReason` parameter of the [connectionChangedToState](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:connectionChangedToState:reason:) callback. This member indicates a connection state change caused by the timeout of the connection keep-alive between the SDK and Agora's edge server.
 
 
 #### Issues fixed
@@ -1505,17 +1505,17 @@ To improve your experience, we made the following changes to the APIs:
 
 **Added**
 
-- [registerLocalUserAccount](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/registerLocalUserAccount:appId:)
-- [joinChannelByUserAccount](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByUserAccount:token:channelId:joinSuccess:)
-- [getUserInfoByUid](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUid:withError:)
-- [getUserInfoByUserAccount](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUserAccount:withError:)
-- [didRegisteredLocalUser](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didRegisteredLocalUser:withUid:)
-- [didUpdatedUserInfo](https://docs.agora.io/en/Voice/API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didUpdatedUserInfo:withUid:)
-- The `numChannels`, `receivedSampleRate`, `receivedBitrate`, `totalFrozenTime`, and `frozenRate` members in the [AgoraRtcRemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html) class
+- [registerLocalUserAccount](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/registerLocalUserAccount:appId:)
+- [joinChannelByUserAccount](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByUserAccount:token:channelId:joinSuccess:)
+- [getUserInfoByUid](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUid:withError:)
+- [getUserInfoByUserAccount](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUserAccount:withError:)
+- [didRegisteredLocalUser](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didRegisteredLocalUser:withUid:)
+- [didUpdatedUserInfo](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didUpdatedUserInfo:withUid:)
+- The `numChannels`, `receivedSampleRate`, `receivedBitrate`, `totalFrozenTime`, and `frozenRate` members in the [AgoraRtcRemoteAudioStats](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcRemoteAudioStats.html) class
 
 **Deprecated**
 
-- The `lowLatency` member in the [AgoraLiveTranscoding](https://docs.agora.io/en/Voice/API%20Reference/oc/Classes/AgoraLiveTranscoding.html) class
+- The `lowLatency` member in the [AgoraLiveTranscoding](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraLiveTranscoding.html) class
 
 
 ## v2.4.1

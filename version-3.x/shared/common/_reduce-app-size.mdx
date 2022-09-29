@@ -33,7 +33,7 @@ As of v3.3.0, the SDK provides extension libraries, which are dynamic libraries 
 
 ### Remove extension libraries during manual integration
 
-When you integrate the SDK by using the [SDK download link on the official website](https://docs.agora.io/en/Interactive%20Broadcast/downloads), you can directly remove the unnecessary extension library files.
+When you integrate the SDK by using the [SDK download link on the official website](https://docs.agora.io/en/sdks?platform=android), you can directly remove the unnecessary extension library files.
 
 ### Remove extension libraries when using CocoaPods
 
@@ -123,7 +123,7 @@ Normally, you need to package required `.so` files when compiling the app, and t
 
 As of v3.6.2, the SDK provides the `setAgoraLibPath` method, which enables the app to dynamically load required `.so` files from its private directory when the app runs. This can reduce the app package size. Refer to the following steps to implement this function:
 
-1. Go to [SDK Downloads](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=Android), download the latest version of the Agora Voice or Video SDK, and extract the files from the downloaded SDK package.
+1. Go to [SDK Downloads](https://docs.agora.io/en/sdks?platform=android), download the latest version of the Agora Voice or Video SDK, and extract the files from the downloaded SDK package.
 2. Integrate `agora-rtc-sdk.jar` into your project.
 3. Upload the `.so` files for all architectures to your server, and ensure your app can download the `.so` files for its target architecture over the network.
 4. The app checks if the `.so` files for its target architecture exist when running. If not, the app downloads the appropriate `.so` files over the network and saves them to the app's private directory.

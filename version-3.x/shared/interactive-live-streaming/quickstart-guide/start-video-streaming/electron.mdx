@@ -186,13 +186,13 @@ app.on("window-all-closed", function () {
 
 To implement the minimum client logic of Interactive Live Streaming Premium, you need to do the following things:
 
-1. Call [`initialize`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#initialize) to create an `AgoraRtcEngine` instance.
-2. Call [`setChannelProfile`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setchannelprofile) to set the channel profile as live streaming.
-3. Call [`setClientRole`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setclientrole) to set the user role as host or audience. The host publishes streams to the channel, and the audience subscribes to the streams. 
-4. Call [`enableVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#enablevideo) to enable the video module.
-5. Call [`joinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#joinchannel) to join a channel.
-6. Call [`setupLocalVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setuplocalvideo) to set up the local video frame.
-7. When another user joins the channel, call [`setupRemoteVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/electron/classes/agorartcengine.html#setupremotevideo) to set up the remote video frame.
+1. Call [`initialize`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#initialize) to create an `AgoraRtcEngine` instance.
+2. Call [`setChannelProfile`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setchannelprofile) to set the channel profile as live streaming.
+3. Call [`setClientRole`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setclientrole) to set the user role as host or audience. The host publishes streams to the channel, and the audience subscribes to the streams. 
+4. Call [`enableVideo`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#enablevideo) to enable the video module.
+5. Call [`joinChannel`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#joinchannel) to join a channel.
+6. Call [`setupLocalVideo`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setuplocalvideo) to set up the local video frame.
+7. When another user joins the channel, call [`setupRemoteVideo`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setupremotevideo) to set up the remote video frame.
 8. Leave the channel and release all the resources used by `AgoraRtcEngine`.
 
 The API call sequence is shown in the following diagram:

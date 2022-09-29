@@ -149,7 +149,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.so` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size#extension-libraries).
 
@@ -245,24 +245,24 @@ This release fixed the following issues:
 
 **Added**
 
-- [`startRtmpStreamWithoutTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5fec43179baa58dca1952a5f9b4f237a)
+- [`startRtmpStreamWithoutTranscoding`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5fec43179baa58dca1952a5f9b4f237a)
 
-- [`startRtmpStreamWithTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9391d6e809be8e54f01e73527fb88160)
+- [`startRtmpStreamWithTranscoding`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9391d6e809be8e54f01e73527fb88160)
 
-- [`updateRtmpTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a917ae58f6c4aaddb45370b6e1dbfa951)
+- [`updateRtmpTranscoding`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a917ae58f6c4aaddb45370b6e1dbfa951)
 
-- [`stopRtmpStream`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab2afb755c25d279a8a6980f4676e59d3)
+- [`stopRtmpStream`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab2afb755c25d279a8a6980f4676e59d3)
 
-- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in the `state` parameter of [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
+- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in the `state` parameter of [`onRtmpStreamingStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
 
-- The followin code  in the `errCode` parameter of  [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94):
+- The followin code  in the `errCode` parameter of  [`onRtmpStreamingStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94):
 
   - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`
   - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`
   - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`
   - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`
 
-- The following code in the `error`parameter of [`onRtmpStreamingEvent`](https://docs.agora.io/en/Voice/API%20Reference/java/v3.6.0/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
+- The following code in the `error`parameter of [`onRtmpStreamingEvent`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
 
   - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`
   - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`
@@ -299,7 +299,7 @@ This  release fixed the issue that remote users heard slightly unsynchronized vo
 
 #### API changes
 
-This release adds [`startEchoTest`](https://docs.agora.io/en/Voice/API%20Reference/java/v3.5.2/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae4b2638c90a721749abdd9513260e51c) [3/3].
+This release adds [`startEchoTest`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae4b2638c90a721749abdd9513260e51c) [3/3].
 
 ## v3.5.1
 
@@ -375,22 +375,22 @@ This release has fixed the following issues:
 
 **Added**
 
-- [`pushExternalAudioFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acc77cfbe4ddfcf36d722a89af6729ce5) [2/2]
-- [`setExternalAudioSourceVolume`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a237825abbde72f6818d8450cfe4be06b)
-- [`setAudioMixingPlaybackSpeed`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa89c09746ed13adb978e7ed552319c51)
-- [`getAudioTrackCount`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac45aa45b0965639df502c462b54cf1b7)
-- [`selectAudioTrack`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a011d98dd3828690165f4f5915f494ddd)
-- [`setAudioMixingDualMonoMode`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81b6a0f46612a6c4337d078b3af1681a)
-- [`pauseAllChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acbf0c434b6867c6b3010aee1f2375269)
-- [`resumeAllChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab33a8fc2a42d95916e483705c9b43293)
+- [`pushExternalAudioFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acc77cfbe4ddfcf36d722a89af6729ce5) [2/2]
+- [`setExternalAudioSourceVolume`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a237825abbde72f6818d8450cfe4be06b)
+- [`setAudioMixingPlaybackSpeed`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa89c09746ed13adb978e7ed552319c51)
+- [`getAudioTrackCount`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac45aa45b0965639df502c462b54cf1b7)
+- [`selectAudioTrack`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a011d98dd3828690165f4f5915f494ddd)
+- [`setAudioMixingDualMonoMode`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81b6a0f46612a6c4337d078b3af1681a)
+- [`pauseAllChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acbf0c434b6867c6b3010aee1f2375269)
+- [`resumeAllChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab33a8fc2a42d95916e483705c9b43293)
 - The following `RELAY_EVENT` enumerators:
-  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a7bdf2c335ecb4699ade19ffd9f128389)
-  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a5a1d733bf274f138b511e76081526b65)
-  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a45b2a457a6dd33a5b3be3cb17dda2ec1)
-  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a4125ae6a9bd19116f6239ef0766cb852)
-- [`getAudioFileInfo`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab280ab29440d333c8c00be9c45a3dd48)
-- [`onRequestAudioFileInfo`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3e1191735cd197815f4001b89825220a)
-- [`NETWORK_TYPE_MOBILE_5G(6)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a2e380ca154d7bcb587f30e87a77b3cb4)
+  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a7bdf2c335ecb4699ade19ffd9f128389)
+  - [`RELAY_EVENT_PAUSE_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a5a1d733bf274f138b511e76081526b65)
+  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_SUCCESS`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a45b2a457a6dd33a5b3be3cb17dda2ec1)
+  - [`RELAY_EVENT_RESUME_SEND_PACKET_TO_DEST_CHANNEL_FAILED`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a4125ae6a9bd19116f6239ef0766cb852)
+- [`getAudioFileInfo`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab280ab29440d333c8c00be9c45a3dd48)
+- [`onRequestAudioFileInfo`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3e1191735cd197815f4001b89825220a)
+- [`NETWORK_TYPE_MOBILE_5G(6)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a2e380ca154d7bcb587f30e87a77b3cb4)
 
 **Deprecated**
 
@@ -460,7 +460,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK cannot set the audio route as the earpiece.
   - With v3.5.0 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
 
-  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/Video/faq/system_volume">What is the difference between the in-call volume and the media volume?</a> </div>
+  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/help/integration-issues/system_volume">What is the difference between the in-call volume and the media volume?</a> </div>
 
 - If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
 
@@ -487,8 +487,8 @@ This release fixed the following issues:
 
 **Modified**
 
-- [`setEnableSpeakerphone`](https://docs.agora.io/en/Voice/API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a67cf60c4a3f4dade3f49205cd2f044f3)
-- [`setDefaultAudioRouteToSpeakerphone`](https://docs.agora.io/en/Voice/API%20Reference/java/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8f89328fab2054d74f9dfa7819458866)
+- [`setEnableSpeakerphone`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a67cf60c4a3f4dade3f49205cd2f044f3)
+- [`setDefaultAudioRouteToSpeakerphone`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8f89328fab2054d74f9dfa7819458866)
 
 
 ## v3.4.6
@@ -599,29 +599,29 @@ This release fixed the following issues:
 
 **Added**
 
-- [`RTMP_STREAM_UNPUBLISH_ERROR_OK (100)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#acaddf5d8d65ca6f6ee7f4fd77dec2947) in `RTMP_STREAM_PUBLISH_ERROR`
-- [`RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a25b71972dca11ac4b5cd9055590bcc47) in `RTMP_STREAMING_EVENT`
-- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](https://docs.agora.io/en/Voice/API%20Reference/java/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
-- [`encryptionKdfSalt`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html#afc9c110a821b8fe078aa187a894d7e39) in [`EncryptionConfig`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html)
-- [`muteLocalAudioStream`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html#ae756f3e94c56acc0873799c63a97a22d) in `RtcChannel`
-- [`publishLocalAudio`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1models_1_1_channel_media_options.html#a647b5b6056e0b364c4df6a72ec1f9420) in `ChannelMediaOptions`
-- [`LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED (8)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a26b3c01733c2f7ffced2540c3f52b6ef) in `LOCAL_AUDIO_STREAM_ERROR`
+- [`RTMP_STREAM_UNPUBLISH_ERROR_OK (100)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#acaddf5d8d65ca6f6ee7f4fd77dec2947) in `RTMP_STREAM_PUBLISH_ERROR`
+- [`RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a25b71972dca11ac4b5cd9055590bcc47) in `RTMP_STREAMING_EVENT`
+- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](https://api-ref.agora.io/en/voice-sdk/android/3.x/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
+- [`encryptionKdfSalt`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html#afc9c110a821b8fe078aa187a894d7e39) in [`EncryptionConfig`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config.html)
+- [`muteLocalAudioStream`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_channel.html#ae756f3e94c56acc0873799c63a97a22d) in `RtcChannel`
+- [`publishLocalAudio`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1models_1_1_channel_media_options.html#a647b5b6056e0b364c4df6a72ec1f9420) in `ChannelMediaOptions`
+- [`LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED (8)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a26b3c01733c2f7ffced2540c3f52b6ef) in `LOCAL_AUDIO_STREAM_ERROR`
 - The following callbacks in the `IAudioFrameObserver` class:
-  - [`getObservedAudioFramePosition`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ae12af04e2b2fdeecc3f557e80ebd35e6)
-  - [`getRecordAudioParams`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a4e35bea92dc551c203a4167e3c02c276)
-  - [`getMixedAudioParams`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a21b9096943c5dbbcfae565ad333ddf48)
-  - [`getPlaybackAudioParams`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#afadbf2d488d4cf2dee2cec841b28000a)
+  - [`getObservedAudioFramePosition`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ae12af04e2b2fdeecc3f557e80ebd35e6)
+  - [`getRecordAudioParams`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a4e35bea92dc551c203a4167e3c02c276)
+  - [`getMixedAudioParams`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a21b9096943c5dbbcfae565ad333ddf48)
+  - [`getPlaybackAudioParams`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#afadbf2d488d4cf2dee2cec841b28000a)
 
 **Modified**
 
 - The following callbacks in the `IAudioFrameObserver` class:
 
-  - [`onRecordFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a100c71aac37a2819d964cb07d8089dc2)
-  - [`onPlaybackFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aa81e47cc5d340306b8f71c53344c6b6b)
-  - [`onPlaybackFrameBeforeMixing`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aae91797ffd02f654145b5404193b6663)
-  - [`onMixedFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#acf464c92fe86b71fa043747acd8fdd3d)
-  - [`onPlaybackFrameBeforeMixingEx`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ac6bc2d111ac1ef0763b554e6c1a3d43d)
-  - [`startAudioMixing`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa3af452a14b9633532098b593b23d142)
+  - [`onRecordFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a100c71aac37a2819d964cb07d8089dc2)
+  - [`onPlaybackFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aa81e47cc5d340306b8f71c53344c6b6b)
+  - [`onPlaybackFrameBeforeMixing`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#aae91797ffd02f654145b5404193b6663)
+  - [`onMixedFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#acf464c92fe86b71fa043747acd8fdd3d)
+  - [`onPlaybackFrameBeforeMixingEx`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ac6bc2d111ac1ef0763b554e6c1a3d43d)
+  - [`startAudioMixing`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa3af452a14b9633532098b593b23d142)
 
 **Deprecated**
 
@@ -666,7 +666,7 @@ Because JCenter is about to retire, as of this release, Agora publishes the SDK 
 
 2. Extension libraries
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/help/integration-issues/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 
@@ -736,18 +736,18 @@ This release fixed the following issues:
 
 **Added**
 
-- [`getAudioMixingDuration`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acfadf2830df1c8bd4134411ae81ead3e)[2/2]
-- [`startAudioRecording`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ad5b55d2a71f66b3a9cabcde33cb4676b)[3/3]
-- [`getEffectDuration`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aa2dfe96bb089f8dad15d8787d0b7dae3)
-- [`setEffectPosition`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#acfebd8585cda2017c27904cec7e326ad)
-- [`getEffectCurrentPosition`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a65063b0665992f6cd70cb98c304b431c)
-- [`playEffect`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#ac5ea756022fbed52f8cd94d6fe34c0bc)[3/3]
-- [`startAudioMixing`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac56ceea1a143a4898382bce10b04df09)[2/2]
+- [`getAudioMixingDuration`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#acfadf2830df1c8bd4134411ae81ead3e)[2/2]
+- [`startAudioRecording`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ad5b55d2a71f66b3a9cabcde33cb4676b)[3/3]
+- [`getEffectDuration`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#aa2dfe96bb089f8dad15d8787d0b7dae3)
+- [`setEffectPosition`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#acfebd8585cda2017c27904cec7e326ad)
+- [`getEffectCurrentPosition`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a65063b0665992f6cd70cb98c304b431c)
+- [`playEffect`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#ac5ea756022fbed52f8cd94d6fe34c0bc)[3/3]
+- [`startAudioMixing`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac56ceea1a143a4898382bce10b04df09)[2/2]
 - [Error code](../reference/error-codes): `ERR_ALREADY_IN_RECORDING(160)`
 
 **Modified**
 
-- [`onAudioMixingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6e922763d80881959c09aa18df6cab3b)
+- [`onAudioMixingStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6e922763d80881959c09aa18df6cab3b)
 
 **Deprecated**
 
@@ -801,9 +801,9 @@ To monitor quality of experience (QoE) of the local user when receiving a remote
 #### API changes
 
 This release adds the following APIs:
-- [`setVoiceConversionPreset`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a25d0380b779ab7f869244f0d667328d6)
-- `AES_128_GCM` and `AES_256_GCM` in [`encryptionMode`](https://docs.agora.io/en/Voice/API%20Reference/java/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
-- `mosValue` in [`onRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)
+- [`setVoiceConversionPreset`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a25d0380b779ab7f869244f0d667328d6)
+- `AES_128_GCM` and `AES_256_GCM` in [`encryptionMode`](https://api-ref.agora.io/en/voice-sdk/android/3.x/enumio_1_1agora_1_1rtc_1_1internal_1_1_encryption_config_1_1_encryption_mode.html)
+- `mosValue` in [`onRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)
 
 ## v3.3.0
 
@@ -853,7 +853,7 @@ You can call `setVoiceBeautifierPreset(SINGING_BEAUTIFIER)` to beautify the male
 
 **5. Log files**
 
-To ensure the integrity of log content, this release adds the `mLogConfig` member variable to `RtcEngineConfig`. You can use `mLogConfig` to set the log files output by the Agora SDK when you initialize `RtcEngine`. See [How can I set the log file?](/en/Voice/faq/logfile) for details.
+To ensure the integrity of log content, this release adds the `mLogConfig` member variable to `RtcEngineConfig`. You can use `mLogConfig` to set the log files output by the Agora SDK when you initialize `RtcEngine`. See [How can I set the log file?](https://docs.agora.io/en/help/integration-issues/log) for details.
 
 As of v3.3.0, Agora does not recommend using the `setLogFile`, `setLogFileSize`, or `setLogFilter` methods to set the log files.
 
@@ -887,24 +887,24 @@ To monitor quality of experience (QoE) of the local user when receiving a remote
 
 **Added**
 
-- [`setVoiceBeautifierParameters`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa7124a19c0704d8c549bde165a450be3)
-- The [`SINGING_BEAUTIFIER`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#af28042038aa5568c4668425658154654) enumaration value
-- [`enableDeepLearningDenoise`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a12ef81e6b342a554305ba1ba5b1c5356)
-- [`joinChannel`[2/2]](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a501d43c29b0d2ea6096cca3d71c834fe)
-- [`switchChannel`[2/2]](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4d8858a38b81473c4784401e25db982f)
-- [`createDataStream`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a594fc8b39073487469665d73c2d73c74)
-- The [`mLogConfig` ](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine_config.html#af240d344b3a223622d8d3f3b093acf41) member variable in the `RtcEngineConfig` class
-- [`onPlaybackFrameBeforeMixing`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ab43c709bdbce83f907b00710b48d8d56)
-- [`onMixedFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a81794255075807161fa1a3c13e23db2c)
-- [`isMultipleChannelFrameWanted`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a118bceeebe3f1aa0298fdbe44a3ce069)
-- [`onPlaybackFrameBeforeMixingEx`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a0c400931561b31732e4ef02f20ad6ac7)
-- [`qoeQuality`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#a3c008f73e8bb77f52530f4129378e0fb) and [`qualityChangedReason`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#aa97add0d15edfdd0fc44da9d1aa3dfe0) in the `RemoteAudioStats` class
-- [`setCloudProxy`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a191c08aa5bffe7083fa182729104244c)
-- Error code: [`ERR_MODULE_NOT_FOUND(157)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#ad638ac3c7ccbc3620eaed68ddfd49efe)
+- [`setVoiceBeautifierParameters`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa7124a19c0704d8c549bde165a450be3)
+- The [`SINGING_BEAUTIFIER`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#af28042038aa5568c4668425658154654) enumaration value
+- [`enableDeepLearningDenoise`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a12ef81e6b342a554305ba1ba5b1c5356)
+- [`joinChannel`[2/2]](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a501d43c29b0d2ea6096cca3d71c834fe)
+- [`switchChannel`[2/2]](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4d8858a38b81473c4784401e25db982f)
+- [`createDataStream`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a594fc8b39073487469665d73c2d73c74)
+- The [`mLogConfig` ](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine_config.html#af240d344b3a223622d8d3f3b093acf41) member variable in the `RtcEngineConfig` class
+- [`onPlaybackFrameBeforeMixing`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#ab43c709bdbce83f907b00710b48d8d56)
+- [`onMixedFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a81794255075807161fa1a3c13e23db2c)
+- [`isMultipleChannelFrameWanted`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a118bceeebe3f1aa0298fdbe44a3ce069)
+- [`onPlaybackFrameBeforeMixingEx`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a0c400931561b31732e4ef02f20ad6ac7)
+- [`qoeQuality`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#a3c008f73e8bb77f52530f4129378e0fb) and [`qualityChangedReason`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#aa97add0d15edfdd0fc44da9d1aa3dfe0) in the `RemoteAudioStats` class
+- [`setCloudProxy`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a191c08aa5bffe7083fa182729104244c)
+- Error code: [`ERR_MODULE_NOT_FOUND(157)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#ad638ac3c7ccbc3620eaed68ddfd49efe)
 
 **Modified**
 
-- [`onAudioVolumeIndication`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a4d37f2b4d569fa787bb8c0e3ae8cd424)
+- [`onAudioVolumeIndication`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a4d37f2b4d569fa787bb8c0e3ae8cd424)
 
 **Deprecated**
 
@@ -994,11 +994,11 @@ This release reduces the latency on the audience's client during an interactive 
 
 **Added**
 
-- [`setClientRole`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6571a364cfb42a3e552e6bfdf0eebb7c)
-- [`setAudioEffectPreset`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af12f990d231904787e1cfc3d9097af04)
-- [`setVoiceBeautifierPreset`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5977ae8d823d23314faab78fa1a72a29)
-- [`setAudioEffectParameters`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a62beca2921fbd86a9b0041a051d8564e)
-- [`AUDIO_SCENARIO_MEETING(8)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a085184565a4807f7e2b4d0fc0beaa1d6)
+- [`setClientRole`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6571a364cfb42a3e552e6bfdf0eebb7c)
+- [`setAudioEffectPreset`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af12f990d231904787e1cfc3d9097af04)
+- [`setVoiceBeautifierPreset`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5977ae8d823d23314faab78fa1a72a29)
+- [`setAudioEffectParameters`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a62beca2921fbd86a9b0041a051d8564e)
+- [`AUDIO_SCENARIO_MEETING(8)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a085184565a4807f7e2b4d0fc0beaa1d6)
 
 **Deprecated**
 - `setLocalVoiceChanger`
@@ -1015,7 +1015,7 @@ v3.1.1 was released on August 27, 2020. This release changes the `AreaCode` for 
 - `AREA_CODE_IN`: India.
 - `AREA_CODE_GLOB`: (Default) Global.
 
-If you have specified a region for connection when calling [`create`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a45832a91b1051bc7641ccd8958288dba), ensure that you use the latest area code when migrating from an earlier SDK version.
+If you have specified a region for connection when calling [`create`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a45832a91b1051bc7641ccd8958288dba), ensure that you use the latest area code when migrating from an earlier SDK version.
 
 ## v3.1.0
 v3.1.0 was released on August 11, 2020.
@@ -1099,19 +1099,19 @@ This release fixed the following issues:
 
 **Added**
 
-- [`onAudioPublishStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a19d2c72ed37bc3c1e8fbb9744060cec8)
-- [`onAudioSubscribeStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3fdd1d93b146c58e7bf69f36766b2f3a)
-- [`onFirstLocalAudioFramePublished`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a94c87921fc48dbd80048efc785270808)
-- [`enableEncryption`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8d283886c17dbd2555e1f967c7faff2d)
-- [`txPacketLossRate`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_audio_stats.html#a3f39c69e3a02c05044603b28da879e9c) in `LocalAudioStats`
-- [`publishDuration`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#ad56757c408074784356bbfac47f58af2) in `RemoteAudioStats`
-- [`onRtmpStreamingEvent`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c)
-- Error code: [`ERR_NO_SERVER_RESOURCES(103)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#ab0e9fe12b5357df5f03019d084183799)
+- [`onAudioPublishStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a19d2c72ed37bc3c1e8fbb9744060cec8)
+- [`onAudioSubscribeStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a3fdd1d93b146c58e7bf69f36766b2f3a)
+- [`onFirstLocalAudioFramePublished`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a94c87921fc48dbd80048efc785270808)
+- [`enableEncryption`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8d283886c17dbd2555e1f967c7faff2d)
+- [`txPacketLossRate`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_audio_stats.html#a3f39c69e3a02c05044603b28da879e9c) in `LocalAudioStats`
+- [`publishDuration`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#ad56757c408074784356bbfac47f58af2) in `RemoteAudioStats`
+- [`onRtmpStreamingEvent`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c)
+- Error code: [`ERR_NO_SERVER_RESOURCES(103)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#ab0e9fe12b5357df5f03019d084183799)
 - Warning code:
-  - [`WARN_ADM_RECORD_IS_OCCUPIED(1033)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#adead939e929d2a89b458ae7ece72f797)
-  - [`WARN_ADM_RECORD_ABNORMAL_FREQUENCY(1021)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a1c0d1e891192c8a37a59cb9f32b7ba64)
-  - [`WARN_ADM_PLAYOUT_ABNORMAL_FREQUENCY(1020)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a67dfe3691ed974e46f6f37cb696b01b3)
-  - [`WARN_APM_RESIDUAL_ECHO(1053)`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a449523bb31a7ce15f38006531244d537)
+  - [`WARN_ADM_RECORD_IS_OCCUPIED(1033)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#adead939e929d2a89b458ae7ece72f797)
+  - [`WARN_ADM_RECORD_ABNORMAL_FREQUENCY(1021)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a1c0d1e891192c8a37a59cb9f32b7ba64)
+  - [`WARN_ADM_PLAYOUT_ABNORMAL_FREQUENCY(1020)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a67dfe3691ed974e46f6f37cb696b01b3)
+  - [`WARN_APM_RESIDUAL_ECHO(1053)`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a449523bb31a7ce15f38006531244d537)
 
 **Deprecated**
 
@@ -1142,7 +1142,7 @@ See [Set the Voice Changer and Reverberation Effects](../advanced-features/voice
 
 This release adds support for post-processing remote audio and video data in a multi-channel scenario by adding the following C++ methods:
 
-- The `IAudioFrameObserver` class: [`isMultipleChannelFrameWanted`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](https://docs.agora.io/en/Voice/API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b).
+- The `IAudioFrameObserver` class: [`isMultipleChannelFrameWanted`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b).
 
 After successfully registering the audio observer, if you set the return value of `isMultipleChannelFrameWanted` as `true`, you can get the corresponding audio data from `onPlaybackAudioFrameBeforeMixingEx`. In a multi-channel scenario, Agora recommends setting the return value as `true`.
 
@@ -1161,9 +1161,9 @@ After successfully registering the audio observer, if you set the return value o
 
 This release adds the following APIs:
 
-- [`setAudioMixingPitch`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1ffa38f7445ff0ba71515c931f2f4f6a)
-- The enumeration [`AUDIO_VIRTUAL_STEREO`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a4488f5ef2274a3e2e0dff5721f3bb708) and several elements that have the prefixes [`VOICE_BEAUTY`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a6e16001b5e0f252460d584131fc11750), [`GENERAL_BEAUTY_VOICE`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#ab77b264331a44b104e5d1b333fc39ed8), and [`AUDIO_REVERB_FX`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a238965ba87ce04aaaa50c45f57c8727d)
-- [`totalActiveTime`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#a18b02fb2d2af40bc0730c2c916a5729d) in `RemoteAudioStats`
+- [`setAudioMixingPitch`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1ffa38f7445ff0ba71515c931f2f4f6a)
+- The enumeration [`AUDIO_VIRTUAL_STEREO`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a4488f5ef2274a3e2e0dff5721f3bb708) and several elements that have the prefixes [`VOICE_BEAUTY`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a6e16001b5e0f252460d584131fc11750), [`GENERAL_BEAUTY_VOICE`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#ab77b264331a44b104e5d1b333fc39ed8), and [`AUDIO_REVERB_FX`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_constants.html#a238965ba87ce04aaaa50c45f57c8727d)
+- [`totalActiveTime`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html#a18b02fb2d2af40bc0730c2c916a5729d) in `RemoteAudioStats`
 
 ## v3.0.0.2
 
@@ -1188,7 +1188,7 @@ This release fixed the occasional no-audio issue.
 
 **Added**
 
-[`create`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a45832a91b1051bc7641ccd8958288dba)
+[`create`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a45832a91b1051bc7641ccd8958288dba)
 
 ## v3.0.0
 
@@ -1215,13 +1215,13 @@ To avoid privilege issues, this release changes the default log file path from `
 
 **1. Multiple channel management**
 
-To enable a user to join an unlimited number of channels at a time, this release adds the [`RtcChannel`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html) and [`IRtcChannelEventHandler`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html) classes. By creating multiple `RtcChannel` objects, a user can join the corresponding channels at the same time.
+To enable a user to join an unlimited number of channels at a time, this release adds the [`RtcChannel`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_channel.html) and [`IRtcChannelEventHandler`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html) classes. By creating multiple `RtcChannel` objects, a user can join the corresponding channels at the same time.
 
 After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](/3.x/interactive-live-streaming/advanced-features/multiple-channel) for details.
 
 **2. Adjusting the playback volume of the specified remote user**
 
-Adds [`adjustUserPlaybackSignalVolume`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aac9c5135996428d9a238fe8e66858268) for adjusting the playback volume of a specified remote user. You can call this method as many times as necessary in a call or interactive live streaming to adjust the playback volume of different remote users, or to repeatedly adjust the playback volume of the same remote user.
+Adds [`adjustUserPlaybackSignalVolume`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aac9c5135996428d9a238fe8e66858268) for adjusting the playback volume of a specified remote user. You can call this method as many times as necessary in a call or interactive live streaming to adjust the playback volume of different remote users, or to repeatedly adjust the playback volume of the same remote user.
 
 **3. Agora Mediaplayer Kit**
 
@@ -1240,7 +1240,7 @@ To meet the need for higher audio quality, this release adjusts the correspondin
 
 **2. Quality statistics**
 
-Adds the following members in the [`RtcStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
+Adds the following members in the [`RtcStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
 - `gatewayRtt`
 - `memoryAppUsageRatio`
@@ -1265,17 +1265,17 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 
 **Added**
 
-- `channelId` in [`AudioVolumeInfo`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html)
-- `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio`, and `memoryAppUsageInKbytes` in [`RtcStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html)
-- [`createRtcChannel`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9eb0770851a8ba489564f72f9b280bca)
-- [`RtcChannel`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html)
-- [`IRtcChannelEventHandler`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html)
+- `channelId` in [`AudioVolumeInfo`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html)
+- `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio`, and `memoryAppUsageInKbytes` in [`RtcStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html)
+- [`createRtcChannel`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9eb0770851a8ba489564f72f9b280bca)
+- [`RtcChannel`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_channel.html)
+- [`IRtcChannelEventHandler`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html)
 
 
 **Deprecated**
 
 - `enableWebSdkInteroperability`.
-- `onStreamPublished` and `onStreamUnpublished`, replaced by [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94).
+- `onStreamPublished` and `onStreamUnpublished`, replaced by [`onRtmpStreamingStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94).
 
 ## v2.9.4
 
@@ -1298,15 +1298,15 @@ v2.9.1 is released on Sep 19, 2019.
 #### New features
 
 **1. Detecting local voice activity**
-This release adds the `report_vad`(bool) parameter to the [enableAudioVolumeIndication](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaec0b8db9458b45d14cdcb3003f76fbe) method to enable local voice activity detection. Once it is enabled, you can check the [AudioVolumeInfo](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html) struct of the `onAudioVolumeIndication` callback for the voice activity status of the local user.
+This release adds the `report_vad`(bool) parameter to the [enableAudioVolumeIndication](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaec0b8db9458b45d14cdcb3003f76fbe) method to enable local voice activity detection. Once it is enabled, you can check the [AudioVolumeInfo](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html) struct of the `onAudioVolumeIndication` callback for the voice activity status of the local user.
 
 **2. Removing the event handler**
-This release adds the [removeHandler](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5e807ee4302756e6912a4fd1ed7a0db3) method to remove specified IRtcEngineEventHandler objects when you want to stop listening for specific events.
+This release adds the [removeHandler](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5e807ee4302756e6912a4fd1ed7a0db3) method to remove specified IRtcEngineEventHandler objects when you want to stop listening for specific events.
 
 #### Improvements
 
 **1. Supporting more audio sample rates for recording**
-To enable more audio sample rate options for recording, this release adds a new [startAudioRecording](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac2ad403a7a75617316673f251615ef92) method with a `sampleRate` parameter. In the new method, you can set the sample rate as 16, 32, 44.1 or 48 kHz. The original method supports only a fixed sample rate of 32 kHz and is deprecated.
+To enable more audio sample rate options for recording, this release adds a new [startAudioRecording](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac2ad403a7a75617316673f251615ef92) method with a `sampleRate` parameter. In the new method, you can set the sample rate as 16, 32, 44.1 or 48 kHz. The original method supports only a fixed sample rate of 32 kHz and is deprecated.
 
 **2. Adding error codes**
 
@@ -1322,7 +1322,7 @@ This release adds the following error codes in the ErrorCode class:
 - `ERR_VCM_ENCODER_ENCODE_ERROR(1602)`
 - `ERR_VCM_ENCODER_SET_ERROR(1603)`
 
-For detailed descriptions for each error, see [Error Codes](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_error_code.html).
+For detailed descriptions for each error, see [Error Codes](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_error_code.html).
 
 #### Issues fixed
 
@@ -1345,10 +1345,10 @@ For detailed descriptions for each error, see [Error Codes](https://docs.agora.i
 
 **Added**
 
-- [startAudioRecording](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac2ad403a7a75617316673f251615ef92)
-- [removeHandler](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5e807ee4302756e6912a4fd1ed7a0db3)
-- The `report_vad` parameter in [enableAudioVolumeIndication](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaec0b8db9458b45d14cdcb3003f76fbe)
-- The `vad` member in [AudioVolumeInfo](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html)
+- [startAudioRecording](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ac2ad403a7a75617316673f251615ef92)
+- [removeHandler](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5e807ee4302756e6912a4fd1ed7a0db3)
+- The `report_vad` parameter in [enableAudioVolumeIndication](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaec0b8db9458b45d14cdcb3003f76fbe)
+- The `vad` member in [AudioVolumeInfo](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html)
 
 **Deprecated**
 
@@ -1368,10 +1368,10 @@ In this release, we deleted the following methods:
 
 If your app implements CDN streaming with the methods above, ensure that you upgrade the SDK to the latest version and use the following methods for the same function:
 
-- [`setLiveTranscoding`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a3cb9804ae71819038022d7575834b88c)
-- [`addPublishStreamUrl`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)
-- [`removePublishStreamUrl`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a87b3f2f17bce8f4cc42b3ee6312d30d4)
-- [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
+- [`setLiveTranscoding`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a3cb9804ae71819038022d7575834b88c)
+- [`addPublishStreamUrl`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)
+- [`removePublishStreamUrl`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a87b3f2f17bce8f4cc42b3ee6312d30d4)
+- [`onRtmpStreamingStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
 
 For how to implement the new methods, see [Media Push](cdn_streaming_android).
 
@@ -1383,39 +1383,39 @@ To improve the audio quality in the `COMMUNICATION` profile, this release sets t
 
 **1. Faster switching to another channel**
 
-This release adds the  [`switchChannel`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a72f13225defc1b14dfb29820a0495da2) method to enable the audience in a live-streaming channel to quickly switch to another channel. With this method, you can achieve a much faster switch than with the `leaveChannel` and `joinChannel` methods. After the audience successfully switches to another channel by calling the `switchChannel` method, the SDK triggers the `onLeaveChannel` and `onJoinChannelSuccess` callbacks to indicate that the audience has left the original channel and joined a new one.
+This release adds the  [`switchChannel`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a72f13225defc1b14dfb29820a0495da2) method to enable the audience in a live-streaming channel to quickly switch to another channel. With this method, you can achieve a much faster switch than with the `leaveChannel` and `joinChannel` methods. After the audience successfully switches to another channel by calling the `switchChannel` method, the SDK triggers the `onLeaveChannel` and `onJoinChannelSuccess` callbacks to indicate that the audience has left the original channel and joined a new one.
 
 **2. Channel media stream relay**
 
 This release adds the following methods to relay the media streams of a host from a source channel to a destination channel. This feature applies to scenarios such as online singing contests, where hosts of different live-streaming channels interact with each other.
 
-- [`startChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6f09ba685f8ab01d7dc06173286950f6)
-- [`updateChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#abd40d706379d27cf617376a504f394bd)
-- [`stopChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0f9f19e48c21190dd4e697dec632c328)
+- [`startChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6f09ba685f8ab01d7dc06173286950f6)
+- [`updateChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#abd40d706379d27cf617376a504f394bd)
+- [`stopChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0f9f19e48c21190dd4e697dec632c328)
 
-During the media stream relay, the SDK reports the states and events of the relay with the [`onChannelMediaRelayStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89fd95b3536e8e6afd5f001926162f66) and [`onChannelMediaRelayEvent`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6fe2367e9ea61e48a4cc3b373d198b54) callbacks.
+During the media stream relay, the SDK reports the states and events of the relay with the [`onChannelMediaRelayStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89fd95b3536e8e6afd5f001926162f66) and [`onChannelMediaRelayEvent`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6fe2367e9ea61e48a4cc3b373d198b54) callbacks.
 
 For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](media_relay_android).
 
 **3. Reporting the local and remote audio state**
 
-This release adds the [`onLocalAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a59946a989f87c737899e2284539adf09) and [`onRemoteAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a24fd6b0d12214f6bc6fa7a9b6235aeff) callbacks to report the local and remote audio states. With these callbacks, the SDK reports the following states for the local and remote audio:
+This release adds the [`onLocalAudioStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a59946a989f87c737899e2284539adf09) and [`onRemoteAudioStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a24fd6b0d12214f6bc6fa7a9b6235aeff) callbacks to report the local and remote audio states. With these callbacks, the SDK reports the following states for the local and remote audio:
 
 - The local audio: STOPPED(0), RECORDING(1), ENCODING(2), or FAILED(3). When the state is FAILED(3), see the `error` parameter for troubleshooting.
 - The remote audio: STOPPED(0), STARTING(1), DECODING(2), FROZEN(3), or FAILED(4). See the `reason` parameter for why the remote audio state changes.
 
 **4. Reporting the local audio statistics**
 
-This release adds the [`onLocalAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aeba2aa3fc29404fc6f25bff5c00bfdf9) callback to report the statistics of the local audio during a call, including the number of channels, the sending sample rate, and the average sending bitrate of the local audio.
+This release adds the [`onLocalAudioStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aeba2aa3fc29404fc6f25bff5c00bfdf9) callback to report the statistics of the local audio during a call, including the number of channels, the sending sample rate, and the average sending bitrate of the local audio.
 
 **5. Pulling the remote audio data**
 
 To improve the experience in audio playback, this release adds the following methods to pull the remote audio data. After getting the audio data, you can process it and play it with the audio effects that you want.
 
-- [`setExternalAudioSink`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a270c0607d443790e92cdbd0d45ba1732)
-- [`pullPlaybackAudioFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae15064944870692e9a0a59fdc87654c4)
+- [`setExternalAudioSink`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a270c0607d443790e92cdbd0d45ba1732)
+- [`pullPlaybackAudioFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae15064944870692e9a0a59fdc87654c4)
 
-The difference between the [`onPlaybackFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a3781dd30d34a0634140872a9dd131488) callback and the `pullPlaybackAudioFrame` method is as follows:
+The difference between the [`onPlaybackFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_frame_observer.html#a3781dd30d34a0634140872a9dd131488) callback and the `pullPlaybackAudioFrame` method is as follows:
 
 - `onPlaybackFrame`: The SDK sends the audio data to the app once every 10 ms. Any delay in processing the audio frames may result in an audio delay.
 - `pullPlaybackAudioFrame`: The app pulls the remote audio data. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in external audio playback.
@@ -1426,7 +1426,7 @@ The difference between the [`onPlaybackFrame`](https://docs.agora.io/en/Voice/AP
 
 This release adds the following statistics in the `RtcStats` class:
 
-- [`RtcStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html): The total number of the sent audio bytes and received audio bytes during a session.
+- [`RtcStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html): The total number of the sent audio bytes and received audio bytes during a session.
 
 
 **2. Other Improvements**
@@ -1457,23 +1457,23 @@ To improve the user experience, we made the following changes in v2.9.0:
 
 **Added**
 
-- [`setExternalAudioSink`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a270c0607d443790e92cdbd0d45ba1732)
-- [`pullPlaybackAudioFrame`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae15064944870692e9a0a59fdc87654c4)
-- [`onLocalAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a59946a989f87c737899e2284539adf09)
-- [`onRemoteAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a24fd6b0d12214f6bc6fa7a9b6235aeff)
-- [`onLocalAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aeba2aa3fc29404fc6f25bff5c00bfdf9)
-- [`switchChannel`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a72f13225defc1b14dfb29820a0495da2)
-- [`startChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6f09ba685f8ab01d7dc06173286950f6)
-- [`updateChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#abd40d706379d27cf617376a504f394bd)
-- [`stopChannelMediaRelay`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0f9f19e48c21190dd4e697dec632c328)
-- [`onChannelMediaRelayStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89fd95b3536e8e6afd5f001926162f66)
-- [`onChannelMediaRelayEvent`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6fe2367e9ea61e48a4cc3b373d198b54)
-- [`RtcStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html): `txAudioBytes` and `rxAudioBytes`
+- [`setExternalAudioSink`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a270c0607d443790e92cdbd0d45ba1732)
+- [`pullPlaybackAudioFrame`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae15064944870692e9a0a59fdc87654c4)
+- [`onLocalAudioStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a59946a989f87c737899e2284539adf09)
+- [`onRemoteAudioStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a24fd6b0d12214f6bc6fa7a9b6235aeff)
+- [`onLocalAudioStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aeba2aa3fc29404fc6f25bff5c00bfdf9)
+- [`switchChannel`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a72f13225defc1b14dfb29820a0495da2)
+- [`startChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6f09ba685f8ab01d7dc06173286950f6)
+- [`updateChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#abd40d706379d27cf617376a504f394bd)
+- [`stopChannelMediaRelay`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0f9f19e48c21190dd4e697dec632c328)
+- [`onChannelMediaRelayStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89fd95b3536e8e6afd5f001926162f66)
+- [`onChannelMediaRelayEvent`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6fe2367e9ea61e48a4cc3b373d198b54)
+- [`RtcStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html): `txAudioBytes` and `rxAudioBytes`
 
 **Deprecated**
 
-- `onMicrophoneEnabled`. Use LOCAL_AUDIO_STREAM_STATE_CHANGED(0) or LOCAL_AUDIO_STREAM_STATE_RECORDING(1) in the [`onLocalAudioStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aeba2aa3fc29404fc6f25bff5c00bfdf9) callback instead.
-- `onRemoteAudioTransportStats`. Use the [`onRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54) callback instead.
+- `onMicrophoneEnabled`. Use LOCAL_AUDIO_STREAM_STATE_CHANGED(0) or LOCAL_AUDIO_STREAM_STATE_RECORDING(1) in the [`onLocalAudioStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aeba2aa3fc29404fc6f25bff5c00bfdf9) callback instead.
+- `onRemoteAudioTransportStats`. Use the [`onRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54) callback instead.
 
 **Deleted**
 
@@ -1505,8 +1505,8 @@ v2.8.0 is released on Jul. 8, 2019.
 
 Many apps use string user IDs. This release adds the following methods to enable apps to join an Agora channel directly with string user IDs as user accounts:
 
-- [registerLocalUserAccount](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa37ea6307e4d1513c0031084c16c9acb)
-- [joinChannelWithUserAccount](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a310dbe072dcaec3892c4817cafd0dd88)
+- [registerLocalUserAccount](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa37ea6307e4d1513c0031084c16c9acb)
+- [joinChannelWithUserAccount](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a310dbe072dcaec3892c4817cafd0dd88)
 
 For other methods, Agora uses the integer uid parameter. The Agora Engine maintains a mapping table that contains the user ID and string user account, and you can get the corresponding user account or ID by calling the getUserInfoByUid or getUserInfoByUserAccount method.
 
@@ -1523,13 +1523,13 @@ To ensure smooth communication, use the same parameter type to identify all user
 
 **2. Adding remote audio statistics**
 
-To monitor the audio transmission quality during a call or interactive live streaming, this release adds the `totalFrozenTime` and `frozenRate` members in the [RemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html) class, to report the audio freeze time and freeze rate of the remote user.
+To monitor the audio transmission quality during a call or interactive live streaming, this release adds the `totalFrozenTime` and `frozenRate` members in the [RemoteAudioStats](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html) class, to report the audio freeze time and freeze rate of the remote user.
 
-This release also adds the `numChannels`, `receivedSampleRate`, and `receivedBitrate` members in the [RemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html) class.
+This release also adds the `numChannels`, `receivedSampleRate`, and `receivedBitrate` members in the [RemoteAudioStats](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html) class.
 
 #### Improvements
 
-This release adds a `CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT(14)` member to the `reason` parameter of the [onConnectionStateChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback. This member indicates a connection state change caused by the timeout of the connection keep-alive between the SDK and Agora's edge server.
+This release adds a `CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT(14)` member to the `reason` parameter of the [onConnectionStateChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback. This member indicates a connection state change caused by the timeout of the connection keep-alive between the SDK and Agora's edge server.
 
 #### Issues Fixed
 
@@ -1547,17 +1547,17 @@ To improve your experience, we made the following changes to the APIs:
 
 **Added**
 
-- [registerLocalUserAccount](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa37ea6307e4d1513c0031084c16c9acb)
-- [joinChannelWithUserAccount](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a310dbe072dcaec3892c4817cafd0dd88)
-- [getUserInfoByUid](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9a787b8d0784e196b08f6d0ae26ea19c)
-- [getUserInfoByUserAccount](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#afd4119e2d9cc360a2b99eef56f74ae22)
-- [onLocalUserRegistered](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aca1987909703d84c912e2f1e7f64fb0b)
-- [onUserInfoUpdated](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa3e9ead25f7999272d5700c427b2cb3d)
-- The `numChannels`, `receivedSampleRate`, `receivedBitrate`, `totalFrozenTime`, and `frozenRate` members in the [RemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html) class
+- [registerLocalUserAccount](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa37ea6307e4d1513c0031084c16c9acb)
+- [joinChannelWithUserAccount](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a310dbe072dcaec3892c4817cafd0dd88)
+- [getUserInfoByUid](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9a787b8d0784e196b08f6d0ae26ea19c)
+- [getUserInfoByUserAccount](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#afd4119e2d9cc360a2b99eef56f74ae22)
+- [onLocalUserRegistered](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aca1987909703d84c912e2f1e7f64fb0b)
+- [onUserInfoUpdated](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa3e9ead25f7999272d5700c427b2cb3d)
+- The `numChannels`, `receivedSampleRate`, `receivedBitrate`, `totalFrozenTime`, and `frozenRate` members in the [RemoteAudioStats](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_audio_stats.html) class
 
 **Deprecated**
 
-- The lowLatency member in the [LiveTranscoding](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html) class
+- The lowLatency member in the [LiveTranscoding](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html) class
 
 ## v2.4.1
 v2.4.1 is released on Jun 12, 2019.
@@ -1572,36 +1572,36 @@ To improve the usability of the CDN streaming service, v2.4.1 defines the follow
 
 | Class **/** Interface  | Parameter Limit                                              |
 | ---------------------- | ------------------------------------------------------------ |
-| [LiveTranscoding](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html)        | <li>[videoFramerRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6): Frame rate (fps) of the CDN live output video stream. The value range is [0, 30], and the default value is 15. Agora adjusts all values over 30 to 30.</li><li>[videoBitrate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6): Bitrate (Kbps) of the CDN live output video stream. The default value is 400. Set this parameter according to the [Video Bitrate Table](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a4b090cd0e9f6d98bcf89cb1c4c2066e8). If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</li><li>[videoCodecProfile](https://docs.agora.io/en/Voice/API%20Reference/java/enumio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding_1_1_video_codec_profile_type.html): The video codec profile. Set it as **BASELINE**, **MAIN**, or **HIGH** (default). If you set this parameter to other values, Agora adjusts it to the default value of **HIGH**.</li><li>[width](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6) and [height](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a80960c1a972e9b3851fd16d921f8a75c): Pixel of the video. The minimum value of width x height is 16 x 16.</li> |
-| [AgoraImage](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html)             | `url`: The maximum length of this parameter is **1024** bytes. |
-| [addPublishStreamUrl](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)    | `url`: The maximum length of this parameter is **1024** bytes. |
-| [removePublishStreamUrl](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f) | `url`: The maximum length of this parameter is **1024** bytes. |
+| [LiveTranscoding](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html)        | <li>[videoFramerRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6): Frame rate (fps) of the CDN live output video stream. The value range is [0, 30], and the default value is 15. Agora adjusts all values over 30 to 30.</li><li>[videoBitrate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6): Bitrate (Kbps) of the CDN live output video stream. The default value is 400. Set this parameter according to the [Video Bitrate Table](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a4b090cd0e9f6d98bcf89cb1c4c2066e8). If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</li><li>[videoCodecProfile](https://api-ref.agora.io/en/voice-sdk/android/3.x/enumio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding_1_1_video_codec_profile_type.html): The video codec profile. Set it as **BASELINE**, **MAIN**, or **HIGH** (default). If you set this parameter to other values, Agora adjusts it to the default value of **HIGH**.</li><li>[width](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6) and [height](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a80960c1a972e9b3851fd16d921f8a75c): Pixel of the video. The minimum value of width x height is 16 x 16.</li> |
+| [AgoraImage](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html)             | `url`: The maximum length of this parameter is **1024** bytes. |
+| [addPublishStreamUrl](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)    | `url`: The maximum length of this parameter is **1024** bytes. |
+| [removePublishStreamUrl](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f) | `url`: The maximum length of this parameter is **1024** bytes. |
 
-This release also adds the [audioCodecProfile](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9) parameter in the `LiveTranscoding` class to set the audio codec profile type. The default type is LC-AAC, which means the low-complexity audio codec profile.
+This release also adds the [audioCodecProfile](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9) parameter in the `LiveTranscoding` class to set the audio codec profile type. The default type is LC-AAC, which means the low-complexity audio codec profile.
 
-v2.4.1 also adds five error codes to the `error` parameter in the [onStreamPublished](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) method for quick troubleshooting.
+v2.4.1 also adds five error codes to the `error` parameter in the [onStreamPublished](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) method for quick troubleshooting.
 
 #### New features
 
 **1. State of the Media Push**
 
-v2.4.1 adds the [onRtmpStreamingStateChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) callback to indicate the state of the Media Push and help you troubleshoot issues when exceptions occur. In this callback, the SDK returns the IDLE, `CONNECTING`, `RUNNING`, `RECOVERING`, or `FAILURE` state. When the state is `FAILURE`, you can use the error code for troubleshooting. You can still use the `onStreamPublished` and `onStreamUnpublished` callbacks, but we do not recommend using them.
+v2.4.1 adds the [onRtmpStreamingStateChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94) callback to indicate the state of the Media Push and help you troubleshoot issues when exceptions occur. In this callback, the SDK returns the IDLE, `CONNECTING`, `RUNNING`, `RECOVERING`, or `FAILURE` state. When the state is `FAILURE`, you can use the error code for troubleshooting. You can still use the `onStreamPublished` and `onStreamUnpublished` callbacks, but we do not recommend using them.
 
 **2. More reasons for a network connection state change**
 
-In the [onConnectionStateChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback, v2.4.1 adds error codes to the `reason` parameter to help you troubleshoot issues when exceptions occur. The SDK returns the `onConnectionStateChanged` callback whenever the connection state changes. This release also deprecates `WARN_LOOK_UP_CHANNEL_REJECTED(105)`, `ERR_TOKEN_EXPIRED(109)`, and `ERR_INVALID_TOKEN(110)`.
+In the [onConnectionStateChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback, v2.4.1 adds error codes to the `reason` parameter to help you troubleshoot issues when exceptions occur. The SDK returns the `onConnectionStateChanged` callback whenever the connection state changes. This release also deprecates `WARN_LOOK_UP_CHANNEL_REJECTED(105)`, `ERR_TOKEN_EXPIRED(109)`, and `ERR_INVALID_TOKEN(110)`.
 
 **3. State of the local network type **
 
-v2.4.1 adds the  [onNetworkTypeChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a75b014a87d0ead6cd4fa519a630f6f90) callback to indicate the local network type. In this callback, the SDK returns the `UNKNOWN`, `DISCONNECTED`, `LAN`, `WIFI`, `2G`, `3G`, or `4G` type. When the network connection is interrupted, this callback indicates whether or not the interruption is caused by a network type change or poor network conditions.
+v2.4.1 adds the  [onNetworkTypeChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a75b014a87d0ead6cd4fa519a630f6f90) callback to indicate the local network type. In this callback, the SDK returns the `UNKNOWN`, `DISCONNECTED`, `LAN`, `WIFI`, `2G`, `3G`, or `4G` type. When the network connection is interrupted, this callback indicates whether or not the interruption is caused by a network type change or poor network conditions.
 
 **4. Getting the audio mixing volume**
 
-v2.4.1 adds the [getAudioMixingPlayoutVolume](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6eef6e4d3d148c25993376f93ebbb8e9) and [getAudioMixingPublishVolume](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a962819abd0e5458b89cefb756bb9e631) methods, which respectively gets the audio mixing volume for local playback and remote playback, to help you troubleshoot audio volume related issues.
+v2.4.1 adds the [getAudioMixingPlayoutVolume](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6eef6e4d3d148c25993376f93ebbb8e9) and [getAudioMixingPublishVolume](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a962819abd0e5458b89cefb756bb9e631) methods, which respectively gets the audio mixing volume for local playback and remote playback, to help you troubleshoot audio volume related issues.
 
 **5. Reporting when the first remote audio frame is received and decoded**
 
-To get the more accurate time of the first audio frame from a specified remote user, v2.4.1 adds the  [onFirstRemoteAudioDecoded](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0fcac6cafae63e4ef453ddd041e80f8a) callback to report to the app that the SDK decodes first remote audio. This callback is triggered in either of the following scenarios:
+To get the more accurate time of the first audio frame from a specified remote user, v2.4.1 adds the  [onFirstRemoteAudioDecoded](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0fcac6cafae63e4ef453ddd041e80f8a) callback to report to the app that the SDK decodes first remote audio. This callback is triggered in either of the following scenarios:
 
 - The remote user joins the channel and sends the audio stream.
 - The remote user stops sending the audio stream and re-sends it after 15 seconds.
@@ -1612,23 +1612,23 @@ The difference between the onFirstRemoteAudioDecoded and `onFirstRemoteAudioFram
 
 **1. Playing multiple online audio effect files simultaneously**
 
-v2.4.1 adds the support for playing multiple online audio effect files simultaneously by allowing you to call the [playEffect](https://docs.agora.io/en/Voice/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a6fd330db3e3e5735f7f8d5c36bc3fea1) method multiple times with the URLs of the online audio effect files.
+v2.4.1 adds the support for playing multiple online audio effect files simultaneously by allowing you to call the [playEffect](https://api-ref.agora.io/en/voice-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1_i_audio_effect_manager.html#a6fd330db3e3e5735f7f8d5c36bc3fea1) method multiple times with the URLs of the online audio effect files.
 
 **2. Reporting more statistics**
 
-- v2.4.1 adds the [txPacketLossRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a6b0c3798427c6bf07b829896e29ace5e) and [rxPacketLossRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a72df02822bfcc37dfcdb543fd2ba46af) parameters in the [RtcStats](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) class. These parameters return the packet loss rate from the local client to the server and vice versa.
+- v2.4.1 adds the [txPacketLossRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a6b0c3798427c6bf07b829896e29ace5e) and [rxPacketLossRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a72df02822bfcc37dfcdb543fd2ba46af) parameters in the [RtcStats](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) class. These parameters return the packet loss rate from the local client to the server and vice versa.
 
 - To provide more accurate statistics of the local and remote video, v2.4.1 makes the following changes to the following classes:
-  - [LocalVideoStats](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html): Adds the  [encoderOutputFrameRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#af6350acef5578bf0501a234fc36d86a3) and [rendererOutputFrameRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#aa754035a384b502a45c6fed6f17038da) parameters.
-  - [RemoteVideoStats](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html): Adds the[decoderOutputFrameRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html#aafc03c6a890c36dc9810537c47ce0cd9) parameter, and renames the `receivedFrameRate` parameter to the [rendererOutputFrameRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html#aa09441cb1b9a0f4318cd59b0ca5b3ffb) parameter.
+  - [LocalVideoStats](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html): Adds the  [encoderOutputFrameRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#af6350acef5578bf0501a234fc36d86a3) and [rendererOutputFrameRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#aa754035a384b502a45c6fed6f17038da) parameters.
+  - [RemoteVideoStats](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html): Adds the[decoderOutputFrameRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html#aafc03c6a890c36dc9810537c47ce0cd9) parameter, and renames the `receivedFrameRate` parameter to the [rendererOutputFrameRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html#aa09441cb1b9a0f4318cd59b0ca5b3ffb) parameter.
 
 **3. Miscellaneous**
 
-- Improved the sound quality of the [GAME_STREAMING](https://docs.agora.io/en/Voice/API%20Reference/java/enumio_1_1agora_1_1rtc_1_1_constants_1_1_audio_scenario.html#aedcb78447298f4794ba8df7a72d71909) audio scenario.
+- Improved the sound quality of the [GAME_STREAMING](https://api-ref.agora.io/en/voice-sdk/android/3.x/enumio_1_1agora_1_1rtc_1_1_constants_1_1_audio_scenario.html#aedcb78447298f4794ba8df7a72d71909) audio scenario.
 - Reduced the audio latency.
 - Reduced the SDK package size by 0.5 M.
 - Improved the accuracy of the network quality after users change the video bitrate.
-- Enabled the audio quality notification callback by default, that is, enabled the [onRemoteAudioStats](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54) callback without calling the `enableAudioVolumeIndication` method.
+- Enabled the audio quality notification callback by default, that is, enabled the [onRemoteAudioStats](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54) callback without calling the `enableAudioVolumeIndication` method.
 - Improved the stability of CDN streaming services.
 
 #### Issues fixed
@@ -1651,24 +1651,24 @@ To improve your experience, we made the following changes to the APIs:
 
 **Unified the C++ interface for all platforms**
 
-v2.4.1 unifies the behavior of the C++ interfaces across different platforms so that you can apply the same code logic on different platforms. v2.4.1 implements the methods of the `RtcEngineParameters` class in the `IRtcEngine` class. Refer to [Agora C++ API Reference for All Platforms home page](https://docs.agora.io/en/Voice/API%20Reference/cpp/index.html) for the applicable platforms and considerations of each interface.
+v2.4.1 unifies the behavior of the C++ interfaces across different platforms so that you can apply the same code logic on different platforms. v2.4.1 implements the methods of the `RtcEngineParameters` class in the `IRtcEngine` class. Refer to [Agora C++ API Reference for All Platforms home page](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/index.html) for the applicable platforms and considerations of each interface.
 
 **Added**
 
-- [getAudioMixingPlayoutVolume](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6eef6e4d3d148c25993376f93ebbb8e9)
-- [getAudioMixingPublishVolume](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a962819abd0e5458b89cefb756bb9e631)
--  [onFirstRemoteAudioDecoded](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0fcac6cafae63e4ef453ddd041e80f8a)
-- [onNetworkTypeChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a75b014a87d0ead6cd4fa519a630f6f90)
-- [onRtmpStreamingStateChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
-- The  [audioCodecProfile](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9) parameter in the `LiveTranscoding` class
-- The [txPacketLossRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a6b0c3798427c6bf07b829896e29ace5e) and [rxPacketLossRate](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a72df02822bfcc37dfcdb543fd2ba46af) parameters in the `RtcStats` class
+- [getAudioMixingPlayoutVolume](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6eef6e4d3d148c25993376f93ebbb8e9)
+- [getAudioMixingPublishVolume](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a962819abd0e5458b89cefb756bb9e631)
+-  [onFirstRemoteAudioDecoded](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0fcac6cafae63e4ef453ddd041e80f8a)
+- [onNetworkTypeChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a75b014a87d0ead6cd4fa519a630f6f90)
+- [onRtmpStreamingStateChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
+- The  [audioCodecProfile](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9) parameter in the `LiveTranscoding` class
+- The [txPacketLossRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a6b0c3798427c6bf07b829896e29ace5e) and [rxPacketLossRate](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a72df02822bfcc37dfcdb543fd2ba46af) parameters in the `RtcStats` class
 
 **Deprecated**
 
 - `enableAudioQualityIndication`
-- The `WARN_LOOKUP_CHANNEL_REJECTED(105)` warning code. Use CONNECTION_CHANGED_REJECTED_BY_SERVER(10) in the [onConnectionStateChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback instead.
-- The `ERR_TOKEN_EXPIRED(109)` error code. Use CONNECTION_CHANGED_TOKEN_EXPIRED(9) in the [onConnectionStateChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback instead.
-- The `ERR_INVALID_TOKEN(110)` error code. Use CONNECTION_CHANGED_INVALID_TOKEN(8) in the [onConnectionStateChanged](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback instead.
+- The `WARN_LOOKUP_CHANNEL_REJECTED(105)` warning code. Use CONNECTION_CHANGED_REJECTED_BY_SERVER(10) in the [onConnectionStateChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback instead.
+- The `ERR_TOKEN_EXPIRED(109)` error code. Use CONNECTION_CHANGED_TOKEN_EXPIRED(9) in the [onConnectionStateChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback instead.
+- The `ERR_INVALID_TOKEN(110)` error code. Use CONNECTION_CHANGED_INVALID_TOKEN(8) in the [onConnectionStateChanged](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) callback instead.
 
 ## v2.4.0 and Earlier
 
@@ -1680,23 +1680,23 @@ v2.4.0 is released on April 1, 2019.
 
 ##### 1. Voice changer and voice reverberation
 
-Adding voice changer and reverberation effects in an audio chat room brings much more fun. v2.4.0 adds the [`setLocalVoiceChanger`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ade6883c7878b7a596d5b2563462597dd) and [`setLocalVoiceReverbPreset`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a10dd25bc8e129512cd6727133b7fc42f) methods, allowing you to change your voice or reverberation by choosing from the preset options. See [Adjust the pitch and tone](voice_effect_android).
+Adding voice changer and reverberation effects in an audio chat room brings much more fun. v2.4.0 adds the [`setLocalVoiceChanger`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ade6883c7878b7a596d5b2563462597dd) and [`setLocalVoiceReverbPreset`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a10dd25bc8e129512cd6727133b7fc42f) methods, allowing you to change your voice or reverberation by choosing from the preset options. See [Adjust the pitch and tone](voice_effect_android).
 
 ##### 2. Tracking the sound position of a remote user
 
-v2.4.0 adds the [`enableSoundPositionIndication`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaeb3e1df5d2cb091bd2e9c41f156d3c0) and [`setRemoteVoicePosition`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a7d851c2cabde18c2438c1ebe8bf763de) methods. Call the [`enableSoundPositionIndication`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaeb3e1df5d2cb091bd2e9c41f156d3c0) method before joining a channel to enable stereo panning for the remote users, and then you can call the [`setRemoteVoicePosition`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a7d851c2cabde18c2438c1ebe8bf763de) method to track the position of a remote user.
+v2.4.0 adds the [`enableSoundPositionIndication`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaeb3e1df5d2cb091bd2e9c41f156d3c0) and [`setRemoteVoicePosition`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a7d851c2cabde18c2438c1ebe8bf763de) methods. Call the [`enableSoundPositionIndication`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaeb3e1df5d2cb091bd2e9c41f156d3c0) method before joining a channel to enable stereo panning for the remote users, and then you can call the [`setRemoteVoicePosition`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a7d851c2cabde18c2438c1ebe8bf763de) method to track the position of a remote user.
 
 ##### 3. Pre-call last-mile network probe test
 
-Conducting a last-mile probe test before joining the channel helps the local user to evaluate or predict the uplink network conditions. v2.4.0 adds the [`startLastmileProbeTest`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871), [`stopLastmileProbeTest`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959), and [`onLastmileProbeResult`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281) APIs, allowing you to get the uplink and downlink last-mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).
+Conducting a last-mile probe test before joining the channel helps the local user to evaluate or predict the uplink network conditions. v2.4.0 adds the [`startLastmileProbeTest`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871), [`stopLastmileProbeTest`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959), and [`onLastmileProbeResult`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281) APIs, allowing you to get the uplink and downlink last-mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).
 
 ##### 4. State of an audio mixing file
 
-v2.4.0 adds the [`onAudioMixingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aee0aa9286a39654312b162750713e986) callback to report any change of the audio-mixing file playback state (playback succeeds or fails) and the corresponding reason. This release also adds the warning code 701, which is triggered if the local audio-mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL when playing the audio-mixing file.
+v2.4.0 adds the [`onAudioMixingStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aee0aa9286a39654312b162750713e986) callback to report any change of the audio-mixing file playback state (playback succeeds or fails) and the corresponding reason. This release also adds the warning code 701, which is triggered if the local audio-mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL when playing the audio-mixing file.
 
 ##### 5. Setting the log file size
 
-The SDK has two log files, each with a default size of 512 KB. In case some customers require more than the default size, v2.4.0 adds the [`setLogFileSize`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a50fd37c6f5b8fc144b18ed4620aee6fc) method for setting the log file size (KB).
+The SDK has two log files, each with a default size of 512 KB. In case some customers require more than the default size, v2.4.0 adds the [`setLogFileSize`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a50fd37c6f5b8fc144b18ed4620aee6fc) method for setting the log file size (KB).
 
 ##### 6. Cloud proxy
 
@@ -1706,8 +1706,8 @@ Supports the cloud proxy service. See [Use Cloud Proxy](../basic-features/use-cl
 
 ##### 1. Accuracy of call quality statistics
 
-- v2.4.0 adds the `intervalInSeconds` parameter to the [`startEchoTest`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a712bb50be350186d097f4deed8e1aa37) method, allowing you to set the interval between when you speak and when the recording plays back.
-- v2.4.0 adds three parameters to the [`LocalVideoStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html) class: [`targetBitrate`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#a4e5c046867a773a74096663bd894e843) for setting the target bitrate of the current encoder, [`targetFrameRate`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#a01b15bb718064ed086edbafcd1678c9a) for setting the target frame rate, and [`qualityAdaptIndication`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#a7a93886b530e5f9ed2fec22ca9d3f5c0) for reporting the quality of the local video since last count.
+- v2.4.0 adds the `intervalInSeconds` parameter to the [`startEchoTest`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a712bb50be350186d097f4deed8e1aa37) method, allowing you to set the interval between when you speak and when the recording plays back.
+- v2.4.0 adds three parameters to the [`LocalVideoStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html) class: [`targetBitrate`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#a4e5c046867a773a74096663bd894e843) for setting the target bitrate of the current encoder, [`targetFrameRate`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#a01b15bb718064ed086edbafcd1678c9a) for setting the target frame rate, and [`qualityAdaptIndication`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#a7a93886b530e5f9ed2fec22ca9d3f5c0) for reporting the quality of the local video since last count.
 
 ##### 2. Core quality improvements
 
@@ -1737,17 +1737,17 @@ To improve your experience, we made the following changes to the APIs:
 
 ##### Added
 
-- [`setLocalVoiceChanger`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ade6883c7878b7a596d5b2563462597dd)
-- [`setLocalVoiceReverbPreset`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a10dd25bc8e129512cd6727133b7fc42f)
-- [`enableSoundPositionIndication`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaeb3e1df5d2cb091bd2e9c41f156d3c0)
-- [`setRemoteVoicePosition`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a7d851c2cabde18c2438c1ebe8bf763de)
-- [`startLastmileProbeTest`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871)
-- [`stopLastmileProbeTest`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959)
-- [`setRemoteUserPriority`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ad4705f9e56f0cf7e0a3e9cbd09ec8f61)
-- [`startEchoTest`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a712bb50be350186d097f4deed8e1aa37)
-- [`setLogFileSize`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a50fd37c6f5b8fc144b18ed4620aee6fc)
-- [`onAudioMixingStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aee0aa9286a39654312b162750713e986)
-- [`onLastmileProbeResult`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281)
+- [`setLocalVoiceChanger`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ade6883c7878b7a596d5b2563462597dd)
+- [`setLocalVoiceReverbPreset`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a10dd25bc8e129512cd6727133b7fc42f)
+- [`enableSoundPositionIndication`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aaeb3e1df5d2cb091bd2e9c41f156d3c0)
+- [`setRemoteVoicePosition`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a7d851c2cabde18c2438c1ebe8bf763de)
+- [`startLastmileProbeTest`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871)
+- [`stopLastmileProbeTest`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959)
+- [`setRemoteUserPriority`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ad4705f9e56f0cf7e0a3e9cbd09ec8f61)
+- [`startEchoTest`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a712bb50be350186d097f4deed8e1aa37)
+- [`setLogFileSize`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a50fd37c6f5b8fc144b18ed4620aee6fc)
+- [`onAudioMixingStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aee0aa9286a39654312b162750713e986)
+- [`onLastmileProbeResult`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281)
 
 ##### Deprecated
 
@@ -1783,9 +1783,9 @@ Before upgrading your SDK, ensure that the version is:
 
 ##### Independent audio mixing volume adjustments for local playback and remote publishing
 
-v2.3.2 adds the [`adjustAudioMixingPlayoutVolume`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9) and [`adjustAudioMixingPublishVolume`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00) methods to complement the [`adjustAudioMixingVolume`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a13c5737248d5a5abf6e8eb3130aba65a) method, allowing you to independently adjust the audio mixing volume for local playback and remote publishing.
+v2.3.2 adds the [`adjustAudioMixingPlayoutVolume`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9) and [`adjustAudioMixingPublishVolume`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00) methods to complement the [`adjustAudioMixingVolume`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a13c5737248d5a5abf6e8eb3130aba65a) method, allowing you to independently adjust the audio mixing volume for local playback and remote publishing.
 
-This release also changes the behavior of the [adjustPlaybackSignalVolume](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af7d7f10fc96db2febb9c2590891d071b) method to control only the voice volume. Therefore, to mute the local audio playback, call both the `adjustPlaybackSignalVolume(0)` and `adjustAudioMixingVolume(0)` methods.
+This release also changes the behavior of the [adjustPlaybackSignalVolume](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af7d7f10fc96db2febb9c2590891d071b) method to control only the voice volume. Therefore, to mute the local audio playback, call both the `adjustPlaybackSignalVolume(0)` and `adjustAudioMixingVolume(0)` methods.
 
 See [Adjust the Volume](../basic-features/adjust-volume) for the scenarios and corresponding APIs.
 
@@ -1795,12 +1795,12 @@ See [Adjust the Volume](../basic-features/adjust-volume) for the scenarios and c
 
 v2.3.2 deprecates the `onAudioQuality` callback and replaces it with the `onRemoteAudioStats` callback to improve the accuracy of the call quality statistics. The `onRemoteAudioStats` callback returns parameters such as the audio frame loss rate, end-to-end audio delay, and jitter buffer delay at the receiver, which are more closely linked to the real user experience. In addition, v2.3.2 optimizes the algorithm of the `onNetworkQuality` callback for the uplink and downlink network qualities.
 
-- [`onRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54): Reports the statistics of the remote audio stream from each user/host. This callback replaces the onAudioQuality callback.
-- [`onNetworkQuality`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a76be982389183c5fe3f6e4b03eaa3bd4): Reports the last mile network quality of each user in the channel.
+- [`onRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54): Reports the statistics of the remote audio stream from each user/host. This callback replaces the onAudioQuality callback.
+- [`onNetworkQuality`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a76be982389183c5fe3f6e4b03eaa3bd4): Reports the last mile network quality of each user in the channel.
 
 We plan to improve the following callback in subsequent versions:
 
-- [`onLastmileQuality`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2887941e3c105c21309bd2643372e7f5): Reports the last mile network quality of the local user before the user joins a channel.
+- [`onLastmileQuality`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2887941e3c105c21309bd2643372e7f5): Reports the last mile network quality of the local user before the user joins a channel.
 
 For the list of API methods related to the call quality statistics and on how and when to use them, see [Report In-call Statistics](../advanced-features/in-call-quality).
 
@@ -1808,16 +1808,16 @@ For the list of API methods related to the call quality statistics and on how an
 
 v2.3.2 adds the following API method and callback to get the current network connection state and the reason for a connection state change:
 
-- [`getConnectionState`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8635e3c9e26ffe95e7ab9a518af533b9): Gets the connection state of the SDK.
-- [`onConnectionStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e): Occurs when the connection state of the SDK to the server changes.
+- [`getConnectionState`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8635e3c9e26ffe95e7ab9a518af533b9): Gets the connection state of the SDK.
+- [`onConnectionStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e): Occurs when the connection state of the SDK to the server changes.
 
-v2.3.2 deprecates the [`onConnectionInterrupted`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0841fb3453a1a271249587fa3d3b3c88) and [`onConnectionBanned`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a80cfde2c8b1b9ae499f6d7a91481c5db) callbacks.
+v2.3.2 deprecates the [`onConnectionInterrupted`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0841fb3453a1a271249587fa3d3b3c88) and [`onConnectionBanned`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a80cfde2c8b1b9ae499f6d7a91481c5db) callbacks.
 
 In the new API method, the network connection states are "disconnected", "connecting", "connected", "reconnecting", and "failed". The SDK triggers the `onConnectionStateChanged` callback when the network connection state changes. The SDK also triggers the `onConnectionInterrupted` and `onConnectionBanned` callbacks under certain circumstances, but we do not recommend using them.
 
 ##### 3. Improves the call rating system
 
-v2.3.2 changes the rating parameter in the [`rate`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab7083355af531cc43d455024bd1f7662) method to "1 to 5" to encourage more feedback from end-users on the quality of a call or interactive live streaming. You can use this feedback for future product improvement. We strongly recommend integrating this method in your app.
+v2.3.2 changes the rating parameter in the [`rate`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab7083355af531cc43d455024bd1f7662) method to "1 to 5" to encourage more feedback from end-users on the quality of a call or interactive live streaming. You can use this feedback for future product improvement. We strongly recommend integrating this method in your app.
 
 ##### 4. Other improvements
 
@@ -1853,18 +1853,18 @@ To improve your experience, we made the following changes to the APIs:
 
 ##### Added:
 
-- [`getConnectionState`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8635e3c9e26ffe95e7ab9a518af533b9)
-- [`adjustAudioMixingPlayoutVolume`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9)
-- [`adjustAudioMixingPublishVolume`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00)
-- [`onConnectionStateChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e)
-- [`onCameraExposureAreaChanged`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ab6bc82a55191e596d5bf5a7c56bdf95e)
-- [`onRemoteAudioStats`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)
+- [`getConnectionState`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8635e3c9e26ffe95e7ab9a518af533b9)
+- [`adjustAudioMixingPlayoutVolume`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9)
+- [`adjustAudioMixingPublishVolume`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00)
+- [`onConnectionStateChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e)
+- [`onCameraExposureAreaChanged`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ab6bc82a55191e596d5bf5a7c56bdf95e)
+- [`onRemoteAudioStats`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)
 
 ##### Deprecated
 
-- [`onAudioQuality`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#abeac442a777e103536dcf9c8ce2d7135)
-- [`onConnectionInterrupted`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0841fb3453a1a271249587fa3d3b3c88)
-- [`onConnectionBanned`](https://docs.agora.io/en/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a80cfde2c8b1b9ae499f6d7a91481c5db)
+- [`onAudioQuality`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#abeac442a777e103536dcf9c8ce2d7135)
+- [`onConnectionInterrupted`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0841fb3453a1a271249587fa3d3b3c88)
+- [`onConnectionBanned`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a80cfde2c8b1b9ae499f6d7a91481c5db)
 
 **v2.3.1**
 

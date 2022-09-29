@@ -29,7 +29,7 @@ The Agora Native SDK provides the following two modes for customizing the video 
 
 - Push mode: In this mode, call the `setExternalVideoSource` method to specify the custom video source. After implementing video capture using the custom video source, call the `pushVideoFrame` method to send the captured video frames to the SDK.
 
-<div class = "alert note"><ul><li>Video frames captured in Push mode cannot be rendered by the SDK. If you capture video frames in Push mode and need to enable local preview, you must use a custom video renderer.</li><li> Switching in the channel from custom video capture by Push to SDK capture is not supported. To switch the video source directly, you must use the custom video capture by MediaIO. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/custom_switch_default">How can I switch from custom video capture to SDK capture</a>.</li></ul></div>
+<div class = "alert note"><ul><li>Video frames captured in Push mode cannot be rendered by the SDK. If you capture video frames in Push mode and need to enable local preview, you must use a custom video renderer.</li><li> Switching in the channel from custom video capture by Push to SDK capture is not supported. To switch the video source directly, you must use the custom video capture by MediaIO. See <a href="https://docs.agora.io/en/help/integration-issues/custom_switch_default">How can I switch from custom video capture to SDK capture</a>.</li></ul></div>
 
 - MediaIO mode: In this mode, call the `setVideoSource` method to specify the custom video source. Then call the `consumeByteBufferFrame`, `consumeByteArrayFrame`, or `consumeTextureFrame` method to retrieve the captured video frames and send them to the SDK.
 
@@ -195,9 +195,9 @@ public void onFrameAvailable(SurfaceTexture surfaceTexture) {
 
 #### API reference
 
-- [`isTextureEncodeSupported`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a60c16364ab588a38f5155d9c94eaf800)
-- [`setExternalVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a2d9966c52798ab62ed941fa865e926cd)
-- [`pushExternalVideoFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6e7327f4449800a2c2ddc200eb2c0386)
+- [`isTextureEncodeSupported`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a60c16364ab588a38f5155d9c94eaf800)
+- [`setExternalVideoSource`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a2d9966c52798ab62ed941fa865e926cd)
+- [`pushExternalVideoFrame`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6e7327f4449800a2c2ddc200eb2c0386)
 
 ### MediaIO mode
 
@@ -403,9 +403,9 @@ public void run() {
 
 #### API reference
 
-- [`setVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa240e991d12b5240fc5fd362cbc0d521)
-- [`IVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_source.html)
-- [`IVideoFrameConsumer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_frame_consumer.html)
+- [`setVideoSource`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa240e991d12b5240fc5fd362cbc0d521)
+- [`IVideoSource`](https://api-ref.agora.io/en/video-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_source.html)
+- [`IVideoFrameConsumer`](https://api-ref.agora.io/en/video-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_frame_consumer.html)
 
 #### See also
 
@@ -561,10 +561,10 @@ rtcEngine.setLocalVideoRenderer(sink);
 
 #### API reference
 
-- [`setLocalVideoRenderer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab10fd6d8dd89a5bca09b115ecd9e3416)
-- [`setRemoteVideoRenderer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0da32c040cb9d987df2950b83459ba56)
-- [`IVideoSink`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_sink.html)
-- [`IVideoFrameConsumer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_frame_consumer.html)
+- [`setLocalVideoRenderer`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab10fd6d8dd89a5bca09b115ecd9e3416)
+- [`setRemoteVideoRenderer`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0da32c040cb9d987df2950b83459ba56)
+- [`IVideoSink`](https://api-ref.agora.io/en/video-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_sink.html)
+- [`IVideoFrameConsumer`](https://api-ref.agora.io/en/video-sdk/android/3.x/interfaceio_1_1agora_1_1rtc_1_1mediaio_1_1_i_video_frame_consumer.html)
 
 ## Considerations
 

@@ -58,9 +58,9 @@ int ret = rtcEngine.adjustLoopbackRecordingSignalVolume(50);
 ```
 
 #### API reference
-- [`setRecordingDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac24424e86ded2727a532df739ebf8086)
-- [`adjustRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acf94e9e0122f09d0450475d7c5809036)
-- [`adjustLoopbackRecordingSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
+- [`setRecordingDeviceVolume`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_audio_device_manager.html#ac24424e86ded2727a532df739ebf8086)
+- [`adjustRecordingSignalVolume`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#acf94e9e0122f09d0450475d7c5809036)
+- [`adjustLoopbackRecordingSignalVolume`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#aabf1aa2610811622acc8a4167e4d64b5)
 
 ### Adjust the playback volume
 
@@ -110,10 +110,10 @@ int ret = rtcEngine.adjustUserPlaybackSignalVolume(uid, 50);
 
 #### API reference
 
-- [`setPlaybackDeviceVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac14a1238e83303abed2f36e02fcc9366)
-- [`adjustPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a98919705c8b2346811f91f9ce5e97a79)
-- [`adjustUserPlaybackSignalVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a609e74c9a6e8df205543326f2ca6a965)
-- [`adjustAudioMixingPlayoutVolume`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8677c3f3160927d25d9814a88ab06da6)
+- [`setPlaybackDeviceVolume`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_audio_device_manager.html#ac14a1238e83303abed2f36e02fcc9366)
+- [`adjustPlaybackSignalVolume`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a98919705c8b2346811f91f9ce5e97a79)
+- [`adjustUserPlaybackSignalVolume`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a609e74c9a6e8df205543326f2ca6a965)
+- [`adjustAudioMixingPlayoutVolume`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a8677c3f3160927d25d9814a88ab06da6)
 
 
 ### Get the data of the loudest speaker (callback)
@@ -149,8 +149,8 @@ void onActiveSpeaker(uid_t uid) {
 
 #### API reference
 
-- [`onAudioVolumeIndication`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4)
-- [`onActiveSpeaker`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae643c9dbf94360a23a8b3a56c93f90bc)
+- [`onAudioVolumeIndication`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aab1184a2b276f509870c055a9ff8fac4)
+- [`onActiveSpeaker`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae643c9dbf94360a23a8b3a56c93f90bc)
 
 ## Considerations
 
@@ -160,6 +160,6 @@ Setting the audio level too high may cause audio distortion on some devices.
 
 When adjusting the audio volume, you can also refer to the following articles:
 
-- [How to solve the problem of low volume?](https://docs.agora.io/en/faq/audio_low)
+- [How to solve the problem of low volume?](https://docs.agora.io/en/help/quality-issues/audio_low)
 
 </PlatformWrapper>

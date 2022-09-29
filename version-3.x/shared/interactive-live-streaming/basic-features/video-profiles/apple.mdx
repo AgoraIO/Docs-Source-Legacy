@@ -27,7 +27,7 @@ Agora provides an open-source sample project on GitHub that implements setting t
 
 Before proceeding, ensure that you have implemented real-time audio and video functions in your project.
 
-The Agora SDK provides the [`setVideoEncoderConfiguration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoEncoderConfiguration:) method to set the video profile. After you initialize the `AgoraRtcEngineKit` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
+The Agora SDK provides the [`setVideoEncoderConfiguration`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/setVideoEncoderConfiguration:) method to set the video profile. After you initialize the `AgoraRtcEngineKit` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
 
 If you do not intend to update the video profile after joining a channel, Agora recommends calling `setVideoEncoderConfiguration` before `enableVideo`, which reduces the time to render the first local video frame.
 
@@ -35,11 +35,11 @@ If you do not intend to update the video profile after joining a channel, Agora 
 
 You can set the video resolution, frame rate, and bitrate with the following parameters:
 
-- [`dimensions`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/dimensions): The video encoding resolution (px). The default value is 640 × 360. Generally speaking, the higher the resolution, the sharper the video. The value of this parameter does not indicate the orientation mode of the output video. For how to set the orientation mode of the output video, see [Orientation mode](#orientationmode).
+- [`dimensions`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/dimensions): The video encoding resolution (px). The default value is 640 × 360. Generally speaking, the higher the resolution, the sharper the video. The value of this parameter does not indicate the orientation mode of the output video. For how to set the orientation mode of the output video, see [Orientation mode](#orientationmode).
 
-- [`frameRate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/frameRate): The video encoding frame rate (fps), that is, the number of frames that the SDK encodes per second. The default value is 15. Generally speaking, the higher the frame rate, the smoother the video. For scenarios with high requirements on video smoothness, You can set this parameter as 20 or 25. Agora recommends not setting `frameRate` as any value beyond 30.
+- [`frameRate`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/frameRate): The video encoding frame rate (fps), that is, the number of frames that the SDK encodes per second. The default value is 15. Generally speaking, the higher the frame rate, the smoother the video. For scenarios with high requirements on video smoothness, You can set this parameter as 20 or 25. Agora recommends not setting `frameRate` as any value beyond 30.
 
-- [`bitrate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/bitrate): The video encoding bitrate (Kbps). The default value is `AgoraVideoBitrateStandard`, that is, the standard bitrate mode. Under the standard bitrate mode, the SDK assigns a bitrate value according to the channel profile, video dimensions, and frame rate that you set.
+- [`bitrate`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/bitrate): The video encoding bitrate (Kbps). The default value is `AgoraVideoBitrateStandard`, that is, the standard bitrate mode. Under the standard bitrate mode, the SDK assigns a bitrate value according to the channel profile, video dimensions, and frame rate that you set.
 
 <div class="alert note">
 	<ul>
@@ -109,7 +109,7 @@ Video rotation involves the video capturer and the video player, where:
 - The video capturer captures the video and outputs the relevant video information, namely, the relative position of the video and the status bar.
 - The video player renders the received video and rotates the video according to the rotation information.
 
-To avoid issues such as video scaling and cropping caused by video rotation, the Agora SDK provides the [`orientationMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/orientationMode) parameter in the `setVideoEncoderConfiguration` method. You can use this parameter to set the video orientation mode according to your scenario to get the video you want.
+To avoid issues such as video scaling and cropping caused by video rotation, the Agora SDK provides the [`orientationMode`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/orientationMode) parameter in the `setVideoEncoderConfiguration` method. You can use this parameter to set the video orientation mode according to your scenario to get the video you want.
 
 The orientationMode parameter provides three modes to suit different user needs: `Adaptive`, `FixedLandscape`, and `FixedPortrait`.
 
@@ -180,18 +180,18 @@ The following figures show the video orientations at the video capturer and the 
 
 ### Degradation preference
 
-To optimize user experience in weak network conditions, Agora provides the [`degradationPreference`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/degradationPreference) parameter to set how you wish to degrade the video under limited network bandwidth.
+To optimize user experience in weak network conditions, Agora provides the [`degradationPreference`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/degradationPreference) parameter to set how you wish to degrade the video under limited network bandwidth.
 
 ### Mirror mode
 
-By default, the SDK does not mirror the video during encoding. You can use the [`mirrorMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/mirrorMode) parameter to decide whether to mirror the video that remote users see.
+By default, the SDK does not mirror the video during encoding. You can use the [`mirrorMode`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/mirrorMode) parameter to decide whether to mirror the video that remote users see.
 
 ### Minimum frame rate and bitrate
 
 If your scenario has special requirements on video sharpness or smoothness, you can also use the following parameters to set the minimum frame rate or bitrate:
 
-- [`minFrameRate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/minFrameRate): The minimum video frame rate (fps). You can use `minFrameRate` and `AgoraDegradationMaintainQuality` to balance the video sharpness and video smoothness under unreliable connections. When minFrameRate is relatively low, the frame rate degrades significantly, fo the poor network conditions have limited impact on video sharpness. When `minFrameRate` is relatively high, the frame rate degrades within a limited range, so the poor network conditions can have high impact on video sharpness.
-- [`minBitrate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/minBitrate): The minimum video bitrate (Kbps). The Agora SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Setting this parameter to a value greater than the default value forces the video encoder to output high-quality video images but may cause more packet loss and sacrifice video smoothness.
+- [`minFrameRate`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/minFrameRate): The minimum video frame rate (fps). You can use `minFrameRate` and `AgoraDegradationMaintainQuality` to balance the video sharpness and video smoothness under unreliable connections. When minFrameRate is relatively low, the frame rate degrades significantly, fo the poor network conditions have limited impact on video sharpness. When `minFrameRate` is relatively high, the frame rate degrades within a limited range, so the poor network conditions can have high impact on video sharpness.
+- [`minBitrate`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraVideoEncoderConfiguration.html#//api/name/minBitrate): The minimum video bitrate (Kbps). The Agora SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Setting this parameter to a value greater than the default value forces the video encoder to output high-quality video images but may cause more packet loss and sacrifice video smoothness.
 
 <div class="alert note">The default values of <code>minFrameRate</code> and <code>minBitrate</code> can meet the requirements of most real-time scenarios. Unless you have special requirements , Agora recommends not changing these default values.</div>
 

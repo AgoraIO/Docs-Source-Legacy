@@ -51,7 +51,7 @@ You can refer to the following API call sequence diagram and steps to implement 
 2. Call `startRtmpStreamWithTranscoding` and pass in the address of the Media Push and the transcoding configuration to start pushing transcoded streams to a CDN address.
 
    <div class="alert note"><ul>
-   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/structagora_1_1rtc_1_1_live_transcoding.html">LiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>userCount</code> and <code>transcodingUsers</code> fields in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
+   <li>The transcoding configuration includes the audio and video profile of the output transcoded streams, video layout of the hosts, watermarks, and media metadata. The audio and video profile includes audio bitrate, video bitrate, audio codec, and video codec. The media metadata includes SEI. See <a href="https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_live_transcoding.html">LiveTranscoding</a>. In scenarios where there is streaming with transcoding, the <code>userCount</code> and <code>transcodingUsers</code> fields in the transcoding configuration are required. You can customize or use default values for the remaining fields in the configuration.</li>
    <li>For live audio scenarios, leave the video-related fields in the transcoding configuration empty.</li>
    <li>If you need to push streams to multiple addresses, call <code>start</code> multiple times.</li>
    <li>If you have already started a live stream at one address, pushing another live stream to that address is not supported.</li>
@@ -221,22 +221,22 @@ m_rtcEngine->removePublishStreamUrl(url);
 
 The following APIs are recommended by Agora when implementing Media Push:
 
-- [`startRtmpStreamWithoutTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acfc4de5d9454cad1dfd1d154e180d78c)
-- [`startRtmpStreamWithTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0f91aa3af0a7c9a8428966028b5a010c)
-- [`updateRtmpTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8689685218a15a34a376944555340261)
-- [`stopRtmpStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab9807b2e5fb708d01066759af02cc630)
-- [`onTranscodingUpdated`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0583fb2aecbd4c51bba1af97ce1aa318)
-- [`onRtmpStreamingStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
-- [`onRtmpStreamingEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa2beb17562a3be9b5ddbe9366245cb0e)
+- [`startRtmpStreamWithoutTranscoding`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#acfc4de5d9454cad1dfd1d154e180d78c)
+- [`startRtmpStreamWithTranscoding`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a0f91aa3af0a7c9a8428966028b5a010c)
+- [`updateRtmpTranscoding`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a8689685218a15a34a376944555340261)
+- [`stopRtmpStream`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#ab9807b2e5fb708d01066759af02cc630)
+- [`onTranscodingUpdated`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0583fb2aecbd4c51bba1af97ce1aa318)
+- [`onRtmpStreamingStateChanged`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
+- [`onRtmpStreamingEvent`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa2beb17562a3be9b5ddbe9366245cb0e)
 
 
 The following APIs are still functional but not recommended by Agora when implementing Media Push:
 
-- [`setLiveTranscoding`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)
-- [`addPublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)
-- [`removePublishStreamUrl`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)
-- [`onStreamPublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a475fb73ea513eb367cea2d73299b5f91)
-- [`onStreamUnpublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a318ea7cd8fc614038850bf7791d4106e)
+- [`setLiveTranscoding`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)
+- [`addPublishStreamUrl`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)
+- [`removePublishStreamUrl`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)
+- [`onStreamPublished`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a475fb73ea513eb367cea2d73299b5f91)
+- [`onStreamUnpublished`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a318ea7cd8fc614038850bf7791d4106e)
 
 
 ### Related docs
@@ -245,8 +245,8 @@ When using the Media Push function, you may also need to refer to the following 
 
 - [Pricing for Media Push](/media-push/reference/pricing)
 - [Exception Handling for Media Push](../best-practices/exception-handling-for-media-push)
-- [How to solve SEI-related issues?](https://docs.agora.io/en/faq/sei)
-- [What is the relationship between the old and new callbacks of Media Push?](https://docs.agora.io/en/faq/cdnStreaming_callback_relationship)
+- [How to solve SEI-related issues?](https://docs.agora.io/en/help/other-issues/sei)
+- [What is the relationship between the old and new callbacks of Media Push?](https://docs.agora.io/en/help/integration-issues/cdnstreaming_callback_relationship)
 - [Overview of the Media Push using RESTful API](/media-push/overview/product-overview)
 
 </PlatformWrapper>

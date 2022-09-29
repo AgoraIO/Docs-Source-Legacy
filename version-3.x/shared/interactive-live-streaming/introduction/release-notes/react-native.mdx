@@ -92,15 +92,15 @@ This release fixed an issue where the app occasionally failed to rejoin a channe
 
 **Added**
 
-- [`startScreenCapture` ](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/classes/rtcengine.html#startscreencapture)
-- [`stopScreenCapture`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/classes/rtcengine.html#stopscreencapture)
-- [`updateScreenCaptureParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/classes/rtcengine.html#updatescreencaptureparameters)
-- [`enableLocalVoicePitchCallback`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/classes/rtcengine.html#enablelocalvoicepitchcallback)
-- [`LocalVoicePitchInHz`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/interfaces/rtcengineevents.html#localvoicepitchinhz)
-- [`FirstRemoteVideoFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/interfaces/rtcchannelevents.html#firstremotevideoframe) in `RtcChannelEvents` 
-- [`ClientRoleChangeFailed`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/interfaces/rtcengineevents.html#clientrolechangefailed)
-- `SameUidLogin(19)` and `TooManyBroadcasters(20)` in [`ConnectionChangedReason`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/enums/connectionchangedreason.html)
-- The following constants in [`LocalVideoStreamError`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/v3.7.0/enums/localvideostreamerror.html):
+- [`startScreenCapture` ](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/classes/rtcengine.html#startscreencapture)
+- [`stopScreenCapture`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/classes/rtcengine.html#stopscreencapture)
+- [`updateScreenCaptureParameters`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/classes/rtcengine.html#updatescreencaptureparameters)
+- [`enableLocalVoicePitchCallback`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/classes/rtcengine.html#enablelocalvoicepitchcallback)
+- [`LocalVoicePitchInHz`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/interfaces/rtcengineevents.html#localvoicepitchinhz)
+- [`FirstRemoteVideoFrame`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/interfaces/rtcchannelevents.html#firstremotevideoframe) in `RtcChannelEvents` 
+- [`ClientRoleChangeFailed`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/interfaces/rtcengineevents.html#clientrolechangefailed)
+- `SameUidLogin(19)` and `TooManyBroadcasters(20)` in [`ConnectionChangedReason`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/enums/connectionchangedreason.html)
+- The following constants in [`LocalVideoStreamError`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/v3.7.0/enums/localvideostreamerror.html):
   - (iOS) `ExtensionCaptureStarted(13)`
   - (iOS) `ExtensionCaptureStoped(14)`
   - (iOS) `ExtensionCaptureDisconnected(15)`
@@ -160,8 +160,8 @@ Also, as of this release, whether you use the new or old methods for Media Push,
 
 Extension libraries are dynamic libraries that can be optionally integrated into a project. As of v3.6.2, when you integrate the Android or iOS SDK, you can reduce the size of your app after integrating the SDK by specifing the desired dynamic libraries and excluding unnecessary extension libraries. To achieve this, do the following based on your target platform:
 
-- Android: Modify `dependencies` in the `/android/app/build.gradle` file. For details about the sample code and the `implementation` field in `dependencies`, see [Remove extension libraries when using Maven Central](https://docs.agora.io/en/Video/reduce_rtc_app_size#remove-extension-libraries-when-using-maven-central) in Reduce App Size.
-- iOS: Use the `subspecs` field in the `/ios/Podfile` file. For details about the sample code and the `subspecs` fields, see [Remove extension libraries when using CocoaPods](https://docs.agora.io/en/Video/reduce_rtc_app_size#remove-extension-libraries-when-using-cocoapods) in Reduce App Size.
+- Android: Modify `dependencies` in the `/android/app/build.gradle` file. For details about the sample code and the `implementation` field in `dependencies`, see [Remove extension libraries when using Maven Central](../best-practices/reduce-app-size#remove-extension-libraries-when-using-maven-central) in Reduce App Size.
+- iOS: Use the `subspecs` field in the `/ios/Podfile` file. For details about the sample code and the `subspecs` fields, see [Remove extension libraries when using CocoaPods](../best-practices/reduce-app-size#remove-extension-libraries-when-using-cocoapods) in Reduce App Size.
 
 **2. Video enhancement**
 
@@ -175,7 +175,7 @@ In addition to the image enhancement feature, Agora adds support for more video 
 
 **3. Loading .so files dynamically**
 
-This release adds the `setAgoraLibPath` method for setting the directory of `.so` files. After a successful method call, the SDK dynamically loads `.so` files based on your specified directory when the app is running. This feature can help reduce the size of your app package. For detailed instructions, see [Reduce App Size](https://docs.agora.io/en/Video/reduce_rtc_app_size#load-so-files-dynamically).
+This release adds the `setAgoraLibPath` method for setting the directory of `.so` files. After a successful method call, the SDK dynamically loads `.so` files based on your specified directory when the app is running. This feature can help reduce the size of your app package. For detailed instructions, see [Reduce App Size](../best-practices/reduce-app-size#load-so-files-dynamically).
 
 **4. Audio and video recording on the client**
 
@@ -220,14 +220,14 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/Video/faq/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the following dynamic library:
 
 - Android：`libagora-full-audio-format-extension.so`
 - iOS：`AgoraFullAudioFormatExtension.xcframework`
 
-Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](https://docs.agora.io/en/Video/reduce_rtc_app_size#extension-libraries).
+Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size#extension-libraries).
 
 **4. Audio file formats (iOS only)**
 
@@ -373,7 +373,7 @@ This release adds the `takeSnapshot` method for taking a snapshot of a video str
 
 To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. You can call `enableRemoteSuperResolution` to enable super resolution. The SDK triggers the `UserSuperResolutionEnabled` callback to report whether this feature has been successfully enabled. If it is not enabled successfully, use the `reason` code to troubleshoot issues.
 
-<div class="alert note">Before using super resolution, ensure that the device performance, number of remote users, and original resolution of remote user's video meet the requirements. For details, see the <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#enableremotesuperresolution">enableRemoteSuperResolution</a > documentation.</div>
+<div class="alert note">Before using super resolution, ensure that the device performance, number of remote users, and original resolution of remote user's video meet the requirements. For details, see the <a href="https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#enableremotesuperresolution">enableRemoteSuperResolution</a > documentation.</div>
 
 **3. Background blurring**
 
@@ -466,25 +466,25 @@ This release fixed the following issues:
 
 **Added**
 
-- [`takeSnapshot`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#takesnapshot)
-- [`SnapshotTaken`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcchannelevents.html#snapshottaken)
-- [`enableRemoteSuperResolution`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#enableremotesuperresolution)
-- [`UserSuperResolutionEnabled`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcchannelevents.html##a4437c6d4d04135837ddf79ce050132a0)
-- `blur_degree` and `VirtualBackgroundBlurDegree` in [`VirtualBackgroundSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/virtualbackgroundsource.html)
-- `Blur` in [`backgroundSourceType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/virtualbackgroundsource.html#backgroundsourcetype)
-- [`setAudioMixingPlaybackSpeed`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setaudiomixingplaybackspeed)
-- [`getAudioTrackCount`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#getaudiotrackcount)
-- [`selectAudioTrack`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#selectaudiotrack)
-- [`setAudioMixingDualMonoMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#a81b6a0f46612a6c4337d078b3af1681a)
-- [`pauseAllChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#pauseallchannelmediarelay)
-- [`resumeAllChannelMediaRelay`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#resumeallchannelmediarelay)
-- [`getAudioFileInfo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#getaudiofileinfo)
-- [`RequestAudioFileInfo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcchannelevents.html#requestaudiofileinfo)
-- `Mobile5G(6)`in [`NetworkType`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/networktype.html)
+- [`takeSnapshot`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#takesnapshot)
+- [`SnapshotTaken`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcchannelevents.html#snapshottaken)
+- [`enableRemoteSuperResolution`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#enableremotesuperresolution)
+- [`UserSuperResolutionEnabled`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcchannelevents.html##a4437c6d4d04135837ddf79ce050132a0)
+- `blur_degree` and `VirtualBackgroundBlurDegree` in [`VirtualBackgroundSource`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/virtualbackgroundsource.html)
+- `Blur` in [`backgroundSourceType`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/virtualbackgroundsource.html#backgroundsourcetype)
+- [`setAudioMixingPlaybackSpeed`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setaudiomixingplaybackspeed)
+- [`getAudioTrackCount`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#getaudiotrackcount)
+- [`selectAudioTrack`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#selectaudiotrack)
+- [`setAudioMixingDualMonoMode`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#a81b6a0f46612a6c4337d078b3af1681a)
+- [`pauseAllChannelMediaRelay`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#pauseallchannelmediarelay)
+- [`resumeAllChannelMediaRelay`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#resumeallchannelmediarelay)
+- [`getAudioFileInfo`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#getaudiofileinfo)
+- [`RequestAudioFileInfo`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcchannelevents.html#requestaudiofileinfo)
+- `Mobile5G(6)`in [`NetworkType`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/networktype.html)
 
 **Modified**
 
-- [`startEchoTest`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#startechotest)
+- [`startEchoTest`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#startechotest)
 
 **Deprecated**
 
@@ -505,7 +505,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK cannot set the audio route as the earpiece.
   - With v3.5.0 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
 
-  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
+  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/help/integration-issues/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
 
 - If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
 
@@ -520,7 +520,7 @@ See <Link to="../advanced-features/set-audio-route?platform=android">Set the Aud
 
 This release adds the `enableVirtualBackground` method, with which you can enable and set a virtual background for users as either a solid color or an image in PNG or JPG format. You can use the `VirtualBackgroundSourceEnabled` callback to learn whether the virtual background is successfully enabled or the reason for an error.
 
-<div class="alert note">Before you use virtual backgrounds, ensure that the device performance and user scenarios meet the requirements. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#enablevirtualbackground">enableVirtualBackground</a > documentation.</div>
+<div class="alert note">Before you use virtual backgrounds, ensure that the device performance and user scenarios meet the requirements. See <a href="https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#enablevirtualbackground">enableVirtualBackground</a > documentation.</div>
 
 #### Improvements
 
@@ -568,13 +568,13 @@ This release fixed the following issues:
 
 **Added**
 
-- [`enableVirtualBackground`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#enablevirtualbackground)
-- [`VirtualBackgroundSourceEnabled`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcchannelevents.html#virtualbackgroundsourceenabled)
+- [`enableVirtualBackground`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#enablevirtualbackground)
+- [`VirtualBackgroundSourceEnabled`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcchannelevents.html#virtualbackgroundsourceenabled)
 
 **Modified**
 
-- [`setEnableSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setenablespeakerphone)
-- [`setDefaultAudioRouteToSpeakerphone`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setdefaultaudioroutetospeakerphone)
+- [`setEnableSpeakerphone`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setenablespeakerphone)
+- [`setDefaultAudioRouteToSpeakerphone`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setdefaultaudioroutetospeakerphone)
 
 
 ## v3.4.6
@@ -682,15 +682,15 @@ This release fixed the following issues:
 
 **Added**
 
-- [`RtcEngineContext`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcenginecontext.html) class
-- [`createWithContext`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#createwithcontext)
-- [`UnPublishOK (100)`](/API%20Reference/react_native/enums/rtmpstreamingerrorcode.html#unuublishok) in `RtmpStreamingErrorCode` 
-- [`UrlAlreadyInUse (2)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/rtmpstreamingevent.html#urlalreadyinuse) in `RtmpStreamingEvent`
-- `AES128GCM2 (7)` and `AES256GCM2 (8)`in [`EncryptionMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/encryptionmode.html) 
-- `encryptionKdfSalt` in [`EncryptionConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/encryptionmode.html)
-- [`muteLocalAudioStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcchannel.html#mutelocalaudiostream) and [`muteLocalVideoStream`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcchannel.html#mutelocalvideostream) in `RtcChannel`
-- [`publishLocalAudio`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/channelmediaoptions.html#publishlocalaudio) and [`publishLocalVideo`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/channelmediaoptions.html#publishlocalvideo) in `ChannelMediaOptions`
-- [`Interrupted (8)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/audiolocalerror.html#interrupted) in `AudioLocalError`
+- [`RtcEngineContext`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcenginecontext.html) class
+- [`createWithContext`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#createwithcontext)
+- [`UnPublishOK (100)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/rtmpstreamingerrorcode.html#unuublishok) in `RtmpStreamingErrorCode` 
+- [`UrlAlreadyInUse (2)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/rtmpstreamingevent.html#urlalreadyinuse) in `RtmpStreamingEvent`
+- `AES128GCM2 (7)` and `AES256GCM2 (8)`in [`EncryptionMode`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/encryptionmode.html) 
+- `encryptionKdfSalt` in [`EncryptionConfig`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/encryptionmode.html)
+- [`muteLocalAudioStream`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcchannel.html#mutelocalaudiostream) and [`muteLocalVideoStream`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcchannel.html#mutelocalvideostream) in `RtcChannel`
+- [`publishLocalAudio`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/channelmediaoptions.html#publishlocalaudio) and [`publishLocalVideo`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/channelmediaoptions.html#publishlocalvideo) in `ChannelMediaOptions`
+- [`Interrupted (8)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/audiolocalerror.html#interrupted) in `AudioLocalError`
 
 **Modified**
 This release renames the following properties in `RtcStats`:
@@ -971,7 +971,7 @@ allprojects {
 
 2. Extension libraries
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/Interactive%20Broadcast/faq/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see [Extension libraries](https://docs.agora.io/en/help/integration-issues/reduce_app_size_rtc). If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 
@@ -1052,22 +1052,22 @@ This release fixed the following issues:
 
 **Added**
 
-- [`startRhythmPlayer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#startrhythmplayer)
-- [`stopRhythmPlayer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#stoprhythmplayer)
-- [`configRhythmPlayer`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#configrhythmplayer)
-- [`startAudioRecordingWithConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#startaudiorecordingwithconfig)
-- [`getEffectDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#geteffectduration)
-- [`setEffectPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#seteffectposition)
-- [`getEffectCurrentPosition`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#geteffectcurrentposition)
-- `filePath` in [`getAudioMixingDuration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#getaudiomixingduration)
-- `startPos` in [`playEffect`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#playeffect)
-- `startPos` in [`startAudioMixing`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#startaudiomixing)
-- `DeviceNotFound(8)` in [`LocalVideoStreamError`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/localvideostreamerror.html)
+- [`startRhythmPlayer`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#startrhythmplayer)
+- [`stopRhythmPlayer`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#stoprhythmplayer)
+- [`configRhythmPlayer`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#configrhythmplayer)
+- [`startAudioRecordingWithConfig`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#startaudiorecordingwithconfig)
+- [`getEffectDuration`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#geteffectduration)
+- [`setEffectPosition`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#seteffectposition)
+- [`getEffectCurrentPosition`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#geteffectcurrentposition)
+- `filePath` in [`getAudioMixingDuration`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#getaudiomixingduration)
+- `startPos` in [`playEffect`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#playeffect)
+- `startPos` in [`startAudioMixing`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#startaudiomixing)
+- `DeviceNotFound(8)` in [`LocalVideoStreamError`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/localvideostreamerror.html)
 - [`Error code`](../reference/error-codes): `AlreadyInRecording(160)`
 
 **Modified**
 
-- [`AudioMixingStateChanged`]((https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#audiomixingstatechanged))
+- [`AudioMixingStateChanged`]((https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#audiomixingstatechanged))
 
 **Deprecated**
 
@@ -1108,7 +1108,7 @@ You can call `setVoiceBeautifierPreset(SingingBeautifier)` to beautify the male 
 
 **5. Log files**
 
-To ensure the integrity of log content, this release adds the `createWithConfig` method and adds the `logConfig` property to the `log` parameter. You can use `logConfig` to set the log files output by the Agora SDK when you initialize `RtcEngine`. See [How can I set the log file?](https://docs.agora.io/en/Interactive%20Broadcast/faq/logfile) for details.
+To ensure the integrity of log content, this release adds the `createWithConfig` method and adds the `logConfig` property to the `log` parameter. You can use `logConfig` to set the log files output by the Agora SDK when you initialize `RtcEngine`. See [How can I set the log file?](https://docs.agora.io/en/help/integration-issues/log) for details.
 
 As of v3.3.1, Agora does not recommend using the `setLogFile`, `setLogFileSize`, or `setLogFilter` methods to set the log files.
 
@@ -1173,23 +1173,23 @@ This release adds the following APIs:
 
 **Added**
 
-- [`createWithConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#createwithconfig)
-- [`setVoiceConversionPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setvoiceconversionpreset)
-- `AES128GCM` and `AES256GCM` in [`EncryptionMode`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/encryptionmode.html)
-- `mosValue` in [`RemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#remoteaudiostats)
-- [`setVoiceBeautifierParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setvoicebeautifierparameters)
-- `SingingBeautifier` in [`VoiceBeautifierPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/voicebeautifierpreset.html)
-- [`enableDeepLearningDenoise`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#enabledeeplearningdenoise)
-- `options` in [`joinChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#joinchannel)
-- `options` in [`switchChannel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#switchchannel)
-- [`createDataStreamWithConfig`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#createdatastreamwithconfig)
-- `qoeQuality` and `qualityChangedReason` in [`RemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#remoteaudiostats)
-- [`setCloudProxy`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setcloudproxy)
-- The `captureBrightnessLevel` property in the [`LocalVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/localvideostats.html)
-- The `captureWidth` and `captureHeight` properties in the [`CameraCapturerConfiguration`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/cameracapturerconfiguration.html) class
-- `Manual(3)` in  [`CameraCaptureOutputPreference`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/cameracaptureoutputpreference.html)
-- `CaptureInBackGround(6)` and `CaptureMultipleForegroundApps(7)` in [`LocalVideoStreamError`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/localvideostreamerror.html)
-- Error code: [`ModuleNotFound(157)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/errorcode.html)
+- [`createWithConfig`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#createwithconfig)
+- [`setVoiceConversionPreset`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setvoiceconversionpreset)
+- `AES128GCM` and `AES256GCM` in [`EncryptionMode`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/encryptionmode.html)
+- `mosValue` in [`RemoteAudioStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#remoteaudiostats)
+- [`setVoiceBeautifierParameters`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setvoicebeautifierparameters)
+- `SingingBeautifier` in [`VoiceBeautifierPreset`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/voicebeautifierpreset.html)
+- [`enableDeepLearningDenoise`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#enabledeeplearningdenoise)
+- `options` in [`joinChannel`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#joinchannel)
+- `options` in [`switchChannel`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#switchchannel)
+- [`createDataStreamWithConfig`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#createdatastreamwithconfig)
+- `qoeQuality` and `qualityChangedReason` in [`RemoteAudioStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#remoteaudiostats)
+- [`setCloudProxy`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setcloudproxy)
+- The `captureBrightnessLevel` property in the [`LocalVideoStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/localvideostats.html)
+- The `captureWidth` and `captureHeight` properties in the [`CameraCapturerConfiguration`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/cameracapturerconfiguration.html) class
+- `Manual(3)` in  [`CameraCaptureOutputPreference`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/cameracaptureoutputpreference.html)
+- `CaptureInBackGround(6)` and `CaptureMultipleForegroundApps(7)` in [`LocalVideoStreamError`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/localvideostreamerror.html)
+- Error code: [`ModuleNotFound(157)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/errorcode.html)
 
 **Deprecated**
 
@@ -1270,11 +1270,11 @@ This release reduces the latency on the audience's client during an interactive 
 
 **Added**
 
-- `options`in [`setClientRole`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setclientrole)
-- [`setAudioEffectPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setaudioeffectpreset)
-- [`setVoiceBeautifierPreset`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setvoicebeautifierpreset)
-- [`setAudioEffectParameters`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#setaudioeffectparameters)
-- `MEETING(8)` in [`AudioScenario`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/audioscenario.html)
+- `options`in [`setClientRole`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setclientrole)
+- [`setAudioEffectPreset`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setaudioeffectpreset)
+- [`setVoiceBeautifierPreset`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setvoicebeautifierpreset)
+- [`setAudioEffectParameters`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#setaudioeffectparameters)
+- `MEETING(8)` in [`AudioScenario`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/audioscenario.html)
 
 **Deprecated**
 
@@ -1289,7 +1289,7 @@ v3.1.2 was released on September 28, 2020.
 
 #### 1. Disabling the local network connection quality report (iOS only)
 
-To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The `gatewayRtt` parameter in the [`RtcStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcstats.html) callback is disabled by default. Do not use [`gatewayRtt`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcstats.html#gatewayrtt) to obtain the round-trip delay between the client and the local router. See the [FAQ](https://docs.agora.io/en/faq/local_network_privacy) for details.
+To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The `gatewayRtt` parameter in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html) callback is disabled by default. Do not use [`gatewayRtt`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html#gatewayrtt) to obtain the round-trip delay between the client and the local router. See the [FAQ](https://docs.agora.io/en/help/integration-issues/local_network_privacy) for details.
 
 If you don't mind the prompt, and want to enable the `gatewayRtt` parameter, please contact Agora technical support via [support@agora.io](mailto:support@agora.io).
 
@@ -1396,23 +1396,23 @@ This release fixed the following issues:
 #### Added
 
 
-- [`AudioPublishStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#audiopublishstatechanged)
-- [`VideoPublishStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#videopublishstatechanged)
-- [`AudioSubscribeStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#audiosubscribestatechanged)
-- [`VideoSubscribeStateChanged`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#videosubscribestatechanged)
-- [`FirstLocalAudioFramePublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#firstlocalaudioframepublished)
-- [`FirstLocalVideoFramePublished`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#firstlocalvideoframepublished)
-- [`enableEncryption`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/classes/rtcengine.html#enableencryption)
-- [`txPacketLossRate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/localaudiostats.html#txpacketlossrate) in [`LocalAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/localaudiostats.html)  class
-- [`txPacketLossRate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/localvideostats.html#txpacketlossrate)  and  [`captureFrameRate`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/localvideostats.html#captureframerate) in [`LocalVideoStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/localvideostats.html) class
-- `publishDuration` in [`RemoteAudioStats`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/remoteaudiostats.html) and  [`RemoteVideoStats` ](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/remotevideostats.html) class
-- [`RtmpStreamingEvent`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/interfaces/rtcengineevents.html#rtmpstreamingevent)
-- Error code: [`NoServerResources(103)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/errorcode.html#noserverresources)
+- [`AudioPublishStateChanged`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#audiopublishstatechanged)
+- [`VideoPublishStateChanged`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#videopublishstatechanged)
+- [`AudioSubscribeStateChanged`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#audiosubscribestatechanged)
+- [`VideoSubscribeStateChanged`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#videosubscribestatechanged)
+- [`FirstLocalAudioFramePublished`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#firstlocalaudioframepublished)
+- [`FirstLocalVideoFramePublished`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#firstlocalvideoframepublished)
+- [`enableEncryption`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/classes/rtcengine.html#enableencryption)
+- [`txPacketLossRate`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/localaudiostats.html#txpacketlossrate) in [`LocalAudioStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/localaudiostats.html)  class
+- [`txPacketLossRate`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/localvideostats.html#txpacketlossrate)  and  [`captureFrameRate`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/localvideostats.html#captureframerate) in [`LocalVideoStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/localvideostats.html) class
+- `publishDuration` in [`RemoteAudioStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/remoteaudiostats.html) and  [`RemoteVideoStats` ](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/remotevideostats.html) class
+- [`RtmpStreamingEvent`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcengineevents.html#rtmpstreamingevent)
+- Error code: [`NoServerResources(103)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/errorcode.html#noserverresources)
 - Warning code:
-  - [`AdmCategoryNotPlayAndRecord(1029)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/warningcode.html#admcategorynotplayandrecord)
-  - [`AdmNoDataReadyCallback(1040)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/warningcode.html#admnodatareadycallback)
-  - [`AdmInconsistentDevices(1042)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/warningcode.html#adminconsistentdevices)
-  - [`ApmResidualEcho(1053)`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/react_native/enums/warningcode.html#apmresidualecho)
+  - [`AdmCategoryNotPlayAndRecord(1029)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/warningcode.html#admcategorynotplayandrecord)
+  - [`AdmNoDataReadyCallback(1040)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/warningcode.html#admnodatareadycallback)
+  - [`AdmInconsistentDevices(1042)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/warningcode.html#adminconsistentdevices)
+  - [`ApmResidualEcho(1053)`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/enums/warningcode.html#apmresidualecho)
 
 #### Deprecated
 

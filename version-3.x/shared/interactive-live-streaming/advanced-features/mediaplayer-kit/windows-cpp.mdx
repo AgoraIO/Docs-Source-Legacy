@@ -38,7 +38,7 @@ Build a Windows project from scratch:
 
 #### Configure the project files
 
-1. Go to [Downloads](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=Windows), download the latest version of the MediaPlayer Kit, and extract the files from the download package.
+1. Go to [Downloads](https://docs.agora.io/en/sdks?platform=windows), download the latest version of the MediaPlayer Kit, and extract the files from the download package.
 
 2. Copy the **sdk** to the project folder.
 
@@ -315,11 +315,11 @@ To avoid the problem that the new audio router is abnormally muted when the loca
 - When playing media resources locally, Agora recommends that the local user does not switch the audio router to Bluetooth devices.
 
 - When sharing media resources, Agora recommends the following steps before switching the audio router to Bluetooth devices:
-    1. After calling the `joinChannel` method,  call the [`enumeratePlaybackDevices`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aa13c99d575d89e7ceeeb139be723b18a) method to get the `deviceId` of the Bluetooth device.
-    2. Call the [`setPlaybackDevice`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ee23eae83165a27bcbd88d80158b4f1) method and pass in the `deviceId` parameter to switch the audio router to the Bluetooth device during playback.
+    1. After calling the `joinChannel` method,  call the [`enumeratePlaybackDevices`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_audio_device_manager.html#aa13c99d575d89e7ceeeb139be723b18a) method to get the `deviceId` of the Bluetooth device.
+    2. Call the [`setPlaybackDevice`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ee23eae83165a27bcbd88d80158b4f1) method and pass in the `deviceId` parameter to switch the audio router to the Bluetooth device during playback.
 
 ## API documentation
 
-See the [API documentation](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/mediaplayer_cpp/index.html).
+See the [API documentation](https://api-ref.agora.io/en/mediaplayer-kit/windows/1.x/index.html).
 
 </PlatformWrapper>
