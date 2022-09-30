@@ -28,19 +28,29 @@ v3.7.1 was released on Sep 28, 2022.
 
 This release deprecates the previous `EnableRemoteSuperResolution` method, and adds a method with the same name to support super resolution. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b after you enable this feature.
 
-Compared to the deprecated method, the new `EnableRemoteSuperResolution` method adds a parameter mode that can be set as either of following values: 
+Compared to the deprecated method, the new `EnableRemoteSuperResolution` method adds a parameter mode that can be set as either of following values:
 
 - `SR_MODE_MANUAL(0)`: Enables super resolution for the remote user you specify.
-- `SR_MODE_AUTO`:  Enables super resolution for the remote user corresponding to the largest rendering window in the channel.
+- `SR_MODE_AUTO`: Enables super resolution for the remote user corresponding to the largest rendering window in the channel.
 
-<div class="alert note">Before using super resolution, ensure that you have integrated the relevant dynamical libraries:
-	<ul>
-		<li>Android: <code>libagora_super_resolution_extension.so</code></li>
-		<li>iOS: <code>AgoraSuperResolutionExtension.xcframework</code></li>
-		<li>macOS: <code>AgoraSuperResolutionExtension.xcframework</code></li>
-		<li>Windows: <code>libagora_super_resolution_extension.dll</code></li>
-	</ul>
-</div>	
+<div class="alert note">
+  Before using super resolution, ensure that you have integrated the relevant
+  dynamical libraries:
+  <ul>
+    <li>
+      Android: <code>libagora_super_resolution_extension.so</code>
+    </li>
+    <li>
+      iOS: <code>AgoraSuperResolutionExtension.xcframework</code>
+    </li>
+    <li>
+      macOS: <code>AgoraSuperResolutionExtension.xcframework</code>
+    </li>
+    <li>
+      Windows: <code>libagora_super_resolution_extension.dll</code>
+    </li>
+  </ul>
+</div>
 
 #### Improvements
 
@@ -57,25 +67,24 @@ This release fixed the following issues:
 - The uplink network quality reported by the `OnNetworkQualityHandler` callback was inaccurate for the user who was sharing a screen.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 - (Android, iOS) Occasional crashes occurred.
-- (Android, iOS) When the local user shared audio played by a third-party app using the screen sharing feature, remote users heard echoes.  
-- (Android) The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+. 
-- (Android) When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant. 
-- (iOS) The video received by the user appeared to change from dark to bright. 
-- (iOS) Occasionally, screen sharing ended unexpectedly. 
-- (iOS) Occasional crashes occurred when you called `PlayEffect` or `StartAudioMixing` to play 8-bit PCM-encoded audio in the WAV format. 
-- (iOS) The local audio error reason reported by the `OnLocalAudioStateChangeHandler` callback after a user denied microphone permission was inaccurate. 
-- (macOS) Occasionally, `deviceName` returned by the `EnumerateDevices` method was empty when calling `EnumerateDevices` to enumerate video capture devices in the system. 
-- (macOS) When a user started screen sharing on devices with integrated graphics, the shared screen appeared red and flickered. 
-- (macOS) Occasionally, remote users saw the shared video stutter after the local user started screen sharing. 
-- (macOS) Occasionally, the shared screen appeared flickered. 
-- (Windows) Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing. 
-- (Windows) When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green. 
-- (Windows) Occasionally, the app got stuck after a user joined a channel. 
-
+- (Android, iOS) When the local user shared audio played by a third-party app using the screen sharing feature, remote users heard echoes.
+- (Android) The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+.
+- (Android) When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant.
+- (iOS) The video received by the user appeared to change from dark to bright.
+- (iOS) Occasionally, screen sharing ended unexpectedly.
+- (iOS) Occasional crashes occurred when you called `PlayEffect` or `StartAudioMixing` to play 8-bit PCM-encoded audio in the WAV format.
+- (iOS) The local audio error reason reported by the `OnLocalAudioStateChangeHandler` callback after a user denied microphone permission was inaccurate.
+- (macOS) Occasionally, `deviceName` returned by the `EnumerateDevices` method was empty when calling `EnumerateDevices` to enumerate video capture devices in the system.
+- (macOS) When a user started screen sharing on devices with integrated graphics, the shared screen appeared red and flickered.
+- (macOS) Occasionally, remote users saw the shared video stutter after the local user started screen sharing.
+- (macOS) Occasionally, the shared screen appeared flickered.
+- (Windows) Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing.
+- (Windows) When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green.
+- (Windows) Occasionally, the app got stuck after a user joined a channel.
 
 ## v3.7.0.3
 
-v3.7.0.3 was  developed from v3.7.0.1 and released on Jun 22.
+v3.7.0.3 was developed from v3.7.0.1 and released on Jun 22.
 
 This release fixed the following issues:
 
@@ -83,18 +92,18 @@ This release fixed the following issues:
 - The uplink network quality reported by the `onNetworkQualityHandler` callback was inaccurate for the user who was sharing a screen.
 - The local user received the `OnRemoteAudioStateChangedHandler(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
 - Occasionally, it took users longer than normal to join a channel for the first time.
-- (Android, iOS) Occasional crashes occurred. 
-- (Android) The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+. 
-- (Android) When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant. 
+- (Android, iOS) Occasional crashes occurred.
+- (Android) The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+.
+- (Android) When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant.
 - (iOS) The video received by the user appeared to change from dark to bright.
-- (iOS) The local audio error reason reported by the `OnLocalAudioStateChangeHandler` callback after a user denied microphone permission was inaccurate. 
-- (iOS) Occasional crashes occurred when you called `PlayEffect` or `StartAudioMixing` to play 8-bit PCM-encoded audio in the WAV format. 
-- (macOS) When a user started screen sharing on devices with integrated graphics, the shared screen appeared red and flickered. 
-- (macOS) Occasionally, remote users saw the shared video stutter after the local user started screen sharing. 
+- (iOS) The local audio error reason reported by the `OnLocalAudioStateChangeHandler` callback after a user denied microphone permission was inaccurate.
+- (iOS) Occasional crashes occurred when you called `PlayEffect` or `StartAudioMixing` to play 8-bit PCM-encoded audio in the WAV format.
+- (macOS) When a user started screen sharing on devices with integrated graphics, the shared screen appeared red and flickered.
+- (macOS) Occasionally, remote users saw the shared video stutter after the local user started screen sharing.
 - (macOS) Occasionally, `deviceName` returned by the `EnumerateDevices` method was empty when calling `EnumerateDevices` to enumerate video capture devices in the system.
 - (Windows) Occasionally, the app got stuck after a user joined a channel.
-- (Windows) Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing. 
-- (Windows) When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green. 
+- (Windows) Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing.
+- (Windows) When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green.
 
 ## v3.7.0.1
 
@@ -131,7 +140,12 @@ In addition to the image enhancement feature, Agora adds support for more video 
 - Low-light enhancement: This feature adaptively adjusts the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video. You can use the `SetLowLightEnhanceOptions` method to enable/disable low-light enhancement and set the options of the low-light enhancement effect.
 - Color enhancement: This feature intelligently adjusts video characteristics such as saturation and contrast to enhance the video color richness and color reproduction, making the video more vivid. You can use the `SetColorEnhanceOptions` method to enable/disable color enhancement and set the options of the color enhancement effect.
 
-<div class="alert note">These video enhancement features have certain performance requirements on devices. If your device begins to overheat after you enable video enhancement, modify the video enhancement options to a less performance-consuming level or disable video enhancement.</div>
+<div class="alert note">
+  These video enhancement features have certain performance requirements on
+  devices. If your device begins to overheat after you enable video enhancement,
+  modify the video enhancement options to a less performance-consuming level or
+  disable video enhancement.
+</div>
 
 **Virtual sound card on macOS**
 
@@ -212,7 +226,12 @@ To support testing audio devices after joining a channel, this release improves 
   - `OnAudioVolumeIndicationHandler` and `OnAudioDeviceTestVolumeIndicationHandler` when you call the methods before joining a channel. Both callbacks report the same volume information. If you upgrade the SDK to v3.7.0 or later, Agora recommendeds using `OnAudioDeviceTestVolumeIndicationHandler`.
   - `OnAudioDeviceTestVolumeIndicationHandler` when you call the methods after joining a channel.
 
-<div class="alert note">Calling <code>StartAudioRecordingDeviceTest</code>, <code>StartAudioPlaybackDeviceTest</code>, or <code>StartAudioDeviceLoopbackTest</code> after joining a channel tests the audio devices that the SDK is using.</div>
+<div class="alert note">
+  Calling <code>StartAudioRecordingDeviceTest</code>,{' '}
+  <code>StartAudioPlaybackDeviceTest</code>, or{' '}
+  <code>StartAudioDeviceLoopbackTest</code> after joining a channel tests the
+  audio devices that the SDK is using.
+</div>
 
 **Audio recording**
 
@@ -230,7 +249,7 @@ This optimization is only available under the following conditions:
 - Fullscreen is shared with `StartScreenCaptureByDisplayId` and windows are not blocked with `excludeWindowList`.
   - The operating system version of the device is higher than 10.11.
   - The device model is MacBook Air 2012 and later, MacBook Pro 2012 and later, or MacBook 2015 and later.
- 
+
 For example, under these conditions, when you use a 4K screen for screen sharing, and the capture resolution is 720P, the capture frame rate can now be 30 fps.
 
 **Music file playback**
@@ -265,7 +284,8 @@ This release upgrades transmission protocols and algorithms to enhance the SDK�
 #### Fixed issues
 
 This release fixed the following issues:
-- (iOS) The app occasionally failed to rejoin a channel after a user left a channel and put the app in the background for a period of time. 
+
+- (iOS) The app occasionally failed to rejoin a channel after a user left a channel and put the app in the background for a period of time.
 - (iOS) Under certain circumstances, local users could see a blurry screen for remote users after switching back to the app from the home screen.
 - (macOS) Occasionally, remote users could not see the shared screen or saw the shared screen flash black.
 - (macOS and Windows) When using the Push method to customize the video source, the resolution of the user's screen kept changing occasionally.
@@ -273,9 +293,9 @@ This release fixed the following issues:
 - (macOS) After you opened a slideshow with the WPS application and called `StartScreenCaptureByWindowId` to enable sharing of the WPS application window, window sharing failed when you switched the slideshow from normal mode to presentation mode or vice verse.
 - (Windows) Remote users could hear the local user with echoes when the local user was in a specific reverb environment.
 - (iOS) When playing a specific audio file in the WAV format with the `StartAudioMixing` method, there was no sound after a certain period of playback.
-- (iOS and macOS) Audio stuttered under high jitter networks. 
-- (iOS ) Under poor network conditions, you could receive the `OnAudioMixingStateChangedHandler` callback only after a three-second delay after a successful call to `StartAudioMixing`. 
-- (iOS) When adding a watermark with the `AddVideoWatermark` method, under certain circumstances, the watermark color was different from the original color. 
+- (iOS and macOS) Audio stuttered under high jitter networks.
+- (iOS ) Under poor network conditions, you could receive the `OnAudioMixingStateChangedHandler` callback only after a three-second delay after a successful call to `StartAudioMixing`.
+- (iOS) When adding a watermark with the `AddVideoWatermark` method, under certain circumstances, the watermark color was different from the original color.
 - (iOS) Occasional crashes.
 
 #### API changes
@@ -299,7 +319,7 @@ This release fixed the following issues:
 - `SetCameraTorchOn`
 - `SetCameraAutoFocusFaceModeEnabled`
 - `OnAudioDeviceTestVolumeIndicationHandler`
-- `OnLocalVoicePitchInHzHandler` 
+- `OnLocalVoicePitchInHzHandler`
 - `OnClientRoleChangeFailedHandler`
 - `OnCameraFocusAreaChangedHandler`
 - `OnCameraExposureAreaChangedHandler`
@@ -313,8 +333,8 @@ This release fixed the following issues:
 
 **Modified**
 
-- The names of several fields reported by the `OnScreenCaptureInfoUpdatedHandler` callback. 
-- Timing restrictions for the `StartAudioRecordingDeviceTest`, `StartAudioPlaybackDeviceTest`, and `StartAudioDeviceLoopbackTest` method calls. 
+- The names of several fields reported by the `OnScreenCaptureInfoUpdatedHandler` callback.
+- Timing restrictions for the `StartAudioRecordingDeviceTest`, `StartAudioPlaybackDeviceTest`, and `StartAudioDeviceLoopbackTest` method calls.
 - The behavior of `NONE_PROXY(0)` in `CLOUD_PROXY_TYPE`.
 
 ## v3.6.1.1
@@ -328,9 +348,9 @@ v3.6.1.1 was released on March 8, 2022.
 To more accurately report the reason for the failure to join a channel, as of this release, the SDK returns the error code `-17(ERR_JOIN_CHANNEL_REJECTED)` instead of `-5(ERR_REFUSED)` in the following situations:
 
 - When a user who has already joined an `IRtcEngine` channel calls the joining channel method of the `IRtcEngine` class with a valid channel name.
-- When a user who has already joined an `AgoraChannel` channel calls the joining channel method of this `AgoraChannel` object. 
+- When a user who has already joined an `AgoraChannel` channel calls the joining channel method of this `AgoraChannel` object.
 
-**2. Media Push** 
+**2. Media Push**
 
 To reduce the difficulty of integrating Media Push, this release optimizes the API design of Media Push and improves the handling of network issues within Media Push clients and servers. You can experience the optimized Media Push functionality with the following new methods:
 
@@ -339,7 +359,17 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `UpdateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `SetLiveTranscoding`.
 - `StopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `RemovePublishStreamUrl`.
 
-<div class="alert info"> This release deprecates three old methods for CDN live streaming: <code>AddPublishStreamUrl</code>, <code>SetLiveTranscoding</code>, and <code>RemovePublishStreamUrl</code>. Agora recommends that you use the new methods for CDN live streaming and update your code logic by referring to <a href="../advanced-features/media-push">Media Push</a>. </div>
+<div class="alert info">
+  {' '}
+  This release deprecates three old methods for CDN live streaming: <code>
+    AddPublishStreamUrl
+  </code>, <code>SetLiveTranscoding</code>, and <code>
+    RemovePublishStreamUrl
+  </code>. Agora recommends that you use the new methods for CDN live streaming and
+  update your code logic by referring to <a href="../advanced-features/media-push">
+    Media Push
+  </a>.{' '}
+</div>
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -359,7 +389,10 @@ Also, as of this release, whether you use the new or old methods for Media Push,
     - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`: The feature is not supported.
     - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`: Reserved.
 
-<div class="alert note">To ensure the quality of the CDN live streaming, make sure to handle the business logic according to the state code, error code, and event code.</div>
+<div class="alert note">
+  To ensure the quality of the CDN live streaming, make sure to handle the
+  business logic according to the state code, error code, and event code.
+</div>
 
 - Adding multiple watermarks and background images during streaming with transcoding: This is achieved by adding `watermarkCount` and `backgroundImageCount` to the `LiveTranscoding` structure.
 
@@ -369,7 +402,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
 
 **3. Following the system default audio device** (Windows, macOS)
 
-To help developers more flexibly manage audio device switching, this release adds the following method: 
+To help developers more flexibly manage audio device switching, this release adds the following method:
 
 - `GetAudioPlaybackDefaultDevice`: Gets the default audio playback device of the system.
 - `GetDefaultAudioRecordingDevice`：Gets the default audio capturing device of the system.
@@ -392,11 +425,11 @@ To ensure connectivity with Bluetooth headsets, as of this release, when a user 
 
 #### New features
 
-**1. Background blurring** 
+**1. Background blurring**
 
-To enrich the virtual background effects, this release adds support for setting background blur when a user enables the virtual background function by calling `EnableVirtualBackground`. You need to set the type of the custom background image as `BACKGROUND_BLUR` and set `blur_degree` according to the degree of blurring that the user desires. 
+To enrich the virtual background effects, this release adds support for setting background blur when a user enables the virtual background function by calling `EnableVirtualBackground`. You need to set the type of the custom background image as `BACKGROUND_BLUR` and set `blur_degree` according to the degree of blurring that the user desires.
 
-**2. Pausing and resuming the media stream relay across channels** 
+**2. Pausing and resuming the media stream relay across channels**
 
 In order to enable the host to quickly pause or resume a cross-channel media stream relay, this release adds the following methods and event code:
 
@@ -409,26 +442,26 @@ In order to enable the host to quickly pause or resume a cross-channel media str
 
 After a successful method call of `PauseAllChannelMediaRelay` or `ResumeAllChannelMediaRelay`, the SDK triggers the `OnChannelMediaRelayEventHandler` callback to report whether the media stream relay is successfully paused or resumed.
 
-**3. Pushing the external audio frame to a specified position** 
+**3. Pushing the external audio frame to a specified position**
 
-To meet the different processing requirements of external audio frames in different scenarios, this release deprecates `PushAudioFrame(audioFrame)` and adds `PushAudioFrame` with `sourcePos` instead. You can push the external audio frame to one of three positions: after audio capture, before audio encoding, or before local playback. For example, in the KTV scenario, you can push the singing voice to after audio capture, and push the accompaniment to before audio encoding, so that the singing voice is processed by the SDK audio module, but the accompaniment is not affected by the SDK audio module. unity 
+To meet the different processing requirements of external audio frames in different scenarios, this release deprecates `PushAudioFrame(audioFrame)` and adds `PushAudioFrame` with `sourcePos` instead. You can push the external audio frame to one of three positions: after audio capture, before audio encoding, or before local playback. For example, in the KTV scenario, you can push the singing voice to after audio capture, and push the accompaniment to before audio encoding, so that the singing voice is processed by the SDK audio module, but the accompaniment is not affected by the SDK audio module. unity
 
 This release also adds `SetExternalAudioSourceVolume`, which enables you to set the volume of external audio frames at a specified position.
 
-**4. Advanced settings of the music file** 
+**4. Advanced settings of the music file**
 
 To set the playback speed, audio track, and channel mode of a music file, this release adds the following methods:
 
 - `SetAudioMixingPlaybackSpeed`: Sets the playback speed of the current music file. Agora recommends a value range of [50,400], where 100 represents the original speed.
 - `GetAudioTrackCount`: Gets the number of audio tracks of the current music file.
-- `SelectAudioTrack`: Specifies the playback audio track of the current music file. The range of index is  [0, `GetAudioTrackCount()`). 
+- `SelectAudioTrack`: Specifies the playback audio track of the current music file. The range of index is [0, `GetAudioTrackCount()`).
 - `SetAudioMixingDualMonoMode`: Sets the channel mode of the current music file to original mode, left channel mode, right channel mode, or mixed channel mode.
 
-**5. Getting audio file information** 
+**5. Getting audio file information**
 
-To get the information of any audio file, this release deprecates `GetAudioMixingDuration` and adds `GetAudioFileInfo` instead. After joining a channel, you can call `GetAudioFileInfo` and get information such as duration for the specified audio file in `OnRequestAudioFileInfoHandler`. 
+To get the information of any audio file, this release deprecates `GetAudioMixingDuration` and adds `GetAudioFileInfo` instead. After joining a channel, you can call `GetAudioFileInfo` and get information such as duration for the specified audio file in `OnRequestAudioFileInfoHandler`.
 
-**6. Audio and video recording on the client** 
+**6. Audio and video recording on the client**
 
 To enable users to record local audio and video on their client, this release adds the `MediaRecorder` class, which supports recording the following content:
 
@@ -451,23 +484,32 @@ After successfully initializing the `IRtcEngine` object, you can call the follow
 
 - `OnRecorderInfoUpdatedHandler`: Occurs when the recording information is updated.
 
-<div class="alert note"> In the <code>COMMUNICATION</code> channel profile, this function is incompatible with versions of the SDK earlier than v3.0.1.</div>
+<div class="alert note">
+  {' '}
+  In the <code>COMMUNICATION</code> channel profile, this function is incompatible
+  with versions of the SDK earlier than v3.0.1.
+</div>
 
 **7. Video snapshot**
 
 This release adds the `TakeSnapshot` method for taking a snapshot of a video stream from the specified user, generating a JPG image, and saving it to the specified path. After a successful method call, the SDK triggers the `OnSnapshotTakenHandler` callback to report whether the snapshot is successfully taken as well as the details of the snapshot taken.
 
-**8. Testing audio and video call loop** 
+**8. Testing audio and video call loop**
 
-To check whether the local audio device, video device, and network conditions can guarantee the proper sending and receiving of audio and video streams, this release adds the `StartEchoTest` [3/3] method. You can call this method before joining a channel to test whether the loop of a user's audio and video devices and network conditions are working properly. 
+To check whether the local audio device, video device, and network conditions can guarantee the proper sending and receiving of audio and video streams, this release adds the `StartEchoTest` [3/3] method. You can call this method before joining a channel to test whether the loop of a user's audio and video devices and network conditions are working properly.
 
 Compared to `StartEchoTest` [2/3], `StartEchoTest` [3/3] can test video devices and secure the test, but cannot support setting the time interval for reporting test results.
 
 **9. Super resolution (beta)** (Android, iOS)
 
-To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. You can call `EnableRemoteSuperResolution` to enable super resolution. The SDK triggers the `OnUserSuperResolutionEnabledHandler` callback to report whether this feature has been successfully enabled. If it is not enabled successfully, use the `reason` code to troubleshoot issues. 
+To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. You can call `EnableRemoteSuperResolution` to enable super resolution. The SDK triggers the `OnUserSuperResolutionEnabledHandler` callback to report whether this feature has been successfully enabled. If it is not enabled successfully, use the `reason` code to troubleshoot issues.
 
-<div class="alert note">Before using super resolution, ensure that you have integrated the relevant dynamical library and that the device performance, number of remote users, and original resolution of remote user's video meet the requirements. For details, see the <a href="">EnableRemoteSuperResolution</a> documentation. </div>
+<div class="alert note">
+  Before using super resolution, ensure that you have integrated the relevant
+  dynamical library and that the device performance, number of remote users, and
+  original resolution of remote user's video meet the requirements. For details,
+  see the <a href="">EnableRemoteSuperResolution</a> documentation.{' '}
+</div>
 
 **10. Enabling device flash** (Android, iOS)
 
@@ -492,17 +534,19 @@ This release adds identification and connection quality testing for 5G mobile ne
 - Adds `NETWORK_TYPE_MOBILE_5G(6)` to `NETWORK_TYPE`. When the local network changes to 5G, the SDK triggers the `OnNetworkTypeChangedHandler` callback to report this network connection type.
 - Supports calling `EnableLastmileTest` or `StartLastmileProbeTest` to test the connection quality of the 5G mobile network.
 
-**3. Screen sharing** 
+**3. Screen sharing**
 
 - In screen sharing scenarios, some users cannot use the `excludeWindowList` attribute to block the specified window in a shared screen because their hardware does not support it. This release adds the `OnScreenCaptureInfoUpdatedHandler` callback, which is triggered when the window blocking fails and reports the error code of the failure (`errCode`) and the user's graphics card type (`cardType`). （Windows）
 
-- This release adds the `GetScreenCaptureManager`  method for you to get a list of all the shareable screens and windows. Users can visually select a particular screen or window to share. (Windows, macOS)
-
+- This release adds the `GetScreenCaptureManager` method for you to get a list of all the shareable screens and windows. Users can visually select a particular screen or window to share. (Windows, macOS)
 
 - Previously, you needed to call `StartScreenCaptureByScreenRect` to share a screen by the `Rectangle` coordinates of the display on the virtual screen. As of this v3.6.1.1, you can also call `StartScreenCaptureByDisplayId` to start screen sharing by passing in a display ID. (Windows, macOS)
 
-
-<div class="alert note">If the user device is connected to another display, to avoid screen sharing issues, use <code>StartScreenCaptureByDisplayId</code> to start sharing instead of using <code>StartScreenCaptureByScreenRect</code>.</div>
+<div class="alert note">
+  If the user device is connected to another display, to avoid screen sharing
+  issues, use <code>StartScreenCaptureByDisplayId</code> to start sharing
+  instead of using <code>StartScreenCaptureByScreenRect</code>.
+</div>
 
 **4. Local video errors** (Windows, macOS)
 
@@ -512,19 +556,27 @@ To facilitate troubleshooting, this release adds the following error codes into 
 - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED(13)`: The window being shared is overlapped by another window, so the overlapped area is blacked out by the SDK during window sharing.
 - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED(20)`: The SDK does not support sharing this type of window.
 
-**5. Performance improvements** 
+**5. Performance improvements**
 
 This release slightly reduces CPU usage in video scenarios by optimizing the FEC (Forward Error Correction) codec.
 
-**6. Experience improvements** 
+**6. Experience improvements**
 
 This release improves video sharpness and smoothness under poor network conditions by optimizing the congestion control algorithm.
 
-**7. Image enhancement** 
+**7. Image enhancement**
 
 This release updates the Agora image enhancement algorithm to improve the image enhancement effects that you can enable by calling `SetBeautyEffectOptions`. To balance these image enhancement effects, this release changes the default value of `lighteningLevel` from 0.7 to 0.6 and adds `sharpnessLevel` to the `BeautyOptions` structure to support setting the sharpness level.
 
-<div class="alert note">As of this release, ensure that you have integrated the <code>libagora_video_process_extension.dll</code> dynamic library before calling <code>SetBeautyEffectOptions</code>; otherwise, you cannot experience the optimized image enhancement effects and sharpness adjustment brought out by the updated Agora image enhancement algorithm, but only the image enhancement effects brought out by the older Agora image enhancement algorithm.</div>
+<div class="alert note">
+  As of this release, ensure that you have integrated the{' '}
+  <code>libagora_video_process_extension.dll</code> dynamic library before
+  calling <code>SetBeautyEffectOptions</code>; otherwise, you cannot experience
+  the optimized image enhancement effects and sharpness adjustment brought out
+  by the updated Agora image enhancement algorithm, but only the image
+  enhancement effects brought out by the older Agora image enhancement
+  algorithm.
+</div>
 
 **8. Adapting OpenSL** (Android)
 
@@ -540,7 +592,7 @@ This release also provides the following improvements:
 
 - In scenarios with high CPU usage, the audio experience is improved when the sound card is used for audio capture.
 
-- After enabling deep-learning noise reduction, the audio experience is improved when using some Bluetooth headsets. 
+- After enabling deep-learning noise reduction, the audio experience is improved when using some Bluetooth headsets.
 
 - The window sharing feature is adapted to share more types of application windows. (Windows)
 
@@ -560,14 +612,14 @@ This release also provides the following improvements:
   - Volume type: This release regulates the volume type. When a user uses a Bluetooth headset, the SDK uses the following volume type:
 
     | Audio scenario           | User in the communication profile/Host in the interactive live streaming profile | Audience in the interactive live streaming profile |
-    | :----------------------- | :----------------------------------------------------------- | :------------------------------------------------- |
-    | `DEFAULT`                | In-call volume                                               | Media volume                                       |
-    | `CHATROOM_GAMING`        | In-call volume                                               | In-call volume                                     |
-    | `GAME_STREAMING`         | In-call volume                                               | Media volume                                       |
-    | `CHATROOM_ENTERTAINMENT` | In-call volume                                               | In-call volume                                     |
-    | `EDUCATION`              | In-call volume                                               | Media volume                                       |
-    | `SHOWROOM`               | In-call volume                                               | Media volume                                       |
-    | `MEETING`                | In-call volume                                               | Media volume                                       |
+    | :----------------------- | :------------------------------------------------------------------------------- | :------------------------------------------------- |
+    | `DEFAULT`                | In-call volume                                                                   | Media volume                                       |
+    | `CHATROOM_GAMING`        | In-call volume                                                                   | In-call volume                                     |
+    | `GAME_STREAMING`         | In-call volume                                                                   | Media volume                                       |
+    | `CHATROOM_ENTERTAINMENT` | In-call volume                                                                   | In-call volume                                     |
+    | `EDUCATION`              | In-call volume                                                                   | Media volume                                       |
+    | `SHOWROOM`               | In-call volume                                                                   | Media volume                                       |
+    | `MEETING`                | In-call volume                                                                   | Media volume                                       |
 
 #### Fixed issues
 
@@ -575,24 +627,24 @@ This release fixed the following issues:
 
 - The CDN live streaming failed because of the abnormal resolution of the RTMP streaming URL with a port number.
 
-- When you used raw video data, the SDK incorrectly triggered the `OnRenderVideoFrameHandler` callbacks when capturing a local video frame to be rendered. 
-- Occasional crashes occurred when you used raw video data. 
-- After you successfully registered the raw video data observer, the app implemented time-consuming tasks in the `OnCaptureVideoFrameHandler` callback and caused video freezes for remote users. 
-- In the `GAME_STREAMING` scenario, occasional echo or noise that was caused by inaccurate music detection occurred. 
+- When you used raw video data, the SDK incorrectly triggered the `OnRenderVideoFrameHandler` callbacks when capturing a local video frame to be rendered.
+- Occasional crashes occurred when you used raw video data.
+- After you successfully registered the raw video data observer, the app implemented time-consuming tasks in the `OnCaptureVideoFrameHandler` callback and caused video freezes for remote users.
+- In the `GAME_STREAMING` scenario, occasional echo or noise that was caused by inaccurate music detection occurred.
 - The local user occasionally saw the remote user with a short black screen after the remote user called `EnableLocalVideo(false)`, `EnableLocalVideo(true)` to disable and enable local video capture or called `MuteLocalVideoStream(true)`, `MuteLocalVideoStream(false)`to stop and resume sending local video in sequence within a few seconds.
-- When the local user called `MuteAllRemoteAudioStreams` and received `OnRemoteAudioStateChangedHandler(REMOTE_AUDIO_REASON_LOCAL_MUTED)`, `OnRemoteAudioStateChangedHandler(REMOTE_AUDIO_REASON_REMOTE_MUTED)` was incorrectly received after 15 seconds. 
-- As of v3.4.5, the return value was inaccurate when you called `JoinChannel` multiple times in a row. 
-- When the host used a specific low-end device under certain circumstances, the audience watching the host's video occasionally experience lag. 
-- Under certain circumstances, when the sender used certain Xiaomi or Redmi devices, the receiver occasionally saw a mosaic square on the received video. 
-- When the sender used certain Android emulators, the local video or the video received by the receiver was abnormal. 
-- The method call of `SetExternalAudioSource` before joining the channel did not take effect. 
+- When the local user called `MuteAllRemoteAudioStreams` and received `OnRemoteAudioStateChangedHandler(REMOTE_AUDIO_REASON_LOCAL_MUTED)`, `OnRemoteAudioStateChangedHandler(REMOTE_AUDIO_REASON_REMOTE_MUTED)` was incorrectly received after 15 seconds.
+- As of v3.4.5, the return value was inaccurate when you called `JoinChannel` multiple times in a row.
+- When the host used a specific low-end device under certain circumstances, the audience watching the host's video occasionally experience lag.
+- Under certain circumstances, when the sender used certain Xiaomi or Redmi devices, the receiver occasionally saw a mosaic square on the received video.
+- When the sender used certain Android emulators, the local video or the video received by the receiver was abnormal.
+- The method call of `SetExternalAudioSource` before joining the channel did not take effect.
 - Echoes could occur when you used a fiber optic speaker.
-- The SDK additionally triggered the `OnLocalAudioStateChangedHandler` callback to report `LOCAL_AUDIO_STREAM_STATE_CAPTURING(1)` when you called `EnableLocalAudio(false)` after joining a channel. 
-- The video bitrate failed to climb when a user joined a channel in poor network conditions with high packet loss. 
-- The video sharpness and smoothness degraded significantly due to a cliff-like drop in video bitrate under certain poor network conditions. 
-- Remote users heard slightly unsynchronized voice and music when a user called `StartAudioMixing` on some Android devices. 
+- The SDK additionally triggered the `OnLocalAudioStateChangedHandler` callback to report `LOCAL_AUDIO_STREAM_STATE_CAPTURING(1)` when you called `EnableLocalAudio(false)` after joining a channel.
+- The video bitrate failed to climb when a user joined a channel in poor network conditions with high packet loss.
+- The video sharpness and smoothness degraded significantly due to a cliff-like drop in video bitrate under certain poor network conditions.
+- Remote users heard slightly unsynchronized voice and music when a user called `StartAudioMixing` on some Android devices.
 - After a local user called `EnableDualStreamMode(false)`, a dual stream (high-quality and low-quality video stream) was nevertheless sent when the user switched from custom video capture using `SetVideoSource`with the custom video source in the `SCREEN` type to SDK capture.
-- Occasionally, the video received by remote users froze after you enabled media stream encryption. 
+- Occasionally, the video received by remote users froze after you enabled media stream encryption.
 - When using the v3.5.0.3 SDK, the local user could not be heard by remote users when the local user used custom audio capture by the Push method. (Windows, Android)
 - Window sharing stopped after a user shared a QQ browser window and switched the browser tab. (Windows)
 - The SDK repeatedly triggered the `OnAudioDeviceStateChangedHandler` callback when the user connected or disconnected an audio device. (Windows)
@@ -642,9 +694,9 @@ This release fixed the following issues:
 - Memory leaked when the value of `captureMouseCursor` was not `false` for screen sharing. (macOS)
 - `UpdateScreenCaptureRegion` failed after a user shared a full screen window. (macOS)
 - On some device models, when the audio was played through a speaker, echoes occasionally occurred if the speaker volume was set to the maximum value. (macOS)
-- Echoes could occur when a user joined a channel for the first time.  (macOS)
+- Echoes could occur when a user joined a channel for the first time. (macOS)
 - Occasionally, remote users saw a short black screen of the shared window during the local user's window sharing. (macOS)
-- Occasionally, Web clients could not hear Native clients.  (macOS)
+- Occasionally, Web clients could not hear Native clients. (macOS)
 
 #### API changes
 
@@ -668,7 +720,7 @@ This release fixed the following issues:
 - [`GetAudioFileInfo`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a6f9438df3f15a0052cc282d42681a655)
 - [`OnRequestAudioFileInfoHandler`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#a0090cc1f5259b022105d3bb3cea84337)
 - `LOCAL_AUDIO_STREAM_ERROR_RECORD_INVALID_ID(9)` and `LOCAL_AUDIO_STREAM_ERROR_PLAYOUT_INVALID_ID(10)` in [`LOCAL_AUDIO_STREAM_ERROR`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#a635752ff6077fa96e730f513668a0c04)
--  `NETWORK_TYPE_MOBILE_5G(6)` in [`NETWORK_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#ad2817b616c08cb15a3505caa75e413b1) 
+- `NETWORK_TYPE_MOBILE_5G(6)` in [`NETWORK_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#ad2817b616c08cb15a3505caa75e413b1)
 - [`StartEchoTest`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a3eed33e686179e037e3cd43c9f597667) [3/3]
 - [`StartScreenCaptureByDisplayId`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9fa9dd48fc3ecf616d39f6fdf00000c2)
 - [`GetScreenCaptureManager`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#aacfde52a4f48e9634083ebcc9560e416)
@@ -688,7 +740,7 @@ This release fixed the following issues:
 - [`StartRtmpStreamWithTranscoding`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a34fbe006d84d0542e652a49492711900)
 - [`UpdateRtmpTranscoding`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2454acc0080f36a32c98a41d3c7f08ae)
 - [`StopRtmpStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a4a48fd2558f15a25e0845e57f08dc7f3)
-- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in  [`RTMP_STREAM_PUBLISH_STATE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#a2132250fb5d8c8e0f3e52bf15449f2ff) 
+- `RTMP_STREAM_PUBLISH_STATE_DISCONNECTING(5)` in [`RTMP_STREAM_PUBLISH_STATE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#a2132250fb5d8c8e0f3e52bf15449f2ff)
 - The following enumerators in [`RTMP_STREAM_PUBLISH_ERROR_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#acf64f163b1768d834ce6b8cbabcf235d):
   - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`
   - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`
@@ -697,14 +749,14 @@ This release fixed the following issues:
 - The following enumerators in[`RTMP_STREAMING_EVENT`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#a1161b5f270933ebd660b9c29848161aa):
   - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`
   - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`
-- `watermarkCount` and `backgroundImageCount` in [`LiveTranscoding`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/structagora__gaming__rtc_1_1_live_transcoding.html) 
-- `zOrder` and `alpha` in [`RtcImage`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/structagora__gaming__rtc_1_1_rtc_image.html) 
-- `AUDIO_CODEC_PROFILE_HE_AAC_V2(2)` in  [`AUDIO_CODEC_PROFILE_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#ac158d8109203b32bfe60cbadf37dfe80) 
+- `watermarkCount` and `backgroundImageCount` in [`LiveTranscoding`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/structagora__gaming__rtc_1_1_live_transcoding.html)
+- `zOrder` and `alpha` in [`RtcImage`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/structagora__gaming__rtc_1_1_rtc_image.html)
+- `AUDIO_CODEC_PROFILE_HE_AAC_V2(2)` in [`AUDIO_CODEC_PROFILE_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/namespaceagora__gaming__rtc.html#ac158d8109203b32bfe60cbadf37dfe80)
 - [`GetAudioRecordingDefaultDevice`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#a817e38006202b733f8608765d7353a7d)
 - [`GetAudioPlaybackDefaultDevice`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#ad91f0d3230c10042498bfecdbbe9a7c5)
 - [`FollowSystemPlaybackDevice`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_audio_playback_device_manager.html#a2884fba3f5506bfc6658c431b3a75111)
 - [`FollowSystemRecordingDevice`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_audio_recording_device_manager.html#a52fe58871ce03f0893e19173fa77baaa)
--  `sharpnessLevel` in [`BeautyOptions`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/structagora__gaming__rtc_1_1_beauty_options.html)
+- `sharpnessLevel` in [`BeautyOptions`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/structagora__gaming__rtc_1_1_beauty_options.html)
 
 **Modified**
 
@@ -715,7 +767,6 @@ This release fixed the following issues:
 
 - `PushAudioFrame`
 - `GetAudioMixingDuration`
-
 
 ## v3.5.0.3
 
@@ -732,7 +783,13 @@ On Android, to improve user experience, this release improves the following SDK 
   - With versions earlier than v3.5.0.3, the SDK cannot set the audio route as the earpiece.
   - With v3.5.0.3 and later versions, the SDK can set the audio route as the earpiece. At the same time, the volume type becomes in-call volume. If you switch the audio route to the speakerphone, the SDK sets the volume type back to the media volume.
 
-  <div class="alert info">To learn about the scenarios where the SDK uses the media volume, see <a href="https://docs.agora.io/en/help/integration-issues/system_volume">What is the difference between the in-call volume and the media volume</a>.</div>
+  <div class="alert info">
+    To learn about the scenarios where the SDK uses the media volume, see{' '}
+    <a href="https://docs.agora.io/en/help/integration-issues/system_volume">
+      What is the difference between the in-call volume and the media volume
+    </a>
+    .
+  </div>
 
 - If multiple external audio devices are connected, when the user removes the current playback device, the audio route is affected as follows:
   - With versions earlier than v3.5.0.3, the SDK does not play audio through any audio route, which causes a no-audio issue.
@@ -747,7 +804,7 @@ The following improvements have been made to the quality of captured and receive
 - Enhance the video contrast of captured and received video by adapting the [color range](https://en.wikipedia.org/wiki/YCbCr) to moderate the video whiteness.
 - On Windows, Android, and iOS, enhance the color richness of captured and received video by adapting the [color space](https://en.wikipedia.org/wiki/Color_space) to further restore video colors.
 - On iOS, automatically enable the best video-capture strategy to optimize the quality of captured video (including resolution, frame rate, and color range). This improvement only applies to certain video with a capture resolution no higher than 1080P.
-- On iOS, enable camera autofocus by default, and dynamically adjust the capture behavior to moderate overexposure. 
+- On iOS, enable camera autofocus by default, and dynamically adjust the capture behavior to moderate overexposure.
 
 **2. Virtual background (beta)**
 
@@ -755,7 +812,16 @@ The following improvements have been made to the quality of captured and receive
 
 - On Android and iOS, this release adds the `EnableVirtualBackground` method, with which you can enable and set a virtual background for users as either a solid color or an image in PNG or JPG format. You can use the `OnVirtualBackgroundEnabledHandler` callback to learn whether the virtual background is successfully enabled or the reason for an error.
 
-  <div class="alert info">Before you use virtual backgrounds, ensure that the relevant dynamic library is integrated and that the device performance and user scenarios meet the requirements. See <a href="https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392"> EnableVirtualBackground documentation </a>.</div>
+  <div class="alert info">
+    Before you use virtual backgrounds, ensure that the relevant dynamic library
+    is integrated and that the device performance and user scenarios meet the
+    requirements. See{' '}
+    <a href="https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392">
+      {' '}
+      EnableVirtualBackground documentation{' '}
+    </a>
+    .
+  </div>
 
 **3. Additional improvements**
 
@@ -772,14 +838,14 @@ This release fixed the following issues：
 - When the local network quality was poor, the downlink network quality rating (`rxQuality`) of remote users reported by the SDK was not accurate.
 - After calling `MuteLocaAudioStream(true)` to stop publishing a local audio stream, the local user could hear remote users when the local user joined a channel for the first time. After leaving the channel and joining another channel, occasionally the local user could not hear remote users.
 - On Windows, the received remote audio and video were occassionally out of sync when a user used the Push method to customize the video source.
-- On Android, occasional failure to update the transcoding layout in Media Push under certain circumstances. 
+- On Android, occasional failure to update the transcoding layout in Media Push under certain circumstances.
 - Occasional crashes on iOS.
 - On iOS, in the meeting scenario, after a remote user enabled local audio capturing in the channel, the local user occasionally heard an echo of the remote user’s audio.
 - On iOS, when `ORIENTATION_MODE` was set as `ORIENTATION_MODE_FIXED_PORTRAIT`, the width and height of the video resolution was reversed, which caused the human face in video to be scaled up.
 - On macOS, in some audio scenarios, if a user disabled the speakerphone and then joined a channel, the speakerphone was automatically enabled.
 - On macOS, after calling `RegisterAudioRawDataObserver` to register the original audio data callback, and calling `EnableLoopbackRecording` to start the sound card capturing, noises occurred when a user played a local audio file.
 - On iOS and macOS, the value of `memoryTotalUsageRatio` reported by the `ChannelOnRtcStatsHandler` callback was not accurate.
-- On Windows, Android, and iOS, after a remote user called `EnableLoopbackRecording`, occasionally the local user heard an echo of their own audio. 
+- On Windows, Android, and iOS, after a remote user called `EnableLoopbackRecording`, occasionally the local user heard an echo of their own audio.
 
 #### API changes
 
@@ -792,7 +858,7 @@ This release fixed the following issues：
 
 v3.4.6 was released on July 23, 2021.
 
-#### Improvements 
+#### Improvements
 
 On Android and iOS, to improve the accuracy of face detection results, as of this release, the SDK triggers the `OnFacePositionChangedHandler` callback immediately after detecting the disappearance of the human face.
 
@@ -800,17 +866,17 @@ On Android and iOS, to improve the accuracy of face detection results, as of thi
 
 This release fixed the following issues:
 
-- On iOS, occasional crash during SDK initialization under certain circumstances. 
-- On iOS, when `StartAudioMixing` was called and a percent-encoding URL was passed in this method, the SDK failed to play the corresponding online audio file. 
-- On macOS, unable to listen to camera hot swapping. 
-- On macOS, After connecting the UltraStudio Recorder 3G recording device to the app, a user could not record audio through the UltraStudio Recorder 3G. 
-- Failed to run app on Xcode 12 via My Mac (Designed for iPad) on M1 Mac. 
-- On Android, failed to enable the camera on certain Android 4.4 TV models. 
-- On Android, low-volume issues occurred when the user used Type-C headphones. 
+- On iOS, occasional crash during SDK initialization under certain circumstances.
+- On iOS, when `StartAudioMixing` was called and a percent-encoding URL was passed in this method, the SDK failed to play the corresponding online audio file.
+- On macOS, unable to listen to camera hot swapping.
+- On macOS, After connecting the UltraStudio Recorder 3G recording device to the app, a user could not record audio through the UltraStudio Recorder 3G.
+- Failed to run app on Xcode 12 via My Mac (Designed for iPad) on M1 Mac.
+- On Android, failed to enable the camera on certain Android 4.4 TV models.
+- On Android, low-volume issues occurred when the user used Type-C headphones.
 
 ## v3.4.5
 
-v3.4.5 was released on July 5, 2021. 
+v3.4.5 was released on July 5, 2021.
 
 #### Compatibility changes
 
@@ -825,7 +891,11 @@ This release also changes the default encryption mode from `AES_128_XTS` to `AES
 
 See [Media Stream Encryption](../advanced-features/channel-encryption).
 
-<div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
+<div class="alert note">
+  Once you enable the built-in encryption, all users in the same channel must
+  use the same encryption mode and key, including the server-side users such as
+  the Agora recording service.
+</div>
 
 **2. Audio stream publishing behavior changes**
 
@@ -913,15 +983,13 @@ This release fixed the following issues:
 
 - [`EnableVirtualBackground`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.4.5/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392)
 - [`OnVirtualBackgroundSourceEnabledHandler`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.4.5/namespaceagora__gaming__rtc.html#a2b90fcf68a2901aa1ba7184e6cac1d53)
-- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#adf0b94807c88344092613487b0dfa0c9) 
-- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#a1161b5f270933ebd660b9c29848161aa) 
-- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html#a94f249e19d1de6e0a6ac2348ace088fb) 
--  [`encryptionKdfSalt`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.4.5/structagora__gaming__rtc_1_1_encryption_config.html#ae88de9e9ef42b206d9de307d2f4bc47a) in [`EncryptionConfig`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_encryption_config.html) 
-- [`MuteLocalAudioStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a6260eac33b6624824872a7140a229ef3) and  [`MuteLocalVideoStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a80cd4eaa589f66059912eee08ed8b20a) in `IRtcEngine`
-- [`publishLocalAudio`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#ae7cf13e792f38e45ed5a1a35f8c948c7) and [`publishLocalVideo`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#a4daaa2d2546779e80784f2bfc3728825) in [`ChannelMediaOptions`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html) 
+- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#adf0b94807c88344092613487b0dfa0c9)
+- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#a1161b5f270933ebd660b9c29848161aa)
+- `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html#a94f249e19d1de6e0a6ac2348ace088fb)
+- [`encryptionKdfSalt`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.4.5/structagora__gaming__rtc_1_1_encryption_config.html#ae88de9e9ef42b206d9de307d2f4bc47a) in [`EncryptionConfig`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_encryption_config.html)
+- [`MuteLocalAudioStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a6260eac33b6624824872a7140a229ef3) and [`MuteLocalVideoStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a80cd4eaa589f66059912eee08ed8b20a) in `IRtcEngine`
+- [`publishLocalAudio`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#ae7cf13e792f38e45ed5a1a35f8c948c7) and [`publishLocalVideo`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#a4daaa2d2546779e80784f2bfc3728825) in [`ChannelMediaOptions`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html)
 - `MEDIA_DEVICE_STATE_IDLE (0)` in [`MEDIA_DEVICE_STATE_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#ad862a26da27e398f045eb4a95bcfa530)
-
-
 
 **Modified**
 
@@ -1026,7 +1094,7 @@ To help users better understand the cause of local video or audio errors, this r
 To meet the requirements of Google Play Store, this release supports accessing a local file through URIs. When you call `StartAudioMixing`, `GetAudioMixingDuration`, `PreloadEffect`, `PlayEffect`, `GetEffectDuration` or `AddVideoWatermark` and need to access a local file, Agora recommends the following steps:
 
 1. Use [Storage Access Framework](https://developer.android.com/guide/topics/providers/document-provider) to get the URI of the local file.
-2. Call [`Uri.toString`](https://developer.android.com/reference/android/net/Uri#toString()) to convert the URI to a string.
+2. Call [`Uri.toString`](<https://developer.android.com/reference/android/net/Uri#toString()>) to convert the URI to a string.
 3. Pass the string in the `filePath` or `watermarkUrl` parameter.
 
 #### Fixed issues
@@ -1084,10 +1152,10 @@ This release adds the following libraries:
 
 | Target platform | Agora basic calculation library | Deep-learning noise reduction library (Optional) |
 | :-------------- | :------------------------------ | :----------------------------------------------- |
-| Android         | `libagora-core.so`                | `libagora_ai_denoise_extension.so`               |
-| iOS             | `AgoraCore.framework`             | `AgoraAIDenoiseExtension.framework`              |
-| macOS           | `AgoraCore.framework`             | `AgoraAIDenoiseExtension.framework`              |
-| Windows         | `libagora-core.dll`               | `libagora_ai_denoise_extension.dll`              |
+| Android         | `libagora-core.so`              | `libagora_ai_denoise_extension.so`               |
+| iOS             | `AgoraCore.framework`           | `AgoraAIDenoiseExtension.framework`              |
+| macOS           | `AgoraCore.framework`           | `AgoraAIDenoiseExtension.framework`              |
+| Windows         | `libagora-core.dll`             | `libagora_ai_denoise_extension.dll`              |
 
 **2. Behavior change**
 
@@ -1117,7 +1185,10 @@ To improve the usability of the Agora Cloud Proxy, this release adds the `SetClo
 
 To eliminate non-stationary noise based on traditional noise reduction, this release adds `EnableDeepLearningDenoise` to enable deep-learning noise reduction.
 
-<div class="alert note">Before enabling deep-learning noise reduction, integrate the deep-learning noise reduction library into your project files.</div>
+<div class="alert note">
+  Before enabling deep-learning noise reduction, integrate the deep-learning
+  noise reduction library into your project files.
+</div>
 
 **5. Singing beautifier**
 
@@ -1158,7 +1229,11 @@ For scenarios requiring high security, to guarantee the confidentiality, integri
 - `AES_128_GCM`: 128-bit AES encryption, GCM mode.
 - `AES_256_GCM`: 256-bit AES encryption, GCM mode.
 
-<div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
+<div class="alert note">
+  Once you enable the built-in encryption, all users in the same channel must
+  use the same encryption mode and key, including the server-side users such as
+  the Agora recording service.
+</div>
 
 **2. Remote audio statistics**
 
@@ -1225,12 +1300,12 @@ Since v3.2.1, the following libraries have been added to the SDK package:
 
 See the added files for each platform as follows:
 
-| Platform | File name                                                    |
-| :------- | :----------------------------------------------------------- |
-| Android | <li>`libagora-fdkaac.so`</li><li>`libagora-mpg123.so`</li><li>`libagora-soundtouch.so`</li><li>`libagora-ffmpeg.so`</li> |
-| iOS     | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li><li>`Agoraffmpeg.framework`</li> |
-| macOS     | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li><li>`Agoraffmpeg.framework`</li> |
-| Windows | <li>`libagora-fdkaac.dll`</li><li>`libagora-mpg123.dll`</li><li>`libagora-soundtouch.dll`</li><li>`libagora-ffmpeg.dll`</li> |
+| Platform | File name                                                                                                                    |
+| :------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| Android  | <li>`libagora-fdkaac.so`</li><li>`libagora-mpg123.so`</li><li>`libagora-soundtouch.so`</li><li>`libagora-ffmpeg.so`</li>     |
+| iOS      | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li><li>`Agoraffmpeg.framework`</li>                         |
+| macOS    | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li><li>`Agoraffmpeg.framework`</li>                         |
+| Windows  | <li>`libagora-fdkaac.dll`</li><li>`libagora-mpg123.dll`</li><li>`libagora-soundtouch.dll`</li><li>`libagora-ffmpeg.dll`</li> |
 
 If you upgrade the SDK to v3.2.1, ensure that you have added the above files in your project according to [Quickstart Guide](../quickstart-guide/start-video-streaming#integrate-the-sdk).
 
@@ -1244,7 +1319,10 @@ Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certification
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
-<div class="alert note">Transport layer encryption affects the size of the SDK package. For details, see *Product Overview*.</div>
+<div class="alert note">
+  Transport layer encryption affects the size of the SDK package. For details,
+  see *Product Overview*.
+</div>
 
 #### New features
 
@@ -1330,14 +1408,14 @@ This release adds the following attributes to provide more in-call statistics:
 
 To improve audio performance, this release adjusts the maximum audio bitrate of each audio profile as follows:
 
-| Profile                                   | v3.2.1                                                       | Earlier than v3.2.1                                          |
-| :---------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| Profile                                   | v3.2.1                                                                                                                 | Earlier than v3.2.1                                                                                                    |
+| :---------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | `AUDIO_PROFILE_DEFAULT`                   | For the interactive streaming profile: 64 KbpsFor the communication profile:Windows: 16 KbpsAndroid/iOS/macOS: 18 Kbps | For the interactive streaming profile: 52 KbpsFor the communication profile:Windows: 16 KbpsAndroid/iOS/macOS: 18 Kbps |
-| `AUDIO_PROFILE_SPEECH_STANDARD`           | 18 Kbps                                                      | 18 Kbps                                                      |
-| `AUDIO_PROFILE_MUSIC_STANDARD`            | 64 Kbps                                                      | 48 Kbps                                                      |
-| `AUDIO_PROFILE_MUSIC_STANDARD_STEREO`     | 80 Kbps                                                      | 56 Kbps                                                      |
-| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY`        | 96 Kbps                                                      | 128 Kbps                                                     |
-| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO` | 128 Kbps                                                     | 192 Kbps                                                     |
+| `AUDIO_PROFILE_SPEECH_STANDARD`           | 18 Kbps                                                                                                                | 18 Kbps                                                                                                                |
+| `AUDIO_PROFILE_MUSIC_STANDARD`            | 64 Kbps                                                                                                                | 48 Kbps                                                                                                                |
+| `AUDIO_PROFILE_MUSIC_STANDARD_STEREO`     | 80 Kbps                                                                                                                | 56 Kbps                                                                                                                |
+| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY`        | 96 Kbps                                                                                                                | 128 Kbps                                                                                                               |
+| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO` | 128 Kbps                                                                                                               | 192 Kbps                                                                                                               |
 
 **8. Log files**
 
@@ -1493,8 +1571,8 @@ This release enables local face detection on Android and iOS. After you call `En
 
 To meet the need for higher audio quality, this release adjusts the corresponding audio profile of `AUDIO_PROFILE_DEFAULT(0)` in the `LIVE_BROADCASTING` profiles.
 
-| SDK                 | `AUDIO_PROFILE_DEFAULT(0)`                                    |
-| :------------------ | :----------------------------------------------------------- |
+| SDK                 | `AUDIO_PROFILE_DEFAULT(0)`                                                     |
+| :------------------ | :----------------------------------------------------------------------------- |
 | v3.0.1              | A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 52 Kbps. |
 | Earlier than v3.0.1 | A sample rate of 32 KHz, music encoding, mono, and a bitrate of up to 44 Kbps. |
 
@@ -1565,7 +1643,12 @@ Enum type `CLIENT_ROLE` changed to [`CLIENT_ROLE_TYPE`](https://api-ref.agora.io
 
 ## v2.9.2
 
-<div class="alert note">As of December 8, 2021, Agora begins implementing the retirement process for the Voice SDK and Video SDK for native platforms and third-party frameworks earlier than v3.0.0. See <a href="../introduction/service-sunset-plans">Service Sunset Plans</a>.</div>
+<div class="alert note">
+  As of December 8, 2021, Agora begins implementing the retirement process for
+  the Voice SDK and Video SDK for native platforms and third-party frameworks
+  earlier than v3.0.0. See{' '}
+  <a href="../introduction/service-sunset-plans">Service Sunset Plans</a>.
+</div>
 v2.9.2 is released on Feb 17, 2020.
 
 - This release fixed some abnormal behaviors on Android devices.
@@ -1583,10 +1666,10 @@ v2.9.1 was released on December 23, 2019.
 Supports iOS, Android, macOS and Windows (x86/x86-64) platforms.
 
 **2. Interoperability with the Agora Web SDK**
-Provides the `EnableWebSdkInteroperability` method for enabling interoperability with the Agora Web SDK in `LIVE_BROADCASTING` profile. 
+Provides the `EnableWebSdkInteroperability` method for enabling interoperability with the Agora Web SDK in `LIVE_BROADCASTING` profile.
 
 **3. Video rendering method**
-Supports multiple video rendering methods. You can choose any method in  **Auto Graphics API**.
+Supports multiple video rendering methods. You can choose any method in **Auto Graphics API**.
 ![1576826628073](https://web-cdn.agora.io/docs-files/1576826628073)
 
 **4. Multithreaded rendering**
@@ -1601,10 +1684,10 @@ Provides APIs for accessing to the external data source. You can configure the e
 **7. Encryption**
 Supports encryption of audio and video streaming. The following table shows the information of the encryption libraries for the Android and iOS platforms. If you do not intend to use this function, you can remove the encryption libraries to decrease the SDK size.
 
-   | Platform | Encryption libraries                          |
-   | :------- | :-------------------------------------------- |
-   | Android  | libagora-crypto.so                            |
-   | iOS      | <ul><li>AgoraRtcCryptoLoader.framework </li><li>libcrypto.a</li></ul> |
+| Platform | Encryption libraries                                                  |
+| :------- | :-------------------------------------------------------------------- |
+| Android  | libagora-crypto.so                                                    |
+| iOS      | <ul><li>AgoraRtcCryptoLoader.framework </li><li>libcrypto.a</li></ul> |
 
 **8. Cloud proxy**
 
