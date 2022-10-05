@@ -834,7 +834,7 @@ The above improvements bring the following changes in the `AgoraRtcEngineKit` cl
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `muteLocalVideoStream`, `publish`, and `unpublish`.
 
-See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../advanced-features/multiple-channel).
+See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../../../interactive-live-streaming/advanced-features/multiple-channel).
 
 
 **3. Raw audio data**
@@ -1676,7 +1676,7 @@ As of v3.0.0, the native SDK does not enable the [dual-stream mode](../reference
 
 To enable a user to join an unlimited number of channels at a time, this release adds the [`AgoraRtcChannel`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcChannel.html) and [`AgoraRtcChannelDelegate`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcChannelDelegate.html) classes. By creating multiple `AgoraRtcChannel` objects, a user can join the corresponding channels at the same time.
 
-After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](../advanced-features/multiple-channel) for details.
+After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join Multiple Channels](../../../interactive-live-streaming/advanced-features/multiple-channel) for details.
 
 **2. Raw video data**
 Adds the following C++ callbacks to the `IVideoFrameObserver` class to provide raw video data at different video transmission stages, and to accommodate more scenarios.
@@ -1873,7 +1873,7 @@ This release adds the following methods to relay the media streams of a host fro
 
 During the media stream relay, the SDK reports the states and events of the relay with the  [`channelMediaRelayStateDidChange`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:channelMediaRelayStateDidChange:error:) and [`didReceiveChannelMediaRelayEvent`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didReceiveChannelMediaRelayEvent:) callbacks.
 
-For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](../advanced-features/media-relay).
+For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](../../../interactive-live-streaming/advanced-features/media-relay).
 
 **3. Reporting the local and remote audio state**
 

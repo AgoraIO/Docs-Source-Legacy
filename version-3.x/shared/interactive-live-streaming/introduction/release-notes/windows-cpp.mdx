@@ -733,7 +733,7 @@ The above improvements bring the following changes in the `IRtcEngine` class:
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `muteLocalVideoStream`, `publish`, and `unpublish`.
 
-See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../advanced-features/multiple-channel).
+See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../../../interactive-live-streaming/advanced-features/multiple-channel).
 
 **3. startAudioMixing changes**
 
@@ -1018,7 +1018,7 @@ This release adds the following frameworks:
 - `libagora-core.dll`: The Agora basic calculation framework.
 - `av1.dll`: The AV1 framework for screen sharing.
 
-To integrate the SDK into your project, see [Integrate the SDK](../quickstart-guide/start-video-streaming#integrate-the-sdk).
+To integrate the SDK into your project, see [Integrate the SDK](/3.x/video-calling/quickstart-guide/get-started-sdk#integrate-the-sdk).
 
 **2. Changes to subscribing behavior**
 
@@ -1486,7 +1486,7 @@ As of v3.0.0, the native SDK does not enable the [dual-stream mode](../reference
 **1. Multiple channel management**
 
 To enable a user to join an unlimited number of channels at a time, this release adds the `IChannel` and `IChannelEventHandler` classes. By creating multiple `IChannel` objects, a user can join the corresponding channels at the same time.
-After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join Multiple Channels](../advanced-features/multiple-channel) for details.
+After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join Multiple Channels](../../../interactive-live-streaming/advanced-features/multiple-channel) for details.
 
 **2. Raw video data**
 
@@ -1688,7 +1688,7 @@ This release adds the following methods to relay the media streams of a host fro
 
 During the media stream relay, the SDK reports the states and events of the relay with the [`onChannelMediaRelayStateChanged`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a8f22b85194d4b771bbab0e1c3b505b22) and [`onChannelMediaRelayEvent`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89a4085f36c25eeed75c129c82ca9429) callbacks.
 
-For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](../advanced-features/media-relay).
+For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](../../../interactive-live-streaming/advanced-features/media-relay).
 
 **3. Reporting the local and remote audio state**
 
