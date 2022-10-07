@@ -126,7 +126,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](../advanced-features/media-push).
+This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](/en/3.x/interactive-live-streaming/advanced-features/media-push).
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -139,7 +139,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
     - `NotBroadcaster(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
     - `TranscodingNoMixStream(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
     - `NetDown(14)`: Errors occurred in the host's network.
-    - `InvalidAppid(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the Media Push permission.
+    - `InvalidAppid(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](/en/3.x/interactive-live-streaming/advanced-features/media-push#prerequisites) to enable the Media Push permission.
 
   - Adding the following to the `RtmpStreamingEvent` event code:
 

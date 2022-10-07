@@ -293,7 +293,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](../advanced-features/media-push).
+This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](/en/3.x/interactive-live-streaming/advanced-features/media-push).
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -304,7 +304,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
         - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](../../../interactive-live-streaming/advanced-features/media-push#prerequisites) to enable the Media Push permission.
+        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](/3.x/interactive-live-streaming/advanced-features/media-push#prerequisites) to enable the Media Push permission.
     - Adding the following to the `RTMP_STREAMING_EVENT` event code:
         - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`: The feature is not supported.
         - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`: Reserved.
@@ -792,7 +792,7 @@ The above improvements bring the following changes in the `RtcEngine` class:
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `muteLocalVideoStream`, `publish`, and `unpublish`.
 
-See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](../../../interactive-live-streaming/advanced-features/multiple-channel).
+See [Set the Publishing State](../advanced-features/set-publishing-state) and [Join Multiple Channels](/3.x/interactive-live-streaming/advanced-features/multiple-channel).
 
 **3. Raw audio data**
 
@@ -1666,7 +1666,7 @@ To avoid privilege issues, this release changes the default log file path from `
 
 To enable a user to join an unlimited number of channels at a time, this release adds the [`RtcChannel`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_channel.html) and [`IRtcChannelEventHandler`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html) classes. By creating multiple `RtcChannel` objects, a user can join the corresponding channels at the same time.
 
-After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join Multiple Channels](../../../interactive-live-streaming/advanced-features/multiple-channel) for details.
+After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join Multiple Channels](/3.x/interactive-live-streaming/advanced-features/multiple-channel) for details.
 
 **2. Raw video data**
 Adds the following C++ callbacks to the [`IVideoFrameObserver`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1media_1_1_i_video_frame_observer.html) class to provide raw video data at different video transmission stages, and to accommodate more scenarios.
@@ -1881,7 +1881,7 @@ If your app implements Media Push with the methods above, ensure that you upgrad
 - [`removePublishStreamUrl`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a87b3f2f17bce8f4cc42b3ee6312d30d4)
 - [`onRtmpStreamingStateChanged`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a7b9f1a5d87480cfd6187c3da0ade3f94)
 
-For how to implement the new methods, see [Media Push](../advanced-features/media-push).
+For how to implement the new methods, see [Media Push](/en/3.x/interactive-live-streaming/advanced-features/media-push).
 
 **2. Reporting the state of the remote video**
 
@@ -1909,7 +1909,7 @@ This release adds the following methods to relay the media streams of a host fro
 
 During the media stream relay, the SDK reports the states and events of the relay with the [`onChannelMediaRelayStateChanged`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a89fd95b3536e8e6afd5f001926162f66) and [`onChannelMediaRelayEvent`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a6fe2367e9ea61e48a4cc3b373d198b54) callbacks.
 
-For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](../../../interactive-live-streaming/advanced-features/media-relay).
+For more information on the implementation, API call sequence, sample code, and considerations, see [Co-host across Channels](/3.x/interactive-live-streaming/advanced-features/media-relay).
 
 **3. Reporting the local and remote audio state**
 
