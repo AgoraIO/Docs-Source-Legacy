@@ -33,7 +33,7 @@ This release enhances the connection mechanism between the SDK and the server 
 This release fixed the following issues:
 
 - The local user received the `remoteAudioStateChangedOfUid(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
-- `gatewayRtt` reported by the `reportRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the [reportRtcStats](https://api-ref.agora.io/en/video-sdk/ios/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:) callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 
 ## v3.7.0.2
@@ -208,7 +208,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 
 If you want to experience these improvements, ensure that you have integrated the `AgoraFullAudioFormatExtension.xcframework` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
@@ -497,7 +497,7 @@ This release fixed the issue that repeated declaration of the `didAudioMuted`, `
 
 v3.5.0.3 was released on September 6, 2021.
 
-This release fixed the naming conflict existed in the `AgoraReachability` class between the Agora RTC SDK and Agora RTM SDK.
+This release fixed the naming conflict existed in the `AgoraReachability` class between the Agora <Vg k="VSDK" /> and Agora <Vg k="MESS_SDK" />.
 
 <a name="v3.5.0.1"></a>
 
@@ -523,7 +523,7 @@ This release fixed the following issues:
 - After calling `setAudioDataFrame` to register the original audio data callback, and calling `enableLoopbackRecording` to start the sound card capturing, noises occurred when a user played a local audio file.
 - After calling `muteLocalAudioStream(YES)` to stop publishing a local audio stream, the local user could hear remote users when the local user joined a channel for the first time. After leaving the channel and joining another channel, occasionally the local user could not hear remote users.
 - When the local network quality was poor, the downlink network quality rating (`rxQuality`) of remote users reported by the SDK was not accurate.
-- The value of `memoryTotalUsageRatio` reported by the `reportRtcStats` callback was not accurate.
+- The value of `memoryTotalUsageRatio` reported by the [reportRtcStats](https://api-ref.agora.io/en/video-sdk/ios/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:) callback was not accurate.
 
 ## v3.4.6
 
@@ -1121,7 +1121,7 @@ This release replaces the static library with a dynamic library for the followin
 - Avoiding incompatibility issues with other third-party libraries.
 - Making it easier to upload the app to the App Store.
 
-To upgrade the RTC Native SDK, you must re-integrate the dynamic library, `AgoraRtcKit.framework`. This process should take no more than five minutes. See [Migration Guide](migration_apple).
+To upgrade the <Vg k="VSDK" /> Native SDK, you must re-integrate the dynamic library, `AgoraRtcKit.framework`. This process should take no more than five minutes. See [Migration Guide](migration_apple).
 
 #### New features
 
@@ -1271,7 +1271,7 @@ To meet the need for higher audio quality, this release adjusts the correspondin
 
 Adds the following members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraChannelStats.html) class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
@@ -1298,7 +1298,7 @@ This release enables interoperability between the Native SDK and the Web SDK by 
 - [`createRtcChannel`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/createRtcChannel:)
 - [`AgoraRtcChannel`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraRtcChannel.html) class
 - [`AgoraRtcChannelDelegate`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Protocols/AgoraRtcChannelDelegate.html) class
-- The `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraChannelStats.html) class
+- The [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt), `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/voice-sdk/macos/3.x/Classes/AgoraChannelStats.html) class
 
 **Deprecated**
 

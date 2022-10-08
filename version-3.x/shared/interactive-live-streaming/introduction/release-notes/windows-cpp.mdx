@@ -32,7 +32,7 @@ This release fixed the following issues:
 - Occasionally, the app got stuck after a user joined a channel.
 - Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing.
 - The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
-- `gatewayRtt` reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
 - The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 
@@ -208,7 +208,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
@@ -1526,7 +1526,7 @@ This release enables you to set a mirror effect for the stream to be encoded or 
 
 Adds the following members in the `RtcStats` class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
@@ -1537,7 +1537,7 @@ This release enables window sharing of [UWP](https://docs.microsoft.com/en-us/wi
 
 **5. Others**
 
-This release enables interoperability between the RTC Native SDK and the RTC Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
+This release enables interoperability between the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
 
 #### Issues fixed
 
@@ -1560,7 +1560,7 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 - [`createChannel`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine2.html#a9cabefe84d3a52400f941f1bd8c0f486)
 - [`IChannel`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_channel.html) class
 - [`IChannelEventHandler`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_channel_event_handler.html) class
-- The [`gatewayRtt`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html) class
+- The [[gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html) class
 
 **Deprecated**
 

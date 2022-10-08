@@ -6,23 +6,23 @@ The following table lists the support of Agora products for the two solutions:
 
 |Agora Products| Firewall Whitelist|Agora Cloud Proxy|
 |---------|-------------------|------------------|
-|RTC SDK (Native, third-party frameworks) | ✘ | ✔ |
-|RTC SDK (Web) | ✔ | ✔|
-|RTM SDK (Native, Web)| ✔ | ✘ |
+|<Vg k="VSDK" /> (Native, third-party frameworks) | ✘ | ✔ |
+|<Vg k="VSDK" /> (Web) | ✔ | ✔|
+|<Vg k="MESS_SDK" /> (Native, Web)| ✔ | ✘ |
 |On-premise Recording SDK| ✘ | ✔ |
 |Interactive Gaming SDK | ✘ | ✘ |
 
 - When using the firewall whitelist, refer to **this page** to add the domains and ports to the firewall whitelist, and do not set restrictions on IP addresses.
 - When using Agora cloud proxy, refer to the following pages:
-    - <Link to="../basic-features/use-cloud-proxy?platform=android">Cloud Proxy for RTC SDK (Native, third-party frameworks)</Link>
-    - <Link to="../basic-features/use-cloud-proxy?platform=web">Cloud Proxy for RTC SDK (Web)</Link>
+    - <Link to="../basic-features/use-cloud-proxy?platform=android">Cloud Proxy for <Vg k="VSDK" /> (Native, third-party frameworks)</Link>
+    - <Link to="../basic-features/use-cloud-proxy?platform=web">Cloud Proxy for <Vg k="VSDK" /> (Web)</Link>
     - <Link to="/on-premise-recording/develop/cloud-proxy?platform=linux-cpp">Cloud proxy for On-premise Recording SDK</Link>
 
 <div class="alert note"><li>If you want to use Agora products across a VPN, ensure that you have contacted the VPN operator to add the corresponding ports to the whitelist; otherwise, you may encounter undefined behaviors such as call failure. </li><li>Unless otherwise specified, the source address is the client that integrates the Agora SDK. </li></div>
 
-## RTC SDK
+## <Vg k="VSDK" />
 
-### RTC SDK (Web)
+### <Vg k="VSDK" /> (Web)
 
 Add the following destination domains and the corresponding ports to your firewall whitelist, depending on the version of the Web SDK you are using.
 
@@ -75,9 +75,9 @@ Add the following destination domains and the corresponding ports to your firewa
 | 80; 443; 3433; 4700 - 5000; 5668; 5669; 6080; 6443; 8667; 9667; 30011 - 30013 (for Media Push)| TCP              |  Allow |
 | 3478; 4700 - 5000 (2.9.0 or later); 10000 - 65535 (before 2.9.0)   |  UDP  | Allow |
 
-## RTM SDK
+## <Vg k="MESS_SDK" />
 
-### RTM SDK (Native)
+### <Vg k="MESS_SDK" /> (Native)
 
 Add the following destination domains and the corresponding ports to the firewall whitelist:
 
@@ -90,7 +90,7 @@ Add the following destination domains and the corresponding ports to the firewal
 | 8443; 9130; 9131; 9136; 9137; 9140, 9141	    | TCP              |  Allow |
 | 1080; 8000; 8130; 8443; 9120; 9121; 9700; 25000	   |  UDP  | Allow |
 
-### RTM SDK (Web)
+### <Vg k="MESS_SDK" /> (Web)
 
 Add the following destination domains and the corresponding ports to the firewall whitelist:
 

@@ -80,7 +80,7 @@ mRtcEngine.UpdateChannelMediaRelay(mediaRelayConfiguration);
 
 ## Considerations
 
-- The Agora RTC SDK supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `UpdateChannelMediaRelay`.
+- The Agora <Vg k="VSDK" /> supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `UpdateChannelMediaRelay`.
 - This feature supports integer user IDs only.
 - When setting the souce channel information (`srcInfo`), ensure that you set `uid` as `0`, and the `uid` that you use to generate the token should also be set as `0`.
 - To call `StartChannelMediaRelay` again after it succeeds, you must call `StopChannelMediaRelay` to quit the current relay.

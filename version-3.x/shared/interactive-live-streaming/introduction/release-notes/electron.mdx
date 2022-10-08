@@ -1,8 +1,8 @@
 <PlatformWrapper platform="electron">
 
-This page provides the release notes for the Agora RTC SDK for Electron.
+This page provides the release notes for the Agora <Vg k="VSDK" /> for Electron.
 
-The Agora RTC SDK for Electron is developed upon the Agora RTC SDK for macOS and the Agora RTC SDK for Windows, with the Node.js C++ plug-in units.
+The Agora <Vg k="VSDK" /> for Electron is developed upon the Agora <Vg k="VSDK" /> for macOS and the Agora <Vg k="VSDK" /> for Windows, with the Node.js C++ plug-in units.
 
 ## Known issues and limitations
 
@@ -135,7 +135,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
@@ -1122,7 +1122,7 @@ Setting a mirror mode for the stream to be encoded: This release adds the `mirro
 
 Adds the following properties in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/rtcstats.html) interface for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
@@ -1163,7 +1163,7 @@ When connected to a headset or Bluetooth, the macOS device changes its audio rou
 - The `mirrorMode` property in the [`VideoEncoderConfiguration`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/videoencoderconfiguration.html) interface
 - [`createChannel`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#createchannel)
 - [`AgoraRtcChannel`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcchannel.html) class
-- The `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` properties in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/rtcstats.html) interface
+- The [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt), `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` properties in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/rtcstats.html) interface
 - [`startAudioRecording`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#startaudiorecording)
 - [`setBeautyEffectOptions`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setbeautyeffectoptions)
 - [`addVideoWatermark`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#addvideowatermark)
