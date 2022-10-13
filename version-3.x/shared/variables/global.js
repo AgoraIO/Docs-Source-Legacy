@@ -60,7 +60,7 @@ export const MOD = 'Moderation';
 export const CP = 'Cloud Proxy';
 export const RTMPC = 'RTMP Converter';
 export const TRANS = 'Transcoding';
-export const OPREC = 'On-premise Recording';
+export const OPREC = 'On-Premise Recording';
 export const CREC = 'Cloud Recording';
 
 export const UCS = 'Use Cases';
