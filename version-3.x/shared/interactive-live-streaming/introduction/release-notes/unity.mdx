@@ -153,7 +153,7 @@ When calling `EnableLoopbackRecording` for the loopback audio capture, developer
 
 To improve the loopback audio capture experience, Agora has developed its own virtual sound card: AgoraALD (Agora Audio Loopback Device). You can replace your current virtual sound card with AgoraALD using the following steps:
 
-1. Install AgoraALD. See <Link to="../advanced-features/virtual-sound-card?platform=macos">AgoraALD Virtual Sound Card</Link>.
+1. Install AgoraALD. See <Link to="../advanced-features/virtual-sound-card">AgoraALD Virtual Sound Card</Link>.
 2. Change the value of `deviceName` in the `EnableLoopbackRecording` method to `"AgoraALD"`.
 
 **Spatial audio effect**
@@ -725,7 +725,7 @@ This release fixed the following issues:
 - [`StartScreenCaptureByDisplayId`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#a9fa9dd48fc3ecf616d39f6fdf00000c2)
 - [`GetScreenCaptureManager`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#aacfde52a4f48e9634083ebcc9560e416)
 - [`GetMediaRecorder`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_i_rtc_engine.html#ac3202f06fb134e2e1ed56017fcab2595)
-- [`OnRecorderStateChangedHandler`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_media_recorder.html?platform=Unity#a35df18677b5416409408eb44bca91993)
+- [`OnRecorderStateChangedHandler`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_media_recorder.html#a35df18677b5416409408eb44bca91993)
 - [`OnRecorderInfoUpdatedHandler`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#ac330fa8083acd46b38343c4da7cd413a)
 - [`StartRecording`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#a7bb3a157427c33f111eb7d5c013cca20)
 - [`StopRecording`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.6.1.1/classagora__gaming__rtc_1_1_media_recorder.html#ade0ca8f80b2ebbc738b683c0cae4b128)
@@ -983,17 +983,17 @@ This release fixed the following issues:
 
 - [`EnableVirtualBackground`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.4.5/classagora__gaming__rtc_1_1_i_rtc_engine.html#a04418596cd2717aaf2a1da9f7f35b392)
 - [`OnVirtualBackgroundSourceEnabledHandler`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.4.5/namespaceagora__gaming__rtc.html#a2b90fcf68a2901aa1ba7184e6cac1d53)
-- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#adf0b94807c88344092613487b0dfa0c9)
-- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#a1161b5f270933ebd660b9c29848161aa)
+- `RTMP_STREAM_UNPUBLISH_ERROR_OK (100)` in [`RTMP_STREAM_PUBLISH_ERROR`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html#adf0b94807c88344092613487b0dfa0c9)
+- `RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE (2)` in [`RTMP_STREAMING_EVENT`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html#a1161b5f270933ebd660b9c29848161aa)
 - `AES_128_GCM2 (7)` and `AES_256_GCM2 (8)` in [`EncryptionMode`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html#a94f249e19d1de6e0a6ac2348ace088fb)
 - [`encryptionKdfSalt`](https://api-ref.agora.io/en/video-sdk/unity/3.x/v3.4.5/structagora__gaming__rtc_1_1_encryption_config.html#ae88de9e9ef42b206d9de307d2f4bc47a) in [`EncryptionConfig`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_encryption_config.html)
-- [`MuteLocalAudioStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a6260eac33b6624824872a7140a229ef3) and [`MuteLocalVideoStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html?platform=Unity#a80cd4eaa589f66059912eee08ed8b20a) in `IRtcEngine`
-- [`publishLocalAudio`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#ae7cf13e792f38e45ed5a1a35f8c948c7) and [`publishLocalVideo`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html?platform=Unity#a4daaa2d2546779e80784f2bfc3728825) in [`ChannelMediaOptions`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html)
-- `MEDIA_DEVICE_STATE_IDLE (0)` in [`MEDIA_DEVICE_STATE_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#ad862a26da27e398f045eb4a95bcfa530)
+- [`MuteLocalAudioStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html#a6260eac33b6624824872a7140a229ef3) and [`MuteLocalVideoStream`](https://api-ref.agora.io/en/video-sdk/unity/3.x/classagora__gaming__rtc_1_1_i_rtc_engine.html#a80cd4eaa589f66059912eee08ed8b20a) in `IRtcEngine`
+- [`publishLocalAudio`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html#ae7cf13e792f38e45ed5a1a35f8c948c7) and [`publishLocalVideo`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html#a4daaa2d2546779e80784f2bfc3728825) in [`ChannelMediaOptions`](https://api-ref.agora.io/en/video-sdk/unity/3.x/structagora__gaming__rtc_1_1_channel_media_options.html)
+- `MEDIA_DEVICE_STATE_IDLE (0)` in [`MEDIA_DEVICE_STATE_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html#ad862a26da27e398f045eb4a95bcfa530)
 
 **Modified**
 
-- [`MEDIA_DEVICE_STATE_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html?platform=Unity#ad862a26da27e398f045eb4a95bcfa530)
+- [`MEDIA_DEVICE_STATE_TYPE`](https://api-ref.agora.io/en/video-sdk/unity/3.x/namespaceagora__gaming__rtc.html#ad862a26da27e398f045eb4a95bcfa530)
 
 **Deprecated**
 

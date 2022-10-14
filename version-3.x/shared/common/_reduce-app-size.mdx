@@ -33,7 +33,7 @@ As of v3.3.0, the SDK provides extension libraries, which are dynamic libraries 
 
 ### Remove extension libraries during manual integration
 
-When you integrate the SDK by using the [SDK download link on the official website](https://docs.agora.io/en/sdks?platform=android), you can directly remove the unnecessary extension library files.
+When you integrate the SDK by using the [SDK download link on the official website](https://docs.agora.io/en/sdks), you can directly remove the unnecessary extension library files.
 
 ### Remove extension libraries when using CocoaPods
 
@@ -123,7 +123,7 @@ Normally, you need to package required `.so` files when compiling the app, and t
 
 As of v3.6.2, the SDK provides the `setAgoraLibPath` method, which enables the app to dynamically load required `.so` files from its private directory when the app runs. This can reduce the app package size. Refer to the following steps to implement this function:
 
-1. Go to [SDK Downloads](https://docs.agora.io/en/sdks?platform=android), download the latest version of the Agora Voice or Video SDK, and extract the files from the downloaded SDK package.
+1. Go to [SDK Downloads](https://docs.agora.io/en/sdks), download the latest version of the Agora Voice or Video SDK, and extract the files from the downloaded SDK package.
 2. Integrate `agora-rtc-sdk.jar` into your project.
 3. Upload the `.so` files for all architectures to your server, and ensure your app can download the `.so` files for its target architecture over the network.
 4. The app checks if the `.so` files for its target architecture exist when running. If not, the app downloads the appropriate `.so` files over the network and saves them to the app's private directory.
@@ -145,7 +145,7 @@ The SDK provides extension libraries, which are dynamic libraries that can be op
 
 
 <div class="alert note">
-<li>If you are using a version of the macOS SDK earlier than v3.6.2, extension libraries have the <code>framework</code> suffix, not <code>xcframework</code> as in the following tables. See <Link to="../introduction/release-notes?platform={{platform.PATH}}#v362">v3.6.2 Release Notes</Link>.</li>
+<li>If you are using a version of the macOS SDK earlier than v3.6.2, extension libraries have the <code>framework</code> suffix, not <code>xcframework</code> as in the following tables. See <Link to="../introduction/release-notes#v362">v3.6.2 Release Notes</Link>.</li>
 <li>Currently, the JND library, virtual background library, and super resolution library are only available on Android for the arm64-v8a and armeabi-v7a architectures; they are not available on Android for the x86 or x86_64 architectures.</li>
 </div>
 
@@ -153,7 +153,7 @@ The SDK provides extension libraries, which are dynamic libraries that can be op
 
 #### Deep-learning noise reduction library
 
-The SDK enables traditional noise reduction by default to reduce most of the stationary background noise. Deep-learning noise reduction adds non-stationary background noise reduction based on the traditional noise reduction. After integrating the deep-learning noise reduction library, you can call `enableDeepLearningDenoise` to enable the deep-learning noise reduction. See <Link to="../introduction/release-notes?platform={{platform.PATH}}#v330">v3.3.0 Release Notes</Link>.
+The SDK enables traditional noise reduction by default to reduce most of the stationary background noise. Deep-learning noise reduction adds non-stationary background noise reduction based on the traditional noise reduction. After integrating the deep-learning noise reduction library, you can call `enableDeepLearningDenoise` to enable the deep-learning noise reduction. See <Link to="../introduction/release-notes#v330">v3.3.0 Release Notes</Link>.
 
 The following table shows the extension library name for each platform and the increase in the app size after integration:
 
@@ -205,7 +205,7 @@ The following table shows the extension library name for each platform and the i
 
 #### Virtual background library
 
-After integrating the virtual background library, you can call `enableVirtualBackground` to enable the virtual background. See <Link to="../introduction/release-notes?platform={{platform.PATH}}#v350">v3.5.0 Release Notes</Link>.
+After integrating the virtual background library, you can call `enableVirtualBackground` to enable the virtual background. See <Link to="../introduction/release-notes#v350">v3.5.0 Release Notes</Link>.
 
 The following table shows the extension library name for each platform and the increase in the app size after integration:
 
@@ -239,7 +239,7 @@ The following table shows the extension library name for each platform and the i
 
 #### Super resolution library (beta feature)
 
-After integrating the super resolution library, you can call `enableRemoteSuperResolution` to enable super resolution. See <Link to="../introduction/release-notes?platform={{platform.PATH}}#v371">v3.5.1 and v3.7.1 Release Notes</Link>.
+After integrating the super resolution library, you can call `enableRemoteSuperResolution` to enable super resolution. See <Link to="../introduction/release-notes#v371">v3.5.1 and v3.7.1 Release Notes</Link>.
 
 The following table shows the extension library name for each platform and the increase in the app size after integration:
 
@@ -253,7 +253,7 @@ The following table shows the extension library name for each platform and the i
 
 #### Video enhancement library
 
-As of v3.6.0, Agora provides a video enhancement library that provides the ability to apply basic image enhancement. As of v3.6.2, Agora also adds video noise reduction, low-light enhancement, and color enhancement features to the video enhancement library. See <Link to="../introduction/release-notes?platform={{platform.PATH}}#v362">v3.6.0 and v3.6.2 Release Notes</Link>.
+As of v3.6.0, Agora provides a video enhancement library that provides the ability to apply basic image enhancement. As of v3.6.2, Agora also adds video noise reduction, low-light enhancement, and color enhancement features to the video enhancement library. See <Link to="../introduction/release-notes#v362">v3.6.0 and v3.6.2 Release Notes</Link>.
 
 You can call the following methods to enable the video enhancement features that you want after integrating the video enhancement library:
 
@@ -318,7 +318,7 @@ The following table shows the extension library name for each platform and the i
 
 #### ReplayKit library (iOS only)
 
-As of v3.7.0, the SDK provides the `startScreenCapture` method and the `AgoraReplayKitExtension.xcframework` extension library for screen sharing. See [Share the Screen](/3.x/video-calling/basic-features/screensharing?platform=ios).
+As of v3.7.0, the SDK provides the `startScreenCapture` method and the `AgoraReplayKitExtension.xcframework` extension library for screen sharing. See [Share the Screen](/3.x/video-calling/basic-features/screensharing).
 The following table shows the extension library name and the increase in the app size after integration:
 | Platform | Architecture | Library name                             | App size increase after integration (KB) |
 | :------- | :----------- | :--------------------------------------- | :--------------------------------------- |
