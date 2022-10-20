@@ -19,8 +19,8 @@ The Native SDK uses the `IVideoFrameObserver` class to provide raw video data fu
 
 Agora provides the following open-source sample projects on GitHub that implement the raw video data function:
 
-- iOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
-- macOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/master/macOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
+- iOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/main/iOS/APIExample/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
+- macOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/main/macOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
 
 You can download them to try out this function and view the source code.
 
@@ -177,7 +177,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
 
 ## Considerations
 
-- The raw video data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ in a `.mm` file. See [AgoraMediaDataPlugin.mm](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/RawDataApi/AgoraMediaDataPlugin.mm) for reference.
+- The raw video data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ in a `.mm` file. See [AgoraMediaDataPlugin.mm](https://github.com/AgoraIO/API-Examples/blob/main/iOS/APIExample/APIExample/Common/RawDataApi/AgoraMediaDataPlugin.mm) for reference.
 - Ensure that you call `getNativeHandle` to get the C++ handle each time before calling `registerVideoFrameObserver`.
 - The raw video data function is resource intensive and may affect performance.
 

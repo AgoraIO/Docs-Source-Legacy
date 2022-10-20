@@ -20,11 +20,11 @@ Agora provides the raw data function for you to process the audio data according
 Agora provides the following open-source sample projects on GitHub that implement the raw audio data function:
 
 - Process raw audio data using iOS/macOS APIs
-  - iOS:  [RawAudioData](https://github.com/AgoraIO/API-Examples/tree/master/iOS/APIExample/Examples/Advanced/RawAudioData/RawAudioData.swift)
-  - macOS:  [RawAudioData](https://github.com/AgoraIO/API-Examples/tree/master/macOS/APIExample/Examples/Advanced/RawAudioData/RawAudioData.swift)
+  - iOS:  [RawAudioData](https://github.com/AgoraIO/API-Examples/tree/main/iOS/APIExample/APIExample/Examples/Advanced/RawAudioData/RawAudioData.swift)
+  - macOS:  [RawAudioData](https://github.com/AgoraIO/API-Examples/tree/main/macOS/APIExample/Examples/Advanced/RawAudioData/RawAudioData.swift)
 - Process raw audio data using C++ APIs
-  - iOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
-  - macOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/master/macOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
+  - iOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
+  - macOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/main/macOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
 
 You can view the source code on Github or download the project to try it out.
 
@@ -375,7 +375,7 @@ Call `registerAudioFrameObserver(NULL)` to stop registering the audio frame obse
 
 #### Considerations
 
-* The raw audio data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ methods in an `.mm` file. See [AgoraMediaDataPlugin.mm](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/RawDataApi/AgoraMediaDataPlugin.mm) for reference.
+* The raw audio data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ methods in an `.mm` file. See [AgoraMediaDataPlugin.mm](https://github.com/AgoraIO/API-Examples/blob/main/iOS/APIExample/APIExample/Common/RawDataApi/AgoraMediaDataPlugin.mm) for reference.
 
 - Ensure that you call `getNativeHandler` to get the C++ handle before calling the C++ method.
 - The raw audio data function is resource intensive and may affect performance.
