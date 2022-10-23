@@ -21,7 +21,7 @@ import NotSupported from '@docs/shared/common/no-bp.mdx';
 <PlatformWrapper notAllowed="cocos-creator">
 <PlatformWrapper notAllowed="cocos-2d-x">
 
-To optimize the user experience in [Media Push](../advanced-features/media-push) scenarios and avoid frequent streaming exceptions, you can refer to this page to optimize your code logic.
+To optimize the user experience in [Media Push](/en/3.x/interactive-live-streaming/advanced-features/media-push) scenarios and avoid frequent streaming exceptions, you can refer to this page to optimize your code logic.
 
 <div class="alert note">This page shows the best practice for handling error codes reported by the <code>onRtmpStreamingStateChanged</code> callback. If you are still using the <code>onStreamPublished</code> callback, you need to refer to this page and <a href="https://docs.agora.io/en/help/integration-issues/cdnstreaming_callback_relationship">What is the relationship between the old and new callbacks of Media Push?</a> as well.</div>
 
@@ -63,7 +63,7 @@ After you call `startRtmpStreamWithTranscoding` or `startRtmpStreamWithoutTransc
 - `RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED (10)`: The format of the streaming URL is not supported. Solution: Check and replace the streaming URL.
 - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER (11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
 - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM (13)`: The `updateRtmpTranscoding` or `setLiveTranscoding` (deprecated) method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
-- `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID (15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the Media Push permission.
+- `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID (15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](/en/3.x/interactive-live-streaming/advanced-features/media-push#prerequisites) to enable the Media Push permission.
 
 
 ## Repeatedly pushing the stream to the CDN on a timer

@@ -366,7 +366,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
   </code>, <code>SetLiveTranscoding</code>, and <code>
     RemovePublishStreamUrl
   </code>. Agora recommends that you use the new methods for CDN live streaming and
-  update your code logic by referring to <a href="../advanced-features/media-push">
+  update your code logic by referring to <a href="/en/3.x/interactive-live-streaming/advanced-features/media-push">
     Media Push
   </a>.{' '}
 </div>
@@ -382,7 +382,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
     - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the CDN live streaming function. Check your application code logic.
     - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `UpdateRtmpTranscoding` or `SetLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
     - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-    - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the CDN live streaming function. Refer to [Prerequisites](../advanced-features/media-push#prerequisites) to enable the CDN live streaming permission.
+    - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the CDN live streaming function. Refer to [Prerequisites](/en/3.x/interactive-live-streaming/advanced-features/media-push#prerequisites) to enable the CDN live streaming permission.
 
   - Adding the following to the `RTMP_STREAMING_EVENT` event code:
 
@@ -1307,7 +1307,7 @@ See the added files for each platform as follows:
 | macOS    | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li><li>`Agoraffmpeg.framework`</li>                         |
 | Windows  | <li>`libagora-fdkaac.dll`</li><li>`libagora-mpg123.dll`</li><li>`libagora-soundtouch.dll`</li><li>`libagora-ffmpeg.dll`</li> |
 
-If you upgrade the SDK to v3.2.1, ensure that you have added the above files in your project according to [Quickstart Guide](../quickstart-guide/start-video-streaming#integrate-the-sdk).
+If you upgrade the SDK to v3.2.1, ensure that you have added the above files in your project according to [Quickstart Guide](/en/3.x/interactive-live-streaming/quickstart-guide/start-video-streaming#integrate-the-sdk).
 
 **2. Cloud proxy**
 
@@ -1544,7 +1544,7 @@ This release adds `GetEngine2` for specifying the area of connection when creati
 
 To enable a user to join an unlimited number of channels at a time, this release adds the `AgoraChannel` class. By creating multiple `AgoraChannel` objects, a user can join the corresponding channels at the same time. Besides, this release adds `SetMultiChannelWant` for enabling the multi-channel mode, and `SetForMultiChannelUser` for setting the local or remote video of users in multiple channels.
 
-After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join multiple channels](../advanced-features/multiple-channel) for details.
+After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See [Join Multiple Channels](/3.x/interactive-live-streaming/advanced-features/multiple-channel) for details.
 
 **3. Audio mixing pitch**
 
