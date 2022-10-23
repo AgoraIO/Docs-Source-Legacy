@@ -8,13 +8,13 @@ Agora provides the raw data function for you to process the video data per your 
 
 ## Sample project
 
-Agora provides an open-source [sample project](https://github.com/AgoraIO/API-Examples/tree/legacy/Android/APIExample) on GitHub. You can view the source code on Github or download the project to try it out.
+Agora provides an open-source <Link to="{{GLOBAL.AGORA_API_EXAMPLES_ANDROID_DIR_TREE}}">sample project</Link> on GitHub. You can view the source code on Github or download the project to try it out.
 
 ## Implementation
 
 Before using the raw data function, ensure that you have implemented the basic real-time communication functions in your project. See [Start a Video Call](/3.x/video-calling/quickstart-guide/get-started-sdk) or [Start Interactive Live Video Streaming](/3.x/interactive-live-streaming/quickstart-guide/start-video-streaming) for details.
 
-<div class="alert note">The Agora Java SDK does not provide a raw video data interface. The Agora C++ SDK provides the <code>IVideoFrameObserver</code> class to capture and modify raw video data. Therefore, you must use Java to call Agora's C++ interface via the JNI (Java Native Interface). Since the RTC Java SDK encapsulates the RTC C++ SDK, you can include the <code>.h</code> file in the SDK to directly call the C++ methods.</div>
+<div class="alert note">The Agora Java SDK does not provide a raw video data interface. The Agora C++ SDK provides the <code>IVideoFrameObserver</code> class to capture and modify raw video data. Therefore, you must use Java to call Agora's C++ interface via the JNI (Java Native Interface). Since the <Vg k="VSDK" /> for Java encapsulates the <Vg k="VSDK" /> for C++, you can include the <code>.h</code> file in the SDK to directly call the C++ methods.</div>
 
 Follow these steps to implement the raw video data function in your project:
 

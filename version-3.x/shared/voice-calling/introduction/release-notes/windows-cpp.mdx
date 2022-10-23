@@ -19,7 +19,7 @@ This release fixed the following issues:
 
 - Occasionally, the app got stuck after a user joined a channel.
 - The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
-- `gatewayRtt` reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 
 ## v3.7.0.2
@@ -130,7 +130,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
@@ -185,7 +185,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-<div class="alert note">This release deprecates three old methods for Media Push: <code>addPublishStreamUrl</code>, <code>setLiveTranscoding</code>, and <code>removePublishStreamUrl</code>. Agora recommends that you use the new methods for Media Push and update your code logic by referring to <Link to="/3.x/interactive-live-streaming/advanced-features/media-push?platform={{platform.PATH}}">Media Push</Link>.</div>
+<div class="alert note">This release deprecates three old methods for Media Push: <code>addPublishStreamUrl</code>, <code>setLiveTranscoding</code>, and <code>removePublishStreamUrl</code>. Agora recommends that you use the new methods for Media Push and update your code logic by referring to <Link to="/3.x/interactive-live-streaming/advanced-features/media-push">Media Push</Link>.</div>
 
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
@@ -197,7 +197,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
         - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to <Link to="/3.x/interactive-live-streaming/advanced-features/media-push#prerequisites?platform={{platform.PATH}}">Prerequisites</Link> to enable the Media Push permission.
+        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to <Link to="/3.x/interactive-live-streaming/advanced-features/media-push#prerequisites">Prerequisites</Link> to enable the Media Push permission.
     - Adding the following to the `RTMP_STREAMING_EVENT` event code:
         - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`: The feature is not supported.
         - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`: Reserved.
@@ -437,7 +437,7 @@ This release fixed the following issues:
 
 #### API changes
 
-This release added the <Link to="../reference/error-codes?platform={{platform.PATH}}">error code</Link>: `ERR_ADM_WIN_CORE_SERVRE_SHUT_DOWN (1735)`.
+This release added the <Link to="../reference/error-codes">error code</Link>: `ERR_ADM_WIN_CORE_SERVRE_SHUT_DOWN (1735)`.
 
 ## v3.4.6
 
@@ -459,7 +459,7 @@ To further improve the security during real-time audio transmission process, thi
 
 This release also changes the default encryption mode from `AES_128_XTS (1)` to `AES_128_GCM2 (7)`. If you use the default encryption mode in earlier versions, after upgrading the SDK to v3.4.5, ensure that you call `enableEncryption` and set `ENCRYPTION_MODE` to `AES_128_XTS (1)`.
 
-See <Link to="/3.x/interactive-live-streaming/advanced-features/channel-encryption?platform={{platform.PATH}}">Media Stream Encryption</Link>.
+See <Link to="/3.x/interactive-live-streaming/advanced-features/channel-encryption">Media Stream Encryption</Link>.
 
 <div class="alert note">Once you enable the built-in encryption, all users in the same channel must use the same encryption mode and key, including the server-side users such as the Agora recording service.</div>
 
@@ -483,7 +483,7 @@ The above improvements bring the following changes in the `IRtcEngine` class:
 
 If you upgrade the SDK to v3.4.5 or later, to avoid affecting your service, Agora recommends modifying the implementation of `muteLocalAudioStream`, `publish`, and `unpublish`.
 
-See <Link to="../best-practices/set-subscribing-state?platform={{platform.PATH}}">Set the Subscribing State</Link> and <Link to="/3.x/interactive-live-streaming/advanced-features/multiple-channel?platform={{platform.PATH}}">Join multiple channels</Link>.
+See <Link to="../best-practices/set-subscribing-state">Set the Subscribing State</Link> and <Link to="/3.x/interactive-live-streaming/advanced-features/multiple-channel">Join multiple channels</Link>.
 
 **3. startAudioMixing changes**
 
@@ -567,7 +567,7 @@ v3.4.0 was released on April 16, 2021.
 
 **Integration changes**
 
-To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see <Link to="../best-practices/reduce-app-size#extension-libraries?platform={{platform.PATH}}">Extension libraries</Link>. If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
+To reduce the app size after integrating the SDK, this release packages some features as extension libraries (with the `Extension` suffix). For details, see <Link to="../best-practices/reduce-app-size#extension-libraries">Extension libraries</Link>. If you do not need to use the related features, you can remove the corresponding extension libraries and recompile the project.
 
 **Behavior changes**
 
@@ -643,7 +643,7 @@ This release fixed this issues: the `onAudioVolumeIndication` callback returned 
 - [`startAudioMixing`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1rtc_1_1_i_rtc_engine.html#a21063bfb71a8a5cbc0d391f9d7ac75be)[2/2]
 - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND(8)` in [`LOCAL_VIDEO_STREAM_ERROR`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/namespaceagora_1_1rtc.html#aca8292c30c50a78f6fbd1ef1b264d842)
 - `LOCAL_AUDIO_STREAM_ERROR_NO_RECORDING_DEVICE(6)` and `LOCAL_AUDIO_STREAM_ERROR_NO_PLAYOUT_DEVICE(7)` in [`LOCAL_AUDIO_STREAM_ERROR`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/namespaceagora_1_1rtc.html#a3929991eea3a522dcbf6ac078810045e)
-- [Error code](https://docs.agora.io/en/Voice/error_rtc?platform=Windows): `ERR_ALREADY_IN_RECORDING(160)`
+- [Error code](https://docs.agora.io/en/Voice/error_rtc): `ERR_ALREADY_IN_RECORDING(160)`
 
 **Modified**
 
@@ -669,7 +669,7 @@ v3.3.1 was released on March 4, 2021.
 
 **Voice Conversion**
 
-This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See <Link to="../advanced-features/voice-changer?platform={{platform.PATH}}">Set the Voice Effect</Link>.
+This release adds the `setVoiceConversionPreset` method to set a voice conversion effect (to disguise a user's voice). You can use this method to make a male-sounding voice sound steady or deep, and a female-sounding voice sound gender-neutral or sweet. See <Link to="../advanced-features/voice-changer">Set the Voice Effect</Link>.
 
 #### Improvements
 
@@ -703,7 +703,7 @@ v3.3.0 was released on January 22, 2021.
 
 **1. Integration change**
 
-This release adds the Agora basic calculation framework `libagora-core.dll`. To integrate the SDK into your project, see <Link to="../quickstart-guide/get-started-sdk#integrate-the-sdk?platform={{platform.PATH}}">Integrate the SDK</Link>.
+This release adds the Agora basic calculation framework `libagora-core.dll`. To integrate the SDK into your project, see <Link to="../quickstart-guide/get-started-sdk#integrate-the-sdk">Integrate the SDK</Link>.
 
 **2. Changes to subscribing behavior**
 
@@ -713,7 +713,7 @@ This release deprecates `setDefaultMuteAllRemoteAudioStreams` and changes the be
 - Methods with the prefix `muteAll` are no longer the master switch, and each `mute`-related method independently controls the user's subscribing state. When you call methods with the prefixes `muteAll` and `muteRemote` together, the method that is called later takes effect.
 - Methods with the prefix `muteAll` set whether to subscribe to the audio streams of all remote users, including all subsequent users, which means methods with the prefix `muteAll` contain the function of methods with the prefix `setDefaultMute`. Agora recommends not calling methods with the prefixes `muteAll` and `setDefaultMute` together; otherwise, the setting may not take effect.
 
-See details in <Link to="../best-practices/set-subscribing-state?platform={{platform.PATH}}">Set the Subscribing State</Link>.
+See details in <Link to="../best-practices/set-subscribing-state">Set the Subscribing State</Link>.
 
 **3. Changes to voice activity behavior**
 
@@ -727,7 +727,7 @@ To help developers control media subscription more flexibly, this release adds t
 
 **2. Cloud proxy**
 
-To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see <Link to="../basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
+To improve the usability of the Agora Cloud Proxy, this release adds the `setCloudProxy` method to set the cloud proxy and allows you to select a cloud proxy that uses the UDP protocol. For details, see <Link to="../basic-features/use-cloud-proxy">Cloud Proxy</Link>.
 
 **3. Deep-learning noise reduction**
 
@@ -812,11 +812,11 @@ If you upgrade the SDK to v3.2.0 or later, ensure that you have copied the above
 
 **2. Cloud proxy**
 
-This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See <Link to="../basic-features/use-cloud-proxy?platform={{platform.PATH}}">Cloud Proxy</Link>.
+This release optimizes the Agora cloud proxy architecture. If you are already using cloud proxy, to avoid compatibility issues between the new SDK and the old cloud proxy, please contact support@agora.io before upgrading the SDK. See <Link to="../basic-features/use-cloud-proxy">Cloud Proxy</Link>.
 
 **3. Security and compliance**
 
-Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See <Link to="../reference/security#iso-certificates?platform={{platform.PATH}}">ISO Certificates</Link>.
+Agora has passed ISO 27001, ISO 27017, and ISO 27018 international certifications, providing safe and reliable real-time interactive cloud services for users worldwide. See <Link to="../reference/security#iso-certificates">ISO Certificates</Link>.
 
 This release supports transport layer encryption by adding TLS (Transport Layer Security) and UDP (User Datagram Protocol) encryption methods.
 
@@ -1049,14 +1049,14 @@ In this release, Agora improves the user experience under poor network condition
 
 To deal with any incompatibility issues caused by the architecture change, Agora uses the fallback mechanism to ensure that users of different versions of the SDKs can communicate with each other: if a user joins the channel from a client using a previous version, all clients using v3.0.0 automatically fall back to the older version. This has the effect that none of the users in the channel can enjoy the improved experience. Therefore we strongly recommend upgrading all your clients to v3.0.0.
 
-We also upgrade the On-premise Recording SDK to v3.0.0. Ensure that you upgrade your On-premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
+We also upgrade the On-Premise Recording SDK to v3.0.0. Ensure that you upgrade your On-Premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
 
 #### New features
 
 **1. Multiple channel management**
 
 To enable a user to join an unlimited number of channels at a time, this release adds the `IChannel` and `IChannelEventHandler` classes. By creating multiple `IChannel` objects, a user can join the corresponding channels at the same time.
-After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See <Link to="/3.x/interactive-live-streaming/advanced-features/multiple-channel?platform={{platform.PATH}}">Join Multiple Channels</Link> for details.
+After joining multiple channels, users can receive the audio and video streams of all the channels, but publish one stream to only one channel at a time. This feature applies to scenarios where users need to receive streams from multiple channels, or frequently switch between channels to publish streams. See <Link to="/3.x/interactive-live-streaming/advanced-features/multiple-channel">Join Multiple Channels</Link> for details.
 
 **2. Adjusting the playback volume of the specified remote user**
 
@@ -1077,14 +1077,14 @@ To meet the need for higher audio quality, this release adjusts the correspondin
 
 Adds the following members in the `RtcStats` class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
 
 **3. Others**
 
-This release enables interoperability between the RTC Native SDK and the RTC Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
+This release enables interoperability between the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
 
 #### Issues fixed
 
@@ -1099,7 +1099,7 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 - [`createChannel`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1rtc_1_1_i_rtc_engine2.html#a9cabefe84d3a52400f941f1bd8c0f486)
 - [`IChannel`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1rtc_1_1_i_channel.html) class
 - [`IChannelEventHandler`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/classagora_1_1rtc_1_1_i_channel_event_handler.html) class
-- The [`gatewayRtt`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html) class
+- The [[gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](https://api-ref.agora.io/en/voice-sdk/cpp/3.x/structagora_1_1rtc_1_1_rtc_stats.html) class
 
 **Deprecated**
 
@@ -1313,14 +1313,14 @@ V2.4.1 is released on Jun 12th, 2019.
 This is the first release of the Agora Voice SDK for Windows. Refer to the following guides to quickly integrate the SDK and enable real-time communication in your project.
 
 - [Quickstart Guide](../quickstart-guide/get-started-sdk)
-- <Link to="../basic-features/token-server?platform={{platform.PATH}}">Use security keys</Link>
-- <Link to="../advanced-features/in-call-quality?platform={{platform.PATH}}">Report in-call statistics</Link>
-- <Link to="../basic-features/adjust-volume?platform={{platform.PATH}}">Adjust the volume</Link>
-- <Link to="../advanced-features/audio-effect-mixing?platform={{platform.PATH}}">Play audio effects/audio mixing</Link>
-- <Link to="../advanced-features/voice-changer?platform={{platform.PATH}}">Set the voice changer and reverberation effects</Link>
+- <Link to="../basic-features/token-server">Use security keys</Link>
+- <Link to="../advanced-features/in-call-quality">Report in-call statistics</Link>
+- <Link to="../basic-features/adjust-volume">Adjust the volume</Link>
+- <Link to="../advanced-features/audio-effect-mixing">Play audio effects/audio mixing</Link>
+- <Link to="../advanced-features/voice-changer">Set the voice changer and reverberation effects</Link>
 - [Test or select a media device](./test_switch_device_windows)
-- <Link to="../basic-features/use-cloud-proxy?platform={{platform.PATH}}">Use Cloud Proxy</Link>
+- <Link to="../basic-features/use-cloud-proxy">Use Cloud Proxy</Link>
 
-If you migrate to this SDK from the Windows Video SDK, refer to the <Link to="/3.x/interactive-live-streaming/introduction/release-notes?platform={{platform.PATH}}">Release notes for the Windows video SDK</Link> for audio improvements.
+If you migrate to this SDK from the Windows Video SDK, refer to the <Link to="/3.x/interactive-live-streaming/introduction/release-notes">Release notes for the Windows video SDK</Link> for audio improvements.
 
 </PlatformWrapper>

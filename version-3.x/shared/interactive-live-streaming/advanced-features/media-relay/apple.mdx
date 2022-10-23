@@ -21,8 +21,8 @@ Co-hosting across channels applies to scenarios such as an online singing contes
 ## Sample project
 
 We provide an open-source channel media relay demo project that implements channel media relay on GitHub. You can try the demo and view the source code.
-- iOS: [ChannelMediaRelay](https://github.com/AgoraIO/API-Examples/blob/legacy/iOS/APIExample/Examples/Advanced/MediaChannelRelay/MediaChannelRelay.swift)
-- macOS: [ChannelMediaRelay](https://github.com/AgoraIO/API-Examples/blob/legacy/macOS/APIExample/Examples/Advanced/ChannelMediaRelay/ChannelMediaRelay.swift)
+- iOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_IOS_BLOB}}/Advanced/MediaChannelRelay/MediaChannelRelay.swift">ChannelMediaRelay</Link>
+- macOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_MACOS_BLOB}}/Advanced/ChannelMediaRelay/ChannelMediaRelay.swift">ChannelMediaRelay</Link>
 
 ## Implementation
 
@@ -99,7 +99,7 @@ func rtcEngine)(_ engine: AgoraRtcEngineKit, channelMediaRelayStateDidChange sta
 
 <div class="alert note">After calling the <code>startChannelMediaRelay</code> method, you can call the <code>updateChannelMediaRelay</code> method to add or delete the relay channels.</div>
 
-### API Reference
+### API reference
 
 - [`startChannelMediaRelay`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
 - [`updateChannelMediaRelay`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
@@ -109,7 +109,7 @@ func rtcEngine)(_ engine: AgoraRtcEngineKit, channelMediaRelayStateDidChange sta
 
 ## Considerations
 
-- The Agora RTC SDK supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `updateChannelMediaRelay`.
+- The Agora <Vg k="VSDK" /> supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `updateChannelMediaRelay`.
 - This feature supports integer user IDs only.
 
 - When setting the source channel information, ensure that you set `uid` as 0, and the `uid` that you use to generate the token should also be set as 0.

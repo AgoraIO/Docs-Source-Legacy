@@ -12,12 +12,12 @@ As of v4.0.6 (Native v3.4.6), the SDK supports iOS 15. For the SDK versions betw
 v5.3.0 was released on July 20, 2022.
 
 #### New features and improvements
-v5.3.0 adapts to the Agora RTC Native SDK v3.7.0.2. For new features and improvements, see the release notes for each platform from v3.6.2 to v3.7.0.2:
+v5.3.0 adapts to the Agora <Vg k="VSDK" /> Native SDK v3.7.0.2. For new features and improvements, see the release notes for each platform from v3.6.2 to v3.7.0.2:
 
-- <Link target="_blank" to="../introduction/release-notes?platform=android">Android Release Notes</Link>
-- <Link target="_blank" to="../introduction/release-notes?platform=ios">iOS Release Notes</Link>
-- <Link target="_blank" to="../introduction/release-notes?platform=macos">macOS Release Notes</Link>
-- <Link to="../introduction/release-notes?platform=windows-cpp">Windows Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">Android Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">iOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">macOS Release Notes</Link>
+- <Link to="../introduction/release-notes">Windows Release Notes</Link>
 
 To support screen sharing on mobile platforms, v5.3.0 provides the `startScreenCaptureMobile` and `updateScreenCaptureParametersMobile` methods, which function the same way as the `startScreenCapture` and `updateScreenCaptureParameters` methods on Android and iOS.
 
@@ -37,7 +37,7 @@ This release fixed the following issues:
 - When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant. (Android)
 - Occasional crashes occurred when you called `playEffect` or `startAudioMixing` to play 8-bit PCM-encoded audio in the WAV format. (iOS)
 - When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green. (Windows)
-- `gatewayRtt` reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
 - The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - Occasionally, `deviceName` returned by the `enumerateDevices` method was empty when calling `enumerateDevices` to enumerate video capture devices in the system. (macOS)
 - Occasionally, it took users longer than normal to join a channel for the first time.
@@ -87,12 +87,12 @@ v5.1.0 has the following compatibility changes:
 
 #### New features and improvements
 
-v5.1.0 adapts to the Agora RTC Native SDK v3.6.2. For new features and improvements, see the release notes for each platform from 3.5.2 to 3.6.2:
+v5.1.0 adapts to the Agora <Vg k="VSDK" /> Native SDK v3.6.2. For new features and improvements, see the release notes for each platform from 3.5.2 to 3.6.2:
 
-- <Link target="_blank" to="../introduction/release-notes?platform=android">Android Release Notes</Link>
-- <Link target="_blank" to="../introduction/release-notes?platform=ios">iOS Release Notes</Link>
-- <Link target="_blank" to="../introduction/release-notes?platform=macos">macOS Release Notes</Link>
-- <Link to="../introduction/release-notes?platform=windows-cpp">Windows Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">Android Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">iOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">macOS Release Notes</Link>
+- <Link to="../introduction/release-notes">Windows Release Notes</Link>
 
 #### Known issues
 
@@ -102,7 +102,7 @@ v5.1.0 adapts to the Agora RTC Native SDK v3.6.2. For new features and improveme
 
 v5.0.0 was released on February 22, 2022.
 
-As of v5.0.0, the Agora RTC Flutter SDK supports Flutter 2.x and can run on Android, iOS, macOS, and Windows platforms.
+As of v5.0.0, the Agora <Vg k="VSDK" /> Flutter SDK supports Flutter 2.x and can run on Android, iOS, macOS, and Windows platforms.
 
 #### Compatibility changes
 
@@ -149,12 +149,12 @@ v5.0.0 optimizes the underlying architecture and makes the code neater, you can 
 
 #### New features and improvements
 
-v5.0.0 adapts to the Agora RTC Native SDK v3.5.2. For new features and improvements, see the release notes for each platform from 3.5.0.4 to 3.5.2:
+v5.0.0 adapts to the Agora <Vg k="VSDK" /> Native SDK v3.5.2. For new features and improvements, see the release notes for each platform from 3.5.0.4 to 3.5.2:
 
-- <Link target="_blank" to="../introduction/release-notes?platform=android">Android Release Notes</Link>
-- <Link target="_blank" to="../introduction/release-notes?platform=ios">iOS Release Notes</Link>
-- <Link target="_blank" to="../introduction/release-notes?platform=macos">macOS Release Notes</Link>
-- <Link target="_blank" to="../introduction/release-notes?platform=windows-cpp">Windows Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">Android Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">iOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">macOS Release Notes</Link>
+- <Link target="_blank" to="../introduction/release-notes">Windows Release Notes</Link>
 
 
 ## v4.0.7 (Native 3.5.0.3)
@@ -179,7 +179,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v4.0.7, the SDK does not play audio through any audio route, which causes a no-audio issue.
   - With v4.0.7 and later versions, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route of the SDK.
 
-See <Link to="../advanced-features/set-audio-route?platform=android">Set the Audio Route</Link> for Android platform.
+See <Link to="../advanced-features/set-audio-route">Set the Audio Route</Link> for Android platform.
 
 #### New features
 
@@ -634,15 +634,15 @@ v4.0.1 was released on May 25, 2021.
 
 1. Null safety support
 
-Since this version, Agora RTC Flutter SDK supports null safety. Because null safety is not backward compatible, **you must ensure that the dart version is 2.12 or higher**. See [Flutter documentation](https://dart.dev/null-safety) for more information.
+Since this version, Agora <Vg k="VSDK" /> Flutter SDK supports null safety. Because null safety is not backward compatible, **you must ensure that the dart version is 2.12 or higher**. See [Flutter documentation](https://dart.dev/null-safety) for more information.
 
 2. Flutter 2.x support (Android and iOS only)
 
-Since this version, Agora RTC Flutter SDK supports Flutter 2.x (Android and iOS only.)
+Since this version, Agora <Vg k="VSDK" /> Flutter SDK supports Flutter 2.x (Android and iOS only.)
 
 3. SDK package publishing platform (on Android only)
 
-Because JCenter is about to retire, Agora publishes the RTC Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
+Because JCenter is about to retire, Agora publishes the <Vg k="VSDK" /> Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
 
 ```
 allprojects {
@@ -978,7 +978,7 @@ v3.1.2 was released on September 30th, 2020.
 
 **Functions and features**
 
-- Adapts to Agora RTC SDK v3.1.2.
+- Adapts to Agora <Vg k="VSDK" /> v3.1.2.
 - Supports asynchronous programming with `async/await`.
 - Supports multiple channels.
 - Supports TextureView on Android platform.
@@ -986,6 +986,6 @@ v3.1.2 was released on September 30th, 2020.
 
 Agora provides an open-source [Agora Flutter Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) on GitHub.
 
-<div class="alert note">To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The <code>gatewayRtt</code> parameter in the <code>RtcStats</code> callback is disabled by default. Do not use <code>gatewayRtt</code> to obtain the round-trip delay between the client and the local router. See the <a href="https://docs.agora.io/en/help/integration-issues/local_network_privacy">FAQ</a> for details.</div>
+<div class="alert note">To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The <code>[[gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)</code> parameter in the <code>RtcStats</code> callback is disabled by default. Do not use <code>[[gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)</code> to obtain the round-trip delay between the client and the local router. See the <a href="https://docs.agora.io/en/help/integration-issues/local_network_privacy">FAQ</a> for details.</div>
 
 </PlatformWrapper>

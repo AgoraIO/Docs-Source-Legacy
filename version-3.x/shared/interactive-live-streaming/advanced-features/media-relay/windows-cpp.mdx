@@ -11,7 +11,7 @@ Co-hosting across channels applies to scenarios such as an online singing contes
 
 ## Sample project
 
-We provide an open-source demo project that implements [channel media relay](https://github.com/AgoraIO/API-Examples/tree/legacy/windows/APIExample/APIExample/Advanced/CrossChannel) on GitHub. You can try the demo and view the source code.
+We provide an open-source demo project that implements <Link to="{{GLOBAL.AGORA_API_EXAMPLES_WINDOWS_TREE}}/Advanced/CrossChannel">channel media relay</Link> on GitHub. You can try the demo and view the source code.
 
 ## Implementation
 
@@ -97,7 +97,7 @@ ret = m_lpAgoraEngine->updateChannelMediaRelay(cmrc);
 
 ## Considerations
 
-- The Agora RTC SDK supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `updateChannelMediaRelay`.
+- The Agora <Vg k="VSDK" /> supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `updateChannelMediaRelay`.
 - This feature supports integer user IDs only.
 
 - When setting the source channel information, ensure that you set `uid` as 0, and the `uid` that you use to generate the token should also be set as 0.

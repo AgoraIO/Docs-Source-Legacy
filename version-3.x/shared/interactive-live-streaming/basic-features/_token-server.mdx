@@ -93,7 +93,7 @@ var channel_name string
 var role_num uint32
 var role rtctokenbuilder.Role
 
-// Use RtcTokenBuilder to generate an RTC token.
+// Use RtcTokenBuilder to generate an <Vg k="VSDK" /> token.
 func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
 
     appID := "<Your App ID>"
@@ -182,7 +182,7 @@ func errorResponse(w http.ResponseWriter, message string, httpStatusCode int){
 }
 
 func main(){
-    // RTC token from RTC int uid
+    // <Vg k="VSDK" /> token from <Vg k="VSDK" /> int uid
     http.HandleFunc("/fetch_rtc_token", rtcTokenHandler)
     fmt.Printf("Starting server at port 8082\n")
 
@@ -219,7 +219,7 @@ This section uses the Web client as an example to show how to use a token for cl
 
 1. Create the project structure of the Web client with a folder including the following files.
     - `index.html`: User interface
-    - `client.js`: App logic with Agora RTC Web SDK v4.x (Must be v4.8.0 or higher)
+    - `client.js`: App logic with Agora <Vg k="VSDK" /> Web SDK v4.x (Must be v4.8.0 or higher)
 
     ```text
     |
@@ -373,20 +373,20 @@ This section introduces token generator libraries, version requirements, and rel
 
 ### SDK compatibility for AccessToken2
 
-AccessToken2 supports the following versions of the Agora RTC SDK (excluding the client-side Media Push feature):
+AccessToken2 supports the following versions of the Agora <Vg k="VSDK" /> (excluding the client-side Media Push feature):
 
 | SDK                  | SDK Version to Support AccessToken2 |
 | -------------------- | ----------------------------------- |
-| RTC Native SDK       | >= 3.6.0                            |
-| RTC Electron SDK     | >= 3.6.0                            |
-| RTC Unity SDK        | >= 3.6.0                            |
-| RTC React Native SDK | >= 3.6.0                            |
-| RTC Flutter SDK      | >= 5.10                             |
-| RTC Web SDK          | >= 4.8.0                            |
+| <Vg k="VSDK" /> Native SDK       | >= 3.6.0                            |
+| <Vg k="VSDK" /> Electron SDK     | >= 3.6.0                            |
+| <Vg k="VSDK" /> Unity SDK        | >= 3.6.0                            |
+| <Vg k="VSDK" /> React Native SDK | >= 3.6.0                            |
+| <Vg k="VSDK" /> Flutter SDK      | >= 5.10                             |
+| <Vg k="VSDK" /> Web SDK          | >= 4.8.0                            |
 
 
 
-RTC SDKs that use AccessToken2 can interoperate with RTC SDKs that use AccessToken. RTC SDKs that support AccessToken2 also support AccessToken.
+<Vg k="VSDK" /> SDKs that use AccessToken2 can interoperate with <Vg k="VSDK" /> SDKs that use AccessToken. <Vg k="VSDK" /> SDKs that support AccessToken2 also support AccessToken.
 
 ### AccessToken2 generator libraries
 
@@ -461,21 +461,21 @@ static std::string BuildTokenWithUid(
        uint32_t pub_data_stream_privilege_expire = 0);
 ```
 
-This method generates an RTC AccessToken2 and supports configuring the expiration time of the token and the following privileges:
+This method generates an <Vg k="VSDK" /> AccessToken2 and supports configuring the expiration time of the token and the following privileges:
 
-- Joining an RTC channel
-- Publishing audio streams in an RTC channel
-- Publishing video streams in an RTC channel
-- Publishing data streams in an RTC channel
+- Joining an <Vg k="VSDK" /> channel
+- Publishing audio streams in an <Vg k="VSDK" /> channel
+- Publishing video streams in an <Vg k="VSDK" /> channel
+- Publishing data streams in an <Vg k="VSDK" /> channel
 
-The privileges of publishing audio streams in an RTC channel, publishing video streams in an RTC channel, and publishing data streams in an RTC channel only take effect after [enabling co-host authentication](#enable_cohost).
+The privileges of publishing audio streams in an <Vg k="VSDK" /> channel, publishing video streams in an <Vg k="VSDK" /> channel, and publishing data streams in an <Vg k="VSDK" /> channel only take effect after [enabling co-host authentication](#enable_cohost).
 
-You can assign multiple privileges to a user. When a privilege is about to expire or has expired, the RTC SDK triggers the `onTokenPriviegeWillExpire` callback or the `onRequestToken` callback. You need to take the following actions in your own app logic:
+You can assign multiple privileges to a user. When a privilege is about to expire or has expired, the <Vg k="VSDK" /> triggers the `onTokenPriviegeWillExpire` callback or the `onRequestToken` callback. You need to take the following actions in your own app logic:
 1. Tag the type of privilege that is about to expire or has expired in your app logic.
 2. The app fetches a new AccessToken2 from the token server.
 3. The SDK calls renewToken to renew the AccessToken2.
 
-You need to set an appropriate expiration timestamp. For example, if the expiration time of joining a channel is earlier than that of publishing audio in the channel, when the privilege of joining a channel expires, the user is kicked out of the RTC channel. Even if the privilege of publishing audio is still valid, user cannot exercise that privilege.
+You need to set an appropriate expiration timestamp. For example, if the expiration time of joining a channel is earlier than that of publishing audio in the channel, when the privilege of joining a channel expires, the user is kicked out of the <Vg k="VSDK" /> channel. Even if the privilege of publishing audio is still valid, user cannot exercise that privilege.
 
 <div class="alert info">When the AccessToken2 expires but the privilege of joining a channel does not expire, the user remains in the channel and can continue to publish streams if the corresponding privilege does not expire. No token-related callback is triggered in the SDK. However, once disconnected from the channel, the user cannot rejoin the channel with that token. Ensure the AccessToken2 does not expire before other privileges.</div>
 

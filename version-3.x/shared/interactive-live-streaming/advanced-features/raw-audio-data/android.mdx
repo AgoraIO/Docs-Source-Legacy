@@ -8,7 +8,7 @@ Agora provides the raw data function for you to process the audio data according
 
 ## Sample project
 
-Agora provides an open-source sample project that implements [processing raw audio data using Java APIs](https://github.com/AgoraIO/API-Examples/blob/legacy/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ProcessRawData.java) on GitHub. You can try the demo and view the source code.
+Agora provides an open-source sample project that implements <Link to="{{GLOBAL.AGORA_API_EXAMPLES_ANDROID_BLOB}}/advanced/ProcessRawData.java">processing raw audio data using Java APIs</Link> on GitHub. You can try the demo and view the source code.
 
 
 ## Implementation
@@ -111,7 +111,7 @@ engine.registerAudioFrameObserver(audioFrameObserver);
 
 Before using the raw data function, ensure that you have implemented the basic real-time audio function in your project.
 
-<div class="alert note">The Agora C++ SDK provides the <code>IAudioFrameObserver</code> class to capture and modify raw audio data. Therefore, you can use Java to call the C++ API via the JNI (Java Native Interface). Since the RTC Java SDK encapsulates the RTC C++ SDK, you can include the <code>.h</code> file in the SDK to directly call the C++ methods.</div>
+<div class="alert note">The Agora C++ SDK provides the <code>IAudioFrameObserver</code> class to capture and modify raw audio data. Therefore, you can use Java to call the C++ API via the JNI (Java Native Interface). Since the <Vg k="VSDK" /> for Java encapsulates the <Vg k="VSDK" /> for C++, you can include the <code>.h</code> file in the SDK to directly call the C++ methods.</div>
 
 Follow these steps to implement the raw audio data function in your project:
 

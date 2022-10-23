@@ -85,7 +85,7 @@ Choose either of the following approaches to integrate the Agora Unity SDK into 
 
 **Approach 2: Manually add the SDK files**
 
-1. Go to [SDK Downloads](https://docs.agora.io/en/sdks?platform=unity), download the Agora SDK for Unity under **Video SDK**, and extract the files from the downloaded SDK package.
+1. Go to [SDK Downloads](https://docs.agora.io/en/sdks), download the Agora SDK for Unity under **Video SDK**, and extract the files from the downloaded SDK package.
 2. Copy the `Plugins` subfolder from the `samples/Hello-Video-Unity-Agora/Assets/AgoraEngine` directory of the downloaded SDK to the `Assets` subfolder of your project.
 
    <div class="alert note"><ul><li>Android or iOS developers using Unity Editor for macOS or Windows must also copy the macOS or the x86/X86_64 subfolder to the specified directory.</li><li>iOS developers also need to copy the <code>BL_BuildPostProcess.cs</code> file from the <code>samples/Hello-Video-Unity-Agora/Assets/AgoraEngine/Editor</code> directory.</li></ul></div>
@@ -246,10 +246,10 @@ After setting the client role and the local video view (for the interactive vide
 
  <div class="alert note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <tt>Mute</tt> methods accordingly.</div>
 
-If an interactive streaming channel uses both the RTC Native SDK and the RTC Web SDK, ensure that you call the `EnableWebSdkInteroperability` method before joining the channel.
+If an interactive streaming channel uses both the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK, ensure that you call the `EnableWebSdkInteroperability` method before joining the channel.
 
 ```csharp
-// Call this method to enable interoperability between the RTC Native SDK and the RTC Web SDK if the RTC Web SDK is in the channel.
+// Call this method to enable interoperability between the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK if the <Vg k="VSDK" /> Web SDK is in the channel.
 mRtcEngine.EnableWebSdkInteroperability(true);
 // Join a channel.
 mRtcEngine.JoinChannelByKey(null, channel, null, 0);

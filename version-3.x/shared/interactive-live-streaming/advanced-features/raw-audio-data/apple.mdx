@@ -20,11 +20,11 @@ Agora provides the raw data function for you to process the audio data according
 Agora provides the following open-source sample projects on GitHub that implement the raw audio data function:
 
 - Process raw audio data using iOS/macOS APIs
-  - iOS:  [RawAudioData](https://github.com/AgoraIO/API-Examples/tree/legacy/iOS/APIExample/Examples/Advanced/RawAudioData/RawAudioData.swift)
-  - macOS:  [RawAudioData](https://github.com/AgoraIO/API-Examples/tree/legacy/macOS/APIExample/Examples/Advanced/RawAudioData/RawAudioData.swift)
+  - iOS:  <Link to="{{GLOBAL.AGORA_API_EXAMPLES_IOS_TREE}}/Advanced/RawAudioData/RawAudioData.swift">RawAudioData</Link>
+  - macOS:  <Link to="{{GLOBAL.AGORA_API_EXAMPLES_MACOS_TREE}}/Advanced/RawAudioData/RawAudioData.swift">RawAudioData</Link>
 - Process raw audio data using C++ APIs
-  - iOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/legacy/iOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
-  - macOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/legacy/macOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
+  - iOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_IOS_BLOB}}/Advanced/RawMediaData/RawMediaData.swift">RawMediaData</Link>
+  - macOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_MACOS_BLOB}}/Advanced/RawMediaData/RawMediaData.swift">RawMediaData</Link>
 
 You can view the source code on Github or download the project to try it out.
 
@@ -206,7 +206,7 @@ agoraKit.setPlaybackAudioFrameParametersWithSampleRate(44100, channel: 1, mode: 
 
 **4. Join a channel**
 
-Call `joinChannelByToken` to join an RTC channel.
+Call `joinChannelByToken` to join an <Vg k="VSDK" /> channel.
 
 ```swift
 // Swift
@@ -362,7 +362,7 @@ Call `registerAudioFrameObserver(NULL)` to stop registering the audio frame obse
 }
 ```
 
-#### API Reference
+#### API reference
 
 - [`registerAudioFrameObserver`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1media_1_1_i_media_engine.html#ae46ca0d20789787aaab2fb268a524100)
 - [`setRecordingAudioFrameParameters`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a2c4717760b5fbf1bb8c1a3c16ca67fe5)
@@ -375,7 +375,7 @@ Call `registerAudioFrameObserver(NULL)` to stop registering the audio frame obse
 
 #### Considerations
 
-* The raw audio data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ methods in an `.mm` file. See [AgoraMediaDataPlugin.mm](https://github.com/AgoraIO/API-Examples/blob/legacy/iOS/APIExample/Common/RawDataApi/AgoraMediaDataPlugin.mm) for reference.
+* The raw audio data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ methods in an `.mm` file. See <Link to="{{GLOBAL.AGORA_API_EXAMPLES_IOS_COMMON}}/RawDataApi/AgoraMediaDataPlugin.mm">AgoraMediaDataPlugin.mm</Link> for reference.
 
 - Ensure that you call `getNativeHandler` to get the C++ handle before calling the C++ method.
 - The raw audio data function is resource intensive and may affect performance.

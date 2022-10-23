@@ -21,8 +21,8 @@
 
 Agora provides an open-source sample project on GitHub that implements the in-call statistics monitoring function. You can download the sample project to try it out or view the source code:
 
-- iOS: [JoinChannelVideo.swift](https://github.com/AgoraIO/API-Examples/blob/legacy/iOS/APIExample/Examples/Basic/JoinChannelVideo/JoinChannelVideo.swift)
-- macOS: [JoinChannelVideo.swift](https://github.com/AgoraIO/API-Examples/blob/legacy/macOS/APIExample/Examples/Basic/JoinChannelVideo/JoinChannelVideo.swift)
+- iOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_IOS_BLOB}}/Basic/JoinChannelVideo/JoinChannelVideo.swift">JoinChannelVideo.swift</Link>
+- macOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_MACOS_BLOB}}/Basic/JoinChannelVideo/JoinChannelVideo.swift">JoinChannelVideo.swift</Link>
 
 
 ## Network quality report
@@ -38,7 +38,7 @@ Last mile refers to the network from your device to Agora’s edge server. The u
 
 ## Statistics report
 
-The `reportRtcStats` callback reports call statistics. You can see the duration, the number of users in the channel, the system CPU usage, the application CPU usage, and the following parameters of the current call.
+The [reportRtcStats](https://api-ref.agora.io/en/video-sdk/ios/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:) callback reports call statistics. You can see the duration, the number of users in the channel, the system CPU usage, the application CPU usage, and the following parameters of the current call.
 
 | Parameter                           | Description                                                  | Comment                                                      |
 | :---------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -199,7 +199,7 @@ When the state of remote video streams changes, the SDK triggers the `remoteVide
 ## API reference
 
 - [`networkQuality`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkQuality:txQuality:rxQuality:)
-- [`reportRtcStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:)
+- [[reportRtcStats](https://api-ref.agora.io/en/video-sdk/ios/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:)](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:)
 - [`localAudioStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
 - [`localAudioStateChange`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
 - [`remoteAudioStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)
