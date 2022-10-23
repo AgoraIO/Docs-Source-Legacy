@@ -171,7 +171,7 @@ The Agora SDK provides only C++ methods and callbacks for implementing the raw a
 #import <AgoraRtcKit/IAgoraRtcEngine.h>
 
 - (void)registerAudioRawDataObserver:(ObserverAudioType)observerType {
-    // Gets the C++ event handler of the <Vg k="VSDK" /> Native SDK
+    // Gets the C++ event handler of the RTC Native SDK
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
     // Creates an IMediaEngine instance
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
