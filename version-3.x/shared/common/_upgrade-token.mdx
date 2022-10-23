@@ -183,7 +183,7 @@ In order to show the authentication workflow, this section shows how to build an
 
     func main(){
         // Handling routes
-        // <Vg k="VSDK" /> token from <Vg k="VSDK" /> num uid
+        // Video Calling token from Video SDK num uid
         http.HandleFunc("/fetch_rtc_token", rtcTokenHandler)
         fmt.Printf("Starting server at port 8082\n")
 
@@ -222,7 +222,7 @@ In order to show the authentication workflow, this section shows how to build an
 1. Create the project structure of the Web client with a folder including the following files.
 
    - `index.html`: User interface
-   - `client.js`: App logic with Agora <Vg k="VSDK" /> Web SDK 4.x
+   - `client.js`: App logic with Agora <Vg k="VIDEO" /> Web SDK 4.x
 
    ```text
    |
@@ -477,7 +477,7 @@ static std::string buildTokenWithUid(
 
 ### Update the client
 
-<div class="alert note">The client does not need any updates as long as the <Vg k="VSDK" /> Web SDK used in the Web client is v4.8.0 or later. For more information about the SDK versions that support AccessToken2, see <a href="../basic-features/token-server#sdk-compatibility-for-accesstoken2">SDK compatibility for AccessToken2</a>.</div>
+<div class="alert note">The client does not need any updates as long as the <Vg k="VIDEO" /> Web SDK used in the Web client is v4.8.0 or later. For more information about the SDK versions that support AccessToken2, see <a href="../basic-features/token-server#sdk-compatibility-for-accesstoken2">SDK compatibility for AccessToken2</a>.</div>
 
 In the `index.html` file, make the following changes:
 

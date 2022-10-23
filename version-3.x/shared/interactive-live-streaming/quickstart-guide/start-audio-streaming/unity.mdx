@@ -214,10 +214,10 @@ After setting the client role, you can call `JoinChannelByKey` to join a channel
 
  <div class="alert note">Once the user joins the channel, the user subscribes to the audio streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <tt>Mute</tt> methods accordingly.</div>
 
-If an interactive streaming channel uses both the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK, ensure that you call the `EnableWebSdkInteroperability` method before joining the channel.
+If an interactive streaming channel uses both the <Vg k="VIDEO" /> Native SDK and the <Vg k="VIDEO" /> Web SDK, ensure that you call the `EnableWebSdkInteroperability` method before joining the channel.
 
 ```csharp
-// Call this method to enable interoperability between the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK if the <Vg k="VSDK" /> Web SDK is in the channel.
+// Call this method to enable interoperability between the <Vg k="VIDEO" /> Native SDK and the <Vg k="VIDEO" /> Web SDK if the <Vg k="VIDEO" /> Web SDK is in the channel.
 mRtcEngine.EnableWebSdkInteroperability(true);
 // Join a channel.
 mRtcEngine.JoinChannelByKey(null, channel, null, 0);
