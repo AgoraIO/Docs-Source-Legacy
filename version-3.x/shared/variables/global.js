@@ -103,7 +103,7 @@ export const APP_CERTIFICATE_LINK =
   'xref:{rootdir}/reference/manage-agora-account.adoc#_get_the_app_certificate[App Certificate]';
 
 export const DEMO_BASIC_VIDEO_CALL_URL =
-  'https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html';
+  'https://webdemo.agora.io/basicVideoCall/index.html';
 
 export const DEMO_PAGE_LINK = `<Link to="{{Global.DEMO_BASIC_VIDEO_CALL_URL}}"><Vg k="COMPANY" /> web demo</Link>`;
 
