@@ -11,11 +11,11 @@ This article describes how to implement these tests.
 
 ## Sample project
 
-Agora provides an open-source sample project that implements [pre-call tests](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PreCallTest.java) on GitHub. You can download the sample project to try it out or refer to the source code.
+Agora provides an open-source sample project that implements <Link to="{{GLOBAL.AGORA_API_EXAMPLES_ANDROID_BLOB}}/advanced/PreCallTest.java">pre-call tests</Link> on GitHub. You can download the sample project to try it out or refer to the source code.
 
 ## Network probe test
 
-As of v2.4.0, the Agora <Vg k="VIDEO" /> Native SDK provides the `startLastmileProbeTest` method that probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
+As of v2.4.0, the Agora <Vg k="VSDK" /> for Android provides the `startLastmileProbeTest` method that probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
 
 ### Implementation
 
@@ -76,7 +76,11 @@ rtcEngine.stopLastmileProbeTest();
 
 ## Audio call loop test
 
+<<<<<<< HEAD
 As of v2.4.0, the Agora <Vg k="VIDEO" /> Native SDK provides the `startEchoTest` [2/3] method that tests whether network connections and audio devices, such as the microphone and speaker, are working properly.
+=======
+As of v2.4.0, the Agora <Vg k="VSDK" /> for Android provides the `startEchoTest` [2/3] method that tests whether network connections and audio devices, such as the microphone and speaker, are working properly.
+>>>>>>> main
 
 ### Implementation
 
@@ -108,7 +112,11 @@ rtcEngine.stopEchoTest();
 
 ## Audio and video call loop test
 
+<<<<<<< HEAD
 As of v3.5.2, the Agora <Vg k="VIDEO" /> Native SDK provides the `startEchoTest` [3/3] method that tests whether the system's audio devices, video devices, and network connections are working properly.
+=======
+As of v3.5.2, the Agora <Vg k="VSDK" /> for Android provides the `startEchoTest` [3/3] method that tests whether the system's audio devices, video devices, and network connections are working properly.
+>>>>>>> main
 
 ### Implementation
 

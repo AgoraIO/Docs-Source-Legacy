@@ -212,7 +212,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android).
+This release deprecates three old methods for Media Push: `addPublishStreamUrl`, `setLiveTranscoding`, and `removePublishStreamUrl`. Agora recommends that you use the new methods for Media Push and update your code logic by referring to [Media Push](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android).
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
 
@@ -223,7 +223,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
         - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android?platform=Android#prerequisites) to enable the Media Push permission.
+        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to [Prerequisites](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_android#prerequisites) to enable the Media Push permission.
     - Adding the following to the `RTMP_STREAMING_EVENT` event code:
         - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`: The feature is not supported.
         - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`: Reserved.
@@ -1951,7 +1951,7 @@ To avoid adding too many users with the same uid into the CDN publishing channel
 
 -   <code>setUser</code>
 
-The following API methods are deleted and no longer supported in v2.3.0. Agora provides the Recording SDK for better recording services. For more information on the Recording SDK, see <Link to="/on-premise-recording/reference/release-notes?platform=linux-cpp">Release Notes for Agora Recording SDK</Link>.
+The following API methods are deleted and no longer supported in v2.3.0. Agora provides the Recording SDK for better recording services. For more information on the Recording SDK, see <Link to="/on-premise-recording/reference/release-notes">Release Notes for Agora Recording SDK</Link>.
 
 -   <code>startRecordingService</code>
 -   <code>stopRecordingService</code>

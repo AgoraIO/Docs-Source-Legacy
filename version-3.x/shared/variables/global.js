@@ -107,8 +107,8 @@ export const DEMO_BASIC_VIDEO_CALL_URL =
 
 export const DEMO_PAGE_LINK = `<Link to="{{Global.DEMO_BASIC_VIDEO_CALL_URL}}"><Vg k="COMPANY" /> web demo</Link>`;
 
-export const TOKEN_GENERATE_LINK = `<Link to="https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token">Generate a temporary token</Link>`;
-export const TOKEN_GENERATE_URL = `https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-an-rtc-temporary-token`;
+export const TOKEN_GENERATE_LINK = `<Link to="https://docs.agora.io/en/Agora%20Platform/get_appid_token#generate-a-temporary-token">Generate a temporary token</Link>`;
+export const TOKEN_GENERATE_URL = `https://docs.agora.io/en/Agora%20Platform/get_appid_token#generate-an-rtc-temporary-token`;
 
 export const AGORA_DYNAMIC_KEY_CODE_BASE_URL =
   'https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey';
