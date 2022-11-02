@@ -1,12 +1,18 @@
+
+import ThreeSevenTwo from './372.mdx' ;
+
 <PlatformWrapper platform="android">
 
 This page provides the release notes for the Agora Video SDK for Android.
+
+<ThreeSevenTwo />
 
 ## v3.7.1
 
 v3.7.1 was released on August 4, 2022.
 
 #### Compatibility changes
+
 To facilitate troubleshooting, as of this release, the SDK no longer catches exceptions that are thrown by your own code implementation when triggering callbacks in the `IRtcEngineEventHandler` class. You need to catch and handle the exceptions yourself; otherwise, it can cause a crash.
 
 #### Improvements
