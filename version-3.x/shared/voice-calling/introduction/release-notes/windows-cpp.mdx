@@ -1,6 +1,10 @@
+import ReleaseNote from '@site/versioned_docs/version-3.x/shared/interactive-live-streaming/introduction/release-notes/372.mdx';
+
 <PlatformWrapper platform="windows-cpp">
 
 This page provides the release notes for the Agora Voice SDK for Windows.
+
+<ReleaseNote />
 
 ## v3.7.1
 
@@ -10,7 +14,7 @@ v3.7.1 was released on August 4, 2022.
 
 **1. Co-hosting across channels**
 
-This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
+This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
 
 
 #### Fixed issues
@@ -18,8 +22,8 @@ This release enhances the connection mechanism between the SDK and the server 
 This release fixed the following issues:
 
 - Occasionally, the app got stuck after a user joined a channel.
-- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
-- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 
 ## v3.7.0.2
