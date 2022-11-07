@@ -365,7 +365,7 @@ This release fixed the following issues:
   - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`
   - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`
 
-- The following code in the `error`parameter of [`onRtmpStreamingEvent`](https://api-ref.agora.io/en/video-sdk/android/3.x/v3.6.0/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
+- The following code in the `error`parameter of [`onRtmpStreamingEvent`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
 
   - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`
   - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`
@@ -701,7 +701,7 @@ See [Set the Audio Route](../advanced-features/set-audio-route).
 
 This release adds the `enableVirtualBackground` method, with which you can enable and set a virtual background for users as either a solid color or an image in PNG or JPG format. You can use the `onVirtualBackgroundSourceEnabled` callback to learn whether the virtual background is successfully enabled or the reason for an error.
 
-<div class="alert note">Before you use virtual backgrounds, ensure that the relevant dynamic library is integrated and that the device performance and user scenarios meet the requirements. See <a href="https://api-ref.agora.io/en/video-sdk/android/3.x/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2">enableVirtualBackground documentation</a >.</div>
+<div class="alert note">Before you use virtual backgrounds, ensure that the relevant dynamic library is integrated and that the device performance and user scenarios meet the requirements. See <a href="https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2">enableVirtualBackground documentation</a >.</div>
 
 #### Improvements
 
@@ -734,13 +734,13 @@ This release fixed the following issues:
 
 **Added**
 
-- [`enableVirtualBackground`](https://api-ref.agora.io/en/video-sdk/android/3.x/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2)
-- [`onVirtualBackgroundSourceEnabled`](https://api-ref.agora.io/en/video-sdk/android/3.x/v3.5.0/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a075c08f221367598a22389b5bf357cb4)
+- [`enableVirtualBackground`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1d7da2e04f82d5f3988e08f042b87fd2)
+- [`onVirtualBackgroundSourceEnabled`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a075c08f221367598a22389b5bf357cb4)
 
 **Modified**
 
-- [`setEnableSpeakerphone`](https://api-ref.agora.io/en/video-sdk/android/3.x/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a67cf60c4a3f4dade3f49205cd2f044f3)
-- [`setDefaultAudioRouteToSpeakerphone`](https://api-ref.agora.io/en/video-sdk/android/3.x/v3.5.0/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8f89328fab2054d74f9dfa7819458866)
+- [`setEnableSpeakerphone`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a67cf60c4a3f4dade3f49205cd2f044f3)
+- [`setDefaultAudioRouteToSpeakerphone`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8f89328fab2054d74f9dfa7819458866)
 
 ## v3.4.6
 
@@ -1576,7 +1576,7 @@ This release adds `setRemoteVideoRenderer` in the `RtcChannel` class to enable u
 
 This release adds support for post-processing remote audio and video data in a multi-channel scenario by adding the following C++ methods:
 
-- The `IAudioFrameObserver` class:  [`isMultipleChannelFrameWanted`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//v3.0.1/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b).
+- The `IAudioFrameObserver` class:  [`isMultipleChannelFrameWanted`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1media_1_1_i_audio_frame_observer.html#a4b6bdf2a975588cd49c2da2b6eff5956) and [`onPlaybackAudioFrameBeforeMixingEx`](https://api-ref.agora.io/en/video-sdk/cpp/3.x/classagora_1_1media_1_1_i_audio_frame_observer.html#ab0cf02ba307e91086df04cda4355905b).
 - The `IVideoFrameObserver` class: [`isMultipleChannelFrameWanted`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1media_1_1_i_video_frame_observer.html#aa6bf2611907a097ec359b83f1e3ba49a) and [`onRenderVideoFrameEx`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1media_1_1_i_video_frame_observer.html#ad325db8ee3a04e667e6db3d1a84f381d).
 
 After successfully registering the audio or video observer, if you set the return value of `isMultipleChannelFrameWanted` as `true`, you can get the corresponding audio or video data from `onPlaybackAudioFrameBeforeMixingEx` or `onRenderVideoFrameEx`. In a multi-channel scenario, Agora recommends setting the return value as `true`.
@@ -1585,7 +1585,7 @@ After successfully registering the audio or video observer, if you set the retur
 
 **Frame position (C++)**
 
-After successfully registering the video observer, you can observe and get the video frame at each node of video processing. To conserve power consumption, this release enables customizing the frame position for the video observer. Set the return value of the [`getObservedFramePosition`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//v3.0.1/classagora_1_1media_1_1_i_video_frame_observer.html#ad4c174389264630ffb1b2d24c6030013)  callback to set the position to observe:
+After successfully registering the video observer, you can observe and get the video frame at each node of video processing. To conserve power consumption, this release enables customizing the frame position for the video observer. Set the return value of the [`getObservedFramePosition`](https://api-ref.agora.io/en/video-sdk/cpp/3.x/classagora_1_1media_1_1_i_video_frame_observer.html#ad4c174389264630ffb1b2d24c6030013)  callback to set the position to observe:
 
 - The position after capturing the video frame.
 - The position before receiving the remote video frame.
