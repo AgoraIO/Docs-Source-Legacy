@@ -1,6 +1,10 @@
+import ThreeSevenTwo from './372.mdx' ;
+
 <PlatformWrapper platform="windows-cpp">
 
 This page provides the release notes for the Agora Video SDK.
+
+<ThreeSevenTwo />
 
 ## v3.7.1
 
@@ -10,18 +14,18 @@ v3.7.1 was released on August 4, 2022.
 
 **1. Super resolution (beta)**
 
-To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b after you enable this feature. 
+To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b after you enable this feature. 
 
-You can call `enableRemoteSuperResolution` to enable this feature. The SDK triggers the `onUserSuperResolutionEnabled` callback to report whether this feature has been successfully enabled. If it is not enabled successfully, use the `reason` code to troubleshoot issues.
+You can call `enableRemoteSuperResolution` to enable this feature. The SDK triggers the `onUserSuperResolutionEnabled` callback to report whether this feature has been successfully enabled. If it is not enabled  successfully, use the `reason` code to troubleshoot issues.
 
-<div class="alert note">Before using super resolution, ensure that you have integrated the <code>libagora_super_resolution_extension.dll</code> dynamical library. For other requirements, see the <a href="https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a0b77e047722263a795e112c7b2ae1094">enableRemoteSuperResolution documentation</a>.</div>
+<div class="alert note">Before using super resolution, ensure that you have integrated the <code>libagora_super_resolution_extension.dll</code> dynamical library. For other requirements, see the <a href="https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a0b77e047722263a795e112c7b2ae1094">enableRemoteSuperResolution documentation</a>.</div>
 
 
 #### Improvements
 
 **1. Co-hosting across channels**
 
-This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
+This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
 
 
 #### Fixed issues
@@ -31,9 +35,9 @@ This release fixed the following issues:
 - When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green.
 - Occasionally, the app got stuck after a user joined a channel.
 - Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing.
-- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
-- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
-- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
+- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 
 #### API changes
@@ -41,7 +45,7 @@ This release fixed the following issues:
 **Added**
 
 - `enableRemoteSuperResolution`
-- `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON_INSUFFICIENT_PERFORMANCE(4)` in `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON`
+- `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON_INSUFFICIENT_PERFORMANCE(4)` in `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON`
 
 
 
