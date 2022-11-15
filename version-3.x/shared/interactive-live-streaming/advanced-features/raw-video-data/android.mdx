@@ -23,6 +23,11 @@ Follow these steps to implement the raw video data function in your project:
 3. After you successfully register the observer, the SDK captures every video frame and sends the captured raw video data via the `onCaptureVideoFrame`, `onPreEncodeVideoFrame`, or `onRenderVideoFrame` callbacks.
 4. Process the captured raw video data according to your needs. Then, you can send it to the SDK via the callbacks mentioned in step 3.
 
+<div class="alert note">
+When you use the SDK v3.0.1 or later, note that the SDK no longer guarantees that callback functions in <code>IVideoFrameObserver</code> are reported in the same thread. The SDK only guarantees the sequence of these callbacks.
+If you are using OpenGL to perform image enhancement on the raw video data, you need to actively switch the OpenGL context in the callback function in <code>IVideoFrameObserver</code> to adapt to a multi-threaded scenario; otherwise, the image enhancement cannot work.
+</div>
+
 ### Call the Agora C++ API in a Java project
 
 The following diagram shows the basic flow of calling the Agora C++ API in a Java project:
