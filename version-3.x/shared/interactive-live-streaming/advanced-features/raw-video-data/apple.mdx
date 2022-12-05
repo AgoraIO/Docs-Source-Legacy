@@ -19,8 +19,8 @@ The Native SDK uses the `IVideoFrameObserver` class to provide raw video data fu
 
 Agora provides the following open-source sample projects on GitHub that implement the raw video data function:
 
-- iOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
-- macOS: [RawMediaData](https://github.com/AgoraIO/API-Examples/blob/master/macOS/APIExample/Examples/Advanced/RawMediaData/RawMediaData.swift)
+- iOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_IOS_BLOB}}/Advanced/RawMediaData/RawMediaData.swift">RawMediaData</Link>
+- macOS: <Link to="{{GLOBAL.AGORA_API_EXAMPLES_MACOS_BLOB}}/Advanced/RawMediaData/RawMediaData.swift">RawMediaData</Link>
 
 You can download them to try out this function and view the source code.
 
@@ -38,6 +38,11 @@ Follow these steps to implement the raw video data function in your project:
 	<li>Ensure that you import the C++ header files at the beginning of the <code>.mm</code> file:
 		<pre>#import &lt;AgoraRtcKit/IAgoraMediaEngine.h>
              #import &lt;AgoraRtcKit/IAgoraRtcEngine.h></pre></li>
+</div>
+
+<div class="alert note">
+When you use the SDK v3.0.1 or later, note that the SDK no longer guarantees that callback functions in <code>IVideoFrameObserver</code> are reported in the same thread. The SDK only guarantees the sequence of these callbacks.
+If you are using OpenGL to perform image enhancement on the raw video data, you need to actively switch the OpenGL context in the callback function in <code>IVideoFrameObserver</code> to adapt to a multi-threaded scenario; otherwise, the image enhancement cannot work.
 </div>
 
 ### API call sequence
@@ -177,7 +182,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
 
 ## Considerations
 
-- The raw video data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ in a `.mm` file. See [AgoraMediaDataPlugin.mm](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/RawDataApi/AgoraMediaDataPlugin.mm) for reference.
+- The raw video data function is implemented by the C++ APIs of the SDK, and you need to mix the Objective-C and C++ in a `.mm` file. See <Link to="{{GLOBAL.AGORA_API_EXAMPLES_IOS_COMMON}}/RawDataApi/AgoraMediaDataPlugin.mm">AgoraMediaDataPlugin.mm</Link> for reference.
 - Ensure that you call `getNativeHandle` to get the C++ handle each time before calling `registerVideoFrameObserver`.
 - The raw video data function is resource intensive and may affect performance.
 

@@ -12,7 +12,7 @@ Co-hosting across channels applies to scenarios such as an online singing contes
 
 ## Sample project
 
-Agora provides an open-source [HostAcrossChannel](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/HostAcrossChannel.java) sample project on GitHub. You can download the project to try it out or view the source code.
+Agora provides an open-source <Link to="{{GLOBAL.AGORA_API_EXAMPLES_ANDROID_BLOB}}/advanced/HostAcrossChannel.java">HostAcrossChannel</Link> sample project on GitHub. You can download the project to try it out or view the source code.
 
 ## Implementation
 
@@ -95,7 +95,7 @@ public void onChannelMediaRelayStateChanged(int state, int code) {
 }
 ```
 
-### API Reference
+### API reference
 
 - [`startChannelMediaRelay`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6f09ba685f8ab01d7dc06173286950f6)
 - [`updateChannelMediaRelay`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#abd40d706379d27cf617376a504f394bd)
@@ -105,7 +105,7 @@ public void onChannelMediaRelayStateChanged(int state, int code) {
 
 ## Considerations
 
-- The Agora RTC SDK supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `updateChannelMediaRelay`.
+- The Agora <Vg k="VSDK" /> supports relaying media streams to a maximum of four destination channels. To add or delete a destination channel, call `updateChannelMediaRelay`.
 - This feature supports integer user IDs only.
 
 - When setting the source channel information, ensure that you set `uid` as 0, and the `uid` that you use to generate the token should also be set as 0.

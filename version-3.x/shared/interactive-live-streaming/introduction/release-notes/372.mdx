@@ -1,0 +1,52 @@
+## v3.7.2
+
+v3.7.2 was released on November 2, 2022.
+
+### Security enhancements
+
+To increase the security of the SDK, Agora updates the third-party open-source libraries used by the SDK in this release as follows:
+
+- OpenSSL: Upgrade from 1.1.1l to 1.1.1q.
+- zlib: Upgrade from 1.2.11 to 1.2.12.
+- FFmpeg: Adds security patches CVE-2021-38114 and CVE-2021-38291.
+
+### Improvements
+
+- **Virtual background**
+
+    Because the user's image can be broken, for example, if the user downloads an incomplete image or a virus on the user's device damages the image, this release adds compatibility with broken images in the virtual background feature and supports setting some broken images as virtual backgrounds.
+
+<PlatformWrapper platform="android">
+
+- **Bluetooth permissions**
+
+    Due to Android 12.0 system limitations, you need to add the additional `BLUETOOTH_CONNECT` permission during integration; otherwise, users with Android 12.0 or above devices cannot use Bluetooth properly. To simplify the integration steps and reduce the dependency of apps on permissions, this release adapts to the Android 12.0 Bluetooth scenario so that your app no longer depends on the `BLUETOOTH_CONNECT` permission.
+
+</PlatformWrapper>
+
+
+### Fixed issues
+
+This release fixes the following issues:
+
+- The SDK did not support reporting end-to-end packet loss rate under some network conditions.
+
+<PlatformWrapper platform="android">
+- The virtual metronome worked inconsistently. For example, audio in the MP3 format was not supported and the beats played were not as expected.
+- In the communication channel profile, when a user using a Bluetooth headset for a call left a channel, and re-joined it, the sound was played through the speaker instead of the Bluetooth headset.
+- Occasionally, the `onFacePositionChanged` callback reported empty data after you called `enableFaceDetection` to enable the local face detection.
+- Crashes occurred when you called `playEffect` multiple times to play audio effects, each time the `soundId` value increased progressively, and each time you did not call `stopEffect` or `stopAllEffects` to stop playing the audio effects.
+- When you called `setAudioMixingPosition` to set the position of the music file to play at 36 minutes or later, the music started playing from the beginning instead of from the specified position.
+</PlatformWrapper>
+
+<PlatformWrapper platform="ios">
+- Occasionally, when the local user restarted screen sharing immediately after stopping it, a high delay (tens of seconds) occurred before remote users were able to see the screen sharing stream.
+- The in-ear monitoring effect did not appear when a user using iOS 16 called `enableInEarMonitoring` to enable the in-ear monitoring.
+- Under certain circumstances, when the local user used the Push method to customize the video source, the remote user saw some images in the video with abnormal colors, such as an image that should be red appearing green.
+- When you called `setAudioMixingPosition` to set the position of the music file to play at 36 minutes or later, the music started playing from the beginning instead of from the specified position.
+</PlatformWrapper>
+
+<PlatformWrapper platform="macos">
+- The local user heard buzzing noises in a call using AirPods.
+</PlatformWrapper>
+

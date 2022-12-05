@@ -1,6 +1,10 @@
+import ThreeSevenTwo from './372.mdx' ;
+
 <PlatformWrapper platform="windows-cpp">
 
 This page provides the release notes for the Agora Video SDK.
+
+<ThreeSevenTwo />
 
 ## v3.7.1
 
@@ -10,18 +14,18 @@ v3.7.1 was released on August 4, 2022.
 
 **1. Super resolution (beta)**
 
-To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b after you enable this feature. 
+To effectively boost the resolution of a remote user's video seen by the local user, this release adds support for the super resolution feature. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b after you enable this feature. 
 
-You can call `enableRemoteSuperResolution` to enable this feature. The SDK triggers the `onUserSuperResolutionEnabled` callback to report whether this feature has been successfully enabled. If it is not enabled successfully, use the `reason` code to troubleshoot issues.
+You can call `enableRemoteSuperResolution` to enable this feature. The SDK triggers the `onUserSuperResolutionEnabled` callback to report whether this feature has been successfully enabled. If it is not enabled  successfully, use the `reason` code to troubleshoot issues.
 
-<div class="alert note">Before using super resolution, ensure that you have integrated the <code>libagora_super_resolution_extension.dll</code> dynamical library. For other requirements, see the <a href="https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a0b77e047722263a795e112c7b2ae1094">enableRemoteSuperResolution documentation</a>.</div>
+<div class="alert note">Before using super resolution, ensure that you have integrated the <code>libagora_super_resolution_extension.dll</code> dynamical library. For other requirements, see the <a href="https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine.html#a0b77e047722263a795e112c7b2ae1094">enableRemoteSuperResolution documentation</a>.</div>
 
 
 #### Improvements
 
 **1. Co-hosting across channels**
 
-This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
+This release enhances the connection mechanism between the SDK and the server of co-hosting across channels and therefore reduces the failure rate.
 
 
 #### Fixed issues
@@ -31,9 +35,9 @@ This release fixed the following issues:
 - When the local user started screen sharing, and the shared content contained a red pattern, remote users saw the shared red pattern as green.
 - Occasionally, the app got stuck after a user joined a channel.
 - Occasionally, the local user could barely hear the local user's voice after the local user started screen sharing.
-- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
-- `gatewayRtt` reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
-- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
+- The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 
 #### API changes
@@ -41,7 +45,7 @@ This release fixed the following issues:
 **Added**
 
 - `enableRemoteSuperResolution`
-- `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON_INSUFFICIENT_PERFORMANCE(4)` in `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON`
+- `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON_INSUFFICIENT_PERFORMANCE(4)` in `VIRTUAL_BACKGROUND_SOURCE_STATE_REASON`
 
 
 
@@ -208,7 +212,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
@@ -1473,7 +1477,7 @@ In this release, Agora improves the user experience under poor network condition
 
 To deal with any incompatibility issues caused by the architecture change, Agora uses the fallback mechanism to ensure that users of different versions of the SDKs can communicate with each other: if a user joins the channel from a client using a previous version, all clients using v3.0.0 automatically fall back to the older version. This has the effect that none of the users in the channel can enjoy the improved experience. Therefore we strongly recommend upgrading all your clients to v3.0.0.
 
-We also upgrade the On-premise Recording SDK to v3.0.0. Ensure that you upgrade your On-premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
+We also upgrade the On-Premise Recording SDK to v3.0.0. Ensure that you upgrade your On-Premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
 
 #### Compatibility changes
 
@@ -1526,7 +1530,7 @@ This release enables you to set a mirror effect for the stream to be encoded or 
 
 Adds the following members in the `RtcStats` class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
@@ -1537,7 +1541,7 @@ This release enables window sharing of [UWP](https://docs.microsoft.com/en-us/wi
 
 **5. Others**
 
-This release enables interoperability between the RTC Native SDK and the RTC Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
+This release enables interoperability between the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
 
 #### Issues fixed
 
@@ -1560,7 +1564,7 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 - [`createChannel`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_rtc_engine2.html#a9cabefe84d3a52400f941f1bd8c0f486)
 - [`IChannel`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_channel.html) class
 - [`IChannelEventHandler`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//classagora_1_1rtc_1_1_i_channel_event_handler.html) class
-- The [`gatewayRtt`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html) class
+- The [[gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a30cc889ef34f63e23950b54591218cb5), [`memoryAppUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aab879ec9c52f2dd8d662c26c4939a7d3), [`memoryTotalUsageRatio`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#aae6d57e709b08258be372960f9e19fd6) and [`memoryAppUsageInKbytes`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html#a17258e12476bb9106ccc248af4cfe734) members in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/cpp/3.x//structagora_1_1rtc_1_1_rtc_stats.html) class
 
 **Deprecated**
 
@@ -2593,7 +2597,7 @@ v1.12 is released on July 25, 2017.
 -   Adds the <code>ActiveSpeaker</code> method to report on the active speaker in the current channel.
 -   Removes the <code>setScreenCaptureWindow</code> method, and updated the <code>startScreenCapture</code> method to share the whole screen and specify the window or region in the `COMMUNICATION` profile.
 -   Adds displaying the mouse function when the screen-sharing function is enabled in the `COMMUNICATION` profile.
--   Web: Adds and updates a series of APIs to enable interoperability between the web browsers and native clients for the `COMMUNICATION` and `LIVE_BROADCASTING` profiles. See <Link to="../introduction/release-notes?platform=web">Release Notes</Link>.
+-   Web: Adds and updates a series of APIs to enable interoperability between the web browsers and native clients for the `COMMUNICATION` and `LIVE_BROADCASTING` profiles. See <Link to="../introduction/release-notes">Release Notes</Link>.
 
 
 Recording: Adds APIs for real-time video mixing and web recording. See [Release Notes for the Recording SDK](/en/Product%20Overview/release_recording).

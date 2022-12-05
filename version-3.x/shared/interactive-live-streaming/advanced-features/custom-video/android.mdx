@@ -18,8 +18,8 @@ Before proceeding, ensure that you have implemented the basic real-time communic
 ## Sample project
 
 Agora provides the following open-source sample projects on GitHub:
-- [Custom video capture (Push)](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PushExternalVideo.java)
-- [Custom video capture (mediaIO)](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/VideoQuickSwitch.java)
+- <Link to="{{GLOBAL.AGORA_API_EXAMPLES_ANDROID_BLOB}}/advanced/PushExternalVideo.java">Custom video capture (Push)</Link>
+- <Link to="{{GLOBAL.AGORA_API_EXAMPLES_ANDROID_BLOB}}/advanced/SwitchExternalVideo.java">Custom video capture (mediaIO)</Link>
 
 You can view the source code on Github or download the project to try it out.
 
@@ -452,7 +452,7 @@ The code samples provide two options for implementing the custom video renderer 
 
 The Agora SDK provides classes and code samples that are designed to help you easily integrate and create a custom video renderer. You can use these components directly, or you can create a custom renderer based on these components. See [Customize the Video Sink with the Agora Component](../reference/custom-advanced#customize-the-video-sink-with-the-agora-component).
 
-After the local user joins the channel, import and implement the `AgoraSurfaceView `class, then set the remote video renderer. The `AgoraSurfaceView `class inherits the `SurfaceView` class and implements the `IVideoSink` class. `AgoraSurfaceView` also embeds a `BaseVideoRenderer` object that serves as the rendering module, which means you do not need to implement the `IVideoSink` class and customize the rendering module yourself. The `BaseVideoRenderer` object uses OpenGL as the renderer and creates EGLContext, and it shares the Handle of EGLContext with Media Engine. For more information about how to implement the `AgoraSurfaceView` class, see the [demo project](https://github.com/AgoraIO/API-Examples/tree/master/Android/APIExample).
+After the local user joins the channel, import and implement the `AgoraSurfaceView `class, then set the remote video renderer. The `AgoraSurfaceView `class inherits the `SurfaceView` class and implements the `IVideoSink` class. `AgoraSurfaceView` also embeds a `BaseVideoRenderer` object that serves as the rendering module, which means you do not need to implement the `IVideoSink` class and customize the rendering module yourself. The `BaseVideoRenderer` object uses OpenGL as the renderer and creates EGLContext, and it shares the Handle of EGLContext with Media Engine. For more information about how to implement the `AgoraSurfaceView` class, see the <Link to="{{GLOBAL.AGORA_API_EXAMPLES_ANDROID_DIR_TREE}}">demo project</Link>.
 
 ```java
 @Override

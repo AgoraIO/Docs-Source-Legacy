@@ -1,8 +1,8 @@
 <PlatformWrapper platform="electron">
 
-This page provides the release notes for the Agora RTC SDK for Electron.
+This page provides the release notes for the Agora <Vg k="VSDK" /> for Electron.
 
-The Agora RTC SDK for Electron is developed upon the Agora RTC SDK for macOS and the Agora RTC SDK for Windows, with the Node.js C++ plug-in units.
+The Agora <Vg k="VSDK" /> for Electron is developed upon the Agora <Vg k="VSDK" /> for macOS and the Agora <Vg k="VSDK" /> for Windows, with the Node.js C++ plug-in units.
 
 ## Known issues and limitations
 
@@ -135,7 +135,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.dll` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
 
@@ -190,7 +190,7 @@ To reduce the difficulty of integrating Media Push, this release optimizes the A
 - `updateRtmpTranscoding`: Updates the transcoding configuration. This method works the same as the non-first call to the old method `setLiveTranscoding`.
 - `stopRtmpStream`: Stops pushing media streams to a CDN. This method works the same as the old method `removePublishStreamUrl`.
 
-<div class="alert note">This release deprecates three old methods for Media Push: <code>addPublishStreamUrl</code>, <code>setLiveTranscoding</code>, and <code>removePublishStreamUrl</code>. Agora recommends that you use the new methods for Media Push and update your code logic by referring to <Link to="../advanced-features/media-?platform=windows-cpp">Media Push</Link>.</div>
+<div class="alert note">This release deprecates three old methods for Media Push: <code>addPublishStreamUrl</code>, <code>setLiveTranscoding</code>, and <code>removePublishStreamUrl</code>. Agora recommends that you use the new methods for Media Push and update your code logic by referring to <Link to="../advanced-features/media--cpp">Media Push</Link>.</div>
 
 
 Also, as of this release, whether you use the new or old methods for Media Push, you can experience the following improvements:
@@ -202,7 +202,7 @@ Also, as of this release, whether you use the new or old methods for Media Push,
         - `RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER(11)`: The user role is not host, so the user cannot use the Media Push function. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM(13)`: The `update` or `setLiveTranscoding` method is called to update the transcoding configuration in a scenario where there is streaming without transcoding. Check your application code logic.
         - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`: Errors occurred in the host's network.
-        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to <Link to="../advanced-features/media-?platform=windows-cpp#prerequisites">Prerequisites</Link> to enable the Media Push permission.
+        - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`: Your App ID does not have permission to use the Media Push function. Refer to <Link to="../advanced-features/media--cpp#prerequisites">Prerequisites</Link> to enable the Media Push permission.
     - Adding the following to the `RTMP_STREAMING_EVENT` event code:
         - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`: The feature is not supported.
         - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`: Reserved.
@@ -1073,7 +1073,7 @@ In this release, Agora improves the user experience under poor network condition
 
 To deal with any incompatibility issues caused by the architecture change, Agora uses the fallback mechanism to ensure that users of different versions of the SDKs can communicate with each other: if a user joins the channel from a client using a previous version, all clients using v3.0.0 automatically fall back to the older version. This has the effect that none of the users in the channel can enjoy the improved experience. Therefore we strongly recommend upgrading all your clients to v3.0.0.
 
-We also upgrade the On-premise Recording SDK to v3.0.0. Ensure that you upgrade your On-premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
+We also upgrade the On-Premise Recording SDK to v3.0.0. Ensure that you upgrade your On-Premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
 
 #### Compatibility changes
 
@@ -1122,7 +1122,7 @@ Setting a mirror mode for the stream to be encoded: This release adds the `mirro
 
 Adds the following properties in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/rtcstats.html) interface for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
@@ -1163,7 +1163,7 @@ When connected to a headset or Bluetooth, the macOS device changes its audio rou
 - The `mirrorMode` property in the [`VideoEncoderConfiguration`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/videoencoderconfiguration.html) interface
 - [`createChannel`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#createchannel)
 - [`AgoraRtcChannel`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcchannel.html) class
-- The `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` properties in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/rtcstats.html) interface
+- The [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt), `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` properties in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/electron/3.x/interfaces/rtcstats.html) interface
 - [`startAudioRecording`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#startaudiorecording)
 - [`setBeautyEffectOptions`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#setbeautyeffectoptions)
 - [`addVideoWatermark`](https://api-ref.agora.io/en/video-sdk/electron/3.x/classes/agorartcengine.html#addvideowatermark)

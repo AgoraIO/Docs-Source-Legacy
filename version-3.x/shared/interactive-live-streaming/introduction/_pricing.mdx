@@ -6,7 +6,7 @@ Note that if you have already signed a contract with Agora, the billing terms an
 
 ## Cost calculation
 
-Billing occurs monthly. At the end of each month, Agora calculates the total duration of the audio and video usage (in minutes) for that month in all projects under your [Agora account](https://console.agora.io/). Note that video usage is divided into four different types based on aggregate resolution and priced individually. After deducting the monthly [10,000 free-of-charge minutes](../reference/billing-policies) that Agora grants to every account, Agora multiplies any remaining usage by its corresponding unit price and adds up the costs to get the total cost for that month.
+Billing occurs monthly. At the end of each month, Agora calculates the total duration of the audio and video usage (in minutes) for that month in all projects under your [Agora account](https://console.agora.io/). Note that video usage is divided into four different types based on aggregate resolution and priced individually. After deducting the monthly [10,000 free-of-charge minutes](/3.x/interactive-live-streaming/reference/billing-policies) that Agora grants to every account, Agora multiplies any remaining usage by its corresponding unit price and adds up the costs to get the total cost for that month.
 
 The basic formula is shown here:
 
@@ -14,7 +14,7 @@ The basic formula is shown here:
 
 ### Usage
 
-In each video call or live streaming event, users communicate with each other in an RTC [channel](../reference/glossary#channel). Agora measures the usage for each user from the moment they join a channel to the moment they leave it. If a user subscribes to video from other users in the channel, the usage is counted as video usage (of the applicable type); otherwise, the usage is counted as audio usage.
+In each video call or live streaming event, users communicate with each other in an <Vg k="VSDK" /> [channel](../reference/glossary#channel). Agora measures the usage for each user from the moment they join a channel to the moment they leave it. If a user subscribes to video from other users in the channel, the usage is counted as video usage (of the applicable type); otherwise, the usage is counted as audio usage.
 
 Agora calculates usage based solely on a user’s subscriptions in the channels they join. Whether they publish streams does not matter.
 
@@ -161,7 +161,7 @@ When calculating aggregate resolution, Agora counts the 640 × 352 (225,280) res
 
 ### Pricing for other products or services
 
-If your scenario involves video calling or interactive live streaming alongside other Agora products or services, such as [Real-time Messaging](/signaling/reference/billing-policies), [Cloud Recording](/cloud-recording/reference/billing-policies), or [Interactive Whiteboard](/interactive-whiteboard/reference/pricing), expect additional charges. For details, see the pricing documents for each Agora product or service.
+If your scenario involves video calling or interactive live streaming alongside other Agora products or services, such as [<Vg k="MESS" />](/signaling/reference/billing-policies), [Cloud Recording](/cloud-recording/reference/billing-policies), or [Interactive Whiteboard](/interactive-whiteboard/reference/pricing), expect additional charges. For details, see the pricing documents for each Agora product or service.
 
 <a name="previous"></a>
 ## FAQ

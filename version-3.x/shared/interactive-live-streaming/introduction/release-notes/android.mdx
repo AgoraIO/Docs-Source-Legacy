@@ -1,12 +1,24 @@
+
+import ThreeSevenTwo from './372.mdx' ;
+
 <PlatformWrapper platform="android">
 
 This page provides the release notes for the Agora Video SDK for Android.
+
+## v3.7.2.1
+
+v3.7.2.1 was released on November 11, 2022.
+
+This release fixed the issue in which crashes occasionally occurred after the SDK was upgraded to v3.7.2.
+
+<ThreeSevenTwo />
 
 ## v3.7.1
 
 v3.7.1 was released on August 4, 2022.
 
 #### Compatibility changes
+
 To facilitate troubleshooting, as of this release, the SDK no longer catches exceptions that are thrown by your own code implementation when triggering callbacks in the `IRtcEngineEventHandler` class. You need to catch and handle the exceptions yourself; otherwise, it can cause a crash.
 
 #### Improvements
@@ -34,7 +46,7 @@ This release enhances the connection mechanism between the SDK and the server 
 - The captured volume was too low on specific devices such as Samsung Galaxy S20+ and Note10+.
 - When the local user switched the front and rear cameras after enabling image enhancement, remote users occasionally saw the local user's video upside down for an instant.
 - The local user received the `onRemoteAudioStateChanged(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
-- `gatewayRtt` reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the `onRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
 - The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - Occasionally, it took users longer than normal to join a channel for the first time.
 - When the local user shared audio played by a third-party app using the screen sharing feature, remote users heard echoes.
@@ -216,7 +228,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the `libagora-full-audio-format-extension.so` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size#extension-libraries).
 
@@ -359,7 +371,7 @@ This release fixed the following issues:
   - `RTMP_STREAM_PUBLISH_ERROR_NET_DOWN(14)`
   - `RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID(15)`
 
-- The following code in the `error`parameter of [`onRtmpStreamingEvent`](https://api-ref.agora.io/en/voice-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
+- The following code in the `error`parameter of [`onRtmpStreamingEvent`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2c26ecc40133c2bb18b30f4752edc61c):
 
   - `RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT(3)`
   - `RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN(4)`
@@ -1648,7 +1660,7 @@ In this release, Agora improves the user experience under poor network condition
 
 To deal with any incompatibility issues caused by the architecture change, Agora uses the fallback mechanism to ensure that users of different versions of the SDKs can communicate with each other: if a user joins the channel from a client using a previous version, all clients using v3.0.0 automatically fall back to the older version. This has the effect that none of the users in the channel can enjoy the improved experience. Therefore we strongly recommend upgrading all your clients to v3.0.0.
 
-We also upgrade the On-premise Recording SDK to v3.0.0. Ensure that you upgrade your On-premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
+We also upgrade the On-Premise Recording SDK to v3.0.0. Ensure that you upgrade your On-Premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
 
 #### Compatibility changes
 
@@ -1706,14 +1718,14 @@ The mirror mode determines how the SDK mirrors the video in different stages of 
 
 Adds the following members in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
 
 **Others**
 
-This release enables interoperability between the RTC Native SDK and the RTC Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
+This release enables interoperability between the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
 
 #### Issues fixed
 
@@ -1735,7 +1747,7 @@ This release enables interoperability between the RTC Native SDK and the RTC Web
 - `mirrorMode` in [`VideoEncoderConfiguration`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html)
 - `channelId` and `mirrorMode` in [`VideoCanvas`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1video_1_1_video_canvas.html)
 - `channelId` in [`AudioVolumeInfo`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html)
-- `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio`, and `memoryAppUsageInKbytes` in [`RtcStats`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html)
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt), `memoryAppUsageRatio`, `memoryTotalUsageRatio`, and `memoryAppUsageInKbytes` in [`RtcStats`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html)
 - [`createRtcChannel`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9eb0770851a8ba489564f72f9b280bca)
 - [`RtcChannel`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_rtc_channel.html)
 - [`IRtcChannelEventHandler`](https://api-ref.agora.io/en/video-sdk/android/3.x/classio_1_1agora_1_1rtc_1_1_i_rtc_channel_event_handler.html)
@@ -2641,7 +2653,7 @@ To avoid adding too many users with the same uid into the CDN publishing channel
 -   <code>setUser</code>
 
 
-The following API methods are deleted and no longer supported in v2.3.0. Agora provides the Recording SDK for better recording services. For more information on the Recording SDK, see <Link to="/on-premise-recording/reference/release-notes?platform=linux-cpp">Release Notes for Agora Recording SDK</Link>.
+The following API methods are deleted and no longer supported in v2.3.0. Agora provides the Recording SDK for better recording services. For more information on the Recording SDK, see <Link to="/on-premise-recording/reference/release-notes">Release Notes for Agora Recording SDK</Link>.
 
 -   <code>startRecordingService</code>
 -   <code>stopRecordingService</code>

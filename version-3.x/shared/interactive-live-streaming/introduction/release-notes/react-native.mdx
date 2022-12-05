@@ -220,7 +220,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 If you want to experience these improvements, ensure that you have integrated the following dynamic library:
 
@@ -512,7 +512,7 @@ To improve user experience, this release improves the following SDK behavior:
   - With versions earlier than v3.5.0, the SDK does not play audio through any audio route, which causes a no-audio issue.
   - With v3.5.0 and later versions, the SDK sets the audio route as follows (in order of priority): the external device connected next to last > ... > the external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRouteToSpeakerphone` > the default audio route of the SDK.
 
-See <Link to="../advanced-features/set-audio-route?platform=android">Set the Audio Route</Link> for Android platform.
+See <Link to="../advanced-features/set-audio-route">Set the Audio Route</Link> for Android platform.
 
 #### New features
 
@@ -955,7 +955,7 @@ v3.4.2 was released on May 25, 2021.
 
 1. SDK package publishing platform (on Android only)
 
-Because JCenter is about to retire, Agora publishes the RTC Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
+Because JCenter is about to retire, Agora publishes the <Vg k="VSDK" /> Android SDK package to JitPack instead of JCenter. Therefore, to build an Android application, add the following line in the `/android/build.gradle` file of your project:
 
 ```
 allprojects {
@@ -1289,9 +1289,9 @@ v3.1.2 was released on September 28, 2020.
 
 #### 1. Disabling the local network connection quality report (iOS only)
 
-To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The `gatewayRtt` parameter in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html) callback is disabled by default. Do not use [`gatewayRtt`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html#gatewayrtt) to obtain the round-trip delay between the client and the local router. See the [FAQ](https://docs.agora.io/en/help/integration-issues/local_network_privacy) for details.
+To improve user experience, this version disables the local network connection quality report by default, to prevent the prompt to find local network devices from popping up when an end user launches the app on an iOS 14.0 device. The [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) parameter in the [`RtcStats`](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html) callback is disabled by default. Do not use [[gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)](https://api-ref.agora.io/en/video-sdk/react-native/3.x/interfaces/rtcstats.html#gatewayrtt) to obtain the round-trip delay between the client and the local router. See the [FAQ](https://docs.agora.io/en/help/integration-issues/local_network_privacy) for details.
 
-If you don't mind the prompt, and want to enable the `gatewayRtt` parameter, please contact Agora technical support via [support@agora.io](mailto:support@agora.io).
+If you don't mind the prompt, and want to enable the [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) parameter, please contact Agora technical support via [support@agora.io](mailto:support@agora.io).
 
 #### 2. Regional connection
 
@@ -1430,7 +1430,7 @@ v3.0.1 was released on September 4th, 2020.
 
 **Functions and features**
 
-- Adapts to Agora RTC SDK v3.0.1.
+- Adapts to Agora <Vg k="VSDK" /> v3.0.1.
 - Supports asynchronous programming with Promises.
 - Supports multiple channels.
 - Supports TextureView on Android platform.

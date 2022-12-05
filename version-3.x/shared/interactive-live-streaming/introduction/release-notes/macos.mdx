@@ -1,3 +1,5 @@
+import ThreeSevenTwo from './372.mdx' ;
+
 <PlatformWrapper platform="macos">
 This page provides the release notes for the Agora Video SDK for macOS.
 
@@ -16,6 +18,8 @@ A USB device driver issue occurs when you do not hear any audio or the audio is 
 If your app is integrated with the SDK earlier than v3.3.0, the app can only run under Rosetta translation on Mac devices with the M1 chip, which causes a memory leak when a user frequently joins and leaves a channel.
 
 To avoid this issue, upgrade the SDK to v3.3.0 or later and adapt the app to x86-64 and arm64 architectures.
+
+<ThreeSevenTwo />
 
 ## v3.7.1
 
@@ -45,7 +49,7 @@ This release fixed the following issues:
 - Occasionally, `deviceName` returned by the `enumerateDevices` method was empty when calling `enumerateDevices` to enumerate video capture devices in the system.
 - The local user received the `remoteAudioStateChangedOfUid(2,6)` callback after disconnecting from and reconnecting to a network even though the remote user had not changed the audio state.
 - When a user started screen sharing on devices with integrated graphics, the shared screen appeared red and flickered.
-- `gatewayRtt` reported by the `reportRtcStats` callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt) reported by the [reportRtcStats](https://api-ref.agora.io/en/video-sdk/ios/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:) callback was inaccurate when the network latency was too high or the router did not respond to ICMP packets.
 - Occasionally, remote users saw the shared video stutter after the local user started screen sharing.
 - The uplink network quality reported by the `networkQuality` callback was inaccurate for the user who was sharing a screen.
 - Occasionally, it took users longer than normal to join a channel for the first time.
@@ -207,7 +211,7 @@ v3.6.2 was released on February 22, 2022.
 
 This release changes `.framework` files in the SDK to `.xcframework` files. Compared with the Framework format, the XCFramework format is more flexible and supports the [Swift Package Manager](https://github.com/AgoraIO/AgoraRtcEngine_macOS) for integration.
 
-If you are integrating by using the [SDK download link](https://docs.agora.io/en/sdks?platform=macos), when you upgrade to v3.6.2, you must modify the project as follows:
+If you are integrating by using the [SDK download link](https://docs.agora.io/en/sdks), when you upgrade to v3.6.2, you must modify the project as follows:
 
 1. In the **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** menu and project folder, remove all `.framework` files.
 2. In this menu and project folder, add the corresponding `.xcframework` files.
@@ -288,7 +292,7 @@ This release optimizes the experience of calling `startAudioMixing` to play musi
 
 - Reduces issues of audio freezes or no audio when playing music files.
 - Increases the accuracy of the audio duration reported by `getAudioFileInfo`.
-- Supports more audio file formats. See [Which audio file formats does the Agora RTC SDK support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
+- Supports more audio file formats. See [Which audio file formats does the Agora <Vg k="VSDK" /> support](https://docs.agora.io/en/help/general-product-inquiry/audio_format).
 
 
 If you want to experience these improvements, ensure that you have integrated the `AgoraFullAudioFormatExtension.xcframework` dynamic library. Given the large size of this library, if you have limitations on app size and do not need these improvements, you can remove this dynamic library when integrating the SDK. For more instructions, see [Reduce App Size](../best-practices/reduce-app-size).
@@ -720,7 +724,7 @@ This release fixed the following issues:
 
 v3.5.0.3 was released on September 6, 2021.
 
-This release fixed the naming conflict existed in the `AgoraReachability` class between the Agora RTC SDK and Agora RTM SDK.
+This release fixed the naming conflict existed in the `AgoraReachability` class between the Agora <Vg k="VSDK" /> and Agora <Vg k="MESS_SDK" />.
 
 <a name="v3.5.0.2"></a>
 
@@ -773,7 +777,7 @@ This release fixed the following issues:
 - After calling `setAudioDataFrame` to register the original audio data callback, and calling `enableLoopbackRecording` to start the sound card capturing, noises occurred when a user played a local audio file.
 - After calling `muteLocalAudioStream(YES)` to stop publishing a local audio stream, the local user could hear remote users when the local user joined a channel for the first time. After leaving the channel and joining another channel, occasionally the local user could not hear remote users.
 - When the local network quality was poor, the downlink network quality rating (`rxQuality`) of remote users reported by the SDK was not accurate.
-- The value of `memoryTotalUsageRatio` reported by the `reportRtcStats` callback was not accurate.
+- The value of `memoryTotalUsageRatio` reported by the [reportRtcStats](https://api-ref.agora.io/en/video-sdk/ios/3.x/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportRtcStats:) callback was not accurate.
 
 #### API changes
 
@@ -1505,7 +1509,7 @@ This release replaces the static library with a dynamic library for the followin
 - Avoiding incompatibility issues with other third-party libraries.
 - Making it easier to upload the app to the App Store.
 
-To upgrade the RTC Native SDK, you must re-integrate the dynamic library, `AgoraRtcKit.framework`. This process should take no more than five minutes.
+To upgrade the <Vg k="VSDK" /> Native SDK, you must re-integrate the dynamic library, `AgoraRtcKit.framework`. This process should take no more than five minutes.
 
 **2. Frame position for the video observer (C++)**
 
@@ -1617,7 +1621,7 @@ In this release, Agora improves the user experience under poor network condition
 
 To deal with any incompatibility issues caused by the architecture change, Agora uses the fallback mechanism to ensure that users of different versions of the SDKs can communicate with each other: if a user joins the channel from a client using a previous version, all clients using v3.0.0 automatically fall back to the older version. This has the effect that none of the users in the channel can enjoy the improved experience. Therefore we strongly recommend upgrading all your clients to v3.0.0.
 
-We also upgrade the On-premise Recording SDK to v3.0.0. Ensure that you upgrade your On-premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
+We also upgrade the On-Premise Recording SDK to v3.0.0. Ensure that you upgrade your On-Premise Recording SDK to v3.0.0 so that all users can enjoy the improvements brought by the new architecture and network strategy.
 
 #### Compatibility changes
 
@@ -1712,7 +1716,7 @@ The mirror mode determines how the SDK mirrors the video in different stages of 
 
 Adds the following members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraChannelStats.html) class for providing more in-call statistics, making it easier to monitor the call quality and memory usage in real time:
 
-- `gatewayRtt`
+- [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt)
 - `memoryAppUsageRatio`
 - `memoryTotalUsageRatio`
 - `memoryAppUsageInKbytes`
@@ -1744,7 +1748,7 @@ This release enables interoperability between the Native SDK and the Web SDK by 
 - [`createRtcChannel`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcEngineKit.html#//api/name/createRtcChannel:)
 - [`AgoraRtcChannel`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraRtcChannel.html) class
 - [`AgoraRtcChannelDelegate`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Protocols/AgoraRtcChannelDelegate.html) class
-- The `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraChannelStats.html) class
+- The [gatewayRtt](https://api-ref.agora.io/en/video-sdk/ios/3.x/Classes/AgoraChannelStats.html#//api/name/gatewayRtt), `memoryAppUsageRatio`, `memoryTotalUsageRatio` and `memoryAppUsageInKbytes` members in the [`AgoraChannelStats`](https://api-ref.agora.io/en/video-sdk/macos/3.x/Classes/AgoraChannelStats.html) class
 
 **Deprecated**
 
