@@ -18,7 +18,7 @@ The following figure illustrates how Agora Cloud Proxy works:
 
 To accommodate your end users’ firewall settings and business needs, Agora Cloud Proxy offers the following operating modes:
 
-- **Automatic**: This is the default setting in the latest version of the Agora <Vg k="VSDK" /> Native SDK and Agora Web SDK. In this mode, the Agora SDK first attempts a direct connection to Agora SD-RTN™; if the attempt fails, the Agora SDK automatically falls back to securely send media over TCP/TLS 443. This mode is recommended when you are not sure if your end users are behind a firewall.
+- **Automatic**: This is the default setting in the latest version of the Agora <Vg k="VIDEO" /> Native SDK and Agora Web SDK. In this mode, the Agora SDK first attempts a direct connection to Agora SD-RTN™; if the attempt fails, the Agora SDK automatically falls back to securely send media over TCP/TLS 443. This mode is recommended when you are not sure if your end users are behind a firewall.
 
    <div class="alert note">Media over TCP/TLS 443 may not have as high quality as media over UDP. However, a connection on TCP/TLS 443 typically works through most end users’ firewalls.</div>
 
@@ -30,7 +30,7 @@ To accommodate your end users’ firewall settings and business needs, Agora Clo
 
 If you do not select a specific proxy mode within the Native or Web SDK, the SDK always uses Automatic mode.
 
-<div class="alert info">Agora recommends upgrading to the latest SDK versions, which support all three operating modes: <ul><li><Vg k="VSDK" /> Native SDK v3.7.0</li><li><Vg k="VSDK" /> Web SDK v4.11.0 </li></ul>These are the minimum versions required to use Force TCP mode and receive bills properly. The older versions of the SDKs remain functional, and support for the cloud proxy service on them is scheduled to continue until October 1, 2022. </div>
+<div class="alert info">Agora recommends upgrading to the latest SDK versions, which support all three operating modes: <ul><li><Vg k="VIDEO" /> Native SDK v3.7.0</li><li><Vg k="VIDEO" /> Web SDK v4.11.0 </li></ul>These are the minimum versions required to use Force TCP mode and receive bills properly. The older versions of the SDKs remain functional, and support for the cloud proxy service on them is scheduled to continue until October 1, 2022. </div>
 
 <div class="alert info">If you want to use Agora Cloud Proxy Force UDP or Force TCP mode in Japan, contact our regional partner <a href="https://jp.vcube.com/service/agora">V-cube</a>.</div>
 
