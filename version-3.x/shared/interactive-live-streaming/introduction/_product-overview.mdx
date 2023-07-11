@@ -1,13 +1,20 @@
 import * as data from '@site/data/variables';
 
-Agora Interactive Live Streaming Premium and Standard enables one-to-many and many-to-many audio or video live streaming with the Agora <Vg k="VSDK" />.
+## Sunset plan
+
+This section provides sunset plans for the Agora Video SDK v3.x. You should prepare to replace or upgrade affected
+solutions in a timely fashion to avoid service disruptions.
 
 | Date                              | Milestone                                                  |
-| ----------------------------------| -----------------------------------------------------------| 
+| ----------------------------------| -----------------------------------------------------------|
 | 14th March 2023                   | We will no longer offer version 3.x of our Video, Voice and Interactive Live Streaming SDKs to new customers. |
 | 14th March - 14th September 2023  | We will support existing implementations of 3.x with bug fixes and critical security updates. |
 | 14th September 2023               | Only critical security patches will be supported. |
 | 14th March 2024                   | We will stop supporting version 3.x|
+
+## Overview
+
+Agora Interactive Live Streaming Premium and Standard enables one-to-many and many-to-many audio or video live streaming with the Agora <Vg k="VSDK" />.
 
 Agora Interactive Live Streaming is different from [Agora Video Call](/3.x/video-calling/introduction/product-overview). In a video call, all users are the same role and can talk to each other freely. In an interactive live streaming, users can be the host or audience, where only the host can talk. For details, see this [FAQ](https://docs.agora.io/en/help/integration-issues/profile_difference).
 
@@ -44,7 +51,7 @@ Agora Interactive Live Streaming Premium boasts a flexible combination of functi
 | Customize the video source and renderer | Users process videos (from self-built cameras, screen sharing, or files) for image enhancement and filtering. | <li>To use a customized image enhancement library or pre-processing library.</li><li>To customize the application's built-in image and video modules.</li><li>To use other video sources, such as a recorded video.</li><li>To provide flexible device management for exclusive video capture devices to avoid conflicts with other services.</li> |
 | Push streams to the CDN                 | Sends the audio and video of your channel to other RTMP servers through the CDN:<li>Starts or stops publishing at any time.</li><li>Adds or removes an address while continuously publishing the stream. </li><li>Adjusts the picture-in-picture layout.</li> | <li>To send a live stream to WeChat or Weibo.</li><li>To allow more people to watch the live stream when the number of audience members in the channel reached the limit. </li>|
 
-<div class="alert info">Temporarily, the Agora <Vg k="VSDK" /> Web SDK does not support modifying the raw data. </div>
+<div class="alert info">Temporarily, the Agora <Vg k="VIDEO" /> Web SDK does not support modifying the raw data. </div>
 
 See the following sample code for application scenarios:
 
@@ -81,7 +88,7 @@ Interactive Live Streaming Standard boasts a flexible combination of functions f
 | Customize the video source and renderer | Users process videos (from self-built cameras, screen sharing, or files) for image enhancement and filtering. |
 | Push streams to the CDN                 | The host publishes the audio and video in the channel to the CDN (Content Delivery Network):<ul><li>Starts or stops publishing at any time.</li><li>Adds or removes an address while continuously publishing the stream.</li><li>Adjusts the picture-in-picture layout.</li></ul> |
 
-<div class="alert info">Temporarily, the Agora <Vg k="VSDK" /> Web SDK does not support modifying the raw data. </div>
+<div class="alert info">Temporarily, the Agora <Vg k="VIDEO" /> Web SDK does not support modifying the raw data. </div>
 
 ## Key properties
 

@@ -22,6 +22,11 @@ Follow these steps to implement the raw data functions in your project:
 2. After successful registration, the SDK sends the raw video data via `onCaptureVideoFrame`, `onPreEncodeVideoFrame`, or `onRenderVideoFrame`.
 3. After acquiring the raw data, you can process the data based on your scenario and send the processed data to the SDK via the callbacks mentioned in step 2.
 
+<div class="alert note">
+When you use the SDK v3.0.1 or later, note that the SDK no longer guarantees that callback functions in <code>IVideoFrameObserver</code> are reported in the same thread. The SDK only guarantees the sequence of these callbacks.
+If you are using OpenGL to perform image enhancement on the raw video data, you need to actively switch the OpenGL context in the callback function in <code>IVideoFrameObserver</code> to adapt to a multi-threaded scenario; otherwise, the image enhancement cannot work.
+</div>
+
 ### API call sequence
 
 The following diagram shows how to implement the raw data functions in your project:
