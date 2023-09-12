@@ -213,6 +213,7 @@ User2:
 - This service is not free. Agora charges for the use of this service based on the duration of the audio and video transcoding.
 - Agora supports pushing streams in the RTMP and RTMPS protocols, but the RTMPS protocol is supported only in transcoding mode.
 - If you push the stream directly without transcoding for a single host, you can skip [Step1](#single), and call the `AddPublishStreamUrl` method directly with `transcodingEnabled (false)`.
+- A streaming task refers to a single streaming operation. The maximum concurrent task limit (PCW) is 50 by default. This means that you can have up to 50 streaming tasks running simultaneously within a single Agora project. If you require a higher quota, reach out to [technical support](mailto:support@agora.io).
 
   <div class="alert note">Currently, Agora only supports pushing H.264 (default) streams to the CDN.</div>
 
