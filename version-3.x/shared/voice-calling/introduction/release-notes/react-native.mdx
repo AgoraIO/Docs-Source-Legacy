@@ -358,7 +358,7 @@ To more accurately report the reason for the failure to join a channel, as of th
 
 **2. Selecting Bluetooth profiles**
 
-To ensure connectivity with Bluetooth headsets, as of this release, when a user in the communication profile or a host in the interactive live streaming profile uses a Bluetooth headset, the SDK checks whether the device supports the Hands-Free Profile (HFP), and selects the Bluetooth profile based on the result as follows:
+To ensure connectivity with Bluetooth headsets, as of this release, when a user in the communication profile or a host in the interactive streaming profile uses a Bluetooth headset, the SDK checks whether the device supports the Hands-Free Profile (HFP), and selects the Bluetooth profile based on the result as follows:
 
 - On a device that supports HFP, the SDK uses HFP, where the audio is captured and played through the Bluetooth headset.
 - On a device that does not support HFP, the SDK changes to the Advanced Audio Distribution Profile (A2DP), where the audio is captured through device's microphone and played through the Bluetooth headset.
