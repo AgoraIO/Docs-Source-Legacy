@@ -170,7 +170,7 @@ In video scenarios, if the remote user joins the channel using `IChannel`, ensur
 
 The SDK supports publishing local streams to only one channel at a time. Agora recommends setting the user role as an audience when joining a channel where the user do not need to publish streams, and setting `publishLocalAudio` and `publishLocalVideo` in `ChannelMediaOptions` to `false` when joining the channel.
 
-In the interactive live streaming profile, if a user joins the first channel as a host, the SDK publishes local streams in the first channel by default. If the user needs to join a second channel, you need to change the publishing state according to your actual scenario:
+In the interactive streaming profile, if a user joins the first channel as a host, the SDK publishes local streams in the first channel by default. If the user needs to join a second channel, you need to change the publishing state according to your actual scenario:
 
 - If the user does not need to publish local streams in the second channel, Agora recommends joining the second channel as an audience member (`setClientRole(AUDIENCE)`).
 - If the user needs to publish local streams in the second channel, the user needs to stop publishing in the current channel before joining the second channel. Agora recommends setting the user role as an audience member (`setClientRole(AUDIENCE)`) in the first channel and joining the second channel as a host (`setClientRole(BROADCASTER)`).

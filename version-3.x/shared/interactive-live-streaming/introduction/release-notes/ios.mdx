@@ -447,7 +447,7 @@ In the SDK earlier than v3.5.2, when the above errors occur, the SDK might repor
 
 **2. Selecting Bluetooth profiles**
 
-To ensure connectivity with Bluetooth headsets, as of this release, when a user in the communication profile or a host in the interactive live streaming profile uses a Bluetooth headset, the SDK checks whether the device supports the Hands-Free Profile (HFP), and selects the Bluetooth profile based on the result as follows:
+To ensure connectivity with Bluetooth headsets, as of this release, when a user in the communication profile or a host in the interactive streaming profile uses a Bluetooth headset, the SDK checks whether the device supports the Hands-Free Profile (HFP), and selects the Bluetooth profile based on the result as follows:
 
 - On a device that supports HFP, the SDK uses HFP, where the audio is captured and played through the Bluetooth headset.
 - On a device that does not support HFP, the SDK changes to the Advanced Audio Distribution Profile (A2DP), where the audio is captured through device's microphone and played through the Bluetooth headset.
@@ -650,12 +650,12 @@ To improve audio quality when a user uses a Bluetooth headset, this release opti
 
 - Bluetooth profile: As of this release, the Bluetooth profile used by the SDK is only affected by the user role.
 
-  - If a user in the communication profile or a host in the interactive live streaming profile uses a Bluetooth headset, the Bluetooth headset captures and plays audio through the Hands-Free Profile (HFP).
-  - If an audience member in the interactive live streaming profile uses a Bluetooth headset, the Bluetooth headset plays audio through the Advanced Audio Distribution Profile (A2DP).
+  - If a user in the communication profile or a host in the interactive streaming profile uses a Bluetooth headset, the Bluetooth headset captures and plays audio through the Hands-Free Profile (HFP).
+  - If an audience member in the interactive streaming profile uses a Bluetooth headset, the Bluetooth headset plays audio through the Advanced Audio Distribution Profile (A2DP).
 
 - Volume type: This release regulates the volume type. When a user uses a Bluetooth headset, the SDK uses the following volume type:
 
-  | Audio scenario         | User in the communication profile/Host in the interactive live streaming profile | Audience in the interactive live streaming profile |
+  | Audio scenario         | User in the communication profile/Host in the interactive streaming profile | Audience in the interactive streaming profile |
   | :--------------------- | :----------------------------------------------------------- | :------------------------------------------------- |
   | `Default`                | In-call volume                                               | Media volume                                       |
   | `ChatRoomGaming`        | In-call volume                                               | In-call volume                                     |
@@ -1534,7 +1534,7 @@ This release replaces the static library with a dynamic library for the followin
 - Avoiding incompatibility issues with other third-party libraries.
 - Making it easier to upload the app to the App Store.
 
-To upgrade the <Vg k="VSDK" /> Native SDK, you must re-integrate the dynamic library, `AgoraRtcKit.framework`.
+To upgrade the <Vg k="VIDEO" /> Native SDK, you must re-integrate the dynamic library, `AgoraRtcKit.framework`.
 
 <div class="alert note">Apple supports the dynamic library on iOS 13.4 and later.</div>
 

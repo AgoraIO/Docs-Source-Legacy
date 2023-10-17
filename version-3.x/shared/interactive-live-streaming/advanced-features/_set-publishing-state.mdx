@@ -47,7 +47,7 @@ Agora provides the following methods to set the publishing state of local stream
 | `setClientRole` | Sets the user role in an interactive live streaming channel:<li>`CLIENT_ROLE_AUDIENCE`: (Default) Audience.</li><li>`CLIENT_ROLE_BROADCASTER`: Host, who publishes local streams by default.</li> |
 
 
-<div class="alert note"><li>If a user joins a channel by calling <code>joinChannel</code> with the <code>options</code> parameter, <code>muteLocalAudioStream</code> or <code>muteLocalVideoStream</code> only takes effect when it is called after <code>joinChannel</code>.</li><li>In the interactive live streaming profile:</li>
+<div class="alert note"><li>If a user joins a channel by calling <code>joinChannel</code> with the <code>options</code> parameter, <code>muteLocalAudioStream</code> or <code>muteLocalVideoStream</code> only takes effect when it is called after <code>joinChannel</code>.</li><li>In the interactive streaming profile:</li>
 <ul><li>If the user role is <code>setClientRole(AUDIENCE)</code>, the user cannot publish local streams. No matter how you set the <code>joinChannel</code> with the <code>options</code> parameter, <code>muteLocalAudioStream</code>, or <code>muteLocalVideoStream</code>, the publishing state cannot be changed.</li>
 <li>If you call <code>setClientRole(BROADCASTER)</code>, <code>joinChannel</code> with the <code>options</code> parameter, <code>muteLocalAudioStream</code>, or <code>muteLocalVideoStream</code> together, the method called later determines the publishing state.</li></ul></div>
 

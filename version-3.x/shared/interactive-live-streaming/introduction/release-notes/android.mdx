@@ -624,12 +624,12 @@ To improve audio quality when a user uses a Bluetooth headset, this release opti
 
 - Bluetooth profile: As of this release, the Bluetooth profile used by the SDK is only affected by the user role.
 
-  - If a user in the communication profile or a host in the interactive live streaming profile uses a Bluetooth headset, the Bluetooth headset captures and plays audio through the Hands-Free Profile (HFP).
-  - If an audience member in the interactive live streaming profile uses a Bluetooth headset, the Bluetooth headset plays audio through the Advanced Audio Distribution Profile (A2DP).
+  - If a user in the communication profile or a host in the interactive streaming profile uses a Bluetooth headset, the Bluetooth headset captures and plays audio through the Hands-Free Profile (HFP).
+  - If an audience member in the interactive streaming profile uses a Bluetooth headset, the Bluetooth headset plays audio through the Advanced Audio Distribution Profile (A2DP).
 
 - Volume type: This release regulates the volume type. When a user uses a Bluetooth headset, the SDK uses the following volume type:
 
-  | Audio scenario         | User in the communication profile/Host in the interactive live streaming profile | Audience in the interactive live streaming profile |
+  | Audio scenario         | User in the communication profile/Host in the interactive streaming profile | Audience in the interactive streaming profile |
   | :--------------------- | :----------------------------------------------------------- | :------------------------------------------------- |
   | `DEFAULT`                | In-call volume                                               | Media volume                                       |
   | `CHATROOM_GAMING`        | In-call volume                                               | In-call volume                                     |
@@ -1725,7 +1725,7 @@ Adds the following members in the [`RtcStats`](https://api-ref.agora.io/en/video
 
 **Others**
 
-This release enables interoperability between the <Vg k="VSDK" /> Native SDK and the <Vg k="VSDK" /> Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
+This release enables interoperability between the <Vg k="VIDEO" /> Native SDK and the <Vg k="VIDEO" /> Web SDK by default, and deprecates the `enableWebSdkInteroperability` method.
 
 #### Issues fixed
 

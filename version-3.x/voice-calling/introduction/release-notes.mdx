@@ -2,12 +2,31 @@
 title: 'Release Notes'
 sidebar_position: 2
 description: >
-   Provides the release notes for the Agora Audio SDK.
+   Provides the release notes for the Agora Voice SDK.
 ---
 
 import ReleaseNote from '@site/versioned_docs/version-3.x/shared/voice-calling/introduction/release-notes/index.mdx';
 
 export const toc = [{}]
+
+## Sunset plan
+
+This section provides sunset plans for the Agora Video SDK v3.x. You should prepare to replace or upgrade affected
+solutions in a timely fashion to avoid service disruptions.
+
+
+<PlatformWrapper notAllowed="web">
+
+  | Date                              | Milestone                                                  |
+  | ----------------------------------| -----------------------------------------------------------|
+  | 14th March 2023                   | We will no longer offer version 3.x of our Video, Voice and Interactive Live Streaming SDKs to new customers. |
+  | 14th March - 14th September 2023  | We will support existing implementations of 3.x with bug fixes and critical security updates. |
+  | 14th September 2023               | Only critical security patches are supported. |
+  | 14th March 2024                   | We stop supporting version 3.x|
+
+</PlatformWrapper>
+
+To use Agora Voice SDK v4.x, see [Migrate from Voice SDK 3.x](/en/voice-calling/develop/migration-guide).
 
 <ReleaseNote PRODUCT="Voice Calling" CLIENT="app" PATH="Voice Calling" />
 
