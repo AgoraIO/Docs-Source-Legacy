@@ -1,6 +1,12 @@
 <PlatformWrapper platform="windows">
+
+## Implementation
+
+In a complete call invitation process, the call invitation states of the caller and the callee are defined by `LocalInvitation` and `RemoteInvitation,` respectively.
+
+![1602314550083](https://web-cdn.agora.io/docs-files/1602314550083)
         
-## Send a call invitation
+### Send a call invitation
 
 The steps to send a call invitation are as follows:
 
@@ -36,7 +42,7 @@ The sample code for sending a call invitation is as follows:
         return false;
     }
     ```
-## Cancel a call invitation
+### Cancel a call invitation
 
 The caller cancels the call invitation by calling `cancelLocalInvitation`. The lifecycle of the `RemoteInvitation` ends as the callee receives the `onRemoteInvitationCanceled` callback. And then the lifecycle of the `LocalInvitation` ends as the caller receives the `onLocalInvitationCanceled` callback.
 
@@ -56,7 +62,7 @@ The sample code for canceling a call invitation is as follows:
         return ret == 0 ? true : false;
     }
     ```
-## Accept a call invitation
+### Accept a call invitation
 
 The callee gets RemoteInvitation from `onRemoteInvitationReceived` and accepts the call invitation by calling `acceptRemoteInvitation`. The lifecycle of the `RemoteInvitation` ends as the caller receives the `onRemoteInvitationAccepted` callback. The lifecycle of the `LocalInvitation` ends as the caller receives the `onLocalInvitationAccepted` callback.
 
@@ -74,7 +80,7 @@ The sample code for accepting a call invitation is as follows:
     }
     ```
 
-## Refuse a call invitation
+### Refuse a call invitation
 
 The callee gets RemoteInvitation from `onRemoteInvitationReceived` and refuses the call invitation by calling `refuseRemoteInvitation`. The lifecycle of the `RemoteInvitation` ends as the caller receives the `onRemoteInvitationRefused` callback. The lifecycle of the `LocalInvitation` ends as the caller receives the `onLocalInvitationRefused` callback.
 
