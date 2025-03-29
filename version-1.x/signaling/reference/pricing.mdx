@@ -15,81 +15,135 @@ You can choose from the following packages:
 
 | Signaling 2.x package | Description | Package price<br/> per month (USD) |
 |:-------------|:------------------------------------------|:---------:|
-| Free Package | Up to 20 peak concurrent users<br/> 1M Monthly message volume<br/> 1GB Storage | Free |
-| Starter Package | Up to 500 peak concurrent users<br/> 30M Monthly message volume<br/> 2GB Storage | $59 |
-| Pro Package | Up to 2500 peak concurrent users<br/> 150M Monthly message volume<br/> 10GB Storage | $399 |
-| Business Package | Up to 5000 peak concurrent users<br/> 500M Monthly message volume<br/> 20GB Storage | $820 |
+| Free Package | <ul><li>Up to 20 peak concurrent users</li><li> 1M Monthly message volume</li><li> 1GB Storage</li></ul> | Free |
+| Starter Package | <ul><li>Up to 500 peak concurrent users</li><li> 30M Monthly message volume</li><li> 2GB Storage</li></ul> | $59 |
+| Pro Package | <ul><li>Up to 2500 peak concurrent users</li><li> 150M Monthly message volume</li><li> 10GB Storage</li></ul> | $399 |
+| Business Package | <ul><li>Up to 5000 peak concurrent users</li><li> 500M Monthly message volume</li><li> 20GB Storage</li></ul> | $820 |
 | Enterprise Package | Pay–as-you-go | [Contact sales](https://www.agora.io/en/talk-to-us/) |
 
 Additional usage cost over and above the fixed package limits:
 
 - Peak PCU: $30 per 1000 PCU
 - Messages: $3 per 1 Million
-- Storage: $15 per 1 GB-hour
+- Storage: $15 per 1 GB
 
 <Admonition type="info">
-Customers using Signaling 1.x with the Enterprise Package will continue to be billed based on DAU (Daily Active Users), using the highest average DAU as the basis. Users on the Free Package will be billed under the new model, with additional usage charged as specified under Additional usage charges.
+Enterprise Package customers using Signaling 1.x will continue to be billed based on DAU (Daily Active Users), using the highest average DAU as the basis. There are no changes to your pricing or service.
 </Admonition>
 
-### Costing examples
+### Billing examples
 
-#### Example 1 - Pro package
-Suppose your number of peak concurrent users is less than 2500, monthly message volume is less than 150M, and storage use is less than 10GB (average GB-hours), the monthly billing will be $399.
+Refer to the following examples to understand how <Vg k="COMPANY" /> calculates your bill:
 
-Additional Usage (Overage Charges):
+<details>
+<summary>Example 1: DAU-Based Billing Example</summary>
 
-Usage above the fixed plans will be charged at the same rates as before:
+For Enterprise Package customers using Signaling 1.x, the billing model is as follows:
 
-- Peak PCU: $30 per 1000 PCU
-- Messages: $3 per 1 Million
-- Storage: $15 per 1 GB-hour.
+- **Metering**: The system records DAU (Daily Active Users) throughout the month
+- **Peak Determination**: The highest DAU value for the month is identified
+- **Free Tier Deduction**: First 1,000 DAU are included at no charge
+- **Billable Units**: Remaining DAU is divided into 1,000-user units (rounded up)
+- **Rate Application**: $14.50 is charged per 1,000-user unit
 
-**For details on the storage calculation please refer to the storage calculation method below**
+**Sample Calculation**:
 
-#### Example 2 - Pay-as-you-go (Enterprise Package)
-Suppose your number of peak concurrent users is 20K, monthly message volume is 800M, and storage is 3.8 GB (average GB-hours). The monthly billing is calculated as follows:
+- Peak DAU for the month: 326,102 users
+- Free tier allocation: 1,000 DAU
+- Billable DAU: 326,102 - 1,000 = 325,102 DAU
+- Billable units: 325,102 ÷ 1,000 = 325.102 units
+- Monthly charge: 325.102 units × $14.50 per unit = $4,713.98
+ 
+This DAU-based model remains unchanged for Enterprise Package customers using Signaling 1.x.
+</details>
 
-- **Peak Concurrent Users (PCU) Cost**
+<details>
+<summary>Example 2: Billing calculation for the Pro package</summary>
 
-    PCU: 20,000 (Recorded as highest PCU in the month. The highest PCU is considered as average for billing)
-    PCU Cost = 20000/1000 x $30 = $600 ($30 for every thousand peak concurrent users).
+The Pro package has a fixed monthly fee of $399, which includes:
 
-- **Message volume cost**
+- Up to 2,500 peak concurrent users (PCU)
+- Up to 150 million monthly messages
+- Up to 10GB average storage utilization
 
-    Message count: 800M (Monthly Volume)
-    Message cost = 800 x $3 = $2400 ($3 for every million messages).
+If your usage stays within these thresholds, your monthly bill is the base subscription fee of $399 with no additional charges.
 
-- **Storage cost**
+If you exceed these limits, additional usage is charged at the following overage rates:
 
-    How Storage is measured and billed:
+| Resource              | Billing Unit               | Rate   |
+|:-----------------------|:--------------------------|--------:|
+| Peak Concurrent Users | 1,000 PCU                | $30.00 |
+| Message Volume       | 1 Million messages       | $3.00  |
+| Storage              | 1 GB (monthly average)   | $15.00 |
 
-    Suppose the storage usage throughout March (a 31-day month) is as follows:
+</details>
 
-    - Week 1: They host small events, averaging 2 GB of storage
-    - Week 2-3: Their major annual conference increases usage to 6 GB
-    - Week 4+: Usage returns to normal at 2 GB
+<details>
+<summary>Example 3: Billing calculation for the Enterprise Package (Pay-as-you-go)</summary>
 
-    How Agora Calculates the Bill
+The Enterprise Package follows a pure consumption-based model where you pay only
+for what you use.
 
-    - Hourly Snapshots: Agora takes a "storage snapshot" every hour (24 times daily)
-    - Monthly Average: All hourly readings are added up, then divided by total hours in March (31 days × 24 hours = 744 hours)
+Example Scenario: Consider a customer with the following monthly usage:
 
-    Simplified March storage bill calculation:
+- 20,000 peak concurrent users
+- 800 million messages sent
+- 3.93 GB average storage utilization
 
+Detailed Billing Calculation:
+
+1. Peak Concurrent Users (PCU)
+    - PCU Usage: 20,000 users (highest recorded in the month)
+    - PCU Rate: $30.00 per 1,000 PCU
+    - PCU Cost = (20,000 ÷ 1,000) × $30.00 = $600.00
+
+2. Message Volume
+    - Total Messages: 800 million
+    - Message Rate: $3.00 per million messages
+    - Message Cost = 800 × $3.00 = $2,400.00
+
+3. Storage Utilization
+    - Average Monthly Storage: 3.93 GB
     - Storage Rate: $15.00 per GB per month
-    - Week 1 (7 days): 2 GB × (7 days × 24 hours) = 336 GB-hours
-    - Weeks 2-3 (14 days): 6 GB × (14 days × 24 hours) = 2,016 GB-hours
-    - Week 4+ (10 days): 2 GB × (10 days × 24 hours) = 480 GB-hours
+    - Storage Cost = 3.93 GB × $15.00 = $58.95
 
-    Total storage use: 336 + 2,016 + 480 = 2,832 GB-hours
+4. Total Monthly Invoice
+    - Total Monthly Cost = PCU Cost + Message Cost + Storage Cost
+        - = $600.00 + $2,400.00 + $58.95
+        - = $3,058.95
+</details>
 
-    Average Storage: 2,832 GB-hours ÷ 744 hours = 3.8 GB average
+<details>
+<summary>Example 4: Storage cost calculation</summary>
 
-    Total cost for Storage: 3.8 GB × $15.00 = $57.00
+Storage is billed based on the average monthly utilization, calculated from hourly measurements.
 
-- **Total cost** 
+Storage Calculation Process:
+- **Hourly measurement**: Agora captures storage utilization every hour.
+- **Monthly normalization**: For billing consistency, all months are normalized to 30 days (720 hours).
 
-    PCU + Messages + Storage: $600 + $2,400 + $57 = $3,057
+**Example**: For usage in March (a 31-day month):
+- Week 1: 2 GB baseline storage
+- Weeks 2-3: 6 GB during high usage period
+- Week 4+: 2 GB returning to baseline
+
+**Calculation**:
+- Week 1 (7 days): 2 GB × (7 days × 24 hours) = 336 GB-hours
+- Weeks 2-3 (14 days): 6 GB × (14 days × 24 hours) = 2,016 GB-hours
+- Week 4+ (10 days): 2 GB × (10 days × 24 hours) = 480 GB-hours
+
+Total GB-hours: 336 + 2,016 + 480 = 2,832 GB-hours
+
+Normalized Monthly Average: 2,832 GB-hours ÷ 720 hours (Normalization) = 3.93 GB.
+
+Normalization is the process of standardizing billing calculations to 30-day months (720 hours) regardless of actual calendar days which is 31 in this example.
+
+Storage Cost = 3.93 GB × $15.00 per GB = $58.95
+
+</details>
+
+If you still have questions, refer to [Frequently asked questions](#frequently-asked-questions) or contact [<Vg k="COMPANY" /> support](mailto:support@agora.io).
+
 
 ## See also
 
