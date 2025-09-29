@@ -64,5 +64,5 @@ Suppose your target resolution is 300 * 240 with a frame rate of 30 fps. The clo
 
 ## <a name="relateddocs"></a>Related articles
 
-- Cloud Recording: [Set Video Layout](../../cloud-recording/develop/layout).
+- Cloud Recording: [Set Video Layout](/cloud-recording/develop/layout).
 - On-Premise Recording: [Set Video Layout](../develop/layout).
