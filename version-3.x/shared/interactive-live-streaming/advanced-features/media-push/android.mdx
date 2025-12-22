@@ -103,6 +103,7 @@ To show the code logic for starting the streaming, dynamically updating the tran
 - Agora recommends that you control the number of hosts involved in transcoding according to the actual output video. In any event, the number of the hosts in the same channel cannot exceed 17.
 - Agora supports pushing streams in the RTMP and RTMPS protocols to CDN.
 - To avoid errors in the code logic, ensure that the CDN addresses used in the transcoded and non-transcoded streaming are different.
+- A streaming task refers to a single streaming operation. The maximum concurrent task limit (PCW) is 50 by default. This means that you can have up to 50 streaming tasks running simultaneously within a single Agora project. If you require a higher quota, reach out to [technical support](mailto:support@agora.io).
 
 ## Reference
 
